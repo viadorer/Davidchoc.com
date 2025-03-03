@@ -1,0 +1,1602 @@
+/* Základní nastavení */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #E6DBBC;
+    color: #333;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Navigace */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(230, 219, 188, 0.9);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    transition: all 0.3s ease;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.logo-image {
+    height: 50px;
+    width: auto;
+    margin-right: 10px;
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: 700;
+    color: #333;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+}
+
+.nav-menu li {
+    margin-left: 30px;
+}
+
+.nav-link {
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #8B7D61;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #8B7D61;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* Mobilní navigace */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.nav-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin-bottom: 5px;
+    transition: all 0.3s ease;
+}
+
+.nav-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Hero sekce */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-top: 70px;
+}
+
+/* Animovaná šipka */
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.scroll-indicator a {
+    display: inline-block;
+    color: #ffffff;
+    font-size: 30px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.scroll-indicator a:hover {
+    color: #FFBF00;
+}
+
+.scroll-indicator i {
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-15px);
+    }
+    60% {
+        transform: translateY(-10px);
+    }
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.hero-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+.hero-background video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1000px;
+    padding: 0 20px;
+    z-index: 2;
+}
+
+.hero-text {
+    flex: 1;
+    color: #fff;
+    text-align: left;
+}
+
+.hero-text h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: #FFBF00;
+    color: #000000;
+    font-weight: 600;
+    padding: 15px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.cta-button:hover {
+    background-color: #E0A800;
+    color: #000000;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-image {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #fff;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Sekce Mise */
+.mission-section {
+    padding: 100px 0;
+    background-color: #F8F4E9;
+}
+
+.mission-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.mission-text {
+    flex: 1;
+}
+
+.mission-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 25px;
+    color: #333;
+    position: relative;
+}
+
+.mission-text h2:after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 0;
+    width: 80px;
+    height: 3px;
+    background-color: #FFBF00;
+}
+
+.mission-text p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.mission-cta {
+    margin-top: 20px;
+    display: inline-block;
+}
+
+.mission-video {
+    flex: 1;
+    position: relative;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 133.33%; /* Poměr stran 3:4 (na výšku) */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.video-container video {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    left: 0; /* Centrovat video */
+    top: 0; /* Centrovat video */
+    object-position: center; /* Zaměřit na střed */
+}
+
+/* Responzivní design */
+@media screen and (max-width: 992px) {
+    .hero-text h1 {
+        font-size: 2.8rem;
+    }
+
+    .profile-image {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .mission-text h2 {
+        font-size: 2.2rem;
+    }
+    
+    .mission-text p {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .logo-image {
+        height: 40px;
+    }
+    
+    .logo-text {
+        font-size: 20px;
+    }
+    
+    .mission-content {
+        flex-direction: column;
+    }
+    
+    .mission-text {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    
+    .mission-text h2:after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .video-container {
+        padding-bottom: 75%;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    
+    .nav-toggle {
+        display: flex;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        background-color: rgba(230, 219, 188, 0.95);
+        flex-direction: column;
+        text-align: center;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-menu li {
+        margin: 20px 0;
+    }
+
+    .hero-content {
+        flex-direction: column;
+    }
+
+    .hero-text {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .hero-text h1 {
+        font-size: 2.2rem;
+    }
+    
+    .cta-button {
+        padding: 12px 25px;
+        font-size: 16px;
+    }
+
+    .profile-image {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .scroll-indicator {
+        bottom: 20px;
+    }
+    
+    .scroll-indicator a {
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .logo-image {
+        height: 35px;
+    }
+    
+    .logo-text {
+        font-size: 18px;
+    }
+    
+    .hero {
+        padding-top: 60px;
+    }
+
+    .hero-text h1 {
+        font-size: 1.8rem;
+    }
+    
+    .cta-button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .profile-image {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .scroll-indicator {
+        bottom: 15px;
+    }
+    
+    .scroll-indicator a {
+        font-size: 22px;
+    }
+}
+
+/* Styly pro sekci 7 kroků */
+.steps-section {
+    padding: 80px 0;
+    background-color: #fff;
+}
+
+.steps-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.steps-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.download-button {
+    margin: 20px auto;
+    display: inline-block;
+}
+
+.download-button i {
+    margin-right: 8px;
+}
+
+.steps-intro {
+    max-width: 800px;
+    margin: 20px auto;
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.step-card {
+    background-color: #f9f5e9;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.step-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.step-number {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: #FFBF00;
+    color: #000;
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 8px;
+    z-index: 1;
+}
+
+.step-content {
+    padding: 20px;
+}
+
+.step-image {
+    margin-bottom: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 0;
+    padding-bottom: 100%; /* Zajišťuje poměr stran 1:1 (čtverec) */
+    position: relative;
+}
+
+.step-image img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    top: 0;
+    left: 0;
+}
+
+.step-card:hover .step-image img {
+    transform: scale(1.05);
+}
+
+.step-content h3 {
+    font-size: 1.4rem;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.step-content h4 {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 15px;
+    font-weight: 400;
+}
+
+.step-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Styly pro bonus karty */
+.bonus-card {
+    background-color: #f4ebd7;
+    border: 2px solid #FFBF00;
+}
+
+.bonus-label {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: #000;
+    color: #FFBF00;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 8px;
+    z-index: 1;
+}
+
+/* Responzivní styly pro sekci 7 kroků */
+@media screen and (max-width: 992px) {
+    .steps-header h2 {
+        font-size: 2.2rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .steps-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+    
+    .steps-header h2 {
+        font-size: 1.8rem;
+    }
+    
+    .steps-intro {
+        font-size: 1rem;
+    }
+    
+
+}
+
+@media screen and (max-width: 576px) {
+    .steps-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .steps-header h2 {
+        font-size: 1.6rem;
+    }
+    
+    .step-number {
+        font-size: 1.2rem;
+        padding: 4px 10px;
+    }
+}
+
+/* Sekce PTF reality Plzeň */
+.ptf-section {
+    padding: 80px 0;
+    background-color: #E6DBBC;
+}
+
+.ptf-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+}
+
+.ptf-text {
+    flex: 1;
+    max-width: 30%;
+}
+
+.ptf-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    position: relative;
+}
+
+.ptf-text h2:after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 0;
+    width: 80px;
+    height: 3px;
+    background-color: #FFBF00;
+}
+
+.ptf-text p {
+    margin: 20px 0;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.ptf-tour {
+    flex: 3;
+}
+
+.matterport-container {
+    position: relative;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.matterport-container iframe {
+    display: block;
+    width: 100%;
+    min-height: 450px;
+    border: none;
+}
+
+/* Responzivní styly pro sekci PTF */
+@media screen and (max-width: 992px) {
+    .ptf-text h2 {
+        font-size: 2.2rem;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .ptf-text {
+        max-width: 35%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .ptf-content {
+        flex-direction: column;
+    }
+    
+    .ptf-text {
+        text-align: center;
+        margin-bottom: 30px;
+        max-width: 100%;
+    }
+    
+    .ptf-text h2:after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .ptf-text h2 {
+        font-size: 2rem;
+    }
+    
+    .matterport-container iframe {
+        min-height: 350px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .ptf-text h2 {
+        font-size: 1.8rem;
+    }
+}
+
+/* Videoprohlídka sekce */
+.videoprohlidka-section {
+    padding: 80px 0;
+    background-color: #fff;
+}
+
+.videoprohlidka-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.videoprohlidka-text {
+    flex: 1;
+    max-width: 40%;
+}
+
+.videoprohlidka-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    position: relative;
+}
+
+.videoprohlidka-text h2:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 80px;
+    height: 3px;
+    background-color: #FFBF00;
+}
+
+.videoprohlidka-text p {
+    margin: 20px 0;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.videoprohlidka-video {
+    flex: 2;
+}
+
+.video-player {
+    position: relative;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.video-player video {
+    display: block;
+    width: 100%;
+    min-height: 400px;
+    background-color: #000;
+    transition: opacity 0.3s ease;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.play-icon {
+    font-size: 4rem;
+    color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+}
+
+.video-player:hover .video-overlay {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.video-player:hover .play-icon {
+    transform: scale(1.1);
+    color: rgba(255, 255, 255, 1);
+}
+
+.video-player.playing .video-overlay {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Responzivní styly pro sekci Videoprohlídka */
+@media screen and (max-width: 992px) {
+    .videoprohlidka-text {
+        max-width: 45%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .videoprohlidka-content {
+        flex-direction: column;
+    }
+    
+    .videoprohlidka-text {
+        text-align: center;
+        margin-bottom: 30px;
+        max-width: 100%;
+    }
+    
+    .videoprohlidka-text h2:after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .videoprohlidka-text h2 {
+        font-size: 2rem;
+    }
+    
+    .video-player video {
+        min-height: 350px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .videoprohlidka-text h2 {
+        font-size: 1.8rem;
+    }
+}
+
+/* Kontakt sekce */
+.kontakt-section {
+    padding: 80px 0;
+    background-color: #E6DBBC;
+}
+
+.kontakt-content {
+    display: flex;
+    flex-direction: row; /* Explicitně nastaveno pro jistotu */
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.kontakt-text {
+    flex: 0 0 35%; /* Fixní šířka 35% */
+    order: 0; /* Zajistí, že text bude první (vlevo) */
+}
+
+.kontakt-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    position: relative;
+}
+
+.kontakt-text h2:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 80px;
+    height: 3px;
+    background-color: #FFBF00;
+}
+
+.kontakt-text p {
+    margin: 20px 0;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.kontakt-info {
+    margin: 30px 0;
+}
+
+.kontakt-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.kontakt-item i {
+    font-size: 1.2rem;
+    color: #000000;
+    margin-right: 15px;
+    width: 20px;
+    text-align: center;
+}
+
+.kontakt-item a {
+    color: #000;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.kontakt-item a:hover {
+    color: #FFBF00;
+}
+
+.socialni-site {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #000000;
+    color: white;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    background-color: #FFBF00;
+    transform: translateY(-3px);
+}
+
+.kontakt-formular {
+    flex: 0 0 55%; /* Fixní šířka 55% */
+    order: 1; /* Zajistí, že formulář bude druhý (vpravo) */
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Pro styling ECM formuláře */
+#f-21-125ab233e4603d4d7c84f5cbf8130258 {
+    width: 100%;
+    min-height: 400px;
+}
+
+/* Footer */
+footer {
+    background-color: #242424;
+    color: white;
+    padding: 60px 0 30px;
+}
+
+.footer-columns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    gap: 30px;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer-column h3 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-column h3:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background-color: #FFBF00;
+}
+
+.footer-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-menu a {
+    color: #DDD;
+    text-decoration: none;
+    transition: color 0.3s, transform 0.2s;
+    display: inline-block;
+}
+
+.footer-menu a:hover {
+    color: #FFBF00;
+    transform: translateX(5px);
+}
+
+.office-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.office h4 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    color: #FFBF00;
+}
+
+address {
+    font-style: normal;
+    line-height: 1.6;
+    color: #DDD;
+}
+
+.footer-social {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.footer-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #000000;
+    color: white;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.footer-social a:hover {
+    background-color: #FFBF00;
+    transform: translateY(-3px);
+}
+
+.newsletter h4 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.newsletter p {
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    color: #DDD;
+}
+
+.newsletter-form {
+    display: flex;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    font-size: 0.9rem;
+}
+
+.newsletter-form button {
+    background-color: #FFBF00;
+    color: #333;
+    border: none;
+    padding: 0 15px;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.newsletter-form button:hover {
+    background-color: #E6AB00;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.9rem;
+    color: #AAA;
+}
+
+.footer-bottom a {
+    color: #FFBF00;
+    text-decoration: none;
+}
+
+.footer-bottom a:hover {
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 992px) {
+    .footer-columns {
+        gap: 40px;
+    }
+    
+    .footer-column {
+        flex-basis: calc(50% - 20px);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    footer {
+        padding: 40px 0 20px;
+    }
+    
+    .footer-column {
+        flex-basis: 100%;
+    }
+    
+    .office-info {
+        gap: 30px;
+    }
+    
+    .footer-social {
+        justify-content: center;
+    }
+
+    .footer-column h3 {
+        text-align: center;
+    }
+
+    .footer-column h3:after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .footer-menu {
+        align-items: center;
+    }
+
+    .newsletter {
+        text-align: center;
+    }
+}
+
+/* Sekce Můj příběh */
+.muj-pribeh {
+    padding: 100px 0;
+    background-color: #E6DBBC;
+}
+
+.muj-pribeh-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.muj-pribeh-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.muj-pribeh-text h1 {
+    font-size: 3rem;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.muj-pribeh-text h1:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100px;
+    height: 3px;
+    background-color: #FFBF00;
+}
+
+.pribeh-odstavce p {
+    margin-bottom: 20px;
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+.podpis {
+    margin-top: 40px;
+    font-style: italic;
+}
+
+.podpis p {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.podpis .slogan {
+    font-weight: normal;
+    color: #666;
+}
+
+.muj-pribeh-image {
+    flex: 0 0 400px;
+}
+
+.pribeh-photo {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Responzivní styly pro Sekci Můj příběh */
+@media screen and (max-width: 992px) {
+    .muj-pribeh-content {
+        flex-direction: column-reverse;
+    }
+    
+    .muj-pribeh-image {
+        flex: 0 0 100%;
+        margin-bottom: 30px;
+    }
+    
+    .pribeh-photo {
+        max-width: 80%;
+        margin: 0 auto;
+        display: block;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .muj-pribeh {
+        padding: 60px 0;
+    }
+    
+    .muj-pribeh-text h1 {
+        font-size: 2.5rem;
+    }
+    
+    .pribeh-odstavce p {
+        font-size: 1rem;
+    }
+}
+
+/* Responzivní styly pro sekci Kontakt */
+@media screen and (max-width: 992px) {
+    .kontakt-text {
+        flex: 0 0 40%;
+    }
+    
+    .kontakt-formular {
+        flex: 0 0 50%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .kontakt-content {
+        flex-direction: column;
+    }
+    
+    .kontakt-text {
+        flex: 0 0 100%;
+        text-align: left;
+        margin-bottom: 30px;
+        order: 0;
+    }
+    
+    .kontakt-formular {
+        flex: 0 0 100%;
+        order: 1;
+    }
+    
+    .kontakt-text h2 {
+        font-size: 2rem;
+    }
+}
+
+/* Sekce Kodex spolupráce */
+.kodex-section {
+    padding: 80px 0;
+    background-color: #f8f5ed;
+}
+
+.kodex-nadpis {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.kodex-nadpis:after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 3px;
+    background-color: #FFBF00;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.kodex-uvod {
+    max-width: 800px;
+    margin: 0 auto 50px;
+    text-align: center;
+    line-height: 1.8;
+}
+
+.kodex-hodnoty {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.hodnota-box {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hodnota-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.hodnota-cislo {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #FFBF00;
+    margin-bottom: 15px;
+}
+
+.hodnota-box h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.hodnota-box p {
+    line-height: 1.7;
+    color: #555;
+}
+
+/* Responzivní styly pro sekci Kodex */
+@media screen and (max-width: 992px) {
+    .kodex-hodnoty {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .kodex-section {
+        padding: 60px 0;
+    }
+    
+    .kodex-nadpis {
+        font-size: 2.5rem;
+    }
+    
+    .kodex-hodnoty {
+        grid-template-columns: 1fr;
+    }
+    
+    .hodnota-box {
+        padding: 25px;
+    }
+}
+
+/* Styly pro kontakt na stránce Můj příběh */
+.kontakt-section {
+    padding: 80px 0;
+    background-color: #E6DBBC;
+}
+.sekce-nadpis {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.sekce-nadpis:after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 3px;
+    background-color: #FFBF00;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.pribeh-kontakt {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.pribeh-kontakt-info {
+    flex: 1;
+    min-width: 300px;
+}
+
+.pribeh-kontakt-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.pribeh-kontakt-text p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+@media screen and (max-width: 768px) {
+    .pribeh-kontakt {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 20px;
+    }
+    
+    .kontakt-item {
+        justify-content: center;
+    }
+    
+    .socialni-site {
+        justify-content: center;
+    }
+}
+
+/* Styly pro stránku Ocenit Online */
+.ocenit-section {
+    padding: 100px 0 80px;
+    background-color: #E6DBBC;
+}
+
+.ocenit-uvod {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 50px;
+}
+
+.ocenit-uvod h1 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.ocenit-uvod h1:after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 3px;
+    background-color: #FFBF00;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.ocenit-popis {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-top: 30px;
+    color: #333;
+}
+
+.ocenit-widget-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    margin-bottom: 50px;
+}
+
+.ocenit-vyhody {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin: 50px 0;
+}
+
+.vyhoda {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.vyhoda i {
+    font-size: 1.5rem;
+    color: #FFBF00;
+}
+
+.vyhoda p {
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.ocenit-cta {
+    text-align: center;
+    margin-top: 60px;
+}
+
+.ocenit-cta p {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+}
+
+@media screen and (max-width: 768px) {
+    .ocenit-section {
+        padding: 80px 0 60px;
+    }
+    
+    .ocenit-uvod h1 {
+        font-size: 2.2rem;
+    }
+    
+    .ocenit-popis {
+        font-size: 1.1rem;
+        padding: 0 20px;
+    }
+    
+    .ocenit-widget-container {
+        padding: 20px 15px;
+    }
+    
+    .vyhoda {
+        width: 100%;
+        max-width: 400px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .kontakt-text h2 {
+        font-size: 1.8rem;
+    }
+    
+    .kontakt-formular {
+        padding: 20px 15px;
+    }
+}

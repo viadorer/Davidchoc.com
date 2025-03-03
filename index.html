@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>David Choc | Realitní agent</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+    <!-- Navigace -->
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <a href="#">
+                        <img src="logo.png" alt="David Choc" class="logo-image">
+                        <span class="logo-text">David Choc</span>
+                    </a>
+                </div>
+                <div class="nav-toggle" id="navToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#" class="nav-link active">Domů</a></li>
+                    <li><a href="#sluzby" class="nav-link">Služby</a></li>
+                    <li><a href="#reference" class="nav-link">7 kroků k úspěchu</a></li>
+                    <li><a href="#ptf" class="nav-link">PTF reality</a></li>
+                    <li><a href="#videoprohlidka" class="nav-link">Videoprohlídka</a></li>
+                    <li><a href="muj-pribeh.html" class="nav-link">Můj příběh</a></li>
+                    <li><a href="ocenit-online.html" class="nav-link">Ocenit Online</a></li>
+                    <li><a href="#kontakt" class="nav-link">Kontakt</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero sekce -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>JMENUJI SE<br>DAVID CHOC<br>A JSEM REALITNÍ AGENT<br>VE VAŠICH SLUŽBÁCH</h1>
+                <a href="#kontakt" class="cta-button">Máte dotaz? Napište mi</a>
+            </div>
+            <div class="hero-image">
+                <img src="davidchocagent.avif" alt="David Choc - Realitní agent" class="profile-image">
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <a href="#sluzby">
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
+        <div class="hero-background">
+            <video autoplay muted loop playsinline preload="metadata" poster="IMG_2867.jpeg" id="hero-video">
+                <source src="file.mp4" type="video/mp4">
+                Váš prohlížeč nepodporuje přehrávání videa.
+            </video>
+        </div>
+    </section>
+
+    <!-- Sekce Mise -->
+    <section id="sluzby" class="mission-section">
+        <div class="container">
+            <div class="mission-content">
+                <div class="mission-text">
+                    <h2>Vaše nemovitost, může být moje příští Mise.</h2>
+                    <p>Každý detail má svůj význam, každý krok je důležitý a cíl je jasný: Dosáhnout nejlepšího možného výsledku.</p>
+                    <p>Přistupuji k vaší nemovitosti s takovou péčí a odhodláním, jako by byla mým vlastním domovem. Věřím, že úspěch spočívá nejen ve výsledcích, ale i v cestě k nim – v pečlivém plánování, detailním průzkumu trhu a osobním přístupu ke každému klientovi.</p>
+                    <p>Připravte se na zážitek, kde se profesionální služby snoubí s osobní péčí a kde je každý detail vaší nemovitosti pro mě stejně důležitý, jako pro vás. Je to mise, na kterou se vydávám s vášní a odhodláním, jaké byste očekávali od agenta, který to bere... no zkrátka osobně.</p>
+                    <a href="#kontakt" class="cta-button mission-cta">Objednat realitní misi</a>
+                </div>
+                <div class="mission-video">
+                    <div class="video-container">
+                        <video autoplay muted loop playsinline preload="metadata" id="mission-video">
+                            <source src="fileagent.mp4" type="video/mp4">
+                            Váš prohlížeč nepodporuje přehrávání videa.
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sekce 7 kroků -->
+    <section id="reference" class="steps-section">
+        <div class="container">
+            <div class="steps-header">
+                <h2>Jak prodávám nemovitosti aneb<br>7 kroků k úspěchu mise</h2>
+                <a href="Jak prodávám nemovitosti David Choc realitní agent.pdf" class="cta-button download-button" download>
+                    <i class="fas fa-download"></i> Stahněte si dokument
+                </a>
+                <p class="steps-intro">Každá mise je jedinečná, avšak vždy stojí na stejném základu: pečlivá příprava, vymazlený marketing a skvělé nabídkové řízení. To všechno se spojuje v jednu cestu, na kterou se vydáváme společně. Vaše nemovitost, moje příští mise. A beru to velmi osobně. S vášní a odborností naplánujeme každý krok, abychom společně dosáhli toho nejlepšího možného výsledku. Pojdťme na to.</p>
+            </div>
+            
+            <div class="steps-grid">
+                <!-- Krok 1 -->
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <div class="step-image">
+                            <img src="IMG_6729_HEIC.png.avif" alt="První schůzka" class="media-item">
+                        </div>
+                        <h3>První schůzka</h3>
+                        <h4>Posouzení a porozumění.</h4>
+                        <p>Naše cesta začíná osobním setkáním, kde posoudím vaši nemovitost a porozumím vašim potřebám a cílům. Tento krok je zásadní pro vytvoření úspěšné strategie prodeje.</p>
+                    </div>
+                </div>
+
+                <!-- Krok 2 -->
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <div class="step-image">
+                            <img src="shutterstock_1941224704.jpg.avif" alt="Stanovení prodejní ceny" class="media-item">
+                        </div>
+                        <h3>Stanovení prodejní ceny</h3>
+                        <h4>Analýza trhu.</h4>
+                        <p>Díky důkladné tržní analýze a porovnání s podobnými nemovitostmi stanovím reálnou tržní cenu vaší nemovitosti. Cílem je zajistit atraktivní cenu, která přitáhne kupce za maximální možnou cenu na realitním trhu.</p>
+                    </div>
+                </div>
+
+                <!-- Krok 3 -->
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <div class="step-image">
+                            <img src="Úpravy domu.jpg.avif" alt="Příprava nemovitosti" class="media-item">
+                        </div>
+                        <h3>Příprava nemovitosti</h3>
+                        <h4>Zvýšení atraktivity</h4>
+                        <p>Společně se zaměříme na to, abychom vaši nemovitost představili v nejlepším možném světle. To může zahrnovat drobné opravy, home staging nebo profesionální fotografie, aby se zvýšila její atraktivita pro potenciální kupce.</p>
+                    </div>
+                </div>
+
+                <!-- Krok 4 -->
+                <div class="step-card">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <div class="step-image">
+                            <img src="Televizní ovladač.jpeg.avif" alt="Marketingová kampaň" class="media-item">
+                        </div>
+                        <h3>Marketingová kampaň</h3>
+                        <h4>Maximální dosah</h4>
+                        <p>Využiji širokou paletu marketingových nástrojů - od online inzerce na předních realitních portálech, přes sociální média, až po tradiční marketing - abych zajistil, že vaše nemovitost dosáhne co nejširšího publika potenciálních kupců.</p>
+                    </div>
+                </div>
+
+                <!-- Krok 5 -->
+                <div class="step-card">
+                    <div class="step-number">05</div>
+                    <div class="step-content">
+                        <div class="step-image">
+                            <img src="Prohlídka domu.jpg.avif" alt="Prohlídky se zájemci" class="media-item">
+                        </div>
+                        <h3>Prohlídky se zájemci</h3>
+                        <h4>Profesionální prezentace</h4>
+                        <p>Organizuji a provádím prohlídky nemovitosti s potenciálními kupci. Můj cíl je nejen ukázat nemovitost, ale také zdůraznit její klíčové vlastnosti a odpovědět na všechny dotazy zájemců.</p>
+                    </div>
+                </div>
+
+                <!-- Krok 6 -->
+                <div class="step-card">
+                    <div class="step-number">06</div>
+                    <div class="step-content">
+                        <div class="step-image">
+                            <img src="ve vyjednávání.jpg.avif" alt="Vyjednávání" class="media-item">
+                        </div>
+                        <h3>Vyjednávání</h3>
+                        <h4>Zajištění nejlepší dohody</h4>
+                        <p>Jako váš zástupce se zúčastním vyjednávání s potenciálními kupci, abychom dosáhli co nejlepší ceny a podmínek prodeje. Mé zkušenosti v oblasti vyjednávání zajišťují, že budete mít vždy výhodu.</p>
+                    </div>
+                </div>
+
+                <!-- Krok 7 -->
+                <div class="step-card">
+                    <div class="step-number">07</div>
+                    <div class="step-content">
+                        <div class="step-image">
+                            <img src="czech-republic-8114188_1280.jpg.avif" alt="Závěrečná fáze" class="media-item">
+                        </div>
+                        <h3>Závěrečná fáze</h3>
+                        <h4>Hladké dokončení</h4>
+                        <p>Po uzavření rezervační smlouvy zajistím, aby celý proces dokončení transakce proběhl co nejhladčeji, od právních formalit až po předání klíčů, bez jakýchkoli komplikací.</p>
+                    </div>
+                </div>
+                
+                <!-- Bonus 1 -->
+                <div class="step-card bonus-card">
+                    <div class="bonus-label">BONUS</div>
+                    <div class="step-content">
+                        <div class="step-image">
+                            <img src="Automechanik.jpg.avif" alt="Následný servis" class="media-item">
+                        </div>
+                        <h3>Následný servis</h3>
+                        <h4>Prodejem služby nekončí</h4>
+                        <p>Moje služby pokračují i po prodeji, nabízím vám poradenství pro další investice, komplexní správu a pronájem vaší nemovitosti, doplněné o pravidelné zprávy o stavu a vývoji na trhu s nemovitostmi.</p>
+                    </div>
+                </div>
+
+                <!-- Bonus 2 -->
+                <div class="step-card bonus-card">
+                    <div class="bonus-label">BONUS 2</div>
+                    <div class="step-content">
+                        <div class="step-image">
+                            <img src="IMG_7110_heic.png.avif" alt="KLUB investorů" class="media-item">
+                        </div>
+                        <h3>KLUB investorů</h3>
+                        <h4>Exkluzivní klub</h4>
+                        <p>Náš klub nabízí exkluzivní přístup k pokročilým službám a informacím v oblasti investic, správy a pronájmu nemovitostí, včetně detailních analýz trhu, aby členové mohli maximalizovat svůj investiční potenciál.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sekce PTF reality Plzeň -->
+    <section id="ptf" class="ptf-section">
+        <div class="container">
+            <div class="ptf-content">
+                <div class="ptf-text">
+                    <h2>Virtual view PTF reality<br>Plzeň</h2>
+                    <p>Prohlédněte si naše kanceláře nasnímané 3D scannerem. Vaše prodávaná nemovitost může vypadat virtuálně také tak.</p>
+                    <a href="#kontakt" class="cta-button">Chci 3D prohlídku své nemovitosti</a>
+                </div>
+                <div class="ptf-tour">
+                    <div class="matterport-container">
+                        <iframe 
+                            width="853" 
+                            height="480" 
+                            src="https://my.matterport.com/show/?m=NSscjqMBYaX" 
+                            frameborder="0" 
+                            allowfullscreen 
+                            allow="autoplay; fullscreen; web-share; xr-spatial-tracking;"
+                        ></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sekce Videoprohlídka -->
+    <section id="videoprohlidka" class="videoprohlidka-section">
+        <div class="container">
+            <div class="videoprohlidka-content">
+                <div class="videoprohlidka-text">
+                    <h2>Videoprohlídka</h2>
+                    <p>Videoprezentace a prohlídky skutečně přidávají osobní dotek k mé online inzerci nemovitostí. Jako váš agent vytvořím komentované prohlídky, kde osobně představím každý detail nemovitosti a zvýrazním její klíčové vlastnosti.</p>
+                    <p>Video mi umožňuje zachytit nejen dynamiku prostoru, ale také jedinečnou atmosféru, která z domu dělá domov. Tento přístup mi pomáhá ukázat potenciálním kupcům nejen to, jak nemovitost vypadá, ale také jak se v ní cítíte, což fotky nebo popisy nemohou plně předat.</p>
+                    <a href="#kontakt" class="cta-button">Chci videoprezentaci své nemovitosti</a>
+                </div>
+                <div class="videoprohlidka-video">
+                    <div class="video-player" id="videoContainer">
+                        <video id="promoVideo" muted loop playsinline preload="metadata" poster="assets/img/video-thumbnail.jpg">
+                            <source src="assets/video/fileprohlidka.mp4" type="video/mp4">
+                            Váš prohlížeč nepodporuje přehrávání videa.
+                        </video>
+                        <div class="video-overlay">
+                            <span class="play-icon"><i class="fas fa-play-circle"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sekce Kontakt -->
+    <section id="kontakt" class="kontakt-section">
+        <div class="container">
+            <div class="kontakt-content">
+                <div class="kontakt-text">
+                    <h2>Domluvte si konzultaci</h2>
+                    <p>Chcete se poradit o konkrétním projektu nebo máte dotazy k našim službám? Vyplňte formulář a domluvte si konzultaci, rád vám vše vysvětlím.</p>
+                    
+                    <div class="kontakt-info">
+                        <div class="kontakt-item">
+                            <i class="fas fa-phone"></i>
+                            <span><a href="tel:+420774052232">774 052 232</a></span>
+                        </div>
+                        <div class="kontakt-item">
+                            <i class="fas fa-envelope"></i>
+                            <span><a href="mailto:david.choc@ptf.cz">david.choc@ptf.cz</a></span>
+                        </div>
+                    </div>
+                    
+                    <div class="socialni-site">
+                        <a href="https://www.facebook.com/davidchoc.cz" target="_blank" class="social-icon" aria-label="Facebook profil Davida Choce">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/david-choc-85194941/" target="_blank" class="social-icon" aria-label="LinkedIn profil Davida Choce">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://www.instagram.com/davidchoc.cz/" target="_blank" class="social-icon" aria-label="Instagram profil Davida Choce">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="kontakt-formular">
+                    <div id="f-21-125ab233e4603d4d7c84f5cbf8130258"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-columns">
+                <div class="footer-column">
+                    <h3>Rychlé odkazy</h3>
+                    <nav class="footer-menu">
+                        <a href="#">Domů</a>
+                        <a href="#sluzby">Služby</a>
+                        <a href="#reference">7 kroků k úspěchu</a>
+                        <a href="#ptf">PTF reality</a>
+                        <a href="#videoprohlidka">Videoprohlídka</a>
+                        <a href="muj-pribeh.html">Můj příběh</a>
+                        <a href="ocenit-online.html">Ocenit Online</a>
+                        <a href="#kontakt">Kontakt</a>
+                    </nav>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>PTF reality</h3>
+                    <nav class="footer-menu">
+                        <a href="https://www.ptf.cz" target="_blank">PTF reality</a>
+                        <a href="https://www.ptf.cz/blog" target="_blank">Blog</a>
+                        <a href="https://www.ptf.cz/kariera" target="_blank">Kariéra</a>
+                        <a href="https://www.ptf.cz/kontakt" target="_blank">Kontakt</a>
+                        <a href="osobni-udaje.html">Zpracování osobních údajů</a>
+                        <a href="VOS.html">VOS</a>
+                    </nav>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Kanceláře</h3>
+                    <div class="office-info">
+                        <div class="office">
+                            <h4>Plzeň</h4>
+                            <address>
+                                Dřevěná 99/3<br>
+                                301 00 Plzeň
+                            </address>
+                        </div>
+                        <div class="office">
+                            <h4>Praha</h4>
+                            <address>
+                                Pod turnovskou tratí 182/18<br>
+                                198 00 Praha - Hloubětín
+                            </address>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Sledujte mě</h3>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/davidchoc.cz" target="_blank" aria-label="Facebook profil Davida Choce">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/davidchoc.cz/" target="_blank" aria-label="Instagram profil Davida Choce">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/david-choc-85194941/" target="_blank" aria-label="LinkedIn profil Davida Choce">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://www.youtube.com/channel/UCj7OL8pqmAq8V48ETX7AcQg" target="_blank" aria-label="YouTube kanál Davida Choce">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                    <div class="newsletter">
+                        <h4>Odběr novinek</h4>
+                        <p>Získejte exkluzivní tipy a nabídky nemovitostí:</p>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Váš e-mail" required>
+                            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 1998-2025 by David Choc & PTF reality. <a href="https://www.ptf.cz" target="_blank">www.ptf.cz</a> Made with Love. David Choc - realitní agent ve vašich službách.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
+    
+    <!-- ECM Widget formulář script -->
+    <script>
+        (function (w,d,s,o,f,js,fjs) {
+            w['ecm-widget']=o;w[o] = w[o] || function () { (w[o].q = w[o].q || []).push(arguments) };
+            js = d.createElement(s), fjs = d.getElementsByTagName(s)[0];
+            js.id = '21-125ab233e4603d4d7c84f5cbf8130258'; js.dataset.a = 'ptf'; js.src = f; js.async = 1; fjs.parentNode.insertBefore(js, fjs);
+        }(window, document, 'script', 'ecmwidget', 'https://d70shl7vidtft.cloudfront.net/widget.js'));
+    </script>
+</body>
+</html>
