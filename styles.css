@@ -103,29 +103,25 @@ header {
 /* Mobilní navigace */
 .nav-toggle {
     display: none;
-    flex-direction: column;
     cursor: pointer;
 }
 
-.nav-toggle span {
-    display: block;
-    width: 25px;
-    height: 3px;
-    background-color: #333;
-    margin-bottom: 5px;
+.nav-toggle i {
+    font-size: 24px;
+    color: #333;
     transition: all 0.3s ease;
 }
 
-.nav-toggle.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
+.nav-toggle.active i.fa-bars {
+    display: none;
 }
 
-.nav-toggle.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.nav-toggle.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
+.nav-toggle.active::before {
+    content: "\f00d";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 24px;
+    color: #333;
 }
 
 /* Hero sekce */
@@ -1111,7 +1107,214 @@ header {
     position: relative;
 }
 
-.recenze-header h2, .konzultace-header h2 {
+/* Na co se zaměřuji sekce */
+.zamereni-section {
+    padding: 80px 0;
+    background-color: #FFFFFF;
+    position: relative;
+}
+
+/* Ocenit Online Banner sekce */
+.ocenit-banner-section {
+    padding: 40px 0;
+    position: relative;
+}
+
+.ocenit-banner-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    background-color: #FFBF00;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.ocenit-banner-text {
+    flex: 1;
+    max-width: 60%;
+}
+
+.ocenit-banner-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    position: relative;
+    color: #333;
+}
+
+.ocenit-banner-text h2:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 80px;
+    height: 3px;
+    background-color: #FFFFFF;
+}
+
+.ocenit-banner-text p {
+    margin: 20px 0;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #333;
+}
+
+.ocenit-banner-image {
+    flex: 1;
+    max-width: 40%;
+    text-align: center;
+}
+
+.ocenit-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.ocenit-banner-image:hover .ocenit-img {
+    transform: scale(1.03);
+}
+
+/* Speciální styl pro tlačítko v banneru Ocenit Online */
+.ocenit-banner-button {
+    background-color: #FFFFFF;
+    color: #333;
+    border: none;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.ocenit-banner-button:hover {
+    background-color: #F8F4E9;
+    color: #333;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 992px) {
+    .ocenit-banner-content {
+        flex-direction: column;
+    }
+    
+    .ocenit-banner-text,
+    .ocenit-banner-image {
+        max-width: 100%;
+        text-align: center;
+    }
+    
+    .ocenit-banner-text h2:after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .ocenit-img {
+        max-width: 80%;
+    }
+    
+    .ocenit-banner-section .cta-button {
+        margin: 0 auto;
+    }
+}
+
+.zamereni-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.zamereni-header p {
+    max-width: 900px;
+    margin: 20px auto 0;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--secondary-text-color);
+}
+
+.zamereni-header h2:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: var(--accent-color);
+}
+
+.zamereni-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.zamereni-card {
+    background-color: #F8F4E9;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    padding: 30px;
+}
+
+.zamereni-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+}
+
+.zamereni-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    opacity: 0.8;
+    margin-bottom: 20px;
+}
+
+.zamereni-content h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-text-color);
+    margin-bottom: 20px;
+}
+
+.zamereni-content p {
+    color: var(--secondary-text-color);
+    line-height: 1.6;
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+.zamereni-cta {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-top: 20px;
+}
+
+@media (max-width: 992px) {
+    .zamereni-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .zamereni-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .zamereni-header h2 {
+        font-size: 2rem;
+    }
+    
+    .zamereni-header p {
+        font-size: 1rem;
+    }
+}
+
+.recenze-header h2, .konzultace-header h2, .zamereni-header h2 {
     font-size: 2.5rem;
     font-weight: 700;
     color: var(--primary-text-color);
