@@ -80,6 +80,22 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Začneme sledovat sekci mise
         missionVideoObserver.observe(document.querySelector('.mission-section'));
+        
+        // Přidání funkce pro ovládání zvuku
+        const soundToggle = document.getElementById('mission-sound-toggle');
+        if (soundToggle) {
+            soundToggle.addEventListener('click', function() {
+                // Přepnutí zvuku videa
+                missionVideo.muted = !missionVideo.muted;
+                
+                // Změna ikony podle stavu zvuku
+                if (missionVideo.muted) {
+                    this.querySelector('i').className = 'fas fa-volume-mute';
+                } else {
+                    this.querySelector('i').className = 'fas fa-volume-up';
+                }
+            });
+        }
     }
     // Mobilní navigace
     const navToggle = document.getElementById('navToggle');

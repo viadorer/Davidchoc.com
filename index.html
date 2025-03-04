@@ -25,13 +25,11 @@
                     <span></span>
                 </div>
                 <ul class="nav-menu" id="navMenu">
-                    <li><a href="#" class="nav-link active">Domů</a></li>
-                    <li><a href="#sluzby" class="nav-link">Služby</a></li>
                     <li><a href="#reference" class="nav-link">7 kroků k úspěchu</a></li>
-                    <li><a href="#ptf" class="nav-link">PTF reality</a></li>
-                    <li><a href="#videoprohlidka" class="nav-link">Videoprohlídka</a></li>
                     <li><a href="muj-pribeh.html" class="nav-link">Můj příběh</a></li>
                     <li><a href="ocenit-online.html" class="nav-link">Ocenit Online</a></li>
+                    <li><a href="#recenze" class="nav-link">Recenze</a></li>
+                    <li><a href="#konzultace" class="nav-link">Konzultace zdarma</a></li>
                     <li><a href="#kontakt" class="nav-link">Kontakt</a></li>
                 </ul>
             </div>
@@ -42,8 +40,8 @@
     <section class="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <h1>JMENUJI SE<br>DAVID CHOC<br>A JSEM REALITNÍ AGENT<br>VE VAŠICH SLUŽBÁCH</h1>
-                <a href="#kontakt" class="cta-button">Máte dotaz? Napište mi</a>
+                <h1>JMENUJI SE<br>DAVID CHOC<br>JSEM REALITNÍ AGENT<br>VE VAŠICH SLUŽBÁCH</h1>
+                <a href="#konzultace" class="cta-button">Domluvte si konzultaci zdarma</a>
             </div>
             <div class="hero-image">
                 <img src="davidchocagent.avif" alt="David Choc - Realitní agent" class="profile-image">
@@ -79,6 +77,9 @@
                             <source src="fileagent.mp4" type="video/mp4">
                             Váš prohlížeč nepodporuje přehrávání videa.
                         </video>
+                        <button class="sound-toggle" id="mission-sound-toggle" aria-label="Vypnout/zapnout zvuk">
+                            <i class="fas fa-volume-mute" aria-hidden="true"></i>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -217,6 +218,24 @@
         </div>
     </section>
 
+    <!-- Sekce Konzultace zdarma -->
+    <section id="konzultace" class="konzultace-section">
+        <div class="container">
+            <div class="konzultace-content">
+                <div class="konzultace-text">
+                    <h2>Konzultace zdarma</h2>
+                    <p>Potřebujete poradit s prodejem nebo pronájmem nemovitosti? Domluvte si nezávaznou 30 minutovou konzultaci. Po výběru termínu obdržíte potvrzení na váš e-mail.</p>
+                </div>
+                <div class="konzultace-kalendar">
+                    <!-- Calendly inline widget begin -->
+                    <div class="calendly-inline-widget" data-url="https://calendly.com/ptf-info/30min" style="min-width:320px;height:450px;"></div>
+                    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+                    <!-- Calendly inline widget end -->
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Sekce PTF reality Plzeň -->
     <section id="ptf" class="ptf-section">
         <div class="container">
@@ -267,12 +286,152 @@
         </div>
     </section>
 
+
+    <!-- Sekce Recenze -->
+    <section id="recenze" class="recenze-section">
+        <div class="container">
+            <div class="recenze-header">
+                <h2>Recenze našich klientů, děkujeme Vám za důvěru.</h2>
+            </div>
+            <div class="recenze-grid">
+                <!-- Horizontální řada pro recenze klientů -->
+                <div class="recenze-row">
+                    <!-- Recenze 1 -->
+                    <div class="recenze-card">
+                        <div class="recenze-number">01</div>
+                        <div class="recenze-content">
+                            <div class="recenze-image">
+                                <img src="recenzeBlatenska obyvaci pokoj 004.jpg.avif" alt="Recenze 1" class="recenze-img">
+                            </div>
+                            <div class="client-info">
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <h3>Ing. Jana R.</h3>
+                                <h4>Prodej bytu 2+1 Plzeň - Slovany</h4>
+                                <p>Profesionální proaktivní přístup, bezproblémová komunikace, ochota, vstřícnost, příkladná ukázka práce realitní kanceláře. Jednoznačně doporučuji.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Recenze 2 -->
+                    <div class="recenze-card">
+                        <div class="recenze-number">02</div>
+                        <div class="recenze-content">
+                            <div class="recenze-image">
+                                <img src="recenze1_ prodej bytu 1+1, Plzeň - Bory, ulice Skupova, realitní kancelář (RK) PTF reality, finan.jpg.avif" alt="Recenze 2" class="recenze-img">
+                            </div>
+                            <div class="client-info">
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <h3>Mgr. Jitka K.</h3>
+                                <h4>Prodej bytu 1+1 Plzeň - Bory</h4>
+                                <p>Profesionální přístup, rychlá bezproblémová spolupráce, vřele doporučuji.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Recenze 3 -->
+                    <div class="recenze-card">
+                        <div class="recenze-number">03</div>
+                        <div class="recenze-content">
+                            <div class="recenze-image">
+                                <img src="recenze005A5886.jpg.avif" alt="Recenze 3" class="recenze-img">
+                            </div>
+                            <div class="client-info">
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <h3>Alena B.</h3>
+                                <h4>Prodej bytu 1+kk Plzeň - Skvrňany</h4>
+                                <p>S PTF reality mám velmi dobré zkušenosti. Vždy jsem se mohla na ně obrátit v jakékoliv situaci, ať se jednalo o prodej nemovitosti nebo pronájem. Mohu každému vřele doporučit.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Recenze 4 -->
+                    <div class="recenze-card">
+                        <div class="recenze-number">04</div>
+                        <div class="recenze-content">
+                            <div class="recenze-image">
+                                <img src="recenze prodej byt Plzeň Slovany realitní kancelář RK PTF reality oblíbený spolehlivý nejlepší .jpg.avif" alt="Recenze 4" class="recenze-img">
+                            </div>
+                            <div class="client-info">
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <h3>Jan Š.</h3>
+                                <h4>Prodej bytu 2+1 Plzeň - Slovany</h4>
+                                <p>Naprostá spokojenost, profesionalita, nic nebyl problém.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Recenze 5 -->
+                    <div class="recenze-card">
+                        <div class="recenze-number">05</div>
+                        <div class="recenze-content">
+                            <div class="recenze-image">
+                                <img src="recenzeprodej-bytu-3-1-84-m2-plzen-bolevec-2-prodej-byt-3-1-plzen-plaska-rk-ptf-reality-obli-bena.jpg.avif" alt="Recenze 5" class="recenze-img">
+                            </div>
+                            <div class="client-info">
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <h3>David A.</h3>
+                                <h4>Prodej bytu 3+kk Plzeň - Bolevec</h4>
+                                <p>Rychlý prodej i pronájem, profi služby, díky!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Google recenze samostatně -->
+                <div class="recenze-card recenze-cta">
+                    <div class="recenze-content">
+                        <div class="recenze-image">
+                            <img src="recenze google.png.avif" alt="Google recenze" class="recenze-img">
+                        </div>
+                        <div class="client-info">
+                            <h3>Přidejte se k dalším spokojeným klientům</h3>
+                            <p>Byli jste spokojeni s mojí prací nebo kolegů? Budu rád, když o tom řeknete dalším klientům. Vyfoťte si prosím tento QR kód nebo klikněte na odkaz níže a napište nám recenzi. Děkuji.</p>
+                            <a href="https://search.google.com/local/writereview?placeid=ChIJj8TqefvxCkcRmUw2bqE94Us&source=g.page.m.ia._&laa=nmx-review-solicitation-ia2" class="cta-button recenze-button" target="_blank">Napsat recenzi</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
     <!-- Sekce Kontakt -->
     <section id="kontakt" class="kontakt-section">
         <div class="container">
             <div class="kontakt-content">
                 <div class="kontakt-text">
-                    <h2>Domluvte si konzultaci</h2>
+                    <h2>Máte dotaz?</p></p>Napište mi</h2>
                     <p>Chcete se poradit o konkrétním projektu nebo máte dotazy k našim službám? Vyplňte formulář a domluvte si konzultaci, rád vám vše vysvětlím.</p>
                     
                     <div class="kontakt-info">
@@ -312,13 +471,12 @@
                 <div class="footer-column">
                     <h3>Rychlé odkazy</h3>
                     <nav class="footer-menu">
-                        <a href="#">Domů</a>
-                        <a href="#sluzby">Služby</a>
                         <a href="#reference">7 kroků k úspěchu</a>
-                        <a href="#ptf">PTF reality</a>
-                        <a href="#videoprohlidka">Videoprohlídka</a>
                         <a href="muj-pribeh.html">Můj příběh</a>
                         <a href="ocenit-online.html">Ocenit Online</a>
+                        <a href="#kolegove">Moji kolegové</a>
+                        <a href="#recenze">Recenze</a>
+                        <a href="#konzultace">Konzultace zdarma</a>
                         <a href="#kontakt">Kontakt</a>
                     </nav>
                 </div>
