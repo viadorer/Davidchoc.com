@@ -205,13 +205,14 @@ header {
     top: 0;
     left: 0;
     z-index: 0;
+    object-position: center top;
 }
 
 .hero-content {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     width: 100%;
     max-width: 1000px;
     padding: 0 20px;
@@ -219,9 +220,10 @@ header {
 }
 
 .hero-text {
-    flex: 1;
+    flex: 0 0 60%;
     color: #fff;
     text-align: left;
+    padding-right: 40px;
 }
 
 .hero-text h1 {
@@ -253,9 +255,9 @@ header {
 }
 
 .hero-image {
-    flex: 1;
+    flex: 0 0 30%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
 }
 
@@ -338,6 +340,33 @@ header {
     object-position: center; /* Zaměřit na střed */
 }
 
+.sound-toggle {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.sound-toggle:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    transform: scale(1.1);
+}
+
+.sound-toggle i {
+    font-size: 1.2rem;
+}
+
 /* Responzivní design */
 @media screen and (max-width: 992px) {
     .hero-text h1 {
@@ -416,8 +445,10 @@ header {
     }
 
     .hero-text {
+        flex: 0 0 100%;
         text-align: center;
         margin-bottom: 30px;
+        padding-right: 0;
     }
 
     .hero-text h1 {
@@ -886,6 +917,353 @@ header {
     }
 }
 
+/* Kolegove sekce */
+.kolegove-section {
+    padding: 80px 0;
+    background-color: var(--secondary-color-light);
+    position: relative;
+    overflow: hidden;
+}
+
+.kolegove-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.kolegove-header h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-text-color);
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.kolegove-header h2:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: var(--accent-color);
+}
+
+.kolegove-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.kolega-card {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.kolega-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+}
+
+.kolega-image {
+    height: 280px;
+    overflow: hidden;
+    position: relative;
+}
+
+.kolega-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.kolega-card:hover .kolega-img {
+    transform: scale(1.05);
+}
+
+.kolega-info {
+    padding: 25px 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.kolega-info h3 {
+    color: var(--accent-color);
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+.kolega-info h4 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-text-color);
+    margin-bottom: 15px;
+}
+
+.kolega-info p {
+    color: var(--secondary-text-color);
+    line-height: 1.6;
+    font-size: 0.95rem;
+    margin-bottom: 0;
+    flex-grow: 1;
+}
+
+@media (max-width: 1200px) {
+    .kolegove-grid {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .kolegove-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .kolegove-section {
+        padding: 60px 0;
+    }
+    
+    .kolega-image {
+        height: 250px;
+    }
+}
+
+/* Recenze sekce */
+.recenze-section {
+    padding: 80px 0;
+    background-color: #fff;
+    position: relative;
+}
+
+/* Konzultace zdarma sekce */
+.konzultace-section {
+    padding: 80px 0;
+    background-color: #F8F4E9;
+    position: relative;
+}
+
+.recenze-header h2, .konzultace-header h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-text-color);
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.recenze-header h2:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: var(--accent-color);
+}
+
+/* Client reviews in horizontal row and Google review separately */
+.recenze-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Horizontal row for client reviews */
+.recenze-row {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding: 10px 0;
+    scroll-snap-type: x mandatory;
+}
+
+.recenze-row::-webkit-scrollbar {
+    height: 8px;
+}
+
+.recenze-row::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.recenze-row::-webkit-scrollbar-thumb {
+    background: #FFBF00;
+    border-radius: 10px;
+}
+
+.recenze-row .recenze-card {
+    min-width: 300px;
+    width: 300px;
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+}
+
+.recenze-card {
+    background-color: var(--secondary-color-light);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.recenze-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+}
+
+.recenze-number {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    opacity: 0.8;
+    z-index: 2;
+}
+
+.recenze-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.recenze-image {
+    width: 100%;
+    aspect-ratio: 1/1; /* Keeps it square */
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.recenze-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.recenze-card:hover .recenze-img {
+    transform: scale(1.05);
+}
+
+/* Zlaté hvězdy v hodnocení */
+.rating .fas.fa-star {
+    color: #FFD700; /* Zlatá barva pro hvězdy */
+    margin-right: 2px;
+}
+
+.client-info {
+    padding: 25px 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 100%;
+}
+
+.client-info h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--primary-text-color);
+    margin-bottom: 8px;
+}
+
+.client-info h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    margin-bottom: 15px;
+}
+
+.client-info p {
+    color: var(--secondary-text-color);
+    line-height: 1.6;
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    flex-grow: 1;
+}
+
+/* Google review card */
+.recenze-cta {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    border: 2px solid #FFBF00;
+}
+
+.recenze-cta .recenze-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+}
+
+.recenze-cta .recenze-image {
+    width: 200px;
+    height: 200px;
+    flex-shrink: 0;
+    margin-right: 30px;
+}
+
+.recenze-cta .client-info {
+    text-align: left;
+}
+
+.recenze-button {
+    align-self: center;
+    margin-top: auto;
+    display: inline-block;
+}
+
+@media (max-width: 1200px) {
+    .recenze-grid {
+        padding: 0 20px;
+    }
+    
+    .recenze-row {
+        padding: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .recenze-section {
+        padding: 60px 0;
+    }
+    
+    .recenze-cta .recenze-content {
+        flex-direction: column;
+    }
+    
+    .recenze-cta .recenze-image {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+    
+    .recenze-cta .client-info {
+        text-align: center;
+    }
+}
+
 /* Kontakt sekce */
 .kontakt-section {
     padding: 80px 0;
@@ -989,10 +1367,69 @@ header {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-/* Pro styling ECM formuláře */
-#f-21-125ab233e4603d4d7c84f5cbf8130258 {
+/* Styly pro Calendly widget */
+.kontakt-formular h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-text-color);
+    margin-bottom: 10px;
+}
+
+.kontakt-formular p {
+    color: var(--secondary-text-color);
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.calendly-inline-widget {
     width: 100%;
-    min-height: 400px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.konzultace-content {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.konzultace-text {
+    flex: 0 0 35%;
+    order: 0;
+}
+
+.konzultace-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    position: relative;
+}
+
+.konzultace-text h2:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 80px;
+    height: 3px;
+    background-color: #FFBF00;
+}
+
+.konzultace-text p {
+    margin: 20px 0;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.konzultace-kalendar {
+    flex: 0 0 55%;
+    order: 1;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 /* Footer */
@@ -1255,6 +1692,42 @@ address {
     height: auto;
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    margin-bottom: 25px;
+}
+
+/* Highlights sekce na stránce Můj příběh */
+.pribeh-highlights {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 5px;
+}
+
+.highlight-box {
+    background-color: white;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.highlight-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.highlight-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #FFBF00;
+    margin-bottom: 5px;
+}
+
+.highlight-text {
+    font-size: 0.9rem;
+    color: #333;
+    font-weight: 500;
 }
 
 /* Responzivní styly pro Sekci Můj příběh */
@@ -1270,8 +1743,13 @@ address {
     
     .pribeh-photo {
         max-width: 80%;
-        margin: 0 auto;
+        margin: 0 auto 25px;
         display: block;
+    }
+    
+    .pribeh-highlights {
+        max-width: 80%;
+        margin: 0 auto;
     }
 }
 
@@ -1286,6 +1764,14 @@ address {
     
     .pribeh-odstavce p {
         font-size: 1rem;
+    }
+    
+    .highlight-number {
+        font-size: 1.8rem;
+    }
+    
+    .highlight-text {
+        font-size: 0.85rem;
     }
 }
 
@@ -1397,6 +1883,10 @@ address {
     .kodex-hodnoty {
         grid-template-columns: repeat(2, 1fr);
     }
+    
+    .konzultace-kalendar {
+        padding: 25px;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -1414,6 +1904,31 @@ address {
     
     .hodnota-box {
         padding: 25px;
+    }
+    
+    .konzultace-section {
+        padding: 40px 0;
+    }
+    
+    .konzultace-content {
+        flex-direction: column;
+    }
+    
+    .konzultace-text {
+        flex: 0 0 100%;
+        text-align: left;
+        margin-bottom: 30px;
+        order: 0;
+    }
+    
+    .konzultace-kalendar {
+        flex: 0 0 100%;
+        order: 1;
+        padding: 20px;
+    }
+    
+    .konzultace-text h2 {
+        font-size: 2rem;
     }
 }
 
