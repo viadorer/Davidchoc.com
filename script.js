@@ -210,3 +210,26 @@ document.addEventListener('DOMContentLoaded', function() {
         videoObserver.observe(videoContainer);
     }
 });
+
+// Funkce pro tlačítko zpět nahoru
+document.addEventListener('DOMContentLoaded', function() {
+    const backToTopButton = document.querySelector('.back-to-top');
+    
+    // Zobrazit/skrýt tlačítko podle scrollování
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 300) {
+            backToTopButton.classList.add('visible');
+        } else {
+            backToTopButton.classList.remove('visible');
+        }
+    });
+    
+    // Kliknutí na tlačítko zpět nahoru
+    backToTopButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+});
