@@ -165,25 +165,22 @@ document.addEventListener('DOMContentLoaded', function() {
         }, index * 150);
     });
     
-    // Přehrávání videa při najetí myší v sekci Videoprohlídka
+    // Přehrávání videa při zobrazení na obrazovce v sekci Videoprohlídka
     const videoContainer = document.getElementById('videoContainer');
     const promoVideo = document.getElementById('promoVideo');
+    const promoSoundToggle = document.getElementById('promo-sound-toggle');
     
     if (videoContainer && promoVideo) {
-        // Přehrání videa při najetí
-        videoContainer.addEventListener('mouseenter', function() {
-            promoVideo.play();
-            videoContainer.classList.add('playing');
-        });
-
-        // Zastavení videa při odjezdu myši
-        videoContainer.addEventListener('mouseleave', function() {
-            promoVideo.pause();
-            videoContainer.classList.remove('playing');
-        });
-
-        // Kliknutí na video
-        videoContainer.addEventListener('click', function() {
+        // Při načtení stránky nastavíme video jako ztlumené
+        promoVideo.muted = true;
+        
+        // Kliknutí na video pro přepínání přehrávání/pauzy
+        videoContainer.addEventListener('click', function(e) {
+            // Pokud bylo kliknuto na tlačítko zvuku, nebudeme přepínat přehrávání
+            if (e.target.closest('#promo-sound-toggle')) {
+                return;
+            }
+            
             if (promoVideo.paused) {
                 promoVideo.play();
                 videoContainer.classList.add('playing');
@@ -192,21 +189,44 @@ document.addEventListener('DOMContentLoaded', function() {
                 videoContainer.classList.remove('playing');
             }
         });
+        
+        // Ovládání zvuku
+        if (promoSoundToggle) {
+            promoSoundToggle.addEventListener('click', function(e) {
+                // Zastavíme propagaci, aby se nespustil event handler pro videoContainer
+                e.stopPropagation();
+                
+                // Přepnutí zvuku videa
+                promoVideo.muted = !promoVideo.muted;
+                
+                // Změna ikony podle stavu zvuku
+                if (promoVideo.muted) {
+                    this.querySelector('i').className = 'fas fa-volume-mute';
+                } else {
+                    this.querySelector('i').className = 'fas fa-volume-up';
+                }
+            });
+        }
 
         // Nastavení autoplay pomocí Intersection Observer
         // Přehraje video, když je v zorném poli
         const videoObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    promoVideo.play().catch(e => console.log('Automatické přehrávání není povoleno: ', e));
-                    videoContainer.classList.add('playing');
+                    promoVideo.play()
+                        .then(() => {
+                            videoContainer.classList.add('playing');
+                        })
+                        .catch(e => console.log('Automatické přehrávání není povoleno: ', e));
                 } else {
+                    // Když video zmizí z obrazovky, můžeme ho zastavit
                     promoVideo.pause();
                     videoContainer.classList.remove('playing');
                 }
             });
         }, { threshold: 0.5 });
-
+        
+        // Začneme sledovat video container
         videoObserver.observe(videoContainer);
     }
 });

@@ -735,95 +735,132 @@ header {
     background-color: #E6DBBC;
 }
 
-.ptf-content {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 40px;
+.ptf-header {
+    text-align: center;
+    margin-bottom: 30px;
 }
 
-.ptf-text {
-    flex: 1;
-    max-width: 30%;
-}
-
-.ptf-text h2 {
+.ptf-header h2 {
     font-size: 2.5rem;
-    margin-bottom: 20px;
     font-weight: 700;
     position: relative;
+    display: inline-block;
+    padding-bottom: 15px;
 }
 
-.ptf-text h2:after {
+.ptf-header h2:after {
     content: '';
     position: absolute;
-    bottom: -12px;
-    left: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 80px;
     height: 3px;
     background-color: #FFBF00;
 }
 
-.ptf-text p {
-    margin: 20px 0;
-    font-size: 1.1rem;
-    line-height: 1.8;
+.ptf-text-columns {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
 }
 
+.ptf-column {
+    flex: 1;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.ptf-column p {
+    margin: 15px 0;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #333;
+}
+
+.column-cta {
+    margin-top: 25px;
+}
+
+
+
 .ptf-tour {
-    flex: 3;
+    width: 100%;
+    margin-top: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .matterport-container {
     position: relative;
     width: 100%;
-    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .matterport-container iframe {
     display: block;
     width: 100%;
-    min-height: 450px;
+    min-height: 650px;
     border: none;
 }
 
 /* Responzivní styly pro sekci PTF */
-@media screen and (max-width: 992px) {
-    .ptf-text h2 {
+@media screen and (max-width: 1200px) {
+    .ptf-header h2 {
         font-size: 2.2rem;
     }
 }
 
 @media screen and (max-width: 992px) {
-    .ptf-text {
-        max-width: 35%;
+    .ptf-header h2 {
+        font-size: 2rem;
+    }
+    
+    .ptf-column p {
+        font-size: 1rem;
     }
 }
 
 @media screen and (max-width: 768px) {
-    .ptf-content {
+    .ptf-text-columns {
         flex-direction: column;
+        gap: 20px;
     }
     
-    .ptf-text {
-        text-align: center;
-        margin-bottom: 30px;
-        max-width: 100%;
+    .ptf-column {
+        padding: 25px;
     }
     
-    .ptf-text h2:after {
-        left: 50%;
-        transform: translateX(-50%);
-    }
-    
-    .ptf-text h2 {
-        font-size: 2rem;
+    .ptf-header h2 {
+        font-size: 1.8rem;
     }
     
     .matterport-container iframe {
-        min-height: 350px;
+        min-height: 500px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .ptf-header h2 {
+        font-size: 1.6rem;
+        padding-bottom: 10px;
+    }
+    
+    .ptf-column {
+        padding: 20px;
+    }
+    
+    .ptf-column p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+    
+    .matterport-container iframe {
+        min-height: 400px;
     }
 }
 
@@ -927,6 +964,18 @@ header {
 .video-player.playing .video-overlay {
     opacity: 0;
     pointer-events: none;
+}
+
+.video-controls {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 15px;
+    z-index: 20;
+}
+
+.video-player.playing .video-controls {
+    opacity: 1;
 }
 
 /* Responzivní styly pro sekci Videoprohlídka */
@@ -1353,17 +1402,13 @@ header {
 }
 
 .recenze-row::-webkit-scrollbar {
-    height: 8px;
+    display: none;
 }
 
-.recenze-row::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
-}
-
-.recenze-row::-webkit-scrollbar-thumb {
-    background: #FFBF00;
-    border-radius: 10px;
+/* Zajištění kompatibility s různými prohlížeči pro skrytí posuvníku */
+.recenze-row {
+    -ms-overflow-style: none;  /* Internet Explorer a Edge */
+    scrollbar-width: none;  /* Firefox */
 }
 
 .recenze-row .recenze-card {
@@ -1462,17 +1507,19 @@ header {
 
 /* Google review card */
 .recenze-cta {
-    max-width: 800px;
-    margin: 0 auto;
+    width: 100%;
     background-color: #f9f9f9;
-    border: 2px solid #FFBF00;
+    /* Border removed per client request */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .recenze-cta .recenze-content {
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 20px;
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .recenze-cta .recenze-image {
