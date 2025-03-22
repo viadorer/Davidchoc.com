@@ -1,0 +1,564 @@
+/* Blog Post Styles */
+
+/* CTA Section */
+.cta-inline {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 40px;
+    margin: 30px 0;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    border-top: 4px solid #8B7D61;
+}
+
+.cta-inline h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.cta-inline p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.cta-inline .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-block;
+    padding: 14px 28px;
+    border-radius: 50px; /* Pilulkový tvar */
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background-color: #8B7D61;
+    color: #fff;
+    border: 2px solid #8B7D61;
+}
+
+.btn-primary:hover {
+    background-color: #6f6550;
+    border-color: #6f6550;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: #333;
+    border: 2px solid #8B7D61;
+}
+
+.btn-secondary:hover {
+    background-color: #8B7D61;
+    color: #fff;
+}
+
+/* Author Section */
+.author-section {
+    padding: 60px 0;
+    background-color: rgba(230, 219, 188, 0.3);
+}
+
+.author-box {
+    display: flex;
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    background-color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.author-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background-color: #8B7D61;
+}
+
+.author-image {
+    flex: 0 0 180px;
+    position: relative;
+}
+
+.author-image::before {
+    content: '';
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background-color: #8B7D61;
+    z-index: 0;
+    top: 0;
+    left: 0;
+}
+
+.author-avatar {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1;
+}
+
+.author-info {
+    flex: 1;
+    position: relative;
+}
+
+.author-info h2 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    color: #8B7D61;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.author-info h3 {
+    font-size: 2.2rem;
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: 700;
+}
+
+.author-title {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.author-description {
+    margin-bottom: 25px;
+    line-height: 1.7;
+    color: #444;
+    font-size: 1.05rem;
+}
+
+.author-social {
+    display: flex;
+    gap: 15px;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #8B7D61;
+    color: #fff;
+    text-align: center;
+    transition: all 0.3s ease;
+    margin-right: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.social-link:hover {
+    transform: scale(1.1);
+    background-color: #6f6550;
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Základní nastavení pro blog post */
+.blog-post-wrapper {
+    padding-top: 100px; /* Prostor pro pevnou navigaci */
+    overflow: hidden;
+    background-color: #E6DBBC;
+}
+
+/* Metadata článku (autor, datum, kategorie, doba čtení) */
+.blog-post-meta {
+    padding: 20px 0;
+    border-bottom: 1px solid #d9cdaa;
+    background-color: rgba(230, 219, 188, 0.5);
+}
+
+.post-meta-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.author-details {
+    display: flex;
+    align-items: center;
+}
+
+.author-thumbnail {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 12px;
+    border: 2px solid #8B7D61;
+}
+
+.author-meta {
+    display: flex;
+    flex-direction: column;
+}
+
+.author-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+.post-date {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.post-details {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.post-category {
+    display: inline-block;
+    background-color: #8B7D61;
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.reading-time {
+    font-size: 0.85rem;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Hlavička článku */
+.blog-post-header {
+    padding: 40px 0;
+    background-color: rgba(230, 219, 188, 0.3);
+}
+
+.blog-post-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 25px;
+    line-height: 1.3;
+}
+
+.blog-post-excerpt {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: #555;
+    max-width: 800px;
+    margin-bottom: 0;
+    font-style: italic;
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* Hlavní obrázek článku */
+.blog-post-featured-image {
+    margin-bottom: 40px;
+    background-color: rgba(230, 219, 188, 0.3);
+    padding: 30px 0;
+}
+
+.featured-image {
+    width: 100%;
+    max-height: 600px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.image-caption {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #666;
+    padding: 15px 0;
+    font-style: italic;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Obsah článku */
+.blog-post-content {
+    padding: 0 0 60px;
+    background-color: rgba(230, 219, 188, 0.3);
+}
+
+.post-content {
+    max-width: 800px;
+    margin: 0 auto 40px;
+    line-height: 1.8;
+    color: #333;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.post-content h2 {
+    font-size: 1.8rem;
+    margin: 40px 0 20px;
+    color: #333;
+    position: relative;
+}
+
+.post-content h2::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background-color: #8B7D61;
+    margin-top: 10px;
+}
+
+.post-content h3 {
+    font-size: 1.4rem;
+    margin: 30px 0 15px;
+    color: #333;
+}
+
+.post-content p {
+    margin-bottom: 25px;
+    font-size: 1.05rem;
+}
+
+.post-content ul, .post-content ol {
+    margin-bottom: 25px;
+    padding-left: 20px;
+}
+
+.post-content li {
+    margin-bottom: 10px;
+    font-size: 1.05rem;
+}
+
+.post-content blockquote {
+    margin: 30px 0;
+    padding: 20px 30px;
+    border-left: 5px solid #8B7D61;
+    background-color: rgba(139, 125, 97, 0.1);
+    font-style: italic;
+}
+
+.post-content blockquote p {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.post-content blockquote cite {
+    font-size: 0.95rem;
+    color: #666;
+    font-style: normal;
+    display: block;
+}
+
+.blog-post-image {
+    margin: 30px 0;
+    text-align: center;
+}
+
+.article-image {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+figcaption {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+}
+
+/* Sdílení na sociálních sítích */
+.social-sharing {
+    margin: 40px auto;
+    text-align: center;
+    max-width: 800px;
+    padding: 30px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.social-sharing h4 {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.facebook {
+    background-color: #1877F2;
+}
+
+.twitter {
+    background-color: #1DA1F2;
+}
+
+.linkedin {
+    background-color: #0077B5;
+}
+
+.email {
+    background-color: #333;
+}
+
+.whatsapp {
+    background-color: #25D366;
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Související články */
+.related-posts {
+    padding: 60px 0;
+    background-color: rgba(230, 219, 188, 0.5);
+}
+
+.related-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: #333;
+    position: relative;
+}
+
+.related-title:after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background-color: #8B7D61;
+    margin: 15px auto 0;
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+/* Responsivní úpravy */
+@media screen and (max-width: 992px) {
+    .blog-post-title {
+        font-size: 2.2rem;
+    }
+    
+    .related-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .post-meta-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .blog-post-title {
+        font-size: 1.8rem;
+    }
+    
+    .blog-post-excerpt {
+        font-size: 1.1rem;
+    }
+    
+    .related-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .social-icons {
+        flex-wrap: wrap;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .blog-post-header,
+    .blog-post-content {
+        padding: 30px 0;
+    }
+    
+    .blog-post-title {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+    
+    .post-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .post-content h3 {
+        font-size: 1.3rem;
+    }
+    
+    .author-box {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .author-image {
+        margin: 0 auto 20px;
+    }
+}

@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Vyloučení stránek, které nemají být indexovány
+Disallow: /osobni-udaje.html
+Disallow: /admin/
+Disallow: /temp/
+
+# Odkaz na mapu stránek
+Sitemap: https://davidchoc.com/sitemap.xml

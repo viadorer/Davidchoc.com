@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kariéra | David Choc | Realitní agent</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+    <!-- Navigace -->
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="logo.png" alt="David Choc" class="logo-image">
+                        <span class="logo-text">David Choc</span>
+                    </a>
+                </div>
+                <div class="nav-toggle" id="navToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html#reference" class="nav-link">7 kroků k úspěchu</a></li>
+                    <li><a href="muj-pribeh.html" class="nav-link">Můj příběh</a></li>
+                    <li><a href="ocenit-online.html" class="nav-link" title="Získejte odhad tržní ceny své nemovitosti online během pár minut">Ocenit Online</a></li>
+                    <li><a href="kariera.html" class="nav-link active">Kariéra</a></li>
+                    <li><a href="index.html#recenze" class="nav-link">Recenze</a></li>
+                    <li><a href="index.html#konzultace" class="nav-link">Konzultace</a></li>
+                    <li><a href="index.html#kontakt" class="nav-link">Kontakt</a></li>
+                    <li><a href="blog/index.html" class="nav-link">Blog</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+<!-- Hero sekce -->
+<section class="hero career-hero" id="top">
+    <div class="hero-overlay"></div>
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>HLEDÁME AMBICIÓZNÍ<br>REALITNÍ MAKLÉŘE</h1>
+                <div class="hero-subtitle">Přidejte se k týmu PTF reality a posuňte svou kariéru na vyšší úroveň</div>
+                <p class="hero-description">Zvyšte své příjmy, rozšiřte své obchodní možnosti a získejte stabilní zázemí silné realitní kanceláře. Vítejte u Davida Choce v PTF reality.</p>
+                <a href="#calculator" class="cta-button">Chci vědět víc</a>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-indicator">
+        <a href="#calculator"><i class="fas fa-chevron-down"></i></a>
+    </div>
+</section>
+
+<style>
+    .career-hero {
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('makler.png');
+        background-size: cover;
+        background-position: center right;
+        height: 100vh;
+        position: relative;
+        display: flex;
+        align-items: center;
+        color: #fff;
+    }
+    
+    .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.2) 100%);
+        z-index: 1;
+    }
+    
+    .career-hero .hero-content {
+        max-width: 1200px;
+        padding: 0 20px;
+        z-index: 2;
+        position: relative;
+    }
+    
+    .career-hero .hero-text {
+        text-align: left;
+        max-width: 600px;
+    }
+    
+    .career-hero h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    
+    .hero-subtitle {
+        font-size: 1.6rem;
+        margin-bottom: 25px;
+        font-weight: 500;
+        color: #FFBF00;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+    
+    .hero-description {
+        font-size: 1.2rem;
+        margin-bottom: 40px;
+        line-height: 1.8;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    }
+    
+    .career-hero .cta-button {
+        display: inline-block;
+        background-color: #FFBF00;
+        color: #000000;
+        font-weight: 600;
+        padding: 15px 30px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-size: 18px;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .career-hero .cta-button:hover {
+        background-color: #E0A800;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .scroll-indicator {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
+        animation: bounce 2s infinite;
+    }
+    
+    .scroll-indicator a {
+        display: inline-block;
+        color: #ffffff;
+        font-size: 30px;
+        text-decoration: none;
+    }
+    
+    @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+            transform: translateY(0) translateX(-50%);
+        }
+        40% {
+            transform: translateY(-20px) translateX(-50%);
+        }
+        60% {
+            transform: translateY(-10px) translateX(-50%);
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .career-hero h1 {
+            font-size: 2.2rem;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+        }
+        
+        .hero-description {
+            font-size: 1rem;
+        }
+        
+        .career-hero {
+            background-position: 70% center;
+        }
+        
+        .hero-overlay {
+            background: linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 100%);
+        }
+    }
+</style>
+
+
+<!-- Intro sekce před kalkulačkou -->
+<section class="income-intro-section">
+    <div class="container">
+        <h2 class="section-title">KOLIK SI U NÁS MŮŽETE VYDĚLAT?</h2>
+        <div class="income-intro-content">
+            <p class="income-intro-text">
+                Díky našemu proviznímu modelu přesně víte, kolik za svou práci dostanete. Odměna je transparentní a odvíjí se od jasně definovaných podmínek. Navíc pokrýváme velkou část marketingových a administrativních nákladů, abyste se mohli naplno věnovat obchodu a osobnímu rozvoji.
+            </p>
+            
+            <div class="income-cta-container">
+                <p class="income-cta-text">Chcete si to spočítat pro konkrétní případy?</p>
+                <a href="#calculator" class="income-cta-button">Vyzkoušejte naši kalkulačku</a>
+                
+                <p class="income-contact-text">
+                    Nebo se rovnou ozvěte a zeptejte se na své možnosti. Rádi vám ukážeme, jaké provize můžete reálně dosáhnout už během prvních měsíců spolupráce.
+                </p>
+                <a href="kontakt.html" class="income-contact-button">Kontaktujte nás</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .income-intro-section {
+        background-color: #fff;
+        padding: 100px 0;
+    }
+    
+    .income-intro-content {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    
+    .income-intro-text {
+        font-size: 1.2rem;
+        line-height: 1.8;
+        color: #333;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+    
+    .income-cta-container {
+        text-align: center;
+    }
+    
+    .income-cta-text {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 20px;
+    }
+    
+    .income-cta-button {
+        display: inline-block;
+        background-color: #FFBF00;
+        color: #000000;
+        font-weight: 600;
+        padding: 15px 30px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-size: 18px;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        margin-bottom: 40px;
+    }
+    
+    .income-cta-button:hover {
+        background-color: #E0A800;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .income-contact-text {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #333;
+        margin-bottom: 20px;
+    }
+    
+    .income-contact-button {
+        display: inline-block;
+        background-color: #8B7D61;
+        color: #ffffff;
+        font-weight: 600;
+        padding: 15px 30px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-size: 18px;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .income-contact-button:hover {
+        background-color: #756A52;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    @media (max-width: 768px) {
+        .income-intro-section {
+            padding: 60px 0;
+        }
+        
+        .income-intro-text,
+        .income-contact-text {
+            font-size: 1rem;
+        }
+        
+        .income-cta-text {
+            font-size: 1.2rem;
+        }
+    }
+</style>
+
+    <!-- Sekce s kalkulačkou provizí -->
+    <section class="calculator-section">
+        <div class="container">
+            <h1>KALKULAČKA VAŠÍ PROVIZE</h1>
+            <p class="calculator-intro">
+                Nevěříte, že si vyděláte víc? Připravili jsme pro vás provizní kalkulačku, kde si můžete vypočítat, jak by vypadala vaše výplata v porovnání s vaší současnou výplatou.
+            </p>
+            
+            <div class="calculator-container">
+                <div class="calculator-inputs">
+                    <div class="input-group">
+                        <h3 class="input-title">VAŠE ROČNÍ UZÁVĚRKA*:</h3>
+                        <div class="input-with-label">
+                            <input type="number" id="yearly-revenue" value="1000000" min="0" step="10000">
+                            <span class="input-suffix">Kč</span>
+                            <p class="input-note">(včetně DPH)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <h3 class="input-title">POČET OBCHODŮ:</h3>
+                        <div class="input-with-label">
+                            <input type="number" id="trades-count" value="12" min="1" step="1">
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <h3 class="input-title">ČASOVÝ ÚSEK:</h3>
+                        <div class="input-with-label">
+                            <input type="number" id="time-period" value="12" min="1" step="1">
+                            <p class="input-note">(měsíce)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="calculator-results">
+                    <div class="result-group">
+                        <h3>VÁŠ SOUČASNÝ VÝDĚLEK:</h3>
+                        <p class="result-value" id="current-income">188 974 Kč</p>
+                    </div>
+                    
+                    <div class="result-group">
+                        <h3>VÁŠ VÝDĚLEK U NÁS:</h3>
+                        <p class="result-value" id="our-income">465 784 Kč</p>
+                    </div>
+                    
+                    <div class="result-group">
+                        <h3>ROZDÍL OPROTI VAŠÍ SOUČASNÉ POZICI:</h3>
+                        <p class="result-value highlight" id="income-difference">276 810 Kč</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="conditions-container">
+                <div class="current-conditions">
+                    <h2>SOUČASNÉ PODMÍNKY</h2>
+                    
+                    <h3 class="condition-title">VAŠE NÁKLADY:</h3>
+                    
+                    <div class="manage-costs">
+                        <h4>HRADÍTE SI SAMI NÁKLADY?</h4>
+                        <div class="radio-group">
+                            <label>
+                                <input type="radio" name="self-costs" value="yes" checked> Ano
+                            </label>
+                            <label>
+                                <input type="radio" name="self-costs" value="no"> Ne
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="cost-items">
+                        <div class="cost-item">
+                            <div class="cost-icon">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            <span class="cost-label">FOTOGRAF</span>
+                            <div class="cost-value-input">
+                                <input type="number" id="current-photographer" value="3630" min="0" step="100">
+                                <span class="cost-suffix">Kč</span>
+                            </div>
+                        </div>
+                        
+                        <div class="cost-item">
+                            <div class="cost-icon">
+                                <i class="fas fa-ad"></i>
+                            </div>
+                            <span class="cost-label">INZERCE</span>
+                            <div class="cost-value-input">
+                                <input type="number" id="current-ads" value="0" min="0" step="100">
+                                <span class="cost-suffix">Kč</span>
+                            </div>
+                        </div>
+                        
+                        <div class="cost-item">
+                            <div class="cost-icon">
+                                <i class="fas fa-file-contract"></i>
+                            </div>
+                            <span class="cost-label">KUPNÍ SMLOUVY</span>
+                            <div class="cost-value-input">
+                                <input type="number" id="current-contracts" value="4840" min="0" step="100">
+                                <span class="cost-suffix">Kč</span>
+                            </div>
+                        </div>
+                        
+                        <div class="cost-item">
+                            <div class="cost-icon">
+                                <i class="fas fa-archive"></i>
+                            </div>
+                            <span class="cost-label">ÚSCHOVA</span>
+                            <div class="cost-value-input">
+                                <input type="number" id="current-storage" value="4840" min="0" step="100">
+                                <span class="cost-suffix">Kč</span>
+                            </div>
+                        </div>
+                        
+                        <div class="cost-item">
+                            <div class="cost-icon">
+                                <i class="fas fa-upload"></i>
+                            </div>
+                            <span class="cost-label">VKLAD DO KN</span>
+                            <div class="cost-value-input">
+                                <input type="number" id="current-registration" value="2000" min="0" step="100">
+                                <span class="cost-suffix">Kč</span>
+                            </div>
+                        </div>
+                        
+                        <div class="cost-item">
+                            <div class="cost-icon">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <span class="cost-label">KANCELÁŘ</span>
+                            <div class="cost-value-input">
+                                <input type="number" id="current-office" value="2000" min="0" step="100">
+                                <span class="cost-suffix">Kč</span>
+                            </div>
+                        </div>
+                        
+                        <div class="cost-item commission-item">
+                            <div class="cost-icon">
+                                <i class="fas fa-percentage"></i>
+                            </div>
+                            <span class="cost-label">Z PROVIZE</span>
+                            <div class="cost-value-input">
+                                <input type="number" id="current-commission-percent" value="48" min="0" max="100" step="1">
+                                <span class="cost-suffix">%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="our-conditions">
+                    <h2>PODMÍNKY U NÁS</h2>
+                    
+                    <h3 class="condition-title">VAŠE NÁKLADY:</h3>
+                    
+                    <div class="cost-items">
+                        <div class="cost-item">
+                            <div class="cost-icon">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            <span class="cost-label">FOTOGRAF</span>
+                            <span class="cost-value">3 500,- Kč</span>
+                        </div>
+                        
+                        <div class="cost-item">
+                            <div class="cost-icon">
+                                <i class="fas fa-ad"></i>
+                            </div>
+                            <span class="cost-label">INZERCE</span>
+                            <span class="cost-value">0,- Kč</span>
+                        </div>
+                        
+                        <div class="cost-item">
+                            <div class="cost-icon">
+                                <i class="fas fa-bullhorn"></i>
+                            </div>
+                            <span class="cost-label">PROPAGACE NA SOC. SÍTÍCH</span>
+                            <span class="cost-value">0,- Kč</span>
+                        </div>
+                        
+                        <div class="cost-item">
+                            <div class="cost-icon">
+                                <i class="fas fa-file-contract"></i>
+                            </div>
+                            <span class="cost-label">KUPNÍ SMLOUVY A ÚSCHOVA</span>
+                            <span class="cost-value">7260,- Kč</span>
+                        </div>
+                        
+                        <div class="cost-item">
+                            <div class="cost-icon">
+                                <i class="fas fa-upload"></i>
+                            </div>
+                            <span class="cost-label">NÁVRH NA VKLAD</span>
+                            <span class="cost-value">2 000,- Kč</span>
+                        </div>
+                        
+                        <div class="cost-item">
+                            <div class="cost-icon" style="background-color: #FFBF00;">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="cost-label">ZÁKLADNÍ PROVIZE</span>
+                            <span class="cost-value" style="color: #FFBF00;">465 784 Kč</span>
+                        </div>
+                        
+                        <div class="cost-item">
+                            <div class="cost-icon" style="background-color: #FFBF00;">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <span class="cost-label">BONUSOVÁ PROVIZE **</span>
+                            <span class="cost-value" style="color: #FFBF00;">0 Kč</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="calculator-notes">
+                <p>* Tato tabulka slouží k výpočtu čistého výdělku na ruku, před odečtením DPH a ostatních nákladů. Zároveň si můžete porovnat, jak to vypadá oproti Vaší současné provizi.</p>
+                <p>** Bonusová provize znamená, že z každého obchodu nad uzavřenou 2 000 000,- Kč/rok bude po zbytek roku rozděleno 60 % z provize po odečtení nákladů. Proto se tato položka projeví až po vyplnění vaší uzávěrky nad 2 000 000,- Kč.</p>
+            </div>
+            
+            <div class="contact-button-container">
+                <a href="#kontakt" class="contact-button">KONTAKT</a>
+            </div>
+        </div>
+
+        <!-- Nová sekce Výhody spolupráce -->
+<section class="benefits-section">
+    <div class="container">
+        <h2 class="section-title">PROČ S NÁMI SPOLUPRACOVAT?</h2>
+        <p class="section-intro">Spolupráce s naší agenuturou přináší řadu výhod, které Vám pomohou budovat vaši kariéru v oblasti realit efektivněji a profesionálněji.</p>
+        
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <div class="benefit-icon">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <h3>OSOBNÍ PŘÍSTUP</h3>
+                <p>Každý makléř má plné právo na individuální přístup. Jsme tu pro vás a pomáháme s čímkoliv, co potřebujete. U nás nejste jen číslo.</p>
+            </div>
+            
+            <div class="benefit-item">
+                <div class="benefit-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3>PROFESNÍ ROZVOJ</h3>
+                <p>Poskytujeme pravidelná školení, mentoring a osobní rozvoj, abychom vám pomohli dosáhnout vašich kariérních cílů a překonat strop vašich možností.</p>
+            </div>
+            
+            <div class="benefit-item">
+                <div class="benefit-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>SILNÁ KOMUNITA</h3>
+                <p>Připojte se k týmu ambiciózních realitních makléřů, kteří si navzájem pomáhají růst. Podílíme se o zkušenosti i kontakty.</p>
+            </div>
+            
+            <div class="benefit-item">
+                <div class="benefit-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <h3>MODERNÍ NÁSTROJE</h3>
+                <p>Získáte přístup k pokročilým nástrojům pro správu klientů, marketing a prodej, které vám ušetří čas a zefektivní vaši práci.</p>
+            </div>
+            
+            <div class="benefit-item">
+                <div class="benefit-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>RŮST OBJEMU PRODEJŮ</h3>
+                <p>Díky našemu systému a podpoře můžete výrazně zvýšit počet svých transakcí a tím i svůj celkový výdělek.</p>
+            </div>
+            
+            <div class="benefit-item">
+                <div class="benefit-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>PRÁVNÍ PODPORA</h3>
+                <p>Poskytujeme komplexní právní podporu pro všechny vaše transakce, abyste se mohli soustředit na to, co umíte nejlépe - prodávat nemovitosti.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .benefits-section {
+        background-color: #F8F4E9;
+        padding: 100px 0;
+    }
+    
+    .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 25px;
+        position: relative;
+        color: #333;
+    }
+    
+    .section-title:after {
+        content: '';
+        position: absolute;
+        bottom: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background-color: #FFBF00;
+    }
+    
+    .section-intro {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto 60px;
+        color: #333;
+        line-height: 1.8;
+        font-size: 1.1rem;
+    }
+    
+    .benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+    }
+    
+    .benefit-item {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .benefit-item:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+    
+    .benefit-icon {
+        width: 70px;
+        height: 70px;
+        background-color: #FFBF00;
+        color: #000;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+    }
+    
+    .benefit-icon i {
+        font-size: 28px;
+    }
+    
+    .benefit-item h3 {
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: #333;
+    }
+    
+    .benefit-item p {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: #666;
+        text-align: center;
+    }
+    
+    @media (max-width: 768px) {
+        .benefits-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+        }
+        
+        .benefits-section {
+            padding: 60px 0;
+        }
+    }
+</style>
+    </section>
+    
+    <style>
+        .calculator-section {
+            background-color: #F8F4E9;
+            padding: 100px 0;
+        }
+        
+        .calculator-section h1 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+            font-size: 2.5rem;
+            font-weight: 700;
+            position: relative;
+        }
+        
+        .calculator-section h1:after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #FFBF00;
+        }
+        
+        .calculator-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            color: #333;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        .calculator-container {
+            display: flex;
+            flex-wrap: wrap;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            overflow: hidden;
+        }
+        
+        .calculator-inputs {
+            flex: 1;
+            min-width: 300px;
+            padding: 30px;
+            border-right: 1px solid #E6DBBC;
+        }
+        
+        .calculator-results {
+            flex: 1;
+            min-width: 300px;
+            padding: 30px;
+            background-color: #E6DBBC;
+        }
+        
+        .input-group {
+            margin-bottom: 25px;
+        }
+        
+        .input-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .input-with-label {
+            position: relative;
+        }
+        
+        .input-with-label input {
+            width: 100%;
+            padding: 12px 40px 12px 15px;
+            border: 2px solid #E6DBBC;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        .input-with-label input:focus {
+            border-color: #FFBF00;
+            outline: none;
+            box-shadow: 0 0 10px rgba(255, 191, 0, 0.2);
+        }
+        
+        .input-suffix {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #8B7D61;
+            font-weight: bold;
+        }
+        
+        .input-note {
+            font-size: 14px;
+            color: #8B7D61;
+            margin-top: 5px;
+        }
+        
+        .result-group {
+            margin-bottom: 25px;
+        }
+        
+        .result-group h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .result-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #333;
+        }
+        
+        .result-value.highlight {
+            color: #FFBF00;
+        }
+        
+        .conditions-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .current-conditions, .our-conditions {
+            flex: 1;
+            min-width: 300px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        
+        .current-conditions h2, .our-conditions h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+            font-size: 1.8rem;
+            font-weight: 700;
+            position: relative;
+        }
+        
+        .current-conditions h2:after, .our-conditions h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: #FFBF00;
+        }
+        
+        .condition-title {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .manage-costs {
+            margin-bottom: 25px;
+        }
+        
+        .manage-costs h4 {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            color: #333;
+        }
+        
+        .radio-group input {
+            margin-right: 5px;
+        }
+        
+        .cost-items {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .cost-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            background-color: #F8F4E9;
+            border-radius: 5px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .cost-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .cost-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #8B7D61;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+        
+        .cost-label {
+            flex: 1;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .cost-value {
+            font-weight: 700;
+            color: #333;
+            min-width: 100px;
+            text-align: right;
+        }
+        
+        .cost-value-input {
+            position: relative;
+            min-width: 150px;
+        }
+        
+        .cost-value-input input {
+            width: 100%;
+            padding: 8px 40px 8px 15px;
+            border: 2px solid #E6DBBC;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        .cost-value-input input:focus {
+            border-color: #FFBF00;
+            outline: none;
+            box-shadow: 0 0 10px rgba(255, 191, 0, 0.2);
+        }
+        
+        .cost-suffix {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #8B7D61;
+            font-weight: 600;
+        }
+        
+        .commission-item {
+            margin-top: 10px;
+            background-color: rgba(255, 191, 0, 0.1);
+        }
+        
+        .calculator-notes {
+            margin-bottom: 30px;
+        }
+        
+        .calculator-notes p {
+            font-size: 0.9rem;
+            color: #8B7D61;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .contact-button-container {
+            text-align: center;
+        }
+        
+        .contact-button {
+            display: inline-block;
+            background-color: #FFBF00;
+            color: #000000;
+            font-weight: 600;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .contact-button:hover {
+            background-color: #E0A800;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .calculator-container {
+                flex-direction: column;
+            }
+            
+            .calculator-inputs {
+                border-right: none;
+                border-bottom: 1px solid #E6DBBC;
+            }
+            
+            .conditions-container {
+                flex-direction: column;
+            }
+            
+            .calculator-section h1 {
+                font-size: 2rem;
+            }
+            
+            .current-conditions h2, .our-conditions h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all input elements
+            const yearlyRevenue = document.getElementById('yearly-revenue');
+            const tradesCount = document.getElementById('trades-count');
+            const timePeriod = document.getElementById('time-period');
+            const currentPhotographer = document.getElementById('current-photographer');
+            const currentAds = document.getElementById('current-ads');
+            const currentContracts = document.getElementById('current-contracts');
+            const currentStorage = document.getElementById('current-storage');
+            const currentRegistration = document.getElementById('current-registration');
+            const currentOffice = document.getElementById('current-office');
+            const currentCommissionPercent = document.getElementById('current-commission-percent');
+            const selfCostRadios = document.querySelectorAll('input[name="self-costs"]');
+            
+            // Get result elements
+            const currentIncome = document.getElementById('current-income');
+            const ourIncome = document.getElementById('our-income');
+            const incomeDifference = document.getElementById('income-difference');
+            
+            // Add event listeners to all inputs
+            const inputs = [yearlyRevenue, tradesCount, timePeriod, currentPhotographer, 
+                           currentAds, currentContracts, currentStorage, currentRegistration, 
+                           currentOffice, currentCommissionPercent];
+            
+            inputs.forEach(input => {
+                input.addEventListener('input', calculateResults);
+            });
+            
+            selfCostRadios.forEach(radio => {
+                radio.addEventListener('change', calculateResults);
+            });
+            
+            // Initial calculation
+            calculateResults();
+            
+            function calculateResults() {
+                // Get values from inputs
+                const revenue = parseFloat(yearlyRevenue.value) || 0;
+                const trades = parseInt(tradesCount.value) || 1;
+                const period = parseInt(timePeriod.value) || 12;
+                const selfCosts = document.querySelector('input[name="self-costs"]:checked').value === 'yes';
+                
+                // Calculate costs per trade for current conditions
+                let costsPerTrade = 0;
+                if (selfCosts) {
+                    costsPerTrade = (
+                        parseFloat(currentPhotographer.value) + 
+                        parseFloat(currentAds.value) + 
+                        parseFloat(currentContracts.value) + 
+                        parseFloat(currentStorage.value) + 
+                        parseFloat(currentRegistration.value)
+                    ) || 0;
+                }
+                
+                const monthlyOfficeCost = parseFloat(currentOffice.value) || 0;
+                const commissionPercent = parseFloat(currentCommissionPercent.value) || 50;
+                
+                // Calculate current income
+                const revenuePerTrade = revenue / trades;
+                const commissionPerTrade = revenuePerTrade * (commissionPercent / 100);
+                const profitPerTrade = commissionPerTrade - costsPerTrade;
+                const totalCurrentIncome = (profitPerTrade * trades) - (monthlyOfficeCost * period);
+                
+                // Calculate income with our conditions
+                // Base assumptions from the image
+                const ourCostsPerTrade = 3500 + 7260 + 2000; // Photographer + Contracts/Storage + Registration
+                const ourCommissionPercent = 70; // Assuming 70% based on the results shown
+                
+                const ourCommissionPerTrade = revenuePerTrade * (ourCommissionPercent / 100);
+                const ourProfitPerTrade = ourCommissionPerTrade - ourCostsPerTrade;
+                const totalOurIncome = ourProfitPerTrade * trades;
+                
+                // Calculate bonus commission if yearly revenue > 2,000,000
+                let bonusCommission = 0;
+                if (revenue > 2000000) {
+                    const excessRevenue = revenue - 2000000;
+                    bonusCommission = excessRevenue * 0.6; // 60% of excess revenue
+                }
+                
+                // Update result display
+                currentIncome.textContent = Math.round(totalCurrentIncome).toLocaleString() + ' Kč';
+                ourIncome.textContent = Math.round(totalOurIncome + bonusCommission).toLocaleString() + ' Kč';
+                incomeDifference.textContent = Math.round(totalOurIncome + bonusCommission - totalCurrentIncome).toLocaleString() + ' Kč';
+            }
+        });
+    </script>
+
+<!-- Sekce Kontakt -->
+<section id="kontakt" class="kontakt-section">
+    <div class="container">
+        <div class="kontakt-content">
+            <div class="kontakt-text">
+                <h2>Máte zájem o spolupráci?</p></p>Napište mi</h2>
+                <p>Chcete se dozvědět více o možnostech spolupráce v naší realitní kanceláři nebo máte konkrétní dotazy? Vyplňte formulář a domluvte si nezávaznou schůzku, rád vám vše osobně představím.</p>
+                
+                <div class="kontakt-info">
+                    <div class="kontakt-item">
+                        <i class="fas fa-phone"></i>
+                        <span><a href="tel:+420774052232">774 052 232</a></span>
+                    </div>
+                    <div class="kontakt-item">
+                        <i class="fas fa-envelope"></i>
+                        <span><a href="mailto:david.choc@ptf.cz">david.choc@ptf.cz</a></span>
+                    </div>
+                </div>
+                
+                <div class="socialni-site">
+                    <a href="https://www.facebook.com/davidchoc.cz" target="_blank" class="social-icon" aria-label="Facebook profil Davida Choce">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/david-choc-85194941/" target="_blank" class="social-icon" aria-label="LinkedIn profil Davida Choce">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://www.instagram.com/davidchoc.cz/" target="_blank" class="social-icon" aria-label="Instagram profil Davida Choce">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="kontakt-formular">
+                <div id="f-21-125ab233e4603d4d7c84f5cbf8130258"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .kontakt-section {
+        padding: 80px 0;
+        background-color: #E6DBBC;
+    }
+    
+    .kontakt-content {
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        justify-content: space-between;
+        gap: 40px;
+    }
+    
+    .kontakt-text {
+        flex: 0 0 35%;
+        order: 0;
+    }
+    
+    .kontakt-text h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        font-weight: 700;
+        position: relative;
+    }
+    
+    .kontakt-text h2:after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 80px;
+        height: 3px;
+        background-color: #FFBF00;
+    }
+    
+    .kontakt-text p {
+        margin: 20px 0;
+        font-size: 1.1rem;
+        line-height: 1.8;
+    }
+    
+    .kontakt-info {
+        margin: 30px 0;
+    }
+    
+    .kontakt-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+    
+    .kontakt-item i {
+        font-size: 1.2rem;
+        color: #000000;
+        margin-right: 15px;
+        width: 20px;
+        text-align: center;
+    }
+    
+    .kontakt-item a {
+        color: #000;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+    
+    .kontakt-item a:hover {
+        color: #FFBF00;
+    }
+    
+    .socialni-site {
+        display: flex;
+        gap: 15px;
+        margin-top: 30px;
+    }
+    
+    .social-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background-color: #000000;
+        color: white;
+        border-radius: 50%;
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
+    }
+    
+    .social-icon:hover {
+        background-color: #FFBF00;
+        transform: translateY(-3px);
+    }
+    
+    .kontakt-formular {
+        flex: 0 0 55%;
+        order: 1;
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    @media (max-width: 992px) {
+        .kontakt-content {
+            flex-direction: column;
+        }
+        
+        .kontakt-text, .kontakt-formular {
+            flex: 0 0 100%;
+            width: 100%;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .kontakt-section {
+            padding: 60px 0;
+        }
+        
+        .kontakt-text h2 {
+            font-size: 2rem;
+        }
+    }
+</style>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-columns">
+                <div class="footer-column">
+                    <h3>Rychlé odkazy</h3>
+                    <nav class="footer-menu">
+                        <a href="index.html">Domů</a>
+                        <a href="index.html#sluzby">Služby</a>
+                        <a href="index.html#reference">7 kroků k úspěchu</a>
+                        <a href="index.html#ptf">Virtuální prohlídka kanceláře</a>
+                        <a href="index.html#videoprohlidka">Videoprohlídka</a>
+                        <a href="muj-pribeh.html">Můj příběh</a>
+                        <a href="ocenit-online.html" title="Získejte odhad tržní ceny své nemovitosti online během pár minut">Ocenit Online</a>
+                        <a href="kariera.html">Kariéra</a>
+                        <a href="index.html#konzultace">Konzultace</a>
+                        <a href="index.html#kontakt">Kontakt</a>
+                    </nav>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>PTF reality</h3>
+                    <nav class="footer-menu">
+                        <a href="https://www.ptf.cz" target="_blank">PTF reality</a>
+                        <a href="https://www.ptf.cz/blog" target="_blank">Blog</a>
+                        <a href="kariera.html">Kariéra</a>
+                        <a href="https://www.ptf.cz/kariera" target="_blank">Kariéra PTF</a>
+                        <a href="https://www.ptf.cz/kontakt" target="_blank">Kontakt</a>
+                        <a href="osobni-udaje.html">Zpracování osobních údajů</a>
+                        <a href="VOS.html">VOS</a>
+                    </nav>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Kanceláře</h3>
+                    <div class="office-info">
+                        <div class="office">
+                            <h4>Plzeň</h4>
+                            <address>
+                                Dřevěná 99/3<br>
+                                301 00 Plzeň
+                            </address>
+                        </div>
+                        <div class="office">
+                            <h4>Praha</h4>
+                            <address>
+                                Pod turnovskou tratí 182/18<br>
+                                198 00 Praha - Hloubětín
+                            </address>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Sledujte mě</h3>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/davidchoc.cz" target="_blank" aria-label="Facebook profil Davida Choce">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/davidchoc.cz/" target="_blank" aria-label="Instagram profil Davida Choce">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/david-choc-85194941/" target="_blank" aria-label="LinkedIn profil Davida Choce">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@davidchoc" target="_blank" aria-label="YouTube kanál Davida Choce">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                    <div class="newsletter">
+                        <h4>Odběr novinek</h4>
+                        <p>Získejte exkluzivní tipy a nabídky nemovitostí:</p>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Váš e-mail" required>
+                            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 1998-2025 by David Choc & PTF reality. <a href="https://www.ptf.cz" target="_blank">www.ptf.cz</a> Made with Love. David Choc - realitní agent ve vašich službách.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <!-- Plovoucí tlačítka -->
+    <div class="floating-buttons">
+        <a href="#" class="floating-button back-to-top" aria-label="Zpět nahoru">
+            <i class="fas fa-arrow-up"></i>
+        </a>
+        <a href="tel:+420774052232" class="floating-button call" aria-label="Zavolat">
+            <i class="fas fa-phone-alt"></i>
+        </a>
+        <a href="mailto:david.choc@ptf.cz" class="floating-button email" aria-label="Poslat email">
+            <i class="fas fa-envelope"></i>
+        </a>
+        <a href="https://wa.me/420604240086" class="floating-button whatsapp" aria-label="WhatsApp zpráva" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+</body>
+</html>
