@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FixAndFlip.cz | Vydělej 250 000 - 500 000 Kč na nemovitostním projektu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Základní styly */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f5f0e5; /* světle béžová */
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* Typografie */
+        h1, h2, h3, h4, h5, h6 {
+            margin-bottom: 1rem;
+            font-weight: 700;
+            color: #000;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+        }
+        
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Hlavička */
+        header {
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        .logo {
+            max-width: 200px;
+            margin-bottom: 1rem;
+        }
+        
+        /* Hero sekce */
+        .hero {
+            padding: 5rem 0;
+            text-align: center;
+            background-color: #f5f0e5;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .hero-inner {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.15;
+            background-position: center;
+            background-size: cover;
+        }
+        
+        .hero h1 {
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 2rem;
+            font-weight: 800;
+            color: #000;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.05);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+        
+        .hero-details {
+            margin-top: 2rem;
+            background-color: rgba(255, 255, 255, 0.7);
+            display: inline-block;
+            padding: 1.5rem 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .hero-date {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #FF5500;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* CTA tlačítko jako pilulka */
+        .cta-button {
+            display: inline-block;
+            background-color: #FF5500; /* Ostrá oranžová */
+            color: #fff;
+            font-size: 1.25rem;
+            font-weight: bold;
+            padding: 18px 40px;
+            border-radius: 50px; /* Výrazně zaoblené rohy jako pilulka */
+            text-decoration: none;
+            margin: 1.5rem 0;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            box-shadow: 0 8px 15px rgba(255, 85, 0, 0.3); /* Stínování pro 3D efekt */
+            text-align: center;
+            min-width: 250px;
+            letter-spacing: 1px;
+        }
+        
+        .cta-button:hover {
+            background-color: #E04800;
+            transform: translateY(-3px); /* Efekt nadzdvihnutí */
+            box-shadow: 0 10px 20px rgba(255, 85, 0, 0.4);
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        /* Omezení */
+        .limitation {
+            font-style: italic;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Sekce obsahu */
+        .content-section {
+            padding: 3rem 0;
+            border-top: 1px solid #e0d8c7;
+        }
+        
+        /* Výhody */
+        .benefits {
+            margin: 2.5rem 0;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .benefit-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .benefit-item i {
+            color: #FF5500;
+            font-size: 1.8rem;
+            margin-right: 1.5rem;
+            min-width: 40px;
+            padding-top: 0.2rem;
+        }
+        
+        .benefit-item strong {
+            color: #333;
+            display: inline-block;
+            margin-bottom: 0.3rem;
+            font-size: 1.2rem;
+        }
+        
+        .benefit-item p {
+            margin-bottom: 0;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.3rem;
+            margin-bottom: 2.5rem;
+            color: #333;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #FF5500;
+        }
+        
+        /* Tabulka porovnání */
+        .comparison-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 2.5rem 0;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+        
+        .comparison-table th {
+            background-color: #FF5500;
+            color: white;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 18px 20px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        
+        .comparison-table th:first-child {
+            border-top-left-radius: 10px;
+        }
+        
+        .comparison-table th:last-child {
+            border-top-right-radius: 10px;
+        }
+        
+        .comparison-table td {
+            padding: 15px 20px;
+            text-align: center;
+            border-bottom: 1px solid #e0d8c7;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .comparison-table tr:nth-child(odd) {
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .comparison-table tr:hover td {
+            background-color: rgba(255, 85, 0, 0.05);
+        }
+        
+        .comparison-table tr:last-child td:first-child {
+            border-bottom-left-radius: 10px;
+        }
+        
+        .comparison-table tr:last-child td:last-child {
+            border-bottom-right-radius: 10px;
+        }
+        
+        .comparison-table th {
+            background-color: #e0d8c7;
+            color: #000;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin: 3rem 0;
+        }
+        
+        .testimonial {
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .testimonial:before {
+            content: '\201C';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 80px;
+            color: rgba(255, 85, 0, 0.1);
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .testimonial:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-right: 1.5rem;
+            object-fit: cover;
+            border: 3px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .testimonial-author {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+            color: #333;
+        }
+        
+        .testimonial-meta {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.4;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            line-height: 1.7;
+            font-size: 1.05rem;
+            color: #555;
+            position: relative;
+            margin-top: 1rem;
+            flex-grow: 1;
+        }
+        
+        .testimonial-text:after {
+            content: '\201D';
+            position: absolute;
+            bottom: -20px;
+            right: 0;
+            font-size: 80px;
+            color: rgba(255, 85, 0, 0.1);
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        /* FAQ sekce */
+        /* FAQ sekce */
+        .faq-section {
+            background-color: rgba(249, 245, 235, 0.6);
+            padding: 3rem 0;
+            border-radius: 15px;
+            margin: 2rem auto;
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+        
+        .faq-item {
+            background-color: white;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: box-shadow 0.3s ease-in-out;
+        }
+        
+        .faq-item:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .faq-question {
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            color: #333;
+            background-color: white;
+            transition: background-color 0.3s ease;
+        }
+        
+        .faq-item.active .faq-question {
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            background-color: #FFBF00;
+            color: #333;
+        }
+        
+        .question-text {
+            font-size: 1.1rem;
+            flex: 1;
+        }
+        
+        .faq-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.5s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+        
+        .faq-answer p {
+            margin: 0;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #555;
+        }
+        
+        /* O autorovi */
+        /* O autorovi - nový design */
+        .about-author-section {
+            background-color: rgba(249, 245, 235, 0.6);
+            padding: 3rem 0;
+            border-radius: 15px;
+            margin: 2rem auto;
+        }
+        
+        .about-author {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            margin: 2.5rem 0;
+        }
+        
+        .author-logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .author-logo {
+            width: 180px;
+            height: auto;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
+        }
+        
+        .author-name {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        
+        .author-title {
+            font-size: 1.1rem;
+            color: #555;
+            font-style: italic;
+            text-align: center;
+            margin-top: 0;
+        }
+        
+        .author-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .info-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+        }
+        
+        .info-icon {
+            background-color: #FFBF00;
+            color: #333;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .info-card p {
+            margin: 0;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #444;
+        }
+        
+        .info-card strong {
+            color: #FF5500;
+            font-weight: 700;
+        }
+        
+        /* Sekce bonusů */
+        .bonuses {
+            background-color: #e8e1d3;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        
+        .bonus-item {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .bonus-item i {
+            color: #FF5500;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            min-width: 30px;
+        }
+        
+        /* Registrační sekce */
+        #register {
+            background-color: #f9f5eb;
+            padding: 3rem 0;
+            border-radius: 15px;
+            margin: 3rem auto;
+        }
+        
+        .registration-details {
+            background-color: white;
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            margin-top: 2rem;
+            position: relative;
+        }
+        
+        .registration-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            border-radius: 8px;
+            background-color: rgba(255,255,255,0.7);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .registration-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+        
+        .registration-item i {
+            color: #FF5500;
+            font-size: 1.8rem;
+            margin-right: 1.5rem;
+            min-width: 40px;
+        }
+        
+        .registration-item p {
+            margin: 0;
+            font-size: 1.1rem;
+        }
+        
+        .registration-details h3 {
+            color: #333;
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .registration-details .cta-button {
+            margin: 2rem auto 1rem;
+            display: block;
+            width: 80%;
+            max-width: 400px;
+            font-size: 1.2rem;
+            padding: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .registration-details .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(255, 85, 0, 0.3);
+        }
+        
+        /* Představení autora */
+        .author-intro-section {
+            background-color: rgba(249, 245, 235, 0.5);
+            padding: 2rem 0;
+            border-radius: 15px;
+            margin: 2rem auto;
+        }
+        
+        .author-intro {
+            display: flex;
+            gap: 2.5rem;
+            margin-top: 2rem;
+            align-items: flex-start;
+        }
+        
+        .author-avatar {
+            flex-shrink: 0;
+            text-align: center;
+        }
+        
+        .intro-logo {
+            width: 200px;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+            margin-bottom: 1.5rem;
+        }
+        
+        .author-credentials {
+            margin-top: 1rem;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .author-name {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 0.3rem;
+        }
+        
+        .author-title {
+            font-size: 0.95rem;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .intro-message {
+            flex-grow: 1;
+        }
+        
+        .intro-greeting {
+            font-weight: 600;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+        
+        .highlight-text {
+            font-size: 1.15rem;
+            color: #333;
+            margin: 1.2rem 0;
+        }
+        
+        .highlight-number {
+            color: #FF5500;
+            font-weight: 700;
+            font-size: 1.1em;
+        }
+        
+        .intro-message p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .author-intro {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .intro-message {
+                text-align: left;
+            }
+        }
+        
+        /* Webinar content section */
+        .webinar-content-section {
+            background-color: rgba(249, 245, 235, 0.6);
+            padding: 3rem 0;
+            border-radius: 15px;
+            margin: 2rem auto;
+        }
+        
+        .webinar-topics {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            margin: 2.5rem 0;
+        }
+        
+        .webinar-topic {
+            background-color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .webinar-topic:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        
+        .topic-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            gap: 1.5rem;
+        }
+        
+        .topic-number {
+            background-color: #FFBF00;
+            color: #333;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            box-shadow: 0 5px 15px rgba(255, 191, 0, 0.3);
+        }
+        
+        .topic-header h3 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: #333;
+        }
+        
+        .topic-description {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+        
+        .topic-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .topic-list li {
+            padding: 0.8rem 0;
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+        
+        .topic-list li i {
+            color: #FF5500;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+            padding-top: 0.2rem;
+            min-width: 24px;
+        }
+        
+        @media (max-width: 768px) {
+            .topic-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .topic-number {
+                width: 40px;
+                height: 40px;
+                font-size: 1.5rem;
+            }
+        }
+        
+        /* Oddělovač */
+        hr {
+            border: none;
+            border-top: 1px solid #e0d8c7;
+            margin: 3rem 0;
+        }
+        
+        /* Upozornění */
+        .disclaimer {
+            background-color: #f0e9db;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        
+        /* Registrační sekce */
+        .registration-details {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .registration-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        .registration-item i {
+            color: #FF5500;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+        
+        /* Video sekce */
+        .video-section {
+            margin: 3rem 0;
+            background: linear-gradient(135deg, #f0e9db, #e8e1d3);
+            padding: 3rem 0;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.18);
+            margin: 2rem 0;
+            border: 3px solid #fff;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        
+        .video-title {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+        
+        .video-description {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* Citát */
+        .quote {
+            font-style: italic;
+            text-align: center;
+            max-width: 800px;
+            margin: 2rem auto;
+            font-size: 1.2rem;
+        }
+        
+        /* Responzivita */
+        @media screen and (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.7rem;
+            }
+            
+            h3 {
+                font-size: 1.3rem;
+            }
+            
+            .testimonials {
+                grid-template-columns: 1fr;
+            }
+            
+            .author-section {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .author-image {
+                margin-right: 0;
+                margin-bottom: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hlavička -->
+    <header>
+        <div class="container">
+            <img src="logo.png" alt="FixAndFlip.cz Logo" class="logo">
+        </div>
+    </header>
+    
+    <!-- Hero sekce -->
+    <section class="hero">
+        <div class="hero-bg" style="background-image: url('images/blog/nemovitosti-hero.jpg');"></div>
+        <div class="container">
+            <div class="hero-inner">
+                <h1>Jak jsem objevil a zdokonalil metodu, která umožnila běžným lidem vydělat 250 000 - 500 000 Kč na jednom nemovitostním projektu za 90-180 dní</h1>
+                
+                <p class="hero-subtitle">I v dnešní nejisté ekonomice</p>
+                
+                <h3 class="hero-subtitle">REGISTRUJTE SE NA BEZPLATNÝ WEBINÁŘ, KDE VÁM UKÁŽU CELÝ PROCES KROK ZA KROKEM</h3>
+                
+                <div class="hero-details">
+                    <p class="hero-date">NEJBLIŽŠÍ TERMÍN: Čtvrtek 28. března 19:00</p>
+                    <a href="#register" class="cta-button">REZERVOVAT MÍSTO ZDARMA</a>
+                    <p class="limitation">*Pouze 100 míst k dispozici – registrace se uzavře během 24 hodin nebo po naplnění kapacity*</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Video sekce -->
+    <section class="content-section video-section">
+        <div class="container">
+            <h2 class="video-title">PODÍVEJTE SE NA UKÁZKU Z WEBINÁŘE</h2>
+            <p class="video-description">V této krátké ukázce vám představím jeden z klíčových principů úspěšného nemovitostního flipu. Podobných strategií a konkrétních tipů se dozvíte mnohem víc v plné verzi webináře.</p>
+            
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Ukázka z webináře Fix & Flip" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            
+            <div class="text-center">
+                <a href="#register" class="cta-button">REZERVOVAT MÍSTO ZDARMA</a>
+            </div>
+        </div>
+    </section>
+    
+    <hr>
+    
+    <!-- Obsah webináře -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Z OBSAHU WEBINÁŘE:</h2>
+            
+            <div class="benefits">
+                <div class="benefit-item">
+                    <i class="fas fa-check-circle"></i>
+                    <div>
+                        <p><strong>Proč 95% lidí nikdy nevydělá na nemovitostech</strong> a jak se vyhnout jejich chybám</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <i class="fas fa-search"></i>
+                    <div>
+                        <p>Jak <strong>identifikovat nemovitosti s potenciálem zisku minimálně 15-30%</strong> během pouhých 3-6 měsíců (a to i bez předchozích zkušeností)</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <i class="fas fa-tasks"></i>
+                    <div>
+                        <p><strong>Jednoduchý 4-krokový framework</strong>, který jsem vyvinul po stovkách hodin výzkumu a který dnes používám já i moji klienti</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <i class="fas fa-clipboard-check"></i>
+                    <div>
+                        <p><strong>Moje osvědčená kritéria výběru nemovitostí</strong>, díky kterým dokážete během 10 minut vyhodnotit, zda má projekt potenciál nebo ne</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <i class="fas fa-hand-holding-usd"></i>
+                    <div>
+                        <p><strong>Jak najít a získat nevyužité nemovitosti za 70-85%</strong> jejich skutečné hodnoty (bez dražeb a bez rizikových spekulací)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <a href="#register" class="cta-button">REZERVOVAT MÍSTO ZDARMA</a>
+            </div>
+        </div>
+    </section>
+    
+    <hr>
+    
+    <!-- Představení -->
+    <section class="content-section author-intro-section">
+        <div class="container">
+            <h2 class="section-title">OD: DAVID CHOC, ZAKLADATEL FIXANDFLIP.CZ</h2>
+            
+            <div class="author-intro">
+                <div class="author-avatar">
+                    <img src="logo.png" alt="FixAndFlip.cz Logo" class="intro-logo">
+                    <div class="author-credentials">
+                        <span class="author-name">David Choc</span>
+                        <span class="author-title">Expert na nemovitostní investice</span>
+                    </div>
+                </div>
+                
+                <div class="intro-message">
+                    <p class="intro-greeting">Dobrý den,</p>
+                    
+                    <p>nemovitostní flip (nákup, zhodnocení a rychlý prodej nemovitosti) je jednou z nejrychlejších cest k vytvoření značného kapitálu.</p>
+                    
+                    <p class="highlight-text"><strong>Ale pouze pokud víte, co přesně děláte.</strong></p>
+                    
+                    <p>Během posledních let jsem pomohl desítkám klientů úspěšně dokončit svůj první flip s průměrným ziskem <span class="highlight-number">320 000 Kč</span> - a to i lidem, kteří začínali s minimálními znalostmi o nemovitostech nebo rekonstrukcích.</p>
+                    
+                    <p class="highlight-text">Jak je to možné?</p>
+                    
+                    <p>Vyvinul jsem <strong>systematický proces</strong>, který eliminuje 90% rizik a soustředí se pouze na projekty s vysokou pravděpodobností úspěchu.</p>
+                    
+                    <p class="highlight-text"><strong>Tento proces nyní poprvé sdílím v bezplatném webináři.</strong></p>
+                    
+                    <div class="text-center">
+                        <a href="#register" class="cta-button">REZERVOVAT MÍSTO ZDARMA</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <hr>
+    
+    <!-- Porovnání -->
+    <section class="content-section">
+        <div class="container">
+            <h2>TYPICKÝ NEMOVITOSTNÍ INVESTOR VS. ÚSPĚŠNÝ FLIPAŘ</h2>
+            
+            <table class="comparison-table">
+                <tr>
+                    <th>Typický investor</th>
+                    <th>Úspěšný flipař</th>
+                </tr>
+                <tr>
+                    <td>Čeká roky na zhodnocení</td>
+                    <td>Vidí výsledky během měsíců</td>
+                </tr>
+                <tr>
+                    <td>Závislý na dlouhodobém růstu trhu</td>
+                    <td>Profituje v jakémkoli tržním cyklu</td>
+                </tr>
+                <tr>
+                    <td>Připoután k jedné nebo několika nemovitostem</td>
+                    <td>Dokončí projekt a přesune kapitál dál</td>
+                </tr>
+                <tr>
+                    <td>Nízké měsíční cashflow (3-5% ročně)</td>
+                    <td>Jednorázový zisk 15-30% během 3-6 měsíců</td>
+                </tr>
+                <tr>
+                    <td>Starosti s nájemníky a údržbou</td>
+                    <td>Jednoduchý systém: koupit, zhodnotit, prodat</td>
+                </tr>
+                <tr>
+                    <td>Vázaný kapitál po desetiletí</td>
+                    <td>Flexibilita a svoboda rozhodování</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+    
+    <hr>
+    
+    <!-- Testimonials -->
+    <section class="content-section">
+        <div class="container">
+            <h2>CO O MNĚ ŘÍKAJÍ KLIENTI:</h2>
+            
+            <div class="testimonials">
+                <div class="testimonial">
+                    <div class="testimonial-header">
+                        <img src="images/blog/hypoteka.jpg" alt="Tomáš K." class="testimonial-avatar">
+                        <div>
+                            <p class="testimonial-author">Tomáš K., 35 let, Praha</p>
+                            <p class="testimonial-meta">bývalý IT specialista, nyní na cestě k finančně nezávislému investorovi</p>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"Nechápal jsem, proč se o flipování víc nemluví, dokud jsem neabsolvoval Davidův webinář. Za 5 měsíců od něj mám dokončený první projekt s čistým ziskem 256 000 Kč. Celý proces proběhl přesně podle plánu, který jsme spolu sestavili."</p>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-header">
+                        <img src="images/blog/rekonstrukce.jpg" alt="Jana M." class="testimonial-avatar">
+                        <div>
+                            <p class="testimonial-author">Jana M., 42 let, Brno</p>
+                            <p class="testimonial-meta">účetní, začínající investorka do nemovitostí</p>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"Největší přínos pro mě byla Davidova metoda výběru nemovitostí. Díky ní jsem okamžitě věděla, na které nabídky se zaměřit a které ignorovat. To mi ušetřilo desítky hodin času a pomohlo najít skvělý byt, který jsem po rekonstrukci prodala se ziskem přes 300 000 Kč."</p>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-header">
+                        <img src="images/blog/u9534644866_Dm_nebo_byt_Co_je_lep_investice_Porovnn_vhod_a_ne_105dd9a6-1778-4724-b2fd-18534b5db202_1 ve střední velikosti.jpeg" alt="Marek V." class="testimonial-avatar">
+                        <div>
+                            <p class="testimonial-author">Marek V., 38 let, Plzeň</p>
+                            <p class="testimonial-meta">podnikatel, který hledal efektivnější zhodnocení kapitálu</p>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"Po třech letech pronajímání bytu s výnosem 4% ročně jsem vyzkoušel flip. S Davidovou pomocí jsem na jediném projektu vydělal víc než za tři roky pasivního pronájmu. Teď mám jasnou strategii, jak zhodnotit své úspory efektivněji."</p>
+                </div>
+            </div>
+            
+            <a href="#register" class="cta-button">REZERVOVAT MÍSTO ZDARMA</a>
+        </div>
+    </section>
+    
+    <hr>
+    
+    <!-- Co se naučíte -->
+    <section class="content-section webinar-content-section">
+        <div class="container">
+            <h2 class="section-title">NA WEBINÁŘI SE DOZVÍTE:</h2>
+            
+            <div class="webinar-topics">
+                <div class="webinar-topic">
+                    <div class="topic-header">
+                        <span class="topic-number">1</span>
+                        <h3>JAK FUNGUJE "FIX & FLIP" SYSTÉM</h3>
+                    </div>
+                    <p class="topic-description">Přesný, krok za krokem postup, který můžete replikovat znovu a znovu:</p>
+                    <ul class="topic-list">
+                        <li><i class="fas fa-map-marker-alt"></i> Jak najít ideální nemovitost pro první flip</li>
+                        <li><i class="fas fa-calculator"></i> Jak nastavit rozpočet, který minimalizuje riziko</li>
+                        <li><i class="fas fa-tools"></i> 3 typy renovací s nejvyšší návratností investice</li>
+                        <li><i class="fas fa-tag"></i> Jak správně nacenit a prodat zhodnocenou nemovitost</li>
+                    </ul>
+                </div>
+                
+                <div class="webinar-topic">
+                    <div class="topic-header">
+                        <span class="topic-number">2</span>
+                        <h3>JAK SE VYHNOUT NÁKLADNÝM CHYBÁM</h3>
+                    </div>
+                    <ul class="topic-list">
+                        <li><i class="fas fa-exclamation-triangle"></i> 5 nejčastějších chyb, které stojí začínající flipaře statisíce</li>
+                        <li><i class="fas fa-chess"></i> Jak předvídat a řešit problémy během rekonstrukce</li>
+                        <li><i class="fas fa-balance-scale"></i> Které renovace jsou zbytečné a které nezbytné</li>
+                        <li><i class="fas fa-hand-holding-usd"></i> Jak nepřeplatit při nákupu ani neprodělat při prodeji</li>
+                    </ul>
+                </div>
+                
+                <div class="webinar-topic">
+                    <div class="topic-header">
+                        <span class="topic-number">3</span>
+                        <h3>JAK ZAČÍT I S OMEZENÝM KAPITÁLEM</h3>
+                    </div>
+                    <ul class="topic-list">
+                        <li><i class="fas fa-university"></i> Realistické možnosti financování vašeho prvního projektu</li>
+                        <li><i class="fas fa-chart-line"></i> Jak nejlépe využít vlastní prostředky pro maximální návratnost</li>
+                        <li><i class="fas fa-lightbulb"></i> 3 kreativní strategie pro získání dodatečného kapitálu</li>
+                        <li><i class="fas fa-arrow-up"></i> Jak postupně navýšit zisky a škálovat svůj business</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <a href="#register" class="cta-button">REZERVOVAT MÍSTO ZDARMA</a>
+            </div>
+        </div>
+    </section>
+    
+    <hr>
+    
+    <!-- Bonusy -->
+    <section class="content-section">
+        <div class="container">
+            <h2>CO ZÍSKÁTE PO REGISTRACI:</h2>
+            
+            <div class="bonuses">
+                <div class="bonus-item">
+                    <i class="fas fa-gift"></i>
+                    <div>
+                        <p><strong>Garantované místo na webináři</strong> (omezená kapacita 100 účastníků)</p>
+                    </div>
+                </div>
+                
+                <div class="bonus-item">
+                    <i class="fas fa-gift"></i>
+                    <div>
+                        <p><strong>Přístup k záznamu webináře</strong> (po dobu 48 hodin)</p>
+                    </div>
+                </div>
+                
+                <div class="bonus-item">
+                    <i class="fas fa-gift"></i>
+                    <div>
+                        <p><strong>BONUS #1: E-book "5 kritérií úspěšného flipu"</strong> (ihned po registraci)</p>
+                    </div>
+                </div>
+                
+                <div class="bonus-item">
+                    <i class="fas fa-gift"></i>
+                    <div>
+                        <p><strong>BONUS #2: Kalkulačka ziskovosti projektu</strong> (Excel)</p>
+                    </div>
+                </div>
+                
+                <div class="bonus-item">
+                    <i class="fas fa-gift"></i>
+                    <div>
+                        <p><strong>BONUS #3: Checklist hodnocení nemovitosti</strong> (PDF)</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <a href="#register" class="cta-button">REZERVOVAT MÍSTO ZDARMA</a>
+            </div>
+        </div>
+    </section>
+    
+    <hr>
+    
+    <!-- O autorovi -->
+    <section class="content-section about-author-section">
+        <div class="container">
+            <h2 class="section-title">O DAVIDOVI CHOCOVI</h2>
+            
+            <div class="about-author">
+                <div class="author-logo-container">
+                    <img src="logo.png" alt="FixAndFlip.cz Logo" class="author-logo">
+                    <div class="author-credentials">
+                        <h3 class="author-name">David Choc</h3>
+                        <p class="author-title">Zakladatel FixAndFlip.cz</p>
+                    </div>
+                </div>
+                
+                <div class="author-info">
+                    <div class="info-card">
+                        <div class="info-icon"><i class="fas fa-award"></i></div>
+                        <p>Specialista na rychlé zhodnocení nemovitostí s prokazatelnými výsledky.</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-icon"><i class="fas fa-building"></i></div>
+                        <p>Na rozdíl od teoretických "guru" David aktivně realizuje vlastní nemovitostní projekty a své know-how sdílí pouze v praktické, aplikovatelné formě.</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-icon"><i class="fas fa-user-friends"></i></div>
+                        <p>Během posledních 5 let pomohl <strong>desítkám klientů</strong> s realizací jejich prvního úspěšného flipu.</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-icon"><i class="fas fa-chart-line"></i></div>
+                        <p>Jeho přístup je založen na pečlivé analýze, minimalizaci rizik a maximalizaci návratnosti investice.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <a href="#register" class="cta-button">REZERVOVAT MÍSTO NA WEBINÁŘI</a>
+            </div>
+        </div>
+    </section>
+    
+    <hr>
+    
+    <!-- FAQ -->
+    <section class="content-section faq-section">
+        <div class="container">
+            <h2 class="section-title">ČASTO KLADENÉ OTÁZKY:</h2>
+            
+            <div class="faq-container">
+                <div class="faq-item active">
+                    <div class="faq-question">
+                        <span class="question-text">Je webinář skutečně zdarma? Není to jen prodejní prezentace?</span>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Webinář je 100% zdarma a obsahuje kompletní přehled celého procesu flipování nemovitostí. Na konci představím svůj mentoringový program pro ty, kdo by chtěli individuální vedení, ale většina obsahu je hodnotná sama o sobě a můžete ji aplikovat nezávisle.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="question-text">Potřebuji zkušenosti s nemovitostmi nebo rekonstrukcemi?</span>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Ne. Můj systém je navržen pro naprosté začátečníky. Ukážu vám, jak sestavit tým spolehlivých dodavatelů a jak celý proces koordinovat i bez technických znalostí.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="question-text">Potřebuji na začátek velký kapitál?</span>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Záleží na lokalitě, ale první projekty je možné realizovat již s 500 000 - 700 000 Kč vlastního kapitálu v kombinaci s úvěrem nebo partnerstvím. Na webináři vysvětlím různé možnosti financování.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="question-text">Bude webinář nahráván?</span>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Ano, registrovaní účastníci získají přístup k záznamu na 48 hodin. Živá účast je ale výhodnější – budete moci klást otázky a získáte dodatečné bonusy.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <hr>
+    
+    <!-- Registrace -->
+    <section class="content-section" id="register">
+        <div class="container">
+            <h2>ZAREGISTRUJTE SE JEŠTĚ DNES:</h2>
+            
+            <div class="registration-details">
+                <h3>Webinář: Jak vydělat 250 000 - 500 000 Kč na svém prvním nemovitostním flipu</h3>
+                
+                <div class="registration-item">
+                    <i class="far fa-calendar-alt"></i>
+                    <p><strong>Datum:</strong> Čtvrtek 28. března 2025</p>
+                </div>
+                
+                <div class="registration-item">
+                    <i class="far fa-clock"></i>
+                    <p><strong>Čas:</strong> 19:00 - 20:30</p>
+                </div>
+                
+                <div class="registration-item">
+                    <i class="fas fa-laptop"></i>
+                    <p><strong>Místo:</strong> Online (odkaz obdržíte po registraci)</p>
+                </div>
+                
+                <div class="registration-item">
+                    <i class="fas fa-tag"></i>
+                    <p><strong>Cena:</strong> ZDARMA (omezená kapacita 100 míst)</p>
+                </div>
+                
+                <a href="#" class="cta-button">REZERVOVAT MÍSTO ZDARMA</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Upozornění -->
+    <section class="content-section">
+        <div class="container">
+            <div class="disclaimer">
+                <h3>UPOZORNĚNÍ:</h3>
+                <p>Tento webinář je primárně určen pro:</p>
+                <ul>
+                    <li>Lidi, kteří chtějí zhodnotit své úspory efektivněji než na spořicím účtu nebo v podílových fondech</li>
+                    <li>Začínající investory do nemovitostí, kteří hledají konkrétní strategii a postup</li>
+                    <li>Aktivní jedince, kteří jsou ochotni se učit a jednat na základě získaných informací</li>
+                </ul>
+                
+                <p>Pokud hledáte rychlé zbohatnutí bez práce nebo nejste připraveni investovat čas do vzdělání, tento webinář není pro vás.</p>
+            </div>
+            
+            <div class="quote">
+                <p>"Nemovitostní trh nabízí příležitosti každý den. Otázka není, zda existují, ale zda je dokážete rozpoznat a využít." - David Choc</p>
+            </div>
+            
+            <div class="text-center">
+                <a href="#register" class="cta-button">REZERVOVAT MÍSTO ZDARMA</a>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        // Jednoduchá funkce pro registraci - v reálném použití by bylo napojeno na skutečný formulář
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctaButtons = document.querySelectorAll('.cta-button');
+            
+            ctaButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    alert('Děkujeme za váš zájem! V reálném nasazení by zde byl registrační formulář pro webinář.');
+                });
+            });
+        });
+    </script>
+    <!-- JavaScript pro FAQ akordeon -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', function() {
+                    // Zavře všechny ostatní otázky
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Přepne aktivní stav kliknuté otázky
+                    item.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

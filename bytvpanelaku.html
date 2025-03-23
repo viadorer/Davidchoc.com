@@ -1,0 +1,1617 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Speciální nabídka pro majitele panelákových bytů - Síť investorů zaplatí o 12-18% více a koupí váš byt za 14 dní ve stavu JAK JE.">
+    <meta name="keywords" content="panelákový byt, prodej bytu, investoři, prémiová cena, rychlý prodej, Plzeň, David Choc, realitní agent">
+    <meta name="author" content="David Choc">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Byt v paneláku | David Choc | Speciální nabídka</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TXGDD8D3GK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-TXGDD8D3GK');
+    </script>
+    
+    <style>
+        /* Základní styly */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #111;
+            color: #f5f5f5;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Navigace */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(0, 0, 0, 0.9);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Horní lišta */
+        .sticky-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #FFBF00;
+            color: #000;
+            z-index: 1000;
+            padding: 10px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-img {
+            height: 40px;
+        }
+        
+        .logo-text {
+            color: #000;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-left: 10px;
+        }
+        
+        .main-tagline {
+            flex-grow: 1;
+            text-align: center;
+        }
+        
+        .main-tagline p {
+            margin: 0;
+            color: #000;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        /* Animace stránkování */
+        @keyframes slideLeft {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(-100%); opacity: 0; }
+        }
+        
+        @keyframes slideRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .page-transition-leave {
+            animation: slideLeft 0.5s ease-in-out forwards;
+        }
+        
+        .page-transition-enter {
+            animation: slideRight 0.5s ease-in-out forwards;
+        }
+        
+        /* Odsazení hlavního obsahu kvůli fixed header */
+        main {
+            padding-top: 60px;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo a {
+            text-decoration: none;
+            color: #FFBF00;
+            font-weight: bold;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-links li {
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: #f5f5f5;
+            text-decoration: none;
+            padding: 10px 15px;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #FFBF00;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: #f5f5f5;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+        
+        /* Hero sekce */
+        .hero {
+            padding: 150px 0 80px;
+            background-color: #050505;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid #FFBF00;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #FFBF00;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: #f5f5f5;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+        
+        .expiry-notice {
+            background-color: rgba(255, 191, 0, 0.1);
+            border: 1px solid #FFBF00;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 30px auto;
+            max-width: 800px;
+            font-weight: bold;
+            text-align: center;
+            color: #FFBF00;
+        }
+        
+        .timer {
+            margin-top: 15px;
+            text-align: center;
+        }
+        
+        .timer img {
+            max-width: 70px;
+            margin-right: 15px;
+            vertical-align: middle;
+        }
+        
+        .timer em {
+            color: #f5f5f5;
+            font-size: 1.1rem;
+        }
+        
+        /* Obecné styly pro sekce */
+        .section {
+            padding: 60px 0;
+            border-bottom: 1px solid rgba(255, 191, 0, 0.2);
+        }
+        
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, rgba(255, 191, 0, 0), rgba(255, 191, 0, 0.5), rgba(255, 191, 0, 0));
+            margin: 0 auto;
+            width: 80%;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            color: #FFBF00;
+            font-weight: 700;
+        }
+        
+        /* Styl pro důvody */
+        .reasons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .reason-item {
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 30px;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255, 191, 0, 0.2);
+        }
+        
+        .reason-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255, 191, 0, 0.1);
+        }
+        
+        .reason-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #FFBF00;
+        }
+        
+        .expert-quote {
+            background-color: rgba(255, 255, 255, 0.03);
+            border-left: 3px solid #FFBF00;
+            padding: 20px;
+            margin: 40px 0;
+            font-style: italic;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .expert-quote p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        
+        .expert-quote cite {
+            display: block;
+            text-align: right;
+            font-weight: bold;
+            color: #FFBF00;
+        }
+        
+        /* Styl pro řešení */
+        .solution {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .solution-img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border: 2px solid #FFBF00;
+        }
+        
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .benefit-item {
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 30px;
+            text-align: left;
+            border: 1px solid rgba(255, 191, 0, 0.2);
+        }
+        
+        .benefit-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #FFBF00;
+        }
+        
+        /* Styl pro případové studie */
+        .case-studies {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .case-box {
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 30px;
+            border: 1px solid rgba(255, 191, 0, 0.2);
+        }
+        
+        .case-title {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #FFBF00;
+            border-bottom: 1px solid rgba(255, 191, 0, 0.2);
+            padding-bottom: 10px;
+        }
+        
+        .case-detail h4 {
+            font-size: 1.1rem;
+            margin: 15px 0 10px;
+            color: #FFBF00;
+        }
+        
+        .criteria-list {
+            list-style: none;
+            margin-bottom: 15px;
+        }
+        
+        .criteria-list li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .criteria-list li::before {
+            content: "•";
+            color: #FFBF00;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .case-result {
+            background-color: rgba(255, 191, 0, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        
+        .case-result p {
+            margin-bottom: 5px;
+        }
+        
+        /* Styl pro test kvalifikace */
+        .test-questions {
+            margin: 30px 0;
+        }
+        
+        .test-question {
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 191, 0, 0.2);
+        }
+        
+        .test-question p {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .test-answers {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .test-answers p {
+            background-color: rgba(255, 191, 0, 0.1);
+            border-radius: 5px;
+            padding: 8px 15px;
+            font-size: 1rem;
+            border: 1px solid rgba(255, 191, 0, 0.2);
+        }
+        
+        .test-result {
+            background-color: rgba(255, 191, 0, 0.1);
+            border: 1px solid #FFBF00;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            margin-top: 30px;
+            font-weight: bold;
+            color: #FFBF00;
+            font-size: 1.2rem;
+        }
+        
+        /* Styl pro proces */
+        .process-steps {
+            margin: 40px 0;
+        }
+        
+        .process-step {
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 191, 0, 0.2);
+            position: relative;
+        }
+        
+        .process-step h4 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #FFBF00;
+        }
+        
+        /* Styl pro omezená místa */
+        .limited-offer {
+            background-color: rgba(255, 191, 0, 0.1);
+            border: 2px solid #FFBF00;
+            border-radius: 8px;
+            padding: 30px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .limited-offer h3 {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            color: #FFBF00;
+        }
+        
+        .limited-offer p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Styl pro dostupné termíny */
+        .available-dates {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .date-item {
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 15px;
+            border: 1px solid rgba(255, 191, 0, 0.2);
+        }
+        
+        .date-item.booked {
+            opacity: 0.6;
+        }
+        
+        .date-item p {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .status-label {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        .status-available {
+            background-color: rgba(0, 200, 0, 0.2);
+            color: #00c800;
+        }
+        
+        .status-booked {
+            background-color: rgba(255, 50, 50, 0.2);
+            color: #ff5050;
+        }
+        
+        /* Styl pro testimonials */
+        .testimonials {
+            margin: 40px 0;
+        }
+        
+        .testimonial-item {
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 191, 0, 0.2);
+            position: relative;
+        }
+        
+        .testimonial-item::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            font-size: 3rem;
+            color: rgba(255, 191, 0, 0.2);
+            font-family: serif;
+        }
+        
+        .testimonial-content {
+            font-style: italic;
+            margin-bottom: 15px;
+            padding-left: 20px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        .testimonial-author {
+            text-align: right;
+            font-weight: bold;
+            color: #FFBF00;
+        }
+        
+        .testimonial-detail {
+            text-align: right;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Styl pro porovnání */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 40px 0;
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 191, 0, 0.2);
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .comparison-table th {
+            background-color: rgba(255, 191, 0, 0.1);
+            color: #FFBF00;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .premium-column {
+            background-color: rgba(255, 191, 0, 0.05);
+            font-weight: bold;
+        }
+        
+        /* FAQ sekce */
+        .faq-item {
+            margin-bottom: 25px;
+        }
+        
+        .faq-question {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #FFBF00;
+            font-weight: bold;
+        }
+        
+        .faq-answer {
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid rgba(255, 191, 0, 0.2);
+        }
+        
+        /* Rozhodnutí sekce */
+        .decision-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .decision-option {
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 30px;
+            border: 1px solid rgba(255, 191, 0, 0.2);
+        }
+        
+        .decision-option.premium {
+            border-color: #FFBF00;
+            box-shadow: 0 0 20px rgba(255, 191, 0, 0.1);
+        }
+        
+        .decision-option h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: #FFBF00;
+            text-align: center;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 191, 0, 0.2);
+        }
+        
+        .decision-option ul {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .decision-option li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .decision-option li::before {
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .decision-option.standard li::before {
+            content: "✕";
+            color: #ff5050;
+        }
+        
+        .decision-option.premium li::before {
+            content: "✓";
+            color: #00c800;
+        }
+        
+        /* Výzva k akci */
+        .cta-button {
+            display: inline-block;
+            background-color: #FFBF00;
+            color: #111;
+            font-weight: bold;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            text-align: center;
+            margin-top: 20px;
+            text-transform: uppercase;
+            border: 2px solid #FFBF00;
+        }
+        
+        .cta-button:hover {
+            background-color: transparent;
+            color: #FFBF00;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 191, 0, 0.3);
+        }
+        
+        .cta-center {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        /* O autorovi */
+        .author-section {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 30px;
+            margin: 50px 0;
+            border: 1px solid rgba(255, 191, 0, 0.2);
+        }
+        
+        .author-photo {
+            flex: 0 0 150px;
+        }
+        
+        .author-photo img {
+            width: 100%;
+            border-radius: 50%;
+            border: 3px solid #FFBF00;
+        }
+        
+        .author-bio {
+            flex: 1;
+        }
+        
+        .author-bio h3 {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+            color: #FFBF00;
+        }
+        
+        .author-bio p {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .author-contact {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #050505;
+            padding: 50px 0 20px;
+            border-top: 1px solid rgba(255, 191, 0, 0.3);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #FFBF00;
+        }
+        
+        .footer-links li {
+            list-style: none;
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #f5f5f5;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #FFBF00;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        /* Kalendář konzultací */
+        .konzultace-section {
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            padding: 40px;
+            margin: 50px 0;
+            border: 1px solid rgba(255, 191, 0, 0.2);
+        }
+        
+        .konzultace-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .konzultace-text {
+            text-align: center;
+            margin-bottom: 30px;
+            max-width: 800px;
+        }
+        
+        .konzultace-text p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .konzultace-kalendar {
+            width: 100%;
+            max-width: 800px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 191, 0, 0.3);
+        }
+        
+        /* Video sekce */
+        .video-container {
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        .video-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #FFBF00;
+        }
+        
+        .youtube-video {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding-bottom: 56.25%; /* 16:9 poměr stran */
+            height: 0;
+            overflow: hidden;
+        }
+        
+        .youtube-video iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(255, 191, 0, 0.2);
+        }
+        
+        .footer-logo-img {
+            height: 50px;
+            margin-bottom: 10px;
+        }
+        
+        /* Konzultační sekce */
+        .konsultace-sekce {
+            padding: 80px 0;
+            background-color: #111;
+        }
+        
+        .konzultace-content {
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            justify-content: space-between;
+            gap: 40px;
+        }
+        
+        .konzultace-kalendar {
+            flex: 0 0 65%;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid #FFBF00;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-align: center;
+            color: #FFBF00;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #FFBF00;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .contact-alt {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .contact-alt p {
+            margin: 10px 0;
+        }
+        
+        .contact-alt a {
+            color: #FFBF00;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-alt a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Responzivita */
+        @media screen and (max-width: 768px) {
+            .navbar .container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                margin-top: 20px;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .hamburger {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+            
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.4rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .author-section {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .author-photo {
+                margin-bottom: 20px;
+            }
+            
+            .konzultace-section {
+                padding: 20px;
+            }
+            
+            .konzultace-kalendar {
+                height: 500px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Horní lišta s hlavním tahákem -->
+    <header class="sticky-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="logo.png" alt="David Choc Logo" class="logo-img">
+                    <span class="logo-text">David Choc</span>
+                </div>
+                <div class="main-tagline">
+                    <p><strong>SPECIAL: Síť investorů zaplatí o 12-18% více a koupí váš byt za 14 dní ve stavu JAK JE!</strong></p>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hlavní obsah -->
+    <main>
+        <!-- Hero sekce -->
+        <section class="hero">
+            <div class="container hero-content">
+                <h1 class="hero-title">STOP! MÁTE PANELÁKOVÝ BYT PŘED REKONSTRUKCÍ?</h1>
+                <h2 class="hero-subtitle">Speciální síť investorů zaplatí o 12-18% VÍCE a koupí ho za 14 dní ve stavu "JAK JE"</h2>
+                
+                <div class="expiry-notice">
+                    ⚠️ ČASOVÝ LIMIT: Nabídka končí 15.4.2025 nebo po naplnění 3 pozic (zbývají jen 2 místa!)
+                </div>
+                
+                <div class="timer">
+                    <img src="images/blog/u9534644866_Jak_zskat_nejlep_hypotku_Prvodce_svtem_hypotk._Co_cb0f618e-40f4-40b2-9a6d-58bbb896b57c_3 ve střední velikosti.jpeg" alt="Časové omezení">
+                    <em>Zbývá: 23 dní 14 hodin 37 minut</em>
+                </div>
+            </div>
+        </section>
+        
+        <div class="divider"></div>
+        
+        <!-- Sekce s důvody -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">3 DŮVODY, PROČ BĚŽNÍ KUPCI CHTĚJÍ VÁŠ BYT ZA PODHODNOCENOU CENU</h2>
+                
+                <div class="reasons">
+                    <div class="reason-item">
+                        <h3 class="reason-title">😡 "Ta rekonstrukce bude stát MAJLANT, musíte slevit..."</h3>
+                        <p>Každý běžný zájemce vidí váš původní byt jako PROBLÉM. Umakartové jádro? Původní podlahy? Stará okna? <strong>Vše používají jako záminku, proč byste měli jít s cenou dolů.</strong></p>
+                    </div>
+                    
+                    <div class="reason-item">
+                        <h3 class="reason-title">🕒 "Musím to promyslet, možná zavolám za měsíc..."</h3>
+                        <p>Běžní zájemci odkládají rozhodnutí. Chtějí porovnat více bytů, zjistit náklady na rekonstrukci, mluvit s řemeslníky... <strong>Prodej se tak táhne 6-9 měsíců.</strong></p>
+                    </div>
+                    
+                    <div class="reason-item">
+                        <h3 class="reason-title">💰 "Banka mi na takový byt nedá plnou hypotéku..."</h3>
+                        <p>I když najdete zájemce, přichází další komplikace. Banky nechtějí financovat byty v původním stavu za plnou cenu. <strong>A vy jste znovu na začátku.</strong></p>
+                    </div>
+                </div>
+                
+                <div class="expert-quote">
+                    <p>"Za 30 let v realitách jsem viděl stovky majitelů, kteří prodali své panelákové byty o 400.000 - 900.000 Kč levněji, než mohli. Proč? Protože nevěděli o existenci SKRYTÉHO TRHU s nemovitostmi."</p>
+                    <cite>— David Choc, specialista na diskrétní prodeje s 5000+ transakcemi</cite>
+                </div>
+                
+                <!-- Video sekce -->
+                <div class="video-container">
+                    <h3 class="video-title">Podívejte se na krátké video o procesu</h3>
+                    <div class="youtube-video">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Video o prémiovém prodeji panelákových bytů" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="divider"></div>
+        
+        <!-- Sekce řešení -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">✅ ŘEŠENÍ: SPECIALIZOVANÍ INVESTOŘI HLEDAJÍ PRÁVĚ VÁŠ BYT</h2>
+                
+                <div class="solution">
+                    <img src="images/blog/u9534644866_Renovace_kter_zv_hodnotu_va_nemovitosti_Ne_vechny_41bb6926-4cff-4170-909a-3c2de00ee542_1 ve střední velikosti.jpeg" alt="Investoři hledající panelákové byty" class="solution-img">
+                    
+                    <p><strong>PRÁVĚ TEĎ máme připravené kupce pro 3 panelákové byty v Plzni.</strong></p>
+                    <p>Tito investoři vidí to, co běžní kupci nevidí:</p>
+                </div>
+                
+                <div class="benefits">
+                    <div class="benefit-item">
+                        <h3 class="benefit-title">💎 POTENCIÁL MÍSTO PROBLÉMU</h3>
+                        <p>Kde běžný kupec vidí "zastaralý byt", naši investoři vidí "diamant v surovém stavu". Nepotřebujete nic opravovat, malovat ani uklízet. <strong>Čím původnější stav, tím lépe.</strong></p>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <h3 class="benefit-title">⚡ OKAMŽITÉ ROZHODNUTÍ</h3>
+                        <p>Žádné "rozmyslím si to" nebo "zavolám za týden". <strong>Naši investoři rozhodují během 24-48 hodin</strong> po jediné prohlídce. Mají připravené peníze a jsou motivováni jednat HNED.</p>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <h3 class="benefit-title">💵 HOTOVOST BEZ HYPOTÉKY</h3>
+                        <p>Naši investoři nepotřebují schvalování banky. <strong>Platí v hotovosti přes advokátní úschovu</strong>, takže se vyhnete měsícům nejistoty a zdržování.</p>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <img src="images/blog/u9534644866_Dm_nebo_byt_Co_je_lep_investice_Porovnn_vhod_a_ne_105dd9a6-1778-4724-b2fd-18534b5db202_2 ve střední velikosti.jpeg" alt="Porovnání běžného a prémiového prodeje" class="solution-img">
+                </div>
+            </div>
+        </section>
+        
+        <div class="divider"></div>
+        
+        <!-- Sekce s výsledky -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">🔥 DŮKAZY: SKUTEČNÉ VÝSLEDKY Z POSLEDNÍCH 30 DNÍ</h2>
+                
+                <div class="case-studies">
+                    <div class="case-box">
+                        <h3 class="case-title">📊 BYT 3+1, PLZEŇ-BOLEVEC [PRODÁNO ZA 11 DNÍ]</h3>
+                        <div class="case-detail">
+                            <p><strong>Běžné realitky nabízely:</strong> 2.900.000 Kč</p>
+                            <p><strong>Náš investor zaplatil:</strong> 3.380.000 Kč</p>
+                            <p><strong>Navíc získáno:</strong> +480.000 Kč</p>
+                            <p><strong>Stav bytu:</strong> Původní jádro, okna, podlahy z 80. let</p>
+                            <p><strong>Nutné opravy před prodejem:</strong> ŽÁDNÉ</p>
+                        </div>
+                    </div>
+                    
+                    <div class="case-box">
+                        <h3 class="case-title">📊 BYT 2+1, PLZEŇ-LOCHOTÍN [PRODÁNO ZA 8 DNÍ]</h3>
+                        <div class="case-detail">
+                            <p><strong>Běžné realitky nabízely:</strong> 2.100.000 Kč</p>
+                            <p><strong>Náš investor zaplatil:</strong> 2.450.000 Kč</p>
+                            <p><strong>Navíc získáno:</strong> +350.000 Kč</p>
+                            <p><strong>Stav bytu:</strong> Částečně vybydlený po nájemnících</p>
+                            <p><strong>Nutné opravy před prodejem:</strong> ŽÁDNÉ</p>
+                        </div>
+                    </div>
+                    
+                    <div class="case-box">
+                        <h3 class="case-title">📊 BYT 1+1, PLZEŇ-DOUBRAVKA [PRODÁNO ZA 5 DNÍ]</h3>
+                        <div class="case-detail">
+                            <p><strong>Běžné realitky nabízely:</strong> 1.650.000 Kč</p>
+                            <p><strong>Náš investor zaplatil:</strong> 1.950.000 Kč</p>
+                            <p><strong>Navíc získáno:</strong> +300.000 Kč</p>
+                            <p><strong>Stav bytu:</strong> Umakartové jádro, původní dispozice</p>
+                            <p><strong>Nutné opravy před prodejem:</strong> ŽÁDNÉ</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="divider"></div>
+        
+        <!-- Sekce rychlý test -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">⚡ RYCHLÝ TEST: KVALIFIKUJE SE VÁŠ BYT PRO PRÉMIOVÝ ODKUP?</h2>
+                
+                <p>Odpovězte na 5 otázek a zjistěte OKAMŽITĚ, zda můžete získat nabídku o 12-18% vyšší než na běžném trhu:</p>
+                
+                <div class="test-questions">
+                    <div class="test-question">
+                        <p>OTÁZKA 1/5: Je váš byt v panelákovém domě v Plzni nebo blízkém okolí?</p>
+                        <div class="test-answers">
+                            <p>[ ] ANO → Pokračujte na otázku 2</p>
+                            <p>[ ] NE → Bohužel, váš byt nesplňuje základní kritérium</p>
+                        </div>
+                    </div>
+                    
+                    <div class="test-question">
+                        <p>OTÁZKA 2/5: Je váš byt v původním stavu nebo potřebuje rekonstrukci?</p>
+                        <div class="test-answers">
+                            <p>[ ] ANO, je v původním stavu / potřebuje rekonstrukci → VÝBORNĚ! Pokračujte</p>
+                            <p>[ ] NE, je po kompletní rekonstrukci → Pro naše investory bohužel není vhodný</p>
+                        </div>
+                    </div>
+                    
+                    <div class="test-question">
+                        <p>OTÁZKA 3/5: Je dispozice bytu 1+1, 2+1, 3+1 nebo podobná?</p>
+                        <div class="test-answers">
+                            <p>[ ] ANO → SKVĚLÉ! Pokračujte dál</p>
+                            <p>[ ] NE → Bohužel, naši investoři hledají standardní dispozice</p>
+                        </div>
+                    </div>
+                    
+                    <div class="test-question">
+                        <p>OTÁZKA 4/5: Je byt prázdný nebo ho lze vyklidit do 30 dnů?</p>
+                        <div class="test-answers">
+                            <p>[ ] ANO → VÝBORNĚ! Poslední otázka</p>
+                            <p>[ ] NE → Bohužel, rychlé předání je klíčové</p>
+                        </div>
+                    </div>
+                    
+                    <div class="test-question">
+                        <p>OTÁZKA 5/5: Jste připraveni jednat rychle, pokud dostanete atraktivní nabídku?</p>
+                        <div class="test-answers">
+                            <p>[ ] ANO → GRATULUJEME! Váš byt se pravděpodobně kvalifikuje</p>
+                            <p>[ ] NE → Naši investoři hledají příležitosti s rychlým rozhodnutím</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="test-result">
+                    <p>Pokud jste odpověděli ANO na 4-5 otázek, váš byt má vysokou šanci získat prémiovou nabídku!</p>
+                </div>
+                
+                <div class="cta-center">
+                    <a href="#" class="cta-button">ZJISTIT PŘESNOU CENU MÉHO BYTU</a>
+                    <p><em>Kliknutím získáte nezávaznou nabídku do 24 hodin</em></p>
+                </div>
+            </div>
+        </section>
+        
+        <div class="divider"></div>
+        
+        <!-- Sekce důvody investořů -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">🔍 PROČ NĚKTEŘÍ INVESTOŘI CÍLENĚ HLEDAJÍ PANELÁKOVÉ BYTY PŘED REKONSTRUKCÍ?</h2>
+                
+                <div class="solution">
+                    <img src="images/blog/u9534644866_Dm_nebo_byt_Co_je_lep_investice_Porovnn_vhod_a_ne_105dd9a6-1778-4724-b2fd-18534b5db202_3 ve střední velikosti.jpeg" alt="Strategie investorů" class="solution-img">
+                </div>
+                
+                <div class="benefits">
+                    <div class="benefit-item">
+                        <h3 class="benefit-title">🛠️ MAJÍ VLASTNÍ TÝM ŘEMESLNÍKŮ</h3>
+                        <p>Co by vás stálo 800.000 Kč, zvládnou za 450.000 Kč. Mají nasmlouvané řemeslníky, nakupují materiál ve velkém a realizují 10+ rekonstrukcí ročně.</p>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <h3 class="benefit-title">📈 INVESTUJÍ DLOUHODOBĚ</h3>
+                        <p>Nehledají byt k bydlení, ale k dlouhodobé investici. Zajímá je primárně lokalita a potenciál, ne aktuální stav. Pro ně je to byznys, ne emocionální rozhodnutí.</p>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <h3 class="benefit-title">💼 VYUŽÍVAJÍ DAŇOVÉ VÝHODY</h3>
+                        <p>Díky právním a daňovým strukturám mohou optimalizovat náklady způsobem, který běžný kupec nemůže. To jim umožňuje nabídnout vyšší cenu.</p>
+                    </div>
+                </div>
+                
+                <div class="expert-quote">
+                    <p>"Když jsem poprvé slyšel, že by někdo mohl chtít můj rozbitý panelákový byt za cenu vyšší než na trhu, myslel jsem, že je to podvod. Ale pak mi pan Choc vysvětlil strategii investorů a za 11 dní jsem prodal. Získal jsem o 480.000 Kč více a nemusel jsem ani vymalovat!"</p>
+                    <cite>— Jiří K. (prodej bytu 3+1, Plzeň-Bolevec)</cite>
+                </div>
+            </div>
+        </section>
+        
+        <div class="divider"></div>
+        
+        <!-- Sekce proces -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">🚀 JAK PROBÍHÁ NÁŠ 5-KROKOVÝ PROCES?</h2>
+                
+                <div class="solution">
+                    <img src="images/blog/u9534644866_Prodej_nemovitosti_nemus_bt_riziko_Prodvte_dm_neb_a823ec75-1739-4ffd-a017-b965856cd002_0 ve střední velikosti.jpeg" alt="Proces prodeje" class="solution-img">
+                </div>
+                
+                <div class="process-steps">
+                    <div class="process-step">
+                        <h4>KROK 1: BEZPLATNÁ KONZULTACE (45 MIN)</h4>
+                        <p>Probereme váš byt a určíme, zda je vhodný pro naše investory. Upřímně řekneme, jestli máte šanci na prémiovou nabídku nebo ne.</p>
+                    </div>
+                    
+                    <div class="process-step">
+                        <h4>KROK 2: ZÁKLADNÍ FOTODOKUMENTACE (1 DEN)</h4>
+                        <p>Stačí běžné fotky z telefonu - žádné profesionální focení, staging ani úklid není potřeba. Naši investoři chtějí vidět SKUTEČNÝ STAV.</p>
+                    </div>
+                    
+                    <div class="process-step">
+                        <h4>KROK 3: OSLOVENÍ INVESTORŮ (1 DEN)</h4>
+                        <p>Kontaktujeme 2-3 prověřené investory, kteří aktuálně hledají přesně váš typ bytu. Žádné veřejné inzeráty, žádní zvědaví sousedé.</p>
+                    </div>
+                    
+                    <div class="process-step">
+                        <h4>KROK 4: JEDNA EFEKTIVNÍ PROHLÍDKA (1 DEN)</h4>
+                        <p>Zorganizujeme jednu prohlídku pro skutečně motivované zájemce. Žádné desítky prohlídek s náhodnými zvědavci.</p>
+                    </div>
+                    
+                    <div class="process-step">
+                        <h4>KROK 5: KONKRÉTNÍ NABÍDKA (24-48 HOD)</h4>
+                        <p>Do 2 dnů dostanete jasnou nabídku. Pokud souhlasíte, zajistíme veškerou dokumentaci a bezpečnou úschovu. Peníze na vašem účtu do 14 dnů od první schůzky.</p>
+                    </div>
+                </div>
+                
+                <div class="cta-center">
+                    <a href="#" class="cta-button">ZAHÁJIT PROCES NYNÍ</a>
+                    <p><em>Klikněte pro nezávaznou konzultaci</em></p>
+                </div>
+            </div>
+        </section>
+        
+        <div class="divider"></div>
+        
+        <!-- Sekce omezená dostupnost -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">⏰ OMEZENÁ DOSTUPNOST: PROČ JEN 3 BYTY?</h2>
+                
+                <div class="solution">
+                    <img src="images/blog/u9534644866_Renovace_kter_zv_hodnotu_va_nemovitosti_Ne_vechny_41bb6926-4cff-4170-909a-3c2de00ee542_2 ve střední velikosti.jpeg" alt="Omezená nabídka" class="solution-img">
+                </div>
+                
+                <p>Současná skupina investorů má vyčleněné prostředky <strong>POUZE na 3 konkrétní akvizice v Plzni</strong> během tohoto čtvrtletí.</p>
+                
+                <div class="limited-offer">
+                    <h3>Z původních 3 míst ZBÝVAJÍ JIŽ JEN 2!</h3>
+                </div>
+                
+                <p>Důvody tohoto omezení:</p>
+                <ol>
+                    <li>Každý investor má přesně stanovený investiční rozpočet</li>
+                    <li>Osobně dohlížím na každou transakci a věnuji jí 100% pozornosti</li>
+                    <li>Čím exkluzivnější nabídka, tím vyšší cena (základní princip nabídky a poptávky)</li>
+                </ol>
+                
+                <p>Po naplnění těchto pozic nebude podobná příležitost dostupná minimálně do července 2025.</p>
+            </div>
+        </section>
+        
+        <div class="divider"></div>
+        
+        <!-- Sekce reference -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">👤 CO ŘÍKAJÍ NAŠI KLIENTI</h2>
+                
+                <div class="testimonials">
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <p>"Byl jsem připraveny na zdlouhavý, náročný prodej svého bytu 3+1 na Lochotinu. David přišel s jinou cestou - specialními investory, kteří ocenili i polohu bytu před rekonstrukcí. Prodali jsme o 15% výš než nabízela realitka a vše bylo vyřízené během 10 dnů. Doporučuji každému, kdo nechce řešit rekonstrukci."</p>
+                            <div class="testimonial-author">
+                                <img src="images/blog/hypoteka.jpg" alt="Klient Karel T." class="testimonial-avatar">
+                                <div class="testimonial-info">
+                                    <h4>Karel T.</h4>
+                                    <span>Prodej bytu 3+1, Plzeň-Lochotín</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <p>"Po smrti maminky jsem zdědila byt 2+1 na Doubravce. Byl v původním stavu, na rekonstrukci bych neměla čas ani peníze. Realitky mi nabízely max. 1.8M Kč. Přes pana Choca jsem se dostala k investorům, kteří zaplatili 2.1M Kč v hotovosti během 14 dnů, bez dalších průtahů. Bez jeho přístupu bych přišla o 300.000 Kč."</p>
+                            <div class="testimonial-author">
+                                <img src="images/blog/rekonstrukce.jpg" alt="Klientka Jana M." class="testimonial-avatar">
+                                <div class="testimonial-info">
+                                    <h4>Jana M.</h4>
+                                    <span>Prodej bytu 2+1, Plzeň-Doubravka</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <p>"Potřeboval jsem rychle prodat byt 1+1 v Bolevci, aby se mi uvolnily finance na nový dům. Sám jsem realitou, takže vím, jak prodělačné prodeje bývají. David Choc mě příjemně překvapil - jeho kontakty na investory jsou neocenitelné. Za 7 dnů byl podepsán rezervační formulář a za dalších 10 dnů peníze na účtu. Profesionál."</p>
+                            <div class="testimonial-author">
+                                <img src="images/blog/u9534644866_Dm_nebo_byt_Co_je_lep_investice_Porovnn_vhod_a_ne_105dd9a6-1778-4724-b2fd-18534b5db202_1 ve střední velikosti.jpeg" alt="Klient Petr V." class="testimonial-avatar">
+                                <div class="testimonial-info">
+                                    <h4>Petr V.</h4>
+                                    <span>Prodej bytu 1+1, Plzeň-Bolevec</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cta-center">
+                    <p>Přidejte se k úspěšným majitelům, kteří vydělali více bez starostí</p>
+                    <a href="#" class="cta-button">ZÍSKAT NEOBYČEJNOU NABÍDKU</a>
+                </div>
+            </div>
+        </section>
+        
+        <div class="divider"></div>
+        
+        <!-- Rychlý test sekce -->
+        <section class="test-section">
+            <div class="container">
+                <h2 class="section-title">RYCHLÝ TEST: KVALIFIKUJE SE VÁŠ BYT PRO PRÉMIOVOU NABÍDKU?</h2>
+                <p class="section-subtitle">Odpovězte na následující otázky a zjistěte, zda můžete získat vyšší nabídku</p>
+                
+                <div class="test-form">
+                    <form id="qualification-test" class="test-questions">
+                        <div class="question-item">
+                            <h3>1. Nachází se váš byt v panelovém domě?</h3>
+                            <div class="options">
+                                <div class="option">
+                                    <input type="radio" id="q1-yes" name="q1" value="yes">
+                                    <label for="q1-yes">Ano</label>
+                                </div>
+                                <div class="option">
+                                    <input type="radio" id="q1-no" name="q1" value="no">
+                                    <label for="q1-no">Ne</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="question-item">
+                            <h3>2. Je váš byt v původním stavu nebo jen částečně rekonstruovaný?</h3>
+                            <div class="options">
+                                <div class="option">
+                                    <input type="radio" id="q2-yes" name="q2" value="yes">
+                                    <label for="q2-yes">Ano</label>
+                                </div>
+                                <div class="option">
+                                    <input type="radio" id="q2-no" name="q2" value="no">
+                                    <label for="q2-no">Ne (kompletně rekonstruovaný)</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="question-item">
+                            <h3>3. Chcete prodat bez zbytečných průtahů a komplikací?</h3>
+                            <div class="options">
+                                <div class="option">
+                                    <input type="radio" id="q3-yes" name="q3" value="yes">
+                                    <label for="q3-yes">Ano</label>
+                                </div>
+                                <div class="option">
+                                    <input type="radio" id="q3-no" name="q3" value="no">
+                                    <label for="q3-no">Ne</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="test-submit">
+                            <button type="button" id="test-submit-btn" class="cta-button">ZÍSKAT VÝSLEDEK</button>
+                        </div>
+                    </form>
+                    
+                    <div id="test-results" class="test-results" style="display: none;">
+                        <div class="result-positive" style="display: none;">
+                            <h3>✔️ VÁŠ BYT SE KVALIFIKUJE!</h3>
+                            <p>Váš byt má vynikající potenciál pro prémiovou nabídku nabídku. Naši investoři aktuálně aktivně vyhledávají právě takou nemovitost.</p>
+                            <a href="#konzultace" class="cta-button">REZERVOVAT KONZULTACI</a>
+                        </div>
+                        
+                        <div class="result-negative" style="display: none;">
+                            <h3>⚠️ VÁŠ BYT SE MOC NEKVALIFIKUJE</h3>
+                            <p>Z vašich odpovědí to vypdá tak, že váš byt nespada do hlavní oblasti zájmu našich investorů, ale stále vám můžeme pomoci s prodejem. Rezervujte si konzultaci pro individulní posouzení.</p>
+                            <a href="#konzultace" class="cta-button">REZERVOVAT KONZULTACI</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="divider"></div>
+        
+        <!-- Sekce s autorem -->
+        <section class="section">
+            <div class="container">
+                <div class="author-box">
+                    <div class="author-info">
+                        <img src="images/blog/investice.jpg" alt="David Choc" class="author-img">
+                        <div class="author-credentials">
+                            <h3>David Choc</h3>
+                            <p>Specialista na diskrétní prodej nemovitostí</p>
+                            <ul class="author-stats">
+                                <li><strong>30+ let</strong> v realitách</li>
+                                <li><strong>5000+</strong> úspěšných transakcí</li>
+                                <li><strong>94%</strong> klientů získalo vyšší cenu</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="author-message">
+                        <p>"Za mé dlouhé kariéry jsem viděl stovky majitelů, kteří prodali své nemovitosti hluboko pod jejich skutečnou hodnotou.</p>
+                        <p>Většina z nich nevěděla o existenci specializovaných investorů, kteří platí více za byty v původním stavu.</p>
+                        <p>Mám radost, že díky našemu systému diskrétního prodeje dnes naši klienti získávají o 12-18% vyšší ceny, bez zbytečných starostí a časových prodlev."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Sekce konzultace a kalendář -->
+        <section id="konzultace" class="konsultace-sekce">
+            <div class="container">
+                <h2 class="section-title">REZERVUJTE SI NEZÁVAZNOU KONZULTACI ZDARMA</h2>
+                <p class="section-subtitle">Zjistěte do 15 minut, zda se váš byt kvalifikuje pro prémiovou nabídku</p>
+                
+                <div class="konzultace-content">
+                    <div class="konzultace-kalendar">
+                        <!-- Calendly inline widget begin -->
+                        <div class="calendly-inline-widget" data-url="https://calendly.com/ptf-info/30min" data-hide-gdpr-banner="1" style="min-width:320px;height:600px;"></div>
+                        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+                        <!-- Calendly inline widget end -->
+                    </div>
+                </div>
+                
+                <div class="contact-alt">
+                    <p>Preferujete telefonický kontakt?</p>
+                    <p><strong>Zavolejte:</strong> <a href="tel:+420776271871">+420 776 271 871</a></p>
+                    <p><strong>Napište:</strong> <a href="mailto:david@davidchoc.com">david@davidchoc.com</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <script>
+        // JavaScript pro aktualizaci data vypršení nabídky (+5 dní od dnešního dne)
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date();
+            const expiryDate = new Date(today);
+            expiryDate.setDate(today.getDate() + 5);
+            
+            const options = { day: 'numeric', month: 'long', year: 'numeric' };
+            const formattedDate = expiryDate.toLocaleDateString('cs-CZ', options);
+            
+            // Aktualizace data ve všech elementech s třídou "expiry-date"
+            const expiryElements = document.querySelectorAll('.expiry-date');
+            expiryElements.forEach(el => {
+                el.textContent = formattedDate;
+            });
+            
+            // Přidání funkčnosti pro test
+            const testButton = document.getElementById('test-submit-btn');
+            if (testButton) {
+                testButton.addEventListener('click', evaluateTest);
+            }
+        });
+        
+        // Funkce pro vyhodnocení testu
+        function evaluateTest() {
+            const q1 = document.querySelector('input[name="q1"]:checked');
+            const q2 = document.querySelector('input[name="q2"]:checked');
+            const q3 = document.querySelector('input[name="q3"]:checked');
+            
+            // Kontrola, zda jsou všechny otázky zodpovězeny
+            if (!q1 || !q2 || !q3) {
+                alert('Prosím odpovězte na všechny otázky.');
+                return;
+            }
+            
+            // Získání hodnot odpovědí
+            const isPanel = q1.value === 'yes';
+            const isOriginal = q2.value === 'yes';
+            const isQuickSale = q3.value === 'yes';
+            
+            // Zobrazení výsledků
+            const resultsDiv = document.getElementById('test-results');
+            const positiveResult = document.querySelector('.result-positive');
+            const negativeResult = document.querySelector('.result-negative');
+            
+            resultsDiv.style.display = 'block';
+            
+            // Vyhodnocení výsledku
+            if (isPanel && isOriginal && isQuickSale) {
+                positiveResult.style.display = 'block';
+                negativeResult.style.display = 'none';
+            } else if (isPanel && (isOriginal || isQuickSale)) {
+                positiveResult.style.display = 'block';
+                negativeResult.style.display = 'none';
+            } else {
+                positiveResult.style.display = 'none';
+                negativeResult.style.display = 'block';
+            }
+            
+            // Scrollování k výsledkům
+            resultsDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Animace stránkování - ukázka implementace
+        function navigateToPage(url) {
+            const mainContent = document.querySelector('main');
+            mainContent.classList.add('page-transition-leave');
+            
+            setTimeout(() => {
+                window.location.href = url;
+            }, 500);
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const mainContent = document.querySelector('main');
+            mainContent.classList.add('page-transition-enter');
+            
+            // Přidání event listenerů pro všechny navigační odkazy
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (this.getAttribute('href').charAt(0) !== '#') {
+                        e.preventDefault();
+                        navigateToPage(this.getAttribute('href'));
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

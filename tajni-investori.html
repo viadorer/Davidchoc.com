@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Exkluzivní nabídka pro majitele bytů v Plzni - Tajní investoři hledají specifické byty s prémiovou cenou.">
+    <meta name="keywords" content="byty Plzeň, prodej bytu, tajní investoři, prémiová cena, David Choc, realitní agent">
+    <meta name="author" content="David Choc">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Tajní investoři | David Choc | Exkluzivní nabídka</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TXGDD8D3GK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-TXGDD8D3GK');
+    </script>
+    
+    <style>
+        /* Styl pro sekci konzultace */
+        .konzultace-section {
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            padding: 40px;
+            margin: 50px 0;
+            border: 1px solid rgba(255, 191, 0, 0.2);
+        }
+        
+        .konzultace-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .konzultace-text {
+            text-align: center;
+            margin-bottom: 30px;
+            max-width: 800px;
+        }
+        
+        .konzultace-text p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .konzultace-kalendar {
+            width: 100%;
+            max-width: 800px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 191, 0, 0.3);
+        }
+        
+        @media screen and (max-width: 768px) {
+            .konzultace-section {
+                padding: 20px;
+            }
+            
+            .konzultace-kalendar {
+                height: 500px;
+            }
+        }
+        
+        /* Styl pro fotku autora a sekci o autorovi */
+        .author-section {
+            display: flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px 0;
+            border: 1px solid rgba(255, 191, 0, 0.2);
+        }
+        
+        .author-photo {
+            flex: 0 0 150px;
+            margin-right: 30px;
+        }
+        
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #FFBF00;
+        }
+        
+        .author-bio {
+            flex: 1;
+        }
+        
+        .author-bio h3 {
+            color: #FFBF00;
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+        
+        /* Styl pro YouTube video */
+        .video-section {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* Poměr 16:9 */
+            height: 0;
+            overflow: hidden;
+            max-width: 800px;
+            margin: 0 auto 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 2px solid #FFBF00;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+        
+        .video-description {
+            max-width: 800px;
+            margin: 20px auto;
+            font-style: italic;
+            color: #ddd;
+        }
+        
+        /* Styl pro galerii obrázků */
+        .testimonials-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            height: 200px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        /* Responzivita pro galerii a autora */
+        @media screen and (max-width: 768px) {
+            .author-section {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .author-photo {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            
+            .testimonials-gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #1A1A1A;
+            color: #f0f0f0;
+            padding-top: 0;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Hlavička s upozorněním o časovém omezení */
+        .expiry-notice {
+            background-color: #FFBF00;
+            color: #1A1A1A;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+        }
+        
+        /* Hlavní obsah */
+        .main-content {
+            padding: 40px 0;
+        }
+        
+        /* Hlavní nadpis */
+        .main-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #FFBF00;
+            text-transform: uppercase;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+        
+        /* Výrazný banner */
+        .alert-banner {
+            background-color: rgba(255, 191, 0, 0.1);
+            border: 2px solid #FFBF00;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px 0;
+        }
+        
+        .alert-banner p {
+            font-size: 1.1rem;
+            margin-bottom: 0;
+        }
+        
+        .alert-signature {
+            font-style: italic;
+            text-align: right;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+        
+        /* Divider */
+        .divider {
+            height: 2px;
+            background-color: #FFBF00;
+            max-width: 100px;
+            margin: 30px auto;
+        }
+        
+        /* Sekce */
+        .section {
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            color: #FFBF00;
+            margin-bottom: 30px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        
+        /* Kritéria bytu */
+        .criteria-list {
+            list-style-type: none;
+            margin-bottom: 30px;
+        }
+        
+        .criteria-list li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+            font-size: 1.1rem;
+        }
+        
+        .criteria-list li:before {
+            content: "•";
+            color: #FFBF00;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+        
+        .premium-notice {
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-align: center;
+            margin-top: 30px;
+            color: #FFBF00;
+        }
+        
+        /* Typy trhu */
+        .market-types {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .market-box {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 25px;
+            position: relative;
+            border-left: 5px solid;
+        }
+        
+        .public-market {
+            border-left-color: #e74c3c;
+        }
+        
+        .semiprivate-market {
+            border-left-color: #e67e22;
+        }
+        
+        .elite-market {
+            border-left-color: #2ecc71;
+            background-color: rgba(46, 204, 113, 0.1);
+        }
+        
+        .market-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        
+        .market-icon {
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .market-description ul {
+            list-style-type: none;
+            margin-bottom: 0;
+        }
+        
+        .market-description li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .market-description li:before {
+            content: "✓";
+            color: #FFBF00;
+            position: absolute;
+            left: 0;
+        }
+        
+        /* Případové studie */
+        .case-studies {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .case-box {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 25px;
+            border: 1px solid rgba(255, 191, 0, 0.3);
+        }
+        
+        .case-title {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: #FFBF00;
+        }
+        
+        .case-detail {
+            margin-bottom: 20px;
+        }
+        
+        .case-detail h4 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: #ddd;
+        }
+        
+        .case-result {
+            background-color: rgba(255, 191, 0, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        
+        .case-result p {
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .case-result p strong {
+            color: #FFBF00;
+        }
+        
+        /* Proces */
+        .process-steps {
+            counter-reset: step-counter;
+            margin: 40px 0;
+        }
+        
+        .process-step {
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 60px;
+        }
+        
+        .process-step:before {
+            counter-increment: step-counter;
+            content: counter(step-counter) "️⃣";
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 1.8rem;
+            color: #FFBF00;
+        }
+        
+        .process-step h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #FFBF00;
+        }
+        
+        /* Kvalifikační test */
+        .qualification-test {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 30px;
+            margin: 40px 0;
+        }
+        
+        .test-questions {
+            margin: 30px 0;
+        }
+        
+        .test-question {
+            margin-bottom: 20px;
+        }
+        
+        .test-question p {
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .test-answers {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .test-result {
+            font-size: 1.1rem;
+            text-align: center;
+            margin-top: 30px;
+            font-weight: 600;
+        }
+        
+        /* CTA tlačítka */
+        .cta-button {
+            display: inline-block;
+            background-color: #FFBF00;
+            color: #1A1A1A;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            text-align: center;
+            margin: 20px 0;
+            border: 2px solid #FFBF00;
+        }
+        
+        .cta-button:hover {
+            background-color: transparent;
+            color: #FFBF00;
+        }
+        
+        .cta-center {
+            display: flex;
+            justify-content: center;
+            margin: 40px 0;
+        }
+        
+        /* Reference */
+        .testimonials {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .testimonial-box {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 25px;
+            position: relative;
+        }
+        
+        .testimonial-content {
+            font-style: italic;
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .testimonial-content::before {
+            content: '"';
+            position: absolute;
+            left: 0;
+            top: -10px;
+            font-size: 40px;
+            color: #FFBF00;
+            opacity: 0.5;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: #FFBF00;
+        }
+        
+        .testimonial-project {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-top: 5px;
+        }
+        
+        /* FAQ */
+        .faq-section {
+            margin: 40px 0;
+        }
+        
+        .faq-item {
+            margin-bottom: 30px;
+        }
+        
+        .faq-question {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #FFBF00;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .faq-question-icon {
+            margin-right: 10px;
+            color: #FFBF00;
+        }
+        
+        .faq-answer {
+            padding-left: 25px;
+        }
+        
+        /* Výzva k akci */
+        .final-cta {
+            margin: 60px 0;
+            text-align: center;
+        }
+        
+        .final-cta h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #FFBF00;
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .option-box {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .option-box:hover {
+            transform: translateY(-10px);
+        }
+        
+        .option-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .inactive-option {
+            opacity: 0.5;
+        }
+        
+        /* Footer */
+        .page-footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 40px;
+        }
+        
+        .footer-name {
+            font-weight: 700;
+            color: #FFBF00;
+            margin-bottom: 10px;
+        }
+        
+        .footer-contact {
+            margin-bottom: 20px;
+            color: #ddd;
+        }
+        
+        .footer-tagline {
+            font-style: italic;
+            color: #aaa;
+            margin-bottom: 20px;
+        }
+        
+        .legal-note {
+            font-size: 0.8rem;
+            color: #777;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Responsivita */
+        @media screen and (max-width: 768px) {
+            .main-title {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Konzultace dostupnost */
+        .availability-table {
+            width: 100%;
+            margin: 30px 0;
+            border-collapse: collapse;
+        }
+        
+        .availability-table th,
+        .availability-table td {
+            padding: 12px 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .availability-table th {
+            background-color: rgba(255, 191, 0, 0.2);
+            color: #FFBF00;
+            font-weight: 600;
+        }
+        
+        .availability-table tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+    </style>
+</head>
+<body>
+    <!-- Upozornění na časové omezení -->
+    <div class="expiry-notice">
+        ⚠️ UPOZORNĚNÍ: Tato stránka bude aktivní pouze do <span id="expiryDate">27.3.2025</span>
+    </div>
+    
+    <div class="main-content">
+        <div class="container">
+            <!-- Hlavní nadpis -->
+            <h1 class="main-title">Přísně soukromé: Elitní kupci hledají byty v Plzni</h1>
+            <h2 class="subtitle">Proč někteří majitelé bytů v Plzni prodávají s výrazně vyšší cenou za méně než 14 dní?</h2>
+            
+            <div class="divider"></div>
+            
+            <!-- Banner s upozorněním -->
+            <div class="alert-banner">
+                <p><strong>⚠️ UPOZORNĚNÍ:</strong> Tato stránka bude aktivní pouze do <span id="expiryDate2">27.3.2025</span></p>
+                <p><em>"Nejedná se o běžnou nabídku. Z diskrétních důvodů hledám tento měsíc pouze 3 specifické byty v Plzni. Pokud vlastníte byt 1+kk až 3+kk v kvalitním stavu, pokračujte ve čtení. Ostatním se omlouvám za vyrušení."</em></p>
+                <p class="alert-signature">— David Choc, spojovatel elitních realitních transakcí</p>
+            </div>
+            
+            <!-- Přidání fotografie autora -->            
+            <div class="author-section">
+                <div class="author-photo">
+                    <img src="images/blog/u9534644866_Prodej_nemovitosti_nemus_bt_riziko_Prodvte_dm_neb_a823ec75-1739-4ffd-a017-b965856cd002_0 ve střední velikosti.jpeg" alt="David Choc - Realitní makléř" class="profile-photo">
+                </div>
+                <div class="author-bio">
+                    <h3>David Choc</h3>
+                    <p><strong>30 let zkušeností</strong> v realitách, <strong>přes 5000 úspěšných transakcí</strong> a <strong>desítky tisíc klientů</strong>. Specializuji se na diskrétní prodeje nemovitostí s prémiovou hodnotou pro výběrové klienty.</p>
+                </div>
+            </div>
+            
+            <div class="divider"></div>
+            
+            <!-- YouTube video sekce -->
+            <section class="section video-section">
+                <h2 class="section-title">Proč prodej s diskrétním investorem?</h2>
+                <div class="video-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <p class="video-description">Poslechněte si, jaké výhody přináší prodej nemovitosti přes elitní trh a jaké výsledky můžete očekávat.</p>
+            </section>
+            
+            <div class="divider"></div>
+            
+            <!-- Sekce Neobvyklá příležitost -->
+            <section class="section">
+                <h2 class="section-title">Neobvyklá příležitost pro vybrané majitele bytů</h2>
+                
+                <p>Pro specifickou skupinu soukromých investorů s připravenou hotovostí <strong>aktuálně poptávám 3 byty v Plzni</strong> splňující následující kritéria:</p>
+                
+                <ul class="criteria-list">
+                    <li>Dispozice: 1+kk až 3+kk</li>
+                    <li>Lokality: <strong>Slovany, Bory, Centrum, Doubravka</strong> (prioritně) nebo jiné části Plzně</li>
+                    <li>Stav: Obyvatelný bez nutnosti okamžité rekonstrukce</li>
+                    <li>Právní stav: Bez exekucí a jiných právních vad</li>
+                    <li>Termín: Možnost dokončit transakci do <strong>21.4.2026</strong></li>
+                </ul>
+                
+                <p class="premium-notice">Za tyto nemovitosti jsou moji klienti připraveni zaplatit 10-25% nad běžnou tržní cenou.</p>
+            </section>
+            
+            <div class="divider"></div>
+            
+            <!-- Sekce Typy trhu -->
+            <section class="section">
+                <h2 class="section-title">Realitní trh má tři vrstvy (a vy znáte jen tu první)</h2>
+                
+                <div class="market-types">
+                    <!-- Veřejný trh -->
+                    <div class="market-box public-market">
+                        <div class="market-title">
+                            <span class="market-icon">🔴</span>
+                            <span>Veřejný trh (90% transakcí)</span>
+                        </div>
+                        <div class="market-description">
+                            <ul>
+                                <li><strong>Co vidíte:</strong> Sreality, Bezrealitky, Facebook Marketplace</li>
+                                <li><strong>Typický kupec:</strong> Běžné rodiny hledající bydlení, drobní investoři</li>
+                                <li><strong>Proces:</strong> Veřejné inzeráty → Desítky prohlídek → Vyjednávání → Hypotéka → Převod</li>
+                                <li><strong>Délka prodeje:</strong> 3-6 měsíců</li>
+                                <li><strong>Nevýhody:</strong> Nižší ceny, smlouvání, zdlouhavý proces, veřejná expozice</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Poloprivátní trh -->
+                    <div class="market-box semiprivate-market">
+                        <div class="market-title">
+                            <span class="market-icon">🟠</span>
+                            <span>Poloprivátní trh (9% transakcí)</span>
+                        </div>
+                        <div class="market-description">
+                            <ul>
+                                <li><strong>Co vidíte:</strong> Nabídky "ještě před zveřejněním" od realitních kanceláří</li>
+                                <li><strong>Typický kupec:</strong> Movitější klienti, střední investoři</li>
+                                <li><strong>Proces:</strong> Interní databáze → Omezené prohlídky → Mírné vyjednávání → Financování → Převod</li>
+                                <li><strong>Délka prodeje:</strong> 1-3 měsíce</li>
+                                <li><strong>Nevýhody:</strong> Stále nutnost kompromisů, veřejné vystavení, čekání na financování</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Elitní trh -->
+                    <div class="market-box elite-market">
+                        <div class="market-title">
+                            <span class="market-icon">🟢</span>
+                            <span>Elitní trh (1% transakcí)</span>
+                        </div>
+                        <div class="market-description">
+                            <ul>
+                                <li><strong>Co nevidíte:</strong> Transakce mimo veřejné kanály</li>
+                                <li><strong>Typický kupec:</strong> Privátní investoři s připravenou hotovostí</li>
+                                <li><strong>Proces:</strong> Diskrétní nabídka → Jedna prohlídka → Bez vyjednávání → Okamžitá platba → Rychlý převod</li>
+                                <li><strong>Délka prodeje:</strong> 3-14 dní</li>
+                                <li><strong>Výhody:</strong> Prémiová cena (+10-25%), minimální vyjednávání, diskrétnost, rychlost</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <p><em>"Po 15 letech v realitním byznysu mohu potvrdit: nejlukrativnější transakce se nikdy nedostanou na veřejný trh."</em></p>
+            </section>
+            
+            <div class="divider"></div>
+            
+            <!-- Sekce Případové studie -->
+            <section class="section">
+                <h2 class="section-title">Skutečné výsledky: Tři nedávné transakce</h2>
+                
+                <div class="case-studies">
+                    <!-- Případová studie 1 -->
+                    <div class="case-box">
+                        <h3 class="case-title">📊 Případ #1: Byt 2+kk, Plzeň-Slovany</h3>
+                        
+                        <div class="case-detail">
+                            <h4>Situace před:</h4>
+                            <ul class="criteria-list">
+                                <li>Odhadovaná cena na běžném trhu: 3.800.000 Kč</li>
+                                <li>Očekávaná doba prodeje: 4-5 měsíců</li>
+                                <li>Majitel zvažoval prodej přes běžnou realitní kancelář</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="case-detail">
+                            <h4>Co jsme udělali:</h4>
+                            <ul class="criteria-list">
+                                <li>Kontaktovali tři prověřené kupce z naší sítě</li>
+                                <li>Zorganizovali jednu společnou prohlídku</li>
+                                <li>Získali tři nabídky ve stejný den</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="case-result">
+                            <p><strong>Prodejní cena: 4.350.000 Kč (+550.000 Kč)</strong></p>
+                            <p><strong>Doba prodeje: 9 dnů od první konzultace</strong></p>
+                            <p><strong>Způsob platby: Hotovost v advokátní úschově</strong></p>
+                        </div>
+                    </div>
+                    
+                    <!-- Případová studie 2 -->
+                    <div class="case-box">
+                        <h3 class="case-title">📊 Případ #2: Byt 1+kk, Plzeň-Bory</h3>
+                        
+                        <div class="case-detail">
+                            <h4>Situace před:</h4>
+                            <ul class="criteria-list">
+                                <li>Odhadovaná cena na běžném trhu: 2.950.000 Kč</li>
+                                <li>Očekávaná doba prodeje: 3-4 měsíce</li>
+                                <li>Majitelé potřebovali prodat rychle kvůli stěhování</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="case-detail">
+                            <h4>Co jsme udělali:</h4>
+                            <ul class="criteria-list">
+                                <li>Oslovili konkrétního investora hledajícího přesně tento typ nemovitosti</li>
+                                <li>Zajistili profesionální prezentaci včetně 3D prohlídky</li>
+                                <li>Vyjednali podmínky zohledňující potřeby majitelů</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="case-result">
+                            <p><strong>Prodejní cena: 3.390.000 Kč (+440.000 Kč)</strong></p>
+                            <p><strong>Doba prodeje: 5 dnů od první konzultace</strong></p>
+                            <p><strong>Extra benefit: Flexibilní termín předání dle potřeb prodávajících</strong></p>
+                        </div>
+                    </div>
+                    
+                    <!-- Případová studie 3 -->
+                    <div class="case-box">
+                        <h3 class="case-title">📊 Případ #3: Byt 3+kk, Plzeň-Centrum</h3>
+                        
+                        <div class="case-detail">
+                            <h4>Situace před:</h4>
+                            <ul class="criteria-list">
+                                <li>Odhadovaná cena na běžném trhu: 5.100.000 Kč</li>
+                                <li>Očekávaná doba prodeje: 6+ měsíců (luxusnější segment)</li>
+                                <li>Majitel požadoval naprostou diskrétnost</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="case-detail">
+                            <h4>Co jsme udělali:</h4>
+                            <ul class="criteria-list">
+                                <li>Připravili detailní prezentaci pro velmi úzký okruh kupců</li>
+                                <li>Zajistili naprostou diskrétnost procesu</li>
+                                <li>Vytvořili podmínky pro rychlé uzavření transakce</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="case-result">
+                            <p><strong>Prodejní cena: 6.250.000 Kč (+1.150.000 Kč)</strong></p>
+                            <p><strong>Doba prodeje: 14 dnů od první konzultace</strong></p>
+                            <p><strong>Žádné veřejné inzeráty, kompletní diskrétnost</strong></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <p><em>"Tyto výsledky nejsou dílem náhody. Jsou produktem dlouhodobě budovaných vztahů s investory, kteří hledají velmi specifické příležitosti."</em></p>
+            </section>
+            
+            <div class="divider"></div>
+            
+            <!-- Sekce Jak to funguje -->
+            <section class="section">
+                <h2 class="section-title">Jak celý proces funguje?</h2>
+                
+                <div class="process-steps">
+                    <div class="process-step">
+                        <h4>Nezávazná konzultace</h4>
+                        <p>Probereme detailně vaši situaci a zjistíme, zda váš byt splňuje požadavky pro moje privátní investory. Konzultace trvá maximálně 45 minut a může proběhnout telefonicky nebo osobně. Pokud váš byt nesplňuje požadavky, otevřeně vám to sdělím a navrhnu alternativní řešení.</p>
+                    </div>
+                    
+                    <div class="process-step">
+                        <h4>Profesionální prezentace</h4>
+                        <p>Po schválení nabídneme váš byt vybraným investorům prostřednictvím profesionální prezentace. Ta bude zahrnovat kvalitní fotografie a detailní informace o nemovitosti. Na rozdíl od běžných realitních kanceláří, nebudeme vaši nemovitost inzerovat veřejně.</p>
+                    </div>
+                    
+                    <div class="process-step">
+                        <h4>Jedna prohlídka</h4>
+                        <p>Místo desítek prohlídek s náhodnými zájemci proběhne pouze jedna koordinovaná prohlídka s prověřenými kupci. Vy tak ušetříte čas a zachováte soukromí. Vše proběhne diskrétně a profesionálně.</p>
+                    </div>
+                    
+                    <div class="process-step">
+                        <h4>Přímá nabídka</h4>
+                        <p>Do 24-48 hodin po prohlídce obdržíte jasnou nabídku odkupu od zájemců. Bez zdlouhavých jednání, bez smlouvání. V případě více zájemců se často vytvoří konkurenční prostředí, které vám zajistí nejlepší možnou cenu.</p>
+                    </div>
+                    
+                    <div class="process-step">
+                        <h4>Rychlý a bezpečný převod</h4>
+                        <p>Po akceptaci nabídky zajistíme kompletní právní servis a bezpečný převod peněz přes advokátní úschovu. Celý proces od první konzultace po převod peněz může proběhnout už za 7-14 dní.</p>
+                    </div>
+                </div>
+                
+                <div class="cta-center">
+                    <a href="mailto:david.choc@ptf.cz?subject=Konzultace%20k%20prodeji%20bytu%20-%20tajn%C3%AD%20investoři" class="cta-button">NEZÁVAZNĚ KONZULTOVAT MŮJ BYT</a>
+                </div>
+            </section>
+            
+            <div class="divider"></div>
+            
+            <!-- Sekce Konzultace -->
+            <section class="section konzultace-section">
+                <h2 class="section-title">Rezervujte si diskrétní konzultaci</h2>
+                <div class="konzultace-content">
+                    <div class="konzultace-text">
+                        <p>Máte zájem o prodej vaší nemovitosti prémiové klientele? Domluvte si nezávaznou 30 minutovou diskrétní konzultaci. Po výběru termínu obdržíte potvrzení na váš e-mail.</p>
+                    </div>
+                    <div class="konzultace-kalendar">
+                        <!-- Calendly inline widget begin -->
+                        <div class="calendly-inline-widget" data-url="https://calendly.com/ptf-info/30min" data-hide-gdpr-banner="1" style="min-width:320px;height:450px;"></div>
+                        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+                        <!-- Calendly inline widget end -->
+                    </div>
+                </div>
+            </section>
+            
+            <div class="divider"></div>
+            
+            <!-- Sekce Kvalifikační test -->
+            <section class="section">
+                <h2 class="section-title">Kvalifikuje se váš byt pro prémiový odkup?</h2>
+                
+                <div class="qualification-test">
+                    <p>Odpovězte na tyto 4 otázky a zjistěte, zda váš byt splňuje základní podmínky pro mé privátní investory:</p>
+                    
+                    <div class="test-questions">
+                        <div class="test-question">
+                            <p>1. Je váš byt dispozičně 1+kk až 3+kk?</p>
+                            <div class="test-answers">
+                                <p>✓ Ano, tento požadavek splňuji.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="test-question">
+                            <p>2. Nachází se byt v Plzni?</p>
+                            <div class="test-answers">
+                                <p>✓ Ano, byt je v některé části Plzně.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="test-question">
+                            <p>3. Je byt v obyvatelném stavu bez nutnosti okamžité rekonstrukce?</p>
+                            <div class="test-answers">
+                                <p>✓ Ano, byt je obyvatelný v současném stavu.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="test-question">
+                            <p>4. Máte k bytu vyřešené právní vztahy (bez exekucí a jiných právních vad)?</p>
+                            <div class="test-answers">
+                                <p>✓ Ano, byt nemá právní vady.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-result">
+                        <p>Pokud jste odpověděli "ANO" na všechny otázky, váš byt je pravděpodobně vhodný pro mé privátní investory!</p>
+                    </div>
+                    
+                    <div class="cta-center">
+                        <a href="mailto:david.choc@ptf.cz?subject=Zájem%20o%20prodej%20bytu%20-%20splňuji%20podmínky" class="cta-button">NEZÁVAZNĚ KONZULTOVAT MŮJ BYT</a>
+                    </div>
+                </div>
+            </section>
+            
+            <div class="divider"></div>
+            
+            <!-- Reference -->
+            <section class="section">
+                <h2 class="section-title">Co říkají klienti o spolupráci?</h2>
+                
+                <div class="testimonials-gallery">
+                    <div class="gallery-item">
+                        <img src="images/blog/u9534644866_Dm_nebo_byt_Co_je_lep_investice_Porovnn_vhod_a_ne_105dd9a6-1778-4724-b2fd-18534b5db202_1 ve střední velikosti.jpeg" alt="Úspěšný prodej bytu" class="gallery-img">
+                        <span class="gallery-caption">Byt prodán za 14 dní</span>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/blog/u9534644866_Home_staging_Jak_pipravit_nemovitost_na_prodej_Ho_1fd73f06-e7b0-41cc-a2f0-40761cc48bc5_1 ve střední velikosti.jpeg" alt="Předání nemovitosti" class="gallery-img">
+                        <span class="gallery-caption">Diskrétní předání</span>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/blog/u9534644866_Investice_do_nemovitost_v_roce_2025_Jak_jsou_aktu_e660dffc-0a47-4fd3-93d0-e55efb551162_2 ve střední velikosti.jpeg" alt="Spokojený klient" class="gallery-img">
+                        <span class="gallery-caption">Prémiová cena +18%</span>
+                    </div>
+                </div>
+                
+                <div class="testimonials">
+                    <div class="testimonial-box">
+                        <div class="testimonial-content">
+                            <p>David dokázal prodat náš byt za cenu, kterou jsme považovali za nereálnou. Bez veřejných inzerátů, bez nekonečných prohlídek. Jeden týden a bylo hotovo. Kdyby mi to někdo řekl předem, nevěřil bych.</p>
+                        </div>
+                        <div class="testimonial-author">Petr M.</div>
+                        <div class="testimonial-project">Prodej bytu 2+kk, Plzeň-Slovany</div>
+                    </div>
+                    
+                    <div class="testimonial-box">
+                        <div class="testimonial-content">
+                            <p>Potřebovali jsme prodat rychle a diskrétně kvůli rozvodu. David nám zajistil kupce, který nabídl o 15% více než standard na trhu a celá transakce byla hotová za pouhých 12 dní. Profesionalita na nejvyšší úrovni.</p>
+                        </div>
+                        <div class="testimonial-author">Jana a Tomáš K.</div>
+                        <div class="testimonial-project">Prodej bytu 3+kk, Plzeň-Centrum</div>
+                    </div>
+                    
+                    <div class="testimonial-box">
+                        <div class="testimonial-content">
+                            <p>Původně jsem chtěl prodat sám přes Bezrealitky. Po konzultaci s Davidem jsem se rozhodl zkusit jeho způsob. Výsledek byl ohromující - o 400 tisíc vyšší nabídka než jsem očekával a žádné starosti s prodejem.</p>
+                        </div>
+                        <div class="testimonial-author">Martin V.</div>
+                        <div class="testimonial-project">Prodej bytu 1+kk, Plzeň-Bory</div>
+                    </div>
+                </div>
+            </section>
+            
+            <div class="divider"></div>
+            
+            <!-- FAQ -->
+            <section class="section faq-section">
+                <h2 class="section-title">Odpovědi na časté otázky</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-icon">❓</span>
+                        <span>Proč by někdo platil více, než je tržní cena?</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Moji klienti jsou připraveni zaplatit prémiovou cenu z několika důvodů: 1) Vyhýbají se konkurenčnímu boji na otevřeném trhu, 2) Šetří čas, který by strávili hledáním, 3) Získávají přístup k nemovitostem před jejich veřejným zveřejněním, 4) Mají specifické požadavky a jsou ochotni platit za jejich přesné splnění. V současné době je v Plzni navíc nedostatek kvalitních bytů.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-icon">❓</span>
+                        <span>Musím podepsat exkluzivní smlouvu?</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Ne, nepracuji na základě exkluzivních smluv. Po nezávazné konzultaci vám budu schopen sdělit, zda dokážu najít kupce za prémiovou cenu. Pokud ano a budete chtít pokračovat, dohodneme se na dalším postupu. Vždy máte volnost rozhodnout se podle sebe.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-icon">❓</span>
+                        <span>Jak dlouho celý proces trvá?</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Od první konzultace k převodu peněz to většinou trvá 7-14 dní. Na rozdíl od běžného prodeje, kde proces často zabere 3-6 měsíců, zde pracujeme s kupci, kteří mají připravené finance a mohou jednat okamžitě. Nepotřebujeme čekat na schválení hypotéky ani řešit složité podmínky.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-icon">❓</span>
+                        <span>Kdo jsou vaši tajní investoři?</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Jedná se o prověřené soukromé osoby a menší investiční společnosti, se kterými dlouhodobě spolupracuji. Všichni mají potřebné finance připravené a mohou investovat okamžitě. Z důvodu diskrétnosti nemohu sdělovat jejich jména, ale při osobní konzultaci vám mohu poskytnout více informací o jejich profilu.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-icon">❓</span>
+                        <span>Co když můj byt nesplňuje vaše požadavky?</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Pokud váš byt nesplňuje požadavky mých privátních investorů, otevřeně vám to sdělím během první konzultace. V tom případě vám mohu buď navrhnout standardní prodej přes realitní kancelář, nebo vás nasměrovat na jiné možnosti podle vaší situace. Mým cílem není za každou cenu získat zakázku, ale najít pro vás nejlepší řešení.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <div class="divider"></div>
+            
+            <!-- Výzva k akci + Dostupnost -->
+            <section class="section final-cta">
+                <h2 class="section-title">Chcete vědět, kolik můžete získat za váš byt?</h2>
+                
+                <p>Tento měsíc mám omezenou kapacitu pro nezávazné konzultace.</p>
+                
+                <table class="availability-table">
+                    <tr>
+                        <th>Termín</th>
+                        <th>Dostupnost</th>
+                    </tr>
+                    <tr>
+                        <td>Tento týden</td>
+                        <td>Obsazeno</td>
+                    </tr>
+                    <tr>
+                        <td>Příští týden</td>
+                        <td>2 volné termíny</td>
+                    </tr>
+                    <tr>
+                        <td>Následující týden</td>
+                        <td>4 volné termíny</td>
+                    </tr>
+                </table>
+                
+                <h3>Vyberte si možnost, která vám vyhovuje:</h3>
+                
+                <div class="options-grid">
+                    <div class="option-box">
+                        <div class="option-title">Telefonická konzultace</div>
+                        <p>Rychlá 15-minutová konzultace, kde zjistíte základní informace a možnosti prodeje.</p>
+                        <div class="cta-center">
+                            <a href="tel:+420774052232" class="cta-button">ZAVOLAT NYNÍ</a>
+                        </div>
+                    </div>
+                    
+                    <div class="option-box">
+                        <div class="option-title">Osobní schůzka</div>
+                        <p>Detailní 45-minutová konzultace s rozborem vaší situace a návrhem řešení.</p>
+                        <div class="cta-center">
+                            <a href="mailto:david.choc@ptf.cz?subject=Zájem%20o%20osobní%20schůzku%20-%20prodej%20bytu" class="cta-button">DOMLUVIT SCHŮZKU</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Footer s podpisem -->
+            <div class="page-footer">
+                <div class="footer-name">David Choc</div>
+                <div class="footer-contact">Tel: 774052232 • Email: david.choc@ptf.cz</div>
+                <div class="footer-tagline">Specialista na prémiové realitní transakce v Plzni</div>
+                <div class="legal-note">
+                    <p>© 2023 David Choc. Všechna práva vyhrazena.</p>
+                    <p>Tato nabídka není veřejnou nabídkou ve smyslu § 1780 občanského zákoníku. Uvedené informace a případové studie jsou ilustrativní a každá realitní transakce je posuzována individuálně. Nelze garantovat dosažení konkrétních výsledků v každém případě.</p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <!-- JavaScript pro dynamické nastavení data platnosti -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Získání aktuálního data
+            const today = new Date();
+            
+            // Přidání 5 dnů
+            const expiryDate = new Date(today);
+            expiryDate.setDate(today.getDate() + 5);
+            
+            // Formátování data ve stylu DD.MM.YYYY
+            const day = expiryDate.getDate().toString().padStart(2, '0');
+            const month = (expiryDate.getMonth() + 1).toString().padStart(2, '0');
+            const year = expiryDate.getFullYear();
+            const formattedDate = `${day}.${month}.${year}`;
+            
+            // Aktualizace všech míst s datem platnosti
+            const expiryElements = document.querySelectorAll('#expiryDate, #expiryDate2');
+            expiryElements.forEach(function(element) {
+                element.textContent = formattedDate;
+            });
+        });
+    </script>
+</body>
+</html>
