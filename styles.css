@@ -204,6 +204,37 @@ header {
     object-position: center top;
 }
 
+.hero-mobile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    object-position: center top;
+}
+
+/* Desktop/Mobile visibility classes */
+.desktop-only {
+    display: block;
+}
+
+.mobile-only {
+    display: none;
+}
+
+/* Media query for mobile displays */
+@media (max-width: 768px) {
+    .desktop-only {
+        display: none;
+    }
+    
+    .mobile-only {
+        display: block;
+    }
+}
+
 .hero-content {
     display: flex;
     flex-direction: row;
