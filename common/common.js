@@ -11,14 +11,20 @@ document.addEventListener('DOMContentLoaded', function() {
     
     console.log('Cesta k common:', commonPath); // Debug výpis
     
-    // Načtení navigace - zkušení obou možných cest
+    // Načtení navigace - rozlišení mezi hlavní stránkou a podstránkami
     const navbarPlaceholder = document.getElementById('navbar-placeholder');
     if (navbarPlaceholder) {
+        // Zjistit, jestli jsme na hlavní stránce (pouze root index.html, ne podstránky jako blog/index.html)
+        const isRootIndexPage = (currentPath === '/' || currentPath === '' || currentPath === 'index.html' || currentPath.endsWith('/index.html') && !currentPath.includes('/') && currentPath !== 'blog/index.html');
+        const navbarFile = isRootIndexPage ? 'navbar-index.html' : 'navbar.html';
+        
+        console.log('Načítám navigaci:', navbarFile, 'pro stránku:', currentPath);
+        
         // Nejprve zkusíme předpokládanou cestu
-        fetch(commonPath + 'navbar.html')
+        fetch(commonPath + navbarFile)
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Navígace nenalezena na ' + commonPath);
+                    throw new Error('Navigace nenalezena na ' + commonPath + navbarFile);
                 }
                 return response.text();
             })
@@ -30,9 +36,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.warn(error.message);
                 // Pokud selže, zkusíme alterativní cestu
                 const altPath = commonPath === './common/' ? '../common/' : './common/';
-                console.log('Zkusíme alternativní cestu:', altPath);
+                console.log('Zkusíme alternativní cestu:', altPath + navbarFile);
                 
-                fetch(altPath + 'navbar.html')
+                fetch(altPath + navbarFile)
                     .then(response => response.text())
                     .then(data => {
                         navbarPlaceholder.innerHTML = data;
@@ -110,6 +116,16 @@ function initMobileNav() {
 
 // Inicializace funkcionality patičky
 function initFooterFunctionality() {
+    // Reinicializace ECM widget pro newsletter
+    if (window.ecmwidget) {
+        try {
+            // Pokud již existuje ECM widget, znovu ho inicializuj
+            window.ecmwidget('init', '21-125ab233e4603d4d7c84f5cbf8130258');
+        } catch (e) {
+            console.warn('ECM widget reinicializace selhala:', e);
+        }
+    }
+    
     // Funkce pro tlačítko zpět nahoru
     const backToTopButton = document.querySelector('.back-to-top');
     

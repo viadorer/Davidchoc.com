@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Blog Davida Choce - Realitního agenta s více než 30 lety praxe. Články o realitách, prodeji nemovitostí, investicích a trhu s nemovitostmi.">
+    <meta name="keywords" content="realitní blog, David Choc, blog o realitách, prodej nemovitostí, investice do nemovitostí, reality Plzeň">
+    <meta name="author" content="David Choc">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Blog | David Choc | Realitní agent">
+    <meta property="og:description" content="Blog o realitách, prodeji nemovitostí, investicích a trhu s nemovitostmi.">
+    <meta property="og:image" content="https://davidchoc.com/davidchocagent.avif">
+    <meta property="og:url" content="https://davidchoc.com/blog.html">
+    <meta property="og:type" content="website">
+    <title>Blog | David Choc | Realitní agent</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="canonical" href="https://davidchoc.com/blog.html">
+    
+    <!-- Schéma.org pro lepší SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "headline": "Blog Davida Choce",
+      "description": "Blog o realitách, prodeji nemovitostí, investicích a trhu s nemovitostmi.",
+      "image": "https://davidchoc.com/davidchocagent.avif",
+      "url": "https://davidchoc.com/blog.html",
+      "author": {
+        "@type": "Person",
+        "name": "David Choc"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "David Choc",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://davidchoc.com/logo.png"
+        }
+      }
+    }
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Blog Header -->
+    <section class="hero-section" style="background: linear-gradient(135deg, #1a1a1a 0%, #333 100%); color: white; padding: 120px 0 80px; text-align: center;">
+        <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <h1 style="font-size: 3.5rem; font-weight: bold; margin-bottom: 1.5rem; color: #FFBF00;">
+                Blog Davida Choca
+            </h1>
+            <p style="font-size: 1.25rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; opacity: 0.9;">
+                Praktické tipy, právní rady a nejnovější trendy v oblasti realit a prodeje nemovitostí
+            </p>
+        </div>
+    </section>
+
+    <!-- Blog Posts -->
+    <section style="padding: 80px 0; background-color: #f8f9fa;" id="blog-posts">
+        <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Categories Filter -->
+            <div style="margin-bottom: 60px; text-align: center;">
+                <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
+                    <button onclick="filterPosts('all')" id="filter-all" class="filter-btn active-filter" 
+                            style="padding: 12px 24px; border: 2px solid #FFBF00; background: #FFBF00; color: #1a1a1a; font-weight: 600; border-radius: 25px; cursor: pointer; transition: all 0.3s ease;">
+                        Všechny články
+                    </button>
+                    <button onclick="filterPosts('tips')" id="filter-tips" class="filter-btn" 
+                            style="padding: 12px 24px; border: 2px solid #FFBF00; background: transparent; color: #FFBF00; font-weight: 600; border-radius: 25px; cursor: pointer; transition: all 0.3s ease;">
+                        Tipy & Triky
+                    </button>
+                    <button onclick="filterPosts('legal')" id="filter-legal" class="filter-btn" 
+                            style="padding: 12px 24px; border: 2px solid #FFBF00; background: transparent; color: #FFBF00; font-weight: 600; border-radius: 25px; cursor: pointer; transition: all 0.3s ease;">
+                        Právní rady
+                    </button>
+                    <button onclick="filterPosts('market')" id="filter-market" class="filter-btn" 
+                            style="padding: 12px 24px; border: 2px solid #FFBF00; background: transparent; color: #FFBF00; font-weight: 600; border-radius: 25px; cursor: pointer; transition: all 0.3s ease;">
+                        Trh & Finance
+                    </button>
+                </div>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loading-state" style="text-align: center; padding: 60px 0; display: none;">
+                <div style="width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid #FFBF00; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 20px;"></div>
+                <p style="color: #888;">Načítají se články...</p>
+            </div>
+            
+            <!-- Posts Grid with animation container -->
+            <div id="posts-container" style="position: relative; overflow: hidden; min-height: 600px;">
+                <div id="posts-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-bottom: 40px; transition: transform 0.5s ease-in-out;"></div>
+            </div>
+            
+            <!-- No Posts Message -->
+            <div id="no-posts-message" style="text-align: center; padding: 60px 0; display: none;">
+                <i class="fas fa-search" style="font-size: 3rem; color: #ddd; margin-bottom: 20px;"></i>
+                <h3 style="color: #999; margin-bottom: 10px;">Žádné články nenalezeny</h3>
+                <p style="color: #888;">Zkuste vybrat jinou kategorii nebo se vraťte později.</p>
+            </div>
+            
+            <!-- Pagination -->
+            <div id="pagination-container" style="display: flex; justify-content: center; align-items: center; margin-top: 60px; gap: 15px; flex-wrap: wrap;">
+                <button id="prev-page" onclick="changePage(-1)" style="padding: 12px 20px; border: 2px solid #FFBF00; background: transparent; color: #FFBF00; font-weight: 600; border-radius: 8px; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;" disabled>
+                    <i class="fas fa-chevron-left"></i> Předchozí
+                </button>
+                
+                <div id="page-numbers" style="display: flex; gap: 10px; align-items: center;"></div>
+                
+                <button id="next-page" onclick="changePage(1)" style="padding: 12px 20px; border: 2px solid #FFBF00; background: transparent; color: #FFBF00; font-weight: 600; border-radius: 8px; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;">
+                    Další <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" style="padding: 80px 0; background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);">
+        <div class="cta-box" style="background-color: #fff; border-radius: 8px; padding: 50px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1); text-align: center; max-width: 800px; margin: 0 auto; border-top: 4px solid #FFBF00;">
+            <h2 style="font-size: 2.5rem; font-weight: bold; margin-bottom: 20px; color: #333;">
+                Potřebujete ocenit svou nemovitost?
+            </h2>
+            <p style="font-size: 1.2rem; margin-bottom: 30px; color: #555; line-height: 1.6;">
+                Naše tipy vám pomohou, ale profesionální ocenění od odborníků vám poskytne přesnou tržní hodnotu.
+            </p>
+            <div class="cta-buttons" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <a href="ocenit-online.html" 
+                   style="display: inline-block; background: #FFBF00; color: #1a1a1a; font-weight: 600; padding: 15px 30px; border-radius: 25px; text-decoration: none; transition: all 0.3s ease; border: 2px solid #FFBF00;"
+                   onmouseover="this.style.background='transparent'; this.style.color='#FFBF00';"
+                   onmouseout="this.style.background='#FFBF00'; this.style.color='#1a1a1a';">
+                    Odhad zdarma
+                </a>
+                <a href="mailto:davidchoc.agent@gmail.com" 
+                   style="display: inline-block; background: transparent; color: #FFBF00; font-weight: 600; padding: 15px 30px; border-radius: 25px; text-decoration: none; transition: all 0.3s ease; border: 2px solid #FFBF00;"
+                   onmouseover="this.style.background='#FFBF00'; this.style.color='#1a1a1a';"
+                   onmouseout="this.style.background='transparent'; this.style.color='#FFBF00';">
+                    Kontakt
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Blog functionality styles and scripts -->
+    <style>
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .filter-btn:hover {
+            background: #FFBF00 !important;
+            color: #1a1a1a !important;
+        }
+        
+        .active-filter {
+            background: #FFBF00 !important;
+            color: #1a1a1a !important;
+        }
+        
+        .blog-post-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border-top: 4px solid #FFBF00;
+        }
+        
+        .blog-post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .category-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .category-tips { background: #e3f2fd; color: #1976d2; }
+        .category-legal { background: #e8f5e8; color: #2e7d32; }
+        .category-market { background: #f3e5f5; color: #7b1fa2; }
+        .category-default { background: #f5f5f5; color: #616161; }
+    </style>
+
+    <!-- Component loader script -->
+    <script src="common/common.js"></script>
+
+    <script>
+        // Blog functionality
+        let allPosts = [];
+        let currentFilter = 'all';
+        let currentPage = 1;
+        const postsPerPage = 9;
+        let filteredPosts = [];
+        let isAnimating = false;
+
+        // Load blog posts
+        async function loadBlogPosts() {
+            const loadingState = document.getElementById('loading-state');
+            const postsGrid = document.getElementById('posts-grid');
+            const noPostsMessage = document.getElementById('no-posts-message');
+            
+            loadingState.style.display = 'block';
+            postsGrid.style.display = 'none';
+            noPostsMessage.style.display = 'none';
+            
+            try {
+                const response = await fetch('blog/posts.json');
+                const data = await response.json();
+                allPosts = data.posts || [];
+                
+                loadingState.style.display = 'none';
+                displayPosts(allPosts);
+            } catch (error) {
+                console.error('Chyba při načítání článků:', error);
+                loadingState.style.display = 'none';
+                noPostsMessage.style.display = 'block';
+            }
+        }
+        
+        // Display posts with pagination
+        function displayPosts(posts) {
+            filteredPosts = posts;
+            currentPage = 1; // Reset to first page when filtering
+            updatePostsView();
+            updatePagination();
+        }
+        
+        // Update posts view for current page
+        function updatePostsView() {
+            if (isAnimating) return;
+            
+            const postsGrid = document.getElementById('posts-grid');
+            const noPostsMessage = document.getElementById('no-posts-message');
+            const paginationContainer = document.getElementById('pagination-container');
+            
+            if (filteredPosts.length === 0) {
+                postsGrid.style.display = 'none';
+                noPostsMessage.style.display = 'block';
+                paginationContainer.style.display = 'none';
+                return;
+            }
+            
+            // Calculate posts for current page
+            const startIndex = (currentPage - 1) * postsPerPage;
+            const endIndex = startIndex + postsPerPage;
+            const currentPosts = filteredPosts.slice(startIndex, endIndex);
+            
+            // Animate transition
+            isAnimating = true;
+            postsGrid.style.transform = 'translateX(-100%)';
+            postsGrid.style.opacity = '0';
+            
+            setTimeout(() => {
+                postsGrid.innerHTML = '';
+                currentPosts.forEach(post => {
+                    const postCard = createPostCard(post);
+                    postsGrid.appendChild(postCard);
+                });
+                
+                postsGrid.style.transform = 'translateX(100%)';
+                
+                setTimeout(() => {
+                    postsGrid.style.transform = 'translateX(0)';
+                    postsGrid.style.opacity = '1';
+                    isAnimating = false;
+                }, 50);
+            }, 250);
+            
+            postsGrid.style.display = 'grid';
+            noPostsMessage.style.display = 'none';
+            paginationContainer.style.display = filteredPosts.length > postsPerPage ? 'flex' : 'none';
+        }
+        
+        // Create post card
+        function createPostCard(post) {
+            const card = document.createElement('article');
+            card.className = 'blog-post-card';
+            
+            const categoryClass = getCategoryClass(post.category);
+            
+            card.innerHTML = `
+                <div style="height: 200px; overflow: hidden;">
+                    <img src="${post.image}" alt="${post.imageAlt}" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 25px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <span class="category-badge ${categoryClass}">${post.categoryName}</span>
+                        <time datetime="${post.date}" style="color: #666; font-size: 0.9rem;">${post.dateFormatted}</time>
+                    </div>
+                    <h2 style="font-size: 1.4rem; font-weight: bold; margin-bottom: 15px; line-height: 1.3; color: #333;">
+                        <a href="blog/detail.html?post=${post.id}" style="text-decoration: none; color: inherit; transition: color 0.3s ease;"
+                           onmouseover="this.style.color='#FFBF00'" onmouseout="this.style.color='#333'">${post.title}</a>
+                    </h2>
+                    <p style="color: #666; margin-bottom: 20px; line-height: 1.6;">${post.excerpt}</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="color: #888; font-size: 0.9rem;">${post.readTime} min čtení</span>
+                        <a href="blog/detail.html?post=${post.id}" 
+                           style="color: #FFBF00; text-decoration: none; font-weight: 600; transition: color 0.3s ease;"
+                           onmouseover="this.style.color='#1a1a1a'" onmouseout="this.style.color='#FFBF00'">
+                            Číst více →
+                        </a>
+                    </div>
+                </div>
+            `;
+            
+            return card;
+        }
+        
+        // Get category class
+        function getCategoryClass(category) {
+            const classes = {
+                'tips': 'category-tips',
+                'legal': 'category-legal',
+                'market': 'category-market'
+            };
+            return classes[category] || 'category-default';
+        }
+        
+        // Filter posts
+        function filterPosts(category) {
+            currentFilter = category;
+            
+            // Update active filter button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active-filter');
+                btn.style.background = 'transparent';
+                btn.style.color = '#FFBF00';
+            });
+            
+            const activeBtn = document.getElementById(`filter-${category}`);
+            activeBtn.classList.add('active-filter');
+            activeBtn.style.background = '#FFBF00';
+            activeBtn.style.color = '#1a1a1a';
+            
+            // Filter and display posts
+            let posts;
+            if (category === 'all') {
+                posts = allPosts;
+            } else {
+                posts = allPosts.filter(post => post.category === category);
+            }
+            
+            displayPosts(posts);
+        }
+        
+        // Change page
+        function changePage(direction) {
+            if (isAnimating) return;
+            
+            const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+            const newPage = currentPage + direction;
+            
+            if (newPage >= 1 && newPage <= totalPages) {
+                currentPage = newPage;
+                updatePostsView();
+                updatePagination();
+                
+                // Smooth scroll to top of posts section
+                document.getElementById('blog-posts').scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
+            }
+        }
+        
+        // Go to specific page
+        function goToPage(page) {
+            if (isAnimating) return;
+            
+            const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+            if (page >= 1 && page <= totalPages && page !== currentPage) {
+                currentPage = page;
+                updatePostsView();
+                updatePagination();
+                
+                // Smooth scroll to top of posts section
+                document.getElementById('blog-posts').scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
+            }
+        }
+        
+        // Update pagination controls
+        function updatePagination() {
+            const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+            const prevBtn = document.getElementById('prev-page');
+            const nextBtn = document.getElementById('next-page');
+            const pageNumbers = document.getElementById('page-numbers');
+            
+            // Update prev/next buttons
+            prevBtn.disabled = currentPage <= 1;
+            nextBtn.disabled = currentPage >= totalPages;
+            
+            if (prevBtn.disabled) {
+                prevBtn.style.opacity = '0.5';
+                prevBtn.style.cursor = 'not-allowed';
+            } else {
+                prevBtn.style.opacity = '1';
+                prevBtn.style.cursor = 'pointer';
+            }
+            
+            if (nextBtn.disabled) {
+                nextBtn.style.opacity = '0.5';
+                nextBtn.style.cursor = 'not-allowed';
+            } else {
+                nextBtn.style.opacity = '1';
+                nextBtn.style.cursor = 'pointer';
+            }
+            
+            // Generate page numbers
+            pageNumbers.innerHTML = '';
+            
+            if (totalPages <= 1) return;
+            
+            const maxVisiblePages = 5;
+            let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+            let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+            
+            // Adjust start if we're near the end
+            if (endPage - startPage + 1 < maxVisiblePages) {
+                startPage = Math.max(1, endPage - maxVisiblePages + 1);
+            }
+            
+            // Add first page and ellipsis if needed
+            if (startPage > 1) {
+                addPageButton(1);
+                if (startPage > 2) {
+                    const ellipsis = document.createElement('span');
+                    ellipsis.textContent = '...';
+                    ellipsis.style.color = '#888';
+                    ellipsis.style.padding = '0 10px';
+                    pageNumbers.appendChild(ellipsis);
+                }
+            }
+            
+            // Add visible page numbers
+            for (let i = startPage; i <= endPage; i++) {
+                addPageButton(i);
+            }
+            
+            // Add ellipsis and last page if needed
+            if (endPage < totalPages) {
+                if (endPage < totalPages - 1) {
+                    const ellipsis = document.createElement('span');
+                    ellipsis.textContent = '...';
+                    ellipsis.style.color = '#888';
+                    ellipsis.style.padding = '0 10px';
+                    pageNumbers.appendChild(ellipsis);
+                }
+                addPageButton(totalPages);
+            }
+        }
+        
+        // Add page button
+        function addPageButton(page) {
+            const button = document.createElement('button');
+            button.textContent = page;
+            button.onclick = () => goToPage(page);
+            
+            const isActive = page === currentPage;
+            button.style.cssText = `
+                padding: 10px 15px;
+                border: 2px solid #FFBF00;
+                background: ${isActive ? '#FFBF00' : 'transparent'};
+                color: ${isActive ? '#1a1a1a' : '#FFBF00'};
+                font-weight: 600;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                min-width: 45px;
+            `;
+            
+            if (!isActive) {
+                button.onmouseover = () => {
+                    button.style.background = '#FFBF00';
+                    button.style.color = '#1a1a1a';
+                };
+                button.onmouseout = () => {
+                    button.style.background = 'transparent';
+                    button.style.color = '#FFBF00';
+                };
+            }
+            
+            document.getElementById('page-numbers').appendChild(button);
+        }
+        
+        // Initialize blog when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadBlogPosts();
+        });
+    </script>
+</body>
+</html>
