@@ -1,6 +1,19 @@
 {
   "posts": [
     {
+      "id": "tichy-zabijak-vaseho-prodeje-kolik-penez-vam-mizi-pri-spatnem-prodeji-a-ani-o-tom-nevite",
+      "title": "Tichý zabiják vašeho prodeje: Kolik peněz vám mizí při špatném prodeji (a ani o tom nevíte)",
+      "excerpt": "Rozdíl mezi běžnou a prémiovou cenou bývá klidně 500 tisíc až několik milionů. Většina prodávajících o tyto peníze přichází tiše – kvůli chybám v prezentaci, strategii a vyjednávání.",
+      "category": "tips",
+      "categoryName": "Tipy & Triky",
+      "image": "/images/blog/clanek5.jpeg",
+      "imageAlt": "Prémiová cena vs. běžný prodej – jak neztratit statisíce při prodeji nemovitosti",
+      "date": "2025-08-23",
+      "dateFormatted": "23. srpna 2025",
+      "readTime": 12,
+      "keywords": "prémiová cena, prodej nemovitosti, strategie prodeje, prezentace nemovitosti, vyjednávání, home staging, marketing nemovitostí"
+    },
+    {
       "id": "prodej-za-premiovou-cenu-mytus-nebo-realita",
       "title": "Prodej za prémiovou cenu: mýtus, nebo realita?",
       "excerpt": "Prémiová cena není mýtus. Je dosažitelná u správně připravených a odprezentovaných nemovitostí s jasnou přidanou hodnotou pro cílového kupce.",
@@ -150,7 +163,7 @@
       "excerpt": "Aktuální trendy na trhu s nájemním bydlením. Co chtějí nájemníci a jak přizpůsobit svou nabídku poptávce.",
       "category": "market",
       "categoryName": "Trh & Finance",
-      "image": "/images/blog/clanek30.jpg",
+      "image": "/images/blog/clanek30.jpeg",
       "imageAlt": "Moderní byt s designovým nábytkem",
       "date": "2024-11-20",
       "dateFormatted": "20. listopadu 2024",
