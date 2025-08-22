@@ -590,7 +590,7 @@
                     if (!this.post) return;
                     
                     // Update title
-                    document.title = `${this.post.title} - Blog Odhad.online`;
+                    document.title = `${this.post.title} - Blog | David Choc`;
                     
                     // Update meta description
                     const metaDesc = document.querySelector('meta[name="description"]');
@@ -598,11 +598,32 @@
                         metaDesc.content = this.post.excerpt;
                     }
                     
+                    // Ensure absolute image URL
+                    const absoluteImage = this.post.image?.startsWith('http') 
+                        ? this.post.image 
+                        : `${window.location.origin}${this.post.image}`;
+
                     // Update Open Graph tags
-                    this.updateOrCreateMetaTag('property', 'og:title', `${this.post.title} - Blog Odhad.online`);
+                    this.updateOrCreateMetaTag('property', 'og:title', `${this.post.title} - Blog | David Choc`);
                     this.updateOrCreateMetaTag('property', 'og:description', this.post.excerpt);
-                    this.updateOrCreateMetaTag('property', 'og:image', this.post.image);
+                    this.updateOrCreateMetaTag('property', 'og:image', absoluteImage);
                     this.updateOrCreateMetaTag('property', 'og:url', window.location.href);
+                    this.updateOrCreateMetaTag('property', 'og:type', 'article');
+
+                    // Twitter Cards
+                    this.updateOrCreateMetaTag('name', 'twitter:card', 'summary_large_image');
+                    this.updateOrCreateMetaTag('name', 'twitter:title', `${this.post.title} - Blog | David Choc`);
+                    this.updateOrCreateMetaTag('name', 'twitter:description', this.post.excerpt);
+                    this.updateOrCreateMetaTag('name', 'twitter:image', absoluteImage);
+
+                    // Canonical tag
+                    let canonical = document.querySelector('link[rel="canonical"]');
+                    if (!canonical) {
+                        canonical = document.createElement('link');
+                        canonical.setAttribute('rel', 'canonical');
+                        document.head.appendChild(canonical);
+                    }
+                    canonical.setAttribute('href', window.location.href);
                     
                     // Update schema.org structured data
                     this.addStructuredData();
@@ -626,22 +647,30 @@
                     
                     const script = document.createElement('script');
                     script.type = 'application/ld+json';
+                    const absoluteImage = this.post.image?.startsWith('http') 
+                        ? this.post.image 
+                        : `${window.location.origin}${this.post.image}`;
                     script.textContent = JSON.stringify({
                         "@context": "https://schema.org",
                         "@type": "BlogPosting",
                         "headline": this.post.title,
                         "description": this.post.excerpt,
-                        "image": this.post.image,
+                        "image": absoluteImage,
+                        "mainEntityOfPage": {
+                            "@type": "WebPage",
+                            "@id": window.location.href
+                        },
                         "author": {
-                            "@type": "Organization",
-                            "name": "Odhad.online"
+                            "@type": "Person",
+                            "name": "David Choc",
+                            "url": "https://davidchoc.cz/"
                         },
                         "publisher": {
                             "@type": "Organization",
-                            "name": "Odhad.online",
+                            "name": "David Choc",
                             "logo": {
                                 "@type": "ImageObject",
-                                "url": "/images/logo.png"
+                                "url": "https://davidchoc.cz/logo.png"
                             }
                         },
                         "datePublished": this.post.date,

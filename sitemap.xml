@@ -1,51 +1,118 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
    <url>
-      <loc>https://davidchoc.com/</loc>
+      <loc>https://davidchoc.cz/</loc>
       <lastmod>2025-03-20</lastmod>
       <priority>1.0</priority>
       <changefreq>monthly</changefreq>
    </url>
    <url>
-      <loc>https://davidchoc.com/muj-pribeh.html</loc>
+      <loc>https://davidchoc.cz/muj-pribeh.html</loc>
       <lastmod>2025-03-20</lastmod>
       <priority>0.8</priority>
       <changefreq>monthly</changefreq>
    </url>
    <url>
-      <loc>https://davidchoc.com/ocenit-online.html</loc>
+      <loc>https://davidchoc.cz/ocenit-online.html</loc>
       <lastmod>2025-03-20</lastmod>
       <priority>0.9</priority>
       <changefreq>monthly</changefreq>
    </url>
    <url>
-      <loc>https://davidchoc.com/kariera.html</loc>
+      <loc>https://davidchoc.cz/kariera.html</loc>
       <lastmod>2025-03-20</lastmod>
       <priority>0.7</priority>
       <changefreq>monthly</changefreq>
    </url>
    <url>
-      <loc>https://davidchoc.com/pdf.html</loc>
+      <loc>https://davidchoc.cz/pdf.html</loc>
       <lastmod>2025-03-20</lastmod>
       <priority>0.7</priority>
       <changefreq>monthly</changefreq>
    </url>
    <url>
-      <loc>https://davidchoc.com/hledametebe.html</loc>
+      <loc>https://davidchoc.cz/hledametebe.html</loc>
       <lastmod>2025-03-20</lastmod>
       <priority>0.7</priority>
       <changefreq>monthly</changefreq>
    </url>
    <url>
-      <loc>https://davidchoc.com/blog/index.html</loc>
+      <loc>https://davidchoc.cz/blog/index.html</loc>
       <lastmod>2025-03-20</lastmod>
       <priority>0.8</priority>
       <changefreq>weekly</changefreq>
    </url>
    <url>
-      <loc>https://davidchoc.com/blog/jak-prodat-dum-za-nejlepsi-cenu.html</loc>
-      <lastmod>2025-03-20</lastmod>
+      <loc>https://davidchoc.cz/blog/detail.html?id=jak-prodat-dum-nejlepsi-cena-kompletni-strategie</loc>
+      <lastmod>2025-01-17</lastmod>
       <priority>0.8</priority>
+      <changefreq>monthly</changefreq>
+   </url>
+   <!-- Blog posts -->
+   <url>
+      <loc>https://davidchoc.cz/blog/detail.html?id=prodej-za-premiovou-cenu-mytus-nebo-realita</loc>
+      <lastmod>2025-08-22</lastmod>
+      <priority>0.8</priority>
+      <changefreq>monthly</changefreq>
+   </url>
+   <url>
+      <loc>https://davidchoc.cz/blog/detail.html?id=bydleni-v-cr-proc-je-stale-tezsi-dosahnout-na-vlastni</loc>
+      <lastmod>2025-01-14</lastmod>
+      <priority>0.7</priority>
+      <changefreq>monthly</changefreq>
+   </url>
+   <url>
+      <loc>https://davidchoc.cz/blog/detail.html?id=dum-nebo-byt-co-je-lepsi-investice</loc>
+      <lastmod>2025-01-13</lastmod>
+      <priority>0.7</priority>
+      <changefreq>monthly</changefreq>
+   </url>
+   <url>
+      <loc>https://davidchoc.cz/blog/detail.html?id=home-staging-jak-pripravit-nemovitost-na-prodej</loc>
+      <lastmod>2025-01-12</lastmod>
+      <priority>0.7</priority>
+      <changefreq>monthly</changefreq>
+   </url>
+   <url>
+      <loc>https://davidchoc.cz/blog/detail.html?id=spravne-oceneni-nemovitosti</loc>
+      <lastmod>2024-12-25</lastmod>
+      <priority>0.6</priority>
+      <changefreq>monthly</changefreq>
+   </url>
+   <url>
+      <loc>https://davidchoc.cz/blog/detail.html?id=10-strategii-uspesny-pronajem-nemovitosti</loc>
+      <lastmod>2025-01-16</lastmod>
+      <priority>0.7</priority>
+      <changefreq>monthly</changefreq>
+   </url>
+   <url>
+      <loc>https://davidchoc.cz/blog/detail.html?id=pravni-aspekty-najemni-smlouvy</loc>
+      <lastmod>2024-12-15</lastmod>
+      <priority>0.6</priority>
+      <changefreq>monthly</changefreq>
+   </url>
+   <url>
+      <loc>https://davidchoc.cz/blog/detail.html?id=jak-stanovit-spravedlivou-cenu-najmu</loc>
+      <lastmod>2024-12-10</lastmod>
+      <priority>0.6</priority>
+      <changefreq>monthly</changefreq>
+   </url>
+   <url>
+      <loc>https://davidchoc.cz/blog/detail.html?id=dane-z-pronajmu-kompletni-pruvodce</loc>
+      <lastmod>2024-12-05</lastmod>
+      <priority>0.6</priority>
+      <changefreq>monthly</changefreq>
+   </url>
+   <url>
+      <loc>https://davidchoc.cz/blog/detail.html?id=pojisteni-nemovitosti-pro-pronajmatele</loc>
+      <lastmod>2024-11-28</lastmod>
+      <priority>0.6</priority>
+      <changefreq>monthly</changefreq>
+   </url>
+   <url>
+      <loc>https://davidchoc.cz/blog/detail.html?id=trendy-najemniho-bydleni-2024</loc>
+      <lastmod>2024-11-20</lastmod>
+      <priority>0.6</priority>
       <changefreq>monthly</changefreq>
    </url>
 </urlset>
