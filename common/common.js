@@ -116,15 +116,7 @@ function initMobileNav() {
 
 // Inicializace funkcionality patičky
 function initFooterFunctionality() {
-    // Reinicializace ECM widget pro newsletter
-    if (window.ecmwidget) {
-        try {
-            // Pokud již existuje ECM widget, znovu ho inicializuj
-            window.ecmwidget('init', '21-125ab233e4603d4d7c84f5cbf8130258');
-        } catch (e) {
-            console.warn('ECM widget reinicializace selhala:', e);
-        }
-    }
+    // Newsletter je v patičce nyní vkládán přes iframe (žádná JS reinicializace není potřeba)
     
     // Funkce pro tlačítko zpět nahoru
     const backToTopButton = document.querySelector('.back-to-top');
