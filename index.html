@@ -151,7 +151,7 @@
     <section id="reference" class="steps-section">
         <div class="container">
             <div class="steps-header">
-                <h2>Jak prodáváme nemovitosti aneb<br>7 kroků k úspěchu mise</h2>
+                <h2>Jak prodáváme nemovitosti aneb<br>7&nbsp;kroků k úspěchu mise</h2>
                 <a href="Jak prodávám nemovitosti David Choc realitní agent.pdf" class="cta-button download-button" download>
                     <i class="fas fa-download"></i> Získat ebook
                 </a>
@@ -589,7 +589,7 @@
         <div class="container">
             <div class="kontakt-content">
                 <div class="kontakt-text">
-                    <h2>Máte dotaz?</p></p>Napište mi</h2>
+                    <h2>Máte dotaz? Napište&nbsp;mi</h2>
                     <p>Chcete se poradit o konkrétním projektu nebo máte dotazy k našim službám? Vyplňte formulář a domluvte si konzultaci, rád vám vše vysvětlím.</p>
                     
                     <div class="kontakt-info">
@@ -636,6 +636,116 @@
             js = d.createElement(s), fjs = d.getElementsByTagName(s)[0];
             js.id = '21-125ab233e4603d4d7c84f5cbf8130258'; js.dataset.a = 'ptf'; js.src = f; js.async = 1; fjs.parentNode.insertBefore(js, fjs);
         }(window, document, 'script', 'ecmwidget', 'https://d70shl7vidtft.cloudfront.net/widget.js'));
+    </script>
+    <!-- ECM Widget – sjednocení vzhledu s webem -->
+    <script>
+      (function() {
+        const CONTAINER_ID = 'f-21-125ab233e4603d4d7c84f5cbf8130258';
+        const STYLE_ID = 'ecm-widget-style';
+
+        function injectStyle() {
+          if (document.getElementById(STYLE_ID)) return;
+          const css = `
+            /* Scope pouze do kontejneru widgetu */
+            #${CONTAINER_ID} { background:#fff; padding: 16px; border: 1px solid #eee; border-radius: 12px; box-shadow: 0 4px 14px rgba(0,0,0,0.06); }
+            #${CONTAINER_ID} label { display:block; margin: 8px 0 6px; color:#111; font-weight:600; }
+            #${CONTAINER_ID} input, #${CONTAINER_ID} textarea, #${CONTAINER_ID} select { width:100%; box-sizing:border-box; border:1px solid #e5e5e5; border-radius:12px; padding:12px 14px; background:#fff; color:#111; font: inherit; line-height:1.4; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+            #${CONTAINER_ID} textarea { min-height: 120px; resize: vertical; }
+            #${CONTAINER_ID} input:focus, #${CONTAINER_ID} textarea:focus, #${CONTAINER_ID} select:focus { outline:none; border-color:#FFBF00; box-shadow: 0 0 0 4px rgba(255,191,0,0.18); }
+            #${CONTAINER_ID} .field, #${CONTAINER_ID} .form-row, #${CONTAINER_ID} .form-group { margin-bottom:12px; }
+            #${CONTAINER_ID} .help, #${CONTAINER_ID} .error, #${CONTAINER_ID} .validation-message { margin-top:6px; font-size:0.95rem; color:#b00020; }
+            #${CONTAINER_ID} button, #${CONTAINER_ID} input[type="submit"], #${CONTAINER_ID} .submit, #${CONTAINER_ID} .btn { display:inline-block; border:none; cursor:pointer; }
+            /* Reuse globální .cta-button vzhled */
+            #${CONTAINER_ID} button, #${CONTAINER_ID} input[type="submit"], #${CONTAINER_ID} .submit, #${CONTAINER_ID} .btn { background-color:#FFBF00; color:#000; font-weight:600; padding:12px 24px; border-radius:50px; text-decoration:none; font-size:16px; transition:all .3s ease; box-shadow:0 5px 15px rgba(0,0,0,0.2); }
+            #${CONTAINER_ID} button:hover, #${CONTAINER_ID} input[type="submit"]:hover, #${CONTAINER_ID} .submit:hover, #${CONTAINER_ID} .btn:hover { background-color:#E0A800; transform: translateY(-2px); box-shadow:0 8px 20px rgba(0,0,0,0.28); }
+            #${CONTAINER_ID} .consent, #${CONTAINER_ID} .gdpr, #${CONTAINER_ID} .privacy { font-size:0.9rem; color:#444; }
+            #${CONTAINER_ID} .is-loading { opacity: .7; pointer-events: none; }
+          `;
+          const style = document.createElement('style');
+          style.id = STYLE_ID;
+          style.textContent = css;
+          document.head.appendChild(style);
+        }
+
+        function harmonize() {
+          const root = document.getElementById(CONTAINER_ID);
+          if (!root) return false;
+          root.classList.add('ecm-styled');
+          // Přidej třídy na tlačítka pokud existují – fallback na .cta-button vzhled
+          root.querySelectorAll('button, input[type="submit"], .btn, .submit').forEach(btn => {
+            btn.classList.add('cta-button');
+          });
+          // Polím necháme implicitní styly z injected CSS, ale sjednotíme placeholdry
+          root.querySelectorAll('input, textarea, select').forEach(el => {
+            el.placeholder && (el.placeholder = el.placeholder.trim());
+          });
+          // Bind submit loading state a měření – pouze jednou
+          root.querySelectorAll('form').forEach(form => {
+            if (form.dataset.ecmBound) return;
+            form.dataset.ecmBound = '1';
+            form.addEventListener('submit', () => {
+              const btn = form.querySelector('button[type="submit"], input[type="submit"], .submit, .btn');
+              if (btn) {
+                btn.classList.add('is-loading');
+                if (btn.tagName === 'INPUT') {
+                  btn.dataset.originalValue = btn.value;
+                  btn.value = 'Odesílám…';
+                } else {
+                  btn.dataset.originalText = btn.textContent;
+                  btn.textContent = 'Odesílám…';
+                }
+                btn.disabled = true;
+              }
+            });
+          });
+          return true;
+        }
+
+        function whenReady() {
+          injectStyle();
+          const ok = harmonize();
+          if (!ok) return;
+          // Sleduj změny – widget se může renderovat/asynchronně měnit
+          const root = document.getElementById(CONTAINER_ID);
+          const mo = new MutationObserver(() => {
+            harmonize();
+            // Detekuj úspěch/chybu a resetuj tlačítko + GA event
+            const successNode = root.querySelector('.success, .alert-success, [role="status"], .form-success');
+            const errorNode = root.querySelector('.error, .alert-error, .alert-danger, .form-error');
+            const btn = root.querySelector('button.is-loading, input.is-loading, .submit.is-loading, .btn.is-loading');
+            if (successNode && btn) {
+              if (btn.tagName === 'INPUT' && btn.dataset.originalValue) btn.value = btn.dataset.originalValue;
+              if (btn.tagName !== 'INPUT' && btn.dataset.originalText) btn.textContent = btn.dataset.originalText;
+              btn.disabled = false;
+              btn.classList.remove('is-loading');
+              if (window.gtag) {
+                window.gtag('event', 'contact_submit', {
+                  event_category: 'contact',
+                  event_label: 'index_ecm_widget'
+                });
+              }
+            }
+            if (errorNode && btn) {
+              // Při chybě pouze resetovat stav tlačítka
+              if (btn.tagName === 'INPUT' && btn.dataset.originalValue) btn.value = btn.dataset.originalValue;
+              if (btn.tagName !== 'INPUT' && btn.dataset.originalText) btn.textContent = btn.dataset.originalText;
+              btn.disabled = false;
+              btn.classList.remove('is-loading');
+            }
+          });
+          mo.observe(root, { childList: true, subtree: true });
+        }
+
+        // Po načtení DOMu a s malým zpožděním (widget je async)
+        document.addEventListener('DOMContentLoaded', function(){
+          const tryInit = () => {
+            const root = document.getElementById(CONTAINER_ID);
+            if (root && root.childElementCount > 0) { whenReady(); return; }
+            setTimeout(tryInit, 200);
+          };
+          tryInit();
+        });
+      })();
     </script>
 
     <!-- Plovoucí tlačítka -->
