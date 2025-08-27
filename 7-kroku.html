@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>7 kroků k prémiovému prodeji | David Choc</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Page-scoped, clean and bold on white */
+    body.kroky-body { background: #ffffff; }
+
+    .kroky-section { padding: 120px 0 60px; background: #fff; }
+    .kroky-section .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+
+    .kroky-header { text-align: center; margin-bottom: 56px; }
+    .kroky-title { font-size: 2.4rem; margin: 0 0 8px; color: #111; }
+    .kroky-subtitle { color: #444; font-size: 1.1rem; line-height: 1.7; margin: 0 0 6px; }
+    .kroky-subtitle-strong { font-weight: 700; }
+
+    .kroky-list { counter-reset: krok; list-style: none; padding: 0; margin: 0 0 20px; }
+    .kroky-item { display: grid; grid-template-columns: 64px 1fr; gap: 16px; padding: 20px 16px; border: 1px solid #eee; border-radius: 12px; margin-bottom: 16px; background: #fff; box-shadow: 0 4px 14px rgba(0,0,0,0.06); scroll-margin-top: 100px; transition: transform .2s ease, box-shadow .2s ease; }
+    .kroky-item:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(0,0,0,0.10); }
+    .kroky-badge { width: 64px; height: 64px; border-radius: 50%; background: #FFBF00; color: #000; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem; box-shadow: 0 6px 16px rgba(0,0,0,0.12); }
+
+    .krok-title { margin: 0 0 6px; font-size: 1.25rem; color: #111; }
+    .krok-text { margin: 0; color: #333; line-height: 1.7; }
+    .krok-text + .krok-text { margin-top: 4px; }
+
+    .kroky-quote { margin: 28px 0 8px; font-weight: 700; font-size: 1.05rem; color: #111; }
+    .kroky-impact { background: #FFF8E1; padding: 16px 18px; border-radius: 12px; color: #111; box-shadow: 0 4px 14px rgba(0,0,0,0.06); }
+
+    .contact-card { margin: 36px 0 0; display: flex; align-items: center; gap: 14px; padding: 16px; border: 1px solid #eee; border-radius: 12px; background: #fff; box-shadow: 0 4px 14px rgba(0,0,0,0.06); }
+    .contact-logo { width: 56px; height: 56px; object-fit: contain; }
+    .contact-lines { line-height: 1.5; }
+    .contact-name { font-weight: 700; color: #111; margin: 0; }
+    .contact-role { color: #444; margin: 2px 0 6px; }
+    .contact-links a { color: #111; text-decoration: none; font-weight: 600; }
+    .contact-links a:hover { text-decoration: underline; }
+
+    @media (max-width: 640px) {
+      .kroky-item { grid-template-columns: 48px 1fr; padding: 16px 12px; }
+      .kroky-badge { width: 48px; height: 48px; font-size: 1rem; }
+      .krok-title { font-size: 1.15rem; }
+    }
+  </style>
+</head>
+<body class="kroky-body">
+  <!-- Navigace -->
+  <div id="navbar-placeholder"></div>
+
+  <section class="kroky-section">
+    <div class="container">
+      <header class="kroky-header">
+        <h1 class="kroky-title">7 kroků k prémiovému prodeji</h1>
+        <p class="kroky-subtitle">David Choc – realitní agent ve vašich službách</p>
+        <p class="kroky-subtitle kroky-subtitle-strong">Prodej nemovitosti není inzerát na internetu. Je to mise. A já ji beru osobně.</p>
+      </header>
+
+      <ol class="kroky-list">
+        <li class="kroky-item">
+          <div class="kroky-badge">1</div>
+          <div>
+            <h3 class="krok-title">První schůzka – zjištění terénu</h3>
+            <p class="krok-text">Poznám vás, vaši nemovitost a vaše cíle. Bez toho nelze vyhrát.</p>
+          </div>
+        </li>
+
+        <li class="kroky-item">
+          <div class="kroky-badge">2</div>
+          <div>
+            <h3 class="krok-title">Cena, která prodává</h3>
+            <p class="krok-text">Žádné hádání. Tvrdá data, srovnání a tržní analýza.</p>
+            <p class="krok-text">Cílem je cena, která přitáhne kupce a přinese vám maximum.</p>
+          </div>
+        </li>
+
+        <li class="kroky-item">
+          <div class="kroky-badge">3</div>
+          <div>
+            <h3 class="krok-title">Příprava – první dojem rozhoduje</h3>
+            <p class="krok-text">Home staging. Drobné úpravy. Profesionální fotografie.</p>
+            <p class="krok-text">Kupující musí mít chuť nastěhovat se hned.</p>
+          </div>
+        </li>
+
+        <li class="kroky-item">
+          <div class="kroky-badge">4</div>
+          <div>
+            <h3 class="krok-title">Marketing – jdu naplno</h3>
+            <p class="krok-text">Portály. Sociální sítě. Vlastní web. Dron. 3D Matterport. Video.</p>
+            <p class="krok-text">Každý kanál. Každá možnost. Nikdo vaši nemovitost nepřehlédne.</p>
+          </div>
+        </li>
+
+        <li class="kroky-item">
+          <div class="kroky-badge">5</div>
+          <div>
+            <h3 class="krok-title">Prohlídky – showtime</h3>
+            <p class="krok-text">Každá prohlídka je řízená prezentace. Ukážu to nejlepší, odpovím na každou otázku.</p>
+            <p class="krok-text">Zájemci odcházejí s pocitem: „Tady chci bydlet.“</p>
+          </div>
+        </li>
+
+        <li class="kroky-item">
+          <div class="kroky-badge">6</div>
+          <div>
+            <h3 class="krok-title">Vyjednávání – tvrdá hra</h3>
+            <p class="krok-text">Tady jde o peníze. Vím, kdy mlčet. Vím, kdy zatlačit. Vím, kdy to zavřít.</p>
+            <p class="krok-text">Výsledek? Lepší cena a výhodnější podmínky.</p>
+          </div>
+        </li>
+
+        <li class="kroky-item">
+          <div class="kroky-badge">7</div>
+          <div>
+            <h3 class="krok-title">Závěr – čistý podpis</h3>
+            <p class="krok-text">Advokát. Úschova. Katastr. Vše bezpečně, rychle a bez stresu.</p>
+            <p class="krok-text">Vy dostanete peníze. Kupující klíče.</p>
+          </div>
+        </li>
+      </ol>
+
+      <p class="kroky-quote">Toto je postup, který umí přinést tisíce až miliony navíc.</p>
+      <p class="kroky-impact">V praxi se díky tomuto postupu daří prodat nemovitosti o 4–17 % dráž než při běžném prodeji. Není to slib, ale zkušenost z praxe. A za to to stojí.</p>
+
+      <p class="kroky-quote">Vaše nemovitost. Moje mise.</p>
+
+      <div class="contact-card">
+        <img src="logo.png" alt="David Choc – logo" class="contact-logo" />
+        <div class="contact-lines">
+          <p class="contact-name">David Choc</p>
+          <p class="contact-role">Realitní agent ve vašich službách</p>
+          <p class="contact-links">
+            <a href="tel:+420774052232">774 052 232</a> |
+            <a href="mailto:david.choc@ptf.cz">david.choc@ptf.cz</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div id="footer-placeholder"></div>
+
+  <script src="script.js"></script>
+  <script src="common/common.js"></script>
+</body>
+</html>

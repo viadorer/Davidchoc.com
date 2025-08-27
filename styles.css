@@ -2003,6 +2003,65 @@ address {
     font-size: 1.1rem;
 }
 
+.pribeh-odstavce p.lead {
+    font-size: 1.2rem;
+    line-height: 1.9;
+    font-weight: 500;
+    margin-bottom: 24px;
+}
+
+.muj-pribeh-text h2 {
+    font-size: 2rem;
+    margin: 28px 0 16px;
+    position: relative;
+    color: #333;
+}
+
+.muj-pribeh-text h2:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 80px;
+    height: 3px;
+    background-color: #FFBF00;
+}
+
+.charakteristiky {
+    list-style: none;
+    padding-left: 0;
+    margin: 0 0 30px 0;
+}
+
+.charakteristiky li {
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 10px;
+    line-height: 1.7;
+    color: #333;
+}
+
+.charakteristiky li:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 10px;
+    height: 10px;
+    background: #FFBF00;
+    border-radius: 50%;
+}
+
+.pribeh-quote {
+    border-left: 4px solid #FFBF00;
+    background: #FFF8E1;
+    padding: 16px 18px;
+    margin: 20px 0 24px;
+    font-style: italic;
+    color: #333;
+    border-radius: 6px;
+}
+
 .podpis {
     margin-top: 40px;
     font-style: italic;
@@ -2028,6 +2087,48 @@ address {
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     margin-bottom: 25px;
+}
+
+/* CTA banner: Jak prodávám nemovitosti */
+.jak-prodavam-banner-section {
+    padding: 40px 0;
+    background: transparent;
+}
+
+.jak-banner-content {
+    background: #FFBF00;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    padding: 30px;
+}
+
+.jak-banner-text {
+    text-align: center;
+    color: #000;
+}
+
+.jak-banner-text h2 {
+    margin: 0 0 10px;
+    font-size: 2rem;
+    position: relative;
+}
+
+.jak-banner-text p {
+    margin: 0 0 18px;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #1a1a1a;
+}
+
+/* Invertované tlačítko na zlatém pozadí */
+.jak-prodavam-banner-section .cta-button {
+    background-color: #000;
+    color: #fff;
+}
+
+.jak-prodavam-banner-section .cta-button:hover {
+    background-color: #222;
+    color: #fff;
 }
 
 /* Highlights sekce na stránce Můj příběh */
