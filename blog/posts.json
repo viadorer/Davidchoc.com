@@ -169,6 +169,32 @@
       "dateFormatted": "20. listopadu 2024",
       "readTime": 9,
       "keywords": "trendy, nájemní bydlení, trh, poptávka"
+    },
+    {
+      "id": "pasivni-prijem-z-nemovitosti-realita-vs-myty",
+      "title": "Pasivní příjem z nemovitostí: Realita vs. mýty",
+      "excerpt": "Pasivní příjem z nemovitostí láká stabilitou a dlouhodobou hodnotou. Rozebírám mýty vs. realitu, cashflow, rizika a praktický postup, jak začít bezpečně.",
+      "category": "investment",
+      "categoryName": "Investice",
+      "image": "/images/blog/investice.jpg",
+      "imageAlt": "Investice do nemovitostí – pasivní příjem a dlouhodobá hodnota",
+      "date": "2025-08-27",
+      "dateFormatted": "27. srpna 2025",
+      "readTime": 14,
+      "keywords": "pasivní příjem, investice do nemovitostí, nájemní bydlení, cashflow, strategie, správa nemovitostí, David Choc"
+    },
+    {
+      "id": "emoce-vs-cisla-co-opravdu-rozhoduje-pri-koupi-nemovitosti",
+      "title": "Emoce vs. čísla: Co opravdu rozhoduje při koupi nemovitosti?",
+      "excerpt": "Při koupi nemovitosti rozhodují jak čísla, tak emoce. Jak najít rovnováhu mezi rozumem a srdcem, aby z bytu nebyla jen investice, ale skutečný domov.",
+      "category": "tips",
+      "categoryName": "Tipy & Triky",
+      "image": "/images/blog/clanek14.jpeg",
+      "imageAlt": "První dojem z bytu – emoce vs. čísla",
+      "date": "2025-08-29",
+      "dateFormatted": "29. srpna 2025",
+      "readTime": 10,
+      "keywords": "koupě nemovitosti, emoce, čísla, cena za m², rozhodování, hypotéka, domov, realitní poradenství"
     }
   ]
 }
