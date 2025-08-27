@@ -1,6 +1,19 @@
 {
   "posts": [
     {
+      "id": "nejcastejsi-spory-s-najemniky-a-jak-jim-predchazet",
+      "title": "Nejčastější spory s nájemníky a jak jim předcházet",
+      "excerpt": "Pronajímání může být skvělým zdrojem příjmu, ale přináší i rizika. Jak předejít nejčastějším sporům s nájemníky? Přehled problémů a prevence krok za krokem.",
+      "category": "legal",
+      "categoryName": "Právní rady",
+      "image": "/images/blog/clanek31.jpeg",
+      "imageAlt": "Pronajímatel a nájemní smlouva – jak předejít sporům",
+      "date": "2025-09-01",
+      "dateFormatted": "1. září 2025",
+      "readTime": 12,
+      "keywords": "nájemní spor, pronajímatel, nájemník, neplacení nájmu, škody na majetku, podnájem, rušení sousedů, kauce, výpověď, prevence sporů"
+    },
+    {
       "id": "tichy-zabijak-vaseho-prodeje-kolik-penez-vam-mizi-pri-spatnem-prodeji-a-ani-o-tom-nevite",
       "title": "Tichý zabiják vašeho prodeje: Kolik peněz vám mizí při špatném prodeji (a ani o tom nevíte)",
       "excerpt": "Rozdíl mezi běžnou a prémiovou cenou bývá klidně 500 tisíc až několik milionů. Většina prodávajících o tyto peníze přichází tiše – kvůli chybám v prezentaci, strategii a vyjednávání.",
