@@ -303,7 +303,8 @@
                 }
                 
                 const data = await response.json();
-                displayBlogPosts(data.posts);
+                const sortedPosts = (data.posts || []).slice().sort((a, b) => new Date(b.date) - new Date(a.date));
+                displayBlogPosts(sortedPosts);
                 
                 loading.style.display = 'none';
                 blogGrid.style.display = 'grid';
