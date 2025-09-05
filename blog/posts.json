@@ -1,6 +1,19 @@
 {
   "posts": [
     {
+      "id": "psychologie-kupujicich-a-premiova-cena",
+      "title": "Psychologie kupujících a její vliv na cenu nemovitosti",
+      "excerpt": "Kupující rozhodují emocemi. Zjistěte, proč lidé platí víc, než ukazují čísla, a jak díky psychologii a prezentaci dosáhnout prémiové ceny.",
+      "category": "tips",
+      "categoryName": "Tipy & Triky",
+      "image": "/images/blog/clanek52.png",
+      "imageAlt": "Psychologie kupujících – emoce a prezentace zvyšují cenu nemovitosti",
+      "date": "2025-09-05",
+      "dateFormatted": "5. září 2025",
+      "readTime": 8,
+      "keywords": "psychologie kupujících, prodej nemovitosti, prémiová cena nemovitosti, odhad ceny nemovitosti, home staging, první dojem nemovitost, jak prodat byt za víc, prezentace nemovitosti"
+    },
+    {
       "id": "nejcastejsi-spory-s-najemniky-a-jak-jim-predchazet",
       "title": "Nejčastější spory s nájemníky a jak jim předcházet",
       "excerpt": "Pronajímání může být skvělým zdrojem příjmu, ale přináší i rizika. Jak předejít nejčastějším sporům s nájemníky? Přehled problémů a prevence krok za krokem.",
