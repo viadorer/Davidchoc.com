@@ -1,6 +1,19 @@
 {
   "posts": [
     {
+      "id": "identicke-nemovitosti-rozdilna-cena",
+      "title": "Proč dvě identické nemovitosti nemají stejnou cenu? Neviditelné faktory, které rozhodují",
+      "excerpt": "Dva stejné byty a různé ceny? Rozhodují neviditelné faktory – světlo, výhled, stav domu, atmosféra i prezentace.",
+      "category": "tips",
+      "categoryName": "Tipy & Triky",
+      "image": "/images/blog/clanek72.png",
+      "imageAlt": "Identické byty, různé ceny – neviditelné faktory ovlivňující hodnotu",
+      "date": "2025-09-09",
+      "dateFormatted": "9. září 2025",
+      "readTime": 11,
+      "keywords": "prodej nemovitosti, identické byty, rozdíl v ceně bytu, neviditelné faktory, odhad ceny bytu, prezentace nemovitosti"
+    },
+    {
       "id": "psychologie-kupujicich-a-premiova-cena",
       "title": "Psychologie kupujících a její vliv na cenu nemovitosti",
       "excerpt": "Kupující rozhodují emocemi. Zjistěte, proč lidé platí víc, než ukazují čísla, a jak díky psychologii a prezentaci dosáhnout prémiové ceny.",
