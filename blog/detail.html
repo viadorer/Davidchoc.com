@@ -295,7 +295,7 @@
                 <div class="flex items-center text-gray-500 text-sm mb-8">
                     <span x-text="formatDate(post?.date)"></span>
                     <span class="mx-2">•</span>
-                    <span x-text="`${post?.readTime} min čtení`"></span>
+                    <span>10 min čtení</span>
                 </div>
                 
                 <!-- Featured Image -->
@@ -545,14 +545,8 @@
                     }
                     
                     try {
-                        // reset UI state
-                        this.error = null;
-                        this.loading = true;
-                        // Load posts data (relative path, robust across domains)
-                        const response = await fetch('./posts.json');
-                        if (!response.ok) {
-                            throw new Error('Nepodařilo se načíst metadata článků (posts.json)');
-                        }
+                        // Load posts data
+                        const response = await fetch('/blog/posts.json');
                         const data = await response.json();
                         const posts = data.posts || [];
                         
@@ -567,7 +561,7 @@
                         
                         // Load post content
                         try {
-                            const contentResponse = await fetch(`./posts/${postId}.html`);
+                            const contentResponse = await fetch(`/blog/posts/${postId}.html`);
                             if (contentResponse.ok) {
                                 this.postContent = await contentResponse.text();
                             } else {
@@ -585,11 +579,8 @@
                         
                         // Update page meta tags
                         this.updateMetaTags();
-                        // Try injecting FAQ structured data if FAQ section is present
-                        this.injectFaqSchema();
                         
                         this.loading = false;
-                        this.error = null;
                     } catch (error) {
                         console.error('Chyba při načítání článku:', error);
                         this.error = 'Došlo k chybě při načítání článku.';
