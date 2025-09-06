@@ -545,13 +545,16 @@
                     }
                     
                     try {
+                        console.log('[DETAIL] Init with id:', postId);
                         // Load posts data
                         const response = await fetch('/blog/posts.json');
+                        console.log('[DETAIL] posts.json status:', response && response.status);
                         const data = await response.json();
                         const posts = data.posts || [];
                         
                         // Find the specific post
                         this.post = posts.find(p => p.id === postId);
+                        console.log('[DETAIL] Post found?', !!this.post);
                         
                         if (!this.post) {
                             this.error = 'Článek s tímto identifikátorem nebyl nalezen.';
@@ -562,6 +565,7 @@
                         // Load post content
                         try {
                             const contentResponse = await fetch(`/blog/posts/${postId}.html`);
+                            console.log('[DETAIL] content status:', contentResponse && contentResponse.status);
                             if (contentResponse.ok) {
                                 this.postContent = await contentResponse.text();
                             } else {

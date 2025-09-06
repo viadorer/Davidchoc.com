@@ -1,6 +1,22 @@
 {
   "posts": [
     {
+      "id": "tahak-co-opravdu-ovlivnuje-cenu-nemovitosti",
+      "title": "Tahák: Co opravdu ovlivňuje cenu nemovitosti",
+      "excerpt": "Praktický, tisknutelný tahák: 5 hlavních faktorů ovlivňujících cenu nemovitosti a tipy z praxe, které přidají i stovky tisíc.",
+      "seoTitle": "Tahák: Co opravdu ovlivňuje cenu nemovitosti",
+      "seoDescription": "Krátký a praktický tahák: výhled, hluk, stav bytu, dispozice, právní jistota a tržní situace. Tipy, jak zvýšit vnímanou hodnotu a prodat lépe.",
+      "category": "tips",
+      "categoryName": "Tipy & Triky",
+      "image": "/images/blog/clanek58.png",
+      "imageAlt": "Tahák – faktory ovlivňující cenu nemovitosti",
+      "date": "2025-09-06",
+      "dateFormatted": "6. září 2025",
+      "readTime": 7,
+      "keywords": "cena nemovitosti, faktory ovlivňující cenu, výhled, hluk, dispozice, právní jistota, tržní situace, tahák",
+      "featured": true
+    },
+    {
       "id": "renovace-pred-prodejem-co-se-vyplati-a-co-ne",
       "title": "Renovace před prodejem: Jak zvýšit hodnotu nemovitosti s rozumnými náklady",
       "excerpt": "Kompletní průvodce renovací před prodejem: které úpravy mají nejlepší poměr cena/výkon, co zvýší hodnotu a které investice se nevyplatí.",
