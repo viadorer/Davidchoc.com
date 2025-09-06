@@ -295,7 +295,7 @@
                 <div class="flex items-center text-gray-500 text-sm mb-8">
                     <span x-text="formatDate(post?.date)"></span>
                     <span class="mx-2">•</span>
-                    <span>10 min čtení</span>
+                    <span x-text="`${post?.readTime} min čtení`"></span>
                 </div>
                 
                 <!-- Featured Image -->
@@ -579,6 +579,8 @@
                         
                         // Update page meta tags
                         this.updateMetaTags();
+                        // Try injecting FAQ structured data if FAQ section is present
+                        this.injectFaqSchema();
                         
                         this.loading = false;
                     } catch (error) {
