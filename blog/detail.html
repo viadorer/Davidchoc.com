@@ -593,13 +593,16 @@
                 updateMetaTags() {
                     if (!this.post) return;
                     
+                    // Prefer custom SEO title/description when present
+                    const pageTitle = this.post.seoTitle || `${this.post.title} - Blog | David Choc`;
+                    const pageDescription = this.post.seoDescription || this.post.excerpt;
                     // Update title
-                    document.title = `${this.post.title} - Blog | David Choc`;
+                    document.title = pageTitle;
                     
                     // Update meta description
                     const metaDesc = document.querySelector('meta[name="description"]');
                     if (metaDesc) {
-                        metaDesc.content = this.post.excerpt;
+                        metaDesc.content = pageDescription;
                     }
                     
                     // Ensure absolute image URL
@@ -608,16 +611,16 @@
                         : `${window.location.origin}${this.post.image}`;
 
                     // Update Open Graph tags
-                    this.updateOrCreateMetaTag('property', 'og:title', `${this.post.title} - Blog | David Choc`);
-                    this.updateOrCreateMetaTag('property', 'og:description', this.post.excerpt);
+                    this.updateOrCreateMetaTag('property', 'og:title', pageTitle);
+                    this.updateOrCreateMetaTag('property', 'og:description', pageDescription);
                     this.updateOrCreateMetaTag('property', 'og:image', absoluteImage);
                     this.updateOrCreateMetaTag('property', 'og:url', window.location.href);
                     this.updateOrCreateMetaTag('property', 'og:type', 'article');
 
                     // Twitter Cards
                     this.updateOrCreateMetaTag('name', 'twitter:card', 'summary_large_image');
-                    this.updateOrCreateMetaTag('name', 'twitter:title', `${this.post.title} - Blog | David Choc`);
-                    this.updateOrCreateMetaTag('name', 'twitter:description', this.post.excerpt);
+                    this.updateOrCreateMetaTag('name', 'twitter:title', pageTitle);
+                    this.updateOrCreateMetaTag('name', 'twitter:description', pageDescription);
                     this.updateOrCreateMetaTag('name', 'twitter:image', absoluteImage);
 
                     // Canonical tag
@@ -654,12 +657,14 @@
                     const absoluteImage = this.post.image?.startsWith('http') 
                         ? this.post.image 
                         : `${window.location.origin}${this.post.image}`;
+                    const pageTitle = this.post.seoTitle || `${this.post.title} - Blog | David Choc`;
+                    const pageDescription = this.post.seoDescription || this.post.excerpt;
                     script.textContent = JSON.stringify({
                         "@context": "https://schema.org",
                         "@type": "BlogPosting",
-                        "headline": this.post.title,
-                        "description": this.post.excerpt,
-                        "image": absoluteImage,
+                        "headline": pageTitle,
+                        "description": pageDescription,
+                        "image": [absoluteImage],
                         "mainEntityOfPage": {
                             "@type": "WebPage",
                             "@id": window.location.href
