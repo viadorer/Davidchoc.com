@@ -260,20 +260,6 @@
             <div id="posts-container" style="position: relative; overflow: hidden; min-height: 600px;">
                 <div id="blog-grid" class="blog-grid" style="display: none; transition: transform 0.5s ease-in-out;"></div>
             </div>
-
-            <!-- No-JS fallback: static links to vybrané články -->
-            <noscript>
-                <div style="margin-top: 30px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,191,0,0.3); border-radius: 12px; padding: 20px; color: #fff;">
-                    <p>Váš prohlížeč má vypnutý JavaScript. Zde jsou odkazy na vybrané články:</p>
-                    <ul style="margin-top: 12px; line-height: 1.8;">
-                        <li><a href="./detail.html?id=identicke-nemovitosti-rozdilna-cena" style="color:#FFBF00;">Proč dvě identické nemovitosti nemají stejnou cenu?</a></li>
-                        <li><a href="./detail.html?id=psychologie-kupujicich-a-premiova-cena" style="color:#FFBF00;">Psychologie kupujících a její vliv na cenu</a></li>
-                        <li><a href="./detail.html?id=nejcastejsi-spory-s-najemniky-a-jak-jim-predchazet" style="color:#FFBF00;">Nejčastější spory s nájemníky a prevence</a></li>
-                        <li><a href="./detail.html?id=emoce-vs-cisla-co-opravdu-rozhoduje-pri-koupi-nemovitosti" style="color:#FFBF00;">Emoce vs. čísla při koupi nemovitosti</a></li>
-                        <li><a href="./detail.html?id=pojisteni-nemovitosti-pro-pronajmatele" style="color:#FFBF00;">Pojištění nemovitosti pro pronajímatele</a></li>
-                    </ul>
-                </div>
-            </noscript>
             
             <!-- Pagination -->
             <div id="pagination-container" style="display: flex; justify-content: center; align-items: center; margin-top: 60px; gap: 15px; flex-wrap: wrap;">
@@ -309,13 +295,9 @@
             const loading = document.getElementById('loading');
             const error = document.getElementById('error');
             const blogGrid = document.getElementById('blog-grid');
-            // reset UI state before fetching
-            if (error) error.style.display = 'none';
-            if (blogGrid) blogGrid.style.display = 'none';
-            if (loading) loading.style.display = 'flex';
 
             try {
-                const response = await fetch(`./posts.json?v=${Date.now()}`);
+                const response = await fetch('./posts.json');
                 if (!response.ok) {
                     throw new Error('Nepodařilo se načíst data');
                 }
@@ -323,16 +305,13 @@
                 const data = await response.json();
                 const sortedPosts = (data.posts || []).slice().sort((a, b) => new Date(b.date) - new Date(a.date));
                 displayBlogPosts(sortedPosts);
-                // Do not let JSON-LD injection affect user-visible error state
-                try { injectItemListSchema(sortedPosts); } catch(e) { console.warn('ItemList inject skipped', e); }
                 
-                if (loading) loading.style.display = 'none';
-                if (error) error.style.display = 'none';
-                if (blogGrid) blogGrid.style.display = 'grid';
+                loading.style.display = 'none';
+                blogGrid.style.display = 'grid';
             } catch (err) {
                 console.error('Chyba při načítání blog postů:', err);
-                if (loading) loading.style.display = 'none';
-                if (error) error.style.display = 'block';
+                loading.style.display = 'none';
+                error.style.display = 'block';
             }
         }
 
@@ -341,8 +320,6 @@
             currentPage = 1;
             updatePostsView();
             updatePagination();
-            // Refresh the JSON-LD ItemList to reflect current ordering (isolated)
-            try { injectItemListSchema(allPosts); } catch(e) { console.warn('ItemList refresh skipped', e); }
         }
         
         function updatePostsView() {
@@ -540,8 +517,18 @@
                     button.style.color = '#FFBF00';
                 };
             }
+            
             document.getElementById('page-numbers').appendChild(button);
         }
+        
+        // Category mapping for Czech display
+        const categoryNames = {
+            'market': 'Trh & Finance',
+            'tips': 'Tipy',
+            'investment': 'Investice',
+            'legal': 'Právní záležitosti',
+            'renovation': 'Renovace'
+        };
     </script>
 </body>
 </html>
