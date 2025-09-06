@@ -244,6 +244,9 @@
                 </div>
             </div>
 
+            <!-- Category Filter -->
+            <div id="category-filter" style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top: 10px; margin-bottom: 10px;"></div>
+
             <!-- Loading spinner -->
             <div id="loading" class="loading-spinner">
                 <i class="fas fa-spinner"></i>
@@ -282,13 +285,16 @@
     <script src="../common/common.js"></script>
     <script>
         // Blog posts loading functionality with pagination
+        let originalPosts = [];
         let allPosts = [];
         let currentPage = 1;
         const postsPerPage = 9;
         let isAnimating = false;
+        let selectedCategory = 'all';
         
         document.addEventListener('DOMContentLoaded', function() {
             loadBlogPosts();
+            initCategoryFilter();
         });
 
         async function loadBlogPosts() {
@@ -316,10 +322,64 @@
         }
 
         function displayBlogPosts(posts) {
-            allPosts = posts;
+            originalPosts = posts;
+            applyFilterAndRender();
+        }
+
+        function initCategoryFilter() {
+            const container = document.getElementById('category-filter');
+            if (!container) return;
+            const categories = [
+                { key: 'all', label: 'Vše' },
+                { key: 'market', label: 'Trh & Finance' },
+                { key: 'tips', label: 'Tipy' },
+                { key: 'investment', label: 'Investice' },
+                { key: 'legal', label: 'Právní záležitosti' },
+                { key: 'renovation', label: 'Renovace' },
+            ];
+            container.innerHTML = '';
+            categories.forEach(cat => {
+                const btn = document.createElement('button');
+                btn.textContent = cat.label;
+                btn.setAttribute('data-cat', cat.key);
+                btn.style.cssText = `
+                    padding: 10px 14px; border:2px solid #FFBF00; background: transparent; color:#FFBF00; 
+                    font-weight:600; border-radius: 999px; cursor:pointer; transition: all .2s ease; font-size:.95rem;
+                `;
+                btn.onmouseover = () => { if (selectedCategory !== cat.key) { btn.style.background = '#FFBF00'; btn.style.color = '#1a1a1a'; } };
+                btn.onmouseout = () => { if (selectedCategory !== cat.key) { btn.style.background = 'transparent'; btn.style.color = '#FFBF00'; } };
+                btn.onclick = () => setCategory(cat.key);
+                container.appendChild(btn);
+            });
+            updateFilterActiveStyles();
+        }
+
+        function setCategory(cat) {
+            if (selectedCategory === cat) return;
+            selectedCategory = cat;
+            applyFilterAndRender();
+        }
+
+        function updateFilterActiveStyles() {
+            const container = document.getElementById('category-filter');
+            if (!container) return;
+            const buttons = Array.from(container.querySelectorAll('button[data-cat]'));
+            buttons.forEach(btn => {
+                const cat = btn.getAttribute('data-cat');
+                const active = (cat === selectedCategory);
+                btn.style.background = active ? '#FFBF00' : 'transparent';
+                btn.style.color = active ? '#1a1a1a' : '#FFBF00';
+                btn.style.opacity = active ? '1' : '1';
+            });
+        }
+
+        function applyFilterAndRender() {
+            const filtered = selectedCategory === 'all' ? originalPosts : originalPosts.filter(p => p.category === selectedCategory);
+            allPosts = filtered;
             currentPage = 1;
             updatePostsView();
             updatePagination();
+            updateFilterActiveStyles();
         }
         
         function updatePostsView() {
@@ -523,6 +583,7 @@
         
         // Category mapping for Czech display
         const categoryNames = {
+            'all': 'Vše',
             'market': 'Trh & Finance',
             'tips': 'Tipy',
             'investment': 'Investice',
