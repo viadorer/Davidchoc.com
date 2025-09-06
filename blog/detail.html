@@ -548,8 +548,8 @@
                         // reset UI state
                         this.error = null;
                         this.loading = true;
-                        // Load posts data (stable absolute path)
-                        const response = await fetch('/blog/posts.json');
+                        // Load posts data (relative path, robust across domains)
+                        const response = await fetch('./posts.json');
                         if (!response.ok) {
                             throw new Error('Nepodařilo se načíst metadata článků (posts.json)');
                         }
@@ -567,7 +567,7 @@
                         
                         // Load post content
                         try {
-                            const contentResponse = await fetch(`/blog/posts/${postId}.html`);
+                            const contentResponse = await fetch(`./posts/${postId}.html`);
                             if (contentResponse.ok) {
                                 this.postContent = await contentResponse.text();
                             } else {
