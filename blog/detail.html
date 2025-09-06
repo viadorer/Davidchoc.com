@@ -545,9 +545,29 @@
                     }
                     
                     try {
-                        // Load posts data
-                        const response = await fetch('/blog/posts.json');
-                        const data = await response.json();
+                        // reset UI state
+                        this.error = null;
+                        this.loading = true;
+                        // Load posts data with fallback and diagnostics
+                        let data;
+                        let response;
+                        const cacheBust = Date.now();
+                        try {
+                            response = await fetch(`./posts.json?v=${cacheBust}`);
+                            console.log('Fetch ./posts.json status:', response.status);
+                        } catch (e) {
+                            console.warn('Fetch ./posts.json failed, retrying with absolute path', e);
+                        }
+                        if (!response || !response.ok) {
+                            try {
+                                response = await fetch(`/blog/posts.json?v=${cacheBust}`);
+                                console.log('Fetch /blog/posts.json status:', response.status);
+                            } catch (e2) {
+                                console.error('Fetch /blog/posts.json also failed', e2);
+                                throw new Error('Nepodařilo se načíst metadata článků (posts.json)');
+                            }
+                        }
+                        data = await response.json();
                         const posts = data.posts || [];
                         
                         // Find the specific post
@@ -561,7 +581,22 @@
                         
                         // Load post content
                         try {
-                            const contentResponse = await fetch(`/blog/posts/${postId}.html`);
+                            // Load content HTML with fallback
+                            let contentResponse;
+                            try {
+                                contentResponse = await fetch(`./posts/${postId}.html?v=${cacheBust}`);
+                                console.log('Fetch ./posts/' + postId + '.html status:', contentResponse.status);
+                            } catch (e) {
+                                console.warn('Primary relative content fetch failed, retrying absolute path', e);
+                            }
+                            if (!contentResponse || !contentResponse.ok) {
+                                try {
+                                    contentResponse = await fetch(`/blog/posts/${postId}.html?v=${cacheBust}`);
+                                    console.log('Fetch /blog/posts/' + postId + '.html status:', contentResponse.status);
+                                } catch (e2) {
+                                    console.error('Absolute content fetch failed', e2);
+                                }
+                            }
                             if (contentResponse.ok) {
                                 this.postContent = await contentResponse.text();
                             } else {
@@ -583,6 +618,7 @@
                         this.injectFaqSchema();
                         
                         this.loading = false;
+                        this.error = null;
                     } catch (error) {
                         console.error('Chyba při načítání článku:', error);
                         this.error = 'Došlo k chybě při načítání článku.';
