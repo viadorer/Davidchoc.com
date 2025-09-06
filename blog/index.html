@@ -319,7 +319,8 @@
                 const data = await response.json();
                 const sortedPosts = (data.posts || []).slice().sort((a, b) => new Date(b.date) - new Date(a.date));
                 displayBlogPosts(sortedPosts);
-                injectItemListSchema(sortedPosts);
+                // Do not let JSON-LD injection affect user-visible error state
+                try { injectItemListSchema(sortedPosts); } catch(e) { console.warn('ItemList inject skipped', e); }
                 
                 loading.style.display = 'none';
                 blogGrid.style.display = 'grid';
@@ -335,8 +336,8 @@
             currentPage = 1;
             updatePostsView();
             updatePagination();
-            // Also refresh the JSON-LD ItemList to reflect current ordering
-            injectItemListSchema(allPosts);
+            // Refresh the JSON-LD ItemList to reflect current ordering (isolated)
+            try { injectItemListSchema(allPosts); } catch(e) { console.warn('ItemList refresh skipped', e); }
         }
         
         function updatePostsView() {
