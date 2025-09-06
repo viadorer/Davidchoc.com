@@ -1,6 +1,19 @@
 {
   "posts": [
     {
+      "id": "renovace-pred-prodejem-co-se-vyplati-a-co-ne",
+      "title": "Renovace před prodejem: Jak zvýšit hodnotu nemovitosti s rozumnými náklady",
+      "excerpt": "Kompletní průvodce renovací před prodejem: které úpravy mají nejlepší poměr cena/výkon, co zvýší hodnotu a které investice se nevyplatí.",
+      "category": "renovation",
+      "categoryName": "Renovace",
+      "image": "/images/blog/clanek10.jpeg",
+      "imageAlt": "Renovace před prodejem – neutrální interiér s novými podlahami",
+      "date": "2025-09-11",
+      "dateFormatted": "11. září 2025",
+      "readTime": 20,
+      "keywords": "renovace před prodejem, zvýšení hodnoty nemovitosti, poměr cena/výkon, modernizace bytu, podlahy, výmalba, koupelna, kuchyň, home staging"
+    },
+    {
       "id": "identicke-nemovitosti-rozdilna-cena",
       "title": "Proč dvě identické nemovitosti nemají stejnou cenu? Neviditelné faktory, které rozhodují",
       "excerpt": "Dva stejné byty a různé ceny? Rozhodují neviditelné faktory – světlo, výhled, stav domu, atmosféra i prezentace.",

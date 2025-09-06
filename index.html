@@ -751,10 +751,36 @@
           injectStyle();
           const ok = harmonize();
           if (!ok) return;
+          // Try to prefill from contact modal handoff
+          function tryPrefill() {
+            try {
+              const raw = localStorage.getItem('contact_prefill');
+              if (!raw) return;
+              const data = JSON.parse(raw);
+              if (!data || !data.ts) return;
+              // Only accept fresh data (last 2h)
+              if (Date.now() - data.ts > 2*60*60*1000) { localStorage.removeItem('contact_prefill'); return; }
+              const root = document.getElementById(CONTAINER_ID);
+              if (!root) return;
+              // Heuristics to find fields
+              const nameInput = root.querySelector('input[name*="name" i], input[placeholder*="jméno" i], input[placeholder*="name" i]');
+              const emailInput = root.querySelector('input[type="email"], input[name*="mail" i]');
+              const phoneInput = root.querySelector('input[type="tel"], input[name*="phone" i], input[name*="telefon" i]');
+              const contactInput = emailInput || phoneInput || root.querySelector('input[type="text"]');
+              const messageInput = root.querySelector('textarea[name*="message" i], textarea');
+              if (nameInput && data.name) { nameInput.value = data.name; nameInput.dispatchEvent(new Event('input', {bubbles:true})); }
+              if (contactInput && data.contact) { contactInput.value = data.contact; contactInput.dispatchEvent(new Event('input', {bubbles:true})); }
+              if (messageInput && data.message) { messageInput.value = data.message; messageInput.dispatchEvent(new Event('input', {bubbles:true})); }
+              // Done once
+              localStorage.removeItem('contact_prefill');
+            } catch(e) { /* noop */ }
+          }
+          tryPrefill();
           // Sleduj změny – widget se může renderovat/asynchronně měnit
           const root = document.getElementById(CONTAINER_ID);
           const mo = new MutationObserver(() => {
             harmonize();
+            tryPrefill();
             // Detekuj úspěch/chybu a resetuj tlačítko + GA event
             const successNode = root.querySelector('.success, .alert-success, [role="status"], .form-success');
             const errorNode = root.querySelector('.error, .alert-error, .alert-danger, .form-error');

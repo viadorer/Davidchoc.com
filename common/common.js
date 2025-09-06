@@ -166,18 +166,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 status.style.color = '#ffb3b3';
                 return;
             }
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Odesílám…';
-            // Simulace odeslání — zde případně fetch na váš backend / službu
-            setTimeout(() => {
-                status.textContent = 'Děkuji, zpráva byla odeslána. Ozvu se vám co nejdříve.';
-                status.style.display = 'block';
-                status.style.color = '#9ae6b4';
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Odeslat';
-                form.reset();
-                // close(); // ponecháno otevřené pro vizuální potvrzení
-            }, 600);
+            // Ulož prefill pro widget na homepage a přesměruj na sekci #kontakt
+            try {
+                localStorage.setItem('contact_prefill', JSON.stringify({ name, contact, message, ts: Date.now() }));
+            } catch(e) {}
+            window.location.href = '/index.html#kontakt';
         });
     })();
 });
