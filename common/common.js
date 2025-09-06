@@ -77,6 +77,109 @@ document.addEventListener('DOMContentLoaded', function() {
                     .catch(err => console.error('Chyba při načítání patičky:', err));
             });
     }
+    
+    // Inject a reusable contact modal (vanilla JS) and expose openContactModal()
+    (function initContactModal(){
+        if (document.getElementById('contact-modal-overlay')) return; // prevent double-init
+        const overlay = document.createElement('div');
+        overlay.id = 'contact-modal-overlay';
+        overlay.setAttribute('aria-hidden', 'true');
+        overlay.style.cssText = `
+            position: fixed; inset: 0; background: rgba(0,0,0,.6); display:none; z-index: 10000;
+            align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(2px);
+        `;
+        overlay.innerHTML = `
+            <div id="contact-modal" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title" style="
+                background:#111; color:#fff; width:100%; max-width:720px; border-radius:18px; overflow:hidden; border:1px solid rgba(255,191,0,.25);
+                box-shadow: 0 25px 60px rgba(0,0,0,.5);
+            ">
+                <div style="display:flex; align-items:center; justify-content:space-between; padding:18px 22px; border-bottom:1px solid rgba(255,191,0,.25);">
+                    <h2 id="contact-modal-title" style="margin:0; font-size:1.4rem; color:#FFBF00; font-weight:800;">Rychlý kontakt</h2>
+                    <button type="button" id="contact-modal-close" aria-label="Zavřít" style="
+                        background:transparent; border:none; color:#fff; font-size:1.4rem; cursor:pointer; line-height:1; padding:6px; border-radius:8px;
+                    ">✕</button>
+                </div>
+                <div style="padding:22px;">
+                    <p style="margin-top:0; color:#ddd;">Zanechte mi zprávu a já se vám ozvu. Odpovídám zpravidla <strong>do 24 hodin</strong>.</p>
+                    <form id="contact-modal-form" novalidate>
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+                            <div>
+                                <label for="cm-name" style="display:block; color:#ccc; font-size:.9rem; margin-bottom:6px;">Jméno</label>
+                                <input id="cm-name" name="name" type="text" required placeholder="Vaše jméno" style="
+                                    width:100%; padding:12px 14px; border-radius:10px; background:#1a1a1a; border:1px solid #333; color:#fff;
+                                ">
+                            </div>
+                            <div>
+                                <label for="cm-contact" style="display:block; color:#ccc; font-size:.9rem; margin-bottom:6px;">E-mail nebo telefon</label>
+                                <input id="cm-contact" name="contact" type="text" required placeholder="email@domena.cz / +420…" style="
+                                    width:100%; padding:12px 14px; border-radius:10px; background:#1a1a1a; border:1px solid #333; color:#fff;
+                                ">
+                            </div>
+                        </div>
+                        <div style="margin-top:14px;">
+                            <label for="cm-message" style="display:block; color:#ccc; font-size:.9rem; margin-bottom:6px;">Zpráva</label>
+                            <textarea id="cm-message" name="message" rows="4" required placeholder="S čím mohu pomoci?" style="
+                                width:100%; padding:12px 14px; border-radius:10px; background:#1a1a1a; border:1px solid #333; color:#fff; resize:vertical;
+                            "></textarea>
+                        </div>
+                        <div style="display:flex; gap:12px; align-items:center; justify-content:flex-end; margin-top:18px;">
+                            <button type="button" id="contact-modal-cancel" style="
+                                border:2px solid #444; background:transparent; color:#ddd; padding:10px 16px; border-radius:999px; cursor:pointer; font-weight:600;
+                            ">Zavřít</button>
+                            <button type="submit" id="contact-modal-submit" style="
+                                background:#FFBF00; color:#1a1a1a; padding:12px 18px; border-radius:999px; font-weight:800; border:none; cursor:pointer;
+                            ">Odeslat</button>
+                        </div>
+                        <p id="contact-modal-status" style="margin:10px 0 0; font-size:.9rem; color:#bbb; display:none;"></p>
+                    </form>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(overlay);
+
+        const close = () => { overlay.style.display = 'none'; overlay.setAttribute('aria-hidden', 'true'); };
+        const open = () => { overlay.style.display = 'flex'; overlay.removeAttribute('aria-hidden'); };
+        window.openContactModal = open;
+        
+        // Open triggers: use [data-open-contact]
+        document.querySelectorAll('[data-open-contact]')
+            .forEach(el => el.addEventListener('click', (e) => { e.preventDefault(); open(); }));
+
+        // Close handlers
+        overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
+        document.getElementById('contact-modal-close').addEventListener('click', close);
+        document.getElementById('contact-modal-cancel').addEventListener('click', close);
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && overlay.style.display === 'flex') close(); });
+
+        // Simple submit handler (no backend) — replace with your integration if needed
+        const form = document.getElementById('contact-modal-form');
+        const status = document.getElementById('contact-modal-status');
+        const submitBtn = document.getElementById('contact-modal-submit');
+        form.addEventListener('submit', function(evt){
+            evt.preventDefault();
+            const name = document.getElementById('cm-name').value.trim();
+            const contact = document.getElementById('cm-contact').value.trim();
+            const message = document.getElementById('cm-message').value.trim();
+            if (!name || !contact || !message) {
+                status.textContent = 'Vyplňte prosím všechna pole.';
+                status.style.display = 'block';
+                status.style.color = '#ffb3b3';
+                return;
+            }
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Odesílám…';
+            // Simulace odeslání — zde případně fetch na váš backend / službu
+            setTimeout(() => {
+                status.textContent = 'Děkuji, zpráva byla odeslána. Ozvu se vám co nejdříve.';
+                status.style.display = 'block';
+                status.style.color = '#9ae6b4';
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Odeslat';
+                form.reset();
+                // close(); // ponecháno otevřené pro vizuální potvrzení
+            }, 600);
+        });
+    })();
 });
 
 // Inicializace mobilní navigace
