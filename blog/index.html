@@ -309,9 +309,13 @@
             const loading = document.getElementById('loading');
             const error = document.getElementById('error');
             const blogGrid = document.getElementById('blog-grid');
+            // reset UI state before fetching
+            if (error) error.style.display = 'none';
+            if (blogGrid) blogGrid.style.display = 'none';
+            if (loading) loading.style.display = 'flex';
 
             try {
-                const response = await fetch('./posts.json');
+                const response = await fetch(`./posts.json?v=${Date.now()}`);
                 if (!response.ok) {
                     throw new Error('Nepodařilo se načíst data');
                 }
@@ -322,12 +326,13 @@
                 // Do not let JSON-LD injection affect user-visible error state
                 try { injectItemListSchema(sortedPosts); } catch(e) { console.warn('ItemList inject skipped', e); }
                 
-                loading.style.display = 'none';
-                blogGrid.style.display = 'grid';
+                if (loading) loading.style.display = 'none';
+                if (error) error.style.display = 'none';
+                if (blogGrid) blogGrid.style.display = 'grid';
             } catch (err) {
                 console.error('Chyba při načítání blog postů:', err);
-                loading.style.display = 'none';
-                error.style.display = 'block';
+                if (loading) loading.style.display = 'none';
+                if (error) error.style.display = 'block';
             }
         }
 
