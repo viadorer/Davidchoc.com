@@ -579,6 +579,8 @@
                         
                         // Update page meta tags
                         this.updateMetaTags();
+                        // Safely inject FAQ schema if #faq with .faq-item exists in rendered content
+                        try { this.injectFaqSchema && this.injectFaqSchema(); } catch(e) { console.warn('FAQ schema skipped', e); }
                         
                         this.loading = false;
                     } catch (error) {
