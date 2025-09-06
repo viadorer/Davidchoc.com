@@ -4,151 +4,58 @@
     <span class="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-sm font-semibold rounded-full mb-4">Tipy & Triky</span>
   </div>
 
-  <h1>Tahák: Co opravdu ovlivňuje cenu nemovitosti</h1>
+  <h1>Co opravdu ovlivňuje cenu nemovitosti (tahák)</h1>
 
-  <!-- Scoped styles for the tahák -->
-  <style>
-    /* Scope all styles under .tahak to avoid conflicts */
-    .tahak{
-      --bg:#ffffff;
-      --ink:#0b0b0c;
-      --muted:#5a5e66;
-      --line:#e6e8eb;
-      --accent:#111; /* neutrální, nebrandové */
-      --chip:#f6f7f9;
-      --tip:#f7fafc;
-      counter-reset: step;
-    }
-    .tahak .sheet{
-      max-width: 840px;
-      margin: 28px auto;
-      padding: 32px;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      box-shadow: 0 2px 24px rgba(0,0,0,.05);
-      background:var(--bg);
-      color: var(--ink);
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Ubuntu,"Helvetica Neue",Arial,sans-serif;
-      line-height:1.55;
-    }
-    .tahak header h1{
-      margin: 0 0 6px 0;
-      font-size: 28px;
-      letter-spacing: -0.01em;
-    }
-    .tahak header p.sub{ margin:0; color:var(--muted); font-size:15px; }
-    .tahak .lead{ margin:18px 0 22px 0; color:var(--muted); font-size:16px; }
-    .tahak .grid{ display:grid; grid-template-columns:1fr; gap:16px; }
-    @media (min-width:760px){ .tahak .grid{ grid-template-columns:1fr 1fr; } }
-    .tahak .card{ border:1px solid var(--line); border-radius:14px; padding:16px 16px 14px 16px; background:#fff; }
-    .tahak .card h3{ margin:0 0 6px 0; font-size:18px; letter-spacing:-0.01em; }
-    .tahak .meta{ display:inline-block; background:var(--chip); border:1px solid var(--line); color:var(--muted); border-radius:999px; padding:2px 10px; font-size:12px; margin-bottom:8px; }
-    .tahak .card p{ margin:6px 0; }
-    .tahak .tip{ margin-top:10px; background:var(--tip); border-left:3px solid var(--accent); padding:10px 12px; border-radius:8px; font-size:14px; }
-    .tahak .hr{ height:1px; background:var(--line); margin:22px 0; }
-    .tahak .fact{ border:1px dashed var(--line); border-radius:12px; padding:14px; background:#fff; font-size:15px; }
-    .tahak .cta{ margin-top:18px; display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
-    .tahak .btn{ display:inline-block; text-decoration:none; background:var(--accent); color:#fff; padding:10px 14px; border-radius:10px; font-weight:600; font-size:15px; }
-    .tahak .btn:hover{ opacity:.9; }
-    .tahak .note{ font-size:12.5px; color:var(--muted); margin-top:6px; }
-    .tahak footer{ margin-top:20px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; color:var(--muted); font-size:12.5px; }
-    /* Číslované „štítky“ před nadpisy */
-    .tahak .card h3::before{
-      counter-increment: step;
-      content: counter(step) " ";
-      display:inline-flex; align-items:center; justify-content:center;
-      width:26px; height:26px; margin-right:8px; border-radius:999px; border:1px solid var(--line);
-      background:var(--chip); color:var(--ink); font-size:13px; font-weight:600;
-    }
-    /* Tisk A4 */
-    @page { size: A4; margin: 14mm; }
-    @media print{
-      .tahak .sheet{ border:none; box-shadow:none; margin:0; padding:0; max-width:none; }
-      .tahak a.btn{ background:#000 !important; color:#fff !important; }
-      .tahak a[href^="http"]::after{ content:" (" attr(href) ")"; font-weight:400; color:var(--muted); margin-left:4px; font-size:11px; }
-    }
-  </style>
+  <p class="lead text-xl text-gray-700 font-medium mb-8">
+    V realitách se často mluví o metrech a lokalitě. Ve skutečnosti rozhoduje, <strong>jak se kupující budou doma cítit</strong>.
+    Tady je stručný tahák 5 faktorů, které dělají největší rozdíl – a pár tipů, jak jich využít ve svůj prospěch.
+  </p>
 
-  <div class="tahak">
-    <main class="sheet" role="document" aria-label="Tahák: Co opravdu ovlivňuje cenu nemovitosti">
-      <header>
-        <h1>Co opravdu ovlivňuje cenu nemovitosti</h1>
-        <p class="sub">Praktický tahák do mobilu • krátce, věcně, z české praxe</p>
-        <p class="lead">
-          V realitách se často mluví o metrech, cenách a lokalitách. Ale když se lidí zeptáte, co je pro ně v bydlení nejdůležitější,
-          odpověď bývá jiná: <strong>aby se doma cítili dobře</strong>. Následujících pět bodů rozhoduje o ceně nejvíc – a několik
-          „drobností“ v nich dokáže udělat rozdíl i stovek tisíc.
-        </p>
-      </header>
+  <h2>Lokalita není jen adresa: výhled, hluk, sousedství</h2>
+  <p>Byty ve stejné ulici se mohou lišit i o <strong>300&nbsp;000&nbsp;Kč</strong> – podle výhledu (park vs. rušná ulice), hluku,
+     blízkosti školy či chystané výstavby.</p>
+  <div class="bg-gray-50 border-l-4 border-gray-200 p-4 my-6">
+    <p class="mb-0"><strong>Tip:</strong> Zkontrolujte <em>územní plán</em> a budoucí projekty v okolí. Park hodnotu zvedne, nová silnice ji může srazit.</p>
+  </div>
 
-      <section class="grid" aria-label="Hlavní faktory">
-        <article class="card">
-          <span class="meta">Lokalita není jen adresa</span>
-          <h3>Výhled, hluk, sousedství</h3>
-          <p>Byty ve stejné ulici se mohou lišit i o <strong>300&nbsp;000&nbsp;Kč</strong> – jen podle výhledu do parku vs. na rušnou silnici,
-            blízkosti školy či plánované výstavby.</p>
-          <div class="tip"><strong>Tip:</strong> Zkontrolujte <em>územní plán</em> a chystané projekty v okolí. Park může hodnotu zvednout,
-            nová dopravní tepna ji naopak srazí.</div>
-        </article>
+  <h2>Stav a provedení: rekonstrukce a technické detaily</h2>
+  <p>Původní stav obvykle znamená slevu <strong>20–30&nbsp;%</strong>. Naopak kvalitní koupelna, kuchyně a okna cenu zvedají.</p>
+  <div class="bg-gray-50 border-l-4 border-gray-200 p-4 my-6">
+    <p class="mb-0"><strong>Tip:</strong> Čerstvá výmalba, opravené detaily a profi úklid výrazně zlepší vnímání hodnoty s minimálními náklady.</p>
+  </div>
 
-        <article class="card">
-          <span class="meta">Stav a provedení</span>
-          <h3>Rekonstrukce a technické detaily</h3>
-          <p>Původní stav obvykle znamená slevu <strong>20–30&nbsp;%</strong>, protože kupující počítá s investicí.
-            Kvalitní koupelna, kuchyně a okna cenu zvedají.</p>
-          <div class="tip"><strong>Tip:</strong> Čerstvá výmalba, opravené detaily a profesionální úklid zvyšují „vnímání hodnoty“
-            s minimálními náklady.</div>
-        </article>
+  <h2>Velikost a dispozice: praktičnost vítězí nad metry</h2>
+  <p>Menší, ale chytře řešený byt se prodá snáz než velký s průchozími pokoji. Balkon, sklep a parkování jsou plus.</p>
+  <div class="bg-gray-50 border-l-4 border-gray-200 p-4 my-6">
+    <p class="mb-0"><strong>Tip:</strong> U prodeje ukažte jednoduché varianty úpravy dispozice. Kupující ocení potenciál.</p>
+  </div>
 
-        <article class="card">
-          <span class="meta">Velikost a dispozice</span>
-          <h3>Praktičnost vítězí nad metry</h3>
-          <p>Menší, ale chytře řešený byt se často prodá snáz než velký s průchozími pokoji. Balkon, sklep a parkování jsou plus.</p>
-          <div class="tip"><strong>Tip:</strong> U prodeje ukažte i jednoduché varianty úpravy dispozice. Kupující ocení potenciál.</div>
-        </article>
+  <h2>Právní jistota: list vlastnictví bez překvapení</h2>
+  <p>Zástavy, věcná břemena nebo exekuce snižují hodnotu a část kupců zcela odradí.</p>
+  <div class="bg-gray-50 border-l-4 border-gray-200 p-4 my-6">
+    <p class="mb-0"><strong>Tip:</strong> Před prodejem si stáhněte <em>List vlastnictví</em> z katastru a vyřešte sporné body dopředu.</p>
+  </div>
 
-        <article class="card">
-          <span class="meta">Právní jistota</span>
-          <h3>List vlastnictví bez překvapení</h3>
-          <p>Zástavy, věcná břemena či exekuce snižují hodnotu a část kupců odradí úplně.</p>
-          <div class="tip"><strong>Tip:</strong> Před prodejem si vytáhněte <em>List vlastnictví</em> z katastru a vyřešte sporné body dopředu.</div>
-        </article>
+  <h2>Tržní situace: úroky a nálada trhu</h2>
+  <p>Když jsou hypotéky dostupnější, roste poptávka i ceny. V pomalejších obdobích počítejte s delším prodejem.</p>
+  <div class="bg-gray-50 border-l-4 border-gray-200 p-4 my-6">
+    <p class="mb-0"><strong>Tip:</strong> Pokud nespěcháte, vyčkejte na vhodný moment. Správné načasování může znamenat <strong>+&nbsp;500&nbsp;000&nbsp;Kč</strong>.</p>
+  </div>
 
-        <article class="card">
-          <span class="meta">Tržní situace</span>
-          <h3>Úroky a nálada trhu</h3>
-          <p>Když jsou hypotéky dostupnější, poptávka roste a s ní i ceny. V „pomalejších“ obdobích je nutné počítat s delším prodejem.</p>
-          <div class="tip"><strong>Tip:</strong> Pokud nespěcháte, vyčkejte na vhodný moment. Správné načasování může znamenat
-            <strong>+&nbsp;500&nbsp;000&nbsp;Kč</strong>.</div>
-        </article>
+  <h2>Krátká rekapitulace: kombinace rozhoduje</h2>
+  <p>Konečnou cenu určuje souhra všech faktorů – a ochota kupujícího s prodávajícím se dohodnout. Dobrá příprava a prezentace umí přidat významné peníze.</p>
+  <div class="bg-gray-50 border-l-4 border-gray-200 p-4 my-6">
+    <p class="mb-0"><strong>Tip:</strong> Než něco podepíšete, dejte si noc na rozmyšlenou a zkontrolujte klíčové body smlouvy.</p>
+  </div>
 
-        <article class="card">
-          <span class="meta">Krátká rekapitulace</span>
-          <h3>Kombinace rozhoduje</h3>
-          <p>Konečnou cenu určuje souhra všech faktorů – a ochota kupujícího s prodávajícím se dohodnout. Dobrá příprava
-            a prezentace umí přidat významné peníze.</p>
-          <div class="tip"><strong>Tip:</strong> Než něco podepíšete, dejte si vždy noc na rozmyšlenou a zkontrolujte klíčové body smlouvy.</div>
-        </article>
-      </section>
+  <div class="bg-gray-50 rounded-lg p-6 my-8">
+    <p class="mb-0"><strong>Zajímavost z praxe:</strong> Rozdíl mezi dobře připraveným a špatně prezentovaným prodejem může být až <strong>půl milionu korun</strong>.</p>
+  </div>
 
-      <div class="hr" role="separator" aria-hidden="true"></div>
-
-      <section aria-label="Zajímavost a nástroje">
-        <div class="fact">
-          <strong>Zajímavost z praxe:</strong> Rozdíl mezi dobře připraveným a špatně prezentovaným prodejem může být až
-          <strong>půl milionu korun</strong>.
-        </div>
-
-        <div class="cta">
-          <a class="btn" href="https://www.odhad.online" target="_blank" rel="noopener">Vyzkoušet zdarma kalkulačku Odhad.online</a>
-          <div class="note">Během minuty získáte orientační tržní odhad. Nenahrazuje znalecký posudek, ale dá vám rychlou představu.</div>
-        </div>
-      </section>
-
-      <footer>
-        <div>Autor: David Choc • Realitní agent ve vašich službách</div>
-        <div>Verze taháku: 1</div>
-      </footer>
-    </main>
+  <!-- CTA v textu (brandově) -->
+  <div class="bg-yellow-50 border-l-4 border-yellow-400 p-6 my-10">
+    <h3 class="font-bold text-yellow-800 mb-3">👉 Chcete rychle zjistit orientační hodnotu?</h3>
+    <a href="https://www.odhad.online" target="_blank" rel="noopener" class="inline-block mt-2 font-semibold px-6 py-3 rounded-full" style="background-color:#FFBF00; color:#1a1a1a;">Vyzkoušet Odhad.online zdarma →</a>
+    <p class="text-sm text-gray-600 mt-2 mb-0">Během minuty získáte orientační tržní odhad. Nenahrazuje znalecký posudek.</p>
   </div>
 </div>
