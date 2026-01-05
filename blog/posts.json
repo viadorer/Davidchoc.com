@@ -1,6 +1,21 @@
 {
   "posts": [
     {
+      "id": "jak-chytre-prodat-byt-s-garazi-nebo-parkovacim-stanim",
+      "title": "Jak chytře prodat byt s garáží (nebo parkovacím stáním): strategie, které vám přinesou víc peněz",
+      "excerpt": "Má smysl prodat byt a garáž dohromady, zvlášť, nebo nabídnout kombinaci? Ověřené strategie z praxe, psychologické efekty a konkrétní příklady, jak získat víc peněz.",
+      "seoTitle": "Jak prodat byt s garáží/stáním: strategie pro vyšší cenu",
+      "seoDescription": "Byt s garáží nebo parkovacím stáním: kdy prodávat dohromady, kdy zvlášť a kdy nabídnout kombinaci. Praktické příklady a tipy, jak z prodeje vytěžit maximum.",
+      "category": "tips",
+      "categoryName": "Tipy & Triky",
+      "image": "/images/blog/clanek89.png",
+      "imageAlt": "Byt s garáží nebo parkovacím stáním – strategie pro výhodný prodej",
+      "date": "2025-09-20",
+      "dateFormatted": "20. září 2025",
+      "readTime": 13,
+      "keywords": "prodej bytu s garáží, parkovací stání, strategie prodeje, prémiová cena, psychologie kupujících, kombinovaná strategie, Plzeň příklady"
+    },
+    {
       "id": "tahak-co-opravdu-ovlivnuje-cenu-nemovitosti",
       "title": "Tahák: Co opravdu ovlivňuje cenu nemovitosti",
       "excerpt": "Praktický, tisknutelný tahák: 5 hlavních faktorů ovlivňujících cenu nemovitosti a tipy z praxe, které přidají i stovky tisíc.",
@@ -8,7 +23,7 @@
       "seoDescription": "Krátký a praktický tahák: výhled, hluk, stav bytu, dispozice, právní jistota a tržní situace. Tipy, jak zvýšit vnímanou hodnotu a prodat lépe.",
       "category": "tips",
       "categoryName": "Tipy & Triky",
-      "image": "/images/blog/clanek61.png",
+      "image": "/images/blog/clanek84.png",
       "imageAlt": "Tahák – co ovlivňuje cenu nemovitosti (ilustrační grafika)",
       "date": "2025-09-06",
       "dateFormatted": "13. září 2025",
