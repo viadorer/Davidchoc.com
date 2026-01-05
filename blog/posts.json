@@ -1,6 +1,22 @@
 {
   "posts": [
     {
+      "id": "jarni-prodej-zacina-v-lednu",
+      "title": "Jarní prodej začíná v lednu: Co udělat v lednu a únoru, aby šla nemovitost na trh v top formě v březnu",
+      "excerpt": "V březnu už nechcete řešit chaos. V březnu chcete prodávat. Praktický 6týdenní plán, jak připravit nemovitost na jarní prodej – od úklidu přes drobné opravy až po prezentaci.",
+      "seoTitle": "Jarní prodej nemovitosti: Jak se připravit v lednu a únoru",
+      "seoDescription": "Chcete prodávat nemovitost v březnu? Začněte v lednu. Kompletní 6týdenní plán přípravy: úklid, opravy, vizuální refresh, dokumenty a prezentace pro prémiovou cenu.",
+      "category": "tips",
+      "categoryName": "Tipy & Triky",
+      "image": "/images/blog/clanek5.jpeg",
+      "imageAlt": "Světlý, uklizený interiér připravený na jarní prodej",
+      "date": "2026-01-05",
+      "dateFormatted": "5. ledna 2026",
+      "readTime": 10,
+      "keywords": "jarní prodej nemovitosti, příprava na prodej, home staging, prodej v březnu, prémiová cena, úklid před prodejem, opravy nemovitosti, prezentace nemovitosti",
+      "featured": true
+    },
+    {
       "id": "jak-chytre-prodat-byt-s-garazi-nebo-parkovacim-stanim",
       "title": "Jak chytře prodat byt s garáží (nebo parkovacím stáním): strategie, které vám přinesou víc peněz",
       "excerpt": "Má smysl prodat byt a garáž dohromady, zvlášť, nebo nabídnout kombinaci? Ověřené strategie z praxe, psychologické efekty a konkrétní příklady, jak získat víc peněz.",
