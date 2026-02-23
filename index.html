@@ -13,8 +13,10 @@
     <meta property="og:url" content="https://davidchoc.com">
     <meta property="og:type" content="website">
     <title>David Choc | Realitní agent</title>
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/davidchocagent.avif" as="image">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" media="print" onload="this.media='all'">
     <link rel="icon" type="image/png" href="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/favicon.png">
     <link rel="canonical" href="https://davidchoc.com">
     <!-- Schéma.org pro lepší SEO -->
@@ -138,7 +140,7 @@
             </a>
         </div>
         <div class="hero-background">
-            <video autoplay muted loop playsinline preload="metadata" poster="IMG_2867.jpeg" id="hero-video" class="desktop-only">
+            <video autoplay muted loop playsinline preload="metadata" id="hero-video" class="desktop-only">
                 <source src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/videos/file.mp4" type="video/mp4">
                 Váš prohlížeč nepodporuje přehrávání videa.
             </video>
@@ -203,7 +205,7 @@
                     <div class="step-number">01</div>
                     <div class="step-content">
                         <div class="step-image">
-                            <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/steps/step01.png" alt="První schůzka" class="media-item">
+                            <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/steps/step01.png" alt="První schůzka" class="media-item" loading="lazy">
                         </div>
                         <h3>První schůzka</h3>
                         <h4>Posouzení a porozumění.</h4>
@@ -216,7 +218,7 @@
                     <div class="step-number">02</div>
                     <div class="step-content">
                         <div class="step-image">
-                            <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/steps/step02.png" alt="Stanovení prodejní ceny" class="media-item">
+                            <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/steps/step02.png" alt="Stanovení prodejní ceny" class="media-item" loading="lazy">
                         </div>
                         <h3>Stanovení prodejní ceny</h3>
                         <h4>Analýza trhu.</h4>
@@ -229,7 +231,7 @@
                     <div class="step-number">03</div>
                     <div class="step-content">
                         <div class="step-image">
-                            <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/steps/step03.avif" alt="Příprava nemovitosti" class="media-item">
+                            <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/steps/step03.avif" alt="Příprava nemovitosti" class="media-item" loading="lazy">
                         </div>
                         <h3>Příprava nemovitosti</h3>
                         <h4>Zvýšení atraktivity</h4>
@@ -242,7 +244,7 @@
                     <div class="step-number">04</div>
                     <div class="step-content">
                         <div class="step-image">
-                            <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/steps/step04.png" alt="Marketingová kampaň" class="media-item">
+                            <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/steps/step04.png" alt="Marketingová kampaň" class="media-item" loading="lazy">
                         </div>
                         <h3>Marketingová kampaň</h3>
                         <h4>Maximální dosah</h4>
@@ -255,7 +257,7 @@
                     <div class="step-number">05</div>
                     <div class="step-content">
                         <div class="step-image">
-                            <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/steps/step05.avif" alt="Prohlídky se zájemci" class="media-item">
+                            <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/steps/step05.avif" alt="Prohlídky se zájemci" class="media-item" loading="lazy">
                         </div>
                         <h3>Prohlídky se zájemci</h3>
                         <h4>Profesionální prezentace</h4>
@@ -268,7 +270,7 @@
                     <div class="step-number">06</div>
                     <div class="step-content">
                         <div class="step-image">
-                            <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/steps/step06.png" alt="Vyjednávání" class="media-item">
+                            <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/steps/step06.png" alt="Vyjednávání" class="media-item" loading="lazy">
                         </div>
                         <h3>Vyjednávání</h3>
                         <h4>Zajištění nejlepší dohody</h4>
@@ -281,7 +283,7 @@
                     <div class="step-number">07</div>
                     <div class="step-content">
                         <div class="step-image">
-                            <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/steps/step07.png" alt="Závěrečná fáze" class="media-item">
+                            <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/steps/step07.png" alt="Závěrečná fáze" class="media-item" loading="lazy">
                         </div>
                         <h3>Závěrečná fáze</h3>
                         <h4>Hladké dokončení</h4>
@@ -294,7 +296,7 @@
                     <div class="bonus-label">BONUS</div>
                     <div class="step-content">
                         <div class="step-image">
-                            <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/steps/step-bonus.png" alt="Následný servis" class="media-item">
+                            <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/steps/step-bonus.png" alt="Následný servis" class="media-item" loading="lazy">
                         </div>
                         <h3>Následný servis</h3>
                         <h4>Prodejem služby nekončí</h4>
@@ -307,7 +309,7 @@
                     <div class="bonus-label">BONUS 2</div>
                     <div class="step-content">
                         <div class="step-image">
-                            <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/steps/step-bonus2.avif" alt="KLUB investorů" class="media-item">
+                            <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/steps/step-bonus2.avif" alt="KLUB investorů" class="media-item" loading="lazy">
                         </div>
                         <h3>KLUB investorů</h3>
                         <h4>Exkluzivní klub</h4>
@@ -406,7 +408,7 @@
                     <a href="ocenit-online.html" class="cta-button ocenit-banner-button">Ocenit nemovitost zdarma</a>
                 </div>
                 <div class="ocenit-banner-image">
-                    <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/ocenit-online.png" alt="Ocenit nemovitost online" class="ocenit-img">
+                    <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/ocenit-online.png" alt="Ocenit nemovitost online" class="ocenit-img" loading="lazy">
                 </div>
             </div>
         </div>
@@ -491,7 +493,7 @@
                         <div class="recenze-number">01</div>
                         <div class="recenze-content">
                             <div class="recenze-image">
-                                <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/recenze-blatenska.avif" alt="Recenze 1" class="recenze-img">
+                                <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/recenze-blatenska.avif" alt="Recenze 1" class="recenze-img" loading="lazy">
                             </div>
                             <div class="client-info">
                                 <div class="rating">
