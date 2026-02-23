@@ -1,55 +1,23 @@
 // Mobile navigation menu toggle
 document.addEventListener('DOMContentLoaded', function() {
-    // Lazy loading videí
+    // Hero video - načítá se okamžitě (above the fold)
     const heroVideo = document.getElementById('hero-video');
     const missionVideo = document.getElementById('mission-video');
     
     if (heroVideo) {
-        // Změníme atribut preload na 'none' pomocí JavaScriptu
-        // protože někteří prohlížeče ignorují preload='metadata' v HTML
-        heroVideo.preload = 'none';
-        
-        // Nastavení původního src atributu videa
-        const videoSource = heroVideo.querySelector('source');
-        const originalSrc = videoSource.getAttribute('src');
-        
-        // Odstraníme src aby se video nezačalo automaticky stahovat
-        videoSource.removeAttribute('src');
-        
-        // Observer pro lazy loading
-        const lazyLoadObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Pokud je hero sekce viditelná, načteme video
-                    videoSource.setAttribute('src', originalSrc);
-                    heroVideo.load();
-                    heroVideo.play().catch(e => console.log('Automatické přehrávání není povoleno: ', e));
-                    
-                    // Efekt ztmavení a znovu objevení videa po skončení
-                    heroVideo.addEventListener('ended', function() {
-                        // Ztmavit video
-                        heroVideo.style.transition = 'opacity 0.7s ease';
-                        heroVideo.style.opacity = '0';
-                        
-                        // Po chvíli znovu objevit a přehrát
-                        setTimeout(function() {
-                            heroVideo.currentTime = 0; // Restart videa
-                            heroVideo.play();
-                            // Znovu zobrazit video s animací
-                            setTimeout(function() {
-                                heroVideo.style.opacity = '1';
-                            }, 100);
-                        }, 800);
-                    });
-                    
-                    // Přestaneme sledovat, protože už jsme video načetli
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 }); // Spustí se, když je viditelných 10% hero sekce
-        
-        // Začneme sledovat hero sekci
-        lazyLoadObserver.observe(document.querySelector('.hero'));
+        // Efekt ztmavení a znovu objevení videa po skončení
+        heroVideo.addEventListener('ended', function() {
+            heroVideo.style.transition = 'opacity 0.7s ease';
+            heroVideo.style.opacity = '0';
+            
+            setTimeout(function() {
+                heroVideo.currentTime = 0;
+                heroVideo.play();
+                setTimeout(function() {
+                    heroVideo.style.opacity = '1';
+                }, 100);
+            }, 800);
+        });
     }
     
     // Lazy loading pro video v sekci mise
