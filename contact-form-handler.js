@@ -120,6 +120,9 @@
     const form = document.getElementById('contact-form');
     if (!form) return;
 
+    const API_URL = 'https://api-production-88cf.up.railway.app/api/v1/public/api-leads/submit';
+    const API_KEY = 'rv_live_56bf805da8b9078ad650e0a6de346401ce7da6281146ea2f';
+
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       
@@ -134,26 +137,40 @@
       
       // Get form data
       const formData = new FormData(form);
-      const data = {
-        name: formData.get('name'),
-        email: formData.get('email'),
-        phone: formData.get('phone'),
-        message: formData.get('message'),
-        formType: 'contact'
+      const name = formData.get('name').trim();
+      const email = formData.get('email').trim();
+      const phone = formData.get('phone').trim();
+      const message = formData.get('message').trim();
+
+      // Split name into firstName + lastName
+      const parts = name.split(/\s+/);
+      const firstName = parts[0] || '';
+      const lastName = parts.slice(1).join(' ') || '';
+
+      const payload = {
+        firstName,
+        lastName,
+        email,
+        phone,
+        message,
+        data: {
+          source: 'davidchoc.com',
+          campaign: 'davidchoc-website',
+          pipeline: 'kontaktni-formu-87433'
+        }
       };
 
       try {
-        const response = await fetch('/api/contact', {
+        const response = await fetch(API_URL, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            'X-API-Key': API_KEY
           },
-          body: JSON.stringify(data)
+          body: JSON.stringify(payload)
         });
 
-        const result = await response.json();
-
-        if (response.ok && result.success) {
+        if (response.ok) {
           // Success
           messageDiv.className = 'form-message success';
           messageDiv.textContent = 'Děkujeme! Vaše zpráva byla úspěšně odeslána. Brzy se vám ozveme.';
@@ -175,7 +192,9 @@
             window.fbq('track', 'Contact');
           }
         } else {
-          throw new Error(result.error || 'Nepodařilo se odeslat zprávu');
+          const errorData = await response.json();
+          console.error('API error:', errorData);
+          throw new Error('API error');
         }
       } catch (error) {
         console.error('Form submission error:', error);
