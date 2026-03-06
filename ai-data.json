@@ -1,6 +1,6 @@
 {
   "@context": "https://schema.org",
-  "generatedAt": "2026-03-06T21:04:27.266Z",
+  "generatedAt": "2026-03-06T21:05:21.880Z",
   "generatedBy": "Hugo Orchestrator AIO Engine",
   "projectType": "html",
   "schemas": {
@@ -27,23 +27,23 @@
           "name": "Jaké služby nabízí David Choc?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "David Choc nabízí profesionální realitní služby, včetně prodeje a pronájmu nemovitostí. Klade důraz na osobní péči a detailní kontrolu každého kroku."
+            "text": "David Choc nabízí profesionální realitní služby zahrnující prodej a pronájem nemovitostí."
           }
         },
         {
           "@type": "Question",
-          "name": "Jak dlouho se David Choc pohybuje v realitách?",
+          "name": "V jaké oblasti působí realitní agent David Choc?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "David Choc má více než 30 let praxe v oblasti realit."
+            "text": "David Choc působí jako realitní agent v Plzeňském kraji."
           }
         },
         {
           "@type": "Question",
-          "name": "Kde David Choc působí?",
+          "name": "Jak dlouho se David Choc věnuje realitní činnosti?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "David Choc působí v Plzeňském kraji."
+            "text": "David Choc má více než 30 let praxe v realitách."
           }
         },
         {
@@ -51,7 +51,7 @@
           "name": "Jak mohu kontaktovat Davida Choce?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Davida Choce je možné kontaktovat telefonicky na čísle +420774052232 nebo e-mailem na david.choc@ptf.cz."
+            "text": "Davida Choce lze kontaktovat telefonicky na čísle +420774052232 nebo e-mailem na adrese david.choc@ptf.cz."
           }
         }
       ]
