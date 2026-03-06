@@ -1,6 +1,6 @@
 {
   "@context": "https://schema.org",
-  "generatedAt": "2026-03-06T20:39:23.455Z",
+  "generatedAt": "2026-03-06T20:51:48.005Z",
   "generatedBy": "Hugo Orchestrator AIO Engine",
   "projectType": "html",
   "schemas": {
@@ -27,20 +27,20 @@
           "name": "Jaké služby nabízí David Choc?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "David Choc se specializuje na prodej a pronájem nemovitostí a poskytuje profesionální služby s osobní péčí."
+            "text": "David Choc nabízí profesionální realitní služby a osobní péči v oblasti prodeje a pronájmu nemovitostí."
           }
         },
         {
           "@type": "Question",
-          "name": "Jaké zkušenosti má David Choc?",
+          "name": "Jak dlouho se David Choc pohybuje v realitách?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "David Choc má více než 30 let praxe v realitním oboru."
+            "text": "David Choc má více než 30 let praxe v oblasti realit."
           }
         },
         {
           "@type": "Question",
-          "name": "Kde působí David Choc?",
+          "name": "Kde působí realitní agent David Choc?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "David Choc působí v Plzeňském kraji."
