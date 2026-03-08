@@ -1,14 +1,14 @@
 {
   "posts": [
     {
-      "id":"jaro-prichazi-pripravte-se-na-realitni-sezonu"
+      "id": "jaro-prichazi-pripravte-se-na-realitni-sezonu"
       "date": "2026-03-08",
       "slug": "jaro-prichazi-pripravte-se-na-realitni-sezonu",
       "image": "/images/blog/jaro-prichazi-pripravte-se-na-realitni-sezonu.png",
       "title": "Jaro přichází: Připravte se na realitní sezónu",
       "excerpt": "S příchodem jara se realitní trh probouzí. Jak se připravit na prodej, koupi nebo investici do nemovitosti v tomto období? Tento článek vám poskytne praktické tipy a strategie, abyste z jarní realitní sezóny vytěžili maximum.",
       "category": "market",
-      "featured": true,
+      "featured": false,
       "imageAlt": "Rozkvetlá zahrada u rodinného domu",
       "keywords": "realitní trh, jaro, prodej nemovitosti, koupě nemovitosti, investice do nemovitostí, home staging, hypotéka",
       "readTime": 7,
