@@ -1,21 +1,6 @@
 {
   "posts": [
-    {
-      "date": "2026-03-07",
-      "slug": "jak-najit-ten-pravy-domov",
-      "image": "",
-      "title": "Jak najít ten pravý domov: Průvodce pro rok 2024",
-      "excerpt": "Hledáte nový domov? Tento průvodce vám krok za krokem ukáže, jak se zorientovat na trhu, vyhnout se chybám a najít ideální místo pro život. Naučte se správně definovat své potřeby, prozkoumat lokality a vyjednávat o ceně.",
-      "category": "guide",
-      "featured": false,
-      "imageAlt": "Rodina se usmívá před novým domem",
-      "keywords": "hledání bydlení, koupě nemovitosti, realitní trh, hypotéka, lokace, David Choc",
-      "readTime": 12,
-      "seoTitle": "Hledání domova: Průvodce 2024 | David Choc",
-      "categoryName": "Průvodce",
-      "dateFormatted": "7. března 2026",
-      "seoDescription": "Praktický průvodce hledáním ideálního domova v roce 2024. Tipy na financování, lokality a vyjednávání od realitního experta Davida Choce."
-    },
+    
     {
       "id": "jarni-prodej-zacina-v-lednu",
       "title": "Jarní prodej začíná v lednu: Co udělat v lednu a únoru, aby šla nemovitost na trh v top formě v březnu",
