@@ -1,6 +1,6 @@
 {
   "@context": "https://schema.org",
-  "generatedAt": "2026-03-06T21:27:40.151Z",
+  "generatedAt": "2026-03-23T07:03:28.813Z",
   "generatedBy": "Hugo Orchestrator AIO Engine",
   "projectType": "html",
   "schemas": {
@@ -8,7 +8,16 @@
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "David Choc",
-      "description": "David Choc"
+      "description": "Zakladatel PTF reality a vlastník ekosystému InvestCzech — realitní kancelář, online odhady, prověřování nájemníků a vzdělávání v investování do nemovitostí.",
+      "sameAs": [
+        "https://www.facebook.com/davidchoc.cz",
+        "https://www.instagram.com/davidchoc.cz/",
+        "https://www.linkedin.com/in/david-choc-85194941/",
+        "https://www.youtube.com/@davidchoc",
+        "https://www.davidchoc.cz",
+        "https://ptfreality.cz"
+      ],
+      "keywords": "David Choc, zakladatel PTF reality, InvestCzech, realitní podnikatel, Plzeň, investice do nemovitostí, odhad nemovitostí, finanční gramotnost, Vzorný nájemce, Odhad.online, ChciBýtMilionářem"
     },
     "faq": {
       "@context": "https://schema.org",
@@ -27,31 +36,31 @@
           "name": "Jaké služby nabízí David Choc?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "David Choc nabízí profesionální realitní služby v oblasti prodeje a pronájmu nemovitostí."
+            "text": "David Choc nabízí profesionální realitní služby, včetně prodeje a pronájmu nemovitostí. Klade důraz na osobní přístup a kontrolu detailů."
           }
         },
         {
           "@type": "Question",
-          "name": "V jaké oblasti působí realitní agent David Choc?",
+          "name": "Jaké zkušenosti má David Choc?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "David Choc působí jako realitní agent primárně v Plzeňském kraji."
+            "text": "David Choc má více než 30 let praxe v realitním oboru a realizoval přes 5 000 případů."
           }
         },
         {
           "@type": "Question",
-          "name": "Kolik let praxe má David Choc jako realitní agent?",
+          "name": "Kde působí David Choc?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "David Choc má více než 30 let praxe jako realitní agent."
+            "text": "David Choc působí jako realitní agent v Plzeňském kraji."
           }
         },
         {
           "@type": "Question",
-          "name": "Jak mohu kontaktovat Davida Choca?",
+          "name": "Jak mohu kontaktovat Davida Choce?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Davida Choca lze kontaktovat telefonicky na čísle +420774052232 nebo e-mailem na adrese david.choc@ptf.cz."
+            "text": "Davida Choce lze kontaktovat telefonicky na čísle +420774052232 nebo e-mailem na adrese david.choc@ptf.cz."
           }
         }
       ]
