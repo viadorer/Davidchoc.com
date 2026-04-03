@@ -1,6 +1,23 @@
 {
   "posts": [
     {
+      "date": "2026-04-02",
+      "slug": "jak-vybrat-spravneho-maklere-a-nepreplatit",
+      "image": "/images/blog/jak-vybrat-spravneho-maklere-a-nepreplatit.png",
+      "title": "Jak vybrat správného makléře a nepřeplatit: Průvodce pro rok 2026",
+      "excerpt": "Výběr realitního makléře je klíčové rozhodnutí. Špatný makléř vás může stát čas i peníze. Naučte se, jak najít profesionála, který vám pomůže prodat nebo koupit nemovitost za nejlepších podmínek.",
+      "category": "guide",
+      "featured": false,
+      "imageAlt": "Žena si potřásá rukou s realitním makléřem",
+      "keywords": "realitní makléř, výběr makléře, provize makléře, prodej nemovitosti, koupě nemovitosti, Plzeň, PTF reality",
+      "readTime": 8,
+      "seoTitle": "Jak vybrat makléře a nepřeplatit | David Choc",
+      "categoryName": "Průvodce",
+      "dateFormatted": "2. dubna 2026",
+      "seoDescription": "Průvodce výběrem realitního makléře v roce 2026. Lokální znalost, reference, provize vs. hodnota. Na co se ptát a jak se vyhnout chybám.",
+      "id": "jak-vybrat-spravneho-maklere-a-nepreplatit"
+    },
+    {
       "id": "jaro-prichazi-pripravte-se-na-realitni-sezonu",
       "date": "2026-03-08",
       "slug": "jaro-prichazi-pripravte-se-na-realitni-sezonu",
