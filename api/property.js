@@ -1,6 +1,6 @@
 // Vercel serverless function — proxy na PTF backend pro detail jedné nemovitosti
 // Volá: GET /api/property?slug=<slug>
-// Backend: GET /api/properties/by-slug/:slug s headerem X-Tenant-Slug
+// Backend: GET /api/properties/:slug s headerem X-Tenant-Slug
 
 const BACKEND = process.env.PTF_BACKEND_URL || 'https://api.ptf.cz';
 const TENANT  = process.env.PTF_TENANT_SLUG || 'ptf-reality';
@@ -27,7 +27,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Neplatný slug' });
   }
 
-  const url = `${BACKEND}/api/properties/by-slug/${encodeURIComponent(slug)}`;
+  const url = `${BACKEND}/api/properties/${encodeURIComponent(slug)}`;
 
   try {
     const upstream = await fetch(url, {
