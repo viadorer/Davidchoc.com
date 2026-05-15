@@ -6,39 +6,52 @@
     <meta name="description" content="Blog Davida Choca - Realitního agenta s více než 30 lety praxe. Články o realitách, prodeji nemovitostí, investicích a trhu s nemovitostmi.">
     <meta name="keywords" content="realitní blog, David Choc, blog o realitách, prodej nemovitostí, investice do nemovitostí, reality Plzeň">
     <meta name="author" content="David Choc">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
     <meta property="og:title" content="Blog | David Choc | Realitní agent">
     <meta property="og:description" content="Blog o realitách, prodeji nemovitostí, investicích a trhu s nemovitostmi.">
-    <meta property="og:image" content="https://davidchoc.https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/davidchocagent.avif">
-    <meta property="og:url" content="https://davidchoc.cz/blog/index.html">
+    <meta property="og:image" content="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/davidchocagent.avif">
+    <meta property="og:url" content="https://www.davidchoc.cz/blog">
     <meta property="og:type" content="website">
+    <meta property="og:locale" content="cs_CZ">
+    <meta property="og:site_name" content="David Choc">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blog | David Choc | Realitní agent">
+    <meta name="twitter:description" content="Blog o realitách, prodeji nemovitostí, investicích a trhu s nemovitostmi.">
+    <meta name="twitter:image" content="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/davidchocagent.avif">
     <title>Blog | David Choc | Realitní agent</title>
     <link rel="stylesheet" href="../styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" media="print" onload="this.media='all'">
     <link rel="icon" type="image/png" href="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/favicon.png">
-    <link rel="canonical" href="https://davidchoc.cz/blog/index.html">
-    
-    <!-- Schéma.org pro lepší SEO -->
+    <link rel="canonical" href="https://www.davidchoc.cz/blog">
+
+    <!-- Schéma.org Blog -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Blog",
+      "@id": "https://www.davidchoc.cz/blog#blog",
       "headline": "Blog Davida Choca",
       "description": "Blog o realitách, prodeji nemovitostí, investicích a trhu s nemovitostmi.",
-      "image": "https://davidchoc.https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/davidchocagent.avif",
-      "url": "https://davidchoc.cz/blog/index.html",
-      "author": {
-        "@type": "Person",
-        "name": "David Choc"
-      },
+      "image": "https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/davidchocagent.avif",
+      "url": "https://www.davidchoc.cz/blog",
+      "inLanguage": "cs-CZ",
+      "author": { "@type": "Person", "@id": "https://www.davidchoc.cz/#person", "name": "David Choc" },
       "publisher": {
         "@type": "Organization",
         "name": "David Choc",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://davidchoc.https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/logo.png"
-        }
+        "logo": { "@type": "ImageObject", "url": "https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/logo.png" }
       }
+    }
+    </script>
+    <!-- Breadcrumbs -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Domů", "item": "https://www.davidchoc.cz/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.davidchoc.cz/blog" }
+      ]
     }
     </script>
 
@@ -421,7 +434,7 @@
         function createBlogCard(post) {
             const card = document.createElement('div');
             card.className = 'blog-card';
-            card.onclick = () => window.location.href = `./detail.html?id=${post.id}`;
+            card.onclick = () => window.location.href = `./posts/${post.slug || post.id}.html`;
             
             card.innerHTML = `
                 <div class="blog-image">
@@ -435,7 +448,7 @@
                     <div class="read-time">
                         <i class="fas fa-clock"></i> ${post.readTime} min čtení
                     </div>
-                    <a href="./detail.html?id=${post.id}" class="blog-read-more">Číst více</a>
+                    <a href="./posts/${post.slug || post.id}.html" class="blog-read-more">Číst více</a>
                 </div>
             `;
             

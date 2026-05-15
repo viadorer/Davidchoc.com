@@ -2,3 +2,14 @@
 node_modules/
 .env.local
 .vercel
+
+# Velká média — mají být na Cloudflare R2, ne v repu
+*.mp4
+*.mov
+*.webm
+*.MOV
+*.MP4
+
+# Velké binární soubory
+archiv/
+*.pdf
