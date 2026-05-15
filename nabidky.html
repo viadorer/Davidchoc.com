@@ -12,7 +12,7 @@
     <meta property="og:title" content="Nabídky nemovitostí | David Choc">
     <meta property="og:description" content="Aktuální nabídka nemovitostí v Plzeňském kraji.">
     <meta property="og:image" content="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/davidchocagent.avif">
-    <meta property="og:url" content="https://www.davidchoc.cz/nabidky.html">
+    <meta property="og:url" content="https://www.davidchoc.cz/nabidky">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="cs_CZ">
     <meta property="og:site_name" content="David Choc">
@@ -47,158 +47,512 @@
     </script>
 
     <style>
+        /* Design system davidchoc.com */
         :root {
             --gold: #FFBF00;
-            --gold-dark: #B8860B;
+            --gold-dark: #E6AB00;
+            --gold-light: #FFD700;
+            --beige: #E6DBBC;
+            --beige-light: #F8F4E9;
+            --beige-medium: #f4ebd7;
             --dark: #1a1a1a;
-            --grey: #6b7280;
-            --light: #f9fafb;
-            --border: #e5e7eb;
+            --darker: #000000;
+            --text: #333333;
+            --text-muted: #6b6b6b;
+            --border-soft: rgba(0, 0, 0, 0.08);
         }
-        .nabidky-hero {
-            background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
-            color: #fff;
-            padding: 120px 20px 60px;
-            text-align: center;
-        }
-        .nabidky-hero h1 { font-size: 2.5rem; font-weight: 800; margin: 0 0 12px; }
-        .nabidky-hero p { font-size: 1.1rem; color: #d1d5db; max-width: 700px; margin: 0 auto; }
-        .nabidky-container { max-width: 1280px; margin: 0 auto; padding: 40px 20px 80px; }
-        nav.breadcrumb { font-size: 0.9rem; color: var(--grey); margin-bottom: 24px; }
-        nav.breadcrumb a { color: var(--grey); text-decoration: none; }
-        nav.breadcrumb a:hover { color: var(--gold); }
 
-        .filter-bar { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 28px; padding: 20px; background: var(--light); border-radius: 12px; }
+        body { background-color: var(--beige); color: var(--text); }
+
+        .nabidky-page { padding-top: 110px; padding-bottom: 80px; }
+
+        /* Hero */
+        .nabidky-hero {
+            text-align: center;
+            padding: 40px 20px 50px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .nabidky-hero .eyebrow {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold-dark);
+            margin-bottom: 14px;
+            padding: 4px 16px;
+            border: 1px solid var(--gold);
+            border-radius: 999px;
+            background: rgba(255, 191, 0, 0.08);
+        }
+        .nabidky-hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            color: var(--dark);
+            margin: 0 0 16px;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+        }
+        .nabidky-hero p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 640px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Container */
+        .nabidky-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Breadcrumb */
+        nav.breadcrumb {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            padding-top: 20px;
+        }
+        nav.breadcrumb a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        nav.breadcrumb a:hover { color: var(--gold-dark); }
+
+        /* Filter bar — sticky, premium look */
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 32px;
+            padding: 24px;
+            background: var(--beige-light);
+            border: 1px solid var(--border-soft);
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
         .filter-bar select, .filter-bar input {
-            padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px;
-            background: #fff; font-size: 0.95rem; min-width: 140px;
+            padding: 12px 16px;
+            border: 1px solid var(--border-soft);
+            border-radius: 10px;
+            background: #fff;
+            font-size: 0.95rem;
+            font-family: inherit;
+            color: var(--text);
+            min-width: 150px;
+            flex: 1;
+            transition: all 0.2s;
+        }
+        .filter-bar select:focus, .filter-bar input:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(255, 191, 0, 0.15);
         }
         .filter-bar button {
-            padding: 10px 20px; background: var(--gold); color: #111; border: none; border-radius: 8px;
-            font-weight: 600; cursor: pointer; transition: background 0.2s;
+            padding: 12px 24px;
+            background: var(--dark);
+            color: var(--gold);
+            border: 1px solid var(--dark);
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
-        .filter-bar button:hover { background: var(--gold-dark); color: #fff; }
-        .filter-bar button.secondary { background: transparent; border: 1px solid var(--border); color: var(--grey); }
+        .filter-bar button:hover {
+            background: var(--gold);
+            color: var(--dark);
+            border-color: var(--gold);
+        }
+        .filter-bar button.secondary {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--border-soft);
+        }
+        .filter-bar button.secondary:hover {
+            border-color: var(--dark);
+            color: var(--dark);
+            background: transparent;
+        }
 
+        /* Results count */
+        .results-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+        .results-info strong { color: var(--dark); }
+
+        /* Grid */
         .properties-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 24px; margin-top: 24px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 28px;
         }
+
+        /* Card */
         .property-card {
-            background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
-            transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; color: inherit;
-            display: flex; flex-direction: column;
+            background: #fff;
+            border: 1px solid var(--border-soft);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.3s cubic-bezier(.4,0,.2,1), box-shadow 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
         }
-        .property-card:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .property-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
         .property-image {
-            position: relative; aspect-ratio: 16/10; overflow: hidden; background: var(--light);
+            position: relative;
+            aspect-ratio: 4 / 3;
+            overflow: hidden;
+            background: var(--beige-medium);
         }
-        .property-image img { width: 100%; height: 100%; object-fit: cover; }
+        .property-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s cubic-bezier(.4,0,.2,1);
+        }
+        .property-card:hover .property-image img { transform: scale(1.05); }
+
+        .property-badges {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            align-items: flex-start;
+            z-index: 2;
+        }
         .property-badge {
-            position: absolute; top: 12px; left: 12px; background: var(--gold); color: #111;
-            padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 0.5px;
+            background: var(--gold);
+            color: var(--dark);
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            backdrop-filter: blur(6px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
         }
-        .property-badge.reserved { background: #ef4444; color: #fff; }
-        .property-content { padding: 20px; flex: 1; display: flex; flex-direction: column; }
-        .property-title { font-size: 1.1rem; font-weight: 700; color: #111; margin: 0 0 8px; line-height: 1.3; }
-        .property-location { color: var(--grey); font-size: 0.9rem; margin: 0 0 16px; }
-        .property-location i { margin-right: 6px; color: var(--gold); }
+        .property-badge.reserved { background: #DC2626; color: #fff; }
+        .property-badge.exclusive { background: var(--dark); color: var(--gold); }
+        .property-badge.price-drop { background: #16A34A; color: #fff; }
+
+        .property-offer-type {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            background: rgba(26, 26, 26, 0.85);
+            color: var(--gold);
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            backdrop-filter: blur(6px);
+            z-index: 2;
+        }
+
+        .property-content {
+            padding: 22px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .property-disposition {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--gold-dark);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 6px;
+        }
+        .property-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin: 0 0 10px;
+            line-height: 1.35;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .property-location {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin: 0 0 18px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .property-location i { color: var(--gold-dark); font-size: 0.95rem; }
+
         .property-meta {
-            display: flex; gap: 14px; flex-wrap: wrap; font-size: 0.85rem; color: var(--grey);
-            margin: 0 0 16px; padding: 12px 0; border-top: 1px solid var(--border);
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin: 0 0 18px;
+            padding: 14px 0;
+            border-top: 1px solid var(--border-soft);
+            border-bottom: 1px solid var(--border-soft);
         }
-        .property-meta span i { margin-right: 4px; color: var(--gold-dark); }
+        .property-meta span { display: flex; align-items: center; gap: 6px; }
+        .property-meta span i { color: var(--gold-dark); }
+
+        .property-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: auto;
+            gap: 12px;
+        }
         .property-price {
-            font-size: 1.35rem; font-weight: 800; color: #111; margin-top: auto;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            line-height: 1.2;
+            letter-spacing: -0.01em;
         }
-        .property-price .unit { font-size: 0.75rem; color: var(--grey); font-weight: 500; margin-left: 4px; }
+        .property-price .unit {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            display: block;
+            margin-top: 2px;
+        }
+        .property-cta {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gold-dark);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+            padding-bottom: 4px;
+        }
 
+        /* States */
         .loading, .empty, .error {
-            grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--grey);
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 80px 20px;
+            color: var(--text-muted);
         }
-        .loading i { animation: spin 1s linear infinite; font-size: 2rem; color: var(--gold); }
+        .loading i {
+            animation: spin 1s linear infinite;
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
         @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        .empty i, .error i { font-size: 3rem; color: var(--border); margin-bottom: 16px; }
-
-        .pagination { display: flex; justify-content: center; gap: 8px; margin-top: 40px; }
-        .pagination button {
-            padding: 8px 14px; background: #fff; border: 1px solid var(--border); border-radius: 6px;
-            cursor: pointer; font-weight: 500;
+        .empty i, .error i {
+            font-size: 3.5rem;
+            color: var(--gold);
+            opacity: 0.4;
+            margin-bottom: 20px;
         }
-        .pagination button.active { background: var(--gold); border-color: var(--gold); color: #111; }
-        .pagination button:hover:not(.active) { border-color: var(--gold); }
-        .pagination button:disabled { opacity: 0.4; cursor: not-allowed; }
+        .empty h3, .error h3 {
+            color: var(--dark);
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 0 0 8px;
+        }
+        .empty p, .error p {
+            font-size: 1rem;
+            max-width: 480px;
+            margin: 0 auto 24px;
+        }
+        .empty .btn, .error .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background: var(--dark);
+            color: var(--gold);
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .empty .btn:hover, .error .btn:hover {
+            background: var(--gold);
+            color: var(--dark);
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 48px;
+            flex-wrap: wrap;
+        }
+        .pagination button {
+            min-width: 40px;
+            height: 40px;
+            padding: 0 14px;
+            background: #fff;
+            border: 1px solid var(--border-soft);
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            font-family: inherit;
+            color: var(--text);
+            transition: all 0.2s;
+        }
+        .pagination button.active {
+            background: var(--dark);
+            border-color: var(--dark);
+            color: var(--gold);
+        }
+        .pagination button:hover:not(.active):not(:disabled) {
+            border-color: var(--dark);
+            color: var(--dark);
+        }
+        .pagination button:disabled { opacity: 0.3; cursor: not-allowed; }
+
+        /* CTA banner under listings */
+        .cta-banner {
+            margin-top: 60px;
+            padding: 40px 32px;
+            background: var(--dark);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            flex-wrap: wrap;
+            color: #fff;
+        }
+        .cta-banner h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 0 6px;
+            color: var(--gold);
+        }
+        .cta-banner p { margin: 0; color: rgba(255,255,255,0.7); }
+        .cta-banner .btn {
+            padding: 14px 28px;
+            background: var(--gold);
+            color: var(--dark);
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+        .cta-banner .btn:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+        }
 
         @media (max-width: 768px) {
-            .nabidky-hero h1 { font-size: 1.8rem; }
-            .nabidky-hero { padding: 100px 20px 40px; }
-            .filter-bar select, .filter-bar input { min-width: 100%; }
+            .nabidky-page { padding-top: 90px; }
+            .filter-bar { padding: 16px; }
+            .filter-bar select, .filter-bar input { min-width: 100%; width: 100%; }
+            .filter-bar button { width: 100%; justify-content: center; }
+            .properties-grid { grid-template-columns: 1fr; gap: 20px; }
+            .cta-banner { flex-direction: column; text-align: center; padding: 28px 20px; }
         }
     </style>
 </head>
 <body>
     <div id="navbar-placeholder"></div>
 
-    <section class="nabidky-hero">
-        <h1>Nabídky nemovitostí</h1>
-        <p>Aktuální nabídka bytů, domů, pozemků a komerčních prostor v Plzeňském kraji od PTF reality</p>
-    </section>
+    <main class="nabidky-page">
+        <div class="nabidky-container">
+            <nav class="breadcrumb" aria-label="Drobečková navigace">
+                <a href="/">Domů</a> &rsaquo; <span>Nabídky</span>
+            </nav>
 
-    <main class="nabidky-container">
-        <nav class="breadcrumb" aria-label="Drobečková navigace">
-            <a href="/">Domů</a> &rsaquo; <span>Nabídky</span>
-        </nav>
+            <section class="nabidky-hero">
+                <span class="eyebrow">Aktuální nabídka</span>
+                <h1>Nemovitosti v Plzeňském kraji</h1>
+                <p>Vybrané byty, domy, pozemky a komerční prostory k prodeji i pronájmu od PTF reality. Najděte si svůj nový domov nebo investici.</p>
+            </section>
 
-        <form class="filter-bar" id="filterForm" onsubmit="event.preventDefault(); applyFilters();">
-            <select name="offer_type" id="offerType">
-                <option value="">Typ obchodu</option>
-                <option value="prodej">Prodej</option>
-                <option value="pronajem">Pronájem</option>
-            </select>
-            <select name="property_type" id="propertyType">
-                <option value="">Typ nemovitosti</option>
-                <option value="byt">Byt</option>
-                <option value="dum">Dům</option>
-                <option value="pozemek">Pozemek</option>
-                <option value="komercni">Komerční</option>
-                <option value="garaz">Garáž</option>
-            </select>
-            <select name="disposition" id="disposition">
-                <option value="">Dispozice</option>
-                <option value="1+kk">1+kk</option>
-                <option value="1+1">1+1</option>
-                <option value="2+kk">2+kk</option>
-                <option value="2+1">2+1</option>
-                <option value="3+kk">3+kk</option>
-                <option value="3+1">3+1</option>
-                <option value="4+kk">4+kk</option>
-                <option value="4+1">4+1</option>
-                <option value="5+kk">5+kk</option>
-            </select>
-            <input type="text" name="city" id="city" placeholder="Město (např. Plzeň)">
-            <input type="number" name="price_max" id="priceMax" placeholder="Cena max" min="0">
-            <button type="submit"><i class="fas fa-search"></i> Filtrovat</button>
-            <button type="button" class="secondary" onclick="resetFilters()">Resetovat</button>
-        </form>
+            <form class="filter-bar" id="filterForm" onsubmit="event.preventDefault(); applyFilters();">
+                <select name="offer_type" id="offerType" aria-label="Typ obchodu">
+                    <option value="">Typ obchodu</option>
+                    <option value="prodej">Prodej</option>
+                    <option value="pronajem">Pronájem</option>
+                </select>
+                <select name="property_type" id="propertyType" aria-label="Typ nemovitosti">
+                    <option value="">Typ nemovitosti</option>
+                    <option value="byt">Byt</option>
+                    <option value="dum">Dům</option>
+                    <option value="pozemek">Pozemek</option>
+                    <option value="komercni">Komerční</option>
+                    <option value="garaz">Garáž</option>
+                </select>
+                <select name="disposition" id="disposition" aria-label="Dispozice">
+                    <option value="">Dispozice</option>
+                    <option value="1+kk">1+kk</option>
+                    <option value="1+1">1+1</option>
+                    <option value="2+kk">2+kk</option>
+                    <option value="2+1">2+1</option>
+                    <option value="3+kk">3+kk</option>
+                    <option value="3+1">3+1</option>
+                    <option value="4+kk">4+kk</option>
+                    <option value="4+1">4+1</option>
+                    <option value="5+kk">5+kk</option>
+                </select>
+                <input type="text" name="city" id="city" placeholder="Město (např. Plzeň)" aria-label="Město">
+                <input type="number" name="price_max" id="priceMax" placeholder="Max cena (Kč)" min="0" step="100000" aria-label="Maximální cena">
+                <button type="submit"><i class="fas fa-search"></i> Filtrovat</button>
+                <button type="button" class="secondary" onclick="resetFilters()">Resetovat</button>
+            </form>
 
-        <div class="properties-grid" id="propertiesGrid">
-            <div class="loading">
-                <i class="fas fa-circle-notch"></i>
-                <p>Načítám nabídky…</p>
+            <div class="results-info" id="resultsInfo" hidden></div>
+
+            <div class="properties-grid" id="propertiesGrid">
+                <div class="loading">
+                    <i class="fas fa-circle-notch"></i>
+                    <p>Načítám nabídky…</p>
+                </div>
+            </div>
+
+            <div class="pagination" id="pagination"></div>
+
+            <div class="cta-banner">
+                <div>
+                    <h3>Nenašli jste, co hledáte?</h3>
+                    <p>Pošlu vám nabídky na míru, často ještě před zveřejněním.</p>
+                </div>
+                <a href="/#kontakt" class="btn">Napsat poptávku</a>
             </div>
         </div>
-
-        <div class="pagination" id="pagination"></div>
     </main>
 
     <div id="footer-placeholder"></div>
     <script src="/common/common.js" defer></script>
 
     <script>
-        // Backend přes Vercel proxy /api/properties (skrývá PTF backend URL)
         const API = '/api/properties';
-        const PTF_DETAIL_BASE = 'https://www.ptf.cz/nabidky'; // detail na ptf.cz
+        const FALLBACK_IMAGE = 'https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/davidchocagent.avif';
 
         const state = {
             page: 1,
@@ -210,22 +564,49 @@
             price_max: '',
         };
 
+        // Read initial state from URL
+        (function readUrlState() {
+            const url = new URL(window.location.href);
+            for (const key of Object.keys(state)) {
+                const val = url.searchParams.get(key);
+                if (val) state[key] = key === 'page' || key === 'limit' || key === 'price_max' ? Number(val) || '' : val;
+            }
+            // Hydrate form
+            document.addEventListener('DOMContentLoaded', () => {
+                if (state.offer_type) document.getElementById('offerType').value = state.offer_type;
+                if (state.property_type) document.getElementById('propertyType').value = state.property_type;
+                if (state.disposition) document.getElementById('disposition').value = state.disposition;
+                if (state.city) document.getElementById('city').value = state.city;
+                if (state.price_max) document.getElementById('priceMax').value = state.price_max;
+            });
+        })();
+
+        function syncUrl() {
+            const url = new URL(window.location.href);
+            url.search = '';
+            for (const [k, v] of Object.entries(state)) {
+                if (v != null && v !== '' && !(k === 'page' && v === 1) && !(k === 'limit' && v === 12)) {
+                    url.searchParams.set(k, v);
+                }
+            }
+            window.history.replaceState({}, '', url.toString());
+        }
+
         function fmtPrice(p, unit) {
             if (p == null) return 'Cena na vyžádání';
             const formatted = new Intl.NumberFormat('cs-CZ').format(p);
-            return `${formatted} Kč${unit && unit !== 'one_time' ? ' / ' + unit : ''}`;
+            const isRent = unit && (unit.includes('month') || unit.includes('měsíc'));
+            return `${formatted} Kč${isRent ? '<span class="unit">/ měsíc</span>' : ''}`;
         }
 
-        function fmtArea(a) {
-            return a ? `${a} m²` : null;
-        }
+        function fmtArea(a) { return a ? `${a} m²` : null; }
 
         function getImageUrl(property) {
             if (property.images && property.images.length > 0) {
                 const main = property.images.find(i => i.is_main) || property.images[0];
                 return main.url_large || main.url || main.url_thumbnail;
             }
-            return 'https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/davidchocagent.avif';
+            return FALLBACK_IMAGE;
         }
 
         function getLocation(p) {
@@ -235,57 +616,81 @@
             return parts.join(', ') || 'Plzeňský kraj';
         }
 
+        const OFFER_LABELS = { prodej: 'Prodej', pronajem: 'Pronájem' };
+
         function renderCard(p) {
-            const detailUrl = `${PTF_DETAIL_BASE}/${p.slug}`;
+            const detailUrl = `/nabidky/${p.slug}`;
             const imageUrl = getImageUrl(p);
             const badges = [];
-            if (p.status === 'reserved') badges.push('<span class="property-badge reserved">Rezervováno</span>');
-            else if (p.badge_exclusive) badges.push('<span class="property-badge">Exkluzivně</span>');
-            else if (p.badge_price_drop) badges.push('<span class="property-badge">Sleva</span>');
-            else if (p.badge_tip) badges.push('<span class="property-badge">Tip</span>');
+            if (p.status === 'reserved' || p.status === 'rezervovano') {
+                badges.push('<span class="property-badge reserved">Rezervováno</span>');
+            } else if (p.badge_exclusive) {
+                badges.push('<span class="property-badge exclusive">Exkluzivně</span>');
+            }
+            if (p.badge_price_drop) badges.push('<span class="property-badge price-drop">Sleva</span>');
+            if (p.badge_tip) badges.push('<span class="property-badge">Tip</span>');
 
             const meta = [];
-            if (p.disposition) meta.push(`<span><i class="fas fa-bed"></i>${p.disposition}</span>`);
             const area = fmtArea(p.area_usable || p.area_total || p.area_built || p.area_land);
             if (area) meta.push(`<span><i class="fas fa-ruler-combined"></i>${area}</span>`);
             if (p.floor != null) meta.push(`<span><i class="fas fa-building"></i>${p.floor}. patro</span>`);
+            if (p.features?.parking) meta.push(`<span><i class="fas fa-car"></i>Parking</span>`);
+            if (p.features?.balcony) meta.push(`<span><i class="fas fa-leaf"></i>Balkón</span>`);
+
+            const offerLabel = OFFER_LABELS[p.offer_type] || '';
 
             return `
-                <a href="${detailUrl}" class="property-card" target="_blank" rel="noopener" aria-label="${p.title}">
+                <a href="${detailUrl}" class="property-card" aria-label="${p.title}">
                     <div class="property-image">
-                        ${badges.join('')}
-                        <img src="${imageUrl}" alt="${p.title}" loading="lazy">
+                        ${offerLabel ? `<span class="property-offer-type">${offerLabel}</span>` : ''}
+                        ${badges.length ? `<div class="property-badges">${badges.join('')}</div>` : ''}
+                        <img src="${imageUrl}" alt="${p.title}" loading="lazy" onerror="this.src='${FALLBACK_IMAGE}'">
                     </div>
                     <div class="property-content">
+                        ${p.disposition ? `<span class="property-disposition">${p.disposition}</span>` : ''}
                         <h3 class="property-title">${p.title}</h3>
                         <p class="property-location"><i class="fas fa-map-marker-alt"></i>${getLocation(p)}</p>
                         ${meta.length ? `<div class="property-meta">${meta.join('')}</div>` : ''}
-                        <div class="property-price">${fmtPrice(p.price, p.price_unit)}</div>
+                        <div class="property-footer">
+                            <div class="property-price">${fmtPrice(p.price, p.price_unit)}</div>
+                            <span class="property-cta">Detail <i class="fas fa-arrow-right"></i></span>
+                        </div>
                     </div>
                 </a>
             `;
         }
 
         function renderPagination(pagination) {
-            const total = pagination?.total_pages || 1;
-            const current = pagination?.page || 1;
+            const total = pagination?.total_pages || pagination?.totalPages || Math.ceil((pagination?.total || 0) / state.limit) || 1;
+            const current = pagination?.page || state.page;
             if (total <= 1) return '';
 
             let html = '';
-            html += `<button ${current === 1 ? 'disabled' : ''} onclick="goToPage(${current - 1})"><i class="fas fa-chevron-left"></i></button>`;
+            html += `<button ${current === 1 ? 'disabled' : ''} onclick="goToPage(${current - 1})" aria-label="Předchozí"><i class="fas fa-chevron-left"></i></button>`;
             const start = Math.max(1, current - 2);
             const end = Math.min(total, start + 4);
+            if (start > 1) html += `<button onclick="goToPage(1)">1</button>${start > 2 ? '<span style="padding:0 4px;align-self:center;color:var(--text-muted)">…</span>' : ''}`;
             for (let i = start; i <= end; i++) {
                 html += `<button class="${i === current ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
             }
-            html += `<button ${current === total ? 'disabled' : ''} onclick="goToPage(${current + 1})"><i class="fas fa-chevron-right"></i></button>`;
+            if (end < total) html += `${end < total - 1 ? '<span style="padding:0 4px;align-self:center;color:var(--text-muted)">…</span>' : ''}<button onclick="goToPage(${total})">${total}</button>`;
+            html += `<button ${current === total ? 'disabled' : ''} onclick="goToPage(${current + 1})" aria-label="Další"><i class="fas fa-chevron-right"></i></button>`;
             return html;
+        }
+
+        function renderResultsInfo(total) {
+            const info = document.getElementById('resultsInfo');
+            if (total == null) { info.hidden = true; return; }
+            info.hidden = false;
+            info.innerHTML = `<span>Nalezeno <strong>${total}</strong> nabídek</span>`;
         }
 
         async function loadProperties() {
             const grid = document.getElementById('propertiesGrid');
             const pag = document.getElementById('pagination');
+            const info = document.getElementById('resultsInfo');
             grid.innerHTML = '<div class="loading"><i class="fas fa-circle-notch"></i><p>Načítám nabídky…</p></div>';
+            info.hidden = true;
 
             const params = new URLSearchParams();
             for (const [k, v] of Object.entries(state)) {
@@ -298,14 +703,17 @@
                 const json = await res.json();
                 const properties = json.data || [];
                 const pagination = json.pagination || {};
+                const total = pagination.total ?? properties.length;
+
+                renderResultsInfo(total);
 
                 if (properties.length === 0) {
                     grid.innerHTML = `
                         <div class="empty">
                             <i class="far fa-folder-open"></i>
                             <h3>Žádné nabídky nenalezeny</h3>
-                            <p>Zkuste upravit filtry nebo si nechte poslat tip na míru.</p>
-                            <a href="/#kontakt" style="display:inline-block;margin-top:16px;padding:10px 24px;background:var(--gold);color:#111;border-radius:8px;text-decoration:none;font-weight:600;">Napsat poptávku</a>
+                            <p>Zkuste upravit filtry nebo si nechte poslat tip na míru — pošlu vám nabídky často ještě před zveřejněním.</p>
+                            <a href="/#kontakt" class="btn">Napsat poptávku</a>
                         </div>`;
                     pag.innerHTML = '';
                     return;
@@ -313,15 +721,18 @@
 
                 grid.innerHTML = properties.map(renderCard).join('');
                 pag.innerHTML = renderPagination(pagination);
+                syncUrl();
             } catch (err) {
                 console.error('Failed to load properties:', err);
                 grid.innerHTML = `
                     <div class="error">
                         <i class="fas fa-exclamation-triangle"></i>
                         <h3>Nepodařilo se načíst nabídky</h3>
-                        <p>Zkuste prosím obnovit stránku nebo nás kontaktujte přímo.</p>
-                        <a href="tel:+420774052232" style="display:inline-block;margin-top:16px;padding:10px 24px;background:var(--gold);color:#111;border-radius:8px;text-decoration:none;font-weight:600;">Zavolat</a>
+                        <p>Backend není momentálně dostupný. Zkuste prosím obnovit stránku za chvíli nebo nás kontaktujte přímo.</p>
+                        <a href="tel:+420774052232" class="btn">Zavolat: +420 774 052 232</a>
                     </div>`;
+                pag.innerHTML = '';
+                info.hidden = true;
             }
         }
 
@@ -344,7 +755,7 @@
         function goToPage(p) {
             state.page = p;
             loadProperties();
-            window.scrollTo({ top: document.querySelector('.nabidky-container').offsetTop - 20, behavior: 'smooth' });
+            window.scrollTo({ top: document.querySelector('.filter-bar').offsetTop - 100, behavior: 'smooth' });
         }
 
         loadProperties();
