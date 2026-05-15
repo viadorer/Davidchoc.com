@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nabídky nemovitostí | David Choc — realitní agent Plzeň</title>
+    <meta name="description" content="Aktuální nabídka nemovitostí k prodeji i pronájmu v Plzni a Plzeňském kraji. Byty, domy, pozemky a komerční prostory od Davida Choce a PTF reality.">
+    <meta name="keywords" content="nabídky nemovitostí, byty Plzeň, domy Plzeň, prodej nemovitosti, pronájem nemovitosti, David Choc, PTF reality">
+    <meta name="author" content="David Choc">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+
+    <meta property="og:title" content="Nabídky nemovitostí | David Choc">
+    <meta property="og:description" content="Aktuální nabídka nemovitostí v Plzeňském kraji.">
+    <meta property="og:image" content="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/davidchocagent.avif">
+    <meta property="og:url" content="https://www.davidchoc.cz/nabidky.html">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="cs_CZ">
+    <meta property="og:site_name" content="David Choc">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="canonical" href="https://www.davidchoc.cz/nabidky">
+    <link rel="icon" type="image/png" href="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/favicon.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" media="print" onload="this.media='all'">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "@id": "https://www.davidchoc.cz/nabidky#page",
+      "name": "Nabídky nemovitostí",
+      "description": "Aktuální nabídka nemovitostí k prodeji i pronájmu v Plzeňském kraji.",
+      "url": "https://www.davidchoc.cz/nabidky",
+      "inLanguage": "cs-CZ",
+      "isPartOf": { "@id": "https://www.davidchoc.cz/#website" }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Domů", "item": "https://www.davidchoc.cz/" },
+        { "@type": "ListItem", "position": 2, "name": "Nabídky", "item": "https://www.davidchoc.cz/nabidky" }
+      ]
+    }
+    </script>
+
+    <style>
+        :root {
+            --gold: #FFBF00;
+            --gold-dark: #B8860B;
+            --dark: #1a1a1a;
+            --grey: #6b7280;
+            --light: #f9fafb;
+            --border: #e5e7eb;
+        }
+        .nabidky-hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+            color: #fff;
+            padding: 120px 20px 60px;
+            text-align: center;
+        }
+        .nabidky-hero h1 { font-size: 2.5rem; font-weight: 800; margin: 0 0 12px; }
+        .nabidky-hero p { font-size: 1.1rem; color: #d1d5db; max-width: 700px; margin: 0 auto; }
+        .nabidky-container { max-width: 1280px; margin: 0 auto; padding: 40px 20px 80px; }
+        nav.breadcrumb { font-size: 0.9rem; color: var(--grey); margin-bottom: 24px; }
+        nav.breadcrumb a { color: var(--grey); text-decoration: none; }
+        nav.breadcrumb a:hover { color: var(--gold); }
+
+        .filter-bar { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 28px; padding: 20px; background: var(--light); border-radius: 12px; }
+        .filter-bar select, .filter-bar input {
+            padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px;
+            background: #fff; font-size: 0.95rem; min-width: 140px;
+        }
+        .filter-bar button {
+            padding: 10px 20px; background: var(--gold); color: #111; border: none; border-radius: 8px;
+            font-weight: 600; cursor: pointer; transition: background 0.2s;
+        }
+        .filter-bar button:hover { background: var(--gold-dark); color: #fff; }
+        .filter-bar button.secondary { background: transparent; border: 1px solid var(--border); color: var(--grey); }
+
+        .properties-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px; margin-top: 24px;
+        }
+        .property-card {
+            background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; color: inherit;
+            display: flex; flex-direction: column;
+        }
+        .property-card:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .property-image {
+            position: relative; aspect-ratio: 16/10; overflow: hidden; background: var(--light);
+        }
+        .property-image img { width: 100%; height: 100%; object-fit: cover; }
+        .property-badge {
+            position: absolute; top: 12px; left: 12px; background: var(--gold); color: #111;
+            padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .property-badge.reserved { background: #ef4444; color: #fff; }
+        .property-content { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+        .property-title { font-size: 1.1rem; font-weight: 700; color: #111; margin: 0 0 8px; line-height: 1.3; }
+        .property-location { color: var(--grey); font-size: 0.9rem; margin: 0 0 16px; }
+        .property-location i { margin-right: 6px; color: var(--gold); }
+        .property-meta {
+            display: flex; gap: 14px; flex-wrap: wrap; font-size: 0.85rem; color: var(--grey);
+            margin: 0 0 16px; padding: 12px 0; border-top: 1px solid var(--border);
+        }
+        .property-meta span i { margin-right: 4px; color: var(--gold-dark); }
+        .property-price {
+            font-size: 1.35rem; font-weight: 800; color: #111; margin-top: auto;
+        }
+        .property-price .unit { font-size: 0.75rem; color: var(--grey); font-weight: 500; margin-left: 4px; }
+
+        .loading, .empty, .error {
+            grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--grey);
+        }
+        .loading i { animation: spin 1s linear infinite; font-size: 2rem; color: var(--gold); }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .empty i, .error i { font-size: 3rem; color: var(--border); margin-bottom: 16px; }
+
+        .pagination { display: flex; justify-content: center; gap: 8px; margin-top: 40px; }
+        .pagination button {
+            padding: 8px 14px; background: #fff; border: 1px solid var(--border); border-radius: 6px;
+            cursor: pointer; font-weight: 500;
+        }
+        .pagination button.active { background: var(--gold); border-color: var(--gold); color: #111; }
+        .pagination button:hover:not(.active) { border-color: var(--gold); }
+        .pagination button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+        @media (max-width: 768px) {
+            .nabidky-hero h1 { font-size: 1.8rem; }
+            .nabidky-hero { padding: 100px 20px 40px; }
+            .filter-bar select, .filter-bar input { min-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <section class="nabidky-hero">
+        <h1>Nabídky nemovitostí</h1>
+        <p>Aktuální nabídka bytů, domů, pozemků a komerčních prostor v Plzeňském kraji od PTF reality</p>
+    </section>
+
+    <main class="nabidky-container">
+        <nav class="breadcrumb" aria-label="Drobečková navigace">
+            <a href="/">Domů</a> &rsaquo; <span>Nabídky</span>
+        </nav>
+
+        <form class="filter-bar" id="filterForm" onsubmit="event.preventDefault(); applyFilters();">
+            <select name="offer_type" id="offerType">
+                <option value="">Typ obchodu</option>
+                <option value="prodej">Prodej</option>
+                <option value="pronajem">Pronájem</option>
+            </select>
+            <select name="property_type" id="propertyType">
+                <option value="">Typ nemovitosti</option>
+                <option value="byt">Byt</option>
+                <option value="dum">Dům</option>
+                <option value="pozemek">Pozemek</option>
+                <option value="komercni">Komerční</option>
+                <option value="garaz">Garáž</option>
+            </select>
+            <select name="disposition" id="disposition">
+                <option value="">Dispozice</option>
+                <option value="1+kk">1+kk</option>
+                <option value="1+1">1+1</option>
+                <option value="2+kk">2+kk</option>
+                <option value="2+1">2+1</option>
+                <option value="3+kk">3+kk</option>
+                <option value="3+1">3+1</option>
+                <option value="4+kk">4+kk</option>
+                <option value="4+1">4+1</option>
+                <option value="5+kk">5+kk</option>
+            </select>
+            <input type="text" name="city" id="city" placeholder="Město (např. Plzeň)">
+            <input type="number" name="price_max" id="priceMax" placeholder="Cena max" min="0">
+            <button type="submit"><i class="fas fa-search"></i> Filtrovat</button>
+            <button type="button" class="secondary" onclick="resetFilters()">Resetovat</button>
+        </form>
+
+        <div class="properties-grid" id="propertiesGrid">
+            <div class="loading">
+                <i class="fas fa-circle-notch"></i>
+                <p>Načítám nabídky…</p>
+            </div>
+        </div>
+
+        <div class="pagination" id="pagination"></div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+    <script src="/common/common.js" defer></script>
+
+    <script>
+        // Backend přes Vercel proxy /api/properties (skrývá PTF backend URL)
+        const API = '/api/properties';
+        const PTF_DETAIL_BASE = 'https://www.ptf.cz/nabidky'; // detail na ptf.cz
+
+        const state = {
+            page: 1,
+            limit: 12,
+            offer_type: '',
+            property_type: '',
+            disposition: '',
+            city: '',
+            price_max: '',
+        };
+
+        function fmtPrice(p, unit) {
+            if (p == null) return 'Cena na vyžádání';
+            const formatted = new Intl.NumberFormat('cs-CZ').format(p);
+            return `${formatted} Kč${unit && unit !== 'one_time' ? ' / ' + unit : ''}`;
+        }
+
+        function fmtArea(a) {
+            return a ? `${a} m²` : null;
+        }
+
+        function getImageUrl(property) {
+            if (property.images && property.images.length > 0) {
+                const main = property.images.find(i => i.is_main) || property.images[0];
+                return main.url_large || main.url || main.url_thumbnail;
+            }
+            return 'https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/davidchocagent.avif';
+        }
+
+        function getLocation(p) {
+            const parts = [];
+            if (p.address_district && !p.hide_exact_address) parts.push(p.address_district);
+            if (p.address_city) parts.push(p.address_city);
+            return parts.join(', ') || 'Plzeňský kraj';
+        }
+
+        function renderCard(p) {
+            const detailUrl = `${PTF_DETAIL_BASE}/${p.slug}`;
+            const imageUrl = getImageUrl(p);
+            const badges = [];
+            if (p.status === 'reserved') badges.push('<span class="property-badge reserved">Rezervováno</span>');
+            else if (p.badge_exclusive) badges.push('<span class="property-badge">Exkluzivně</span>');
+            else if (p.badge_price_drop) badges.push('<span class="property-badge">Sleva</span>');
+            else if (p.badge_tip) badges.push('<span class="property-badge">Tip</span>');
+
+            const meta = [];
+            if (p.disposition) meta.push(`<span><i class="fas fa-bed"></i>${p.disposition}</span>`);
+            const area = fmtArea(p.area_usable || p.area_total || p.area_built || p.area_land);
+            if (area) meta.push(`<span><i class="fas fa-ruler-combined"></i>${area}</span>`);
+            if (p.floor != null) meta.push(`<span><i class="fas fa-building"></i>${p.floor}. patro</span>`);
+
+            return `
+                <a href="${detailUrl}" class="property-card" target="_blank" rel="noopener" aria-label="${p.title}">
+                    <div class="property-image">
+                        ${badges.join('')}
+                        <img src="${imageUrl}" alt="${p.title}" loading="lazy">
+                    </div>
+                    <div class="property-content">
+                        <h3 class="property-title">${p.title}</h3>
+                        <p class="property-location"><i class="fas fa-map-marker-alt"></i>${getLocation(p)}</p>
+                        ${meta.length ? `<div class="property-meta">${meta.join('')}</div>` : ''}
+                        <div class="property-price">${fmtPrice(p.price, p.price_unit)}</div>
+                    </div>
+                </a>
+            `;
+        }
+
+        function renderPagination(pagination) {
+            const total = pagination?.total_pages || 1;
+            const current = pagination?.page || 1;
+            if (total <= 1) return '';
+
+            let html = '';
+            html += `<button ${current === 1 ? 'disabled' : ''} onclick="goToPage(${current - 1})"><i class="fas fa-chevron-left"></i></button>`;
+            const start = Math.max(1, current - 2);
+            const end = Math.min(total, start + 4);
+            for (let i = start; i <= end; i++) {
+                html += `<button class="${i === current ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
+            }
+            html += `<button ${current === total ? 'disabled' : ''} onclick="goToPage(${current + 1})"><i class="fas fa-chevron-right"></i></button>`;
+            return html;
+        }
+
+        async function loadProperties() {
+            const grid = document.getElementById('propertiesGrid');
+            const pag = document.getElementById('pagination');
+            grid.innerHTML = '<div class="loading"><i class="fas fa-circle-notch"></i><p>Načítám nabídky…</p></div>';
+
+            const params = new URLSearchParams();
+            for (const [k, v] of Object.entries(state)) {
+                if (v != null && v !== '') params.set(k, v);
+            }
+
+            try {
+                const res = await fetch(`${API}?${params.toString()}`);
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const json = await res.json();
+                const properties = json.data || [];
+                const pagination = json.pagination || {};
+
+                if (properties.length === 0) {
+                    grid.innerHTML = `
+                        <div class="empty">
+                            <i class="far fa-folder-open"></i>
+                            <h3>Žádné nabídky nenalezeny</h3>
+                            <p>Zkuste upravit filtry nebo si nechte poslat tip na míru.</p>
+                            <a href="/#kontakt" style="display:inline-block;margin-top:16px;padding:10px 24px;background:var(--gold);color:#111;border-radius:8px;text-decoration:none;font-weight:600;">Napsat poptávku</a>
+                        </div>`;
+                    pag.innerHTML = '';
+                    return;
+                }
+
+                grid.innerHTML = properties.map(renderCard).join('');
+                pag.innerHTML = renderPagination(pagination);
+            } catch (err) {
+                console.error('Failed to load properties:', err);
+                grid.innerHTML = `
+                    <div class="error">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>Nepodařilo se načíst nabídky</h3>
+                        <p>Zkuste prosím obnovit stránku nebo nás kontaktujte přímo.</p>
+                        <a href="tel:+420774052232" style="display:inline-block;margin-top:16px;padding:10px 24px;background:var(--gold);color:#111;border-radius:8px;text-decoration:none;font-weight:600;">Zavolat</a>
+                    </div>`;
+            }
+        }
+
+        function applyFilters() {
+            state.offer_type = document.getElementById('offerType').value;
+            state.property_type = document.getElementById('propertyType').value;
+            state.disposition = document.getElementById('disposition').value;
+            state.city = document.getElementById('city').value.trim();
+            state.price_max = document.getElementById('priceMax').value;
+            state.page = 1;
+            loadProperties();
+        }
+
+        function resetFilters() {
+            document.getElementById('filterForm').reset();
+            Object.assign(state, { page: 1, offer_type: '', property_type: '', disposition: '', city: '', price_max: '' });
+            loadProperties();
+        }
+
+        function goToPage(p) {
+            state.page = p;
+            loadProperties();
+            window.scrollTo({ top: document.querySelector('.nabidky-container').offsetTop - 20, behavior: 'smooth' });
+        }
+
+        loadProperties();
+    </script>
+</body>
+</html>
