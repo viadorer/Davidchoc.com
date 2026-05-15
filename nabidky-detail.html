@@ -523,7 +523,7 @@
         }
 
         function fmtPrice(p, unit) {
-            if (p == null) return 'Cena na vyžádání';
+            if (p == null || p === 0) return 'Cena na vyžádání';
             const formatted = new Intl.NumberFormat('cs-CZ').format(p);
             const isRent = unit && (unit.includes('month') || unit.includes('měsíc'));
             return `${formatted} Kč${isRent ? ' <span class="unit">/ měsíc</span>' : ''}`;
