@@ -54,7 +54,7 @@
     }
   ],
   "rewrites": [
-    { "source": "/nabidky/:slug", "destination": "/nabidky-detail.html" }
+    { "source": "/nabidky/:slug", "destination": "/nabidky-detail" }
   ],
   "redirects": [
     { "source": "/blog/detail.html", "destination": "/blog", "permanent": true },
