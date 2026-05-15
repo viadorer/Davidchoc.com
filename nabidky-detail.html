@@ -11,7 +11,7 @@
     <meta name="robots" content="index, follow, max-image-preview:large">
 
     <link rel="icon" type="image/png" href="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/favicon.png">
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/styles.css?v=2">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" media="print" onload="this.media='all'">
 
     <style>
@@ -531,6 +531,62 @@
             return `${formatted} Kč${isRent ? ' <span class="unit">/ měsíc</span>' : ''}`;
         }
 
+        // Inteligentní formátování dlouhého popisu z PTF backendu (často přijde jako jeden blok)
+        function formatDescription(text) {
+            if (!text) return '';
+            // Klíčová slova která spouštějí novou sekci (label: hodnota)
+            const SECTION_LABELS = [
+                'Dispozice', 'Podlahová plocha', 'Plocha', 'Pozemek', 'Terasa', 'Balkon', 'Balkón',
+                'Poloha', 'Lokalita', 'Stav', 'Konstrukce', 'Patro', 'Rok stavby', 'Rok rekonstrukce',
+                'Vytápění', 'Voda', 'Kanalizace', 'Plyn', 'Elektřina', 'Energetická třída', 'PENB',
+                'Okna', 'Klimatizace', 'Koupelna', 'Kuchyně', 'Interiér', 'Exteriér', 'Bezpečnost',
+                'Úložný prostor', 'Úložné prostory', 'Standard vybavení', 'Vybavení', 'Příslušenství',
+                'Garáž', 'Parkování', 'Sklep', 'Sauna', 'Bazén', 'Krb', 'Výtah', 'Zahrada',
+                'Cena', 'Provize', 'Předání', 'Volné', 'Doprava', 'Občanská vybavenost', 'Služby',
+                'Investice', 'Výnos', 'Nájem', 'Náklady', 'Poplatky',
+                'Důležitá poznámka', 'Poznámka', 'Upozornění'
+            ];
+            // Sekce nadpisy (větší fonts) — věci jako "Standard Vybavení bez Kompromisů"
+            const HEADING_PATTERNS = [
+                /^(Standard\s+\w+[^.]*)/i,
+                /^(Investice\s+bez\s+[^.]*)/i,
+                /^(Plná\s+Flexibilita[^.]*)/i,
+                /^(Kompletní\s+\w+[^.]*)/i,
+                /^(Profesionální\s+péče[^.]*)/i,
+            ];
+
+            // 1. Vlož newline před každý label který následuje za větou
+            let formatted = text;
+            for (const label of SECTION_LABELS) {
+                // Hledá ". <Label>:" nebo " <Label>:" a vloží newline
+                const re = new RegExp(`([.!?])\\s+(${label}:)`, 'g');
+                formatted = formatted.replace(re, '$1\n\n$2');
+                const re2 = new RegExp(`\\s+(${label}):\\s*`, 'g');
+                // Druhý průchod pro labely uprostřed věty bez tečky před
+                formatted = formatted.replace(new RegExp(`(?<![.\\n])\\s+(${label}):\\s+`, 'g'), '\n\n$1: ');
+            }
+
+            // 2. Rozděl na odstavce
+            const paragraphs = formatted.split(/\n\n+/).map(p => p.trim()).filter(Boolean);
+
+            return paragraphs.map(par => {
+                // Detekce key: value odstavce (pokud začíná Label:)
+                const kvMatch = par.match(/^([A-ZÁ-Ž][^:]{2,40}):\s*(.+)/s);
+                if (kvMatch && SECTION_LABELS.some(l => kvMatch[1].toLowerCase().startsWith(l.toLowerCase()))) {
+                    return `<p><strong style="color:var(--dark)">${escapeHtml(kvMatch[1])}:</strong> ${escapeHtml(kvMatch[2])}</p>`;
+                }
+                // Detekce inline nadpisu (např. "Standard Vybavení bez Kompromisů Dům byl postaven...")
+                for (const pattern of HEADING_PATTERNS) {
+                    const m = par.match(pattern);
+                    if (m) {
+                        const rest = par.slice(m[1].length).trim();
+                        return `<h3 style="font-size:1.1rem;margin:1.5em 0 0.5em;color:var(--dark);font-weight:700;">${escapeHtml(m[1])}</h3>${rest ? `<p>${escapeHtml(rest)}</p>` : ''}`;
+                    }
+                }
+                return `<p>${escapeHtml(par)}</p>`;
+            }).join('');
+        }
+
         function pickMainImage(images) {
             if (!images || images.length === 0) return null;
             return images.find(i => i.is_main) || images[0];
@@ -814,7 +870,7 @@
                         ${p.description ? `
                             <div class="detail-section">
                                 <h2>Popis</h2>
-                                ${p.description.split(/\n\n+/).map(par => `<p>${escapeHtml(par)}</p>`).join('')}
+                                ${formatDescription(p.description)}
                             </div>
                         ` : ''}
 
