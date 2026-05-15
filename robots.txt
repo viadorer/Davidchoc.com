@@ -1,10 +1,76 @@
+# robots.txt - davidchoc.cz
+# Optimalizováno pro klasické vyhledávače + AI vyhledávání (2026)
+
 User-agent: *
 Allow: /
-
-# Vyloučení stránek, které nemají být indexovány
 Disallow: /osobni-udaje.html
 Disallow: /admin/
 Disallow: /temp/
+Disallow: /api/
+Disallow: /blog/detail.html
 
-# Odkaz na mapu stránek
-Sitemap: https://davidchoc.com/sitemap.xml
+# === AI vyhledávače ===
+# Google AI Overviews, ChatGPT Search, Perplexity, Claude, Apple Intelligence
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+# Sitemap
+Sitemap: https://www.davidchoc.cz/sitemap.xml
