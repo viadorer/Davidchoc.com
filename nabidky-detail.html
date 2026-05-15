@@ -30,7 +30,7 @@
         }
 
         body { background-color: var(--beige); color: var(--text); }
-        .detail-page { padding-top: 110px; padding-bottom: 80px; }
+        .detail-page { padding-top: 90px; padding-bottom: 80px; }
 
         .detail-container { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
 
@@ -697,16 +697,24 @@
             if (!images || images.length === 0) {
                 return `<div class="detail-gallery"><div class="gallery-item"><img src="${FALLBACK_IMAGE}" alt="Bez fotografie"></div></div>`;
             }
-            const main = pickMainImage(images);
-            const others = images.filter(i => i.id !== main.id).slice(0, 4);
-            const remaining = images.length - 1 - others.length;
+            // Setřídit aby main image byla první, ostatní v původním pořadí
+            const mainIdx = images.findIndex(i => i.is_main);
+            const sorted = mainIdx > 0
+                ? [images[mainIdx], ...images.slice(0, mainIdx), ...images.slice(mainIdx + 1)]
+                : images.slice();
 
-            const items = [main, ...others];
+            // Aktualizovat lightbox aby používal seřazené pořadí
+            lightboxImages = sorted;
+
+            const items = sorted.slice(0, 5); // main + 4 thumbnails
+            const remaining = sorted.length - items.length;
+
             const html = items.map((img, idx) => {
                 const isLast = idx === items.length - 1 && remaining > 0;
+                const src = img.url_large || img.url || img.url_thumbnail || FALLBACK_IMAGE;
                 return `
                     <div class="gallery-item" onclick="openLightbox(${idx})">
-                        <img src="${escapeHtml(img.url_large || img.url || FALLBACK_IMAGE)}" alt="${escapeHtml(img.alt_text || currentProperty.title)}" loading="${idx === 0 ? 'eager' : 'lazy'}">
+                        <img src="${escapeHtml(src)}" alt="${escapeHtml(img.alt_text || currentProperty.title)}" loading="${idx === 0 ? 'eager' : 'lazy'}" onerror="this.src='${FALLBACK_IMAGE}'">
                         ${isLast ? `<div class="gallery-more"><i class="fas fa-images"></i>+${remaining} fotek</div>` : ''}
                     </div>
                 `;
