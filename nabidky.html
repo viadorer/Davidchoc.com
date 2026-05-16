@@ -609,23 +609,20 @@
 
         function fmtArea(a) { return a ? `${a} m²` : null; }
 
-        // Supabase storage podporuje image transformace přes /render/image/public/ endpoint.
-        // Originální fotky jsou 1.5+ MB — resize na 800px je 7× menší (~200 KB) a načte se rychleji.
-        function toResizedUrl(rawUrl, width = 800, quality = 80) {
+        // Vercel Image Optimization (stejně jako PTF používá Next.js /_next/image).
+        // Vercel proxy /_vercel/image vrací AVIF/WebP, resize na požadovanou šířku,
+        // a cachuje na Vercel Edge. Konfigurace: vercel.json -> images.remotePatterns.
+        // Allowed widths z vercel.json: 320, 640, 750, 828, 1080, 1200, 1920.
+        function toOptimizedUrl(rawUrl, width = 640, quality = 75) {
             if (!rawUrl || typeof rawUrl !== 'string') return rawUrl;
-            if (rawUrl.includes('/storage/v1/object/public/')) {
-                const transformed = rawUrl.replace('/storage/v1/object/public/', '/storage/v1/render/image/public/');
-                const sep = transformed.includes('?') ? '&' : '?';
-                return `${transformed}${sep}width=${width}&quality=${quality}&resize=cover`;
-            }
-            return rawUrl;
+            return `/_vercel/image?url=${encodeURIComponent(rawUrl)}&w=${width}&q=${quality}`;
         }
 
         function getImageUrl(property) {
             if (property.images && property.images.length > 0) {
                 const main = property.images.find(i => i.is_main) || property.images[0];
                 const raw = main.url_large || main.url || main.url_thumbnail;
-                return toResizedUrl(raw, 800, 80);
+                return toOptimizedUrl(raw, 640, 75);
             }
             return FALLBACK_IMAGE;
         }
