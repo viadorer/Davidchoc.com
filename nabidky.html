@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nabídky nemovitostí | David Choc — realitní agent Plzeň</title>
-    <meta name="description" content="Aktuální nabídka nemovitostí k prodeji i pronájmu v Plzni a Plzeňském kraji. Byty, domy, pozemky a komerční prostory od Davida Choce a PTF reality.">
-    <meta name="keywords" content="nabídky nemovitostí, byty Plzeň, domy Plzeň, prodej nemovitosti, pronájem nemovitosti, David Choc, PTF reality">
+    <title>Nabídky nemovitostí | David Choc — realitní agent</title>
+    <meta name="description" content="Aktuální nabídka nemovitostí k prodeji i pronájmu — Plzeň, Praha a celá ČR. Byty, domy, pozemky a komerční prostory od Davida Choce a PTF reality.">
+    <meta name="keywords" content="nabídky nemovitostí, byty, domy, prodej nemovitosti, pronájem nemovitosti, Plzeň, Praha, David Choc, PTF reality">
     <meta name="author" content="David Choc">
     <meta name="robots" content="index, follow, max-image-preview:large">
 
     <meta property="og:title" content="Nabídky nemovitostí | David Choc">
-    <meta property="og:description" content="Aktuální nabídka nemovitostí v Plzeňském kraji.">
+    <meta property="og:description" content="Aktuální nabídka nemovitostí — Plzeň, Praha a další lokality v ČR.">
     <meta property="og:image" content="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/davidchocagent.avif">
     <meta property="og:url" content="https://www.davidchoc.cz/nabidky">
     <meta property="og:type" content="website">
@@ -29,7 +29,7 @@
       "@type": "CollectionPage",
       "@id": "https://www.davidchoc.cz/nabidky#page",
       "name": "Nabídky nemovitostí",
-      "description": "Aktuální nabídka nemovitostí k prodeji i pronájmu v Plzeňském kraji.",
+      "description": "Aktuální nabídka nemovitostí k prodeji i pronájmu — Plzeň, Praha a další lokality v České republice.",
       "url": "https://www.davidchoc.cz/nabidky",
       "inLanguage": "cs-CZ",
       "isPartOf": { "@id": "https://www.davidchoc.cz/#website" }
@@ -498,8 +498,8 @@
 
             <section class="nabidky-hero">
                 <span class="eyebrow">Aktuální nabídka</span>
-                <h1>Nemovitosti v Plzeňském kraji</h1>
-                <p>Vybrané byty, domy, pozemky a komerční prostory k prodeji i pronájmu od PTF reality. Najděte si svůj nový domov nebo investici.</p>
+                <h1>Aktuální nabídky nemovitostí</h1>
+                <p>Vybrané byty, domy, pozemky a komerční prostory k prodeji i pronájmu — Plzeň, Praha a další lokality v ČR. Najděte si svůj nový domov nebo investici.</p>
             </section>
 
             <form class="filter-bar" id="filterForm" onsubmit="event.preventDefault(); applyFilters();">
@@ -621,7 +621,7 @@
             const parts = [];
             if (p.address_district && !p.hide_exact_address) parts.push(p.address_district);
             if (p.address_city) parts.push(p.address_city);
-            return parts.join(', ') || 'Plzeňský kraj';
+            return parts.join(', ') || 'Česká republika';
         }
 
         const OFFER_LABELS = { prodej: 'Prodej', pronajem: 'Pronájem' };
