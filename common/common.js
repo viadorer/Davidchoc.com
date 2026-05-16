@@ -2,19 +2,13 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Zjištění, kde se nachází aktuální stránka
     const currentPath = window.location.href;
-    let commonPath = './common/';
-    let rootPath = './';
+    // Absolutní cesty — fungují z root, /blog/, i /blog/posts/
+    const commonPath = '/common/';
 
-    // Pokud jsme v podadresáři blog, musíme použít jinou cestu
-    if (currentPath.includes('/blog/')) {
-        commonPath = '../common/';
-        rootPath = '../';
-    }
-
-    // Načtení sitewide popup CTA (jen jednou, asynchronně)
+    // Načtení sitewide popup CTA (jen jednou, asynchronně, vždy z root)
     if (!document.querySelector('script[data-popup-cta-loader]')) {
         const popupScript = document.createElement('script');
-        popupScript.src = rootPath + 'popup-cta.js';
+        popupScript.src = '/popup-cta.js';
         popupScript.async = true;
         popupScript.defer = true;
         popupScript.setAttribute('data-popup-cta-loader', '1');

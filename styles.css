@@ -3926,6 +3926,294 @@ body:has(.popup-cta.is-visible) .floating-buttons {
     .popup-cta__close { top: 6px; right: 6px; font-size: 1rem; width: 26px; height: 26px; }
 }
 
+/* ============================================
+   LIGHT THEME OVERRIDES (body.is-light)
+   Použito pro ocenit-online.html.
+   Sdílíme stejnou strukturu jako pripad-pro-agenta,
+   jen překlopíme barvy do světlé varianty.
+   ============================================ */
+
+body.pripad-page.is-light { background:#F8F4E9; color:#1a1a1a; }
+body.pripad-page.is-light section + section { border-top: 1px solid rgba(26,26,26,0.08); }
+
+/* Sekce a barvy */
+body.is-light .pripad-section__header h2 { color:#1a1a1a; }
+body.is-light .pripad-section__header h2::after { background: linear-gradient(90deg, #FFBF00 0%, rgba(255,191,0,0) 90%); }
+body.is-light .pripad-section__header p { color:#555; }
+
+/* Focus na CTA */
+body.is-light .pripad-page .cta-button:focus-visible { outline-color: #1a1a1a; }
+
+/* Outline varianta CTA pro light theme */
+.cta-button--outline {
+    background: transparent;
+    color: #1a1a1a;
+    border: 2px solid #1a1a1a;
+    box-shadow: none;
+    padding: 13px 28px;
+}
+.cta-button--outline:hover {
+    background: #1a1a1a;
+    color: #FFBF00;
+    transform: translateY(-2px);
+}
+body.is-light .cta-button--outline { color:#1a1a1a; border-color:#1a1a1a; }
+
+/* Hero light */
+body.is-light .pripad-hero {
+    background:
+        radial-gradient(ellipse at top right, rgba(255,191,0,0.18) 0%, transparent 60%),
+        #F8F4E9;
+}
+body.is-light .pripad-hero__eyebrow { color:#8B7D61; }
+body.is-light .pripad-hero__text h1 { color:#1a1a1a; }
+body.is-light .pripad-hero__lead { color:#1a1a1a; }
+body.is-light .pripad-hero__body { color:#444; }
+body.is-light .pripad-hero__stats { border-top-color: rgba(26,26,26,0.15); }
+body.is-light .pripad-stat__num { color:#1a1a1a; }
+body.is-light .pripad-stat__label { color:#666; }
+body.is-light .pripad-hero__caption { color:#1a1a1a; }
+
+/* Ocenit hero visual — mockup karta */
+.ocenit-hero__visual {
+    align-items: center;
+    justify-content: center;
+}
+.ocenit-hero__card {
+    background:#fff;
+    border-radius: 18px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.18);
+    width: 100%;
+    max-width: 420px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.06);
+}
+.ocenit-hero__card-header {
+    display:flex; align-items:center; gap: 8px;
+    padding: 14px 18px;
+    background:#f3ede0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.ocenit-hero__dot { width: 10px; height: 10px; border-radius: 50%; display:block; }
+.ocenit-hero__dot--red { background:#ff5f57; }
+.ocenit-hero__dot--amber { background:#febc2e; }
+.ocenit-hero__dot--green { background:#28c840; }
+.ocenit-hero__card-title {
+    margin-left: 12px;
+    font-size: 0.84rem;
+    color:#666;
+    font-weight: 600;
+}
+.ocenit-hero__card-body { padding: 26px 28px 22px; }
+.ocenit-hero__card-row {
+    display:flex; justify-content:space-between; align-items:baseline;
+    margin-bottom: 12px;
+    gap: 12px;
+}
+.ocenit-hero__label {
+    color:#666;
+    font-size: 0.92rem;
+    font-weight: 500;
+}
+.ocenit-hero__value {
+    color:#1a1a1a;
+    font-size: 1.35rem;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+}
+.ocenit-hero__value-sub {
+    color:#999;
+    font-size: 0.86rem;
+    font-variant-numeric: tabular-nums;
+}
+.ocenit-hero__card-divider {
+    height: 1px;
+    background: rgba(0,0,0,0.08);
+    margin: 18px 0;
+}
+.ocenit-hero__card-note {
+    margin: 18px 0 0;
+    color: #999;
+    font-size: 0.78rem;
+    line-height: 1.5;
+    border-top: 1px dashed rgba(0,0,0,0.08);
+    padding-top: 14px;
+}
+
+/* Kroky — light */
+body.is-light .pripad-steps { background:#fff; }
+body.is-light .pripad-step {
+    background:#fdfaf2;
+    border-color: rgba(26,26,26,0.10);
+}
+body.is-light .pripad-step:hover {
+    border-color: rgba(255,191,0,0.6);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+}
+body.is-light .pripad-step__num { color:#FFBF00; }
+body.is-light .pripad-step h3 { color:#1a1a1a; }
+body.is-light .pripad-step p { color:#555; }
+
+/* Případy — light, editorial */
+body.is-light .pripad-cases {
+    background:
+        radial-gradient(ellipse at top right, rgba(255,191,0,0.10) 0%, transparent 60%),
+        #F8F4E9;
+}
+body.is-light .pripad-cases__grid {
+    border-top-color: rgba(26,26,26,0.18);
+    border-left-color: rgba(26,26,26,0.18);
+}
+.pripad-cases__grid--4 { grid-template-columns: repeat(2, 1fr); }
+body.is-light .pripad-case {
+    border-right-color: rgba(26,26,26,0.18);
+    border-bottom-color: rgba(26,26,26,0.18);
+}
+body.is-light .pripad-case:hover { background: rgba(255,191,0,0.06); }
+body.is-light .pripad-case__num { color: rgba(26,26,26,0.18); }
+body.is-light .pripad-case:hover .pripad-case__num { color:#FFBF00; }
+body.is-light .pripad-case__body h3 { color:#1a1a1a; }
+body.is-light .pripad-case__body p { color:#555; }
+body.is-light .pripad-cases__footnote {
+    color:#555;
+    border-top-color: rgba(26,26,26,0.18);
+    border-bottom-color: rgba(26,26,26,0.18);
+}
+
+/* Widget sekce */
+.ocenit-widget-section { background:#fff; padding: 90px 0; }
+.ocenit-widget-wrap {
+    background:#fdfaf2;
+    border-radius: 18px;
+    padding: 32px;
+    border: 1px solid rgba(26,26,26,0.08);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.05);
+    min-height: 600px;
+}
+.ocenit-widget-wrap .cemap-widget { width: 100%; min-height: 540px; }
+.ocenit-widget-note {
+    margin: 22px auto 0;
+    text-align: center;
+    color:#888;
+    font-size: 0.88rem;
+    max-width: 640px;
+    line-height: 1.55;
+}
+
+/* FAQ — light */
+body.is-light .pripad-faq { background:#F8F4E9; }
+body.is-light .pripad-faq__item {
+    background:#fff;
+    border-color: rgba(26,26,26,0.10);
+}
+body.is-light .pripad-faq__item[open] {
+    border-color: rgba(255,191,0,0.55);
+    background:#fff;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.05);
+}
+body.is-light .pripad-faq__item summary { color:#1a1a1a; }
+body.is-light .pripad-faq__item summary:hover { color:#8B7D61; }
+body.is-light .pripad-faq__item summary::after { color:#8B7D61; }
+body.is-light .pripad-faq__item[open] summary { color:#8B7D61; }
+body.is-light .pripad-faq__item[open] summary::after { color:#FFBF00; }
+body.is-light .pripad-faq__answer { color:#555; }
+body.is-light .pripad-faq__answer strong { color:#1a1a1a; }
+body.is-light .pripad-faq__answer ul { margin: 8px 0 12px 1.2rem; padding: 0; }
+body.is-light .pripad-faq__answer li { color:#555; margin: 4px 0; line-height: 1.65; }
+body.is-light .pripad-faq__answer a { color:#8B7D61; }
+body.is-light .pripad-faq__answer a:hover { color:#1a1a1a; }
+
+/* Tipy z blogu — light */
+body.is-light .pripad-tips { background:#fff; }
+body.is-light .pripad-tip-card {
+    background:#fdfaf2;
+    border-color: rgba(26,26,26,0.08);
+}
+body.is-light .pripad-tip-card:hover {
+    border-color: rgba(255,191,0,0.5);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+body.is-light .pripad-tip-card__body h3 { color:#1a1a1a; }
+body.is-light .pripad-tip-card__body p { color:#555; }
+
+/* Bridge sekce — kdy online nestačí */
+.ocenit-bridge {
+    background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+    padding: 80px 0;
+    border-top: 1px solid #FFBF00;
+}
+.ocenit-bridge__inner {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 48px;
+    align-items: center;
+}
+.ocenit-bridge__eyebrow {
+    color:#FFBF00;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    display:block;
+    margin-bottom: 10px;
+}
+.ocenit-bridge__text h2 {
+    color:#fff;
+    font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+    margin: 0 0 16px;
+    font-weight: 800;
+    line-height: 1.2;
+}
+.ocenit-bridge__text p {
+    color:#d3d3d3;
+    line-height: 1.7;
+    font-size: 1.04rem;
+    margin: 0 0 14px;
+}
+.ocenit-bridge__actions {
+    display:flex; flex-direction: column; gap: 12px;
+}
+.ocenit-bridge__actions .cta-button { text-align: center; }
+.ocenit-bridge__actions .cta-button--outline {
+    color:#FFBF00; border-color:#FFBF00;
+}
+.ocenit-bridge__actions .cta-button--outline:hover {
+    background:#FFBF00; color:#1a1a1a;
+}
+
+/* Závěrečný claim — light */
+body.is-light .pripad-claim {
+    background:#fff;
+    border-top: 1px solid #FFBF00;
+    border-bottom: 1px solid #FFBF00;
+}
+body.is-light .pripad-claim__line { color:#1a1a1a; }
+body.is-light .pripad-claim__line span { color:#FFBF00; }
+
+/* Sticky mobile CTA — light */
+body.is-light .pripad-sticky-cta {
+    background: rgba(255,255,255,0.97);
+    border-top-color: rgba(26,26,26,0.15);
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.10);
+}
+body.is-light .pripad-sticky-cta__call {
+    color:#1a1a1a;
+    border-color:#1a1a1a;
+}
+body.is-light .pripad-sticky-cta__call:hover {
+    background:#1a1a1a; color:#FFBF00;
+}
+
+/* Hero grid override pro ocenit (vizuál karta vpravo, ne foto) */
+.pripad-hero__grid--ocenit { grid-template-columns: 1fr 1fr; }
+
+@media (max-width: 980px) {
+    .pripad-cases__grid--4 { grid-template-columns: 1fr; }
+    .ocenit-bridge__inner { grid-template-columns: 1fr; gap: 30px; }
+    .ocenit-bridge__actions { flex-direction: row; flex-wrap: wrap; }
+    .ocenit-widget-wrap { padding: 18px; }
+}
+
 /* Index — CTA strip nahrazující původní sekci #konzultace */
 .index-brief-cta {
     background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);

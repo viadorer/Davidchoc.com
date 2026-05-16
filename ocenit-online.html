@@ -3,13 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ocenit Online | David Choc - Realitní makléř</title>
-    <meta name="description" content="Oceňte si svoji nemovitost zdarma a bez závazků pomocí našeho online nástroje. Získejte odhad prodejní ceny nebo ceny pronájmu během několika minut.">
+    <title>Ocenit nemovitost online | Tržní odhad zdarma za 2 minuty — David Choc</title>
+    <meta name="description" content="Online ocenění nemovitosti zdarma. Tržní odhad ceny prodejní i pronájmu během dvou minut. Bez registrace, bez závazku. Plzeňský kraj a celá ČR.">
+    <meta name="keywords" content="ocenit nemovitost online, online odhad nemovitosti, tržní cena bytu, odhad ceny domu, cena pronájmu, David Choc, Plzeň">
+    <link rel="canonical" href="https://www.davidchoc.cz/ocenit-online.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="cs_CZ">
+    <meta property="og:title" content="Ocenit nemovitost online | David Choc">
+    <meta property="og:description" content="Online ocenění nemovitosti zdarma. Tržní odhad za dvě minuty. Bez registrace, bez závazku.">
+    <meta property="og:url" content="https://www.davidchoc.cz/ocenit-online.html">
+    <meta property="og:image" content="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/davidchocagent.avif">
+
+    <link rel="icon" type="image/png" href="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/favicon.png">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- CEMAP widget -->
     <script>var cemap_id = '22642/235f94312cb0beea2fe91791583a1aa735ee02fc';</script>
     <script src="https://cemap.cz/beta2/inc/js/widget.js" async></script>
-    
+
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TXGDD8D3GK"></script>
     <script>
@@ -18,60 +32,361 @@
       gtag('js', new Date());
       gtag('config', 'G-TXGDD8D3GK');
     </script>
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Online ocenění nemovitosti",
+      "provider": {
+        "@type": "RealEstateAgent",
+        "name": "David Choc",
+        "telephone": "+420774052232",
+        "email": "david.choc@ptf.cz",
+        "url": "https://www.davidchoc.cz"
+      },
+      "areaServed": "Česká republika",
+      "description": "Online ocenění nemovitosti zdarma. Tržní odhad ceny prodejní i pronájmu během dvou minut.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CZK" }
+    }
+    </script>
 </head>
-<body>
+<body class="pripad-page is-light ocenit-page">
     <!-- Navigace -->
     <div id="navbar-placeholder"></div>
 
-    <!-- Hlavní sekce s oceněním -->
-    <section class="ocenit-section">
-        <div class="container">
-            <div class="ocenit-uvod">
-                <h1>Ocenit nemovitost online</h1>
-                <p class="ocenit-highlight">
-                    Získejte odhad tržní ceny své nemovitosti online během pár minut – zdarma a bez závazků!
+    <main>
+        <!-- 01 │ HERO -->
+        <section class="pripad-hero">
+            <div class="container">
+                <div class="pripad-hero__grid pripad-hero__grid--ocenit">
+                    <div class="pripad-hero__text">
+                        <span class="pripad-hero__eyebrow">Ocenění online</span>
+                        <h1>Ocenit nemovitost online</h1>
+                        <p class="pripad-hero__lead">Tržní odhad zdarma za dvě minuty.</p>
+                        <p class="pripad-hero__body">
+                            Vyplňte adresu a parametry. Online nástroj porovná stovky realizovaných prodejů ve vašem okolí a vrátí vám tržní odhad ceny prodejní i pronájmu. Bez registrace, bez závazku, bez čekání.
+                        </p>
+                        <div class="pripad-hero__cta">
+                            <a href="#widget" class="cta-button">Spočítat hned</a>
+                            <a href="#faq" class="cta-button cta-button--outline">Mám otázky</a>
+                        </div>
+
+                        <div class="pripad-hero__stats">
+                            <div class="pripad-stat">
+                                <div class="pripad-stat__num">2 min</div>
+                                <div class="pripad-stat__label">průměrná doba vyplnění</div>
+                            </div>
+                            <div class="pripad-stat">
+                                <div class="pripad-stat__num">0 Kč</div>
+                                <div class="pripad-stat__label">zdarma, bez registrace</div>
+                            </div>
+                            <div class="pripad-stat">
+                                <div class="pripad-stat__num">±10 %</div>
+                                <div class="pripad-stat__label">typická přesnost pro standardní byty</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pripad-hero__image ocenit-hero__visual">
+                        <div class="ocenit-hero__card">
+                            <div class="ocenit-hero__card-header">
+                                <span class="ocenit-hero__dot ocenit-hero__dot--red"></span>
+                                <span class="ocenit-hero__dot ocenit-hero__dot--amber"></span>
+                                <span class="ocenit-hero__dot ocenit-hero__dot--green"></span>
+                                <span class="ocenit-hero__card-title">Ukázka výsledku</span>
+                            </div>
+                            <div class="ocenit-hero__card-body">
+                                <div class="ocenit-hero__card-row">
+                                    <span class="ocenit-hero__label">Tržní cena prodejní</span>
+                                    <span class="ocenit-hero__value">4 850 000 Kč</span>
+                                </div>
+                                <div class="ocenit-hero__card-row">
+                                    <span class="ocenit-hero__label">Rozpětí</span>
+                                    <span class="ocenit-hero__value-sub">4 365 000 – 5 335 000 Kč</span>
+                                </div>
+                                <div class="ocenit-hero__card-divider"></div>
+                                <div class="ocenit-hero__card-row">
+                                    <span class="ocenit-hero__label">Měsíční pronájem</span>
+                                    <span class="ocenit-hero__value">17 500 Kč</span>
+                                </div>
+                                <div class="ocenit-hero__card-row">
+                                    <span class="ocenit-hero__label">Rozpětí</span>
+                                    <span class="ocenit-hero__value-sub">15 800 – 19 200 Kč</span>
+                                </div>
+                                <p class="ocenit-hero__card-note">Ilustrační příklad. Skutečný výsledek závisí na parametrech, které vyplníte.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 02 │ TŘI KROKY -->
+        <section class="pripad-steps">
+            <div class="container">
+                <header class="pripad-section__header">
+                    <h2>Jak to funguje</h2>
+                    <p>Od první adresy k jasnému odhadu za dvě minuty.</p>
+                </header>
+
+                <div class="pripad-steps__grid">
+                    <article class="pripad-step">
+                        <div class="pripad-step__num">01</div>
+                        <h3>Vyplníte parametry</h3>
+                        <p>Adresa, typ nemovitosti, plocha, dispozice, stav. Žádná registrace. Žádný e-mail. Online nástroj se ptá jen na to, co opravdu potřebuje vědět.</p>
+                    </article>
+
+                    <article class="pripad-step">
+                        <div class="pripad-step__num">02</div>
+                        <h3>Dostanete odhad</h3>
+                        <p>Okamžitě vidíte tržní cenu prodejní i pronájmu — včetně rozpětí, ve kterém se nemovitost ve vaší lokalitě pohybuje. Bez čekání, bez telefonátů.</p>
+                    </article>
+
+                    <article class="pripad-step">
+                        <div class="pripad-step__num">03</div>
+                        <h3>Probereme detaily</h3>
+                        <p>Pokud chcete přesnější číslo nebo posun dál — k prodeji, hypotéce, dědictví — ozvete se a domluvíme se na osobní prohlídce. Konzultace zdarma.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 03 │ CO VŠECHNO ODHAD ŘEKNE -->
+        <section class="pripad-cases">
+            <div class="container">
+                <header class="pripad-section__header">
+                    <h2>Co všechno vám odhad řekne</h2>
+                    <p>Čtyři čísla, která vám pomůžou se rozhodnout.</p>
+                </header>
+
+                <div class="pripad-cases__grid pripad-cases__grid--4">
+                    <article class="pripad-case">
+                        <div class="pripad-case__num">01</div>
+                        <div class="pripad-case__body">
+                            <h3>Tržní cena prodeje</h3>
+                            <p>Orientační hodnota, za kterou by vaše nemovitost dnes mohla jít na trh. Vypočtená z reálných realizovaných prodejů ve vašem okolí.</p>
+                        </div>
+                    </article>
+
+                    <article class="pripad-case">
+                        <div class="pripad-case__num">02</div>
+                        <div class="pripad-case__body">
+                            <h3>Cena pronájmu</h3>
+                            <p>Měsíční nájem, jaký lze v dané lokalitě a stavu očekávat. Užitečné, pokud zvažujete pronájem místo prodeje.</p>
+                        </div>
+                    </article>
+
+                    <article class="pripad-case">
+                        <div class="pripad-case__num">03</div>
+                        <div class="pripad-case__body">
+                            <h3>Porovnání s okolím</h3>
+                            <p>Cenové rozpětí podobných nemovitostí ve vaší lokalitě. Vidíte, jestli je vaše nemovitost spíš v dolní, středu, nebo horní části spektra.</p>
+                        </div>
+                    </article>
+
+                    <article class="pripad-case">
+                        <div class="pripad-case__num">04</div>
+                        <div class="pripad-case__body">
+                            <h3>Podklad pro rozhodnutí</h3>
+                            <p>Konkrétní číslo, se kterým můžete kalkulovat — prodat, pronajmout, refinancovat hypotéku, nebo investovat dál.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 04 │ WIDGET -->
+        <section class="ocenit-widget-section" id="widget">
+            <div class="container">
+                <header class="pripad-section__header pripad-section__header--center">
+                    <h2>Spočítejte si odhad teď</h2>
+                    <p>Vyplňte parametry vaší nemovitosti. Výsledek dostanete okamžitě.</p>
+                </header>
+
+                <div class="ocenit-widget-wrap">
+                    <div class="cemap-widget" data-options="id=101"></div>
+                </div>
+
+                <p class="ocenit-widget-note">
+                    Online odhad provozuje nezávislá služba CEMAP. Data o realizovaných prodejích pocházejí z katastru nemovitostí a inzertních portálů.
                 </p>
-                <p class="ocenit-popis">
-                    Připravil jsem pro vás exkluzivní možnost zdarma a bez závazku ocenit si svoji nemovitost online. 
-                    Zabere to dvě minuty a doufám, že vám tento bonus udělá radost. Můžete si spočítat cenu prodejní 
-                    i cenu pronájmu.
+            </div>
+        </section>
+
+        <!-- 05 │ FAQ -->
+        <section class="pripad-faq" id="faq">
+            <div class="container">
+                <header class="pripad-section__header">
+                    <h2>Časté otázky</h2>
+                    <p>Krátké a přímé odpovědi k online ocenění nemovitosti.</p>
+                </header>
+
+                <div class="pripad-faq__list">
+                    <details class="pripad-faq__item">
+                        <summary>Jak přesné je online ocenění?</summary>
+                        <div class="pripad-faq__answer">
+                            <p>Online odhad pracuje s tisíci realizovaných prodejů ve vašem okolí. Pro typický byt v běžné lokalitě se přesnost obvykle pohybuje do plus minus deseti procent. To je dobrý startovní bod — víte, kolik vaše nemovitost zhruba stojí.</p>
+                            <p>Pro skutečnou tržní cenu, kterou pak nabídnete kupujícím, je potřeba osobní prohlídka. Záleží totiž na stavu, dispozici, výhledu, hluku, sousedech — všechno, co algoritmus nevidí.</p>
+                        </div>
+                    </details>
+
+                    <details class="pripad-faq__item">
+                        <summary>Co všechno do odhadu vstupuje?</summary>
+                        <div class="pripad-faq__answer">
+                            <p>Lokalita, typ nemovitosti, dispozice, podlahová plocha, podlaží, stáří domu, energetický štítek, parkování a obecná situace na trhu. Algoritmus to porovná s reálnými prodeji v okolí.</p>
+                            <p>Co naopak nezná: aktuální stav vnitřku, nedávnou rekonstrukci, výhled z okna, hluk, problémy se sousedy nebo SVJ. To všechno řeším až já při osobní prohlídce.</p>
+                        </div>
+                    </details>
+
+                    <details class="pripad-faq__item">
+                        <summary>Tržní odhad nebo znalecký posudek — který potřebuji?</summary>
+                        <div class="pripad-faq__answer">
+                            <p><strong>Tržní odhad</strong> je orientační cena — pro vaše vlastní rozhodnutí (prodávat, koupit, refinancovat). Online odhad i můj osobní odhad jsou tržní.</p>
+                            <p><strong>Znalecký posudek</strong> je formální dokument od soudního znalce — potřebujete ho pro banku, soud, dědické řízení nebo daňové vyrovnání. Cena obvykle tři až osm tisíc korun, platnost zpravidla šest měsíců.</p>
+                            <p>Pokud nevíte, který se vás týká, napište mi — poradím.</p>
+                        </div>
+                    </details>
+
+                    <details class="pripad-faq__item">
+                        <summary>Můžu online odhad použít pro banku, soud nebo dědictví?</summary>
+                        <div class="pripad-faq__answer">
+                            <p>Ne. Banky, soudy a notáři vyžadují znalecký posudek od soudního znalce. Online odhad je neformální orientace pro vás — nemá právní váhu.</p>
+                            <p>Pokud znalecký posudek potřebujete, doporučím vám ověřeného znalce v okolí, se kterým běžně spolupracujeme.</p>
+                        </div>
+                    </details>
+
+                    <details class="pripad-faq__item">
+                        <summary>Co když je výsledek nižší nebo vyšší, než jsem čekal?</summary>
+                        <div class="pripad-faq__answer">
+                            <p>Obojí se stává a obojí má důvod. Online odhad pracuje s průměrnými daty — neumí ocenit perfektní rekonstrukci, ani naopak nezohlední skryté vady.</p>
+                            <p>Pokud vám výsledek nesedí, ozvete se. Při osobní prohlídce vám řeknu, kde jsou v ceně rezervy, a kde byste si naopak měli dát pozor.</p>
+                        </div>
+                    </details>
+
+                    <details class="pripad-faq__item">
+                        <summary>Co když nemovitost neodpovídá standardu (atypická, památka, pozemek)?</summary>
+                        <div class="pripad-faq__answer">
+                            <p>Online odhad nejlépe funguje pro standardní byty a domy v běžných lokalitách. Pro atypické nemovitosti — památkově chráněné objekty, pozemky, komerční prostory, chaty mimo obec, nebo věci s právními komplikacemi — berte výsledek s rezervou.</p>
+                            <p>V takových případech doporučuji osobní ocenění, kde se dají zohlednit specifika, která algoritmus nevidí.</p>
+                        </div>
+                    </details>
+
+                    <details class="pripad-faq__item">
+                        <summary>Jak často se cena nemovitosti mění?</summary>
+                        <div class="pripad-faq__answer">
+                            <p>Trh nemovitostí se hýbe pomalu, ale neustále. Krátkodobě (v rámci měsíců) se ceny mění v jednotkách procent. Dlouhodobě v Plzeňském kraji rostou průměrně o tři až šest procent ročně.</p>
+                            <p>Pokud máte aktuální odhad starší než půl roku, vyplatí se ho přepočítat — zvlášť pokud se v okolí stalo něco významného (nová zástavba, dopravní změna, větší obchod).</p>
+                        </div>
+                    </details>
+
+                    <details class="pripad-faq__item">
+                        <summary>Kdy už nestačí online odhad a potřebuji osobní ocenění?</summary>
+                        <div class="pripad-faq__answer">
+                            <p>Když:</p>
+                            <ul>
+                                <li>chcete skutečně prodávat a stanovit nabídkovou cenu,</li>
+                                <li>potřebujete cenu doložit (banka, soud, dědictví, rozvod, daň),</li>
+                                <li>nemovitost je atypická nebo má právní specifika,</li>
+                                <li>mezi online odhadem a vaším očekáváním je velký rozdíl,</li>
+                                <li>chcete vědět, kolik můžete maximálně dostat — ne průměr, ale strop.</li>
+                            </ul>
+                            <p>V těchto případech vás zvu k osobní prohlídce. Stačí napsat přes <a href="/pripad-pro-agenta.html">Případ pro agenta</a> a do 24 hodin se ozvu.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- 06 │ TIPY Z BLOGU -->
+        <section class="pripad-tips">
+            <div class="container">
+                <header class="pripad-section__header">
+                    <h2>Tipy ke správnému ocenění</h2>
+                    <p>Tři články, ve kterých se ceně nemovitosti věnuji podrobněji.</p>
+                </header>
+
+                <div class="pripad-tips__grid">
+                    <a href="/blog/posts/tahak-co-opravdu-ovlivnuje-cenu-nemovitosti.html" class="pripad-tip-card">
+                        <div class="pripad-tip-card__image">
+                            <img src="/images/blog/clanek61.png" alt="Tahák: Co opravdu ovlivňuje cenu nemovitosti" loading="lazy">
+                        </div>
+                        <div class="pripad-tip-card__body">
+                            <span class="pripad-tip-card__cat">Tipy a triky</span>
+                            <h3>Tahák: Co opravdu ovlivňuje cenu nemovitosti</h3>
+                            <p>Pět faktorů, které rozhodují o tom, jestli prodáte za tržní cenu, nebo o dvě stě tisíc méně.</p>
+                            <span class="pripad-tip-card__meta">7 min čtení <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                        </div>
+                    </a>
+
+                    <a href="/blog/posts/spravne-oceneni-nemovitosti.html" class="pripad-tip-card">
+                        <div class="pripad-tip-card__image">
+                            <img src="/images/blog/clanek24.jpeg" alt="Správné ocenění nemovitosti — kompletní průvodce" loading="lazy">
+                        </div>
+                        <div class="pripad-tip-card__body">
+                            <span class="pripad-tip-card__cat">Trh a finance</span>
+                            <h3>Správné ocenění nemovitosti: Kompletní průvodce</h3>
+                            <p>Jak se stanovuje cena, kdo ji určuje a co dělat, když výsledky nesedí.</p>
+                            <span class="pripad-tip-card__meta">9 min čtení <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                        </div>
+                    </a>
+
+                    <a href="/blog/posts/jak-stanovit-spravedlivou-cenu-najmu.html" class="pripad-tip-card">
+                        <div class="pripad-tip-card__image">
+                            <img src="/images/blog/clanek31.jpeg" alt="Jak stanovit reálnou cenu nájmu" loading="lazy">
+                        </div>
+                        <div class="pripad-tip-card__body">
+                            <span class="pripad-tip-card__cat">Trh a finance</span>
+                            <h3>Jak stanovit reálnou cenu nájmu</h3>
+                            <p>Co rozhoduje o ceně pronájmu a jak se nepřestřelit ani nepodstřelit.</p>
+                            <span class="pripad-tip-card__meta">8 min čtení <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 07 │ BRIDGE — kdy online odhad nestačí -->
+        <section class="ocenit-bridge">
+            <div class="container">
+                <div class="ocenit-bridge__inner">
+                    <div class="ocenit-bridge__text">
+                        <span class="ocenit-bridge__eyebrow">Případ pro agenta</span>
+                        <h2>Když online odhad nestačí</h2>
+                        <p>Online nástroj vám dá orientaci. Pro přesnou cenu — takovou, jakou pak nabídnete kupujícím, nebo doložíte bance — je potřeba osobní prohlídka. Zohledníme stav, dispozici, právní detaily i specifika trhu, která algoritmus nevidí.</p>
+                        <p>Když potřebujete cenu pro reálný prodej, banku, soud, dědictví nebo komplikovaný případ, pojďte do Případu pro agenta. Konzultace zdarma, ozvu se do 24 hodin.</p>
+                    </div>
+                    <div class="ocenit-bridge__actions">
+                        <a href="/pripad-pro-agenta.html#brief" class="cta-button">Chci osobní ocenění</a>
+                        <a href="tel:+420774052232" class="cta-button cta-button--outline">
+                            <i class="fas fa-phone" aria-hidden="true"></i> Volat 774 052 232
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 08 │ ZÁVĚREČNÝ CLAIM -->
+        <section class="pripad-claim">
+            <div class="container">
+                <p class="pripad-claim__line">
+                    Vaše nemovitost. <span>Vaše čísla. Vaše rozhodnutí.</span>
                 </p>
             </div>
-            
-            <div class="ocenit-widget-container">
-                <div class="cemap-widget" data-options="id=101"></div>
-            </div>
-            
-            <div class="ocenit-vyhody">
-                <div class="vyhoda">
-                    <i class="fas fa-check-circle"></i>
-                    <p>Rychlý odhad během 2 minut</p>
-                </div>
-                <div class="vyhoda">
-                    <i class="fas fa-check-circle"></i>
-                    <p>Zcela zdarma a bez závazků</p>
-                </div>
-                <div class="vyhoda">
-                    <i class="fas fa-check-circle"></i>
-                    <p>Aktuální data z realitního trhu</p>
-                </div>
-                <div class="vyhoda">
-                    <i class="fas fa-check-circle"></i>
-                    <p>Odhad prodejní ceny i ceny pronájmu</p>
-                </div>
-            </div>
-            
-            <div class="ocenit-cta">
-                <p>Potřebujete přesnější odhad nebo poradit s prodejem či pronájmem vaší nemovitosti?</p>
-                <a href="index.html#kontakt" class="cta-button">Kontaktujte mě</a>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Footer -->
     <div id="footer-placeholder"></div>
 
-    <script src="script.js"></script>
+    <!-- Sticky mobile CTA -->
+    <div class="pripad-sticky-cta">
+        <a href="#widget" class="pripad-sticky-cta__primary">Spočítat hned</a>
+        <a href="tel:+420774052232" class="pripad-sticky-cta__call" aria-label="Zavolat 774 052 232">
+            <i class="fas fa-phone" aria-hidden="true"></i>
+        </a>
+    </div>
 
     <!-- Plovoucí tlačítka -->
     <div class="floating-buttons">
@@ -84,12 +399,13 @@
         <a href="mailto:david.choc@ptf.cz" class="floating-button email" aria-label="Poslat email">
             <i class="fas fa-envelope"></i>
         </a>
-        <a href="https://wa.me/420604240086" class="floating-button whatsapp" aria-label="WhatsApp zpráva" target="_blank">
+        <a href="https://wa.me/420604240086" class="floating-button whatsapp" aria-label="WhatsApp zpráva" target="_blank" rel="noopener">
             <i class="fab fa-whatsapp"></i>
         </a>
     </div>
-    
-    <!-- Inicializace komponent -->
+
+    <script src="script.js"></script>
     <script src="common/common.js"></script>
+    <script src="cookie-consent.js"></script>
 </body>
 </html>

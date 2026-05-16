@@ -107,16 +107,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const sections = document.querySelectorAll('section');
     window.addEventListener('scroll', function() {
         let current = '';
-        
+
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
             if (window.pageYOffset >= (sectionTop - 200)) {
                 current = section.getAttribute('id');
             }
         });
 
-        navLinks.forEach(link => {
+        // navLinks dotazujeme tady — navbar se načítá asynchronně,
+        // takže při startu skriptu ještě nemusí existovat
+        const scrollNavLinks = document.querySelectorAll('.nav-link');
+        scrollNavLinks.forEach(link => {
             link.classList.remove('active');
             if (link.getAttribute('href') === `#${current}`) {
                 link.classList.add('active');
