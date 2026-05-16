@@ -219,6 +219,33 @@ header {
     width: 100%;
 }
 
+/* Kontakt jako CTA tlačítko v navigaci */
+.nav-link--cta {
+    background-color: var(--color-gold);
+    color: var(--color-dark);
+    padding: 8px 18px;
+    border-radius: var(--radius-pill);
+    transition: background-color var(--transition-base), transform var(--transition-base);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.nav-link--cta:hover,
+.nav-link--cta.active {
+    background-color: var(--color-gold-hover);
+    color: var(--color-dark);
+    transform: translateY(-1px);
+}
+
+.nav-link--cta::after {
+    display: none;
+}
+
+.nav-link--cta i {
+    font-size: 0.85em;
+}
+
 /* Mobilní navigace */
 .nav-toggle {
     display: none;
