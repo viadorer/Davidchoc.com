@@ -609,10 +609,23 @@
 
         function fmtArea(a) { return a ? `${a} m²` : null; }
 
+        // Supabase storage podporuje image transformace přes /render/image/public/ endpoint.
+        // Originální fotky jsou 1.5+ MB — resize na 800px je 7× menší (~200 KB) a načte se rychleji.
+        function toResizedUrl(rawUrl, width = 800, quality = 80) {
+            if (!rawUrl || typeof rawUrl !== 'string') return rawUrl;
+            if (rawUrl.includes('/storage/v1/object/public/')) {
+                const transformed = rawUrl.replace('/storage/v1/object/public/', '/storage/v1/render/image/public/');
+                const sep = transformed.includes('?') ? '&' : '?';
+                return `${transformed}${sep}width=${width}&quality=${quality}&resize=cover`;
+            }
+            return rawUrl;
+        }
+
         function getImageUrl(property) {
             if (property.images && property.images.length > 0) {
                 const main = property.images.find(i => i.is_main) || property.images[0];
-                return main.url_large || main.url || main.url_thumbnail;
+                const raw = main.url_large || main.url || main.url_thumbnail;
+                return toResizedUrl(raw, 800, 80);
             }
             return FALLBACK_IMAGE;
         }
@@ -626,9 +639,12 @@
 
         const OFFER_LABELS = { prodej: 'Prodej', pronajem: 'Pronájem' };
 
-        function renderCard(p) {
+        function renderCard(p, index = 0) {
             const detailUrl = `/nabidky/${p.slug}`;
             const imageUrl = getImageUrl(p);
+            // První 3 karty (above-the-fold) bez lazy loading — eager + high priority
+            const loadingAttr = index < 3 ? 'eager' : 'lazy';
+            const fetchPriority = index < 3 ? 'high' : 'auto';
             const badges = [];
             if (p.status === 'reserved' || p.status === 'rezervovano') {
                 badges.push('<span class="property-badge reserved">Rezervováno</span>');
@@ -652,7 +668,7 @@
                     <div class="property-image">
                         ${offerLabel ? `<span class="property-offer-type">${offerLabel}</span>` : ''}
                         ${badges.length ? `<div class="property-badges">${badges.join('')}</div>` : ''}
-                        <img src="${imageUrl}" alt="${p.title}" loading="lazy" onerror="this.src='${FALLBACK_IMAGE}'">
+                        <img src="${imageUrl}" alt="${p.title}" loading="${loadingAttr}" decoding="async" fetchpriority="${fetchPriority}" onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src='${FALLBACK_IMAGE}';}">
                     </div>
                     <div class="property-content">
                         ${p.disposition ? `<span class="property-disposition">${p.disposition}</span>` : ''}
@@ -727,7 +743,7 @@
                     return;
                 }
 
-                grid.innerHTML = properties.map(renderCard).join('');
+                grid.innerHTML = properties.map((p, i) => renderCard(p, i)).join('');
                 pag.innerHTML = renderPagination(pagination);
                 syncUrl();
             } catch (err) {
