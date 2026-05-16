@@ -138,8 +138,10 @@ body {
     padding: 0 20px;
 }
 
-/* Navigace */
-header {
+/* Navigace — scope jen na navbar header v #navbar-placeholder,
+   NE na nested <header> elementy uvnitř obsahu (blog-header,
+   detail-header, kroky-header, sticky-header, …) */
+#navbar-placeholder > header {
     position: fixed;
     top: 0;
     left: 0;
@@ -689,7 +691,7 @@ header {
         padding: 0 15px;
     }
     
-    header {
+    #navbar-placeholder > header {
         background-color: rgba(230, 219, 188, 1);
     }
     
