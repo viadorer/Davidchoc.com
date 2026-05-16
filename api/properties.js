@@ -1,9 +1,9 @@
 // Vercel serverless function — proxy na PTF backend pro výpis nemovitostí
-// ENV vars potřebné na Vercelu:
-//   PTF_BACKEND_URL = https://api.ptf.cz   (nebo Railway URL)
+// ENV vars (volitelné, fallback níže):
+//   PTF_BACKEND_URL = https://ptf-production.up.railway.app
 //   PTF_TENANT_SLUG = ptf-reality
 
-const BACKEND = process.env.PTF_BACKEND_URL || 'https://api.ptf.cz';
+const BACKEND = process.env.PTF_BACKEND_URL || 'https://ptf-production.up.railway.app';
 const TENANT  = process.env.PTF_TENANT_SLUG || 'ptf-reality';
 
 const ALLOWED_FILTERS = new Set([

@@ -2,7 +2,7 @@
 // Volá: GET /api/property?slug=<slug>
 // Backend: GET /api/properties/:slug s headerem X-Tenant-Slug
 
-const BACKEND = process.env.PTF_BACKEND_URL || 'https://api.ptf.cz';
+const BACKEND = process.env.PTF_BACKEND_URL || 'https://ptf-production.up.railway.app';
 const TENANT  = process.env.PTF_TENANT_SLUG || 'ptf-reality';
 
 export default async function handler(req, res) {
