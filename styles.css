@@ -2992,10 +2992,969 @@ address {
         right: 20px;
         gap: 8px;
     }
-    
+
     .floating-button {
         width: 45px;
         height: 45px;
         font-size: 1rem;
     }
+}
+
+/* ============================================
+   PŘÍPAD PRO AGENTA — landing page
+   Black/gold theme, navazuje na existující design tokeny.
+   ============================================ */
+
+.pripad-page { background:#0a0a0a; color:#e9e9e9; }
+.pripad-page main { padding-top: 80px; }
+
+/* Sekce – výchozí rytmus */
+.pripad-page section { padding: 90px 0; position: relative; }
+.pripad-page section + section { border-top: 1px solid rgba(255,191,0,.10); }
+
+.pripad-section__header { max-width: 760px; margin: 0 0 56px; }
+.pripad-section__header--center { margin-left:auto; margin-right:auto; text-align:center; }
+.pripad-section__header h2 {
+    color:#FFBF00;
+    font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+    font-weight: 800;
+    line-height: 1.15;
+    margin: 0 0 14px;
+    letter-spacing: -0.01em;
+}
+.pripad-section__header h2::after {
+    content:""; display:block; width:64px; height:4px; border-radius:4px;
+    background: linear-gradient(90deg, #FFBF00 0%, rgba(255,191,0,0) 90%);
+    margin-top: 14px;
+}
+.pripad-section__header--center h2::after { margin-left:auto; margin-right:auto; }
+.pripad-section__header p {
+    color: #c9c9c9;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Focus styly — odstranit nativní halo, použít diskrétní obrys */
+.pripad-page .cta-button:focus { outline: none; }
+.pripad-page .cta-button:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+}
+
+/* Secondary text CTA — pro „Zpět" v multi-step formuláři */
+.pripad-brief__back {
+    background: transparent;
+    border: none;
+    color: #9c9c9c;
+    font: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 14px 8px;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: rgba(156,156,156,0.4);
+    transition: color 0.2s ease;
+}
+.pripad-brief__back:hover { color: #FFBF00; text-decoration-color: #FFBF00; }
+.pripad-brief__back:focus { outline: none; }
+.pripad-brief__back:focus-visible { outline: 2px solid #fff; outline-offset: 3px; border-radius: 4px; }
+
+/* ─── 01 HERO ─── */
+.pripad-hero {
+    background:
+        radial-gradient(ellipse at top left, rgba(255,191,0,0.10) 0%, transparent 55%),
+        linear-gradient(135deg, #111 0%, #000 100%);
+    padding: 110px 0 80px;
+}
+.pripad-hero__grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 60px;
+    align-items: center;
+}
+.pripad-hero__eyebrow {
+    display: inline-block;
+    font-size: 0.875rem;
+    color: #FFBF00;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+.pripad-hero__text h1 {
+    font-size: clamp(2.4rem, 5.4vw, 4rem);
+    line-height: 1.02;
+    margin: 0 0 18px;
+    color:#fff;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+}
+.pripad-hero__lead {
+    font-size: clamp(1.2rem, 2.2vw, 1.55rem);
+    color:#FFBF00;
+    font-weight: 600;
+    margin: 0 0 22px;
+    line-height: 1.3;
+}
+.pripad-hero__body {
+    font-size: 1.08rem;
+    color:#d3d3d3;
+    line-height: 1.7;
+    max-width: 560px;
+    margin: 0 0 32px;
+}
+.pripad-hero__cta {
+    display:flex; gap: 14px; flex-wrap:wrap;
+    margin-bottom: 48px;
+}
+.pripad-hero__cta .cta-button { padding: 16px 32px; font-size: 1rem; }
+.pripad-hero__cta .cta-button i { margin-right: 8px; }
+
+.pripad-hero__stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    max-width: 600px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(255,191,0,0.18);
+}
+.pripad-stat__num {
+    font-size: 1.9rem;
+    font-weight: 800;
+    color:#FFBF00;
+    line-height: 1;
+    margin-bottom: 6px;
+    font-variant-numeric: tabular-nums;
+}
+.pripad-stat__label {
+    font-size: 0.84rem;
+    color:#b5b5b5;
+    line-height: 1.4;
+}
+
+.pripad-hero__image {
+    position: relative;
+    display:flex; flex-direction:column; align-items:center;
+}
+.pripad-hero__photo-frame {
+    width: 100%;
+    max-width: 380px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+.pripad-hero__photo-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.pripad-hero__caption {
+    margin-top: 20px;
+    color:#fff;
+    font-weight: 800;
+    font-size: 1.1rem;
+    text-align: center;
+    letter-spacing: 0.02em;
+}
+.pripad-hero__caption span {
+    display:block;
+    font-weight: 500;
+    font-size: 0.82rem;
+    color: #FFBF00;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-top: 4px;
+}
+
+/* ─── 02 KROKY ─── */
+.pripad-steps { background:#0f0f0f; }
+.pripad-steps__grid {
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    position: relative;
+}
+.pripad-step {
+    background: linear-gradient(180deg, #161616 0%, #0f0f0f 100%);
+    border: 1px solid rgba(255,191,0,0.18);
+    border-radius: 18px;
+    padding: 34px 30px 32px;
+    position: relative;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.pripad-step:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255,191,0,0.45);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.4);
+}
+.pripad-step__num {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color:#FFBF00;
+    letter-spacing: 0.18em;
+    margin-bottom: 18px;
+}
+.pripad-step h3 {
+    color:#fff; font-size: 1.55rem; margin:0 0 14px; font-weight: 800;
+}
+.pripad-step p {
+    color:#c5c5c5; line-height: 1.7; margin:0; font-size: 1rem;
+}
+
+/* ─── 03 PŘÍPADY — editorial, velká čísla, bez ikon ─── */
+.pripad-cases {
+    background:
+        radial-gradient(ellipse at top right, rgba(255,191,0,0.05) 0%, transparent 60%),
+        #0a0a0a;
+}
+.pripad-cases__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border-top: 1px solid rgba(255,191,0,0.18);
+    border-left: 1px solid rgba(255,191,0,0.18);
+}
+.pripad-case {
+    position: relative;
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    align-items: start;
+    gap: 24px;
+    padding: 38px 32px 36px;
+    background: transparent;
+    border-right: 1px solid rgba(255,191,0,0.18);
+    border-bottom: 1px solid rgba(255,191,0,0.18);
+    transition: background 0.35s ease;
+}
+.pripad-case::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(135deg, rgba(255,191,0,0.06) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+}
+.pripad-case:hover { background: rgba(255,191,0,0.03); }
+.pripad-case:hover::before { opacity: 1; }
+.pripad-case:hover .pripad-case__num { color:#FFBF00; transform: translateX(-2px); }
+
+.pripad-case__num {
+    font-size: clamp(3.5rem, 6vw, 5rem);
+    font-weight: 900;
+    line-height: 0.85;
+    color: rgba(255,191,0,0.35);
+    letter-spacing: -0.04em;
+    font-variant-numeric: tabular-nums;
+    transition: color 0.35s ease, transform 0.35s ease;
+    position: relative;
+    z-index: 1;
+}
+.pripad-case__body { position: relative; z-index: 1; padding-top: 8px; }
+.pripad-case__body h3 {
+    color:#fff;
+    font-size: 1.45rem;
+    margin: 0 0 12px;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+}
+.pripad-case__body p {
+    color:#b8b8b8;
+    font-size: 1rem;
+    line-height: 1.65;
+    margin: 0;
+}
+
+.pripad-cases__footnote {
+    margin: 48px auto 0;
+    text-align: center;
+    color:#c5c5c5;
+    font-size: 1.08rem;
+    max-width: 760px;
+    line-height: 1.6;
+    padding: 22px 28px;
+    border-top: 1px solid rgba(255,191,0,0.18);
+    border-bottom: 1px solid rgba(255,191,0,0.18);
+}
+
+/* ─── 04 PROČ JÁ ─── */
+.pripad-why { background:#0f0f0f; }
+.pripad-why__grid {
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+.pripad-why__card {
+    background:#000;
+    border: 1px solid rgba(255,191,0,0.25);
+    border-radius: 18px;
+    padding: 34px;
+    transition: all 0.3s ease;
+}
+.pripad-why__card:hover {
+    border-color: rgba(255,191,0,0.6);
+    transform: translateY(-3px);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.5);
+}
+.pripad-why__card h3 {
+    color:#FFBF00;
+    font-size: 1.35rem;
+    margin: 0 0 14px;
+    font-weight: 800;
+}
+.pripad-why__card p {
+    color:#d3d3d3; line-height: 1.7; font-size: 1.02rem; margin: 0;
+}
+
+/* ─── 05 FAQ ─── */
+.pripad-faq { background:#0a0a0a; }
+.pripad-faq__list {
+    max-width: 880px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.pripad-faq__item {
+    background:#111;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: border-color 0.3s ease;
+}
+.pripad-faq__item[open] {
+    border-color: rgba(255,191,0,0.45);
+    background:#141414;
+}
+.pripad-faq__item summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 22px 60px 22px 26px;
+    color:#fff;
+    font-weight: 700;
+    font-size: 1.08rem;
+    position: relative;
+    line-height: 1.4;
+    user-select: none;
+    transition: color 0.2s ease;
+}
+.pripad-faq__item summary::-webkit-details-marker { display: none; }
+.pripad-faq__item summary::after {
+    content: "+";
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px; height: 30px;
+    display: grid; place-items: center;
+    color:#FFBF00;
+    font-size: 1.6rem;
+    font-weight: 300;
+    transition: transform 0.3s ease;
+    line-height: 1;
+}
+.pripad-faq__item[open] summary { color:#FFBF00; }
+.pripad-faq__item[open] summary::after { content: "−"; transform: translateY(-50%) rotate(180deg); }
+.pripad-faq__item summary:hover { color:#FFBF00; }
+.pripad-faq__answer {
+    padding: 0 26px 24px;
+    color:#c5c5c5;
+    line-height: 1.75;
+    font-size: 1rem;
+}
+.pripad-faq__answer p { margin: 0 0 10px; }
+.pripad-faq__answer p:last-child { margin-bottom: 0; }
+.pripad-faq__answer a { color:#FFBF00; text-decoration: underline; }
+.pripad-faq__answer a:hover { color:#FFD700; }
+
+/* ─── 06 TIPY ─── */
+.pripad-tips { background:#0f0f0f; }
+.pripad-tips__grid {
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+.pripad-tip-card {
+    display:block;
+    background:#111;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.pripad-tip-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255,191,0,0.4);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.45);
+    text-decoration: none;
+}
+.pripad-tip-card__image {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background:#0a0a0a;
+}
+.pripad-tip-card__image img {
+    width: 100%; height: 100%; object-fit: cover; display:block;
+    transition: transform 0.5s ease;
+}
+.pripad-tip-card:hover .pripad-tip-card__image img { transform: scale(1.04); }
+.pripad-tip-card__body { padding: 22px 24px 24px; }
+.pripad-tip-card__cat {
+    display: inline-block;
+    color:#FFBF00;
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-bottom: 10px;
+}
+.pripad-tip-card__body h3 {
+    color:#fff;
+    font-size: 1.15rem;
+    line-height: 1.35;
+    margin: 0 0 10px;
+    font-weight: 700;
+}
+.pripad-tip-card__body p {
+    color:#b6b6b6;
+    font-size: 0.96rem;
+    line-height: 1.55;
+    margin: 0 0 16px;
+}
+.pripad-tip-card__meta {
+    display: inline-flex; align-items: center; gap: 8px;
+    color:#FFBF00;
+    font-size: 0.88rem;
+    font-weight: 600;
+    transition: gap 0.3s ease;
+}
+.pripad-tip-card:hover .pripad-tip-card__meta { gap: 14px; }
+
+/* ─── 07 RECENZE ─── */
+.pripad-reviews { background:#0a0a0a; }
+.pripad-reviews__grid {
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+.pripad-review {
+    background: linear-gradient(180deg, #131313 0%, #0d0d0d 100%);
+    border: 1px solid rgba(255,191,0,0.2);
+    border-radius: 18px;
+    padding: 38px 34px 30px;
+    position: relative;
+}
+.pripad-review__mark {
+    position: absolute;
+    top: 14px; left: 24px;
+    font-family: Georgia, serif;
+    font-size: 4.5rem;
+    color: rgba(255,191,0,0.25);
+    line-height: 1;
+}
+.pripad-review blockquote {
+    margin: 0 0 20px;
+    padding: 6px 0 0 0;
+}
+.pripad-review blockquote p {
+    color:#e6e6e6;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin: 0;
+}
+.pripad-review footer {
+    color:#9c9c9c;
+    font-size: 0.92rem;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+.pripad-review footer strong {
+    color:#FFBF00;
+    font-weight: 700;
+    display:block;
+    margin-bottom: 2px;
+}
+
+/* ─── 08 BRIEF FORM ─── */
+.pripad-brief {
+    background:
+        radial-gradient(ellipse at center top, rgba(255,191,0,0.06) 0%, transparent 60%),
+        #0f0f0f;
+}
+.pripad-brief__wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    background: linear-gradient(180deg, #131313 0%, #0a0a0a 100%);
+    border: 1px solid rgba(255,191,0,0.3);
+    border-radius: 24px;
+    padding: 40px 44px 44px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+}
+.pripad-brief__progress { margin-bottom: 32px; }
+.pripad-brief__progress-bar {
+    height: 6px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 999px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 14px;
+}
+.pripad-brief__progress-bar::after {
+    content:"";
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    background: linear-gradient(90deg, #FFBF00 0%, #FFD700 100%);
+    border-radius: 999px;
+    transition: width 0.4s ease;
+    width: 33.33%;
+}
+.pripad-brief__progress-bar[data-step="2"]::after { width: 66.66%; }
+.pripad-brief__progress-bar[data-step="3"]::after { width: 100%; }
+.pripad-brief__progress-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: #888;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+.pripad-brief__progress-labels span.active { color: #FFBF00; }
+
+.pripad-brief__step h3 {
+    color:#fff;
+    font-size: 1.55rem;
+    margin: 0 0 8px;
+    font-weight: 800;
+}
+.pripad-brief__hint {
+    color:#a8a8a8;
+    font-size: 0.96rem;
+    margin: 0 0 24px;
+    line-height: 1.5;
+}
+
+.pripad-brief__options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 28px;
+}
+.pripad-brief__option { cursor: pointer; position: relative; }
+.pripad-brief__option--wide { grid-column: 1 / -1; }
+.pripad-brief__option input { position: absolute; opacity: 0; pointer-events: none; }
+.pripad-brief__option span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 22px 18px;
+    background: #1a1a1a;
+    border: 2px solid #2a2a2a;
+    border-radius: 14px;
+    color:#e6e6e6;
+    font-size: 1.02rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    transition: all 0.2s ease;
+    min-height: 64px;
+    box-sizing: border-box;
+    position: relative;
+}
+.pripad-brief__option:hover span {
+    border-color: rgba(255,191,0,0.5);
+    background:#1f1f1f;
+    color:#fff;
+    transform: translateY(-1px);
+}
+.pripad-brief__option input:checked + span {
+    border-color: #FFBF00;
+    background: rgba(255,191,0,0.12);
+    color: #fff;
+    box-shadow: 0 0 0 1px #FFBF00 inset, 0 8px 24px rgba(255,191,0,0.18);
+}
+.pripad-brief__option input:checked + span::after {
+    content: "";
+    position: absolute;
+    top: 12px; right: 14px;
+    width: 8px; height: 8px;
+    background: #FFBF00;
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(255,191,0,0.7);
+}
+.pripad-brief__option input:focus-visible + span {
+    outline: 3px solid rgba(255,191,0,0.4);
+    outline-offset: 2px;
+}
+
+.pripad-brief__field { margin-bottom: 18px; }
+.pripad-brief__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+.pripad-brief__field label {
+    display:block;
+    color:#e6e6e6;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+}
+.pripad-brief__field input,
+.pripad-brief__field textarea {
+    width: 100%;
+    box-sizing: border-box;
+    background:#1a1a1a;
+    border: 2px solid #2a2a2a;
+    border-radius: 12px;
+    padding: 14px 16px;
+    color:#fff;
+    font: inherit;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+}
+.pripad-brief__field input::placeholder,
+.pripad-brief__field textarea::placeholder { color:#666; }
+.pripad-brief__field input:focus,
+.pripad-brief__field textarea:focus {
+    outline: none;
+    border-color: #FFBF00;
+    background:#1e1e1e;
+    box-shadow: 0 0 0 4px rgba(255,191,0,0.15);
+}
+.pripad-brief__field textarea { resize: vertical; min-height: 110px; }
+
+.pripad-brief__consent {
+    display: flex;
+    gap: 12px;
+    margin: 22px 0 26px;
+    color:#bbb;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    cursor: pointer;
+}
+.pripad-brief__consent input { margin-top: 3px; flex-shrink: 0; accent-color:#FFBF00; }
+.pripad-brief__consent a { color:#FFBF00; text-decoration: underline; }
+
+.pripad-brief__nav {
+    display: flex; gap: 12px; justify-content: space-between; align-items: center;
+    flex-wrap: wrap;
+}
+.pripad-brief__nav .cta-button { padding: 14px 28px; font-size: 0.98rem; }
+.pripad-brief__nav .cta-button[data-action="next"],
+.pripad-brief__nav button[type="submit"] { margin-left: auto; }
+
+.pripad-brief__trust {
+    margin: 22px 0 0;
+    padding-top: 22px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    color:#9a9a9a;
+    font-size: 0.9rem;
+    text-align: center;
+    line-height: 1.6;
+}
+.pripad-brief__trust a { color:#FFBF00; font-weight: 700; }
+
+.pripad-brief__success { text-align: center; padding: 20px 0; }
+.pripad-brief__success-icon {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    background: rgba(255,191,0,0.15);
+    color:#FFBF00;
+    display: grid; place-items: center;
+    font-size: 1.8rem;
+    margin: 0 auto 22px;
+    border: 2px solid #FFBF00;
+}
+.pripad-brief__success h3 {
+    color:#fff; font-size: 1.8rem; margin: 0 0 14px;
+}
+.pripad-brief__success p {
+    color:#c5c5c5; font-size: 1.02rem; line-height: 1.7; margin: 0 0 12px;
+}
+.pripad-brief__success a { color:#FFBF00; }
+.pripad-brief__success-meta { color:#888; font-size: 0.94rem; margin-top: 18px; }
+
+.pripad-brief__error {
+    margin-top: 20px;
+    padding: 16px 18px;
+    border-radius: 12px;
+    background: rgba(244,67,54,0.10);
+    border: 2px solid rgba(244,67,54,0.5);
+    color: #ff8a85;
+    font-size: 0.95rem;
+}
+
+/* ─── 09 CALENDLY ─── */
+.pripad-calendly { background:#0a0a0a; }
+.pripad-calendly__grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 50px;
+    align-items: start;
+}
+.pripad-calendly__text h2 {
+    color:#FFBF00;
+    font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+    margin: 0 0 18px;
+    font-weight: 800;
+    line-height: 1.2;
+}
+.pripad-calendly__text p {
+    color:#d3d3d3;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin: 0 0 24px;
+}
+.pripad-calendly__list {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 12px;
+}
+.pripad-calendly__list li {
+    display:flex; align-items:center; gap: 12px;
+    color:#e6e6e6;
+    font-size: 1rem;
+    line-height: 1.4;
+}
+.pripad-calendly__list li i { color:#FFBF00; font-size: 1.05rem; }
+.pripad-calendly__widget {
+    background:#fff;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255,191,0,0.3);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+}
+
+/* ─── 10 ZÁVĚREČNÝ CLAIM ─── */
+.pripad-claim {
+    background:#000;
+    padding: 60px 0;
+    border-top: 1px solid #FFBF00;
+    border-bottom: 1px solid #FFBF00;
+}
+.pripad-claim__line {
+    text-align: center;
+    color:#fff;
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    font-weight: 800;
+    margin: 0;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+}
+.pripad-claim__line span {
+    display: block;
+    color:#FFBF00;
+    margin-top: 6px;
+}
+
+/* ─── STICKY MOBILE CTA ─── */
+.pripad-sticky-cta {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: rgba(0,0,0,0.95);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(255,191,0,0.4);
+    padding: 12px 16px;
+    display: none;
+    gap: 12px;
+    align-items: center;
+    z-index: 98;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
+}
+.pripad-sticky-cta__primary {
+    flex: 1;
+    background:#FFBF00;
+    color:#000;
+    font-weight: 800;
+    text-align: center;
+    padding: 14px 18px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 0.98rem;
+    letter-spacing: 0.01em;
+    transition: background 0.2s ease;
+}
+.pripad-sticky-cta__primary:hover { background:#FFD700; color:#000; }
+.pripad-sticky-cta__call {
+    width: 48px; height: 48px;
+    background: transparent;
+    border: 2px solid #FFBF00;
+    color:#FFBF00;
+    border-radius: 50%;
+    display: grid; place-items: center;
+    text-decoration: none;
+    font-size: 1.05rem;
+    transition: all 0.2s ease;
+}
+.pripad-sticky-cta__call:hover {
+    background:#FFBF00; color:#000;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 980px) {
+    .pripad-hero__grid { grid-template-columns: 1fr; gap: 40px; }
+    .pripad-hero__image { order: -1; }
+    .pripad-hero__photo-frame { max-width: 280px; }
+    .pripad-hero__stats { grid-template-columns: 1fr; gap: 16px; }
+    .pripad-steps__grid,
+    .pripad-cases__grid,
+    .pripad-tips__grid,
+    .pripad-why__grid,
+    .pripad-reviews__grid { grid-template-columns: 1fr; }
+    .pripad-case { grid-template-columns: 80px 1fr; gap: 18px; padding: 28px 22px; }
+    .pripad-case__num { font-size: 2.8rem; }
+    .pripad-calendly__grid { grid-template-columns: 1fr; gap: 30px; }
+    .pripad-brief__wrap { padding: 32px 24px 32px; }
+    .pripad-brief__options,
+    .pripad-brief__row { grid-template-columns: 1fr; }
+    .pripad-page section { padding: 64px 0; }
+}
+
+@media (max-width: 640px) {
+    .pripad-hero { padding: 80px 0 60px; }
+    .pripad-hero__cta { flex-direction: column; align-items: stretch; }
+    .pripad-hero__cta .cta-button { text-align: center; }
+    .pripad-sticky-cta { display: flex; }
+    .pripad-page .floating-buttons { bottom: 90px; }
+    .pripad-section__header { margin-bottom: 36px; }
+    .pripad-brief__wrap { padding: 26px 18px; }
+    .pripad-faq__item summary { padding: 18px 50px 18px 20px; font-size: 1rem; }
+    .pripad-faq__answer { padding: 0 20px 20px; }
+    .pripad-claim { padding: 44px 0; }
+}
+
+/* ─── SITEWIDE POPUP CTA (vpravo dole) ─── */
+.popup-cta {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 300px;
+    background:#fff;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    padding: 28px 24px 24px;
+    z-index: 95;
+    transform: translateY(140%);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.16,1,0.3,1), opacity 0.4s ease;
+    font-family: var(--font-sans);
+}
+
+/* Když je popup viditelný, posuneme floating buttony nad něj
+   (popup má ~420px výšky, floating buttony jdou navrh) */
+body:has(.popup-cta.is-visible) .floating-buttons {
+    bottom: 470px;
+    transition: bottom 0.4s ease;
+}
+.popup-cta.is-visible { transform: translateY(0); opacity: 1; }
+.popup-cta__close {
+    position: absolute;
+    top: 12px; right: 14px;
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    color:#333;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: grid; place-items: center;
+    transition: background 0.2s ease;
+    line-height: 1;
+}
+.popup-cta__close:hover { background: rgba(0,0,0,0.06); }
+.popup-cta__image {
+    width: 170px; height: 170px;
+    margin: 4px auto 18px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #FFBF00;
+    background:#eee;
+}
+.popup-cta__image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.popup-cta__title {
+    text-align: center;
+    color:#1a1a1a;
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.35;
+    margin: 0 0 18px;
+}
+.popup-cta__btn {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    width: 100%;
+    background:#FFBF00;
+    color:#1a1a1a;
+    text-decoration: none;
+    text-align: center;
+    padding: 14px 18px;
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 0.88rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: all 0.25s ease;
+    box-shadow: 0 6px 16px rgba(255,191,0,0.35);
+}
+.popup-cta__btn:hover {
+    background:#FFD700;
+    color:#1a1a1a;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(255,191,0,0.45);
+    text-decoration: none;
+}
+.popup-cta__btn i { font-size: 0.85rem; }
+
+@media (max-width: 640px) {
+    .popup-cta {
+        bottom: 16px; right: 16px; left: 16px;
+        width: auto;
+        padding: 16px 18px 16px;
+        display: grid;
+        grid-template-columns: 80px 1fr;
+        align-items: center;
+        gap: 14px;
+    }
+    .popup-cta__image {
+        width: 80px; height: 80px; margin: 0; border-width: 2px;
+    }
+    .popup-cta__title { text-align: left; font-size: 0.95rem; margin: 0 0 10px; }
+    .popup-cta__btn { padding: 10px 14px; font-size: 0.8rem; }
+    .popup-cta__close { top: 6px; right: 6px; font-size: 1rem; width: 26px; height: 26px; }
+}
+
+/* Index — CTA strip nahrazující původní sekci #konzultace */
+.index-brief-cta {
+    background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+    padding: 60px 0;
+    border-top: 1px solid rgba(255,191,0,0.25);
+    border-bottom: 1px solid rgba(255,191,0,0.25);
+}
+.index-brief-cta__inner {
+    display:flex; align-items:center; justify-content:space-between;
+    gap: 40px; flex-wrap: wrap;
+}
+.index-brief-cta__text {
+    flex: 1; min-width: 280px;
+}
+.index-brief-cta__eyebrow {
+    color:#FFBF00; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.18em;
+    text-transform: uppercase; display: block; margin-bottom: 8px;
+}
+.index-brief-cta__text h2 {
+    color:#fff; font-size: clamp(1.5rem, 2.6vw, 2rem);
+    margin: 0 0 10px; font-weight: 800; line-height: 1.2;
+}
+.index-brief-cta__text p {
+    color:#cfcfcf; font-size: 1.04rem; line-height: 1.6; margin: 0;
+    max-width: 580px;
+}
+.index-brief-cta__actions { display:flex; gap: 12px; flex-wrap:wrap; }
+@media (max-width: 640px) {
+    .index-brief-cta__inner { flex-direction: column; align-items: flex-start; }
+    .index-brief-cta__actions { width: 100%; }
+    .index-brief-cta__actions .cta-button { width: 100%; text-align: center; }
 }

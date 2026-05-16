@@ -3,10 +3,22 @@ document.addEventListener('DOMContentLoaded', function() {
     // Zjištění, kde se nachází aktuální stránka
     const currentPath = window.location.href;
     let commonPath = './common/';
-    
+    let rootPath = './';
+
     // Pokud jsme v podadresáři blog, musíme použít jinou cestu
     if (currentPath.includes('/blog/')) {
         commonPath = '../common/';
+        rootPath = '../';
+    }
+
+    // Načtení sitewide popup CTA (jen jednou, asynchronně)
+    if (!document.querySelector('script[data-popup-cta-loader]')) {
+        const popupScript = document.createElement('script');
+        popupScript.src = rootPath + 'popup-cta.js';
+        popupScript.async = true;
+        popupScript.defer = true;
+        popupScript.setAttribute('data-popup-cta-loader', '1');
+        document.body.appendChild(popupScript);
     }
     
     console.log('Cesta k common:', commonPath); // Debug výpis
