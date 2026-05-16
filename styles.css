@@ -4214,6 +4214,212 @@ body.is-light .pripad-sticky-cta__call:hover {
     .ocenit-widget-wrap { padding: 18px; }
 }
 
+/* ============================================
+   MUJ-PRIBEH — specifické komponenty
+   ============================================ */
+
+.pribeh-page .pripad-hero { padding: 110px 0 70px; }
+.pribeh-hero__stats { grid-template-columns: repeat(4, 1fr) !important; }
+@media (max-width: 980px) {
+    .pribeh-hero__stats { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+/* Video sekce / placeholder */
+.pribeh-video { background:#0a0a0a; padding: 60px 0; }
+.pribeh-video__wrap { max-width: 920px; margin: 0 auto; }
+.pribeh-video__placeholder {
+    aspect-ratio: 16/9;
+    background:
+        radial-gradient(ellipse at center, rgba(255,191,0,0.10) 0%, transparent 60%),
+        linear-gradient(135deg, #161616 0%, #0a0a0a 100%);
+    border: 1px solid rgba(255,191,0,0.25);
+    border-radius: 20px;
+    display: grid;
+    place-items: center;
+    position: relative;
+    overflow: hidden;
+}
+.pribeh-video__play {
+    width: 84px; height: 84px;
+    border-radius: 50%;
+    background: rgba(255,191,0,0.15);
+    border: 2px solid #FFBF00;
+    display: grid; place-items: center;
+    color:#FFBF00;
+    font-size: 1.6rem;
+    margin-bottom: 22px;
+}
+.pribeh-video__caption {
+    text-align: center;
+    padding: 0 24px;
+}
+.pribeh-video__caption h2 {
+    color:#fff;
+    font-size: 1.6rem;
+    margin: 0 0 8px;
+    font-weight: 800;
+}
+.pribeh-video__caption p {
+    color:#9a9a9a;
+    font-size: 0.96rem;
+    margin: 0;
+}
+.pribeh-video__placeholder {
+    flex-direction: column;
+}
+
+/* Story sekce */
+.pribeh-story { background:#0f0f0f; }
+.pribeh-story__grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 50px;
+    align-items: start;
+}
+.pribeh-story__text p {
+    color:#d3d3d3;
+    line-height: 1.8;
+    font-size: 1.06rem;
+    margin: 0 0 16px;
+}
+.pribeh-story__signature {
+    margin-top: 26px !important;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,191,0,0.25);
+}
+.pribeh-story__signature strong {
+    color:#FFBF00;
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+}
+.pribeh-story__signature span {
+    color:#888;
+    font-size: 0.92rem;
+    font-style: italic;
+}
+.pribeh-story__image {
+    position: relative;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid rgba(255,191,0,0.25);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+}
+.pribeh-story__image img {
+    width: 100%; height: auto; display: block;
+}
+
+/* Sliby — využíváme accordion FAQ + úprava summary */
+.pribeh-rules { background:#0a0a0a; }
+.pribeh-rule summary {
+    display: flex !important;
+    align-items: center;
+    gap: 18px;
+    padding: 22px 60px 22px 26px !important;
+}
+.pribeh-rule__num {
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    background: rgba(255,191,0,0.10);
+    border: 1px solid rgba(255,191,0,0.35);
+    color:#FFBF00;
+    font-size: 1.05rem;
+    font-weight: 900;
+    display: grid;
+    place-items: center;
+    font-variant-numeric: tabular-nums;
+    transition: all 0.25s ease;
+}
+.pribeh-rule[open] .pribeh-rule__num {
+    background:#FFBF00;
+    color:#0a0a0a;
+    border-color:#FFBF00;
+}
+.pribeh-rule__title {
+    flex: 1;
+    font-size: 1.1rem;
+    line-height: 1.35;
+    font-weight: 700;
+}
+.pribeh-rule .pripad-faq__answer {
+    padding-left: 96px;
+}
+@media (max-width: 640px) {
+    .pribeh-rule summary { gap: 14px; padding: 18px 50px 18px 18px !important; }
+    .pribeh-rule__num { width: 42px; height: 42px; font-size: 0.92rem; }
+    .pribeh-rule__title { font-size: 1rem; }
+    .pribeh-rule .pripad-faq__answer { padding-left: 18px; padding-right: 20px; }
+}
+
+/* Recenze — totožné s pripad, jen rozšířené na 3 sloupce */
+.pribeh-reviews { background:#0f0f0f; }
+.pribeh-reviews__grid { grid-template-columns: repeat(3, 1fr) !important; }
+@media (max-width: 980px) {
+    .pribeh-reviews__grid { grid-template-columns: 1fr !important; }
+}
+
+/* Tým sekce */
+.pribeh-team {
+    background:#0a0a0a;
+    padding: 80px 0;
+}
+.pribeh-team__inner {
+    max-width: 840px;
+    margin: 0 auto;
+    text-align: center;
+}
+.pribeh-team__text h2 {
+    color:#FFBF00;
+    font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+    margin: 12px 0 22px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+}
+.pribeh-team__text p {
+    color:#d3d3d3;
+    line-height: 1.75;
+    font-size: 1.06rem;
+    margin: 0 auto 16px;
+    max-width: 720px;
+}
+
+/* Závěrečný claim — rozšířený o CTA pod claim */
+.pribeh-claim { padding: 70px 0 80px; }
+.pribeh-claim__sub {
+    text-align: center;
+    color:#c5c5c5;
+    font-size: 1.05rem;
+    margin: 18px 0 26px;
+    line-height: 1.55;
+}
+.pribeh-claim__cta {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+.pribeh-claim__cta .cta-button { padding: 14px 28px; font-size: 1rem; }
+.pribeh-claim__contact {
+    text-align: center;
+    margin: 0;
+}
+.pribeh-claim__contact a {
+    color:#FFBF00;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.96rem;
+}
+.pribeh-claim__contact a:hover { text-decoration: underline; }
+
+/* Responsive story */
+@media (max-width: 980px) {
+    .pribeh-story__grid { grid-template-columns: 1fr; gap: 30px; }
+    .pribeh-story__image { order: -1; max-width: 480px; margin: 0 auto; }
+}
+
 /* Index — CTA strip nahrazující původní sekci #konzultace */
 .index-brief-cta {
     background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
