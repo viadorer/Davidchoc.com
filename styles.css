@@ -3447,6 +3447,8 @@ address {
     border-radius: 18px;
     padding: 38px 34px 30px;
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 .pripad-review__mark {
     position: absolute;
@@ -3459,6 +3461,7 @@ address {
 .pripad-review blockquote {
     margin: 0 0 20px;
     padding: 6px 0 0 0;
+    flex: 1;
 }
 .pripad-review blockquote p {
     color:#e6e6e6;
@@ -3467,9 +3470,11 @@ address {
     margin: 0;
 }
 .pripad-review footer {
+    background: transparent;
     color:#9c9c9c;
     font-size: 0.92rem;
-    padding-top: 18px;
+    padding: 18px 0 0;
+    margin: 0;
     border-top: 1px solid rgba(255,255,255,0.08);
 }
 .pripad-review footer strong {
