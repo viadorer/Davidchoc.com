@@ -48,6 +48,12 @@
       ]
     },
     {
+      "source": "/sitemap-nabidky.xml",
+      "headers": [
+        { "key": "Content-Type", "value": "application/xml; charset=utf-8" }
+      ]
+    },
+    {
       "source": "/robots.txt",
       "headers": [
         { "key": "Content-Type", "value": "text/plain; charset=utf-8" },
@@ -63,7 +69,8 @@
     }
   ],
   "rewrites": [
-    { "source": "/nabidky/:slug", "destination": "/nabidky-detail" }
+    { "source": "/nabidky/:slug", "destination": "/nabidky-detail" },
+    { "source": "/sitemap-nabidky.xml", "destination": "/api/sitemap-nabidky" }
   ],
   "redirects": [
     { "source": "/blog/detail.html", "destination": "/blog", "permanent": true },
