@@ -105,6 +105,7 @@ User-agent: ChatGLM
 Allow: /
 
 # === Sitemapy ===
-# Hlavní (statické stránky + blog) a dynamický (nabídky nemovitostí — generován serverless funkcí)
+# Index sitemap odkazuje na všechny dílčí. Ponecháváme i přímé reference pro starší crawlery.
+Sitemap: https://www.davidchoc.cz/sitemap_index.xml
 Sitemap: https://www.davidchoc.cz/sitemap.xml
 Sitemap: https://www.davidchoc.cz/sitemap-nabidky.xml

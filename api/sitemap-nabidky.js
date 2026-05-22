@@ -51,16 +51,38 @@ export default async function handler(req, res) {
       const slug = escapeXml(p.slug);
       // Prioritu mírně zvedneme pro aktivní oproti rezervovaným
       const priority = p.status === 'aktivni' || p.status === 'active' ? '0.85' : '0.65';
+
+      // Image extension — zahrnuje hlavní obrázek a několik dalších
+      const images = (p.images || [])
+        .filter(img => img && img.is_visible !== false && (img.url || img.url_thumbnail))
+        .sort((a, b) => {
+          // Hlavní fotka první, pak podle sort_order
+          if (a.is_main && !b.is_main) return -1;
+          if (!a.is_main && b.is_main) return 1;
+          return (a.sort_order || 0) - (b.sort_order || 0);
+        })
+        .slice(0, 5); // max 5 obrázků per URL
+
+      const imageEntries = images.map(img => {
+        const imgUrl = escapeXml(img.url || img.url_thumbnail);
+        const imgTitle = escapeXml(p.title || 'Nemovitost');
+        return `    <image:image>
+      <image:loc>${imgUrl}</image:loc>
+      <image:title>${imgTitle}</image:title>
+    </image:image>`;
+      }).join('\n');
+
       return `  <url>
     <loc>${SITE}/nabidky/${slug}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>${priority}</priority>
-  </url>`;
+${imageEntries ? imageEntries + '\n' : ''}  </url>`;
     }).join('\n');
 
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${urlEntries}
 </urlset>
 `;

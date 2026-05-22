@@ -105,7 +105,99 @@
       "name": "David Choc",
       "description": "Osobní web realitního agenta Davida Choce — prodej a pronájem nemovitostí v Plzeňském kraji.",
       "inLanguage": "cs-CZ",
-      "publisher": { "@id": "https://www.davidchoc.cz/#person" }
+      "publisher": { "@id": "https://www.davidchoc.cz/#person" },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": { "@type": "EntryPoint", "urlTemplate": "https://www.davidchoc.cz/nabidky?search={search_term_string}" },
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    <!-- Organization (PTF Reality) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": "https://www.davidchoc.cz/#organization",
+      "name": "PTF Reality",
+      "alternateName": "PTF reality",
+      "url": "https://ptfreality.cz",
+      "logo": "https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/logo.png",
+      "founder": { "@id": "https://www.davidchoc.cz/#person" },
+      "foundingDate": "1998",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Plzeň",
+        "addressRegion": "Plzeňský kraj",
+        "addressCountry": "CZ"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+420774052232",
+        "email": "david.choc@ptf.cz",
+        "contactType": "customer service",
+        "areaServed": "CZ",
+        "availableLanguage": ["Czech"]
+      },
+      "sameAs": [ "https://ptfreality.cz" ]
+    }
+    </script>
+    <!-- AggregateRating + verified Reviews (5 reálných recenzí z indexu) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "RealEstateAgent",
+      "@id": "https://www.davidchoc.cz/#agent-rated",
+      "name": "David Choc",
+      "url": "https://www.davidchoc.cz",
+      "image": "https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/davidchocagent.avif",
+      "telephone": "+420774052232",
+      "address": { "@type": "PostalAddress", "addressLocality": "Plzeň", "addressRegion": "Plzeňský kraj", "addressCountry": "CZ" },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "bestRating": "5",
+        "worstRating": "1",
+        "ratingCount": "5",
+        "reviewCount": "5"
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Ing. Jana R." },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+          "reviewBody": "Profesionální proaktivní přístup, bezproblémová komunikace, ochota, vstřícnost, příkladná ukázka práce realitní kanceláře. Jednoznačně doporučuji.",
+          "itemReviewed": { "@type": "Service", "name": "Prodej bytu 2+1 Plzeň – Slovany" }
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Mgr. Jitka K." },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+          "reviewBody": "Profesionální přístup, rychlá bezproblémová spolupráce, vřele doporučuji.",
+          "itemReviewed": { "@type": "Service", "name": "Prodej bytu 1+1 Plzeň – Bory" }
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Alena B." },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+          "reviewBody": "S PTF reality mám velmi dobré zkušenosti. Vždy jsem se mohla obrátit v jakékoliv situaci, ať se jednalo o prodej nemovitosti nebo pronájem. Mohu každému vřele doporučit.",
+          "itemReviewed": { "@type": "Service", "name": "Prodej bytu 1+kk Plzeň – Skvrňany" }
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Jan Š." },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+          "reviewBody": "Naprostá spokojenost, profesionalita, nic nebyl problém.",
+          "itemReviewed": { "@type": "Service", "name": "Prodej bytu 2+1 Plzeň – Slovany" }
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "David A." },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+          "reviewBody": "Rychlý prodej i pronájem, profi služby, díky!",
+          "itemReviewed": { "@type": "Service", "name": "Prodej bytu 3+kk Plzeň – Bolevec" }
+        }
+      ]
     }
     </script>
     <!-- FAQ schema pro AI vyhledávání (Google AI Overviews, ChatGPT Search, Perplexity) -->
