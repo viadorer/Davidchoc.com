@@ -4650,13 +4650,14 @@ body.is-light.pribeh-page .pribeh-claim__contact a:hover { color:#8B7D61; }
     margin: 0;
 }
 
-/* Nedávno prodáno */
+/* Nedávno prodáno / Rezervováno */
 .chci-prodat-sold { background:#0a0a0a; }
 .chci-prodat-sold__grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
 }
+.chci-prodat-sold__grid--3 { grid-template-columns: repeat(3, 1fr); }
 .chci-prodat-sold__card {
     background: linear-gradient(180deg, #131313 0%, #0d0d0d 100%);
     border: 1px solid rgba(255,191,0,0.25);
@@ -4664,23 +4665,57 @@ body.is-light.pribeh-page .pribeh-claim__contact a:hover { color:#8B7D61; }
     padding: 24px 22px 22px;
     position: relative;
     transition: all 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
 }
 .chci-prodat-sold__card:hover {
     transform: translateY(-3px);
     border-color: rgba(255,191,0,0.55);
     box-shadow: 0 16px 36px rgba(0,0,0,0.45);
+    text-decoration: none;
+}
+.chci-prodat-sold__card--image {
+    padding: 0;
+    overflow: hidden;
+}
+.chci-prodat-sold__image {
+    position: relative;
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    background: #1a1a1a;
+}
+.chci-prodat-sold__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+.chci-prodat-sold__card:hover .chci-prodat-sold__image img { transform: scale(1.05); }
+.chci-prodat-sold__card--image .chci-prodat-sold__body {
+    padding: 22px 22px 24px;
 }
 .chci-prodat-sold__label {
     display: inline-block;
-    background: #4caf50;
-    color: #fff;
+    background: #FFBF00;
+    color: #1a1a1a;
     font-size: 0.72rem;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.14em;
-    padding: 5px 12px;
+    padding: 6px 14px;
     border-radius: 999px;
     margin-bottom: 16px;
+    box-shadow: 0 4px 12px rgba(255,191,0,0.3);
+}
+.chci-prodat-sold__card--image .chci-prodat-sold__label {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    margin-bottom: 0;
+    z-index: 1;
 }
 .chci-prodat-sold__body h3 {
     color: #fff;
@@ -4842,13 +4877,15 @@ body.is-light.pribeh-page .pribeh-claim__contact a:hover { color:#8B7D61; }
 @media (max-width: 980px) {
     .chci-prodat-guarantee__inner { grid-template-columns: 1fr; text-align: center; }
     .chci-prodat-guarantee__icon { margin: 0 auto; }
-    .chci-prodat-sold__grid { grid-template-columns: repeat(2, 1fr); }
+    .chci-prodat-sold__grid,
+    .chci-prodat-sold__grid--3 { grid-template-columns: repeat(2, 1fr); }
     .chci-prodat-form__row { grid-template-columns: 1fr; }
     .chci-prodat-step { grid-template-columns: 60px 1fr; gap: 18px; padding: 20px 22px; }
     .chci-prodat-step__num { width: 48px; height: 48px; font-size: 1.15rem; }
 }
 @media (max-width: 640px) {
-    .chci-prodat-sold__grid { grid-template-columns: 1fr; }
+    .chci-prodat-sold__grid,
+    .chci-prodat-sold__grid--3 { grid-template-columns: 1fr; }
     .chci-prodat-form__box { padding: 26px 20px; }
     .chci-prodat-guarantee { padding: 40px 0; }
     .chci-prodat-guarantee__icon { width: 80px; height: 80px; font-size: 1.8rem; }
