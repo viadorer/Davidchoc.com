@@ -4544,6 +4544,316 @@ body.is-light.pribeh-page .pribeh-claim__contact a:hover { color:#8B7D61; }
     .pribeh-story__image { order: -1; max-width: 480px; margin: 0 auto; }
 }
 
+/* ============================================
+   CHCI-PRODAT — Paid ads landing page komponenty
+   ============================================ */
+
+/* Garance banner — nejvyšší vizuální váha */
+.chci-prodat-guarantee {
+    background: linear-gradient(135deg, #FFBF00 0%, #E6AB00 100%);
+    padding: 56px 0;
+    border-top: 1px solid rgba(0,0,0,0.15);
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+}
+.chci-prodat-guarantee__inner {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 32px;
+    align-items: center;
+    max-width: 960px;
+    margin: 0 auto;
+}
+.chci-prodat-guarantee__icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.10);
+    display: grid;
+    place-items: center;
+    color: #1a1a1a;
+    font-size: 2.4rem;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+.chci-prodat-guarantee__text h2 {
+    color: #1a1a1a;
+    font-size: clamp(1.5rem, 2.6vw, 2rem);
+    margin: 0 0 14px;
+    font-weight: 900;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+}
+.chci-prodat-guarantee__text p {
+    color: #1a1a1a;
+    font-size: 1.05rem;
+    line-height: 1.65;
+    margin: 0 0 10px;
+    font-weight: 500;
+}
+.chci-prodat-guarantee__note {
+    color: rgba(26,26,26,0.7);
+    font-size: 0.9rem;
+    font-style: italic;
+    margin: 12px 0 0 !important;
+    font-weight: 400 !important;
+}
+
+/* 7 kroků prodeje */
+.chci-prodat-steps { background:#0f0f0f; }
+.chci-prodat-steps__list {
+    max-width: 840px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.chci-prodat-step {
+    display: grid;
+    grid-template-columns: 84px 1fr;
+    gap: 24px;
+    align-items: start;
+    padding: 24px 28px;
+    background: linear-gradient(180deg, #161616 0%, #0f0f0f 100%);
+    border: 1px solid rgba(255,191,0,0.18);
+    border-radius: 16px;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.chci-prodat-step:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255,191,0,0.45);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+}
+.chci-prodat-step__num {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: #FFBF00;
+    color: #0a0a0a;
+    font-size: 1.4rem;
+    font-weight: 900;
+    display: grid;
+    place-items: center;
+    font-variant-numeric: tabular-nums;
+    box-shadow: 0 8px 20px rgba(255,191,0,0.25);
+    flex-shrink: 0;
+}
+.chci-prodat-step__body h3 {
+    color: #fff;
+    font-size: 1.25rem;
+    margin: 0 0 8px;
+    font-weight: 800;
+    line-height: 1.25;
+}
+.chci-prodat-step__body p {
+    color: #b8b8b8;
+    font-size: 1rem;
+    line-height: 1.65;
+    margin: 0;
+}
+
+/* Nedávno prodáno */
+.chci-prodat-sold { background:#0a0a0a; }
+.chci-prodat-sold__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+.chci-prodat-sold__card {
+    background: linear-gradient(180deg, #131313 0%, #0d0d0d 100%);
+    border: 1px solid rgba(255,191,0,0.25);
+    border-radius: 16px;
+    padding: 24px 22px 22px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+.chci-prodat-sold__card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255,191,0,0.55);
+    box-shadow: 0 16px 36px rgba(0,0,0,0.45);
+}
+.chci-prodat-sold__label {
+    display: inline-block;
+    background: #4caf50;
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    padding: 5px 12px;
+    border-radius: 999px;
+    margin-bottom: 16px;
+}
+.chci-prodat-sold__body h3 {
+    color: #fff;
+    font-size: 1.05rem;
+    margin: 0 0 8px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+.chci-prodat-sold__meta {
+    color: #999;
+    font-size: 0.88rem;
+    margin: 0 0 14px;
+    line-height: 1.5;
+}
+.chci-prodat-sold__price {
+    color: #FFBF00;
+    font-size: 1.1rem;
+    font-weight: 800;
+    margin: 0 0 8px;
+}
+.chci-prodat-sold__time {
+    color: #888;
+    font-size: 0.85rem;
+    margin: 0;
+    line-height: 1.5;
+}
+.chci-prodat-sold__footnote {
+    margin: 40px auto 0;
+    text-align: center;
+    color: #999;
+    font-size: 0.95rem;
+    max-width: 640px;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+/* Formulář */
+.chci-prodat-form {
+    background:
+        radial-gradient(ellipse at center top, rgba(255,191,0,0.06) 0%, transparent 60%),
+        #0f0f0f;
+}
+.chci-prodat-form__box {
+    max-width: 720px;
+    margin: 0 auto;
+    background: linear-gradient(180deg, #131313 0%, #0a0a0a 100%);
+    border: 1px solid rgba(255,191,0,0.3);
+    border-radius: 24px;
+    padding: 40px 44px 44px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+}
+.chci-prodat-form__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+.chci-prodat-form__field { margin-bottom: 18px; }
+.chci-prodat-form__field label {
+    display: block;
+    color: #e6e6e6;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+}
+.chci-prodat-form__field input,
+.chci-prodat-form__field textarea,
+.chci-prodat-form__field select {
+    width: 100%;
+    box-sizing: border-box;
+    background: #1a1a1a;
+    border: 2px solid #2a2a2a;
+    border-radius: 12px;
+    padding: 14px 16px;
+    color: #fff;
+    font: inherit;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+}
+.chci-prodat-form__field input::placeholder,
+.chci-prodat-form__field textarea::placeholder {
+    color: #666;
+}
+.chci-prodat-form__field input:focus,
+.chci-prodat-form__field textarea:focus,
+.chci-prodat-form__field select:focus {
+    outline: none;
+    border-color: #FFBF00;
+    background: #1e1e1e;
+    box-shadow: 0 0 0 4px rgba(255,191,0,0.15);
+}
+.chci-prodat-form__field textarea { resize: vertical; min-height: 96px; }
+.chci-prodat-form__field select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23FFBF00' viewBox='0 0 20 20'%3E%3Cpath d='M10 12l-6-6h12l-6 6z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 18px;
+    padding-right: 42px;
+}
+.chci-prodat-form__consent {
+    display: flex;
+    gap: 12px;
+    margin: 22px 0 26px;
+    color: #bbb;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    cursor: pointer;
+}
+.chci-prodat-form__consent input {
+    margin-top: 3px;
+    flex-shrink: 0;
+    accent-color: #FFBF00;
+}
+.chci-prodat-form__consent a { color: #FFBF00; text-decoration: underline; }
+.chci-prodat-form__submit {
+    width: 100%;
+    padding: 18px !important;
+    font-size: 1.05rem !important;
+    font-weight: 800 !important;
+}
+.chci-prodat-form__trust {
+    margin: 22px 0 0;
+    padding-top: 22px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    color: #9a9a9a;
+    font-size: 0.9rem;
+    text-align: center;
+    line-height: 1.6;
+}
+.chci-prodat-form__trust a { color: #FFBF00; font-weight: 700; }
+.chci-prodat-form__error {
+    margin-top: 20px;
+    padding: 16px 18px;
+    border-radius: 12px;
+    background: rgba(244,67,54,0.10);
+    border: 2px solid rgba(244,67,54,0.5);
+    color: #ff8a85;
+    font-size: 0.95rem;
+}
+.chci-prodat-form__success {
+    text-align: center;
+    padding: 20px 0;
+}
+.chci-prodat-form__success h3 {
+    color: #FFBF00;
+    font-size: 1.6rem;
+    margin: 0 0 14px;
+    font-weight: 800;
+}
+.chci-prodat-form__success p {
+    color: #c5c5c5;
+    font-size: 1.02rem;
+    line-height: 1.7;
+    margin: 0;
+}
+.chci-prodat-form__success a { color: #FFBF00; }
+
+/* Responsive */
+@media (max-width: 980px) {
+    .chci-prodat-guarantee__inner { grid-template-columns: 1fr; text-align: center; }
+    .chci-prodat-guarantee__icon { margin: 0 auto; }
+    .chci-prodat-sold__grid { grid-template-columns: repeat(2, 1fr); }
+    .chci-prodat-form__row { grid-template-columns: 1fr; }
+    .chci-prodat-step { grid-template-columns: 60px 1fr; gap: 18px; padding: 20px 22px; }
+    .chci-prodat-step__num { width: 48px; height: 48px; font-size: 1.15rem; }
+}
+@media (max-width: 640px) {
+    .chci-prodat-sold__grid { grid-template-columns: 1fr; }
+    .chci-prodat-form__box { padding: 26px 20px; }
+    .chci-prodat-guarantee { padding: 40px 0; }
+    .chci-prodat-guarantee__icon { width: 80px; height: 80px; font-size: 1.8rem; }
+}
+
 /* Index — CTA strip nahrazující původní sekci #konzultace */
 .index-brief-cta {
     background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
