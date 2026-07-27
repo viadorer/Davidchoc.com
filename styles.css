@@ -6997,10 +6997,6 @@ a.vycvik-tool:hover {
     background: linear-gradient(160deg, #1a1a1a 0%, #000 100%);
     border-color: rgba(255,191,0,0.4);
 }
-.vy-path--accent h3 { color: #FFBF00 !important; }
-.vy-path--accent p { color: #ccc !important; }
-.vy-path--accent strong { color: #fff; }
-.vy-path--accent .vy-path__num { background: #FFBF00; color: #1a1a1a; }
 .vy-path__num {
     width: 44px; height: 44px;
     border-radius: 12px;
@@ -7038,6 +7034,13 @@ a.vycvik-tool:hover {
     transition: gap 0.25s ease;
 }
 .vy-path__link:hover { gap: 14px; }
+
+/* Tmavá varianta — musí být AŽ ZA základními pravidly .vy-path,
+   jinak ji stejná specificita přebije a text zůstane nečitelný */
+.vy-path--accent h3 { color: #FFBF00 !important; }
+.vy-path--accent p { color: #d5d5d5 !important; }
+.vy-path--accent p strong { color: #fff; }
+.vy-path--accent .vy-path__num { background: #FFBF00; color: #1a1a1a; }
 .vy-path--accent .vy-path__link { color: #FFBF00 !important; }
 
 /* Rozcestník výbavy */
@@ -7169,6 +7172,158 @@ a.vycvik-tool:hover {
     .vy-signature img { max-width: 160px; margin: 0 auto; }
     .vy-signature__contact { justify-content: center; }
     .vy-promise { padding: 15px 16px; gap: 14px; }
+}
+
+/* ─── KALKULAČKA NÁKLADŮ SAMOPRODEJE ─── */
+.vy-hint {
+    font-size: 0.86rem !important;
+    color: #999 !important;
+    line-height: 1.5 !important;
+    margin: 8px 0 0 !important;
+}
+.vy-calc { margin-top: 24px; }
+.vy-calc__block {
+    background: #fdfaf2;
+    border: 1px solid rgba(26,26,26,0.09);
+    border-radius: 16px;
+    padding: 24px 26px;
+    margin-bottom: 14px;
+}
+.vy-calc__block--loss {
+    background: linear-gradient(160deg, #fef6f5 0%, #fbe9e7 100%);
+    border-color: rgba(224,87,74,0.35);
+}
+.vy-calc__block h3 {
+    font-size: 1.08rem !important;
+    font-weight: 800;
+    color: #1a1a1a !important;
+    margin: 0 0 14px !important;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.vy-calc__block h3 i { color: #8B7D61; font-size: 0.98rem; }
+.vy-calc__block--loss h3 i { color: #c0392b; }
+.vy-calc__block p {
+    font-size: 0.92rem !important;
+    color: #777 !important;
+    line-height: 1.6 !important;
+    margin: 12px 0 0 !important;
+}
+.vy-calc__big {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 900;
+    color: #c0392b;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+}
+.vy-calc__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    padding: 9px 0;
+    border-bottom: 1px dashed rgba(26,26,26,0.09);
+}
+.vy-calc__row:last-of-type { border-bottom: none; }
+.vy-calc__row span { font-size: 0.95rem; color: #666; }
+.vy-calc__row strong {
+    font-size: 0.95rem;
+    color: #1a1a1a;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+.vy-calc__row--sum {
+    border-top: 2px solid rgba(26,26,26,0.15);
+    border-bottom: none !important;
+    margin-top: 6px;
+    padding-top: 14px;
+}
+.vy-calc__row--sum span { font-weight: 700; color: #1a1a1a; }
+.vy-calc__row--sum strong { font-size: 1.08rem; color: #8B7D61; }
+
+.vy-calc__total {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 20px;
+    align-items: center;
+    background: linear-gradient(160deg, #1a1a1a 0%, #000 100%);
+    border-radius: 18px;
+    padding: 28px 30px;
+    margin: 20px 0 14px;
+}
+.vy-calc__total-side { text-align: center; }
+.vy-calc__total-label {
+    display: block;
+    font-size: 0.85rem;
+    color: #999;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+}
+.vy-calc__total-num {
+    display: block;
+    font-size: clamp(1.05rem, 2.4vw, 1.4rem);
+    font-weight: 900;
+    color: #fff;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.25;
+}
+.vy-calc__total-side:last-child .vy-calc__total-num { color: #FFBF00; }
+.vy-calc__vs {
+    color: #666;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+
+.vy-calc__promise {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    background: linear-gradient(160deg, #fffdf7 0%, #fdf6e3 100%);
+    border: 2px solid rgba(255,191,0,0.55);
+    border-radius: 16px;
+    padding: 24px 28px;
+    margin: 16px 0;
+}
+.vy-calc__promise i {
+    font-size: 1.6rem;
+    color: #FFBF00;
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+.vy-calc__promise strong {
+    display: block;
+    color: #1a1a1a;
+    font-size: 1.05rem;
+    margin-bottom: 8px;
+}
+.vy-calc__promise p {
+    color: #555 !important;
+    font-size: 0.98rem !important;
+    line-height: 1.65 !important;
+    margin: 0 !important;
+}
+.vy-calc__promise p strong { display: inline; font-size: inherit; }
+
+.vy-calc__cta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+.vy-calc__cta .cta-button { flex: 1 1 220px; text-align: center; }
+
+@media (max-width: 640px) {
+    .vy-calc__total { grid-template-columns: 1fr; gap: 14px; padding: 22px 20px; }
+    .vy-calc__vs { text-align: center; }
+    .vy-calc__promise { flex-direction: column; gap: 12px; padding: 20px 18px; }
+    .vy-calc__block { padding: 20px 18px; }
+    .vy-calc__row { flex-direction: column; gap: 2px; align-items: flex-start; }
 }
 
 /* Tisk */

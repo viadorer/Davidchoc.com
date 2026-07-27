@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kolik vás stojí prodat nemovitost sami — kalkulačka | David Choc</title>
+    <meta name="description" content="Spočítejte si, kolik vás samoprodej opravdu stojí. Ztráta z podceněné ceny, náklady na přípravu a váš čas — proti provizi. Poctivě, včetně toho, co mluví pro samoprodej.">
+    <meta name="keywords" content="kolik stojí prodej nemovitosti, provize realitní makléř, prodej bez realitky náklady, samoprodej nemovitosti kalkulačka">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.davidchoc.cz/vycvik/kolik-to-stoji">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="cs_CZ">
+    <meta property="og:title" content="Kolik vás stojí prodat nemovitost sami">
+    <meta property="og:description" content="Ztráta z podceněné ceny, náklady a váš čas — proti provizi. Spočítejte si to.">
+    <meta property="og:url" content="https://www.davidchoc.cz/vycvik/kolik-to-stoji">
+    <meta property="og:image" content="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/davidchocagent.avif">
+
+    <link rel="icon" type="image/png" href="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/favicon.png">
+    <link rel="stylesheet" href="/styles.css?v=20260727">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TXGDD8D3GK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-TXGDD8D3GK');
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Domů", "item": "https://www.davidchoc.cz/" },
+        { "@type": "ListItem", "position": 2, "name": "Výcvik ziskového prodeje", "item": "https://www.davidchoc.cz/vycvik" },
+        { "@type": "ListItem", "position": 3, "name": "Kolik vás stojí prodat sám", "item": "https://www.davidchoc.cz/vycvik/kolik-to-stoji" }
+      ]
+    }
+    </script>
+</head>
+<body class="pripad-page is-light vycvik-page">
+    <div id="navbar-placeholder"></div>
+
+    <main>
+        <section class="vycvik-tool-page">
+            <div class="container">
+                <div class="vycvik-tool-page__wrap">
+
+                    <nav class="vycvik-crumb" aria-label="Drobečková navigace">
+                        <a href="/vycvik">Výcvik ziskového prodeje</a>
+                        <span>·</span>
+                        <span>Kolik to stojí</span>
+                    </nav>
+
+                    <span class="vycvik-chapter__label">Nástroj</span>
+                    <h1 style="font-size: clamp(1.8rem, 3.6vw, 2.5rem); line-height:1.15; color:#1a1a1a; font-weight:900; margin:0 0 16px;">Kolik vás stojí prodat sám</h1>
+                    <p style="font-size:1.08rem; color:#555; line-height:1.7; margin:0 0 8px;">
+                        Provize je vidět. Zbytek ne. Tenhle nástroj sečte obojí, ať se rozhodujete podle čísel a ne podle dojmu.
+                    </p>
+                    <p style="font-size:0.94rem; color:#888; line-height:1.6; margin:0 0 28px;">
+                        Počítá i to, co mluví pro samoprodej. Kdyby vám vyšlo, že se vyplatí prodat sám, budu to já, kdo vám to řekne.
+                    </p>
+
+                    <!-- VSTUPY -->
+                    <div class="vy-widget" id="vy-calc">
+                        <div class="vy-widget__head">
+                            <span class="vy-widget__badge"><i class="fas fa-calculator" aria-hidden="true"></i> Vstupy</span>
+                            <h2 class="vy-widget__title">Vaše nemovitost</h2>
+                        </div>
+                        <div class="vy-widget__body">
+                            <div class="vy-field">
+                                <label for="c-cena">Cena, za kterou chcete prodat</label>
+                                <div class="vy-input-wrap">
+                                    <input type="text" id="c-cena" data-field="cena" inputmode="numeric" placeholder="5 000 000">
+                                    <span class="vy-input-suffix">Kč</span>
+                                </div>
+                            </div>
+
+                            <div class="vy-field">
+                                <label for="c-zkusenost">Kolik nemovitostí jste už prodal? <strong id="c-zkusenost-val">žádnou</strong></label>
+                                <input type="range" id="c-zkusenost" data-field="zkusenost" min="0" max="3" step="1" value="0">
+                                <p class="vy-hint">Ovlivňuje odhad ztráty z podceněné ceny — kdo to dělal poprvé, chybuje víc.</p>
+                            </div>
+
+                            <div class="vy-field">
+                                <label for="c-hodinova">Kolik je hodina vašeho času <strong id="c-hodinova-val">400 Kč</strong></label>
+                                <input type="range" id="c-hodinova" data-field="hodinova" min="150" max="2000" step="50" value="400">
+                                <p class="vy-hint">Prodej zabere zhruba 40–60 hodin: focení, inzerce, telefonáty, prohlídky, papírování.</p>
+                            </div>
+
+                            <div class="vy-field">
+                                <label for="c-provize">Provize, kterou zvažujete <strong id="c-provize-val">3 %</strong></label>
+                                <input type="range" id="c-provize" data-field="provize" min="1" max="6" step="0.5" value="3">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VÝSLEDEK -->
+                    <div id="vy-calc-result" hidden></div>
+
+                    <!-- METODIKA -->
+                    <details class="pripad-faq__item" style="margin-top:28px;">
+                        <summary>Odkud ta čísla beru?</summary>
+                        <div class="pripad-faq__answer">
+                            <p><strong>Ztráta z podceněné ceny (5–15 %).</strong> Vychází z rozdílu mezi nabídkovou a realizovanou cenou u prodejů od majitele oproti prodejům přes zprostředkovatele. Rozpětí se liší podle zkušenosti — kdo prodává poprvé, chybuje v ceně i v prezentaci častěji. U vaší nemovitosti to může být míň i víc; je to odhad, ne záruka.</p>
+                            <p><strong>Náklady na přípravu.</strong> Profesionální fotky, video nebo 3D sken, půdorys, PENB, inzerce na portálech, případné topování, cedule. Rozpětí odpovídá běžné praxi — přesné ceny ve vašem regionu vám pošlu, pokud si o ně řeknete.</p>
+                            <p><strong>Čas.</strong> 40–60 hodin je střízlivý odhad u nemovitosti bez komplikací: příprava a focení, psaní inzerátu, vkládání na portály, telefonáty, patnáct až třicet prohlídek, vyjednávání, papírování, předání.</p>
+                            <p><strong>Právní část.</strong> Advokát a úschova se platí tak jako tak — v obou scénářích. Proto je v kalkulaci zvlášť a do porovnání nevstupuje.</p>
+                        </div>
+                    </details>
+
+                    <div class="vycvik-note">
+                        <p>Kalkulačka pracuje s obecnými odhady, ne s vaší konkrétní nemovitostí. Skutečná čísla znám až po prohlídce — a řeknu vám je zdarma, i když si mě nevyberete.</p>
+                    </div>
+
+                    <nav class="vycvik-nav" aria-label="Navigace">
+                        <a href="/vycvik/kapitola-8-kdy-nesam" class="vycvik-nav__link">
+                            <span class="vycvik-nav__dir"><i class="fas fa-arrow-left" aria-hidden="true"></i> Zpět</span>
+                            <span class="vycvik-nav__title">Kapitola 8 — A teď k provizi</span>
+                        </a>
+                        <a href="/vycvik/vybava" class="vycvik-nav__link vycvik-nav__link--next">
+                            <span class="vycvik-nav__dir">Další <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                            <span class="vycvik-nav__title">Vaše výbava</span>
+                        </a>
+                    </nav>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <div class="floating-buttons">
+        <a href="#" class="floating-button back-to-top" aria-label="Zpět nahoru"><i class="fas fa-arrow-up"></i></a>
+        <a href="tel:+420774052232" class="floating-button call" aria-label="Zavolat"><i class="fas fa-phone-alt"></i></a>
+        <a href="mailto:david.choc@ptf.cz" class="floating-button email" aria-label="Poslat email"><i class="fas fa-envelope"></i></a>
+        <a href="https://wa.me/420604240086" class="floating-button whatsapp" aria-label="WhatsApp zpráva" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+    </div>
+
+    <script src="/script.js"></script>
+    <script src="/common/common.js"></script>
+    <script src="/cookie-consent.js"></script>
+    <script src="/vycvik/vycvik-tools.js"></script>
+    <script>
+    (function () {
+      var fmt = VycvikTools.formatNumber;
+      var parse = VycvikTools.parseNumber;
+      var out = document.getElementById('vy-calc-result');
+
+      var ZKUSENOST = [
+        { label: 'žádnou', lossMin: 8, lossMax: 15 },
+        { label: 'jednu', lossMin: 6, lossMax: 12 },
+        { label: 'dvě až tři', lossMin: 4, lossMax: 9 },
+        { label: 'víc než tři', lossMin: 3, lossMax: 7 }
+      ];
+
+      // Náklady, které při samoprodeji platíte vy (rozpětí)
+      var NAKLADY = [
+        { name: 'Profesionální fotografie', min: 3000, max: 8000 },
+        { name: 'Video nebo 3D sken', min: 3000, max: 9000 },
+        { name: 'Půdorys', min: 1000, max: 3000 },
+        { name: 'Průkaz energetické náročnosti', min: 3000, max: 8000 },
+        { name: 'Inzerce na portálech', min: 2000, max: 8000 },
+        { name: 'Zvýhodnění inzerátu (topování)', min: 1000, max: 5000 },
+        { name: 'Cedule na nemovitost', min: 300, max: 1500 }
+      ];
+
+      var HODIN_MIN = 40, HODIN_MAX = 60;
+
+      function els() {
+        return {
+          cena: document.getElementById('c-cena'),
+          zkusenost: document.getElementById('c-zkusenost'),
+          hodinova: document.getElementById('c-hodinova'),
+          provize: document.getElementById('c-provize')
+        };
+      }
+
+      function render() {
+        var e = els();
+        var cena = parse(e.cena.value);
+        var zk = ZKUSENOST[parseInt(e.zkusenost.value, 10) || 0];
+        var hod = parseInt(e.hodinova.value, 10) || 400;
+        var prov = parseFloat(e.provize.value) || 3;
+
+        document.getElementById('c-zkusenost-val').textContent = zk.label;
+        document.getElementById('c-hodinova-val').textContent = fmt(hod) + ' Kč';
+        document.getElementById('c-provize-val').textContent = String(prov).replace('.', ',') + ' %';
+
+        if (isNaN(cena) || cena < 100000) {
+          out.hidden = true;
+          return;
+        }
+        out.hidden = false;
+
+        var lossMin = cena * zk.lossMin / 100;
+        var lossMax = cena * zk.lossMax / 100;
+        var naklMin = NAKLADY.reduce(function (s, n) { return s + n.min; }, 0);
+        var naklMax = NAKLADY.reduce(function (s, n) { return s + n.max; }, 0);
+        var casMin = HODIN_MIN * hod;
+        var casMax = HODIN_MAX * hod;
+
+        var celkemMin = lossMin + naklMin + casMin;
+        var celkemMax = lossMax + naklMax + casMax;
+        var provizeKc = cena * prov / 100;
+
+        var rozdilMin = celkemMin - provizeKc;
+        var rozdilMax = celkemMax - provizeKc;
+
+        var nakladyRows = NAKLADY.map(function (n) {
+          return '<div class="vy-calc__row"><span>' + n.name + '</span>' +
+                 '<strong>' + fmt(n.min) + ' – ' + fmt(n.max) + ' Kč</strong></div>';
+        }).join('');
+
+        var verdikt, verdiktCls, verdiktCta;
+
+        if (rozdilMin > 0) {
+          verdiktCls = 'danger';
+          verdikt = '<strong>Samoprodej vás podle těchto čísel vyjde dráž.</strong>' +
+            '<p>Rozdíl je <strong>' + fmt(rozdilMin) + ' až ' + fmt(rozdilMax) + ' Kč</strong> v neprospěch samoprodeje — a to ještě nepočítám riziko, že se něco pokazí v kapitole 7.</p>';
+          verdiktCta = '<a href="/chci-prodat" class="cta-button">Chci to předat</a>' +
+                       '<a href="/pripad-pro-agenta" class="cta-button cta-button--outline">Nejdřív se poradit</a>';
+        } else if (rozdilMax > 0) {
+          verdiktCls = 'warn';
+          verdikt = '<strong>Může to dopadnout tak i tak.</strong>' +
+            '<p>Podle toho, jak se trefíte do ceny, jste na tom od <strong>' + fmt(Math.abs(rozdilMin)) + ' Kč lépe</strong> po <strong>' + fmt(rozdilMax) + ' Kč hůř</strong>. Rozhoduje o tom hlavně kapitola 1 — cena.</p>';
+          verdiktCta = '<a href="/pripad-pro-agenta" class="cta-button">Ověřit si cenu zdarma</a>' +
+                       '<a href="/vycvik/kapitola-1-cena" class="cta-button cta-button--outline">Zpět ke kapitole 1</a>';
+        } else {
+          verdiktCls = 'ok';
+          verdikt = '<strong>Podle těchto čísel se vám samoprodej vyplatí.</strong>' +
+            '<p>Ušetříte <strong>' + fmt(Math.abs(rozdilMax)) + ' až ' + fmt(Math.abs(rozdilMin)) + ' Kč</strong>. Držte se postupu z knihy, nic nepřeskakujte a kapitolu 7 nepouštějte z ruky.</p>';
+          verdiktCta = '<a href="/vycvik/vybava" class="cta-button">Vaše výbava</a>' +
+                       '<a href="/vycvik/zkouska" class="cta-button cta-button--outline">Udělat si zkoušku</a>';
+        }
+
+        out.innerHTML =
+          '<div class="vy-calc">' +
+
+          '<div class="vy-calc__block vy-calc__block--loss">' +
+            '<h3><i class="fas fa-arrow-trend-down"></i> Ztráta z podceněné ceny</h3>' +
+            '<div class="vy-calc__big">' + fmt(lossMin) + ' – ' + fmt(lossMax) + ' Kč</div>' +
+            '<p>Odpovídá ' + zk.lossMin + '–' + zk.lossMax + ' % z ceny. Tohle je položka, kterou nikdy neuvidíte na faktuře — poznáte ji až za rok, když se prodá soused.</p>' +
+          '</div>' +
+
+          '<div class="vy-calc__block">' +
+            '<h3><i class="fas fa-receipt"></i> Co zaplatíte ze svého</h3>' +
+            nakladyRows +
+            '<div class="vy-calc__row vy-calc__row--sum"><span>Celkem</span><strong>' + fmt(naklMin) + ' – ' + fmt(naklMax) + ' Kč</strong></div>' +
+          '</div>' +
+
+          '<div class="vy-calc__block">' +
+            '<h3><i class="fas fa-hourglass-half"></i> Váš čas</h3>' +
+            '<div class="vy-calc__row"><span>' + HODIN_MIN + ' – ' + HODIN_MAX + ' hodin × ' + fmt(hod) + ' Kč</span>' +
+            '<strong>' + fmt(casMin) + ' – ' + fmt(casMax) + ' Kč</strong></div>' +
+            '<p>Focení, inzerce, telefonáty, patnáct až třicet prohlídek, vyjednávání, papíry, předání.</p>' +
+          '</div>' +
+
+          '<div class="vy-calc__total">' +
+            '<div class="vy-calc__total-side">' +
+              '<span class="vy-calc__total-label">Samoprodej celkem</span>' +
+              '<span class="vy-calc__total-num">' + fmt(celkemMin) + ' – ' + fmt(celkemMax) + ' Kč</span>' +
+            '</div>' +
+            '<div class="vy-calc__vs">proti</div>' +
+            '<div class="vy-calc__total-side">' +
+              '<span class="vy-calc__total-label">Provize ' + String(prov).replace('.', ',') + ' %</span>' +
+              '<span class="vy-calc__total-num">' + fmt(provizeKc) + ' Kč</span>' +
+            '</div>' +
+          '</div>' +
+
+          '<div class="vy-verdict vy-verdict--' + verdiktCls + '" style="margin-top:0;">' + verdikt + '</div>' +
+
+          '<div class="vy-calc__promise">' +
+            '<i class="fas fa-shield-halved"></i>' +
+            '<div>' +
+              '<strong>A ještě jedna položka, kterou v tabulce nenajdete</strong>' +
+              '<p>Když nemovitost neprodám, <strong>neplatíte mi nic.</strong> Přípravu, fotky, video i marketing platím já. To znamená, že tu provizi vpravo zaplatíte jen tehdy, když se prodá — zatímco náklady vlevo zaplatíte tak jako tak.</p>' +
+            '</div>' +
+          '</div>' +
+
+          '<div class="vy-calc__cta">' + verdiktCta + '</div>' +
+
+          '</div>';
+
+        if (window.gtag) {
+          window.gtag('event', 'vycvik_kalkulacka', {
+            event_category: 'vycvik',
+            event_label: verdiktCls
+          });
+        }
+      }
+
+      VycvikTools.initFields({
+        storageKey: 'vycvik-kolik-to-stoji',
+        container: '#vy-calc',
+        onChange: render
+      });
+
+      ['input', 'change'].forEach(function (evt) {
+        Object.keys(els()).forEach(function (k) {
+          els()[k].addEventListener(evt, render);
+        });
+      });
+
+      render();
+    })();
+    </script>
+</body>
+</html>
