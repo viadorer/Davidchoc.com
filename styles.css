@@ -6393,6 +6393,137 @@ a.vycvik-tool:hover {
     .vy-q__title { font-size: 0.99rem; }
 }
 
+/* ─── VAROVNÉ BLOKY (podvody) ─── */
+.vy-danger {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 28px 0;
+}
+.vy-danger__item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    background: #fef6f5;
+    border: 1px solid rgba(224,87,74,0.3);
+    border-left: 4px solid #e0574a;
+    border-radius: 12px;
+    padding: 16px 20px;
+}
+.vy-danger__item i {
+    color: #e0574a;
+    font-size: 1.05rem;
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+.vy-danger__item strong {
+    display: block;
+    color: #1a1a1a;
+    font-size: 1rem;
+    margin-bottom: 4px;
+    line-height: 1.4;
+}
+.vy-danger__item span {
+    color: #666;
+    font-size: 0.94rem;
+    line-height: 1.6;
+}
+
+/* ─── PLÁN DNŮ (prvních 14 dnů) ─── */
+.vy-day {
+    display: grid;
+    grid-template-columns: 118px 1fr 44px;
+    gap: 20px;
+    align-items: start;
+    background: #fdfaf2;
+    border: 1px solid rgba(26,26,26,0.09);
+    border-radius: 16px;
+    padding: 22px 24px;
+    margin-bottom: 12px;
+    transition: all 0.25s ease;
+}
+.vy-day:hover { border-color: rgba(255,191,0,0.5); }
+.vy-day.is-done {
+    background: #f4f9f4;
+    border-color: rgba(76,175,80,0.35);
+}
+.vy-day--key {
+    background: linear-gradient(160deg, #fffdf7 0%, #fdf6e3 100%);
+    border-color: rgba(255,191,0,0.55);
+}
+.vy-day--check { border-left: 4px solid #8B7D61; }
+.vy-day--final {
+    background: linear-gradient(160deg, #1a1a1a 0%, #000 100%);
+    border-color: rgba(255,191,0,0.4);
+}
+.vy-day--final .vy-day__body h2 { color: #FFBF00 !important; }
+.vy-day--final .vy-day__body p { color: #ccc !important; }
+.vy-day--final .vy-day__body strong { color: #fff; }
+.vy-day--final .vy-day__label { background: #FFBF00; color: #1a1a1a; }
+.vy-day--final.is-done { background: linear-gradient(160deg, #1a2a1a 0%, #0a1a0a 100%); }
+
+.vy-day__label {
+    background: rgba(255,191,0,0.16);
+    color: #8B7D61;
+    border-radius: 10px;
+    padding: 10px 12px;
+    text-align: center;
+    font-weight: 900;
+    font-size: 0.95rem;
+    line-height: 1.2;
+}
+.vy-day__label span {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    opacity: 0.75;
+    margin-top: 3px;
+}
+.vy-day__label--before { background: rgba(26,26,26,0.08); color: #888; }
+.vy-day.is-done .vy-day__label { background: #4caf50; color: #fff; }
+
+.vy-day__body h2 {
+    font-size: 1.12rem !important;
+    font-weight: 800;
+    color: #1a1a1a !important;
+    margin: 2px 0 8px !important;
+    line-height: 1.3;
+}
+.vy-day__body p {
+    font-size: 0.97rem !important;
+    color: #555 !important;
+    line-height: 1.65 !important;
+    margin: 0 0 8px !important;
+}
+.vy-day__body p:last-child { margin-bottom: 0 !important; }
+.vy-day__body a { color: #8B7D61; }
+.vy-day__warn {
+    padding-left: 24px;
+    position: relative;
+    color: #8B7D61 !important;
+    font-size: 0.92rem !important;
+}
+.vy-day__warn::before {
+    content: "\f0eb";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    top: 2px;
+    color: #e0a800;
+    font-size: 0.85rem;
+}
+.vy-day--final .vy-day__warn { color: #bbb !important; }
+.vy-day__check { display: grid; place-items: center; padding-top: 8px; }
+.vy-day__check input { width: 24px; height: 24px; accent-color: #4caf50; cursor: pointer; }
+
+@media (max-width: 640px) {
+    .vy-day { grid-template-columns: 1fr 40px; gap: 12px; padding: 18px 18px; }
+    .vy-day__label { grid-column: 1 / -1; text-align: left; padding: 8px 12px; }
+    .vy-day__check { padding-top: 0; }
+    .vy-danger__item { padding: 14px 16px; gap: 12px; }
+}
+
 /* Tisk */
 @media print {
     #navbar-placeholder, #footer-placeholder,
