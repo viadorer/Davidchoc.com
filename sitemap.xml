@@ -385,6 +385,12 @@
     <priority>0.85</priority>
   </url>
   <url>
+    <loc>https://www.davidchoc.cz/vycvik/kolik-to-stoji</loc>
+    <lastmod>2026-07-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
     <loc>https://www.davidchoc.cz/vycvik/vybava</loc>
     <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>

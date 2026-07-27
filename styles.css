@@ -7401,3 +7401,529 @@ a.vycvik-tool:hover {
     .index-brief-cta__actions { width: 100%; }
     .index-brief-cta__actions .cta-button { width: 100%; text-align: center; }
 }
+
+/* ==========================================================================
+   VÝCVIK — konverzní vrstva (patička pomoci + e-mailové brány)
+   ========================================================================== */
+
+/* --- Patička „Zaseklo se to?" pod každou kapitolou a nástrojem --- */
+.vy-help {
+    margin: 56px 0 0;
+    padding: 28px 30px;
+    background: #fff;
+    border: 1px solid #e6e0d4;
+    border-left: 4px solid #FFBF00;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    flex-wrap: wrap;
+}
+.vy-help__text { flex: 1; min-width: 260px; }
+.vy-help__text strong {
+    display: block;
+    font-size: 1.12rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+}
+.vy-help__text p {
+    margin: 0;
+    font-size: 0.96rem;
+    line-height: 1.65;
+    color: #5a5a5a;
+}
+.vy-help__actions {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+.vy-help__btn {
+    display: inline-block;
+    padding: 13px 26px;
+    background: #FFBF00;
+    color: #1a1a1a;
+    font-weight: 800;
+    font-size: 0.95rem;
+    border-radius: 3px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.2s ease;
+}
+.vy-help__btn:hover { background: #e6ac00; color: #1a1a1a; }
+.vy-help__phone {
+    color: #1a1a1a;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    white-space: nowrap;
+    border-bottom: 1px solid rgba(0,0,0,0.18);
+}
+.vy-help__phone i { color: #FFBF00; margin-right: 6px; }
+.vy-help__phone:hover { border-bottom-color: #FFBF00; color: #1a1a1a; }
+
+@media (max-width: 700px) {
+    .vy-help { flex-direction: column; align-items: stretch; padding: 24px; }
+    .vy-help__actions { justify-content: space-between; }
+    .vy-help__btn { flex: 1; text-align: center; }
+}
+
+/* --- E-mailová brána: PDF ke stažení, výsledek zkoušky --- */
+.vy-gate {
+    margin: 40px 0 0;
+    padding: 34px 36px;
+    background: linear-gradient(135deg, #111 0%, #1e1e1e 100%);
+    border-radius: 6px;
+    border: 1px solid rgba(255,191,0,0.28);
+}
+.vy-gate__head { margin-bottom: 24px; }
+.vy-gate__label {
+    display: block;
+    color: #FFBF00;
+    font-size: 0.74rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+.vy-gate__head h2,
+.vy-gate__head h3 {
+    color: #fff !important;
+    font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+    font-weight: 800;
+    line-height: 1.22;
+    margin: 0 0 12px !important;
+    letter-spacing: -0.015em;
+}
+.vy-gate__head p {
+    color: #c8c8c8;
+    font-size: 1rem;
+    line-height: 1.68;
+    margin: 0 0 10px;
+}
+.vy-gate__head p:last-child { margin-bottom: 0; }
+.vy-gate__head strong { color: #fff; }
+.vy-gate__list {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 0;
+}
+.vy-gate__list li {
+    position: relative;
+    padding-left: 26px;
+    color: #d8d8d8;
+    font-size: 0.96rem;
+    line-height: 1.6;
+    margin-bottom: 9px;
+}
+.vy-gate__list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 8px;
+    height: 8px;
+    background: #FFBF00;
+    border-radius: 50%;
+}
+
+.vy-gate__form { margin: 0; }
+.vy-gate__row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+}
+.vy-gate__form input[type="text"],
+.vy-gate__form input[type="email"] {
+    flex: 1;
+    min-width: 180px;
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 3px;
+    color: #fff;
+    font-size: 0.98rem;
+    font-family: inherit;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+.vy-gate__form input::placeholder { color: #8a8a8a; }
+.vy-gate__form input:focus {
+    outline: none;
+    border-color: #FFBF00;
+    background: rgba(255,255,255,0.1);
+}
+.vy-gate__form button[type="submit"] {
+    padding: 14px 30px;
+    background: #FFBF00;
+    color: #1a1a1a;
+    border: none;
+    border-radius: 3px;
+    font-size: 0.98rem;
+    font-weight: 800;
+    font-family: inherit;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s ease;
+}
+.vy-gate__form button[type="submit"]:hover:not(:disabled) { background: #e6ac00; }
+.vy-gate__form button[type="submit"]:disabled { opacity: 0.55; cursor: default; }
+
+.vy-gate__consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: #a8a8a8;
+    font-size: 0.86rem;
+    line-height: 1.55;
+    cursor: pointer;
+}
+.vy-gate__consent input[type="checkbox"] {
+    margin-top: 3px;
+    width: 16px;
+    height: 16px;
+    accent-color: #FFBF00;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+.vy-gate__consent a { color: #FFBF00; text-decoration: underline; }
+
+.vy-gate__msg {
+    margin: 14px 0 0;
+    padding: 11px 14px;
+    border-radius: 3px;
+    font-size: 0.92rem;
+    line-height: 1.5;
+}
+.vy-gate__msg--error {
+    background: rgba(192,57,43,0.15);
+    border: 1px solid rgba(192,57,43,0.4);
+    color: #ff9b8f;
+}
+.vy-gate__msg--ok {
+    background: rgba(39,174,96,0.14);
+    border: 1px solid rgba(39,174,96,0.38);
+    color: #7fe0a5;
+}
+
+.vy-gate__note {
+    margin: 16px 0 0;
+    color: #8a8a8a;
+    font-size: 0.85rem;
+    line-height: 1.55;
+}
+
+.vy-gate__done { text-align: left; }
+.vy-gate__done i {
+    display: block;
+    font-size: 2.1rem;
+    color: #FFBF00;
+    margin-bottom: 14px;
+}
+.vy-gate__done h3 {
+    color: #fff !important;
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin: 0 0 12px !important;
+}
+.vy-gate__done p {
+    color: #c8c8c8;
+    font-size: 1rem;
+    line-height: 1.68;
+    margin: 0 0 10px;
+}
+.vy-gate__done a { color: #FFBF00; text-decoration: underline; }
+.vy-gate__done-note {
+    color: #8a8a8a !important;
+    font-size: 0.9rem !important;
+    margin-top: 16px !important;
+}
+
+@media (max-width: 640px) {
+    .vy-gate { padding: 26px 22px; }
+    .vy-gate__row { flex-direction: column; }
+    .vy-gate__form button[type="submit"] { width: 100%; }
+}
+
+/* --- Vlajkový slib: „Když neprodáme, neplatíte nic" --- */
+.vy-flag {
+    margin: 40px 0;
+    padding: 34px 36px;
+    background: linear-gradient(135deg, #111 0%, #1e1e1e 100%);
+    border-radius: 6px;
+    border-left: 5px solid #FFBF00;
+}
+.vy-flag__label {
+    display: block;
+    color: #FFBF00;
+    font-size: 0.74rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+.vy-flag h3 {
+    color: #fff !important;
+    font-size: clamp(1.35rem, 2.6vw, 1.85rem);
+    font-weight: 900;
+    line-height: 1.2;
+    margin: 0 0 16px !important;
+    letter-spacing: -0.02em;
+}
+.vy-flag p {
+    color: #c8c8c8;
+    font-size: 1.02rem;
+    line-height: 1.72;
+    margin: 0 0 12px;
+}
+.vy-flag p:last-child { margin-bottom: 0; }
+.vy-flag strong { color: #fff; }
+.vy-flag em { color: #FFBF00; font-style: normal; font-weight: 700; }
+
+@media (max-width: 640px) {
+    .vy-flag { padding: 26px 22px; }
+}
+
+/* --- Hub: PDF ke stažení, recenze, tři cesty --- */
+.vycvik-pdf { background:#F8F4E9; }
+.vycvik-pdf__wrap { max-width: 820px; margin: 0 auto; }
+
+.vycvik-reviews { background:#fff; }
+.vycvik-reviews .pripad-reviews__grid { grid-template-columns: repeat(3, 1fr); }
+.vycvik-reviews .pripad-section__header h2 { color:#1a1a1a; }
+.vycvik-reviews .pripad-section__header p { color:#555; }
+.vycvik-reviews .pripad-review {
+    background:#fff;
+    border-color: rgba(26,26,26,0.10);
+    box-shadow: 0 8px 22px rgba(0,0,0,0.05);
+}
+.vycvik-reviews .pripad-review blockquote p { color:#1a1a1a; }
+.vycvik-reviews .pripad-review footer { color:#666; border-top-color: rgba(0,0,0,0.08); }
+.vycvik-reviews .pripad-review footer strong { color:#8B7D61; }
+.vycvik-reviews .pripad-review__mark { color: rgba(255,191,0,0.45); }
+
+.vycvik-paths { background:#F8F4E9; }
+.vycvik-paths .pripad-section__header h2 { color:#1a1a1a; }
+.vycvik-paths .pripad-section__header p { color:#555; }
+.vycvik-paths .vy-paths { margin-top: 0; }
+
+@media (max-width: 900px) {
+    .vycvik-reviews .pripad-reviews__grid { grid-template-columns: 1fr; }
+}
+
+/* --- Citace klientů uvnitř kapitoly --- */
+.vy-quotes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin: 28px 0 0;
+}
+.vy-quote {
+    margin: 0;
+    padding: 26px 24px 22px;
+    background: #fff;
+    border: 1px solid #e6e0d4;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.vy-quote::before {
+    content: '\201C';
+    position: absolute;
+    top: 8px;
+    right: 18px;
+    font-size: 3.4rem;
+    line-height: 1;
+    color: rgba(255,191,0,0.4);
+    font-family: Georgia, serif;
+}
+.vy-quote p {
+    flex: 1;
+    margin: 0 0 16px;
+    font-size: 0.97rem;
+    line-height: 1.68;
+    color: #1a1a1a;
+}
+.vy-quote footer {
+    padding-top: 14px;
+    border-top: 1px solid rgba(0,0,0,0.08);
+}
+.vy-quote footer strong {
+    display: block;
+    color: #8B7D61;
+    font-size: 0.92rem;
+    font-weight: 800;
+    margin-bottom: 3px;
+}
+.vy-quote footer span {
+    display: block;
+    color: #777;
+    font-size: 0.85rem;
+}
+
+@media (max-width: 860px) {
+    .vy-quotes { grid-template-columns: 1fr; }
+}
+
+/* Tmavé bloky na světlých stránkách — přebít světlé barvy textu */
+body.is-light .vy-flag p,
+body.is-light .vy-gate__head p { color:#c8c8c8; }
+body.is-light .vy-flag strong,
+body.is-light .vy-gate__head strong,
+body.is-light .vy-gate__done p strong { color:#fff; }
+body.is-light .vy-flag em { color:#FFBF00; }
+body.is-light .vy-flag h3,
+body.is-light .vy-gate__head h2,
+body.is-light .vy-gate__head h3,
+body.is-light .vy-gate__done h3 { color:#fff; }
+body.is-light .vy-gate__list li { color:#d8d8d8; }
+body.is-light .vy-gate__consent span { color:#a8a8a8; }
+body.is-light .vy-gate a,
+body.is-light .vy-gate__done a { color:#FFBF00; }
+body.is-light .vy-help__btn,
+body.is-light .vy-help__phone { text-decoration: none; }
+
+/* --- Homepage: kniha zdarma --- */
+.index-book {
+    background: linear-gradient(135deg, #0a0a0a 0%, #141414 100%);
+    padding: 80px 0;
+    border-top: 1px solid rgba(255,191,0,0.15);
+}
+.index-book__inner {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+.index-book__cover {
+    flex-shrink: 0;
+    perspective: 1400px;
+    display: block;
+    padding: 10px 0;
+}
+.index-book__text { flex: 1; min-width: 300px; }
+.index-book__text h2 {
+    color: #fff;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 800;
+    line-height: 1.18;
+    margin: 0 0 16px;
+    letter-spacing: -0.02em;
+}
+.index-book__text p {
+    color: #cfcfcf;
+    font-size: 1.04rem;
+    line-height: 1.7;
+    margin: 0 0 14px;
+    max-width: 620px;
+}
+.index-book__text .index-brief-cta__actions { margin-top: 26px; }
+
+@media (max-width: 820px) {
+    .index-book { padding: 60px 0; }
+    .index-book__inner { gap: 36px; justify-content: center; }
+    .index-book__cover { margin: 0 auto; }
+    .index-book__text .index-brief-cta__actions { width: 100%; }
+    .index-book__text .cta-button { flex: 1; text-align: center; }
+}
+
+/* --- Blog → kniha, prolinkování --- */
+.blog-book {
+    display: block;
+    margin: 44px 0;
+    padding: 26px 28px;
+    background: #F8F4E9;
+    border: 1px solid #e6e0d4;
+    border-left: 4px solid #FFBF00;
+    border-radius: 4px;
+}
+.blog-book__label {
+    display: block;
+    color: #8B7D61;
+    font-size: 0.74rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+.blog-book__link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+.blog-book__title {
+    display: block;
+    font-size: 1.18rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    line-height: 1.25;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+}
+.blog-book__lead {
+    display: block;
+    font-size: 0.98rem;
+    line-height: 1.65;
+    color: #5a5a5a;
+    margin-bottom: 14px;
+}
+.blog-book__more {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.92rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    border-bottom: 2px solid #FFBF00;
+    padding-bottom: 2px;
+    transition: gap 0.2s ease;
+}
+.blog-book__link:hover .blog-book__more { gap: 13px; }
+.blog-book__more i { color: #FFBF00; font-size: 0.85rem; }
+
+@media (max-width: 600px) {
+    .blog-book { padding: 22px 20px; margin: 34px 0; }
+}
+
+/* --- Kniha → blog, prolinkování --- */
+.vy-related {
+    margin: 48px 0 0;
+    padding: 26px 28px;
+    background: #F8F4E9;
+    border: 1px solid #e6e0d4;
+    border-radius: 4px;
+}
+.vy-related h3 {
+    margin: 0 0 14px !important;
+    font-size: 0.78rem !important;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #8B7D61 !important;
+}
+.vy-related ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.vy-related li { margin: 0; border-top: 1px solid rgba(0,0,0,0.07); }
+.vy-related li:first-child { border-top: none; }
+.vy-related li a {
+    display: block;
+    padding: 11px 0;
+    color: #1a1a1a;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.45;
+    text-decoration: none;
+    transition: color 0.2s ease, padding-left 0.2s ease;
+}
+.vy-related li a:hover { color: #8B7D61; padding-left: 6px; }
+
+@media (max-width: 600px) {
+    .vy-related { padding: 22px 20px; }
+}

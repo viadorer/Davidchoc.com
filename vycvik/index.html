@@ -18,7 +18,7 @@
     <meta name="twitter:card" content="summary_large_image">
 
     <link rel="icon" type="image/png" href="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/favicon.png">
-    <link rel="stylesheet" href="/styles.css?v=20260727">
+    <link rel="stylesheet" href="/styles.css?v=202607272308">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <!-- Google Analytics -->
@@ -78,9 +78,10 @@
                         <div class="vycvik-hero__cta">
                             <a href="/vycvik/uvod" class="cta-button">Začít číst</a>
                             <a href="#obsah" class="cta-button cta-button--outline">Přeskočit na obsah</a>
+                            <a href="#pdf" class="cta-button cta-button--outline">Stáhnout jako PDF</a>
                         </div>
                         <p class="vycvik-hero__note">
-                            Bez registrace. Bez e-mailu. Bez háčku. Všechny nástroje zůstávají online a zdarma.
+                            Číst online můžete hned — bez registrace, bez e-mailu, bez háčku. Všechny nástroje zůstávají online a zdarma.
                         </p>
                     </div>
 
@@ -119,7 +120,7 @@
                             <p>chyb, které stojí prodávající statisíce</p>
                         </div>
                         <div class="vycvik-why__item">
-                            <div class="vycvik-why__num">16</div>
+                            <div class="vycvik-why__num">17</div>
                             <p>interaktivních nástrojů, zdarma a natrvalo</p>
                         </div>
                     </div>
@@ -347,11 +348,132 @@
                         <span class="vycvik-tool__desc">Co v ní musí být — projděte řádek po řádku</span>
                     </a>
 
+                    <a href="/vycvik/kolik-to-stoji" class="vycvik-tool">
+                        <i class="fas fa-scale-balanced" aria-hidden="true"></i>
+                        <span class="vycvik-tool__name">Kolik stojí prodat sám</span>
+                        <span class="vycvik-tool__desc">Spočítá ztrátu, výdaje i váš čas — a porovná s provizí</span>
+                    </a>
+
                     <a href="/vycvik/zkouska" class="vycvik-tool">
                         <i class="fas fa-clipboard-check" aria-hidden="true"></i>
                         <span class="vycvik-tool__name">Závěrečná zkouška</span>
                         <span class="vycvik-tool__desc">Osm otázek a skóre bez slitování</span>
                     </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- PDF ZA E-MAIL -->
+        <section class="vycvik-pdf" id="pdf">
+            <div class="container">
+                <div class="vycvik-pdf__wrap">
+                    <div class="vy-gate" style="margin-top:0;">
+                        <div class="vy-gate__head">
+                            <span class="vy-gate__label">Ke stažení</span>
+                            <h2>Chcete si knihu přečíst večer v křesle?</h2>
+                            <p>Celá kniha je na téhle stránce zdarma a bez e-mailu — <strong>tohle není brána, kterou byste museli projít.</strong> Ale ne každý chce číst osmdesát stran v prohlížeči.</p>
+                            <p>Pošlu vám PDF k vytištění nebo do čtečky. A spolu s ním čísla, která se do knihy nevešla, protože se každý rok mění:</p>
+                            <ul class="vy-gate__list">
+                                <li>Aktuální ceny fotografa, videa a 3D skenu v Plzni</li>
+                                <li>Seznam inzertních portálů s podmínkami pro soukromé inzerenty</li>
+                                <li>Ceny advokátní a notářské úschovy</li>
+                                <li>Kolik v Plzni znamená dobrá návštěvnost inzerátu a kolik poptávek je normální</li>
+                            </ul>
+                        </div>
+
+                        <form id="vy-pdf-form" class="vy-gate__form" novalidate>
+                            <div class="vy-gate__row">
+                                <input type="text" name="name" placeholder="Jméno" autocomplete="name" required>
+                                <input type="email" name="email" placeholder="E-mail" autocomplete="email" required>
+                                <button type="submit">Poslat knihu</button>
+                            </div>
+                            <label class="vy-gate__consent">
+                                <input type="checkbox" name="consent" required>
+                                <span>Souhlasím, aby mi David Choc poslal knihu a občas napsal, když bude mít k prodeji nemovitostí co říct. Odhlásit se můžu jedním kliknutím. <a href="/osobni-udaje" target="_blank">Zpracování údajů</a></span>
+                            </label>
+                            <p class="vy-gate__msg" hidden></p>
+                        </form>
+
+                        <p class="vy-gate__note">Nikdo vám kvůli tomu nezavolá. Píšu, když mám co říct, ne podle kalendáře.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RECENZE -->
+        <section class="vycvik-reviews">
+            <div class="container">
+                <header class="pripad-section__header">
+                    <h2>Nejsem teoretik</h2>
+                    <p>Tohle říkají lidé, kterým jsem nemovitost skutečně prodal.</p>
+                </header>
+
+                <div class="pripad-reviews__grid">
+                    <article class="pripad-review">
+                        <div class="pripad-review__mark" aria-hidden="true">&ldquo;</div>
+                        <blockquote>
+                            <p>Profesionální proaktivní přístup, bezproblémová komunikace, ochota, vstřícnost, příkladná ukázka práce realitní kanceláře. Jednoznačně doporučuji.</p>
+                        </blockquote>
+                        <footer>
+                            <strong>Ing. Jana R.</strong>
+                            <span>Plzeň – Slovany · prodej bytu 2+1</span>
+                        </footer>
+                    </article>
+
+                    <article class="pripad-review">
+                        <div class="pripad-review__mark" aria-hidden="true">&ldquo;</div>
+                        <blockquote>
+                            <p>S PTF reality mám velmi dobré zkušenosti. Vždy jsem se mohla obrátit v jakékoliv situaci, ať se jednalo o prodej nemovitosti, nebo pronájem. Mohu každému vřele doporučit.</p>
+                        </blockquote>
+                        <footer>
+                            <strong>Alena B.</strong>
+                            <span>Plzeň – Skvrňany · prodej bytu 1+kk</span>
+                        </footer>
+                    </article>
+
+                    <article class="pripad-review">
+                        <div class="pripad-review__mark" aria-hidden="true">&ldquo;</div>
+                        <blockquote>
+                            <p>Profesionální přístup, rychlá bezproblémová spolupráce, vřele doporučuji.</p>
+                        </blockquote>
+                        <footer>
+                            <strong>Mgr. Jitka K.</strong>
+                            <span>Plzeň – Bory · prodej bytu 1+1</span>
+                        </footer>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- TŘI CESTY -->
+        <section class="vycvik-paths">
+            <div class="container">
+                <header class="pripad-section__header">
+                    <h2>Kudy dál</h2>
+                    <p>Kniha končí, ale rozhodnutí je pořád na vás. Tady jsou tři cesty a žádná z nich není špatná.</p>
+                </header>
+
+                <div class="vy-paths">
+                    <div class="vy-path">
+                        <div class="vy-path__num"><i class="fas fa-toolbox" aria-hidden="true"></i></div>
+                        <h3>Jdu do toho sám</h3>
+                        <p>Výbava vám zůstává. Zdarma a natrvalo, i kdybyste se ozvali za dva roky.</p>
+                        <a href="/vycvik/vybava" class="vy-path__link">Všechny nástroje <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                    </div>
+
+                    <div class="vy-path">
+                        <div class="vy-path__num"><i class="fas fa-circle-question" aria-hidden="true"></i></div>
+                        <h3>Chci si to jen ověřit</h3>
+                        <p>Dvacet minut nad vaší situací. Nezávazně a bez toho, aby vám pak někdo volal.</p>
+                        <a href="/pripad-pro-agenta" class="vy-path__link">Nezávazná konzultace <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                    </div>
+
+                    <div class="vy-path vy-path--accent">
+                        <div class="vy-path__num"><i class="fas fa-handshake" aria-hidden="true"></i></div>
+                        <h3>Chci od toho mít pokoj</h3>
+                        <p>Postarám se o všechno. A když nemovitost neprodám, neplatíte mi nic.</p>
+                        <a href="/chci-prodat" class="vy-path__link">Prodej s agentem <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -418,5 +540,6 @@
     <script src="/script.js"></script>
     <script src="/common/common.js"></script>
     <script src="/cookie-consent.js"></script>
+    <script src="/vycvik/vycvik-cta.js"></script>
 </body>
 </html>

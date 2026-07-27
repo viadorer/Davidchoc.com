@@ -17,7 +17,7 @@
     <meta property="og:image" content="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/davidchocagent.avif">
 
     <link rel="icon" type="image/png" href="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/favicon.png">
-    <link rel="stylesheet" href="/styles.css?v=20260727">
+    <link rel="stylesheet" href="/styles.css?v=202607272308">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TXGDD8D3GK"></script>
@@ -246,6 +246,7 @@
     <script src="/script.js"></script>
     <script src="/common/common.js"></script>
     <script src="/cookie-consent.js"></script>
+    <script src="/vycvik/vycvik-cta.js"></script>
     <script src="/vycvik/vycvik-tools.js"></script>
     <script>
     (function () {
@@ -395,6 +396,15 @@
 
         resultEl.innerHTML = html;
         resultEl.hidden = false;
+
+        // Nejteplejší moment celé knihy — nabídnout výsledek e-mailem
+        if (window.VycvikCTA && window.VycvikCTA.buildExamGate) {
+          var chapterNames = missing.map(function (q) { return CHAPTERS[q].name; })
+            .filter(function (n, i, arr) { return arr.indexOf(n) === i; });
+          var riskNames = risks.map(function (r) { return RISK_LABELS[r]; });
+          resultEl.appendChild(window.VycvikCTA.buildExamGate(score, chapterNames, riskNames));
+        }
+
         resultEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
         if (window.gtag) {
