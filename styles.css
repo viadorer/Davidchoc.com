@@ -4891,6 +4891,1145 @@ body.is-light.pribeh-page .pribeh-claim__contact a:hover { color:#8B7D61; }
     .chci-prodat-guarantee__icon { width: 80px; height: 80px; font-size: 1.8rem; }
 }
 
+/* ============================================
+   VÝCVIK ZISKOVÉHO PRODEJE — kniha online
+   Světlé téma, čtenářský komfort, interaktivní nástroje
+   ============================================ */
+
+.vycvik-page { background:#F8F4E9; color:#1a1a1a; }
+.vycvik-page main { padding-top: 80px; }
+.vycvik-page section { padding: 72px 0; position: relative; }
+.vycvik-page section + section { border-top: 1px solid rgba(26,26,26,0.08); }
+
+/* ─── HERO ─── */
+.vycvik-hero {
+    background:
+        radial-gradient(ellipse at top right, rgba(255,191,0,0.20) 0%, transparent 60%),
+        #F8F4E9;
+    padding: 96px 0 80px !important;
+}
+.vycvik-hero__grid {
+    display: grid;
+    grid-template-columns: 1.35fr 0.65fr;
+    gap: 60px;
+    align-items: center;
+}
+.vycvik-hero__eyebrow {
+    display: inline-block;
+    font-size: 0.8rem;
+    color: #8B7D61;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+.vycvik-hero__text h1 {
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.05;
+    margin: 0 0 14px;
+    color: #1a1a1a;
+    font-weight: 900;
+    letter-spacing: -0.025em;
+}
+.vycvik-hero__sub {
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    color: #8B7D61;
+    font-weight: 600;
+    margin: 0 0 24px;
+    font-style: italic;
+}
+.vycvik-hero__lead {
+    font-size: 1.1rem;
+    color: #444;
+    line-height: 1.75;
+    max-width: 620px;
+    margin: 0 0 32px;
+}
+.vycvik-hero__cta {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 22px;
+}
+.vycvik-hero__cta .cta-button { padding: 16px 32px; font-size: 1rem; }
+.vycvik-hero__note {
+    font-size: 0.92rem;
+    color: #7a7a7a;
+    margin: 0;
+    padding-top: 20px;
+    border-top: 1px solid rgba(26,26,26,0.12);
+    max-width: 520px;
+}
+
+/* Book cover mockup (CSS-only, dokud nebude reálná obálka) */
+.vycvik-hero__cover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1200px;
+}
+.vycvik-book {
+    position: relative;
+    width: 260px;
+    height: 370px;
+    transform: rotateY(-14deg) rotateX(3deg);
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+.vycvik-book:hover { transform: rotateY(-6deg) rotateX(1deg); }
+.vycvik-book__face {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(150deg, #1a1a1a 0%, #000 100%);
+    border-radius: 4px 10px 10px 4px;
+    box-shadow:
+        0 30px 60px rgba(0,0,0,0.35),
+        inset -1px 0 0 rgba(255,255,255,0.06);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 30px;
+    border-left: 6px solid #FFBF00;
+}
+.vycvik-book__spine {
+    position: absolute;
+    left: -8px; top: 0; bottom: 0;
+    width: 14px;
+    background: linear-gradient(90deg, #8a6800 0%, #FFBF00 60%, #E6AB00 100%);
+    border-radius: 3px 0 0 3px;
+    transform: rotateY(-72deg);
+    transform-origin: right center;
+}
+.vycvik-book__label {
+    color: #FFBF00;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+.vycvik-book__title {
+    color: #fff;
+    font-size: 1.45rem;
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: auto;
+}
+.vycvik-book__author {
+    color: #FFBF00;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-top: 30px;
+}
+.vycvik-book__year {
+    color: rgba(255,255,255,0.4);
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+    margin-top: 4px;
+}
+
+/* ─── PROČ / CITACE ─── */
+.vycvik-why { background:#fff; }
+.vycvik-why__inner { max-width: 900px; margin: 0 auto; }
+.vycvik-quote {
+    margin: 0 0 48px;
+    padding: 0 0 0 28px;
+    border-left: 4px solid #FFBF00;
+}
+.vycvik-quote p {
+    font-size: 1.18rem;
+    line-height: 1.75;
+    color: #333;
+    margin: 0 0 14px;
+    font-style: italic;
+}
+.vycvik-quote p strong { color:#1a1a1a; font-style: normal; }
+.vycvik-quote footer {
+    color: #8B7D61;
+    font-size: 0.92rem;
+    font-weight: 600;
+    margin-top: 8px;
+}
+.vycvik-why__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    padding-top: 36px;
+    border-top: 1px solid rgba(26,26,26,0.10);
+}
+.vycvik-why__item { text-align: center; }
+.vycvik-why__num {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #FFBF00;
+    line-height: 1;
+    margin-bottom: 10px;
+    font-variant-numeric: tabular-nums;
+}
+.vycvik-why__item p {
+    color: #555;
+    font-size: 0.98rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* ─── OBSAH (TOC) ─── */
+.vycvik-toc { background:#F8F4E9; }
+.vycvik-toc__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: none;
+    max-width: 920px;
+}
+.vycvik-toc__item {
+    margin-bottom: 10px;
+}
+.vycvik-toc__item > a,
+.vycvik-toc__item > span:first-child {
+    display: grid;
+    grid-template-columns: 64px 1fr auto;
+    gap: 20px;
+    align-items: center;
+    padding: 20px 24px;
+    background: #fff;
+    border: 1px solid rgba(26,26,26,0.10);
+    border-radius: 14px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.25s ease;
+}
+.vycvik-toc__item > a:hover {
+    border-color: rgba(255,191,0,0.7);
+    box-shadow: 0 10px 26px rgba(0,0,0,0.07);
+    transform: translateX(3px);
+    text-decoration: none;
+}
+.vycvik-toc__item--soon {
+    display: grid;
+    grid-template-columns: 64px 1fr auto;
+    gap: 20px;
+    align-items: center;
+    padding: 20px 24px;
+    background: rgba(255,255,255,0.5);
+    border: 1px dashed rgba(26,26,26,0.16);
+    border-radius: 14px;
+}
+.vycvik-toc__item--highlight > a {
+    background: linear-gradient(135deg, #fff 0%, #fdf6e3 100%);
+    border-color: rgba(255,191,0,0.5);
+}
+.vycvik-toc__num {
+    width: 52px; height: 52px;
+    border-radius: 12px;
+    background: rgba(255,191,0,0.14);
+    color: #8B7D61;
+    display: grid;
+    place-items: center;
+    font-size: 1.2rem;
+    font-weight: 900;
+    font-variant-numeric: tabular-nums;
+    flex-shrink: 0;
+}
+.vycvik-toc__item > a:hover .vycvik-toc__num {
+    background: #FFBF00;
+    color: #1a1a1a;
+}
+.vycvik-toc__item--soon .vycvik-toc__num {
+    background: rgba(26,26,26,0.05);
+    color: #aaa;
+}
+.vycvik-toc__body { display: flex; flex-direction: column; gap: 5px; }
+.vycvik-toc__title {
+    font-size: 1.08rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1.3;
+}
+.vycvik-toc__item--soon .vycvik-toc__title { color: #888; }
+.vycvik-toc__desc {
+    font-size: 0.9rem;
+    color: #777;
+    line-height: 1.45;
+}
+.vycvik-toc__arrow { color: #FFBF00; font-size: 0.95rem; }
+.vycvik-toc__badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #999;
+    background: rgba(26,26,26,0.06);
+    padding: 6px 12px;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+/* ─── NÁSTROJE ─── */
+.vycvik-tools { background:#fff; }
+.vycvik-tools__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+.vycvik-tool {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 26px 22px;
+    background: #fdfaf2;
+    border: 1px solid rgba(26,26,26,0.09);
+    border-radius: 16px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.25s ease;
+}
+a.vycvik-tool:hover {
+    border-color: rgba(255,191,0,0.7);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+    transform: translateY(-3px);
+    text-decoration: none;
+}
+.vycvik-tool i {
+    color: #FFBF00;
+    font-size: 1.5rem;
+    margin-bottom: 6px;
+}
+.vycvik-tool__name {
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1.3;
+}
+.vycvik-tool__desc {
+    font-size: 0.88rem;
+    color: #777;
+    line-height: 1.5;
+}
+.vycvik-tool--soon {
+    opacity: 0.55;
+    border-style: dashed;
+    cursor: default;
+}
+.vycvik-tool--soon i { color: #bbb; }
+
+/* ─── O AUTOROVI ─── */
+.vycvik-author { background:#F8F4E9; }
+.vycvik-author__inner {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 48px;
+    align-items: center;
+    max-width: 960px;
+    margin: 0 auto;
+}
+.vycvik-author__photo img {
+    width: 100%;
+    height: auto;
+    border-radius: 18px;
+    display: block;
+    box-shadow: 0 20px 44px rgba(0,0,0,0.16);
+}
+.vycvik-author__text h2 {
+    color: #1a1a1a;
+    font-size: 2rem;
+    margin: 8px 0 18px;
+    font-weight: 800;
+}
+.vycvik-author__text p {
+    color: #444;
+    line-height: 1.75;
+    font-size: 1.02rem;
+    margin: 0 0 14px;
+}
+.vycvik-author__motto {
+    font-style: italic;
+    color: #8B7D61 !important;
+    padding-left: 18px;
+    border-left: 3px solid #FFBF00;
+}
+.vycvik-author__links {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+    padding-top: 16px;
+    border-top: 1px solid rgba(26,26,26,0.10);
+    margin-top: 20px !important;
+}
+.vycvik-author__links a {
+    color: #8B7D61;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+.vycvik-author__links a:hover { color:#1a1a1a; text-decoration: underline; }
+
+/* ─── ČTECÍ STRÁNKA KAPITOLY ─── */
+.vycvik-chapter { background:#fff; }
+.vycvik-chapter__wrap { max-width: 760px; margin: 0 auto; }
+
+.vycvik-crumb {
+    font-size: 0.88rem;
+    color: #8B7D61;
+    margin-bottom: 26px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.vycvik-crumb a { color: #8B7D61; text-decoration: none; font-weight: 600; }
+.vycvik-crumb a:hover { color:#1a1a1a; text-decoration: underline; }
+.vycvik-crumb span { color: #bbb; }
+
+.vycvik-chapter__label {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #8B7D61;
+    margin-bottom: 14px;
+}
+.vycvik-chapter__wrap h1 {
+    font-size: clamp(1.9rem, 4vw, 2.9rem);
+    line-height: 1.12;
+    color: #1a1a1a;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    margin: 0 0 28px;
+}
+.vycvik-chapter__wrap h2 {
+    font-size: clamp(1.35rem, 2.6vw, 1.75rem);
+    color: #1a1a1a;
+    font-weight: 800;
+    line-height: 1.25;
+    margin: 52px 0 18px;
+    letter-spacing: -0.01em;
+}
+.vycvik-chapter__wrap h3 {
+    font-size: 1.2rem;
+    color: #1a1a1a;
+    font-weight: 700;
+    margin: 34px 0 12px;
+}
+.vycvik-chapter__wrap p {
+    font-size: 1.08rem;
+    line-height: 1.85;
+    color: #333;
+    margin: 0 0 20px;
+}
+.vycvik-chapter__wrap p strong { color: #1a1a1a; font-weight: 700; }
+.vycvik-chapter__wrap a { color: #8B7D61; text-decoration: underline; text-underline-offset: 3px; }
+.vycvik-chapter__wrap a:hover { color:#1a1a1a; }
+.vycvik-chapter__wrap ul,
+.vycvik-chapter__wrap ol { margin: 0 0 24px; padding-left: 1.4rem; }
+.vycvik-chapter__wrap li {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: #333;
+    margin-bottom: 10px;
+}
+.vycvik-chapter__wrap hr {
+    border: none;
+    border-top: 1px solid rgba(26,26,26,0.12);
+    margin: 44px 0;
+}
+
+/* Lead odstavec */
+.vycvik-lead {
+    font-size: 1.22rem !important;
+    line-height: 1.7 !important;
+    color: #1a1a1a !important;
+    font-weight: 500;
+}
+
+/* Zvýrazněný výrok */
+.vycvik-callout {
+    background: linear-gradient(135deg, #fdf6e3 0%, #fff9ec 100%);
+    border-left: 4px solid #FFBF00;
+    border-radius: 0 14px 14px 0;
+    padding: 22px 26px;
+    margin: 32px 0;
+}
+.vycvik-callout p {
+    margin: 0 !important;
+    font-size: 1.12rem !important;
+    font-weight: 600;
+    color: #1a1a1a !important;
+    line-height: 1.6 !important;
+}
+.vycvik-callout p + p { margin-top: 12px !important; }
+
+/* Poznámka / upozornění */
+.vycvik-note {
+    background: #f7f7f7;
+    border: 1px dashed rgba(26,26,26,0.2);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 28px 0;
+}
+.vycvik-note p {
+    margin: 0 !important;
+    font-size: 0.98rem !important;
+    color: #666 !important;
+    line-height: 1.65 !important;
+}
+.vycvik-note p + p { margin-top: 10px !important; }
+.vycvik-note strong { color:#444 !important; }
+
+/* Tabulka v kapitole */
+.vycvik-table-wrap {
+    overflow-x: auto;
+    margin: 28px 0;
+    border-radius: 14px;
+    border: 1px solid rgba(26,26,26,0.12);
+}
+.vycvik-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 560px;
+    background: #fff;
+}
+.vycvik-table th {
+    background: #1a1a1a;
+    color: #FFBF00;
+    text-align: left;
+    padding: 14px 16px;
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+}
+.vycvik-table td {
+    padding: 14px 16px;
+    border-top: 1px solid rgba(26,26,26,0.08);
+    color: #333;
+    font-size: 0.96rem;
+    line-height: 1.55;
+    vertical-align: top;
+}
+.vycvik-table tbody tr:nth-child(even) { background: #fdfaf2; }
+.vycvik-table td strong { color:#1a1a1a; }
+
+/* Kroky superschopnosti */
+.vycvik-steps { margin: 32px 0; }
+.vycvik-step {
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    gap: 20px;
+    padding: 22px 0;
+    border-top: 1px solid rgba(26,26,26,0.10);
+}
+.vycvik-step:last-child { border-bottom: 1px solid rgba(26,26,26,0.10); }
+.vycvik-step__num {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: #FFBF00;
+    color: #1a1a1a;
+    display: grid;
+    place-items: center;
+    font-weight: 900;
+    font-size: 1.05rem;
+    flex-shrink: 0;
+}
+.vycvik-step__body h3 { margin: 4px 0 10px !important; }
+.vycvik-step__body p:last-child { margin-bottom: 0 !important; }
+
+/* Odkaz na nástroj (bývalý QR kód) */
+.vycvik-toollink {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    background: #1a1a1a;
+    border-radius: 16px;
+    padding: 22px 26px;
+    margin: 32px 0;
+    text-decoration: none !important;
+    transition: all 0.25s ease;
+}
+.vycvik-toollink:hover {
+    background: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.22);
+}
+.vycvik-toollink__icon {
+    width: 52px; height: 52px;
+    border-radius: 12px;
+    background: rgba(255,191,0,0.15);
+    color: #FFBF00;
+    display: grid;
+    place-items: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+}
+.vycvik-toollink__text { flex: 1; }
+.vycvik-toollink__name {
+    display: block;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-bottom: 4px;
+}
+.vycvik-toollink__desc {
+    display: block;
+    color: #999;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+.vycvik-toollink__arrow { color:#FFBF00; }
+
+/* Shrnutí kapitoly — checklist */
+.vycvik-summary {
+    background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+    border-radius: 20px;
+    padding: 34px 36px;
+    margin: 44px 0;
+}
+.vycvik-summary h2 {
+    color: #FFBF00 !important;
+    margin: 0 0 20px !important;
+    font-size: 1.4rem !important;
+}
+.vycvik-summary ul { list-style: none; padding: 0; margin: 0; }
+.vycvik-summary li {
+    color: #ddd !important;
+    padding-left: 32px;
+    position: relative;
+    margin-bottom: 12px;
+    font-size: 1rem !important;
+    line-height: 1.6 !important;
+}
+.vycvik-summary li::before {
+    content: "\f00c";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    top: 2px;
+    color: #FFBF00;
+    font-size: 0.85rem;
+}
+
+/* Zkouška */
+.vycvik-exam {
+    background: #fdf6e3;
+    border: 2px solid #FFBF00;
+    border-radius: 20px;
+    padding: 32px 34px;
+    margin: 44px 0;
+}
+.vycvik-exam h2 {
+    margin: 0 0 8px !important;
+    font-size: 1.4rem !important;
+    color: #1a1a1a !important;
+}
+.vycvik-exam__intro {
+    color: #8B7D61 !important;
+    font-style: italic;
+    margin-bottom: 22px !important;
+}
+.vycvik-exam ol { padding-left: 1.3rem; margin-bottom: 24px; }
+.vycvik-exam li { color:#333 !important; margin-bottom: 12px; }
+.vycvik-exam__scores {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(26,26,26,0.15);
+}
+.vycvik-exam__score {
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+    font-size: 0.98rem;
+}
+.vycvik-exam__score strong {
+    color: #1a1a1a;
+    min-width: 118px;
+    flex-shrink: 0;
+}
+.vycvik-exam__score span { color:#555; line-height: 1.5; }
+
+/* Navigace mezi kapitolami */
+.vycvik-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 52px 0 0;
+    padding-top: 32px;
+    border-top: 1px solid rgba(26,26,26,0.12);
+}
+.vycvik-nav__link {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 20px 24px;
+    background: #fdfaf2;
+    border: 1px solid rgba(26,26,26,0.10);
+    border-radius: 14px;
+    text-decoration: none !important;
+    transition: all 0.25s ease;
+}
+.vycvik-nav__link:hover {
+    border-color: rgba(255,191,0,0.7);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.07);
+}
+.vycvik-nav__link--next { text-align: right; }
+.vycvik-nav__dir {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #8B7D61;
+}
+.vycvik-nav__title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1.35;
+}
+.vycvik-nav__link--empty { visibility: hidden; }
+
+/* ─── INTERAKTIVNÍ NÁSTROJE ─── */
+.vycvik-tool-page { background:#fff; }
+.vycvik-tool-page__wrap { max-width: 820px; margin: 0 auto; }
+
+/* Checklist s ukládáním */
+.vy-checklist { margin: 28px 0; }
+.vy-checklist__group { margin-bottom: 32px; }
+.vy-checklist__group-title {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin: 0 0 14px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #FFBF00;
+}
+.vy-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 16px;
+    background: #fdfaf2;
+    border: 1px solid rgba(26,26,26,0.09);
+    border-radius: 12px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.vy-check:hover { border-color: rgba(255,191,0,0.6); background:#fff9ec; }
+.vy-check input {
+    width: 22px; height: 22px;
+    margin-top: 1px;
+    accent-color: #FFBF00;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+.vy-check__text {
+    font-size: 1rem;
+    line-height: 1.55;
+    color: #333;
+}
+.vy-check__text small {
+    display: block;
+    color: #888;
+    font-size: 0.87rem;
+    margin-top: 3px;
+    line-height: 1.5;
+}
+.vy-check input:checked ~ .vy-check__text {
+    color: #999;
+    text-decoration: line-through;
+    text-decoration-color: rgba(0,0,0,0.25);
+}
+.vy-check input:checked ~ .vy-check__text small { text-decoration: none; }
+
+/* Progress bar nástroje */
+.vy-progress {
+    position: sticky;
+    top: 76px;
+    z-index: 20;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(26,26,26,0.10);
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin-bottom: 28px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+}
+.vy-progress__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+.vy-progress__label {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+.vy-progress__count {
+    font-size: 0.92rem;
+    color: #8B7D61;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+.vy-progress__bar {
+    height: 8px;
+    background: rgba(26,26,26,0.08);
+    border-radius: 999px;
+    overflow: hidden;
+}
+.vy-progress__fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #FFBF00 0%, #FFD700 100%);
+    border-radius: 999px;
+    transition: width 0.35s ease;
+}
+.vy-progress__actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+.vy-btn {
+    background: transparent;
+    border: 1px solid rgba(26,26,26,0.2);
+    border-radius: 999px;
+    padding: 8px 16px;
+    font: inherit;
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: #555;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.vy-btn:hover { border-color:#1a1a1a; color:#1a1a1a; }
+.vy-btn--gold {
+    background:#FFBF00;
+    border-color:#FFBF00;
+    color:#1a1a1a;
+}
+.vy-btn--gold:hover { background:#FFD700; border-color:#FFD700; }
+
+/* Fáze mapy prodeje */
+.vy-phase {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 20px;
+    padding: 22px 24px;
+    background: #fdfaf2;
+    border: 1px solid rgba(26,26,26,0.09);
+    border-radius: 16px;
+    margin-bottom: 12px;
+    transition: all 0.25s ease;
+    position: relative;
+}
+.vy-phase:hover { border-color: rgba(255,191,0,0.5); }
+.vy-phase.is-done {
+    background: #f4f9f4;
+    border-color: rgba(76,175,80,0.35);
+}
+.vy-phase__num {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: rgba(255,191,0,0.18);
+    color: #8B7D61;
+    display: grid;
+    place-items: center;
+    font-weight: 900;
+    font-size: 1.05rem;
+    flex-shrink: 0;
+    transition: all 0.25s ease;
+}
+.vy-phase.is-done .vy-phase__num {
+    background: #4caf50;
+    color: #fff;
+}
+.vy-phase__head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+.vy-phase__title {
+    font-size: 1.12rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin: 0;
+}
+.vy-phase__time {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #8B7D61;
+    background: rgba(255,191,0,0.16);
+    padding: 4px 12px;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+.vy-phase__risk {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+    padding-left: 24px;
+    position: relative;
+}
+.vy-phase__risk::before {
+    content: "\f071";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    top: 2px;
+    color: #e0a800;
+    font-size: 0.82rem;
+}
+.vy-phase__check {
+    position: absolute;
+    top: 22px; right: 22px;
+}
+.vy-phase__check input { width: 22px; height: 22px; accent-color:#4caf50; cursor: pointer; }
+
+/* ─── INTERAKTIVNÍ WIDGETY V KAPITOLÁCH ─── */
+.vy-widget {
+    background: linear-gradient(160deg, #fffdf7 0%, #fdf6e3 100%);
+    border: 2px solid rgba(255,191,0,0.5);
+    border-radius: 20px;
+    padding: 30px 32px 32px;
+    margin: 38px 0;
+    box-shadow: 0 12px 34px rgba(0,0,0,0.06);
+}
+.vy-widget__head { margin-bottom: 24px; }
+.vy-widget__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #1a1a1a;
+    color: #FFBF00;
+    font-size: 0.74rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    padding: 7px 14px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+}
+.vy-widget__title {
+    font-size: 1.4rem !important;
+    color: #1a1a1a !important;
+    font-weight: 800;
+    margin: 0 0 10px !important;
+    line-height: 1.25;
+}
+.vy-widget__desc {
+    font-size: 0.99rem !important;
+    color: #666 !important;
+    line-height: 1.65 !important;
+    margin: 0 !important;
+}
+.vy-widget__note {
+    font-size: 0.9rem !important;
+    color: #8B7D61 !important;
+    line-height: 1.6 !important;
+    margin: 20px 0 0 !important;
+    padding-top: 16px;
+    border-top: 1px dashed rgba(26,26,26,0.15);
+    font-style: italic;
+}
+
+.vy-field { margin-bottom: 18px; }
+.vy-field label {
+    display: block;
+    font-size: 0.94rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+}
+.vy-field label strong { color:#8B7D61; float: right; font-variant-numeric: tabular-nums; }
+.vy-field input[type="text"],
+.vy-field input[type="number"] {
+    width: 100%;
+    box-sizing: border-box;
+    background: #fff;
+    border: 2px solid rgba(26,26,26,0.14);
+    border-radius: 12px;
+    padding: 14px 16px;
+    font: inherit;
+    font-size: 1.05rem;
+    color: #1a1a1a;
+    transition: all 0.2s ease;
+}
+.vy-field input[type="text"]:focus,
+.vy-field input[type="number"]:focus {
+    outline: none;
+    border-color: #FFBF00;
+    box-shadow: 0 0 0 4px rgba(255,191,0,0.18);
+}
+.vy-input-wrap { position: relative; }
+.vy-input-wrap input { padding-right: 52px !important; }
+.vy-input-suffix {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    font-weight: 700;
+    font-size: 0.95rem;
+    pointer-events: none;
+}
+
+.vy-field input[type="range"] {
+    width: 100%;
+    height: 6px;
+    border-radius: 999px;
+    background: rgba(26,26,26,0.12);
+    appearance: none;
+    outline: none;
+    margin-top: 6px;
+}
+.vy-field input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: #FFBF00;
+    border: 3px solid #fff;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.22);
+    cursor: pointer;
+}
+.vy-field input[type="range"]::-moz-range-thumb {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: #FFBF00;
+    border: 3px solid #fff;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.22);
+    cursor: pointer;
+}
+.vy-range-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+}
+
+.vy-results {
+    display: grid;
+    gap: 10px;
+    margin-top: 24px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(26,26,26,0.12);
+}
+.vy-result {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    border-radius: 12px;
+    background: #fff;
+    border-left: 4px solid rgba(26,26,26,0.15);
+}
+.vy-result--optimistic { border-left-color: #4caf50; }
+.vy-result--realistic { border-left-color: #FFBF00; background: #fffbf0; }
+.vy-result--floor { border-left-color: #e0574a; }
+.vy-result__label {
+    font-size: 0.92rem;
+    color: #666;
+    font-weight: 600;
+}
+.vy-result__value {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: #1a1a1a;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+.vy-result--realistic .vy-result__value { color:#8B7D61; }
+
+.vy-verdict {
+    margin-top: 22px;
+    padding: 20px 24px;
+    border-radius: 14px;
+    border-left: 5px solid;
+    background: #fff;
+}
+.vy-verdict strong {
+    display: block;
+    font-size: 1.05rem;
+    margin-bottom: 10px;
+    color: #1a1a1a;
+}
+.vy-verdict strong i { margin-right: 8px; }
+.vy-verdict p {
+    margin: 0 0 10px !important;
+    font-size: 0.98rem !important;
+    line-height: 1.65 !important;
+    color: #555 !important;
+}
+.vy-verdict p:last-child { margin-bottom: 0 !important; }
+.vy-verdict__action {
+    padding-top: 12px;
+    border-top: 1px dashed rgba(26,26,26,0.15);
+    color: #1a1a1a !important;
+}
+.vy-verdict--danger { border-left-color: #e0574a; background: #fef6f5; }
+.vy-verdict--danger strong { color:#c0392b; }
+.vy-verdict--warn { border-left-color: #e0a800; background: #fffbf0; }
+.vy-verdict--warn strong { color:#8B7D61; }
+.vy-verdict--ok { border-left-color: #4caf50; background: #f5faf5; }
+.vy-verdict--ok strong { color:#2e7d32; }
+
+@media (max-width: 640px) {
+    .vy-widget { padding: 24px 20px 26px; border-radius: 16px; margin: 30px 0; }
+    .vy-range-row { grid-template-columns: 1fr; gap: 16px; }
+    .vy-result { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .vy-field label strong { float: none; display: block; margin-top: 2px; }
+}
+
+/* Tisk */
+@media print {
+    #navbar-placeholder, #footer-placeholder,
+    .floating-buttons, .vy-progress__actions,
+    .vycvik-crumb, .vycvik-nav, .popup-cta { display: none !important; }
+    body { background:#fff !important; }
+    .vy-phase { break-inside: avoid; border: 1px solid #ccc; background:#fff !important; }
+    .vycvik-page section { padding: 16px 0 !important; border: none !important; }
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 980px) {
+    .vycvik-hero__grid { grid-template-columns: 1fr; gap: 44px; }
+    .vycvik-hero__cover { order: -1; }
+    .vycvik-book { width: 210px; height: 300px; }
+    .vycvik-why__grid { grid-template-columns: 1fr; gap: 24px; }
+    .vycvik-tools__grid { grid-template-columns: repeat(2, 1fr); }
+    .vycvik-author__inner { grid-template-columns: 1fr; gap: 30px; }
+    .vycvik-author__photo { max-width: 260px; }
+    .vycvik-page section { padding: 56px 0; }
+}
+@media (max-width: 640px) {
+    .vycvik-hero { padding: 72px 0 56px !important; }
+    .vycvik-hero__cta { flex-direction: column; align-items: stretch; }
+    .vycvik-hero__cta .cta-button { text-align: center; }
+    .vycvik-tools__grid { grid-template-columns: 1fr; }
+    .vycvik-toc__item > a,
+    .vycvik-toc__item--soon { grid-template-columns: 46px 1fr; gap: 14px; padding: 16px 18px; }
+    .vycvik-toc__arrow { display: none; }
+    .vycvik-toc__badge { grid-column: 2; justify-self: start; margin-top: 6px; }
+    .vycvik-toc__num { width: 42px; height: 42px; font-size: 1rem; }
+    .vycvik-nav { grid-template-columns: 1fr; }
+    .vycvik-nav__link--next { text-align: left; }
+    .vycvik-nav__link--empty { display: none; }
+    .vycvik-summary, .vycvik-exam { padding: 24px 20px; border-radius: 16px; }
+    .vy-phase { grid-template-columns: 42px 1fr; gap: 14px; padding: 18px 18px; }
+    .vy-phase__num { width: 38px; height: 38px; font-size: 0.92rem; }
+    .vy-phase__check { top: 16px; right: 16px; }
+    .vycvik-toollink { flex-direction: column; align-items: flex-start; gap: 14px; }
+}
+
 /* Index — CTA strip nahrazující původní sekci #konzultace */
 .index-brief-cta {
     background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
