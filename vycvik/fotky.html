@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seznam záběrů pro focení nemovitosti — checklist | David Choc</title>
+    <meta name="description" content="Co nafotit a v jakém pořadí. Otevřete v mobilu při focení a odškrtávejte. Ušetří vám druhé kolo. Zdarma, bez registrace.">
+    <meta name="keywords" content="co fotit při prodeji nemovitosti, seznam záběrů, focení bytu checklist, jaké fotky do inzerátu">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.davidchoc.cz/vycvik/fotky">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="cs_CZ">
+    <meta property="og:title" content="Seznam záběrů pro focení nemovitosti">
+    <meta property="og:description" content="Co nafotit a v jakém pořadí. K odškrtávání v mobilu.">
+    <meta property="og:url" content="https://www.davidchoc.cz/vycvik/fotky">
+
+    <link rel="icon" type="image/png" href="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/favicon.png">
+    <link rel="stylesheet" href="/styles.css?v=20260727">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TXGDD8D3GK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-TXGDD8D3GK');
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Domů", "item": "https://www.davidchoc.cz/" },
+        { "@type": "ListItem", "position": 2, "name": "Výcvik ziskového prodeje", "item": "https://www.davidchoc.cz/vycvik" },
+        { "@type": "ListItem", "position": 3, "name": "Seznam záběrů", "item": "https://www.davidchoc.cz/vycvik/fotky" }
+      ]
+    }
+    </script>
+</head>
+<body class="pripad-page is-light vycvik-page">
+    <div id="navbar-placeholder"></div>
+
+    <main>
+        <section class="vycvik-tool-page">
+            <div class="container">
+                <div class="vycvik-tool-page__wrap">
+
+                    <nav class="vycvik-crumb" aria-label="Drobečková navigace">
+                        <a href="/vycvik">Výcvik ziskového prodeje</a>
+                        <span>·</span>
+                        <a href="/vycvik/kapitola-3-fotografie">Kapitola 3</a>
+                        <span>·</span>
+                        <span>Nástroj</span>
+                    </nav>
+
+                    <span class="vycvik-chapter__label">Nástroj z knihy</span>
+                    <h1 style="font-size: clamp(1.8rem, 3.6vw, 2.5rem); line-height:1.15; color:#1a1a1a; font-weight:900; margin:0 0 16px;">Seznam záběrů</h1>
+                    <p style="font-size:1.08rem; color:#555; line-height:1.7; margin:0 0 8px;">
+                        Otevřete v mobilu při focení a odškrtávejte. Ušetří vám druhé kolo.
+                    </p>
+                    <p style="font-size:0.94rem; color:#888; line-height:1.6; margin:0 0 28px;">
+                        Postup se ukládá v prohlížeči. Bez registrace.
+                    </p>
+
+                    <!-- 7 pravidel — připomínka -->
+                    <div class="vy-rules">
+                        <h2 class="vy-rules__title">Než začnete — sedm pravidel</h2>
+                        <div class="vy-rules__grid">
+                            <div class="vy-rule"><span>1</span> Na šířku, nikdy na výšku</div>
+                            <div class="vy-rule"><span>2</span> Svislice svislé, telefon kolmo</div>
+                            <div class="vy-rule"><span>3</span> Foťte z rohu, ne ze středu stěny</div>
+                            <div class="vy-rule"><span>4</span> Denní světlo, nikdy blesk</div>
+                            <div class="vy-rule"><span>5</span> Nefoťte proti oknu</div>
+                            <div class="vy-rule"><span>6</span> Projděte okraje záběru</div>
+                            <div class="vy-rule"><span>7</span> Deset záběrů, vyberte jeden</div>
+                        </div>
+                    </div>
+
+                    <!-- Progress -->
+                    <div class="vy-progress">
+                        <div class="vy-progress__row">
+                            <span class="vy-progress__label">Nafoceno</span>
+                            <span class="vy-progress__count"><span id="vy-done">0</span> z <span id="vy-total">0</span> záběrů</span>
+                        </div>
+                        <div class="vy-progress__bar">
+                            <div class="vy-progress__fill" id="vy-fill"></div>
+                        </div>
+                        <div class="vy-progress__actions">
+                            <button type="button" class="vy-btn vy-btn--gold" onclick="window.print()">
+                                <i class="fas fa-print" aria-hidden="true"></i> Vytisknout
+                            </button>
+                            <button type="button" class="vy-btn" id="vy-reset">Vymazat postup</button>
+                        </div>
+                    </div>
+
+                    <div class="vy-checklist" id="vy-shots">
+
+                        <div class="vy-checklist__group">
+                            <h2 class="vy-checklist__group-title">Interiér</h2>
+
+                            <label class="vy-check">
+                                <input type="checkbox" data-key="obyvak1">
+                                <span class="vy-check__text">
+                                    Obývací pokoj — z prvního rohu
+                                    <small>Tenhle záběr je kandidát na hlavní fotku. Věnujte mu nejvíc času.</small>
+                                </span>
+                            </label>
+
+                            <label class="vy-check">
+                                <input type="checkbox" data-key="obyvak2">
+                                <span class="vy-check__text">
+                                    Obývací pokoj — z protilehlého rohu
+                                    <small>Aby si kupující složil celou místnost.</small>
+                                </span>
+                            </label>
+
+                            <label class="vy-check">
+                                <input type="checkbox" data-key="kuchyn">
+                                <span class="vy-check__text">
+                                    Kuchyň — celek
+                                    <small>Linka prázdná až na jednu dvě věci.</small>
+                                </span>
+                            </label>
+
+                            <label class="vy-check">
+                                <input type="checkbox" data-key="kuchyn-detail">
+                                <span class="vy-check__text">
+                                    Kuchyň — detail linky nebo jídelního koutu
+                                </span>
+                            </label>
+
+                            <label class="vy-check">
+                                <input type="checkbox" data-key="loznice1">
+                                <span class="vy-check__text">
+                                    Ložnice — z rohu u dveří
+                                    <small>Postel ustlaná, přehoz rovně.</small>
+                                </span>
+                            </label>
+
+                            <label class="vy-check">
+                                <input type="checkbox" data-key="loznice2">
+                                <span class="vy-check__text">
+                                    Další ložnice a pokoje — každý z rohu u dveří
+                                    <small>Z každého pokoje jeden nejlepší záběr.</small>
+                                </span>
+                            </label>
+
+                            <label class="vy-check">
+                                <input type="checkbox" data-key="koupelna">
+                                <span class="vy-check__text">
+                                    Koupelna — z rohu
+                                    <small>Zavřené WC, žádné osobní věci, žádné ručníky přes zábradlí.</small>
+                                </span>
+                            </label>
+
+                            <label class="vy-check">
+                                <input type="checkbox" data-key="predsin">
+                                <span class="vy-check__text">
+                                    Předsíň
+                                    <small>Jen pokud je prostorná. Jinak vynechat — malá předsíň fotce neprospěje.</small>
+                                </span>
+                            </label>
+                        </div>
+
+                        <div class="vy-checklist__group">
+                            <h2 class="vy-checklist__group-title">Venku a okolí</h2>
+
+                            <label class="vy-check">
+                                <input type="checkbox" data-key="balkon-ven">
+                                <span class="vy-check__text">
+                                    Balkon nebo terasa — z interiéru ven
+                                </span>
+                            </label>
+
+                            <label class="vy-check">
+                                <input type="checkbox" data-key="balkon-dovnitr">
+                                <span class="vy-check__text">
+                                    Balkon nebo terasa — zvenku dovnitř
+                                    <small>Ukáže návaznost na obytný prostor.</small>
+                                </span>
+                            </label>
+
+                            <label class="vy-check">
+                                <input type="checkbox" data-key="vyhled">
+                                <span class="vy-check__text">
+                                    Výhled z okna
+                                    <small>Jen pokud za to stojí. Výhled do světlíku nefoťte.</small>
+                                </span>
+                            </label>
+
+                            <label class="vy-check">
+                                <input type="checkbox" data-key="dum">
+                                <span class="vy-check__text">
+                                    Dům nebo vchod zvenku
+                                    <small>Z nejlepší strany, ne z ulice. A nikdy jako hlavní fotka.</small>
+                                </span>
+                            </label>
+
+                            <label class="vy-check">
+                                <input type="checkbox" data-key="zahrada">
+                                <span class="vy-check__text">
+                                    Zahrada nebo pozemek — celek
+                                </span>
+                            </label>
+
+                            <label class="vy-check">
+                                <input type="checkbox" data-key="zahrada-dum">
+                                <span class="vy-check__text">
+                                    Pohled na dům ze zahrady
+                                </span>
+                            </label>
+
+                            <label class="vy-check">
+                                <input type="checkbox" data-key="okoli">
+                                <span class="vy-check__text">
+                                    Okolí — park, škola, obchod, zastávka
+                                    <small>Jen pokud jsou skutečnou výhodou.</small>
+                                </span>
+                            </label>
+                        </div>
+
+                        <div class="vy-checklist__group">
+                            <h2 class="vy-checklist__group-title">Nakonec</h2>
+
+                            <label class="vy-check">
+                                <input type="checkbox" data-key="pudorys">
+                                <span class="vy-check__text">
+                                    Půdorys
+                                    <small>Poslední v pořadí, ale nevynechávejte ho. Nejlevnější věc s nejvyšším účinkem.</small>
+                                </span>
+                            </label>
+
+                            <label class="vy-check">
+                                <input type="checkbox" data-key="sken">
+                                <span class="vy-check__text">
+                                    Virtuální prohlídka (3D sken)
+                                    <small>Objednaná služba, nebo naskenováno telefonem. Poloviční verzi nedělejte.</small>
+                                </span>
+                            </label>
+                        </div>
+
+                    </div>
+
+                    <div class="vycvik-note" style="margin-top:28px;">
+                        <p><strong>Kontrola před nahráním:</strong> máte alespoň osm snímků? Je hlavní fotka obytný prostor, ne fasáda? Prošli jste u každé fotky okraje — odrazy v zrcadle, sušák, koš, kabely, pes?</p>
+                        <p>Toaletu, sklep a technické místnosti buď na konec, nebo vůbec.</p>
+                    </div>
+
+                    <a href="/vycvik/kapitola-3-fotografie" class="vycvik-toollink">
+                        <span class="vycvik-toollink__icon"><i class="fas fa-book-open" aria-hidden="true"></i></span>
+                        <span class="vycvik-toollink__text">
+                            <span class="vycvik-toollink__name">Zpět ke kapitole 3</span>
+                            <span class="vycvik-toollink__desc">Sedm pravidel focení, hlavní fotka, půdorys a virtuální prohlídka podrobně</span>
+                        </span>
+                        <span class="vycvik-toollink__arrow"><i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                    </a>
+
+                    <nav class="vycvik-nav" aria-label="Navigace">
+                        <a href="/vycvik/kapitola-3-fotografie" class="vycvik-nav__link">
+                            <span class="vycvik-nav__dir"><i class="fas fa-arrow-left" aria-hidden="true"></i> Zpět</span>
+                            <span class="vycvik-nav__title">Kapitola 3 — Fotografie</span>
+                        </a>
+                        <a href="/vycvik" class="vycvik-nav__link vycvik-nav__link--next">
+                            <span class="vycvik-nav__dir">Obsah <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                            <span class="vycvik-nav__title">Všechny kapitoly a nástroje</span>
+                        </a>
+                    </nav>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <div class="floating-buttons">
+        <a href="#" class="floating-button back-to-top" aria-label="Zpět nahoru"><i class="fas fa-arrow-up"></i></a>
+        <a href="tel:+420774052232" class="floating-button call" aria-label="Zavolat"><i class="fas fa-phone-alt"></i></a>
+        <a href="mailto:david.choc@ptf.cz" class="floating-button email" aria-label="Poslat email"><i class="fas fa-envelope"></i></a>
+        <a href="https://wa.me/420604240086" class="floating-button whatsapp" aria-label="WhatsApp zpráva" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+    </div>
+
+    <script src="/script.js"></script>
+    <script src="/common/common.js"></script>
+    <script src="/cookie-consent.js"></script>
+    <script src="/vycvik/vycvik-tools.js"></script>
+    <script>
+      VycvikTools.initChecklist({
+        storageKey: 'vycvik-fotky',
+        container: '#vy-shots',
+        countEl: '#vy-done',
+        totalEl: '#vy-total',
+        fillEl: '#vy-fill',
+        resetEl: '#vy-reset',
+        gaEvent: 'vycvik_fotky_complete'
+      });
+    </script>
+</body>
+</html>

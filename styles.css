@@ -5989,10 +5989,162 @@ a.vycvik-tool:hover {
     .vy-field label strong { float: none; display: block; margin-top: 2px; }
 }
 
+/* ─── ČASOVAČ (prohlídkový režim) ─── */
+.vy-timer {
+    background: linear-gradient(160deg, #1a1a1a 0%, #000 100%);
+    border-radius: 20px;
+    padding: 30px 32px;
+    margin-bottom: 24px;
+    text-align: center;
+    border: 2px solid rgba(255,191,0,0.35);
+    transition: border-color 0.3s ease;
+}
+.vy-timer.is-low { border-color: rgba(224,168,0,0.8); }
+.vy-timer.is-over { border-color: rgba(224,87,74,0.85); }
+.vy-timer__display {
+    font-size: clamp(3rem, 9vw, 4.6rem);
+    font-weight: 900;
+    color: #FFBF00;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+    margin-bottom: 18px;
+    transition: color 0.3s ease;
+}
+.vy-timer.is-over .vy-timer__display { color: #ff8a7d; }
+.vy-timer__actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.vy-timer__actions .vy-btn { border-color: rgba(255,255,255,0.28); color: #ddd; }
+.vy-timer__actions .vy-btn:hover { border-color:#fff; color:#fff; }
+.vy-timer__actions .vy-btn--gold { border-color:#FFBF00; color:#1a1a1a; }
+.vy-timer__hint {
+    color: #888;
+    font-size: 0.86rem;
+    margin: 16px 0 0;
+    line-height: 1.5;
+}
+
+/* Checklist s časem a číslem kroku */
+.vy-check--timed { align-items: center; }
+.vy-check__num {
+    display: inline-grid;
+    place-items: center;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: rgba(255,191,0,0.2);
+    color: #8B7D61;
+    font-size: 0.8rem;
+    font-weight: 900;
+    margin-right: 10px;
+    vertical-align: 2px;
+}
+.vy-check input:checked ~ .vy-check__text .vy-check__num {
+    background: #4caf50;
+    color: #fff;
+}
+.vy-check__time {
+    flex-shrink: 0;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #8B7D61;
+    background: rgba(255,191,0,0.14);
+    padding: 5px 11px;
+    border-radius: 999px;
+    white-space: nowrap;
+    align-self: center;
+}
+.vy-check--final {
+    border-color: rgba(255,191,0,0.55) !important;
+    background: #fff9ec !important;
+}
+
+/* Banner po dokončení */
+.vy-done-banner {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    background: linear-gradient(135deg, #f0f9f0 0%, #e8f5e9 100%);
+    border: 2px solid rgba(76,175,80,0.5);
+    border-radius: 16px;
+    padding: 22px 26px;
+    margin-top: 24px;
+}
+.vy-done-banner i {
+    font-size: 2rem;
+    color: #4caf50;
+    flex-shrink: 0;
+}
+.vy-done-banner strong {
+    display: block;
+    color: #2e7d32;
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+}
+.vy-done-banner span {
+    color: #555;
+    font-size: 0.96rem;
+    line-height: 1.55;
+}
+
+/* Rychlá pravidla (karty) */
+.vy-rules {
+    background: #1a1a1a;
+    border-radius: 18px;
+    padding: 26px 28px;
+    margin-bottom: 28px;
+}
+.vy-rules__title {
+    color: #FFBF00;
+    font-size: 1.05rem;
+    font-weight: 800;
+    margin: 0 0 18px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+.vy-rules__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 10px;
+}
+.vy-rule {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #ddd;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    padding: 10px 14px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 10px;
+}
+.vy-rule span {
+    display: grid;
+    place-items: center;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: #FFBF00;
+    color: #1a1a1a;
+    font-size: 0.78rem;
+    font-weight: 900;
+    flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+    .vy-timer { padding: 24px 20px; border-radius: 16px; }
+    .vy-check--timed { align-items: flex-start; flex-wrap: wrap; }
+    .vy-check__time { margin-left: 46px; margin-top: 6px; }
+    .vy-rules { padding: 20px 18px; }
+    .vy-done-banner { flex-direction: column; align-items: flex-start; gap: 12px; padding: 20px; }
+}
+
 /* Tisk */
 @media print {
     #navbar-placeholder, #footer-placeholder,
-    .floating-buttons, .vy-progress__actions,
+    .floating-buttons, .vy-progress__actions, .vy-timer,
     .vycvik-crumb, .vycvik-nav, .popup-cta { display: none !important; }
     body { background:#fff !important; }
     .vy-phase { break-inside: avoid; border: 1px solid #ccc; background:#fff !important; }
