@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Záznamový list prohlídky + 5 kvalifikačních otázek | David Choc</title>
+    <meta name="description" content="Zapisujte si po každé prohlídce, co zaznělo. Po pěti záznamech uvidíte vzorec — a ten je nejcennější data, jaká za celý prodej získáte.">
+    <meta name="keywords" content="záznam z prohlídky nemovitosti, kvalifikační otázky zájemce, zpětná vazba po prohlídce, evidence prohlídek">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.davidchoc.cz/vycvik/prohlidky">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="cs_CZ">
+    <meta property="og:title" content="Záznamový list prohlídky">
+    <meta property="og:description" content="Po pěti záznamech uvidíte vzorec. Když stejnou věc řekne pět lidí, je pravdivá.">
+    <meta property="og:url" content="https://www.davidchoc.cz/vycvik/prohlidky">
+
+    <link rel="icon" type="image/png" href="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/favicon.png">
+    <link rel="stylesheet" href="/styles.css?v=20260727">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TXGDD8D3GK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-TXGDD8D3GK');
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Domů", "item": "https://www.davidchoc.cz/" },
+        { "@type": "ListItem", "position": 2, "name": "Výcvik ziskového prodeje", "item": "https://www.davidchoc.cz/vycvik" },
+        { "@type": "ListItem", "position": 3, "name": "Záznamový list prohlídky", "item": "https://www.davidchoc.cz/vycvik/prohlidky" }
+      ]
+    }
+    </script>
+</head>
+<body class="pripad-page is-light vycvik-page">
+    <div id="navbar-placeholder"></div>
+
+    <main>
+        <section class="vycvik-tool-page">
+            <div class="container">
+                <div class="vycvik-tool-page__wrap">
+
+                    <nav class="vycvik-crumb" aria-label="Drobečková navigace">
+                        <a href="/vycvik">Výcvik ziskového prodeje</a>
+                        <span>·</span>
+                        <a href="/vycvik/kapitola-6-prohlidky">Kapitola 6</a>
+                        <span>·</span>
+                        <span>Nástroj</span>
+                    </nav>
+
+                    <span class="vycvik-chapter__label">Nástroj z knihy</span>
+                    <h1 style="font-size: clamp(1.8rem, 3.6vw, 2.5rem); line-height:1.15; color:#1a1a1a; font-weight:900; margin:0 0 16px;">Záznamový list prohlídky</h1>
+                    <p style="font-size:1.08rem; color:#555; line-height:1.7; margin:0 0 8px;">
+                        Jeden záznam na jednoho zájemce. Po pěti prohlídkách uvidíte vzorec — a ten je <strong>nejcennější data, jaká za celý prodej získáte.</strong>
+                    </p>
+                    <p style="font-size:0.94rem; color:#888; line-height:1.6; margin:0 0 28px;">
+                        Vše se ukládá jen ve vašem prohlížeči. Nikam se nic neodesílá.
+                    </p>
+
+                    <!-- 5 kvalifikačních otázek -->
+                    <div class="vy-rules">
+                        <h2 class="vy-rules__title">Pět otázek do telefonu, ještě než domluvíte termín</h2>
+                        <div class="vy-rules__grid">
+                            <div class="vy-rule"><span>1</span> Kupujete pro sebe, nebo pro někoho?</div>
+                            <div class="vy-rule"><span>2</span> Hotovost, nebo hypotéka?</div>
+                            <div class="vy-rule"><span>3</span> Prodáváte kvůli tomu něco vlastního?</div>
+                            <div class="vy-rule"><span>4</span> Do kdy potřebujete být nastěhovaný?</div>
+                            <div class="vy-rule"><span>5</span> Kolik nemovitostí už jste viděl?</div>
+                        </div>
+                    </div>
+
+                    <!-- Formulář nového záznamu -->
+                    <div class="vy-widget" id="vy-record-form">
+                        <div class="vy-widget__head">
+                            <span class="vy-widget__badge"><i class="fas fa-plus" aria-hidden="true"></i> Nový záznam</span>
+                            <h2 class="vy-widget__title">Zapište prohlídku</h2>
+                            <p class="vy-widget__desc">Vyplňte hned po prohlídce, dokud to máte v hlavě.</p>
+                        </div>
+                        <div class="vy-widget__body">
+                            <div class="vy-range-row">
+                                <div class="vy-field">
+                                    <label for="r-jmeno">Jméno zájemce</label>
+                                    <input type="text" id="r-jmeno" placeholder="Novákovi">
+                                </div>
+                                <div class="vy-field">
+                                    <label for="r-datum">Datum</label>
+                                    <input type="date" id="r-datum">
+                                </div>
+                            </div>
+
+                            <div class="vy-range-row">
+                                <div class="vy-field">
+                                    <label for="r-zdroj">Odkud nabídku má</label>
+                                    <select id="r-zdroj">
+                                        <option value="">Vyberte…</option>
+                                        <option>Velký portál</option>
+                                        <option>Portál bez realitky</option>
+                                        <option>Cedule</option>
+                                        <option>Známí, sousedé, skupiny</option>
+                                        <option>Jinak</option>
+                                    </select>
+                                </div>
+                                <div class="vy-field">
+                                    <label for="r-financovani">Financování</label>
+                                    <select id="r-financovani">
+                                        <option value="">Vyberte…</option>
+                                        <option>Hotovost</option>
+                                        <option>Hypotéka schválená</option>
+                                        <option>Hypotéka neřešená</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="vy-range-row">
+                                <div class="vy-field">
+                                    <label for="r-retezeni">Prodává něco vlastního?</label>
+                                    <select id="r-retezeni">
+                                        <option value="">Vyberte…</option>
+                                        <option>Ne</option>
+                                        <option>Ano — řetězení</option>
+                                    </select>
+                                </div>
+                                <div class="vy-field">
+                                    <label for="r-termin">Termín nastěhování</label>
+                                    <input type="text" id="r-termin" placeholder="např. do konce roku">
+                                </div>
+                            </div>
+
+                            <div class="vy-field">
+                                <label for="r-libilo">Co se líbilo</label>
+                                <input type="text" id="r-libilo" placeholder="světlo, lodžie, lokalita">
+                            </div>
+
+                            <div class="vy-field">
+                                <label for="r-vytkli">Co vytkli</label>
+                                <input type="text" id="r-vytkli" placeholder="koupelna, cena, hluk z ulice">
+                            </div>
+
+                            <div class="vy-field">
+                                <label for="r-nabidka">Nabídka</label>
+                                <input type="text" id="r-nabidka" placeholder="ne / 4 600 000 Kč">
+                            </div>
+
+                            <div class="vy-field">
+                                <label for="r-krok">Dohodnutý další krok</label>
+                                <input type="text" id="r-krok" placeholder="ozvu se v pátek, chtějí druhou prohlídku s rodiči">
+                            </div>
+
+                            <button type="button" class="cta-button" id="vy-add" style="width:100%; margin-top:8px;">
+                                <i class="fas fa-plus" aria-hidden="true"></i> Uložit záznam
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Vzorec -->
+                    <div id="vy-pattern" hidden></div>
+
+                    <!-- Seznam záznamů -->
+                    <div class="vy-records__head">
+                        <h2 style="font-size:1.3rem; font-weight:800; color:#1a1a1a; margin:0;">
+                            Vaše prohlídky <span id="vy-count" style="color:#8B7D61;">(0)</span>
+                        </h2>
+                        <div style="display:flex; gap:10px;">
+                            <button type="button" class="vy-btn" onclick="window.print()">
+                                <i class="fas fa-print" aria-hidden="true"></i> Vytisknout
+                            </button>
+                            <button type="button" class="vy-btn" id="vy-clear-all">Vymazat vše</button>
+                        </div>
+                    </div>
+
+                    <div id="vy-records"></div>
+
+                    <a href="/vycvik/bezpecnost" class="vycvik-toollink">
+                        <span class="vycvik-toollink__icon"><i class="fas fa-shield-halved" aria-hidden="true"></i></span>
+                        <span class="vycvik-toollink__text">
+                            <span class="vycvik-toollink__name">Bezpečnostní checklist</span>
+                            <span class="vycvik-toollink__desc">Co udělat před každou prohlídkou. Tohle není formalita.</span>
+                        </span>
+                        <span class="vycvik-toollink__arrow"><i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                    </a>
+
+                    <nav class="vycvik-nav" aria-label="Navigace">
+                        <a href="/vycvik/kapitola-6-prohlidky" class="vycvik-nav__link">
+                            <span class="vycvik-nav__dir"><i class="fas fa-arrow-left" aria-hidden="true"></i> Zpět</span>
+                            <span class="vycvik-nav__title">Kapitola 6 — Prohlídky</span>
+                        </a>
+                        <a href="/vycvik" class="vycvik-nav__link vycvik-nav__link--next">
+                            <span class="vycvik-nav__dir">Obsah <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                            <span class="vycvik-nav__title">Všechny kapitoly a nástroje</span>
+                        </a>
+                    </nav>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <div class="floating-buttons">
+        <a href="#" class="floating-button back-to-top" aria-label="Zpět nahoru"><i class="fas fa-arrow-up"></i></a>
+        <a href="tel:+420774052232" class="floating-button call" aria-label="Zavolat"><i class="fas fa-phone-alt"></i></a>
+        <a href="mailto:david.choc@ptf.cz" class="floating-button email" aria-label="Poslat email"><i class="fas fa-envelope"></i></a>
+        <a href="https://wa.me/420604240086" class="floating-button whatsapp" aria-label="WhatsApp zpráva" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+    </div>
+
+    <script src="/script.js"></script>
+    <script src="/common/common.js"></script>
+    <script src="/cookie-consent.js"></script>
+    <script src="/vycvik/vycvik-tools.js"></script>
+    <script>
+    (function () {
+      var KEY = 'vycvik-prohlidky-zaznamy';
+      var listEl = document.getElementById('vy-records');
+      var countEl = document.getElementById('vy-count');
+      var patternEl = document.getElementById('vy-pattern');
+
+      var FIELDS = [
+        { id: 'r-jmeno', key: 'jmeno', label: 'Jméno' },
+        { id: 'r-datum', key: 'datum', label: 'Datum' },
+        { id: 'r-zdroj', key: 'zdroj', label: 'Odkud' },
+        { id: 'r-financovani', key: 'financovani', label: 'Financování' },
+        { id: 'r-retezeni', key: 'retezeni', label: 'Řetězení' },
+        { id: 'r-termin', key: 'termin', label: 'Termín' },
+        { id: 'r-libilo', key: 'libilo', label: 'Líbilo se' },
+        { id: 'r-vytkli', key: 'vytkli', label: 'Vytkli' },
+        { id: 'r-nabidka', key: 'nabidka', label: 'Nabídka' },
+        { id: 'r-krok', key: 'krok', label: 'Další krok' }
+      ];
+
+      function load() {
+        try {
+          var raw = localStorage.getItem(KEY);
+          return raw ? JSON.parse(raw) : [];
+        } catch (e) { return []; }
+      }
+
+      function save(records) {
+        try { localStorage.setItem(KEY, JSON.stringify(records)); } catch (e) {}
+      }
+
+      function esc(s) {
+        return String(s == null ? '' : s)
+          .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      }
+
+      // Hledání vzorce v tom, co lidé vytýkají
+      function findPattern(records) {
+        if (records.length < 3) return null;
+
+        var words = {};
+        records.forEach(function (r) {
+          if (!r.vytkli) return;
+          r.vytkli.toLowerCase()
+            .split(/[,;.]| a /)
+            .map(function (s) { return s.trim(); })
+            .filter(function (s) { return s.length > 2; })
+            .forEach(function (s) {
+              words[s] = (words[s] || 0) + 1;
+            });
+        });
+
+        var repeated = Object.keys(words)
+          .filter(function (w) { return words[w] >= 3; })
+          .sort(function (a, b) { return words[b] - words[a]; });
+
+        return repeated.length ? { items: repeated, counts: words } : null;
+      }
+
+      function renderPattern(records) {
+        var withOffer = records.filter(function (r) {
+          return r.nabidka && !/^\s*(ne|-|0)\s*$/i.test(r.nabidka);
+        }).length;
+        var chained = records.filter(function (r) { return /ano/i.test(r.retezeni || ''); }).length;
+        var pattern = findPattern(records);
+
+        if (records.length < 3) { patternEl.hidden = true; return; }
+        patternEl.hidden = false;
+
+        var html = '<div class="vy-widget" style="margin-top:0;">' +
+          '<div class="vy-widget__head">' +
+          '<span class="vy-widget__badge"><i class="fas fa-magnifying-glass-chart"></i> Vzorec</span>' +
+          '<h2 class="vy-widget__title">Co vám záznamy říkají</h2>' +
+          '<p class="vy-widget__desc">Když stejnou věc řekne pět lidí, je pravdivá. Není to jejich vkus — je to fakt.</p>' +
+          '</div><div class="vy-widget__body">';
+
+        html += '<div class="vy-stats">' +
+          '<div class="vy-stat"><span class="vy-stat__num">' + records.length + '</span><span class="vy-stat__lbl">prohlídek</span></div>' +
+          '<div class="vy-stat"><span class="vy-stat__num">' + withOffer + '</span><span class="vy-stat__lbl">nabídek</span></div>' +
+          '<div class="vy-stat"><span class="vy-stat__num">' + chained + '</span><span class="vy-stat__lbl">s řetězením</span></div>' +
+          '</div>';
+
+        if (pattern) {
+          html += '<div class="vy-verdict vy-verdict--warn" style="margin-top:20px;">' +
+            '<strong><i class="fas fa-triangle-exclamation"></i> Opakuje se stejná výtka</strong>' +
+            '<p>Nejméně třikrát zaznělo: <strong>' +
+            pattern.items.slice(0, 3).map(function (w) {
+              return esc(w) + ' (' + pattern.counts[w] + '×)';
+            }).join(', ') + '</strong></p>' +
+            '<p class="vy-verdict__action">Tohle už není náhoda. Buď to jde odstranit, nebo to patří do ceny — třetí možnost není.</p></div>';
+        }
+
+        if (records.length >= 5 && withOffer === 0) {
+          html += '<div class="vy-verdict vy-verdict--danger" style="margin-top:12px;">' +
+            '<strong><i class="fas fa-circle-xmark"></i> Pět prohlídek a žádná nabídka</strong>' +
+            '<p>Lidé chodí, ale nekupují. Nemovitost pravděpodobně neodpovídá očekávání, které vytvořil inzerát — nebo je cena nad trhem.</p>' +
+            '<p class="vy-verdict__action">Projděte si <a href="/vycvik/kapitola-2-priprava">kapitolu 2</a> a diagnostickou tabulku v <a href="/vycvik/kapitola-1-cena">kapitole 1</a>.</p></div>';
+        }
+
+        if (chained >= 3) {
+          html += '<div class="vy-verdict vy-verdict--warn" style="margin-top:12px;">' +
+            '<strong><i class="fas fa-link"></i> Hodně zájemců s řetězením</strong>' +
+            '<p>Většina vašich zájemců musí nejdřív prodat vlastní nemovitost. Počítejte s delším termínem a neberte nikoho z nich jako jistotu.</p></div>';
+        }
+
+        html += '</div></div>';
+        patternEl.innerHTML = html;
+      }
+
+      function render() {
+        var records = load();
+        countEl.textContent = '(' + records.length + ')';
+
+        if (!records.length) {
+          listEl.innerHTML = '<p style="color:#999; font-style:italic; padding:24px; text-align:center; background:#fdfaf2; border:1px dashed rgba(26,26,26,0.15); border-radius:14px;">Zatím žádný záznam. První přidejte hned po první prohlídce.</p>';
+          patternEl.hidden = true;
+          return;
+        }
+
+        listEl.innerHTML = records.map(function (r, i) {
+          var rows = FIELDS.filter(function (f) { return r[f.key]; })
+            .map(function (f) {
+              return '<div class="vy-record__row"><span>' + f.label + '</span><strong>' + esc(r[f.key]) + '</strong></div>';
+            }).join('');
+
+          var hasOffer = r.nabidka && !/^\s*(ne|-|0)\s*$/i.test(r.nabidka);
+
+          return '<article class="vy-record' + (hasOffer ? ' vy-record--offer' : '') + '">' +
+            '<div class="vy-record__head">' +
+            '<h3>' + esc(r.jmeno || 'Bez jména') + (r.datum ? ' <span>' + esc(r.datum) + '</span>' : '') + '</h3>' +
+            '<button type="button" class="vy-record__del" data-index="' + i + '" aria-label="Smazat záznam">' +
+            '<i class="fas fa-trash"></i></button>' +
+            '</div><div class="vy-record__body">' + rows + '</div></article>';
+        }).join('');
+
+        renderPattern(records);
+      }
+
+      document.getElementById('vy-add').addEventListener('click', function () {
+        var rec = {};
+        var any = false;
+        FIELDS.forEach(function (f) {
+          var el = document.getElementById(f.id);
+          rec[f.key] = el ? el.value.trim() : '';
+          if (rec[f.key]) any = true;
+        });
+
+        if (!any) {
+          alert('Vyplňte alespoň jedno pole.');
+          return;
+        }
+
+        var records = load();
+        records.unshift(rec);
+        save(records);
+
+        FIELDS.forEach(function (f) {
+          var el = document.getElementById(f.id);
+          if (el) el.value = '';
+        });
+
+        render();
+        if (window.gtag) window.gtag('event', 'vycvik_prohlidka_zaznam', { event_category: 'vycvik' });
+      });
+
+      listEl.addEventListener('click', function (e) {
+        var btn = e.target.closest('.vy-record__del');
+        if (!btn) return;
+        if (!confirm('Smazat tento záznam?')) return;
+        var records = load();
+        records.splice(Number(btn.dataset.index), 1);
+        save(records);
+        render();
+      });
+
+      document.getElementById('vy-clear-all').addEventListener('click', function () {
+        if (!confirm('Opravdu smazat všechny záznamy? Tuto akci nelze vrátit.')) return;
+        try { localStorage.removeItem(KEY); } catch (e) {}
+        render();
+      });
+
+      render();
+    })();
+    </script>
+</body>
+</html>

@@ -133,6 +133,24 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.davidchoc.cz/vycvik/kapitola-6-prohlidky</loc>
+    <lastmod>2026-07-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.davidchoc.cz/vycvik/prohlidky</loc>
+    <lastmod>2026-07-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.davidchoc.cz/vycvik/bezpecnost</loc>
+    <lastmod>2026-07-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
     <loc>https://www.davidchoc.cz/vycvik/dokumenty</loc>
     <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
