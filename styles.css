@@ -6141,6 +6141,258 @@ a.vycvik-tool:hover {
     .vy-done-banner { flex-direction: column; align-items: flex-start; gap: 12px; padding: 20px; }
 }
 
+/* ─── GENERÁTOR INZERÁTU ─── */
+.vycvik-tool-page__wrap--wide { max-width: 1160px; }
+
+.vy-gen {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: start;
+}
+
+.vy-gen__block {
+    background: #fdfaf2;
+    border: 1px solid rgba(26,26,26,0.09);
+    border-radius: 16px;
+    padding: 22px 24px;
+    margin-bottom: 14px;
+}
+.vy-gen__block--accent {
+    background: linear-gradient(160deg, #fffdf7 0%, #fdf6e3 100%);
+    border-color: rgba(255,191,0,0.55);
+}
+.vy-gen__block-head {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    margin-bottom: 14px;
+}
+.vy-gen__block-num {
+    display: grid;
+    place-items: center;
+    width: 34px; height: 34px;
+    border-radius: 9px;
+    background: #FFBF00;
+    color: #1a1a1a;
+    font-size: 0.92rem;
+    font-weight: 900;
+    flex-shrink: 0;
+}
+.vy-gen__block-head h2 {
+    font-size: 1.05rem !important;
+    font-weight: 800;
+    color: #1a1a1a !important;
+    margin: 2px 0 5px !important;
+    line-height: 1.3;
+}
+.vy-gen__block-head p {
+    font-size: 0.88rem !important;
+    color: #777 !important;
+    line-height: 1.55 !important;
+    margin: 0 !important;
+}
+.vy-gen__block input[type="text"],
+.vy-gen__block textarea,
+.vy-gen__block select {
+    width: 100%;
+    box-sizing: border-box;
+    background: #fff;
+    border: 2px solid rgba(26,26,26,0.13);
+    border-radius: 11px;
+    padding: 13px 15px;
+    font: inherit;
+    font-size: 0.99rem;
+    line-height: 1.6;
+    color: #1a1a1a;
+    transition: all 0.2s ease;
+    resize: vertical;
+}
+.vy-gen__block input:focus,
+.vy-gen__block textarea:focus,
+.vy-gen__block select:focus {
+    outline: none;
+    border-color: #FFBF00;
+    box-shadow: 0 0 0 4px rgba(255,191,0,0.16);
+}
+.vy-gen__block ::placeholder { color: #b0b0b0; }
+.vy-gen__block select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23FFBF00' viewBox='0 0 20 20'%3E%3Cpath d='M10 12l-6-6h12l-6 6z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 17px;
+    padding-right: 40px;
+    cursor: pointer;
+}
+
+/* Výstup — sticky panel */
+.vy-gen__output { position: sticky; top: 96px; }
+.vy-gen__output-inner {
+    background: #1a1a1a;
+    border-radius: 20px;
+    padding: 26px 28px 28px;
+    border: 2px solid rgba(255,191,0,0.3);
+}
+.vy-gen__output-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 18px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+.vy-gen__output-head h2 {
+    color: #FFBF00 !important;
+    font-size: 1.15rem !important;
+    font-weight: 800;
+    margin: 0 !important;
+}
+.vy-gen__words {
+    color: #888;
+    font-size: 0.86rem;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+.vy-gen__preview {
+    background: #0d0d0d;
+    border-radius: 12px;
+    padding: 22px 24px;
+    color: #e0e0e0;
+    font-size: 0.95rem;
+    line-height: 1.75;
+    white-space: pre-wrap;
+    word-break: break-word;
+    max-height: 460px;
+    overflow-y: auto;
+    font-family: var(--font-sans);
+}
+.vy-gen__empty {
+    color: #666 !important;
+    font-style: italic;
+    margin: 0 !important;
+    font-size: 0.94rem !important;
+}
+.vy-gen__actions { margin-top: 18px; }
+.vy-gen__actions .cta-button {
+    width: 100%;
+    text-align: center;
+    padding: 14px 20px;
+    font-size: 0.98rem;
+}
+.vy-gen__actions .cta-button i { margin-right: 8px; }
+
+.vy-gen__checks { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
+.vy-gen__check {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 13px 15px;
+    border-radius: 11px;
+    background: rgba(255,255,255,0.05);
+    border-left: 3px solid;
+}
+.vy-gen__check i { font-size: 0.95rem; margin-top: 3px; flex-shrink: 0; }
+.vy-gen__check strong {
+    display: block;
+    font-size: 0.92rem;
+    color: #fff;
+    margin-bottom: 3px;
+}
+.vy-gen__check span {
+    font-size: 0.86rem;
+    color: #999;
+    line-height: 1.5;
+}
+.vy-gen__check--bad { border-left-color: #e0574a; }
+.vy-gen__check--bad i { color: #e0574a; }
+.vy-gen__check--warn { border-left-color: #e0a800; }
+.vy-gen__check--warn i { color: #e0a800; }
+.vy-gen__check--ok { border-left-color: #4caf50; }
+.vy-gen__check--ok i { color: #4caf50; }
+
+@media (max-width: 980px) {
+    .vy-gen { grid-template-columns: 1fr; gap: 24px; }
+    .vy-gen__output { position: static; }
+    .vy-gen__preview { max-height: 340px; }
+}
+@media (max-width: 640px) {
+    .vy-gen__block { padding: 18px 16px; }
+    .vy-gen__output-inner { padding: 20px 18px 22px; border-radius: 16px; }
+    .vy-gen__preview { padding: 16px 18px; font-size: 0.9rem; }
+}
+
+/* ─── OTÁZKY A ODPOVĚDI (nástroj) ─── */
+.vy-qa__group { margin-bottom: 32px; }
+.vy-q {
+    background: #fdfaf2;
+    border: 1px solid rgba(26,26,26,0.09);
+    border-radius: 14px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    transition: all 0.25s ease;
+}
+.vy-q:hover { border-color: rgba(255,191,0,0.5); }
+.vy-q.is-done {
+    background: #f4f9f4;
+    border-color: rgba(76,175,80,0.35);
+}
+.vy-q__head {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 18px 20px 14px;
+    cursor: pointer;
+}
+.vy-q__head input {
+    width: 22px; height: 22px;
+    margin-top: 1px;
+    accent-color: #4caf50;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+.vy-q__title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1.4;
+}
+.vy-q.is-done .vy-q__title { color: #7a9a7a; }
+.vy-q__body {
+    padding: 0 20px 18px 56px;
+}
+.vy-q__body p {
+    font-size: 0.97rem !important;
+    color: #555 !important;
+    line-height: 1.65 !important;
+    margin: 0 0 8px !important;
+}
+.vy-q__body p:last-child { margin-bottom: 0 !important; }
+.vy-q__body strong { color: #1a1a1a; }
+.vy-q__warn {
+    padding-left: 24px;
+    position: relative;
+    color: #8B7D61 !important;
+    font-size: 0.92rem !important;
+}
+.vy-q__warn::before {
+    content: "\f071";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    top: 2px;
+    color: #e0a800;
+    font-size: 0.78rem;
+}
+
+@media (max-width: 640px) {
+    .vy-q__head { padding: 15px 16px 12px; gap: 12px; }
+    .vy-q__body { padding: 0 16px 16px 48px; }
+    .vy-q__title { font-size: 0.99rem; }
+}
+
 /* Tisk */
 @media print {
     #navbar-placeholder, #footer-placeholder,

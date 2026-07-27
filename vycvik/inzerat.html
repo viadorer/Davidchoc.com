@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generátor inzerátu na nemovitost — vyplňte a zkopírujte | David Choc</title>
+    <meta name="description" content="Vyplňte sedm bloků a vypadne hotový text inzerátu ke zkopírování. S kontrolou škodlivých formulací a počítadlem slov. Zdarma, bez registrace.">
+    <meta name="keywords" content="generátor inzerátu nemovitost, vzor inzerátu na byt, jak napsat inzerát prodej domu, kostra inzerátu">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.davidchoc.cz/vycvik/inzerat">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="cs_CZ">
+    <meta property="og:title" content="Generátor inzerátu na nemovitost">
+    <meta property="og:description" content="Vyplníte sedm bloků, vypadne hotový text ke zkopírování.">
+    <meta property="og:url" content="https://www.davidchoc.cz/vycvik/inzerat">
+
+    <link rel="icon" type="image/png" href="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/favicon.png">
+    <link rel="stylesheet" href="/styles.css?v=20260727">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TXGDD8D3GK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-TXGDD8D3GK');
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Domů", "item": "https://www.davidchoc.cz/" },
+        { "@type": "ListItem", "position": 2, "name": "Výcvik ziskového prodeje", "item": "https://www.davidchoc.cz/vycvik" },
+        { "@type": "ListItem", "position": 3, "name": "Generátor inzerátu", "item": "https://www.davidchoc.cz/vycvik/inzerat" }
+      ]
+    }
+    </script>
+</head>
+<body class="pripad-page is-light vycvik-page">
+    <div id="navbar-placeholder"></div>
+
+    <main>
+        <section class="vycvik-tool-page">
+            <div class="container">
+                <div class="vycvik-tool-page__wrap vycvik-tool-page__wrap--wide">
+
+                    <nav class="vycvik-crumb" aria-label="Drobečková navigace">
+                        <a href="/vycvik">Výcvik ziskového prodeje</a>
+                        <span>·</span>
+                        <a href="/vycvik/kapitola-4-inzerat">Kapitola 4</a>
+                        <span>·</span>
+                        <span>Nástroj</span>
+                    </nav>
+
+                    <span class="vycvik-chapter__label">Nástroj z knihy</span>
+                    <h1 style="font-size: clamp(1.8rem, 3.6vw, 2.5rem); line-height:1.15; color:#1a1a1a; font-weight:900; margin:0 0 16px;">Kostra inzerátu k vyplnění</h1>
+                    <p style="font-size:1.08rem; color:#555; line-height:1.7; margin:0 0 8px;">
+                        Vyplňte sedm bloků. Text se skládá průběžně vpravo — až budete hotoví, zkopírujte ho a vložte na portál.
+                    </p>
+                    <p style="font-size:0.94rem; color:#888; line-height:1.6; margin:0 0 28px;">
+                        Ukládá se vám to v prohlížeči, takže můžete odejít a vrátit se. Nic se nikam neodesílá.
+                    </p>
+
+                    <div class="vy-gen">
+                        <!-- LEVÁ STRANA: formulář -->
+                        <div class="vy-gen__form" id="vy-gen-form">
+
+                            <div class="vy-gen__block">
+                                <div class="vy-gen__block-head">
+                                    <span class="vy-gen__block-num">1</span>
+                                    <div>
+                                        <h2>Titulek</h2>
+                                        <p>Čím se lišíte od dvaceti nabídek nad vámi. Neopisujte dispozici a metry — ty portál napíše sám.</p>
+                                    </div>
+                                </div>
+                                <input type="text" data-field="titulek" data-gen="titulek" maxlength="90"
+                                       placeholder="3+1 s lodžií na jih, tichý vnitroblok, škola za rohem">
+                            </div>
+
+                            <div class="vy-gen__block">
+                                <div class="vy-gen__block-head">
+                                    <span class="vy-gen__block-num">2</span>
+                                    <div>
+                                        <h2>První dvě věty</h2>
+                                        <p>To nejlepší, co o nemovitosti víte. Na mobilu se zbytek textu zabalí — tohle je jediné, co většina lidí přečte.</p>
+                                    </div>
+                                </div>
+                                <textarea data-field="uvod" data-gen="uvod" rows="3"
+                                          placeholder="Byt v posledním patře s výhledem na Radyni. Do parku dvě minuty, na tramvaj pět."></textarea>
+                            </div>
+
+                            <div class="vy-gen__block">
+                                <div class="vy-gen__block-head">
+                                    <span class="vy-gen__block-num">3</span>
+                                    <div>
+                                        <h2>Dispozice</h2>
+                                        <p>Konkrétně, s čísly. Které místnosti, jaké výměry, kam vedou okna, co odkud vidíte.</p>
+                                    </div>
+                                </div>
+                                <textarea data-field="dispozice" data-gen="dispozice" rows="4"
+                                          placeholder="Obývací pokoj 24 m² s okny na jihozápad, odpoledne osvětlený až do večera. Dvě ložnice 14 a 12 m², obě do vnitrobloku. Kuchyň 9 m² s jídelním koutem. Lodžie 6 m²."></textarea>
+                            </div>
+
+                            <div class="vy-gen__block">
+                                <div class="vy-gen__block-head">
+                                    <span class="vy-gen__block-num">4</span>
+                                    <div>
+                                        <h2>Stav a technika</h2>
+                                        <p>Co je nové a kdy. Co je původní. U bytu i stav domu — zateplení, výtah, stoupačky, plán oprav.</p>
+                                    </div>
+                                </div>
+                                <textarea data-field="stav" data-gen="stav" rows="4"
+                                          placeholder="Plastová okna 2019, nové rozvody elektřiny 2021, kuchyňská linka 2020. Koupelna původní. Dům zateplen 2018, výtah po rekonstrukci, stoupačky vyměněny 2022."></textarea>
+                            </div>
+
+                            <div class="vy-gen__block">
+                                <div class="vy-gen__block-head">
+                                    <span class="vy-gen__block-num">5</span>
+                                    <div>
+                                        <h2>Náklady</h2>
+                                        <p>Devadesát procent samoprodejců to vynechá. Kupující, který čísla vidí, přestane počítat s nejhorším.</p>
+                                    </div>
+                                </div>
+                                <textarea data-field="naklady" data-gen="naklady" rows="3"
+                                          placeholder="Měsíční platby 4 200 Kč včetně fondu oprav (1 100 Kč). Energie loni 21 000 Kč za rok. Ve fondu oprav je 1,4 mil. Kč, žádný úvěr."></textarea>
+                            </div>
+
+                            <div class="vy-gen__block">
+                                <div class="vy-gen__block-head">
+                                    <span class="vy-gen__block-num">6</span>
+                                    <div>
+                                        <h2>Lokalita</h2>
+                                        <p>Prakticky, v minutách chůze. Škola, obchod, zastávka, parkování, lékař.</p>
+                                    </div>
+                                </div>
+                                <textarea data-field="lokalita" data-gen="lokalita" rows="3"
+                                          placeholder="Základní škola 4 minuty pěšky, školka 6 minut. Obchod v přízemí domu. Tramvaj č. 2 pět minut. Parkování ve vnitrobloku bez karty."></textarea>
+                            </div>
+
+                            <div class="vy-gen__block vy-gen__block--accent">
+                                <div class="vy-gen__block-head">
+                                    <span class="vy-gen__block-num"><i class="fas fa-star" aria-hidden="true"></i></span>
+                                    <div>
+                                        <h2>Na rovinu — jedna nevýhoda</h2>
+                                        <p>Nejsilnější nástroj v celé kapitole. Přiznejte tu, kterou by kupující stejně objevil za prvních třicet vteřin. Jednu, ne tři.</p>
+                                    </div>
+                                </div>
+                                <textarea data-field="nevyhoda" data-gen="nevyhoda" rows="2"
+                                          placeholder="Koupelna je původní z osmdesátých let, počítejte s rekonstrukcí."></textarea>
+                            </div>
+
+                            <div class="vy-gen__block">
+                                <div class="vy-gen__block-head">
+                                    <span class="vy-gen__block-num">7</span>
+                                    <div>
+                                        <h2>Dokumenty a výzva</h2>
+                                        <p>Co máte připravené a kdy jste k zastižení.</p>
+                                    </div>
+                                </div>
+                                <textarea data-field="dokumenty" data-gen="dokumenty" rows="2"
+                                          placeholder="Připraveno mám výpis z katastru, PENB, půdorys a roční vyúčtování."></textarea>
+                                <input type="text" data-field="vyzva" data-gen="vyzva" style="margin-top:10px;"
+                                       placeholder="Volejte prosím do 20:00, na zmeškané hovory se ozývám do druhého dne.">
+                            </div>
+
+                            <div class="vy-gen__block">
+                                <div class="vy-gen__block-head">
+                                    <span class="vy-gen__block-num"><i class="fas fa-bolt" aria-hidden="true"></i></span>
+                                    <div>
+                                        <h2>Energetická náročnost</h2>
+                                        <p>Údaj patří do inzerce ze zákona — týká se i prodeje od majitele.</p>
+                                    </div>
+                                </div>
+                                <select data-field="penb" data-gen="penb">
+                                    <option value="">Vyberte třídu…</option>
+                                    <option value="A">A — mimořádně úsporná</option>
+                                    <option value="B">B — velmi úsporná</option>
+                                    <option value="C">C — úsporná</option>
+                                    <option value="D">D — méně úsporná</option>
+                                    <option value="E">E — nehospodárná</option>
+                                    <option value="F">F — velmi nehospodárná</option>
+                                    <option value="G">G — mimořádně nehospodárná</option>
+                                </select>
+                            </div>
+
+                            <button type="button" class="vy-btn" id="vy-gen-reset">Vymazat vše</button>
+                        </div>
+
+                        <!-- PRAVÁ STRANA: výstup -->
+                        <div class="vy-gen__output">
+                            <div class="vy-gen__output-inner">
+                                <div class="vy-gen__output-head">
+                                    <h2>Váš inzerát</h2>
+                                    <span class="vy-gen__words"><span id="vy-words">0</span> slov</span>
+                                </div>
+
+                                <div class="vy-gen__preview" id="vy-preview">
+                                    <p class="vy-gen__empty">Začněte vyplňovat vlevo. Text se bude skládat tady.</p>
+                                </div>
+
+                                <div class="vy-gen__actions">
+                                    <button type="button" class="cta-button" id="vy-copy">
+                                        <i class="fas fa-copy" aria-hidden="true"></i> Zkopírovat text
+                                    </button>
+                                </div>
+
+                                <!-- Kontrola -->
+                                <div class="vy-gen__checks" id="vy-checks"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="/vycvik/otazky" class="vycvik-toollink" style="margin-top:40px;">
+                        <span class="vycvik-toollink__icon"><i class="fas fa-comments" aria-hidden="true"></i></span>
+                        <span class="vycvik-toollink__text">
+                            <span class="vycvik-toollink__name">Dvacet otázek, které vám zájemci položí</span>
+                            <span class="vycvik-toollink__desc">Zodpovězte je rovnou v inzerátu a ušetříte si telefonáty</span>
+                        </span>
+                        <span class="vycvik-toollink__arrow"><i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                    </a>
+
+                    <nav class="vycvik-nav" aria-label="Navigace">
+                        <a href="/vycvik/kapitola-4-inzerat" class="vycvik-nav__link">
+                            <span class="vycvik-nav__dir"><i class="fas fa-arrow-left" aria-hidden="true"></i> Zpět</span>
+                            <span class="vycvik-nav__title">Kapitola 4 — Inzerát</span>
+                        </a>
+                        <a href="/vycvik" class="vycvik-nav__link vycvik-nav__link--next">
+                            <span class="vycvik-nav__dir">Obsah <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                            <span class="vycvik-nav__title">Všechny kapitoly a nástroje</span>
+                        </a>
+                    </nav>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <div class="floating-buttons">
+        <a href="#" class="floating-button back-to-top" aria-label="Zpět nahoru"><i class="fas fa-arrow-up"></i></a>
+        <a href="tel:+420774052232" class="floating-button call" aria-label="Zavolat"><i class="fas fa-phone-alt"></i></a>
+        <a href="mailto:david.choc@ptf.cz" class="floating-button email" aria-label="Poslat email"><i class="fas fa-envelope"></i></a>
+        <a href="https://wa.me/420604240086" class="floating-button whatsapp" aria-label="WhatsApp zpráva" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+    </div>
+
+    <script src="/script.js"></script>
+    <script src="/common/common.js"></script>
+    <script src="/cookie-consent.js"></script>
+    <script src="/vycvik/vycvik-tools.js"></script>
+    <script>
+    (function () {
+      var preview = document.getElementById('vy-preview');
+      var wordsEl = document.getElementById('vy-words');
+      var checksEl = document.getElementById('vy-checks');
+      var copyBtn = document.getElementById('vy-copy');
+      var lastText = '';
+
+      // Formulace, které podle knihy škodí
+      var BAD = [
+        { re: /cena\s+k\s+jedn[áa]n[íi]/i, label: 'cena k jednání', why: 'Nejdražší tři slova, jaká můžete napsat. Sdělují trhu, že vaše cena je fikce.' },
+        { re: /nutno\s+vid[ěe]t/i, label: 'nutno vidět', why: 'Čte se jako „nemám co říct".' },
+        { re: /ide[áa]ln[íi]\s+investi[čc]n[íi]/i, label: 'ideální investiční příležitost', why: 'Čte se jako „nikdo jiný to nechce".' },
+        { re: /s\s+potenci[áa]lem/i, label: 's potenciálem', why: 'Čte se jako „je to horší, než ukazují fotky".' },
+        { re: /RK\s+nevolat/i, label: 'RK nevolat', why: 'Čte se jako „prodávající je nervózní".' },
+        { re: /sleva\s+p[řr]i\s+rychl/i, label: 'sleva při rychlém jednání', why: 'Čte se jako „tlačí ho čas, počkám si".' },
+        { re: /klidn[áa]\s+lokalita|[žz][áa]dan[áa]\s+[čc][áa]st/i, label: 'klidná lokalita / žádaná část', why: 'Prázdná fráze. Napište konkrétně proč.' }
+      ];
+
+      function val(name) {
+        var el = document.querySelector('[data-gen="' + name + '"]');
+        return el && el.value ? el.value.trim() : '';
+      }
+
+      function buildText() {
+        var parts = [];
+        var t = val('titulek');
+        if (t) parts.push(t.toUpperCase());
+
+        var uvod = val('uvod');
+        if (uvod) parts.push(uvod);
+
+        var disp = val('dispozice');
+        if (disp) parts.push('DISPOZICE\n' + disp);
+
+        var stav = val('stav');
+        if (stav) parts.push('STAV\n' + stav);
+
+        var nakl = val('naklady');
+        if (nakl) parts.push('NÁKLADY\n' + nakl);
+
+        var lok = val('lokalita');
+        if (lok) parts.push('LOKALITA\n' + lok);
+
+        var nev = val('nevyhoda');
+        if (nev) parts.push('NA ROVINU\n' + nev);
+
+        var dok = val('dokumenty');
+        if (dok) parts.push('DOKUMENTY\n' + dok);
+
+        var vyzva = val('vyzva');
+        if (vyzva) parts.push(vyzva);
+
+        var penb = val('penb');
+        if (penb) parts.push('Energetická náročnost: třída ' + penb);
+
+        return parts.join('\n\n');
+      }
+
+      function countWords(text) {
+        var t = text.replace(/\s+/g, ' ').trim();
+        return t ? t.split(' ').length : 0;
+      }
+
+      function renderChecks(text) {
+        var items = [];
+
+        // Škodlivé formulace
+        BAD.forEach(function (b) {
+          if (b.re.test(text)) {
+            items.push({ type: 'bad', title: '„' + b.label + '"', text: b.why });
+          }
+        });
+
+        // Vykřičníky a velká písmena
+        if (/!{2,}/.test(text)) {
+          items.push({ type: 'bad', title: 'Víc vykřičníků za sebou', text: 'Čte se jako amatér. Jeden stačí, žádný je lepší.' });
+        }
+        var caps = text.match(/\b[A-ZÁ-Ž]{4,}\b/g) || [];
+        var allowed = ['DISPOZICE','STAV','NÁKLADY','LOKALITA','ROVINU','DOKUMENTY','PENB'];
+        var badCaps = caps.filter(function (c) { return allowed.indexOf(c) === -1; });
+        if (badCaps.length > 2) {
+          items.push({ type: 'warn', title: 'Hodně velkých písmen', text: 'Kromě titulku a nadpisů sekcí působí kapitálky křiklavě.' });
+        }
+
+        // Délka
+        var w = countWords(text);
+        if (w > 0 && w < 200) {
+          items.push({ type: 'warn', title: 'Text je krátký (' + w + ' slov)', text: 'Cílem je 200 až 350 slov. Kratší text nedá dost informací.' });
+        } else if (w > 350) {
+          items.push({ type: 'warn', title: 'Text je dlouhý (' + w + ' slov)', text: 'Nad 350 slov to už nikdo nedočte. Zkraťte nejméně důležité bloky.' });
+        }
+
+        // Chybějící bloky
+        if (!val('naklady')) {
+          items.push({ type: 'warn', title: 'Chybí náklady', text: 'Blok, který vynechá devadesát procent samoprodejců. Právě čísla budují důvěru.' });
+        }
+        if (!val('nevyhoda')) {
+          items.push({ type: 'warn', title: 'Chybí přiznaná nevýhoda', text: 'Nejsilnější nástroj kapitoly. Kdo přizná nevýhodu, tomu čtenář uvěří i výhody.' });
+        }
+        if (!val('penb')) {
+          items.push({ type: 'warn', title: 'Chybí energetická třída', text: 'Údaj patří do inzerce ze zákona, i u prodeje od majitele.' });
+        }
+
+        // Čísla v textu
+        if (w > 50 && !/\d/.test(val('dispozice'))) {
+          items.push({ type: 'warn', title: 'V dispozici nejsou čísla', text: 'Konkrétnost odliší váš text od vygenerovaného průměru. Doplňte výměry.' });
+        }
+
+        if (!items.length && w > 0) {
+          items.push({ type: 'ok', title: 'Zatím bez připomínek', text: 'Text prošel kontrolou. Poslední krok: projděte ho vedle fotek — všechno, co tvrdíte, musí být na některé fotce vidět.' });
+        }
+
+        checksEl.innerHTML = items.map(function (i) {
+          var icon = i.type === 'bad' ? 'fa-circle-xmark' : (i.type === 'ok' ? 'fa-circle-check' : 'fa-triangle-exclamation');
+          return '<div class="vy-gen__check vy-gen__check--' + i.type + '">' +
+                 '<i class="fas ' + icon + '"></i>' +
+                 '<div><strong>' + i.title + '</strong><span>' + i.text + '</span></div></div>';
+        }).join('');
+      }
+
+      function render() {
+        var text = buildText();
+        lastText = text;
+
+        if (!text) {
+          preview.innerHTML = '<p class="vy-gen__empty">Začněte vyplňovat vlevo. Text se bude skládat tady.</p>';
+          wordsEl.textContent = '0';
+          checksEl.innerHTML = '';
+          return;
+        }
+
+        preview.textContent = text;
+        wordsEl.textContent = String(countWords(text));
+        renderChecks(text);
+      }
+
+      VycvikTools.initFields({
+        storageKey: 'vycvik-inzerat',
+        container: '#vy-gen-form',
+        resetEl: '#vy-gen-reset',
+        onChange: render
+      });
+
+      // select nevyvolá 'input' ve všech prohlížečích spolehlivě
+      document.querySelector('[data-gen="penb"]').addEventListener('change', render);
+
+      copyBtn.addEventListener('click', function () {
+        if (!lastText) return;
+        navigator.clipboard.writeText(lastText).then(function () {
+          copyBtn.innerHTML = '<i class="fas fa-check"></i> Zkopírováno';
+          setTimeout(function () {
+            copyBtn.innerHTML = '<i class="fas fa-copy"></i> Zkopírovat text';
+          }, 2000);
+          if (window.gtag) window.gtag('event', 'vycvik_inzerat_copy', { event_category: 'vycvik' });
+        }).catch(function () {
+          // Fallback pro starší prohlížeče
+          var ta = document.createElement('textarea');
+          ta.value = lastText;
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand('copy'); } catch (e) {}
+          document.body.removeChild(ta);
+          copyBtn.innerHTML = '<i class="fas fa-check"></i> Zkopírováno';
+          setTimeout(function () {
+            copyBtn.innerHTML = '<i class="fas fa-copy"></i> Zkopírovat text';
+          }, 2000);
+        });
+      });
+
+      render();
+    })();
+    </script>
+</body>
+</html>
