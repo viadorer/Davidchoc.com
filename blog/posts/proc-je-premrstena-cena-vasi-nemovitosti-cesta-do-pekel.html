@@ -62,6 +62,7 @@
     </script>
 </head>
 <body class="bg-gray-50">
+    <div id="navbar-placeholder"></div>
     <!-- Header placeholder -->
     <div id="header-placeholder"></div>
 
@@ -175,27 +176,17 @@
                     </div>
                 </div>
 
-                <!-- CTA Section -->
-                <div class="bg-gray-900 rounded-2xl p-8 md:p-12 text-white my-16 shadow-2xl border border-gray-700">
-                    <div class="text-center">
-                        <h3 class="text-3xl md:text-4xl font-bold mb-6 text-white">
-                            Chcete prodat rychle a za správnou cenu?
-                        </h3>
-                        <p class="text-gray-200 mb-8 text-xl max-w-3xl mx-auto">
-                            Nenechte se zlákat iluzí o přemrštěné ceně. Zjistěte si <strong class="text-white">zdarma</strong> tržní hodnotu vaší nemovitosti ještě dnes.
-                        </p>
-                        <div class="flex flex-col sm:flex-row gap-4 justify-center max-w-2xl mx-auto">
-                            <a href="/ocenit-online" class="inline-flex items-center justify-center px-10 py-5 bg-primary text-white text-lg font-bold rounded-full hover:bg-blue-700 transition-all duration-300 hover:transform hover:scale-105 shadow-lg">
-                                Získat odhad zdarma
-                            </a>
-                            <a href="tel:+420774052232" class="inline-flex items-center justify-center px-10 py-5 bg-white text-gray-900 text-lg font-semibold rounded-full hover:bg-gray-100 transition-all duration-300 hover:transform hover:scale-105 border-2 border-white">
-                                Zavolat: +420 774 052 232
-                            </a>
-                        </div>
-                        <p class="text-gray-300 mt-6 text-lg">
-                            Bez závazků • Rychlé vyřízení • Odborná konzultace
-                        </p>
+                                <div class="ocenit-embed" id="ocenit">
+                    <div class="ocenit-embed__head">
+                        <span class="ocenit-embed__label">Odhad ceny zdarma</span>
+                        <h3>Kde je u vaší nemovitosti realistická cena?</h3>
+                        <p>Zadejte parametry a porovnejte si výsledek s částkou, kterou máte v hlavě. Rozdíl bývá to nejzajímavější.</p>
                     </div>
+                    <div class="ocenit-embed__widget" data-cemap><p class="ocenit-embed__fallback">Formulář se načítá. Kdyby se nezobrazil, spočítáte si odhad na stránce <a href="/ocenit-online">Ocenit online</a>.</p></div>
+                    <p class="ocenit-embed__note">
+                        Odhad vychází z realizovaných prodejů v katastru nemovitostí a z inzertních portálů. Je orientační a nenahrazuje znalecký posudek. Chcete ho probrat s někým, kdo v Plzni prodává třicet let? <a href="/pripad-pro-agenta">Napište mi</a>, projdu si ho s vámi zdarma.
+                    </p>
+                    <a href="tel:+420774052232" class="ocenit-embed__phone"><i class="fas fa-phone" aria-hidden="true"></i> 774 052 232</a>
                 </div>
 
                 <div class="border-t border-gray-200 pt-8 mt-12">
@@ -238,6 +229,7 @@
     <div id="footer-placeholder"></div>
 
     <!-- Scripts -->
-    <script src="../../js/components.js"></script>
+    <script src="/common/common.js" defer></script>
+    <script src="/common/ocenit-widget.js" defer></script>
 </body>
 </html>
