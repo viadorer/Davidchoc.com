@@ -7,6 +7,32 @@
   const API_URL = '/api/lead';
 
   // UTM z adresy — když člověk přišel z reklamy, ať to je v CRM vidět.
+  function zvolenyKanal() {
+    const v = document.querySelector('input[name="kanal"]:checked');
+    return v ? v.value : 'email';
+  }
+
+  // Popisek u telefonu se mění podle zvoleného kanálu, ať je hned vidět,
+  // jestli je pole potřeba vyplnit.
+  function sledovatKanal() {
+    const skupina = document.getElementById('brief-channels');
+    const znacka = document.getElementById('brief-phone-opt');
+    const pole = document.getElementById('brief-phone');
+    if (!skupina || !znacka || !pole) return;
+
+    function prekreslit() {
+      const k = zvolenyKanal();
+      const povinny = (k === 'telefon' || k === 'whatsapp');
+      znacka.textContent = povinny ? '' : '(nepovinné)';
+      pole.required = povinny;
+      if (povinny) pole.setAttribute('required', 'required');
+      else pole.removeAttribute('required');
+    }
+
+    skupina.addEventListener('change', prekreslit);
+    prekreslit();
+  }
+
   function ziskatUtm() {
     try {
       const p = new URLSearchParams(window.location.search);
@@ -101,10 +127,18 @@
       const phone = form.querySelector('#brief-phone').value.trim();
       const email = form.querySelector('#brief-email').value.trim();
       const gdpr = form.querySelector('input[name="gdpr"]').checked;
+      const kanal = zvolenyKanal();
       if (!name) { showError('Vyplňte prosím jméno.'); return false; }
-      if (!phone) { showError('Vyplňte prosím telefon.'); return false; }
       if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         showError('Zadejte platnou e-mailovou adresu.');
+        return false;
+      }
+      // Telefon chceme jen tehdy, když si člověk řekl o hovor nebo WhatsApp.
+      // Jinak ho nepotřebujeme a jeho vyžadování jen sráží počet odeslání.
+      if ((kanal === 'telefon' || kanal === 'whatsapp') && !phone) {
+        showError(kanal === 'whatsapp'
+          ? 'Na WhatsApp potřebuju vaše číslo.'
+          : 'Abych vám mohl zavolat, potřebuju telefon.');
         return false;
       }
       if (!gdpr) { showError('Pro odeslání je nutný souhlas se zpracováním údajů.'); return false; }
@@ -179,8 +213,12 @@
     const typLabel = labelMap.propertyType[state.propertyType] || state.propertyType;
     const pripadLabel = labelMap.caseType[state.caseType] || state.caseType;
 
+    const kanalLabel = { email: 'e-mailem', telefon: 'telefonicky', whatsapp: 'přes WhatsApp' };
+    const kanal = zvolenyKanal();
+
     const composedMessage =
-      `${pripadLabel} — ${typLabel.toLowerCase()}\n\n` +
+      `${pripadLabel} — ${typLabel.toLowerCase()}\n` +
+      `Ozvat se: ${kanalLabel[kanal] || kanal}\n\n` +
       (message
         ? `Co klient napsal:\n${message}`
         : 'Klient popis nevyplnil.');
@@ -195,6 +233,7 @@
       meta: {
         property_type: state.propertyType || '',
         case_type: state.caseType || '',
+        preferovany_kanal: zvolenyKanal(),
       },
       referrer: document.referrer || '',
       utm: ziskatUtm(),
@@ -238,4 +277,6 @@
   } else {
     showStep(1);
   }
+
+  sledovatKanal();
 })();
