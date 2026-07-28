@@ -5,6 +5,18 @@
   if (!form) return;
 
   const API_URL = '/api/lead';
+
+  // UTM z adresy — když člověk přišel z reklamy, ať to je v CRM vidět.
+  function ziskatUtm() {
+    try {
+      const p = new URLSearchParams(window.location.search);
+      const u = {};
+      if (p.get('utm_source')) u.source = p.get('utm_source');
+      if (p.get('utm_medium')) u.medium = p.get('utm_medium');
+      if (p.get('utm_campaign')) u.campaign = p.get('utm_campaign');
+      return u;
+    } catch (e) { return {}; }
+  }
   const STORAGE_KEY = 'pripad-brief-state';
 
   const steps = Array.from(form.querySelectorAll('.pripad-brief__step'));
@@ -164,10 +176,14 @@
       caseType: { prodat: 'Prodat', koupit: 'Koupit', pronajmout: 'Pronajmout', ocenit: 'Ocenit', komplikovany: 'Komplikovanější případ', zvazuji: 'Zatím jen zvažuji' },
     };
 
+    const typLabel = labelMap.propertyType[state.propertyType] || state.propertyType;
+    const pripadLabel = labelMap.caseType[state.caseType] || state.caseType;
+
     const composedMessage =
-      `Typ nemovitosti: ${labelMap.propertyType[state.propertyType] || state.propertyType}\n` +
-      `Případ: ${labelMap.caseType[state.caseType] || state.caseType}\n\n` +
-      (message ? `Popis:\n${message}` : 'Popis: (nevyplněn)');
+      `${pripadLabel} — ${typLabel.toLowerCase()}\n\n` +
+      (message
+        ? `Co klient napsal:\n${message}`
+        : 'Klient popis nevyplnil.');
 
     const payload = {
       form: 'pripad-pro-agenta',
@@ -181,6 +197,7 @@
         case_type: state.caseType || '',
       },
       referrer: document.referrer || '',
+      utm: ziskatUtm(),
     };
 
     try {

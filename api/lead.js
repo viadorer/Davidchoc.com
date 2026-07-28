@@ -8,6 +8,12 @@
 const PTF_BACKEND = process.env.PTF_BACKEND_URL || 'https://ptf-production.up.railway.app';
 const PTF_TENANT = process.env.PTF_TENANT_SLUG || 'ptf-reality';
 
+// Všechno, co přijde z davidchoc.cz, vyřizuje David — přiřadíme rovnou,
+// ať lead nečeká v adminu na to, až si ho někdo všimne.
+// U poptávky ke konkrétní nemovitosti si CRM přiřadí makléře podle té
+// nemovitosti; to je správně a nepřebíjíme to.
+const DAVID_TEAM_ID = process.env.PTF_DEFAULT_AGENT_ID || '0773a73d-9192-4120-95b7-0fe4a8de8edf';
+
 const ALLOWED_ORIGINS = [
   'https://www.davidchoc.cz',
   'https://davidchoc.cz',
@@ -51,6 +57,19 @@ function ocistit(str, max = 2000) {
   return str.replace(/[\x00-\x1F\x7F]/g, '').trim().slice(0, max);
 }
 
+// Zpráva se v adminu vykresluje s whitespace-pre-wrap, takže konce
+// řádků nesou strukturu — na rozdíl od ostatních polí je tady nesmíme
+// zahodit. Necháme tabulátor, LF a CR, zbytek řídicích znaků pryč.
+function ocistitZpravu(str, max = 5000) {
+  if (typeof str !== 'string') return '';
+  return str
+    .replace(/\r\n/g, '\n')
+    .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim()
+    .slice(0, max);
+}
+
 // CRM odmítá zprávy obsahující odkaz jako spam — a vrátí přitom 201,
 // takže by lead tiše zmizel. Odkazy proto ze zprávy vytáhneme a
 // předáme je zvlášť v metadatech, kde je antispam neřeší.
@@ -76,6 +95,31 @@ function rozdelitJmeno(cele) {
   if (!casti.length) return null;
   if (casti.length === 1) return { first_name: casti[0], last_name: casti[0] };
   return { first_name: casti[0], last_name: casti.slice(1).join(' ') };
+}
+
+// Zpráva, jak ji uvidí makléř v adminu. Vlastní text klienta nahoře,
+// pod čarou odkud lead přišel — ať je to poznat i bez klikání do metadat.
+function slozitZpravu(text, konfig, odkazy, metadata) {
+  const casti = [];
+  casti.push(text || '(bez zprávy)');
+
+  const patka = ['Odesláno z webu davidchoc.cz — ' + konfig.popis];
+
+  // Odkaz je v metadatech, protože v textu by ho antispam CRM zabil.
+  // Do patičky ho ale vypíšeme, ať ho makléř nemusí hledat.
+  const vsechnyOdkazy = odkazy.slice();
+  if (metadata.listing_url && vsechnyOdkazy.indexOf(metadata.listing_url) === -1) {
+    vsechnyOdkazy.unshift(metadata.listing_url);
+  }
+  if (vsechnyOdkazy.length === 1) {
+    patka.push('Odkaz: ' + vsechnyOdkazy[0]);
+  } else if (vsechnyOdkazy.length > 1) {
+    vsechnyOdkazy.forEach((u, i) => patka.push('Odkaz ' + (i + 1) + ': ' + u));
+  }
+
+  casti.push('────────────');
+  casti.push(patka.join('\n'));
+  return casti.join('\n\n');
 }
 
 export default async function handler(req, res) {
@@ -128,7 +172,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Bez souhlasu se zpracováním údajů zprávu odeslat nelze.' });
   }
 
-  const { text: zprava, odkazy } = vytahnoutOdkazy(ocistit(body.message, 5000));
+  const { text: zprava, odkazy } = vytahnoutOdkazy(ocistitZpravu(body.message));
 
   // Cokoli navíc, co formulář poslal, uložíme do metadat — v CRM se
   // podle nich dá filtrovat, aniž bychom sahali na enum `source`.
@@ -150,22 +194,29 @@ export default async function handler(req, res) {
   const propertyId = ocistit(body.property_id, 40);
   const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
+  // Panel „Zdroj" v adminu čte utm_* a referrer_url — ne metadata.
+  // Když návštěvník přišel z reklamy, jeho vlastní UTM mají přednost.
+  const utm = (body.utm && typeof body.utm === 'object') ? body.utm : {};
+  const IP_RE = /^(\d{1,3}\.){3}\d{1,3}$|^[0-9a-f:]+$/i;
+
   const payload = {
     first_name: jmeno.first_name,
     last_name: jmeno.last_name,
     email,
     phone: telefon || undefined,
-    message: zprava || konfig.popis,
+    message: slozitZpravu(zprava, konfig, odkazy, metadata),
     source: konfig.source,
     property_id: UUID_RE.test(propertyId) ? propertyId : undefined,
+    assigned_to: DAVID_TEAM_ID,
     gdpr_consent: true,
     marketing_consent: body.marketing === true,
     metadata,
-    visitor_data: {
-      ip,
-      user_agent: (req.headers['user-agent'] || '').slice(0, 500),
-      referrer: ocistit(body.referrer, 500) || undefined,
-    },
+    utm_source: ocistit(utm.source, 100) || 'davidchoc.cz',
+    utm_medium: ocistit(utm.medium, 100) || 'web',
+    utm_campaign: ocistit(utm.campaign, 100) || formular,
+    referrer_url: ocistit(body.referrer, 500) || undefined,
+    ip_address: IP_RE.test(ip) ? ip : undefined,
+    user_agent: (req.headers['user-agent'] || '').slice(0, 500) || undefined,
   };
 
   try {

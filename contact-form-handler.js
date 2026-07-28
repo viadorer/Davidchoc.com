@@ -159,6 +159,17 @@
 
     const API_URL = '/api/lead';
 
+  function ziskatUtm() {
+    try {
+      const p = new URLSearchParams(window.location.search);
+      const u = {};
+      if (p.get('utm_source')) u.source = p.get('utm_source');
+      if (p.get('utm_medium')) u.medium = p.get('utm_medium');
+      if (p.get('utm_campaign')) u.campaign = p.get('utm_campaign');
+      return u;
+    } catch (e) { return {}; }
+  }
+
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -186,7 +197,8 @@
         phone,
         message,
         gdpr: true,
-        referrer: document.referrer || ''
+        referrer: document.referrer || '',
+        utm: ziskatUtm()
       };
 
       try {

@@ -8,6 +8,17 @@
   // nemají co dělat ve zdrojovém kódu stránky.
   var LEAD_API = '/api/lead';
 
+  function ziskatUtm() {
+    try {
+      var p = new URLSearchParams(window.location.search);
+      var u = {};
+      if (p.get('utm_source')) u.source = p.get('utm_source');
+      if (p.get('utm_medium')) u.medium = p.get('utm_medium');
+      if (p.get('utm_campaign')) u.campaign = p.get('utm_campaign');
+      return u;
+    } catch (e) { return {}; }
+  }
+
   /* ─────────────────────────────────────────────
      1) PATIČKA — zavírá slepé uličky
      ───────────────────────────────────────────── */
@@ -283,7 +294,8 @@
         message: data.message || '',
         gdpr: true,
         meta: data.meta || {},
-        referrer: document.referrer || ''
+        referrer: document.referrer || '',
+        utm: ziskatUtm()
       })
     }).then(function (r) {
       if (!r.ok) {
