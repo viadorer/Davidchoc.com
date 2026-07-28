@@ -8106,3 +8106,312 @@ body.is-light .vy-help__phone { text-decoration: none; }
     border-color: #FFBF00;
     background: rgba(255,255,255,0.1);
 }
+
+/* ==========================================================================
+   LANDING PAGE — Posuďte inzerát (/posudte-inzerat)
+   Samostatná stránka bez navigace a patičky webu. Styly vycházejí
+   ze stejné palety jako zbytek projektu.
+   ========================================================================== */
+
+body.lp-page {
+    background: #fff;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+body.lp-page main { padding-top: 0; }
+
+.lp-narrow { max-width: 720px; margin: 0 auto; }
+
+.lp-section { padding: 64px 0; }
+.lp-section--tight { padding: 48px 0; }
+.lp-section--alt { background: #F8F4E9; }
+.lp-section h2 {
+    font-size: clamp(1.5rem, 3vw, 2.05rem);
+    font-weight: 900;
+    line-height: 1.18;
+    color: #1a1a1a;
+    letter-spacing: -0.02em;
+    margin: 0 0 20px;
+}
+.lp-section p {
+    font-size: 1.06rem;
+    line-height: 1.72;
+    color: #444;
+    margin: 0 0 16px;
+}
+.lp-section p:last-child { margin-bottom: 0; }
+.lp-section strong { color: #1a1a1a; }
+.lp-lead {
+    font-size: 1.16rem !important;
+    line-height: 1.65 !important;
+    color: #1a1a1a !important;
+    font-weight: 500;
+}
+
+/* ─── HERO ─── */
+.lp-hero {
+    background: linear-gradient(180deg, #F8F4E9 0%, #fdfaf2 100%);
+    padding: 72px 0 64px;
+    border-bottom: 1px solid #e6e0d4;
+}
+.lp-hero__inner { max-width: 720px; margin: 0 auto; text-align: center; }
+.lp-eyebrow {
+    display: block;
+    color: #8B7D61;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+.lp-hero h1 {
+    font-size: clamp(1.9rem, 4.6vw, 3rem);
+    font-weight: 900;
+    line-height: 1.12;
+    color: #1a1a1a;
+    letter-spacing: -0.03em;
+    margin: 0 0 18px;
+}
+.lp-hero__sub {
+    font-size: 1.14rem;
+    line-height: 1.65;
+    color: #555;
+    margin: 0 auto 34px;
+    max-width: 560px;
+}
+
+/* ─── FORMULÁŘ ─── */
+.lp-form-box {
+    background: #fff;
+    border: 1px solid #e6e0d4;
+    border-radius: 10px;
+    padding: 32px;
+    box-shadow: 0 14px 40px rgba(0,0,0,0.07);
+    text-align: left;
+}
+.lp-field { margin-bottom: 18px; }
+.lp-field--flush { margin-bottom: 0; }
+.lp-field label {
+    display: block;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 7px;
+}
+.lp-field input,
+.lp-field textarea {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 1rem;
+    font-family: inherit;
+    color: #1a1a1a;
+    background: #fdfaf2;
+    border: 1px solid #ddd5c5;
+    border-radius: 5px;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+.lp-field textarea { resize: vertical; min-height: 84px; }
+.lp-field input::placeholder,
+.lp-field textarea::placeholder { color: #a99f8c; }
+.lp-field input:focus,
+.lp-field textarea:focus {
+    outline: none;
+    border-color: #FFBF00;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(255,191,0,0.16);
+}
+.lp-field small {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.83rem;
+    line-height: 1.5;
+    color: #8a8378;
+}
+
+.lp-more { margin: 0 0 18px; }
+.lp-more summary {
+    cursor: pointer;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: #8B7D61;
+    padding: 6px 0;
+    list-style: none;
+}
+.lp-more summary::-webkit-details-marker { display: none; }
+.lp-more summary::before { content: '+ '; font-weight: 800; }
+.lp-more[open] summary::before { content: '– '; }
+.lp-more[open] summary { margin-bottom: 10px; }
+
+.lp-consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 22px;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: #666;
+    cursor: pointer;
+}
+.lp-consent input[type="checkbox"] {
+    margin-top: 3px;
+    width: 17px;
+    height: 17px;
+    accent-color: #FFBF00;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+.lp-consent a { color: #8B7D61; text-decoration: underline; }
+
+.lp-hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+
+.lp-submit {
+    width: 100%;
+    text-align: center;
+    font-size: 1.05rem;
+    padding: 17px 24px;
+    border: none;
+    cursor: pointer;
+}
+.lp-submit:disabled { opacity: 0.6; cursor: default; }
+
+.lp-form__msg {
+    margin: 14px 0 0;
+    padding: 12px 14px;
+    border-radius: 5px;
+    font-size: 0.92rem;
+    line-height: 1.5;
+}
+.lp-form__msg--error {
+    background: rgba(192,57,43,0.08);
+    border: 1px solid rgba(192,57,43,0.28);
+    color: #b0392b;
+}
+.lp-form__note {
+    margin: 14px 0 0;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+.lp-form__note--fine {
+    font-weight: 400;
+    font-size: 0.84rem;
+    color: #8a8378;
+    line-height: 1.55;
+    margin-top: 10px;
+}
+
+/* ─── PODĚKOVÁNÍ ─── */
+.lp-done { text-align: center; }
+.lp-done i { font-size: 2.6rem; color: #FFBF00; display: block; margin-bottom: 16px; }
+.lp-done h2 {
+    font-size: 1.7rem; font-weight: 900; color: #1a1a1a;
+    margin: 0 0 14px; letter-spacing: -0.02em;
+}
+.lp-done p {
+    font-size: 1.02rem; line-height: 1.7; color: #555; margin: 0 0 14px;
+}
+.lp-done__actions {
+    display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin: 24px 0 18px;
+}
+.lp-done__note { font-size: 0.9rem !important; color: #8a8378 !important; }
+.lp-done__note a { color: #8B7D61; font-weight: 700; }
+
+/* ─── CO PRO VÁS UDĚLÁM ─── */
+.lp-items { display: flex; flex-direction: column; gap: 2px; margin-top: 28px; }
+.lp-item {
+    display: flex;
+    gap: 20px;
+    padding: 22px 24px;
+    background: #fff;
+    border: 1px solid #e6e0d4;
+    align-items: flex-start;
+}
+.lp-item:first-child { border-radius: 6px 6px 0 0; }
+.lp-item:last-child { border-radius: 0 0 6px 6px; }
+.lp-item + .lp-item { border-top: none; }
+.lp-item__num {
+    font-size: 1.05rem;
+    font-weight: 900;
+    color: #FFBF00;
+    flex-shrink: 0;
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+}
+.lp-item strong {
+    display: block;
+    font-size: 1.05rem;
+    color: #1a1a1a;
+    margin-bottom: 5px;
+}
+.lp-item p { margin: 0 !important; font-size: 0.99rem !important; color: #555 !important; }
+.lp-item--accent { background: #fdfaf2; border-left: 3px solid #FFBF00; }
+
+/* ─── CO SE NESTANE ─── */
+.lp-nots { list-style: none; padding: 0; margin: 0 0 24px; }
+.lp-nots li {
+    position: relative;
+    padding: 14px 0 14px 34px;
+    border-bottom: 1px solid #eee7da;
+    font-size: 1.02rem;
+    line-height: 1.65;
+    color: #444;
+}
+.lp-nots li:last-child { border-bottom: none; }
+.lp-nots li::before {
+    content: '✕';
+    position: absolute;
+    left: 0;
+    top: 14px;
+    color: #FFBF00;
+    font-weight: 800;
+    font-size: 0.95rem;
+}
+
+/* ─── TMAVÝ BLOK ─── */
+.lp-section--dark {
+    background: linear-gradient(135deg, #111 0%, #1e1e1e 100%);
+    border-left: none;
+}
+.lp-section--dark h2 { color: #fff; }
+.lp-section--dark p { color: #c8c8c8; }
+.lp-section--dark strong { color: #FFBF00; }
+
+/* ─── OPAKOVANÉ CTA ─── */
+.lp-cta-repeat { margin-top: 30px; text-align: center; }
+.lp-cta-repeat .cta-button { display: inline-block; }
+.lp-cta-repeat p {
+    margin-top: 14px !important;
+    font-size: 0.92rem !important;
+    color: #777 !important;
+}
+.lp-cta-repeat a[href^="mailto"] { color: #8B7D61; font-weight: 700; }
+
+/* ─── AUTOR ─── */
+.lp-author { background: #F8F4E9; }
+.lp-author__inner { display: flex; gap: 28px; align-items: flex-start; }
+.lp-author__inner img {
+    width: 120px; height: 120px; border-radius: 50%;
+    object-fit: cover; flex-shrink: 0;
+}
+.lp-author h2 { font-size: 1.35rem !important; margin-bottom: 12px !important; }
+.lp-author p { font-size: 1rem !important; }
+
+/* ─── PATIČKA ─── */
+.lp-foot {
+    background: #1a1a1a;
+    padding: 30px 0;
+    text-align: center;
+}
+.lp-foot p { margin: 0 0 6px; font-size: 0.88rem; color: #999; line-height: 1.6; }
+.lp-foot p:last-child { margin-bottom: 0; }
+.lp-foot a { color: #ccc; text-decoration: none; }
+.lp-foot a:hover { color: #FFBF00; }
+
+@media (max-width: 700px) {
+    .lp-hero { padding: 48px 0 44px; }
+    .lp-section { padding: 48px 0; }
+    .lp-form-box { padding: 24px 20px; }
+    .lp-item { flex-direction: column; gap: 8px; padding: 20px; }
+    .lp-author__inner { flex-direction: column; align-items: center; text-align: center; }
+    .lp-done__actions .cta-button { width: 100%; text-align: center; }
+}

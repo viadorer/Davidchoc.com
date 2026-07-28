@@ -37,6 +37,7 @@ const FORMULARE = {
   'vycvik-zkouska':     { source: 'web_formular', popis: 'Kniha Výcvik — výsledek zkoušky' },
   'vycvik-posudek':     { source: 'web_formular', popis: 'Kniha Výcvik — posouzení inzerátu' },
   'nabidka-detail':     { source: 'web_formular', popis: 'Poptávka z detailu nabídky' },
+  'posudek-inzeratu':   { source: 'web_formular', popis: 'Posouzení inzerátu — zaseknutý samoprodejce' },
   'newsletter':         { source: 'web_formular', popis: 'Přihlášení k odběru' },
 };
 
