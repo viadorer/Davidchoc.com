@@ -510,8 +510,7 @@
       const form = document.getElementById('chci-prodat-form');
       if (!form) return;
 
-      const API_URL = 'https://api-production-88cf.up.railway.app/api/v1/public/api-leads/submit';
-      const API_KEY = 'rv_live_56bf805da8b9078ad650e0a6de346401ce7da6281146ea2f';
+      const API_URL = '/api/lead';
 
       const errorBox = form.querySelector('.chci-prodat-form__error');
       const successBox = form.querySelector('.chci-prodat-form__success');
@@ -549,10 +548,6 @@
         submitBtn.disabled = true;
         submitBtn.textContent = 'Odesílám…';
 
-        const parts = name.split(/\s+/);
-        const firstName = parts[0] || '';
-        const lastName = parts.slice(1).join(' ') || '';
-
         const typeLabels = { byt: 'Byt', dum: 'Rodinný dům', pozemek: 'Pozemek', komercni: 'Komerční prostor', jine: 'Něco jiného' };
 
         const composedMessage =
@@ -564,16 +559,14 @@
         try {
           const response = await fetch(API_URL, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'X-API-Key': API_KEY },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-              firstName, lastName, email, phone,
+              form: 'chci-prodat',
+              name, email, phone,
               message: composedMessage,
-              data: {
-                source: 'chci-prodat-lp',
-                campaign: 'davidchoc-website',
-                pipeline: 'chci-prodat-lp',
-                propertyType, location
-              }
+              gdpr: true,
+              meta: { property_type: propertyType || '', location: location || '' },
+              referrer: document.referrer || ''
             })
           });
           if (!response.ok) throw new Error('API error ' + response.status);

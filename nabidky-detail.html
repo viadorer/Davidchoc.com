@@ -813,7 +813,7 @@
                                 <span>${escapeHtml(agent.position || agent.role || 'Realitní agent')}</span>
                             </div>
                         </div>
-                        <form class="contact-form" id="leadForm" onsubmit="submitLead(event, '${escapeHtml(p.title)}')">
+                        <form class="contact-form" id="leadForm" onsubmit="submitLead(event, '${escapeHtml(p.title)}', '${p.id || ''}')">
                             <input type="text" name="name" placeholder="Jméno a příjmení" required maxlength="100">
                             <input type="tel" name="phone" placeholder="Telefon" required maxlength="20">
                             <input type="email" name="email" placeholder="E-mail" maxlength="200">
@@ -901,20 +901,29 @@
             `;
         }
 
-        async function submitLead(e, propertyTitle) {
+        async function submitLead(e, propertyTitle, propertyId) {
             e.preventDefault();
             const form = e.target;
             const btn = document.getElementById('leadBtn');
             const msg = document.getElementById('leadMsg');
-            const data = Object.fromEntries(new FormData(form));
-            data.formType = 'property-inquiry';
-            data.message = `[${propertyTitle}] ${data.message || 'Mám zájem o tuto nemovitost. Prosím o kontakt.'}`;
+            const raw = Object.fromEntries(new FormData(form));
+            const data = {
+                form: 'nabidka-detail',
+                name: raw.name || '',
+                email: raw.email || '',
+                phone: raw.phone || '',
+                message: raw.message || 'Mám zájem o tuto nemovitost. Prosím o kontakt.',
+                gdpr: true,
+                property_id: propertyId || '',
+                meta: { property_title: propertyTitle },
+                referrer: document.referrer || ''
+            };
 
             btn.disabled = true; btn.textContent = 'Odesílám…';
             msg.className = 'form-msg'; msg.textContent = '';
 
             try {
-                const res = await fetch('/api/contact', {
+                const res = await fetch('/api/lead', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data),

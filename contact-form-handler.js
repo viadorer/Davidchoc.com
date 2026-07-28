@@ -157,8 +157,8 @@
     const form = document.getElementById('contact-form');
     if (!form) return;
 
-    const API_URL = 'https://api-production-88cf.up.railway.app/api/v1/public/api-leads/submit';
-    const API_KEY = 'rv_live_56bf805da8b9078ad650e0a6de346401ce7da6281146ea2f';
+    const API_URL = '/api/lead';
+
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -179,31 +179,20 @@
       const phone = formData.get('phone').trim();
       const message = formData.get('message').trim();
 
-      // Split name into firstName + lastName
-      const parts = name.split(/\s+/);
-      const firstName = parts[0] || '';
-      const lastName = parts.slice(1).join(' ') || '';
-
       const payload = {
-        firstName,
-        lastName,
+        form: 'kontakt',
+        name,
         email,
         phone,
         message,
-        data: {
-          source: 'davidchoc.com',
-          campaign: 'davidchoc-website',
-          pipeline: 'kontaktni-formu-87433'
-        }
+        gdpr: true,
+        referrer: document.referrer || ''
       };
 
       try {
         const response = await fetch(API_URL, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'X-API-Key': API_KEY
-          },
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
 

@@ -4,8 +4,7 @@
   const form = document.getElementById('brief-form');
   if (!form) return;
 
-  const API_URL = 'https://api-production-88cf.up.railway.app/api/v1/public/api-leads/submit';
-  const API_KEY = 'rv_live_56bf805da8b9078ad650e0a6de346401ce7da6281146ea2f';
+  const API_URL = '/api/lead';
   const STORAGE_KEY = 'pripad-brief-state';
 
   const steps = Array.from(form.querySelectorAll('.pripad-brief__step'));
@@ -171,24 +170,23 @@
       (message ? `Popis:\n${message}` : 'Popis: (nevyplněn)');
 
     const payload = {
-      firstName,
-      lastName,
+      form: 'pripad-pro-agenta',
+      name: [firstName, lastName].filter(Boolean).join(' '),
       email,
       phone,
       message: composedMessage,
-      data: {
-        source: 'pripad-pro-agenta',
-        campaign: 'davidchoc-website',
-        pipeline: 'pripad-pro-agenta',
-        propertyType: state.propertyType,
-        caseType: state.caseType,
+      gdpr: true,
+      meta: {
+        property_type: state.propertyType || '',
+        case_type: state.caseType || '',
       },
+      referrer: document.referrer || '',
     };
 
     try {
       const response = await fetch(API_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'X-API-Key': API_KEY },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
       if (!response.ok) throw new Error('API error ' + response.status);

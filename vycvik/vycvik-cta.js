@@ -4,8 +4,9 @@
 (function () {
   'use strict';
 
-  var LEAD_API = 'https://api-production-88cf.up.railway.app/api/v1/public/api-leads/submit';
-  var LEAD_KEY = 'rv_live_56bf805da8b9078ad650e0a6de346401ce7da6281146ea2f';
+  // Leady jdou přes vlastní server do CRM PTF — klíče ani adresa CRM
+  // nemají co dělat ve zdrojovém kódu stránky.
+  var LEAD_API = '/api/lead';
 
   /* ─────────────────────────────────────────────
      1) PATIČKA — zavírá slepé uličky
@@ -68,16 +69,11 @@
       btn.disabled = true;
       btn.textContent = 'Odesílám…';
 
-      var parts = (name && name.value ? name.value.trim() : '').split(/\s+/);
-
       sendLead({
-        firstName: parts[0] || '',
-        lastName: parts.slice(1).join(' ') || '',
+        form: 'vycvik-pdf',
+        name: name && name.value ? name.value.trim() : '',
         email: email,
-        phone: '',
-        message: 'Stažení PDF knihy Výcvik ziskového prodeje nemovitosti.',
-        source: 'vycvik-pdf',
-        pipeline: 'vycvik-kniha'
+        message: 'Žádost o PDF knihy Výcvik ziskového prodeje nemovitosti.'
       }).then(function () {
         form.innerHTML =
           '<div class="vy-gate__done">' +
@@ -119,7 +115,10 @@
       '</div>' +
       '<form id="vy-exam-form" class="vy-gate__form" novalidate>' +
         '<div class="vy-gate__row">' +
+          '<input type="text" name="jmeno" placeholder="Jméno" autocomplete="name" required aria-label="Jméno">' +
           '<input type="email" name="email" placeholder="vas@email.cz" required aria-label="E-mail">' +
+        '</div>' +
+        '<div class="vy-gate__row">' +
           '<button type="submit">Poslat výsledek</button>' +
         '</div>' +
         '<label class="vy-gate__consent">' +
@@ -136,9 +135,13 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var email = form.querySelector('input[type="email"]').value.trim();
+      var jmeno = form.querySelector('input[name="jmeno"]').value.trim();
       var gdpr = form.querySelector('input[name="gdpr"]');
       var btn = form.querySelector('button[type="submit"]');
 
+      if (!jmeno) {
+        return showMsg(msg, 'Napište mi prosím jméno, ať vím, komu píšu.', 'error');
+      }
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         return showMsg(msg, 'Zadejte prosím platnou e-mailovou adresu.', 'error');
       }
@@ -158,11 +161,15 @@
       }
 
       sendLead({
-        firstName: '', lastName: '', email: email, phone: '',
+        form: 'vycvik-zkouska',
+        name: jmeno,
+        email: email,
         message: body,
-        source: 'vycvik-zkouska',
-        pipeline: 'vycvik-kniha',
-        extra: { score: score }
+        meta: {
+          score: score,
+          missing_chapters: (missingChapters || []).join(', '),
+          risks: (risks || []).join(', ')
+        }
       }).then(function () {
         el.innerHTML =
           '<div class="vy-gate__done">' +
@@ -220,19 +227,18 @@
       btn.disabled = true;
       btn.textContent = 'Odesílám…';
 
-      var parts = jmeno.split(/\s+/);
-      var telo = 'Žádost o posouzení inzerátu.\nOdkaz: ' + odkaz + '\n';
-      if (poznamka) telo += 'Poznámka: ' + poznamka + '\n';
+      var telo = 'Žádost o posouzení inzerátu.';
+      if (poznamka) telo += ' Poznámka: ' + poznamka;
 
       sendLead({
-        firstName: parts[0] || '',
-        lastName: parts.slice(1).join(' ') || '',
+        form: 'vycvik-posudek',
+        name: jmeno,
         email: email,
-        phone: '',
         message: telo,
-        source: 'vycvik-posudek-inzeratu',
-        pipeline: 'vycvik-kniha',
-        extra: { listingUrl: odkaz, segment: 'neuspesny-samoprodejce' }
+        meta: {
+          listing_url: odkaz,
+          segment: 'neuspesny-samoprodejce'
+        }
       }).then(function () {
         form.innerHTML =
           '<div class="vy-gate__done">' +
@@ -268,22 +274,24 @@
   function sendLead(data) {
     return fetch(LEAD_API, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'X-API-Key': LEAD_KEY },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        firstName: data.firstName,
-        lastName: data.lastName,
+        form: data.form,
+        name: data.name || '',
         email: data.email,
         phone: data.phone || '',
-        message: data.message,
-        data: Object.assign({
-          source: data.source,
-          campaign: 'vycvik-kniha',
-          pipeline: data.pipeline
-        }, data.extra || {})
+        message: data.message || '',
+        gdpr: true,
+        meta: data.meta || {},
+        referrer: document.referrer || ''
       })
     }).then(function (r) {
-      if (!r.ok) throw new Error('API ' + r.status);
-      return r;
+      if (!r.ok) {
+        return r.json().catch(function () { return {}; }).then(function (t) {
+          throw new Error(t.error || ('API ' + r.status));
+        });
+      }
+      return r.json().catch(function () { return {}; });
     });
   }
 
