@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnostika inzerátu — proč se nemovitost neprodává | David Choc</title>
+    <meta name="description" content="Zadejte čtyři čísla z inzerátu a zjistěte, jestli je problém v ceně, ve fotkách, nebo v textu. Zdarma, bez registrace, výsledek hned.">
+    <meta name="keywords" content="proč se neprodává byt, diagnostika inzerátu, nemovitost dlouho visí, málo poptávek inzerát">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.davidchoc.cz/vycvik/diagnostika">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="cs_CZ">
+    <meta property="og:title" content="Diagnostika inzerátu — proč se nemovitost neprodává">
+    <meta property="og:description" content="Čtyři čísla a víte, kde je problém. Zdarma, bez registrace.">
+    <meta property="og:url" content="https://www.davidchoc.cz/vycvik/diagnostika">
+    <meta property="og:image" content="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/davidchocagent.avif">
+
+    <link rel="icon" type="image/png" href="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/favicon.png">
+    <link rel="stylesheet" href="/styles.css?v=20260728114743">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TXGDD8D3GK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-TXGDD8D3GK');
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Diagnostika inzerátu nemovitosti",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "description": "Nástroj, který z počtu zobrazení, dotazů, prohlídek a nabídek určí, proč se nemovitost neprodává, a odkáže na příslušnou kapitolu knihy Výcvik ziskového prodeje.",
+      "url": "https://www.davidchoc.cz/vycvik/diagnostika",
+      "inLanguage": "cs-CZ",
+      "isAccessibleForFree": true,
+      "author": { "@type": "Person", "@id": "https://www.davidchoc.cz/#person", "name": "David Choc" },
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CZK" }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Domů", "item": "https://www.davidchoc.cz/" },
+        { "@type": "ListItem", "position": 2, "name": "Výcvik ziskového prodeje", "item": "https://www.davidchoc.cz/vycvik" },
+        { "@type": "ListItem", "position": 3, "name": "Kapitola 9", "item": "https://www.davidchoc.cz/vycvik/kapitola-9-zaseklo-se" },
+        { "@type": "ListItem", "position": 4, "name": "Diagnostika inzerátu", "item": "https://www.davidchoc.cz/vycvik/diagnostika" }
+      ]
+    }
+    </script>
+</head>
+<body class="pripad-page is-light vycvik-page">
+    <div id="navbar-placeholder"></div>
+
+    <main>
+        <section class="vycvik-tool-page">
+            <div class="container">
+                <div class="vycvik-tool-page__wrap">
+
+                    <nav class="vycvik-crumb" aria-label="Drobečková navigace">
+                        <a href="/vycvik">Výcvik ziskového prodeje</a>
+                        <span>·</span>
+                        <a href="/vycvik/kapitola-9-zaseklo-se">Kapitola 9</a>
+                        <span>·</span>
+                        <span>Diagnostika</span>
+                    </nav>
+
+                    <span class="vycvik-chapter__label">Nástroj z knihy</span>
+                    <h1 style="font-size: clamp(1.8rem, 3.6vw, 2.5rem); line-height:1.15; color:#1a1a1a; font-weight:900; margin:0 0 16px;">Proč se to neprodává</h1>
+                    <p style="font-size:1.08rem; color:#555; line-height:1.7; margin:0 0 8px;">
+                        Zadejte čtyři čísla ze svého inzerátu. <strong>Odpověď obvykle vypadne sama.</strong>
+                    </p>
+                    <p style="font-size:0.94rem; color:#888; line-height:1.6; margin:0 0 28px;">
+                        Nikam se to neodesílá. Ukládá se to jen ve vašem prohlížeči, abyste se k tomu mohli vrátit.
+                    </p>
+
+                    <!-- ZADÁNÍ -->
+                    <div class="vy-widget" style="margin-top:0;">
+                        <div class="vy-widget__head">
+                            <span class="vy-widget__badge"><i class="fas fa-stethoscope" aria-hidden="true"></i> Vstupy</span>
+                            <h2 class="vy-widget__title">Vaše čísla</h2>
+                        </div>
+                        <div class="vy-widget__body" id="vy-diag-vstup">
+
+                            <div class="vy-field">
+                                <label for="d-tydny">Kolikátý týden inzerujete</label>
+                                <div class="vy-input-wrap">
+                                    <input type="number" id="d-tydny" data-field="tydny" inputmode="numeric" min="1" max="104" placeholder="8">
+                                    <span class="vy-input-suffix">týden</span>
+                                </div>
+                            </div>
+
+                            <div class="vy-field">
+                                <label for="d-zobrazeni">Zobrazení inzerátu celkem</label>
+                                <div class="vy-input-wrap">
+                                    <input type="number" id="d-zobrazeni" data-field="zobrazeni" inputmode="numeric" min="0" placeholder="1200">
+                                </div>
+                                <p class="vy-field__hint">Najdete ve svém účtu na portálu. Když inzerujete na víc místech, sečtěte je.</p>
+                            </div>
+
+                            <div class="vy-field">
+                                <label for="d-dotazy">Dotazů celkem</label>
+                                <div class="vy-input-wrap">
+                                    <input type="number" id="d-dotazy" data-field="dotazy" inputmode="numeric" min="0" placeholder="9">
+                                </div>
+                                <p class="vy-field__hint">Telefonáty i e-maily od zájemců. Realitky nepočítejte.</p>
+                            </div>
+
+                            <div class="vy-field">
+                                <label for="d-prohlidky">Prohlídek celkem</label>
+                                <div class="vy-input-wrap">
+                                    <input type="number" id="d-prohlidky" data-field="prohlidky" inputmode="numeric" min="0" placeholder="4">
+                                </div>
+                            </div>
+
+                            <div class="vy-field">
+                                <label for="d-nabidky">Nabídek na koupi celkem</label>
+                                <div class="vy-input-wrap">
+                                    <input type="number" id="d-nabidky" data-field="nabidky" inputmode="numeric" min="0" placeholder="0">
+                                </div>
+                                <p class="vy-field__hint">Konkrétní částka, kterou vám někdo nabídl — ne „přemýšlím o tom".</p>
+                            </div>
+
+                            <div class="vy-field">
+                                <label for="d-slevy">Kolikrát jste už zlevnili</label>
+                                <div class="vy-input-wrap">
+                                    <input type="number" id="d-slevy" data-field="slevy" inputmode="numeric" min="0" max="20" placeholder="2">
+                                </div>
+                            </div>
+
+                            <div class="vy-progress__actions" style="margin-top:22px;">
+                                <button type="button" class="vy-btn vy-btn--gold" id="vy-diag-spustit">
+                                    <i class="fas fa-stethoscope" aria-hidden="true"></i> Vyhodnotit
+                                </button>
+                                <button type="button" class="vy-btn" id="vy-diag-reset">Vymazat</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VÝSLEDEK -->
+                    <div id="vy-diag-vysledek" hidden></div>
+
+                    <!-- KONTEXT -->
+                    <div class="vy-kontext">
+                        <h2>Jak se to počítá</h2>
+
+                        <p>Nástroj nepracuje s absolutními čísly, protože ta se liší lokalitu od lokality a portál od portálu. Pracuje s <strong>poměry mezi jednotlivými kroky</strong> — a ty jsou napříč trhem překvapivě stabilní, protože popisují chování člověka, ne situaci na trhu.</p>
+
+                        <p>Prodej má čtyři branky za sebou. Zájemce musí nabídku <strong>vidět</strong> v přehledu, pak ji <strong>otevřít a napsat</strong>, pak <strong>přijet</strong> a nakonec <strong>udělat nabídku</strong>. Každá branka propustí jen část lidí. Když je někde propad výrazně větší než u ostatních, víte, kde je problém — a hlavně víte, kde není.</p>
+
+                        <ul>
+                            <li><strong>Zobrazení → dotaz.</strong> Když si nabídku otevírá hodně lidí a skoro nikdo nenapíše, viděli všechno podstatné už v inzerátu a rozhodli se ne. Nejčastěji kvůli ceně vůči tomu, co za ni dostanou.</li>
+                            <li><strong>Dotaz → prohlídka.</strong> Když se lidé ptají, ale nepřijedou, chybí v textu něco, co potřebují vědět předem — náklady, dispozice, stav, dostupnost. Nebo jim trvá dlouho, než se dočkají odpovědi.</li>
+                            <li><strong>Prohlídka → nabídka.</strong> Když lidé přijedou a pak zmizí, skutečnost neodpovídá tomu, co čekali. To je buď o přípravě nemovitosti, nebo o tom, jak prohlídka probíhá.</li>
+                        </ul>
+
+                        <p>Počet zlevnění je v tom proto, že <strong>historie zlevňování je sama o sobě signál</strong>. Nabídka, která během dvou měsíců třikrát ustoupila po malých krocích, vypadá pro kupujícího jinak než nabídka, která zlevnila jednou a rozhodně — i když je výsledná cena stejná.</p>
+
+                        <h3>Na co si dát pozor</h3>
+
+                        <p>Výsledek je vodítko, ne verdikt. Nástroj nevidí vaši nemovitost, nezná lokalitu ani konkurenci a nepozná právní překážku, která prodej blokuje bez ohledu na cenu. <strong>Když vám vyjde „cena je mimo" a přitom máte na katastru nedořešené dědictví, problém je to dědictví.</strong></p>
+
+                        <p>Taky platí, že u velmi malých čísel vychází poměry nespolehlivě. Když máte za osm týdnů dvě zobrazení a nula dotazů, není co počítat — nabídku prostě nikdo nevidí a řešení je v kanálech, ne v ceně.</p>
+                    </div>
+
+                    <div class="vy-related">
+                        <h3>Souvisí s tím</h3>
+                        <ul>
+                            <li><a href="/vycvik/kapitola-9-zaseklo-se">Kapitola 9 — Když už to visí a neprodává se</a></li>
+                            <li><a href="/vycvik/posudte-inzerat">Poslat inzerát k posouzení</a></li>
+                            <li><a href="/vycvik/kolik-to-stoji">Kolik vás stojí prodat sám</a></li>
+                        </ul>
+                    </div>
+
+                    <p class="vycvik-verified">Naposledy ověřeno: červenec 2026</p>
+
+                    <nav class="vycvik-nav" aria-label="Navigace">
+                        <a href="/vycvik/kapitola-9-zaseklo-se" class="vycvik-nav__link">
+                            <span class="vycvik-nav__dir"><i class="fas fa-arrow-left" aria-hidden="true"></i> Zpět</span>
+                            <span class="vycvik-nav__title">Kapitola 9 — Když už to visí</span>
+                        </a>
+                        <a href="/vycvik/posudte-inzerat" class="vycvik-nav__link vycvik-nav__link--next">
+                            <span class="vycvik-nav__dir">Další <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                            <span class="vycvik-nav__title">Poslat inzerát k posouzení</span>
+                        </a>
+                    </nav>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <div class="floating-buttons">
+        <a href="#" class="floating-button back-to-top" aria-label="Zpět nahoru"><i class="fas fa-arrow-up"></i></a>
+        <a href="tel:+420774052232" class="floating-button call" aria-label="Zavolat"><i class="fas fa-phone-alt"></i></a>
+        <a href="mailto:david.choc@ptf.cz" class="floating-button email" aria-label="Poslat email"><i class="fas fa-envelope"></i></a>
+        <a href="https://wa.me/420604240086" class="floating-button whatsapp" aria-label="WhatsApp zpráva" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+    </div>
+
+    <script src="/script.js"></script>
+    <script src="/common/common.js"></script>
+    <script src="/cookie-consent.js"></script>
+    <script src="/vycvik/vycvik-tools.js"></script>
+    <script src="/vycvik/vycvik-cta.js"></script>
+    <script>
+    (function () {
+      var vstup = document.getElementById('vy-diag-vstup');
+      var vysledekEl = document.getElementById('vy-diag-vysledek');
+      var tlacitko = document.getElementById('vy-diag-spustit');
+      var reset = document.getElementById('vy-diag-reset');
+      if (!vstup || !tlacitko) return;
+
+      VycvikTools.initFields({
+        storageKey: 'vycvik-diagnostika',
+        container: '#vy-diag-vstup',
+        resetEl: '#vy-diag-reset',
+        onChange: function () { vysledekEl.hidden = true; }
+      });
+
+      function cislo(klic) {
+        var el = vstup.querySelector('[data-field="' + klic + '"]');
+        var n = parseInt((el && el.value) || '', 10);
+        return isNaN(n) ? null : n;
+      }
+
+      tlacitko.addEventListener('click', function () {
+        var tydny = cislo('tydny');
+        var zobrazeni = cislo('zobrazeni');
+        var dotazy = cislo('dotazy');
+        var prohlidky = cislo('prohlidky');
+        var nabidky = cislo('nabidky');
+        var slevy = cislo('slevy') || 0;
+
+        if (tydny === null || zobrazeni === null || dotazy === null) {
+          return zobrazit('warn', 'Chybí čísla',
+            '<p>Vyplňte alespoň týden inzerce, počet zobrazení a počet dotazů. Bez nich se nedá nic spočítat.</p>', []);
+        }
+
+        prohlidky = prohlidky === null ? 0 : prohlidky;
+        nabidky = nabidky === null ? 0 : nabidky;
+
+        var naZobrazeni = zobrazeni > 0 ? (dotazy / zobrazeni) * 100 : 0;
+        var naDotaz = dotazy > 0 ? (prohlidky / dotazy) * 100 : 0;
+        var naProhlidku = prohlidky > 0 ? (nabidky / prohlidky) * 100 : 0;
+
+        var typ, nadpis, telo, kapitoly;
+
+        // Nabídku nikdo nevidí — nejdřív kanály, teprve pak všechno ostatní
+        if (zobrazeni < tydny * 25) {
+          typ = 'fail';
+          nadpis = 'Vaši nabídku skoro nikdo nevidí';
+          telo = '<p>Za ' + tydny + '. týden máte ' + fmt(zobrazeni) + ' zobrazení. To je málo na to, aby se z toho dalo cokoli usoudit o ceně nebo o fotkách — ty lidé zatím nedostali šanci posoudit.</p>' +
+                 '<p><strong>Problém je v dosahu, ne v nabídce.</strong> Buď jste na málo kanálech, nebo vás filtry kupujících míjejí, nebo jste v přehledu tak nízko, že se k vám nikdo nedoroluje.</p>';
+          kapitoly = [['/vycvik/kapitola-5-inzerce', 'Kapitola 5 — Inzerce a kanály'], ['/vycvik/kanaly', 'Přehled kanálů a sledování zdrojů']];
+
+        // Vidí, ale nepíšou
+        } else if (naZobrazeni < 0.8) {
+          typ = 'fail';
+          nadpis = 'Lidé si to otevřou, spočítají a odejdou';
+          telo = '<p>Z ' + fmt(zobrazeni) + ' zobrazení ' + dotazyVeta(dotazy) + ', tedy ' + naZobrazeni.toFixed(1).replace('.', ',') + ' %. Nabídku vidí dost lidí, ale skoro nikdo z nich nemá důvod se ozvat.</p>' +
+                 '<p>To znamená, že všechno podstatné se rozhodlo už v inzerátu. <strong>Nejčastěji je to cena vůči tomu, co za ni kupující dostane</strong> — a je to zároveň odpověď, kterou nikdo nechce slyšet. Druhá možnost je hlavní fotka, na které nabídka v přehledu propadne dřív, než ji někdo otevře.</p>';
+          kapitoly = [['/vycvik/kapitola-1-cena', 'Kapitola 1 — Cena'], ['/vycvik/kapitola-3-fotografie', 'Kapitola 3 — Fotografie'], ['/vycvik/kapitola-1-cena#vy-prah', 'Detektor cenového prahu']];
+
+        // Píšou, ale nepřijedou
+        } else if (dotazy >= 3 && naDotaz < 40) {
+          typ = 'warn';
+          nadpis = 'Ptají se, ale nepřijedou';
+          telo = '<p>Z ' + dotazy + ' ' + sklon(dotazy, 'dotazu', 'dotazů', 'dotazů') + ' ' + prohlidkyVeta(prohlidky) + '. To je ' + naDotaz.toFixed(0) + ' % a je to málo.</p>' +
+                 '<p>Zájem je — jinak by nepsali. <strong>Něco jim ale při prvním kontaktu vezme chuť přijet.</strong> Buď v inzerátu chybí informace, na kterou se musí doptat a odpověď je zklame, nebo jim trvá dlouho, než se odpovědi vůbec dočkají.</p>';
+          kapitoly = [['/vycvik/kapitola-4-inzerat', 'Kapitola 4 — Inzerát'], ['/vycvik/otazky', 'Dvacet otázek zájemců'], ['/vycvik/kapitola-6-prohlidky', 'Kapitola 6 — Telefonáty a prohlídky']];
+
+        // Přijedou a zmizí
+        } else if (prohlidky >= 3 && nabidky === 0) {
+          typ = 'warn';
+          nadpis = 'Přijedou a pak zmizí';
+          telo = '<p>' + prohlidky + ' ' + sklon(prohlidky, 'prohlídka', 'prohlídky', 'prohlídek') + ' a ani jedna nabídka. Nabídka i cena fungují natolik, že se lidé obtěžují přijet — <strong>zklame je až to, co uvidí na místě.</strong></p>' +
+                 '<p>To je buď o přípravě nemovitosti, nebo o tom, jak prohlídka probíhá. Obojí se dá spravit rychle a bez jediné koruny slevy.</p>';
+          kapitoly = [['/vycvik/kapitola-2-priprava', 'Kapitola 2 — Příprava nemovitosti'], ['/vycvik/prohlidka', 'Prohlídkový režim'], ['/vycvik/prohlidky', 'Záznamový list prohlídek']];
+
+        // Nabídky chodí, ale nízké
+        } else if (nabidky > 0 && naProhlidku > 0) {
+          typ = 'good';
+          nadpis = 'Nabídky chodí — teď jde o vyjednávání';
+          telo = '<p>Máte ' + nabidky + ' ' + sklon(nabidky, 'nabídku', 'nabídky', 'nabídek') + ' z ' + prohlidky + ' ' + sklon(prohlidky, 'prohlídky', 'prohlídek', 'prohlídek') + '. Nabídka funguje: lidé ji vidí, píšou, jezdí a nakonec i nabízejí.</p>' +
+                 '<p>Když jsou ty nabídky výrazně pod vaší cenou, <strong>je otázka, jestli je mimo cena, nebo jestli jen ustupujete dřív, než musíte.</strong> Rozdíl mezi tím poznáte podle toho, jestli se všechny nabídky drží kolem stejné částky. Když ano, je to trh a vaše cena je nad ním.</p>';
+          kapitoly = [['/vycvik/kapitola-1-cena', 'Kapitola 1 — Cena'], ['/vycvik/kapitola-7-smlouvy', 'Kapitola 7 — Smlouvy a úschova']];
+
+        } else {
+          typ = 'good';
+          nadpis = 'Zatím je brzy na závěry';
+          telo = '<p>Čísla, která jste zadali, na jednoznačnou diagnózu nestačí — u malých počtů vycházejí poměry nespolehlivě.</p>' +
+                 '<p>Doplňte je za dva až tři týdny znovu. Do té doby si projděte vlastní inzerát ve výpisu na mobilu tak, jak ho vidí kupující, a nechte ho posoudit třemi lidmi zvenčí.</p>';
+          kapitoly = [['/vycvik/kapitola-9-zaseklo-se', 'Kapitola 9 — Když už to visí a neprodává se']];
+        }
+
+        var pripominka = '';
+        if (slevy >= 2) {
+          pripominka = '<div class="vy-diag__flag"><i class="fas fa-triangle-exclamation" aria-hidden="true"></i>' +
+            '<div><strong>Zlevnili jste už ' + slevy + '&times;</strong>' +
+            '<p>Historie zlevňování poškozuje nabídku víc než samotná výše ceny. Další malý krok dolů to jen prohloubí. Pokud budete zlevňovat, udělejte to jednou, výrazně a pod nejbližší filtrační práh — jinak to nemá smysl.</p></div></div>';
+        }
+        if (tydny >= 12) {
+          pripominka += '<div class="vy-diag__flag"><i class="fas fa-hourglass-half" aria-hidden="true"></i>' +
+            '<div><strong>Inzerujete ' + tydny + '. týden</strong>' +
+            '<p>Nabídka ve třetím měsíci se dá zachránit. V devátém už se zachraňuje mnohem hůř, protože trh si ji zapamatoval. Rozhodnutí teď je levnější než totéž rozhodnutí za dva měsíce.</p></div></div>';
+        }
+
+        zobrazit(typ, nadpis, telo + pripominka, kapitoly);
+
+        if (window.gtag) {
+          window.gtag('event', 'vycvik_diagnostika_dokoncena', {
+            event_category: 'vycvik',
+            event_label: nadpis,
+            value: tydny
+          });
+        }
+      });
+
+      function zobrazit(typ, nadpis, telo, kapitoly) {
+        var odkazy = '';
+        if (kapitoly && kapitoly.length) {
+          odkazy = '<div class="vy-diag__kapitoly"><strong>Vraťte se sem:</strong><ul>' +
+            kapitoly.map(function (k) { return '<li><a href="' + k[0] + '">' + k[1] + '</a></li>'; }).join('') +
+            '</ul></div>';
+        }
+
+        vysledekEl.innerHTML =
+          '<div class="vy-result vy-result--' + typ + '">' +
+            '<div class="vy-result__body">' +
+              '<h2>' + nadpis + '</h2>' + telo + odkazy +
+              '<div class="vy-result__cta">' +
+                '<a href="/vycvik/posudte-inzerat" class="cta-button">Pošlete mi inzerát, projdu ho</a>' +
+              '</div>' +
+            '</div>' +
+          '</div>';
+        vysledekEl.hidden = false;
+        vysledekEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      function fmt(n) { return VycvikTools.formatNumber(n); }
+
+      // Přísudek se musí shodovat s číslovkou: přišel 1 / přišly 4 / přišlo 9
+      function dotazyVeta(n) {
+        if (n === 1) return 'přišel 1 dotaz';
+        if (n >= 2 && n <= 4) return 'přišly ' + n + ' dotazy';
+        return 'přišlo ' + n + ' dotazů';
+      }
+
+      function prohlidkyVeta(n) {
+        if (n === 0) return 'nepřijel na prohlídku nikdo';
+        if (n === 1) return 'přijel na prohlídku jeden';
+        if (n >= 2 && n <= 4) return 'přijeli na prohlídku ' + n;
+        return 'přijelo na prohlídku ' + n;
+      }
+
+      // 1 dotaz / 2–4 dotazy / 5+ dotazů
+      function sklon(n, jedna, dva, pet) {
+        if (n === 1) return jedna;
+        if (n >= 2 && n <= 4) return dva;
+        return pet;
+      }
+    })();
+    </script>
+</body>
+</html>

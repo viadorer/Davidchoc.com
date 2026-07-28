@@ -8001,3 +8001,152 @@ body.is-light .vy-help__phone { text-decoration: none; }
     line-height: 1.6;
 }
 .ocenit-embed__fallback a { color: #8B7D61; text-decoration: underline; }
+
+/* --- Kapitola 9: poznamka na zacatku, overeni, zvyrazneny odkaz --- */
+.vy-note {
+    margin: 0 0 32px;
+    padding: 18px 22px;
+    background: #fdfaf2;
+    border: 1px dashed #d8cfb8;
+    border-radius: 4px;
+}
+.vy-note p {
+    margin: 0 !important;
+    font-size: 0.96rem !important;
+    line-height: 1.62;
+    color: #6a6357;
+}
+.vy-note strong { color: #1a1a1a; }
+
+.vycvik-verified {
+    margin: 40px 0 0 !important;
+    padding-top: 18px;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    color: #999 !important;
+    font-size: 0.84rem !important;
+    letter-spacing: 0.02em;
+}
+
+.vycvik-toollink--accent {
+    background: linear-gradient(135deg, #111 0%, #1e1e1e 100%) !important;
+    border-color: rgba(255,191,0,0.4) !important;
+}
+.vycvik-toollink--accent .vycvik-toollink__icon {
+    background: #FFBF00 !important;
+    color: #1a1a1a !important;
+}
+.vycvik-toollink--accent .vycvik-toollink__name { color: #fff !important; }
+.vycvik-toollink--accent .vycvik-toollink__desc { color: #c8c8c8 !important; }
+.vycvik-toollink--accent .vycvik-toollink__arrow { color: #FFBF00 !important; }
+
+/* --- Diagnostika inzerátu --- */
+.vy-field__hint {
+    margin: 8px 0 0;
+    font-size: 0.86rem;
+    line-height: 1.55;
+    color: #999;
+}
+.vy-diag__kapitoly {
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+}
+.vy-diag__kapitoly strong {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #FFBF00;
+    margin-bottom: 10px;
+}
+.vy-diag__kapitoly ul { list-style: none; padding: 0; margin: 0; }
+.vy-diag__kapitoly li { margin-bottom: 7px; }
+.vy-diag__kapitoly li a {
+    color: #fff;
+    font-size: 0.98rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,191,0,0.5);
+}
+.vy-diag__kapitoly li a:hover { color: #FFBF00; }
+
+.vy-diag__flag {
+    display: flex;
+    gap: 14px;
+    margin-top: 20px;
+    padding: 16px 18px;
+    background: rgba(255,255,255,0.06);
+    border-left: 3px solid #FFBF00;
+    border-radius: 3px;
+}
+.vy-diag__flag > i { color: #FFBF00; font-size: 1.1rem; margin-top: 3px; flex-shrink: 0; }
+.vy-diag__flag strong { display: block; color: #fff; font-size: 1rem; margin-bottom: 5px; }
+.vy-diag__flag p { margin: 0 !important; color: #c0c0c0 !important; font-size: 0.93rem !important; line-height: 1.6; }
+
+/* Kontextový text pod nástrojem — vysvětluje metodiku */
+.vy-kontext {
+    margin: 48px 0 0;
+    padding-top: 36px;
+    border-top: 1px solid rgba(0,0,0,0.08);
+}
+.vy-kontext h2 {
+    font-size: 1.5rem !important;
+    font-weight: 800;
+    color: #1a1a1a !important;
+    margin: 0 0 16px !important;
+}
+.vy-kontext h3 {
+    font-size: 1.15rem !important;
+    font-weight: 800;
+    color: #1a1a1a !important;
+    margin: 28px 0 12px !important;
+}
+.vy-kontext p,
+.vy-kontext li {
+    font-size: 1rem;
+    line-height: 1.72;
+    color: #4a4a4a;
+}
+.vy-kontext p { margin: 0 0 14px; }
+.vy-kontext ul { margin: 0 0 16px; padding-left: 22px; }
+.vy-kontext li { margin-bottom: 9px; }
+.vy-kontext strong { color: #1a1a1a; }
+
+/* Textové pole ve formuláři brány */
+.vy-gate__form textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 3px;
+    color: #fff;
+    font: inherit;
+    font-size: 0.98rem;
+    resize: vertical;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+.vy-gate__form textarea::placeholder { color: #8a8a8a; }
+.vy-gate__form textarea:focus {
+    outline: none;
+    border-color: #FFBF00;
+    background: rgba(255,255,255,0.1);
+}
+.vy-gate__form input[type="url"] {
+    flex: 1;
+    min-width: 180px;
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 3px;
+    color: #fff;
+    font-size: 0.98rem;
+    font-family: inherit;
+}
+.vy-gate__form input[type="url"]::placeholder { color: #8a8a8a; }
+.vy-gate__form input[type="url"]:focus {
+    outline: none;
+    border-color: #FFBF00;
+    background: rgba(255,255,255,0.1);
+}

@@ -17,7 +17,7 @@
 
     // Nevkládat na hub a na stránky, kde už je silná nabídka
     var path = window.location.pathname;
-    var SKIP = ['/vycvik', '/vycvik/', '/vycvik/index.html', '/vycvik/vybava', '/vycvik/kolik-to-stoji', '/vycvik/zaver', '/vycvik/zkouska'];
+    var SKIP = ['/vycvik', '/vycvik/', '/vycvik/index.html', '/vycvik/vybava', '/vycvik/kolik-to-stoji', '/vycvik/zaver', '/vycvik/zkouska', '/vycvik/posudte-inzerat'];
     if (SKIP.some(function (p) { return path === p || path === p + '.html'; })) return;
 
     var nav = wrap.querySelector('.vycvik-nav');
@@ -186,6 +186,77 @@
     return el;
   }
 
+  /* ─────────────────────────────────────────────
+     4) POSOUZENÍ INZERÁTU
+     Sběrné místo pro člověka, kterému se osm týdnů nic neprodalo.
+     ───────────────────────────────────────────── */
+  function initInzeratForm() {
+    var form = document.getElementById('vy-inzerat-form');
+    if (!form) return;
+
+    var msg = form.querySelector('.vy-gate__msg');
+    var btn = form.querySelector('button[type="submit"]');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var odkaz = form.querySelector('input[name="odkaz"]').value.trim();
+      var email = form.querySelector('input[name="email"]').value.trim();
+      var jmeno = form.querySelector('input[name="jmeno"]').value.trim();
+      var poznamka = form.querySelector('textarea[name="poznamka"]').value.trim();
+      var souhlas = form.querySelector('input[name="souhlas"]');
+
+      if (!/^https?:\/\/.+\..+/.test(odkaz)) {
+        return showMsg(msg, 'Vložte prosím celý odkaz na inzerát včetně https://', 'error');
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        return showMsg(msg, 'Zadejte prosím platnou e-mailovou adresu, ať vám mám kam odpovědět.', 'error');
+      }
+      if (!souhlas.checked) {
+        return showMsg(msg, 'Bez souhlasu se zpracováním údajů vám nemůžu odpovědět.', 'error');
+      }
+
+      var original = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Odesílám…';
+
+      var parts = jmeno.split(/\s+/);
+      var telo = 'Žádost o posouzení inzerátu.\nOdkaz: ' + odkaz + '\n';
+      if (poznamka) telo += 'Poznámka: ' + poznamka + '\n';
+
+      sendLead({
+        firstName: parts[0] || '',
+        lastName: parts.slice(1).join(' ') || '',
+        email: email,
+        phone: '',
+        message: telo,
+        source: 'vycvik-posudek-inzeratu',
+        pipeline: 'vycvik-kniha',
+        extra: { listingUrl: odkaz, segment: 'neuspesny-samoprodejce' }
+      }).then(function () {
+        form.innerHTML =
+          '<div class="vy-gate__done">' +
+            '<i class="fas fa-circle-check" aria-hidden="true"></i>' +
+            '<h3>Mám to. Dívám se na to.</h3>' +
+            '<p>Odpověď vám přijde do dvou pracovních dnů na <strong>' + email + '</strong>. ' +
+            'Kdyby nedorazila, mrkněte do spamu — nebo mi napište na <a href="mailto:david.choc@ptf.cz">david.choc@ptf.cz</a>.</p>' +
+            '<p class="vy-gate__done-note">Mezitím si můžete projít <a href="/vycvik/diagnostika">diagnostiku</a> — čtyři čísla a uvidíte, kde to vázne.</p>' +
+          '</div>';
+
+        if (window.gtag) {
+          window.gtag('event', 'vycvik_posudek_inzeratu', {
+            event_category: 'lead', event_label: 'segment_e'
+          });
+        }
+        if (window.fbq) window.fbq('track', 'Lead', { content_name: 'vycvik-posudek-inzeratu' });
+      }).catch(function () {
+        btn.disabled = false;
+        btn.textContent = original;
+        showMsg(msg, 'Odeslání se nepodařilo. Zkuste to prosím znovu, nebo mi pošlete odkaz rovnou na david.choc@ptf.cz.', 'error');
+      });
+    });
+  }
+
   /* ── Pomocné ── */
   function showMsg(el, text, type) {
     if (!el) return;
@@ -223,9 +294,11 @@
     document.addEventListener('DOMContentLoaded', function () {
       injectFooterCta();
       initPdfForm();
+      initInzeratForm();
     });
   } else {
     injectFooterCta();
     initPdfForm();
+    initInzeratForm();
   }
 })();
