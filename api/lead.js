@@ -5,6 +5,9 @@
 //
 // Odhady zůstávají v Realvisoru — ty sem nechodí.
 
+import { odeslatEmail, ulozitKontakt, brevoNastaveno } from './_brevo.js';
+import { potvrzeniPro } from './_emaily.js';
+
 const PTF_BACKEND = process.env.PTF_BACKEND_URL || 'https://ptf-production.up.railway.app';
 const PTF_TENANT = process.env.PTF_TENANT_SLUG || 'ptf-reality';
 
@@ -121,6 +124,45 @@ function slozitZpravu(text, konfig, odkazy, metadata) {
   casti.push('────────────');
   casti.push(patka.join('\n'));
   return casti.join('\n\n');
+}
+
+// Seznamy v Brevu, na které se věší automatizace se sekvencí.
+// ID se nastavují v prostředí — bez nich se kontakt jen založí.
+function seznamyPro(formular) {
+  const mapa = {
+    'posudek-inzeratu': process.env.BREVO_LIST_POSUDEK,
+    'vycvik-pdf': process.env.BREVO_LIST_KNIHA,
+    'vycvik-zkouska': process.env.BREVO_LIST_KNIHA,
+  };
+  const id = Number(mapa[formular]);
+  return Number.isFinite(id) && id > 0 ? [id] : undefined;
+}
+
+async function poslatPotvrzeni({ formular, email, jmeno, metadata }) {
+  if (!brevoNastaveno()) return;
+
+  await ulozitKontakt({
+    email,
+    jmeno: jmeno.first_name,
+    prijmeni: jmeno.last_name,
+    listIds: seznamyPro(formular),
+    atributy: {
+      ZDROJ: 'davidchoc.cz',
+      FORMULAR: formular,
+      SEGMENT: metadata.segment || '',
+      INZERAT_URL: metadata.listing_url || '',
+    },
+  });
+
+  const sablona = potvrzeniPro(formular);
+  if (!sablona) return;
+
+  await odeslatEmail({
+    to: email,
+    jmeno: [jmeno.first_name, jmeno.last_name].filter(Boolean).join(' '),
+    subject: sablona.subject,
+    htmlContent: sablona.html(),
+  });
 }
 
 export default async function handler(req, res) {
@@ -257,6 +299,13 @@ export default async function handler(req, res) {
         error: 'Zprávu se nepodařilo uložit. Napište mi prosím přímo na david.choc@ptf.cz nebo zavolejte na 774 052 232 — ozvu se obratem.',
       });
     }
+
+    // Potvrzení a zařazení do sekvence. Běží až po zápisu do CRM a
+    // nesmí ho shodit — když Brevo zlobí, lead je pořád uložený
+    // a člověk dostal na stránce potvrzení.
+    await poslatPotvrzeni({ formular, email, jmeno, metadata }).catch((e) => {
+      console.error('[lead] Brevo selhalo (lead je v CRM uložený):', e.message);
+    });
 
     return res.status(200).json({ success: true, id: data.id });
   } catch (chyba) {

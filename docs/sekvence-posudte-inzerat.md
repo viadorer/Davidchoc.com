@@ -1,8 +1,43 @@
 # E-mailová sekvence — Posouzení inzerátu
 
-Podklad pro nastavení v e-mailovém nástroji. Spouští se odesláním formuláře
-na `/posudte-inzerat` (lead se zdrojem `posudek-inzeratu`,
-`metadata.segment = zaseknuty-samoprodejce`).
+Spouští se odesláním formuláře na `/posudte-inzerat` (lead se zdrojem
+`posudek-inzeratu`, `metadata.segment = zaseknuty-samoprodejce`).
+
+## Jak je to zapojené
+
+Odeslání formuláře dělá tři věci naráz:
+
+1. založí případ v CRM na ptf.cz/admin,
+2. vloží kontakt do Brevo se seznamem a atributy,
+3. odešle potvrzovací e-mail **E0**.
+
+Kroky E2–E6 řídí **automatizace v Brevu**, ne davidchoc.cz — statický web
+nemá kde držet stav ani co by ho po pěti dnech probudilo. Když Brevo
+vypadne, lead se přesto uloží do CRM; do logu Vercelu padne varování.
+
+### Proměnné na Vercelu
+
+| Proměnná | K čemu |
+|---|---|
+| `BREVO_API_KEY` | povinná, bez ní se e-maily neodesílají |
+| `BREVO_SENDER_EMAIL` | výchozí `david.choc@ptf.cz` |
+| `BREVO_SENDER_NAME` | výchozí `David Choc` |
+| `BREVO_LIST_POSUDEK` | ID seznamu pro tuhle sekvenci |
+| `BREVO_LIST_KNIHA` | ID seznamu pro leady z knihy |
+
+### Atributy kontaktu, podle kterých se dá v Brevu větvit
+
+`ZDROJ` = davidchoc.cz · `FORMULAR` = posudek-inzeratu ·
+`SEGMENT` = zaseknuty-samoprodejce · `INZERAT_URL` = odkaz na nabídku
+
+### Nastavení automatizace
+
+V Brevu založte seznam, jeho ID vložte do `BREVO_LIST_POSUDEK` a navěste
+na něj automatizaci se spouštěčem *kontakt přidán do seznamu*. Kroky
+a odstupy podle tabulky níže — **E0 už odešel z webu, začínáte tedy E2.**
+
+**Podmínka pro ukončení: kontakt odpověděl.** Nastavte ji jako výstup
+z celé automatizace, ne jen jako přeskočení kroku.
 
 ---
 
