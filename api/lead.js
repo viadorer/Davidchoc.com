@@ -39,6 +39,9 @@ const FORMULARE = {
   'vycvik-pdf':         { source: 'web_formular', popis: 'Kniha Výcvik — PDF ke stažení' },
   'vycvik-zkouska':     { source: 'web_formular', popis: 'Kniha Výcvik — výsledek zkoušky' },
   'vycvik-posudek':     { source: 'web_formular', popis: 'Kniha Výcvik — posouzení inzerátu' },
+  // Nabídka navázaná na konkrétní výsledek diagnostiky. Metadata nesou
+  // `verdikt`, takže se dá zpětně zjistit, který závěr lidi přiměl napsat.
+  'vycvik-diagnostika': { source: 'web_formular', popis: 'Kniha Výcvik — diagnostika inzerátu' },
   'nabidka-detail':     { source: 'web_formular', popis: 'Poptávka z detailu nabídky' },
   'posudek-inzeratu':   { source: 'web_formular', popis: 'Posouzení inzerátu — zaseknutý samoprodejce' },
   'newsletter':         { source: 'web_formular', popis: 'Přihlášení k odběru' },
@@ -138,7 +141,7 @@ function seznamyPro(formular) {
   return Number.isFinite(id) && id > 0 ? [id] : undefined;
 }
 
-async function poslatPotvrzeni({ formular, email, jmeno, metadata }) {
+async function poslatPotvrzeni({ formular, email, jmeno, metadata, preskocitEmail }) {
   if (!brevoNastaveno()) return;
 
   await ulozitKontakt({
@@ -153,6 +156,8 @@ async function poslatPotvrzeni({ formular, email, jmeno, metadata }) {
       INZERAT_URL: metadata.listing_url || '',
     },
   });
+
+  if (preskocitEmail) return;
 
   const sablona = potvrzeniPro(formular);
   if (!sablona) return;
@@ -303,7 +308,11 @@ export default async function handler(req, res) {
     // Potvrzení a zařazení do sekvence. Běží až po zápisu do CRM a
     // nesmí ho shodit — když Brevo zlobí, lead je pořád uložený
     // a člověk dostal na stránce potvrzení.
-    await poslatPotvrzeni({ formular, email, jmeno, metadata }).catch((e) => {
+    // Když si uvítací e-mail vzala na starost sekvence v CRM, vlastní
+    // potvrzení neposíláme — jinak by člověku přišly dva naráz.
+    const resilaSekvence = Number(data.sequences) > 0;
+
+    await poslatPotvrzeni({ formular, email, jmeno, metadata, preskocitEmail: resilaSekvence }).catch((e) => {
       console.error('[lead] Brevo selhalo (lead je v CRM uložený):', e.message);
     });
 

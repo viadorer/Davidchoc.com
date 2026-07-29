@@ -8,7 +8,21 @@
   // nemají co dělat ve zdrojovém kódu stránky.
   var LEAD_API = '/api/lead';
 
+  /**
+   * Zdroj návštěvy. Když je k dispozici attribution.js, bere se PRVNÍ
+   * dotek uložený při vstupu na web — jinak by se zdroj ztratil hned
+   * prvním proklikem mezi kapitolami a všechny leady by vypadaly jako
+   * přímé.
+   */
   function ziskatUtm() {
+    if (window.DchAttribution) {
+      var a = window.DchAttribution.proFormular();
+      if (a && a.source) return a;
+    }
+    return ziskatUtmZAdresy();
+  }
+
+  function ziskatUtmZAdresy() {
     try {
       var p = new URLSearchParams(window.location.search);
       var u = {};

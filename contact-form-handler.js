@@ -161,6 +161,12 @@
 
   function ziskatUtm() {
     try {
+      // První dotek uložený attribution.js má přednost — bez něj se zdroj
+      // ztratí prvním proklikem a lead dorazí jako „přímý".
+      if (window.DchAttribution) {
+        const a = window.DchAttribution.proFormular();
+        if (a && a.source) return a;
+      }
       const p = new URLSearchParams(window.location.search);
       const u = {};
       if (p.get('utm_source')) u.source = p.get('utm_source');

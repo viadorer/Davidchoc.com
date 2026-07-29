@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diagnostika inzerátu — proč se nemovitost neprodává | David Choc</title>
-    <meta name="description" content="Zadejte čtyři čísla z inzerátu a zjistěte, jestli je problém v ceně, ve fotkách, nebo v textu. Zdarma, bez registrace, výsledek hned.">
+    <meta name="description" content="Stačí tři čísla z inzerátu a zjistíte, jestli je problém v ceně, ve fotkách, nebo v textu. Zdarma, bez registrace, výsledek hned.">
     <meta name="keywords" content="proč se neprodává byt, diagnostika inzerátu, nemovitost dlouho visí, málo poptávek inzerát">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.davidchoc.cz/vycvik/diagnostika">
@@ -75,7 +75,7 @@
                     <span class="vycvik-chapter__label">Nástroj z knihy</span>
                     <h1 style="font-size: clamp(1.8rem, 3.6vw, 2.5rem); line-height:1.15; color:#1a1a1a; font-weight:900; margin:0 0 16px;">Proč se to neprodává</h1>
                     <p style="font-size:1.08rem; color:#555; line-height:1.7; margin:0 0 8px;">
-                        Zadejte čtyři čísla ze svého inzerátu. <strong>Odpověď obvykle vypadne sama.</strong>
+                        Stačí tři čísla z vašeho inzerátu. <strong>Odpověď obvykle vypadne sama.</strong>
                     </p>
                     <p style="font-size:0.94rem; color:#888; line-height:1.6; margin:0 0 28px;">
                         Nikam se to neodesílá. Ukládá se to jen ve vašem prohlížeči, abyste se k tomu mohli vrátit.
@@ -113,7 +113,15 @@
                                 <p class="vy-field__hint">Telefonáty i e-maily od zájemců. Realitky nepočítejte.</p>
                             </div>
 
-                            <div class="vy-field">
+                            <!-- Nepovinná čísla. Výpočet je bez nich funkční (dosadí 0),
+                                 takže je nemá smysl stavět do cesty — šest okének na první
+                                 pohled je nejčastější důvod, proč člověk nástroj nedokončí. -->
+                            <details class="vy-diag__vic" style="margin-top:8px;">
+                              <summary style="cursor:pointer; font-size:0.95rem; color:#8a6d1f; font-weight:600; padding:8px 0;">
+                                Mám i další čísla (upřesní výsledek)
+                              </summary>
+
+                            <div class="vy-field" style="margin-top:12px;">
                                 <label for="d-prohlidky">Prohlídek celkem</label>
                                 <div class="vy-input-wrap">
                                     <input type="number" id="d-prohlidky" data-field="prohlidky" inputmode="numeric" min="0" placeholder="4">
@@ -134,6 +142,7 @@
                                     <input type="number" id="d-slevy" data-field="slevy" inputmode="numeric" min="0" max="20" placeholder="2">
                                 </div>
                             </div>
+                            </details>
 
                             <div class="vy-progress__actions" style="margin-top:22px;">
                                 <button type="button" class="vy-btn vy-btn--gold" id="vy-diag-spustit">
@@ -207,6 +216,7 @@
     </div>
 
     <script src="/script.js"></script>
+    <script src="/attribution.js"></script>
     <script src="/common/common.js"></script>
     <script src="/cookie-consent.js"></script>
     <script src="/vycvik/vycvik-tools.js"></script>
@@ -252,11 +262,11 @@
         var naDotaz = dotazy > 0 ? (prohlidky / dotazy) * 100 : 0;
         var naProhlidku = prohlidky > 0 ? (nabidky / prohlidky) * 100 : 0;
 
-        var typ, nadpis, telo, kapitoly;
+        var typ, klic, nadpis, telo, kapitoly;
 
         // Nabídku nikdo nevidí — nejdřív kanály, teprve pak všechno ostatní
         if (zobrazeni < tydny * 25) {
-          typ = 'fail';
+          typ = 'fail'; klic = 'dosah';
           nadpis = 'Vaši nabídku skoro nikdo nevidí';
           telo = '<p>Za ' + tydny + '. týden máte ' + fmt(zobrazeni) + ' zobrazení. To je málo na to, aby se z toho dalo cokoli usoudit o ceně nebo o fotkách — ty lidé zatím nedostali šanci posoudit.</p>' +
                  '<p><strong>Problém je v dosahu, ne v nabídce.</strong> Buď jste na málo kanálech, nebo vás filtry kupujících míjejí, nebo jste v přehledu tak nízko, že se k vám nikdo nedoroluje.</p>';
@@ -264,7 +274,7 @@
 
         // Vidí, ale nepíšou
         } else if (naZobrazeni < 0.8) {
-          typ = 'fail';
+          typ = 'fail'; klic = 'cena';
           nadpis = 'Lidé si to otevřou, spočítají a odejdou';
           telo = '<p>Z ' + fmt(zobrazeni) + ' zobrazení ' + dotazyVeta(dotazy) + ', tedy ' + naZobrazeni.toFixed(1).replace('.', ',') + ' %. Nabídku vidí dost lidí, ale skoro nikdo z nich nemá důvod se ozvat.</p>' +
                  '<p>To znamená, že všechno podstatné se rozhodlo už v inzerátu. <strong>Nejčastěji je to cena vůči tomu, co za ni kupující dostane</strong> — a je to zároveň odpověď, kterou nikdo nechce slyšet. Druhá možnost je hlavní fotka, na které nabídka v přehledu propadne dřív, než ji někdo otevře.</p>';
@@ -272,7 +282,7 @@
 
         // Píšou, ale nepřijedou
         } else if (dotazy >= 3 && naDotaz < 40) {
-          typ = 'warn';
+          typ = 'warn'; klic = 'inzerat';
           nadpis = 'Ptají se, ale nepřijedou';
           telo = '<p>Z ' + dotazy + ' ' + sklon(dotazy, 'dotazu', 'dotazů', 'dotazů') + ' ' + prohlidkyVeta(prohlidky) + '. To je ' + naDotaz.toFixed(0) + ' % a je to málo.</p>' +
                  '<p>Zájem je — jinak by nepsali. <strong>Něco jim ale při prvním kontaktu vezme chuť přijet.</strong> Buď v inzerátu chybí informace, na kterou se musí doptat a odpověď je zklame, nebo jim trvá dlouho, než se odpovědi vůbec dočkají.</p>';
@@ -280,7 +290,7 @@
 
         // Přijedou a zmizí
         } else if (prohlidky >= 3 && nabidky === 0) {
-          typ = 'warn';
+          typ = 'warn'; klic = 'priprava';
           nadpis = 'Přijedou a pak zmizí';
           telo = '<p>' + prohlidky + ' ' + sklon(prohlidky, 'prohlídka', 'prohlídky', 'prohlídek') + ' a ani jedna nabídka. Nabídka i cena fungují natolik, že se lidé obtěžují přijet — <strong>zklame je až to, co uvidí na místě.</strong></p>' +
                  '<p>To je buď o přípravě nemovitosti, nebo o tom, jak prohlídka probíhá. Obojí se dá spravit rychle a bez jediné koruny slevy.</p>';
@@ -288,14 +298,14 @@
 
         // Nabídky chodí, ale nízké
         } else if (nabidky > 0 && naProhlidku > 0) {
-          typ = 'good';
+          typ = 'good'; klic = 'vyjednavani';
           nadpis = 'Nabídky chodí — teď jde o vyjednávání';
           telo = '<p>Máte ' + nabidky + ' ' + sklon(nabidky, 'nabídku', 'nabídky', 'nabídek') + ' z ' + prohlidky + ' ' + sklon(prohlidky, 'prohlídky', 'prohlídek', 'prohlídek') + '. Nabídka funguje: lidé ji vidí, píšou, jezdí a nakonec i nabízejí.</p>' +
                  '<p>Když jsou ty nabídky výrazně pod vaší cenou, <strong>je otázka, jestli je mimo cena, nebo jestli jen ustupujete dřív, než musíte.</strong> Rozdíl mezi tím poznáte podle toho, jestli se všechny nabídky drží kolem stejné částky. Když ano, je to trh a vaše cena je nad ním.</p>';
           kapitoly = [['/vycvik/kapitola-1-cena', 'Kapitola 1 — Cena'], ['/vycvik/kapitola-7-smlouvy', 'Kapitola 7 — Smlouvy a úschova']];
 
         } else {
-          typ = 'good';
+          typ = 'good'; klic = 'brzy';
           nadpis = 'Zatím je brzy na závěry';
           telo = '<p>Čísla, která jste zadali, na jednoznačnou diagnózu nestačí — u malých počtů vycházejí poměry nespolehlivě.</p>' +
                  '<p>Doplňte je za dva až tři týdny znovu. Do té doby si projděte vlastní inzerát ve výpisu na mobilu tak, jak ho vidí kupující, a nechte ho posoudit třemi lidmi zvenčí.</p>';
@@ -314,7 +324,7 @@
             '<p>Nabídka ve třetím měsíci se dá zachránit. V devátém už se zachraňuje mnohem hůř, protože trh si ji zapamatoval. Rozhodnutí teď je levnější než totéž rozhodnutí za dva měsíce.</p></div></div>';
         }
 
-        zobrazit(typ, nadpis, telo + pripominka, kapitoly);
+        zobrazit(typ, nadpis, telo + pripominka, kapitoly, klic, { tydny: tydny, zobrazeni: zobrazeni, dotazy: dotazy, prohlidky: prohlidky, nabidky: nabidky, slevy: slevy });
 
         if (window.gtag) {
           window.gtag('event', 'vycvik_diagnostika_dokoncena', {
@@ -325,7 +335,76 @@
         }
       });
 
-      function zobrazit(typ, nadpis, telo, kapitoly) {
+      /**
+       * Nabídka podle toho, co člověku vyšlo.
+       *
+       * Obecné „napište mi" na diagnostickém nástroji nefunguje: člověk
+       * právě zjistil konkrétní problém a potřebuje konkrétní další krok,
+       * ne rozcestník. Každá věta slibuje jednu věc, kterou dostane.
+       */
+      var NABIDKY = {
+        dosah: {
+          nadpis: 'Kde vaši nabídku hledat, když ji nikdo nevidí',
+          text: 'Projdu, na kterých kanálech vaše nabídka je a kde chybí, a napíšu vám, kde ji vaši kupující reálně hledají.',
+          tlacitko: 'Chci projít kanály'
+        },
+        cena: {
+          nadpis: 'Tři skutečné ceny z vaší lokality',
+          text: 'Pošlu vám tři realizované ceny srovnatelných nemovitostí ve vašem okolí, ať máte proti čemu se poměřit. Ne nabídkové — skutečně prodané.',
+          tlacitko: 'Chci srovnání cen'
+        },
+        inzerat: {
+          nadpis: 'Tři konkrétní změny v inzerátu',
+          text: 'Přečtu si váš inzerát očima kupujícího a napíšu tři věci, které v něm chybí a kvůli kterým lidé nedojedou.',
+          tlacitko: 'Chci projít inzerát'
+        },
+        priprava: {
+          nadpis: 'Co lidi na prohlídce odrazuje',
+          text: 'Podle fotek a popisu vám řeknu, co nejspíš zklame na místě — a co se s tím dá udělat bez jediné koruny slevy.',
+          tlacitko: 'Chci vědět, co odrazuje'
+        },
+        vyjednavani: {
+          nadpis: 'Je ta nabídka nízká, nebo je nízká vaše cena?',
+          text: 'Řekněte mi, kolik vám nabídli a za kolik inzerujete. Napíšu, jestli je to trh, nebo jestli máte ustoupit později.',
+          tlacitko: 'Chci posoudit nabídku'
+        },
+        brzy: {
+          nadpis: 'Ozvu se vám za dva týdny',
+          text: 'Na závěr je zatím brzo. Nechte mi e-mail a já se ozvu ve chvíli, kdy už čísla něco řeknou — s tím, co z nich vyšlo.',
+          tlacitko: 'Chci připomenout'
+        }
+      };
+
+      function nabidkaHtml(klic) {
+        var n = NABIDKY[klic] || NABIDKY.cena;
+        return '' +
+          '<div class="vy-diag__nabidka" style="margin-top:22px; border-top:1px solid rgba(0,0,0,.08); padding-top:18px;">' +
+            '<div style="display:flex; gap:14px; align-items:flex-start;">' +
+              '<img src="/davidchocagent.avif" alt="David Choc" width="56" height="56" loading="lazy" ' +
+                   'style="width:56px; height:56px; border-radius:50%; object-fit:cover; flex:0 0 56px;">' +
+              '<div style="min-width:0;">' +
+                '<strong style="display:block; font-size:1.05rem; color:#1a1a1a;">' + n.nadpis + '</strong>' +
+                '<p style="margin:6px 0 0; color:#555; line-height:1.6;">' + n.text + '</p>' +
+                '<p style="margin:6px 0 0; color:#888; font-size:0.9rem;">Zdarma a do 24 hodin — i když to nakonec budete prodávat sami.</p>' +
+              '</div>' +
+            '</div>' +
+            '<button type="button" class="cta-button" id="vy-diag-otevrit" style="margin-top:14px;">' + n.tlacitko + '</button>' +
+            '<form id="vy-diag-form" hidden style="margin-top:14px;">' +
+              '<input type="url" name="odkaz" placeholder="Odkaz na váš inzerát" style="width:100%; padding:11px 13px; margin-bottom:8px; border:1px solid #ddd; border-radius:8px; font-size:1rem;">' +
+              '<input type="email" name="email" required placeholder="Váš e-mail" style="width:100%; padding:11px 13px; margin-bottom:8px; border:1px solid #ddd; border-radius:8px; font-size:1rem;">' +
+              '<textarea name="poznamka" rows="2" placeholder="Co vás na tom nejvíc trápí (nepovinné)" style="width:100%; padding:11px 13px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px; font-size:1rem;"></textarea>' +
+              '<label style="display:flex; gap:8px; align-items:flex-start; font-size:0.86rem; color:#666; margin-bottom:10px;">' +
+                '<input type="checkbox" name="gdpr" required style="margin-top:3px;">' +
+                '<span>Souhlasím se <a href="/osobni-udaje.html" target="_blank" rel="noopener">zpracováním osobních údajů</a> za účelem odpovědi.</span>' +
+              '</label>' +
+              '<button type="submit" class="cta-button">Odeslat</button>' +
+              '<p style="margin:8px 0 0; color:#888; font-size:0.86rem;">Telefon po vás nechci. Odpověď přijde e-mailem. — David Choc</p>' +
+              '<p class="vy-diag__msg" hidden style="margin:8px 0 0; font-size:0.92rem;"></p>' +
+            '</form>' +
+          '</div>';
+      }
+
+      function zobrazit(typ, nadpis, telo, kapitoly, klic, cisla) {
         var odkazy = '';
         if (kapitoly && kapitoly.length) {
           odkazy = '<div class="vy-diag__kapitoly"><strong>Vraťte se sem:</strong><ul>' +
@@ -336,14 +415,80 @@
         vysledekEl.innerHTML =
           '<div class="vy-result vy-result--' + typ + '">' +
             '<div class="vy-result__body">' +
-              '<h2>' + nadpis + '</h2>' + telo + odkazy +
-              '<div class="vy-result__cta">' +
-                '<a href="/vycvik/posudte-inzerat" class="cta-button">Pošlete mi inzerát, projdu ho</a>' +
-              '</div>' +
+              '<h2>' + nadpis + '</h2>' + telo + odkazy + nabidkaHtml(klic) +
             '</div>' +
           '</div>';
         vysledekEl.hidden = false;
         vysledekEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        napojitNabidku(klic, nadpis, cisla);
+      }
+
+      /**
+       * Rozbalení na místě, ne přechod na jinou stránku ani modál. Člověk
+       * právě dostal odpověď a každý další skok ho z toho momentu vytrhne.
+       */
+      function napojitNabidku(klic, verdikt, cisla) {
+        var otevrit = document.getElementById('vy-diag-otevrit');
+        var form = document.getElementById('vy-diag-form');
+        if (!otevrit || !form) return;
+        var msg = form.querySelector('.vy-diag__msg');
+
+        otevrit.addEventListener('click', function () {
+          form.hidden = false;
+          otevrit.hidden = true;
+          var prvni = form.querySelector('input[name="odkaz"]');
+          if (prvni) prvni.focus();
+          if (window.gtag) {
+            window.gtag('event', 'vycvik_diagnostika_cta_otevrena',
+              { event_category: 'vycvik', event_label: klic });
+          }
+        });
+
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var email = (form.email.value || '').trim();
+          if (!email || !form.gdpr.checked) return;
+
+          var tlac = form.querySelector('button[type="submit"]');
+          if (tlac) { tlac.disabled = true; tlac.textContent = 'Odesílám…'; }
+
+          var zprava = 'Diagnostika: ' + verdikt + '\n' +
+            'Odkaz: ' + ((form.odkaz.value || '').trim() || '(neuveden)') + '\n' +
+            'Poznámka: ' + ((form.poznamka.value || '').trim() || '(žádná)');
+
+          fetch('/api/lead', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              form: 'vycvik-diagnostika',
+              email: email,
+              message: zprava,
+              gdpr: true,
+              // Verdikt a čísla jdou do metadat — po pár týdnech je z nich
+              // vidět, který závěr lidi skutečně přiměje napsat.
+              meta: { verdikt: klic, verdikt_nazev: verdikt, cisla: cisla || {} },
+              referrer: document.referrer || '',
+              utm: window.DchAttribution
+                ? window.DchAttribution.proFormular('vycvik-diagnostika')
+                : {}
+            })
+          }).then(function (r) {
+            if (!r.ok) throw new Error('API ' + r.status);
+            form.innerHTML = '<p style="margin:0; color:#1f7a3d; font-weight:600;">' +
+              'Díky. Ozvu se do 24 hodin na ' + email + '.</p>';
+            if (window.gtag) {
+              window.gtag('event', 'vycvik_diagnostika_lead',
+                { event_category: 'vycvik', event_label: klic });
+            }
+          }).catch(function () {
+            if (tlac) { tlac.disabled = false; tlac.textContent = 'Odeslat'; }
+            if (msg) {
+              msg.textContent = 'Odeslání se nepodařilo. Zkuste to prosím znovu, nebo mi zavolejte na 774 052 232.';
+              msg.style.color = '#c0392b';
+              msg.hidden = false;
+            }
+          });
+        });
       }
 
       function fmt(n) { return VycvikTools.formatNumber(n); }
