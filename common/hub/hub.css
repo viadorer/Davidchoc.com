@@ -3900,3 +3900,112 @@ body.is-light .hub-help__phone { text-decoration: none; }
     border-bottom: 1px solid transparent;
 }
 .hub-eco a:hover { border-bottom-color: currentColor; }
+
+/* ── DŮKAZNÍ LIŠTA ──────────────────────────────────────────────────────
+   Čísla, která si čtenář může ověřit, hned pod slibem v hlavičce. */
+.hub-proof {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2px;
+    background: rgba(var(--hub-ink-rgb, 26,26,26), 0.10);
+    border: 1px solid rgba(var(--hub-ink-rgb, 26,26,26), 0.10);
+    margin: 0;
+}
+.hub-proof__item {
+    background: var(--hub-paper, #F8F4E9);
+    padding: 22px 24px;
+}
+.hub-proof__num {
+    display: block;
+    font-size: 1.7rem;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--hub-ink, #1a1a1a);
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+}
+.hub-proof__desc {
+    display: block;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: var(--hub-muted, #8B7D61);
+}
+
+/* ── DVA PŘÍBĚHY VEDLE SEBE ─────────────────────────────────────────────
+   Stejná situace, dvě rozhodnutí. Nosná figura celého kurzu. */
+.hub-vs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin: 32px 0;
+}
+.hub-vs__side {
+    background: var(--hub-surface-3, #FFFDF7);
+    border: 1px solid var(--hub-line, #E6E0D4);
+    padding: 24px 26px;
+}
+.hub-vs__side--good { border-left: 3px solid var(--hub-accent, #FFBF00); }
+.hub-vs__side--bad { border-left: 3px solid var(--hub-risk, #E0574A); }
+.hub-vs__label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+.hub-vs__side--good .hub-vs__label { color: var(--hub-accent, #FFBF00); }
+.hub-vs__side--bad .hub-vs__label { color: var(--hub-risk, #E0574A); }
+.hub-vs__side h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0 0 10px;
+    color: var(--hub-ink, #1a1a1a);
+    line-height: 1.35;
+}
+.hub-vs__side p {
+    margin: 0 0 10px;
+    font-size: 0.98rem;
+    line-height: 1.68;
+    color: var(--hub-muted, #8B7D61);
+}
+.hub-vs__side p:last-child { margin-bottom: 0; }
+
+/* ── AKČNÍ BLOK ─────────────────────────────────────────────────────────
+   Konec kapitoly. Jedna věc, kterou má čtenář udělat dnes večer. */
+.hub-action {
+    background: var(--hub-accent-light, #FFF9EC);
+    border: 1px solid var(--hub-line, #E6E0D4);
+    padding: 28px 30px;
+    margin: 44px 0 0;
+}
+.hub-action__label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--hub-accent, #FFBF00);
+    margin-bottom: 10px;
+}
+.hub-action h3 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin: 0 0 10px;
+    color: var(--hub-ink, #1a1a1a);
+    line-height: 1.3;
+}
+.hub-action p {
+    margin: 0 0 16px;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--hub-muted, #8B7D61);
+}
+.hub-action p:last-child { margin-bottom: 0; }
+
+@media (max-width: 600px) {
+    .hub-action { padding: 22px 20px; }
+    .hub-vs__side { padding: 20px 22px; }
+    .hub-proof__item { padding: 18px 20px; }
+    .hub-proof__num { font-size: 1.45rem; }
+}
