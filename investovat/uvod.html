@@ -133,8 +133,7 @@
                         Demografická matematika v Česku je neúprosná a nezajímá ji, koho příští rok
                         zvolíte. Důchodců přibývá, pracujících na jednoho důchodce ubývá. Důchod,
                         který jednou dostanete vy, koupí míň než ten, který dnes dostávají vaši
-                        rodiče. To není strašení jedné politické strany — to je aritmetika, kterou
-                        si za deset minut ověříte sami kalkulačkou o kus níž na téhle stránce.
+                        rodiče. To není strašení jedné politické strany — to je aritmetika. A váš vlastní důchod si o kus níž na téhle stránce spočítáte přesně podle zákonného vzorce, ne podle odhadu.
                     </p>
 
                     <div class="hub-time">
@@ -200,7 +199,7 @@
                         a nikdo vám kvůli tomu nenapíše.
                     </p>
 
-                    <div class="vy-widget" id="mezera-kalkulacka">
+                    <div class="vy-widget" id="mezera-kalkulacka" data-rok="2026">
                         <div class="vy-widget__head">
                             <span class="vy-widget__badge"><i class="fas fa-calculator" aria-hidden="true"></i> Vstupy</span>
                             <h3 class="vy-widget__title">Vaše čísla</h3>
@@ -209,20 +208,29 @@
 
                         <div class="vy-widget__body">
                             <div class="vy-field">
-                                <label for="k-vek">Kolik je vám let</label>
+                                <label for="k-rok">Rok narození</label>
                                 <div class="vy-input-wrap">
-                                    <input type="text" id="k-vek" data-field="vek" inputmode="numeric" placeholder="42">
-                                    <span class="vy-input-suffix">let</span>
+                                    <input type="text" id="k-rok" data-field="rok" inputmode="numeric" placeholder="1981">
                                 </div>
+                                <p class="vy-field__hint">Podle ročníku se určí váš důchodový věk. Do 1965 je to 65 let, pak o měsíc víc za každý ročník, od 1989 rovných 67.</p>
                             </div>
 
                             <div class="vy-field">
-                                <label for="k-prijem">Čistý měsíční příjem</label>
+                                <label for="k-hruba">Hrubá měsíční mzda</label>
                                 <div class="vy-input-wrap">
-                                    <input type="text" id="k-prijem" data-field="prijem" inputmode="numeric" placeholder="45 000">
+                                    <input type="text" id="k-hruba" data-field="hruba" inputmode="numeric" placeholder="55 000">
                                     <span class="vy-input-suffix">Kč</span>
                                 </div>
-                                <p class="vy-field__hint">Čistý, ne hrubý — tedy to, co vám reálně chodí na účet.</p>
+                                <p class="vy-field__hint">Hrubá, ne čistá — důchod se počítá z výdělku před odvody. Čistou mzdu si z ní dopočítám sám.</p>
+                            </div>
+
+                            <div class="vy-field">
+                                <label for="k-roky">Roky pojištění do důchodu</label>
+                                <div class="vy-input-wrap">
+                                    <input type="text" id="k-roky" data-field="roky" inputmode="numeric" placeholder="automaticky">
+                                    <span class="vy-input-suffix">let</span>
+                                </div>
+                                <p class="vy-field__hint">Nechte prázdné a počítám s nástupem do práce ve dvaadvaceti. Kdo studoval déle nebo byl dlouho na rodičovské, ať si to sníží — každý rok navíc dělá v důchodu zhruba 400 Kč měsíčně.</p>
                             </div>
 
                             <div class="vy-field">
@@ -239,7 +247,13 @@
                             <div class="js-vysledek" hidden></div>
 
                             <p class="vy-field__hint" style="margin-top:18px;">
-                                Model počítá s odchodem do důchodu v 65 letech a s tím, že si chcete udržet 80 % dnešní životní úrovně. Státní důchod odhaduje jako pevný základ 11 000 Kč plus čtvrtinu vašeho příjmu (český důchod je silně solidární — kdo bere víc, dostane v procentech míň) a pro mladší ročníky ho snižuje o půl procenta za každý rok do důchodu. Je to model, ne předpověď — ukazuje řád, ne přesnou částku.
+                                Důchod se počítá podle zákona č. 155/1995 Sb. s parametry pro rok 2026:
+                                základní výměra 4 900 Kč, první redukční hranice 21 546 Kč (zápočet 99 %),
+                                druhá 195 868 Kč (zápočet 26 %, nad ni nic) a procentní výměra 1,495 %
+                                výpočtového základu za každý celý rok pojištění. Všechno je v dnešních
+                                penězích — mzdy i redukční hranice rostou spolu, takže výsledek odpovídá
+                                dnešní kupní síle. Nezahrnuje případné předčasné odchody, výchovné za děti
+                                ani doby, které se započítávají jen zčásti.
                             </p>
                         </div>
                     </div>
