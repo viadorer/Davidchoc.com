@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TITULEK}} | David Choc</title>
+    <meta name="description" content="{{POPIS}}">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+    <link rel="canonical" href="https://www.davidchoc.cz{{ZAKLAD}}/{{SLUG}}">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="cs_CZ">
+    <meta property="og:title" content="{{TITULEK}}">
+    <meta property="og:description" content="{{POPIS}}">
+    <meta property="og:url" content="https://www.davidchoc.cz{{ZAKLAD}}/{{SLUG}}">
+    <meta property="og:image" content="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/davidchocagent.avif">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" type="image/png" href="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/favicon.png">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/common/hub/hub.css">
+    <link rel="stylesheet" href="/common/hub/themes/{{TEMA}}.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TXGDD8D3GK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-TXGDD8D3GK');
+    </script>
+</head>
+<body class="hub-page is-light" data-hub-section="{{SEKCE}}">
+    <div id="navbar-placeholder"></div>
+
+    <main>
+        <section class="hub-chapter hub-tool-page">
+            <div class="container">
+                <div class="hub-tool-page__wrap">
+
+                    <nav class="hub-crumb" aria-label="Drobečková navigace">
+                        <a href="{{ZAKLAD}}">{{NAZEV_SEKCE}}</a>
+                        <span>{{NAZEV_NASTROJE}}</span>
+                    </nav>
+
+                    <span class="hub-chapter__label">Nástroj</span>
+                    <h1>{{H1}}</h1>
+                    <p class="hub-lead">{{PERTEX}}</p>
+
+                    <div class="vy-widget" id="{{ID_NASTROJE}}">
+                        <div class="vy-widget__head">
+                            <span class="vy-widget__badge"><i class="fas fa-sliders" aria-hidden="true"></i> {{BADGE}}</span>
+                            <h2 class="vy-widget__title">{{NAZEV_NASTROJE}}</h2>
+                            <p class="vy-widget__desc">{{POPIS_NASTROJE}} Ukládá se vám to v prohlížeči.</p>
+                        </div>
+
+                        <div class="vy-widget__body">
+                            <!-- Checklist: <input type="checkbox" data-key="...">
+                                 Pole:      <input data-field="..."> -->
+                        </div>
+                    </div>
+
+                    <!-- Konverzní patičku sem vkládá hub-cta.js sám. -->
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <div class="floating-buttons">
+        <a href="#" class="floating-button back-to-top" aria-label="Zpět nahoru"><i class="fas fa-arrow-up"></i></a>
+        <a href="tel:+420774052232" class="floating-button call" aria-label="Zavolat"><i class="fas fa-phone-alt"></i></a>
+        <a href="mailto:david.choc@ptf.cz" class="floating-button email" aria-label="Poslat email"><i class="fas fa-envelope"></i></a>
+    </div>
+
+    <script src="/script.js"></script>
+    <script src="/attribution.js"></script>
+    <script src="/common/common.js"></script>
+    <script src="/cookie-consent.js"></script>
+    <script src="/common/hub/hub-cta.js"></script>
+    <script src="/common/hub/hub-tools.js"></script>
+    <script src="{{ZAKLAD}}/{{SEKCE}}-cta.js"></script>
+    <script>
+      HubTools.initChecklist({
+        storageKey: '{{SEKCE}}-{{SLUG}}',
+        container: '#{{ID_NASTROJE}} .vy-widget__body',
+        countEl: '#{{ID_NASTROJE}} .vy-progress__count',
+        fillEl: '#{{ID_NASTROJE}} .vy-progress__fill',
+        gaEvent: '{{SEKCE}}_{{SLUG}}_hotovo'
+      });
+    </script>
+</body>
+</html>

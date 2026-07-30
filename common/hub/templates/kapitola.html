@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TITULEK}} | David Choc</title>
+    <meta name="description" content="{{POPIS}}">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+    <link rel="canonical" href="https://www.davidchoc.cz{{ZAKLAD}}/{{SLUG}}">
+
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="cs_CZ">
+    <meta property="og:title" content="{{TITULEK}}">
+    <meta property="og:description" content="{{POPIS}}">
+    <meta property="og:url" content="https://www.davidchoc.cz{{ZAKLAD}}/{{SLUG}}">
+    <meta property="og:image" content="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/davidchocagent.avif">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" type="image/png" href="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/favicon.png">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/common/hub/hub.css">
+    <link rel="stylesheet" href="/common/hub/themes/{{TEMA}}.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TXGDD8D3GK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-TXGDD8D3GK');
+    </script>
+</head>
+<body class="hub-page is-light" data-hub-section="{{SEKCE}}">
+    <div id="navbar-placeholder"></div>
+
+    <main>
+        <section class="hub-chapter">
+            <div class="container">
+                <div class="hub-chapter__wrap">
+
+                    <nav class="hub-crumb" aria-label="Drobečková navigace">
+                        <a href="{{ZAKLAD}}">{{NAZEV_SEKCE}}</a>
+                        <span>{{KROK_LABEL}}</span>
+                    </nav>
+
+                    <span class="hub-chapter__label">{{KROK_LABEL}}</span>
+                    <h1>{{H1}}</h1>
+                    <p class="hub-lead">{{PERTEX}}</p>
+
+                    <!-- 1) CO SE V TOMHLE KROKU DĚJE -->
+                    <p>{{TEXT}}</p>
+
+                    <!-- 2) KDE SE TO LÁME — modul, který má každá kapitola.
+                         Míra: nízké / střední / vysoké. Cena chyby v korunách
+                         je to nejcennější, co na stránce je. -->
+                    <div class="hub-risk">
+                        <div class="hub-risk__head">
+                            <span class="hub-risk__label">Kde se to láme</span>
+                            <span class="hub-risk__level">Riziko {{MIRA}}</span>
+                        </div>
+                        <p class="hub-risk__title">{{NAZEV_RIZIKA}}</p>
+                        <p>{{POPIS_RIZIKA}}</p>
+                        <span class="hub-risk__cost">Cena chyby: {{CENA}}</span>
+                    </div>
+
+                    <!-- 3) JAK TO OHLÍDAT -->
+                    <h2>Jak to ohlídat</h2>
+                    <div class="hub-steps">
+                        <div class="hub-step">
+                            <div class="hub-step__num">1</div>
+                            <div class="hub-step__body">
+                                <h3>{{KROK_NAZEV}}</h3>
+                                <p>{{KROK_TEXT}}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Odkaz na nástroj, který k tomuhle kroku patří -->
+                    <a href="{{ZAKLAD}}/{{NASTROJ_SLUG}}" class="hub-toollink">
+                        <span class="hub-toollink__icon"><i class="fas fa-calculator" aria-hidden="true"></i></span>
+                        <span class="hub-toollink__text">
+                            <span class="hub-toollink__name">{{NAZEV_NASTROJE}}</span>
+                            <span class="hub-toollink__desc">{{POPIS_NASTROJE}}</span>
+                        </span>
+                        <span class="hub-toollink__arrow"><i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                    </a>
+
+                    <!-- 4) KDY TO NEDĚLAT SÁM -->
+                    <div class="hub-callout">
+                        <h3>Kdy to nedělat sám</h3>
+                        <p>{{KDY_NE}}</p>
+                    </div>
+
+                    <!-- Konverzní patičku sem vkládá hub-cta.js sám. -->
+
+                    <nav class="hub-nav">
+                        <a href="{{ZAKLAD}}/{{PREDCHOZI}}" class="hub-nav__link hub-nav__link--prev">
+                            <span class="hub-nav__dir">Předchozí</span>
+                            <span class="hub-nav__name">{{PREDCHOZI_NAZEV}}</span>
+                        </a>
+                        <a href="{{ZAKLAD}}/{{DALSI}}" class="hub-nav__link hub-nav__link--next">
+                            <span class="hub-nav__dir">Další</span>
+                            <span class="hub-nav__name">{{DALSI_NAZEV}}</span>
+                        </a>
+                    </nav>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <div class="floating-buttons">
+        <a href="#" class="floating-button back-to-top" aria-label="Zpět nahoru"><i class="fas fa-arrow-up"></i></a>
+        <a href="tel:+420774052232" class="floating-button call" aria-label="Zavolat"><i class="fas fa-phone-alt"></i></a>
+        <a href="mailto:david.choc@ptf.cz" class="floating-button email" aria-label="Poslat email"><i class="fas fa-envelope"></i></a>
+    </div>
+
+    <script src="/script.js"></script>
+    <script src="/attribution.js"></script>
+    <script src="/common/common.js"></script>
+    <script src="/cookie-consent.js"></script>
+    <script src="/common/hub/hub-cta.js"></script>
+    <script src="/common/hub/hub-tools.js"></script>
+    <script src="{{ZAKLAD}}/{{SEKCE}}-cta.js"></script>
+</body>
+</html>

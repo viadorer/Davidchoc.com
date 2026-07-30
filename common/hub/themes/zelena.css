@@ -1,0 +1,147 @@
+/* ===========================================================================
+   TÉMA ZELENÁ — pro sekce o investování a pronájmu
+   ---------------------------------------------------------------------------
+   Přikládá se za hub.css a přepisuje jeho tokeny:
+
+       <link rel="stylesheet" href="/styles.css">
+       <link rel="stylesheet" href="/common/hub/hub.css">
+       <link rel="stylesheet" href="/common/hub/themes/zelena.css">
+
+   PRAVIDLO, KTERÉ TÉMA DRŽÍ POHROMADĚ
+   Světlá zelená je vždycky plocha, nikdy písmo. Barevně se mluví jen
+   přes --hub-accent (#2F5D3A, kontrast 7,9:1 na papíře). Na pistáciové
+   ploše leží tmavý inkoust (kontrast 13,8:1). Bledě zelená typografie,
+   na kterou tahle paleta svádí, tím nejde vyrobit.
+   =========================================================================== */
+
+.hub-page,
+.hub-theme-zelena {
+    /* Základ */
+    --hub-ink: #0F1410;
+    --hub-ink-rgb: 15,20,16;
+    --hub-paper: #FBFCF7;
+    --hub-muted: #5A6B5C;
+
+    /* Zelená ve dvou rolích: signální linka a velká plocha */
+    --hub-accent: #2F5D3A;
+    --hub-accent-rgb: 47,93,58;
+    --hub-accent-surface: #D4E7B5;
+    --hub-accent-deep: #24482D;
+    --hub-accent-light: #EDF4E1;
+
+    /* Plochy a linky */
+    --hub-surface-1: #F6F9F0;
+    --hub-surface-2: #EDF4E1;
+    --hub-surface-3: #FFFFFF;
+    --hub-surface-4: #F1F6E9;
+    --hub-line: #DCE5D0;
+
+    /* Stavy — zelená jako potvrzení musí být jiná než zelená značky */
+    --hub-ok: #3E9C6D;
+    --hub-ok-rgb: 62,156,109;
+    --hub-ok-soft: #EAF5EF;
+
+    /* Riziko: pálená hlína, ne červená. Na vzdělávacím webu, kde je
+       varování na každé stránce, červená po třetím výskytu přestane
+       fungovat. */
+    --hub-risk: #8A4B2A;
+    --hub-risk-rgb: 138,75,42;
+    --hub-risk-deep: #6E3A20;
+    --hub-risk-soft: #FAF1EA;
+}
+
+/* Tlačítka webu jsou globálně jantarová — uvnitř zelené sekce ne.
+   Dvě třídy v selektoru schválně: styles.css má `body.is-light
+   .cta-button--outline`, což by jednotřídní pravidlo přebilo. */
+.hub-page.is-light .cta-button,
+.hub-page .cta-button {
+    background-color: var(--hub-ink);
+    color: var(--hub-paper);
+    border-radius: 4px;
+    box-shadow: none;
+}
+.hub-page.is-light .cta-button:hover,
+.hub-page .cta-button:hover {
+    background-color: var(--hub-accent-deep);
+    color: #fff;
+}
+.hub-page.is-light .cta-button--outline,
+.hub-page .cta-button--outline {
+    background-color: transparent;
+    color: var(--hub-accent);
+    border: 1px solid var(--hub-accent);
+}
+.hub-page.is-light .cta-button--outline:hover,
+.hub-page .cta-button--outline:hover {
+    background-color: var(--hub-accent-surface);
+    color: var(--hub-accent-deep);
+    border-color: var(--hub-accent-surface);
+}
+
+/* Hero je v tomhle tématu plocha, ne přechod. */
+.hub-page .hub-hero {
+    background: var(--hub-accent-surface);
+    border-bottom: 1px solid var(--hub-line);
+}
+.hub-page .hub-hero__eyebrow,
+.hub-page .hub-hero__lead { color: var(--hub-accent-deep); }
+.hub-page .hub-hero__sub { color: var(--hub-accent-deep); }
+
+/* ── RIZIKOVÝ BLOK ──────────────────────────────────────────────────────
+   Opakuje se v každé kapitole: co se děje → kde se to láme → jak
+   to ohlídat. Tohle je ta část „kde se to láme". */
+.hub-risk {
+    background: var(--hub-surface-3);
+    border-left: 3px solid var(--hub-risk);
+    border-radius: 0;
+    padding: 18px 22px;
+    margin: 28px 0;
+}
+.hub-risk__head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+}
+.hub-risk__label {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--hub-risk);
+}
+.hub-risk__level {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--hub-risk-deep);
+    background: var(--hub-risk-soft);
+    padding: 3px 10px;
+    border-radius: 40px;
+}
+.hub-risk__title {
+    font-size: 1.06rem;
+    font-weight: 700;
+    color: var(--hub-ink);
+    margin: 0 0 6px;
+    line-height: 1.4;
+}
+.hub-risk p {
+    margin: 0 0 10px;
+    font-size: 0.98rem;
+    line-height: 1.68;
+    color: #4A544C;
+}
+.hub-risk p:last-child { margin-bottom: 0; }
+.hub-risk__cost {
+    display: inline-block;
+    margin-top: 4px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--hub-risk-deep);
+}
+
+@media (max-width: 600px) {
+    .hub-risk { padding: 16px 18px; }
+}

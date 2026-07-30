@@ -1,9 +1,21 @@
-// Sdílená knihovna pro interaktivní nástroje z knihy Výcvik ziskového prodeje.
-// Vše se ukládá do localStorage — žádná registrace, žádné odesílání dat.
+// HUB KIT — knihovna interaktivních nástrojů obsahových sekcí.
+// Checklisty, formulářová pole, formátování čísel. Vše se ukládá do
+// localStorage — žádná registrace, žádné odesílání dat.
+//
+// Sekci, pod kterou se hlásí události do GA, nastavuje stránka:
+//     <body data-hub-section="investice">
+// Bez toho se použije "hub".
 (function (global) {
   'use strict';
 
-  var VycvikTools = {};
+  var HubTools = {};
+
+  // Název sekce pro události v Google Analytics.
+  // Čte se až při použití — skript může být v hlavičce, kde <body> ještě není.
+  HubTools.section = function () {
+    var b = document.body;
+    return (b && b.getAttribute('data-hub-section')) || 'hub';
+  };
 
   function safeGet(key) {
     try {
@@ -38,7 +50,7 @@
    *   onChange    – callback(done, total) (volitelné)
    *   gaEvent     – název GA eventu při dokončení všeho (volitelné)
    */
-  VycvikTools.initChecklist = function (opts) {
+  HubTools.initChecklist = function (opts) {
     var root = document.querySelector(opts.container);
     if (!root) return;
 
@@ -80,7 +92,7 @@
         firedComplete = true;
         if (opts.gaEvent && global.gtag) {
           global.gtag('event', opts.gaEvent, {
-            event_category: 'vycvik',
+            event_category: HubTools.section(),
             event_label: 'completed'
           });
         }
@@ -127,7 +139,7 @@
    *   container  – selektor obalu (povinné)
    *   resetEl    – selektor tlačítka pro vymazání (volitelné)
    */
-  VycvikTools.initFields = function (opts) {
+  HubTools.initFields = function (opts) {
     var root = document.querySelector(opts.container);
     if (!root) return;
 
@@ -173,18 +185,20 @@
   };
 
   /** Formátování čísla na české tisíce: 4850000 → "4 850 000" */
-  VycvikTools.formatNumber = function (num) {
+  HubTools.formatNumber = function (num) {
     if (num == null || isNaN(num)) return '';
     return Math.round(num).toLocaleString('cs-CZ').replace(/ /g, ' ');
   };
 
   /** Parsování uživatelského vstupu: "4 850 000 Kč" → 4850000 */
-  VycvikTools.parseNumber = function (str) {
+  HubTools.parseNumber = function (str) {
     if (str == null) return NaN;
     var cleaned = String(str).replace(/[^\d,.-]/g, '').replace(/\s/g, '').replace(',', '.');
     var num = parseFloat(cleaned);
     return isNaN(num) ? NaN : num;
   };
 
-  global.VycvikTools = VycvikTools;
+  global.HubTools = HubTools;
+  // Výcvik knihovnu volá pod původním jménem — alias, ať se nemusí přepisovat.
+  global.VycvikTools = HubTools;
 })(window);
