@@ -87,61 +87,11 @@
 .hub-page .hub-hero__lead { color: var(--hub-accent-deep); }
 .hub-page .hub-hero__sub { color: var(--hub-accent-deep); }
 
-/* ── RIZIKOVÝ BLOK ──────────────────────────────────────────────────────
-   Opakuje se v každé kapitole: co se děje → kde se to láme → jak
-   to ohlídat. Tohle je ta část „kde se to láme". */
-.hub-risk {
-    background: var(--hub-surface-3);
-    border-left: 3px solid var(--hub-risk);
-    border-radius: 0;
-    padding: 18px 22px;
-    margin: 28px 0;
+/* Plovoucí nabídka je globální prvek webu a nosí jantarovou. Uvnitř zelené
+   sekce by křičela — přebarvuje se, chování zůstává. */
+.hub-page .popup-cta__image { border-color: var(--hub-accent); }
+.hub-page .popup-cta__btn {
+    background: var(--hub-ink);
+    color: var(--hub-paper);
 }
-.hub-risk__head {
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 8px;
-}
-.hub-risk__label {
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--hub-risk);
-}
-.hub-risk__level {
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    color: var(--hub-risk-deep);
-    background: var(--hub-risk-soft);
-    padding: 3px 10px;
-    border-radius: 40px;
-}
-.hub-risk__title {
-    font-size: 1.06rem;
-    font-weight: 700;
-    color: var(--hub-ink);
-    margin: 0 0 6px;
-    line-height: 1.4;
-}
-.hub-risk p {
-    margin: 0 0 10px;
-    font-size: 0.98rem;
-    line-height: 1.68;
-    color: #4A544C;
-}
-.hub-risk p:last-child { margin-bottom: 0; }
-.hub-risk__cost {
-    display: inline-block;
-    margin-top: 4px;
-    font-size: 0.92rem;
-    font-weight: 700;
-    color: var(--hub-risk-deep);
-}
-
-@media (max-width: 600px) {
-    .hub-risk { padding: 16px 18px; }
-}
+.hub-page .popup-cta__btn:hover { background: var(--hub-accent-deep); }

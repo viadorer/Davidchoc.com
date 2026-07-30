@@ -3785,3 +3785,118 @@ body.is-light .hub-help__phone { text-decoration: none; }
 .hub-hero__grid--single .hub-hero__text {
     max-width: 760px;
 }
+
+/* ── DVA MODULY KAPITOLY ────────────────────────────────────────────────
+   Opakují se u každého kroku ve stejné váze. Čas říká, co stojí odklad;
+   riziko, kde se to láme. Záměrně stejná konstrukce a jiná barva —
+   čtenář je pak rozezná dřív, než si přečte nadpis. */
+.hub-time,
+.hub-risk {
+    background: var(--hub-surface-3, #FFFDF7);
+    padding: 18px 22px;
+    margin: 28px 0;
+    border-radius: 0;
+}
+.hub-time { border-left: 3px solid var(--hub-accent, #FFBF00); }
+.hub-risk { border-left: 3px solid var(--hub-risk, #E0574A); }
+
+.hub-time__head,
+.hub-risk__head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+}
+.hub-time__label,
+.hub-risk__label {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+.hub-time__label { color: var(--hub-accent, #FFBF00); }
+.hub-risk__label { color: var(--hub-risk, #E0574A); }
+
+.hub-time__level,
+.hub-risk__level {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 3px 10px;
+    border-radius: 40px;
+}
+.hub-time__level {
+    color: var(--hub-accent-deep, #E0A800);
+    background: var(--hub-accent-light, #FFF9EC);
+}
+.hub-risk__level {
+    color: var(--hub-risk-deep, #C0392B);
+    background: var(--hub-risk-soft, #FEF6F5);
+}
+
+.hub-time__title,
+.hub-risk__title {
+    font-size: 1.06rem;
+    font-weight: 700;
+    color: var(--hub-ink, #1a1a1a);
+    margin: 0 0 6px;
+    line-height: 1.4;
+}
+.hub-time p,
+.hub-risk p {
+    margin: 0 0 10px;
+    font-size: 0.98rem;
+    line-height: 1.68;
+    color: var(--hub-muted, #8B7D61);
+}
+.hub-time p:last-child,
+.hub-risk p:last-child { margin-bottom: 0; }
+
+.hub-time__cost,
+.hub-risk__cost {
+    display: inline-block;
+    margin-top: 4px;
+    font-size: 0.92rem;
+    font-weight: 700;
+}
+.hub-time__cost { color: var(--hub-accent-deep, #E0A800); }
+.hub-risk__cost { color: var(--hub-risk-deep, #C0392B); }
+
+@media (max-width: 600px) {
+    .hub-time,
+    .hub-risk { padding: 16px 18px; }
+}
+
+/* ── PRÁVNÍ DOLOŽKA ─────────────────────────────────────────────────────
+   U obsahu, který mluví o výnosech, hypotékách a daních, patří na každou
+   stránku — ne jen na tu první. */
+.hub-disclaimer {
+    border-top: 1px solid var(--hub-line, #E6E0D4);
+    margin: 56px 0 0;
+    padding: 22px 0 0;
+}
+.hub-disclaimer p {
+    margin: 0;
+    font-size: 0.86rem;
+    line-height: 1.65;
+    color: var(--hub-muted, #8B7D61);
+}
+
+/* ── EKOSYSTÉM ──────────────────────────────────────────────────────────
+   Odkazy na sesterské weby. Ne navigace, jen tichá lišta na konci. */
+.hub-eco {
+    display: flex;
+    gap: 10px 26px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 14px;
+}
+.hub-eco a {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--hub-accent, #FFBF00);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+}
+.hub-eco a:hover { border-bottom-color: currentColor; }
