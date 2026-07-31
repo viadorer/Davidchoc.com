@@ -1,0 +1,231 @@
+/* ===========================================================================
+   VÝRAZNÉ KOMPONENTY — nadstavba nad tématem, ne nové téma
+   ---------------------------------------------------------------------------
+   Nepřepisuje jedinou barvu. Bere tokeny z tématu, které je načtené před ním,
+   a staví z nich hlasitější prvky: hero přes celou obrazovku, velká tvrzení,
+   námitku s odpovědí, kruh krysího závodu a mřížku deseti cihel.
+
+       <link rel="stylesheet" href="/styles.css">
+       <link rel="stylesheet" href="/common/hub/hub.css">
+       <link rel="stylesheet" href="/common/hub/themes/zelena.css">
+       <link rel="stylesheet" href="/common/hub/themes/manifest.css">
+
+   Díky tomu jde stejná grafika použít i pod jiným tématem — změní se barvy,
+   ne konstrukce.
+   =========================================================================== */
+
+/* ── HERO PŘES CELOU OBRAZOVKU ───────────────────────────────────────────
+   Žádná obálka knihy, žádná fotka. Jen věta, která se nedá přehlédnout. */
+.hub-manifest {
+    background: var(--hub-accent-surface, #D4E7B5);
+    border-bottom: 1px solid var(--hub-line, #DCE5D0);
+    padding: 110px 0 88px !important;
+    position: relative;
+    overflow: hidden;
+}
+.hub-manifest::before {
+    /* Tenká mřížka dá ploše měřítko, aniž by kradla pozornost. */
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(var(--hub-ink-rgb, 15,20,16), 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(var(--hub-ink-rgb, 15,20,16), 0.05) 1px, transparent 1px);
+    background-size: 64px 64px;
+    pointer-events: none;
+}
+.hub-manifest > .container { position: relative; }
+
+.hub-manifest__eyebrow {
+    display: inline-block;
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--hub-paper, #FBFCF7);
+    background: var(--hub-ink, #0F1410);
+    padding: 8px 15px;
+    margin-bottom: 30px;
+}
+.hub-manifest h1 {
+    font-size: clamp(2.5rem, 6.8vw, 5rem);
+    line-height: 0.99;
+    font-weight: 900;
+    letter-spacing: -0.035em;
+    margin: 0 0 26px;
+    max-width: 17ch;
+    text-transform: uppercase;
+    color: var(--hub-ink, #0F1410);
+}
+.hub-manifest h1 em {
+    font-style: normal;
+    /* Podtržení místo jiné barvy — na pistáciové ploše by druhá barva zanikla. */
+    box-shadow: inset 0 -0.14em 0 var(--hub-paper, #FBFCF7);
+}
+.hub-manifest__lead {
+    font-size: clamp(1.08rem, 1.8vw, 1.34rem);
+    line-height: 1.62;
+    color: var(--hub-accent-deep, #24482D);
+    max-width: 56ch;
+    margin: 0 0 36px;
+}
+.hub-manifest__cta { display: flex; gap: 14px; flex-wrap: wrap; }
+.hub-manifest__cta .cta-button { padding: 18px 34px; font-size: 1rem; }
+
+/* ── VELKÉ TVRZENÍ ───────────────────────────────────────────────────────
+   Jedna věta přes celou šířku. Používat střídmě — když jsou tři za sebou,
+   přestane fungovat i ta první. */
+.hub-statement {
+    margin: 58px 0;
+    padding: 0 0 0 26px;
+    border-left: 5px solid var(--hub-accent, #2F5D3A);
+}
+.hub-statement p {
+    font-size: clamp(1.45rem, 3.2vw, 2.35rem);
+    line-height: 1.18;
+    font-weight: 900;
+    letter-spacing: -0.025em;
+    margin: 0;
+    text-transform: uppercase;
+    color: var(--hub-ink, #0F1410);
+}
+.hub-statement--accent { border-left-color: var(--hub-risk, #8A4B2A); }
+.hub-statement--accent p { color: var(--hub-risk-deep, #6E3A20); }
+
+/* ── NÁMITKA A ODPOVĚĎ ───────────────────────────────────────────────────
+   Co říkají ostatní → jedno slovo zpátky. */
+.hub-objection {
+    margin: 52px 0;
+    border: 1px solid var(--hub-line, #DCE5D0);
+}
+.hub-objection__says {
+    padding: 30px 32px;
+    background: var(--hub-surface-3, #fff);
+}
+.hub-objection__label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--hub-muted, #5A6B5C);
+    margin-bottom: 12px;
+    font-style: normal;
+}
+.hub-objection__says p {
+    margin: 0;
+    font-size: clamp(1.05rem, 2vw, 1.28rem);
+    line-height: 1.55;
+    color: var(--hub-muted, #5A6B5C);
+    font-style: italic;
+}
+.hub-objection__answer {
+    padding: 28px 32px 32px;
+    background: var(--hub-ink, #0F1410);
+}
+.hub-objection__answer .hub-objection__label { color: rgba(255,255,255,0.55); }
+.hub-objection__answer p {
+    margin: 0;
+    font-size: clamp(1.9rem, 5vw, 3.2rem);
+    line-height: 1;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    color: var(--hub-accent-surface, #D4E7B5);
+    text-transform: uppercase;
+}
+
+/* ── KRYSÍ ZÁVOD ─────────────────────────────────────────────────────────
+   Kruh, ze kterého se nedá vystoupit, dokud z něj nevystoupíte. */
+.hub-loop {
+    display: grid;
+    grid-template-columns: 190px 1fr;
+    gap: 40px;
+    align-items: center;
+    margin: 52px 0;
+    padding: 34px 32px;
+    background: var(--hub-surface-1, #F6F9F0);
+    border: 1px solid var(--hub-line, #DCE5D0);
+}
+.hub-loop__figure { display: block; width: 100%; height: auto; }
+.hub-loop h3 {
+    font-size: clamp(1.15rem, 2.3vw, 1.6rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    margin: 0 0 14px;
+    text-transform: uppercase;
+    color: var(--hub-ink, #0F1410);
+}
+.hub-loop ul { margin: 0; padding: 0; list-style: none; }
+.hub-loop li {
+    position: relative;
+    padding-left: 26px;
+    margin-bottom: 10px;
+    font-size: 1.02rem;
+    line-height: 1.6;
+    color: var(--hub-muted, #5A6B5C);
+}
+.hub-loop li:last-child { margin-bottom: 0; }
+.hub-loop li::before {
+    content: '↻';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--hub-risk, #8A4B2A);
+    font-weight: 700;
+}
+
+/* ── DESET CIHEL JAKO MŘÍŽKA ─────────────────────────────────────────────
+   Obsah kurzu, který vypadá jako zeď. Protože to zeď je. */
+.hub-bricks {
+    display: grid;
+    /* Deset cihel se má zalomit na 5 + 5, ne na 7 + 3. Proto pevný počet
+       sloupců podle šířky, ne auto-fit — ten by nechal poslední řadu děravou. */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--hub-line, #DCE5D0);
+    border: 1px solid var(--hub-line, #DCE5D0);
+    margin: 44px 0;
+}
+@media (min-width: 620px) { .hub-bricks { grid-template-columns: repeat(5, 1fr); } }
+.hub-brick {
+    background: var(--hub-surface-3, #fff);
+    padding: 24px 22px;
+    min-height: 138px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-decoration: none;
+    transition: background 0.18s ease;
+}
+a.hub-brick:hover {
+    background: var(--hub-accent-surface, #D4E7B5);
+    text-decoration: none;
+}
+.hub-brick__num {
+    font-size: 2.15rem;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--hub-accent, #2F5D3A);
+    letter-spacing: -0.04em;
+    margin-bottom: 16px;
+}
+.hub-brick__name {
+    font-size: 0.97rem;
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--hub-ink, #0F1410);
+}
+/* Nenapsaná cihla je světlejší, ale číslo zůstává čitelné — zeď z deseti
+   šedých čísel by vypadala vypnutě, a přitom je to obsah, ne chyba. */
+.hub-brick--soon { background: var(--hub-surface-1, #F6F9F0); }
+.hub-brick--soon .hub-brick__num { color: var(--hub-muted, #5A6B5C); opacity: 0.75; }
+.hub-brick--soon .hub-brick__name { color: var(--hub-muted, #5A6B5C); }
+
+@media (max-width: 780px) {
+    .hub-manifest { padding: 76px 0 58px !important; }
+    .hub-loop { grid-template-columns: 1fr; gap: 24px; }
+    .hub-loop__figure { max-width: 170px; margin: 0 auto; }
+    .hub-statement { margin: 40px 0; padding-left: 18px; }
+    .hub-objection__says,
+    .hub-objection__answer { padding: 24px 22px; }
+}
