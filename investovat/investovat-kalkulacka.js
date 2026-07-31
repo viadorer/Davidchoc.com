@@ -244,6 +244,16 @@
       vysledek.innerHTML = html;
       vysledek.hidden = false;
 
+      // Mapa cihel si tohle číslo převezme, ať ho čtenář nepřepisuje ručně.
+      try {
+        localStorage.setItem('investovat-mezera-vysledek', JSON.stringify({
+          mezera: Math.round(v.mezera),
+          bytu: v.bytu,
+          duchod: Math.round(v.duchod),
+          vekOdchodu: v.vekOdchodu
+        }));
+      } catch (e) { /* privátní režim — nic se neděje */ }
+
       if (window.gtag) {
         window.gtag('event', 'investovat_mezera_spoctena', {
           event_category: 'nastroj',

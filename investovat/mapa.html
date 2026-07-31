@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa cihel — pracovní list k první cihle | Deset zlatých cihel</title>
+    <meta name="description" content="Cíl, horizont, rozpočet a tři scénáře výnosu na jedné straně. Vyplníte za večer, uloží se v prohlížeči a dá se vytisknout.">
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="icon" type="image/png" href="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/favicon.png">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/common/hub/hub.css">
+    <link rel="stylesheet" href="/common/hub/themes/zelena.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TXGDD8D3GK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-TXGDD8D3GK');
+    </script>
+</head>
+<body class="hub-page is-light" data-hub-section="investovat">
+    <div id="navbar-placeholder"></div>
+
+    <main>
+        <section class="hub-chapter hub-tool-page">
+            <div class="container">
+                <div class="hub-tool-page__wrap">
+
+                    <nav class="hub-crumb" aria-label="Drobečková navigace">
+                        <a href="/investovat">Deset zlatých cihel</a>
+                        <span>Mapa cihel</span>
+                    </nav>
+
+                    <span class="hub-chapter__label">Nástroj k Cihle 1</span>
+                    <h1>Mapa cihel</h1>
+                    <p class="hub-lead">
+                        Pět kroků z <a href="/investovat/cihla-1-plan">první cihly</a> na jedné
+                        straně. Vyplníte za večer, uloží se vám to v prohlížeči a od té chvíle se
+                        u každého inzerátu rozhodujete za pět minut místo za pět měsíců.
+                    </p>
+
+                    <p>
+                        Nic se neodesílá. Až budete mít hotovo, vytiskněte si to a mějte to u sebe
+                        na prohlídkách — papír se nenechá zmást výhledem z terasy.
+                    </p>
+
+                    <div class="vy-widget" id="mapa-cihel">
+
+                        <!-- 1 a 2: cíl, horizont, číslo -->
+                        <div class="vy-widget__head">
+                            <span class="vy-widget__badge"><i class="fas fa-bullseye" aria-hidden="true"></i> Kroky 1 a 2</span>
+                            <h2 class="vy-widget__title">Cíl, horizont a vaše číslo</h2>
+                            <p class="vy-widget__desc">Cíl bez data je přání. Přání nikoho nikam nedotlačí.</p>
+                        </div>
+
+                        <div class="vy-widget__body">
+                            <div class="vy-field">
+                                <label for="m-cil">Jakou hru hrajete</label>
+                                <select id="m-cil" data-field="cil">
+                                    <option value="">— vyberte —</option>
+                                    <option value="pasivni">Pasivní příjem na důchod</option>
+                                    <option value="zhodnoceni">Kapitálové zhodnocení</option>
+                                    <option value="kombinace">Kombinovaná strategie</option>
+                                </select>
+                                <p class="vy-field__hint">Tenhle kurz je psaný pro pasivní příjem. Ostatní dva cíle nejsou horší — jsou to jiné stavby.</p>
+                            </div>
+
+                            <div class="vy-field">
+                                <label for="m-veta">Napište si cíl jednou větou</label>
+                                <input type="text" id="m-veta" data-field="veta" placeholder="Do 15 let chci mít splacené 2 byty, které mi ponesou 25 000 Kč čistého měsíčně.">
+                            </div>
+
+                            <div class="vy-field">
+                                <label for="m-horizont">Horizont</label>
+                                <div class="vy-input-wrap">
+                                    <input type="text" id="m-horizont" data-field="horizont" inputmode="numeric" placeholder="20">
+                                    <span class="vy-input-suffix">let</span>
+                                </div>
+                            </div>
+
+                            <div class="vy-field">
+                                <label for="m-mezera">Vaše důchodová mezera</label>
+                                <div class="vy-input-wrap">
+                                    <input type="text" id="m-mezera" data-field="mezera" inputmode="numeric" placeholder="13 000">
+                                    <span class="vy-input-suffix">Kč / měsíc</span>
+                                </div>
+                                <p class="vy-field__hint js-mezera-prevzata" hidden>
+                                    <i class="fas fa-circle-check" aria-hidden="true"></i>
+                                    Převzato z kalkulačky, kterou jste si spočítali v úvodu. Můžete to přepsat.
+                                </p>
+                                <p class="vy-field__hint">Nemáte ho? <a href="/investovat/uvod#mezera-kalkulacka">Spočítejte si ho v úvodu</a> — zabere to dvě minuty a počítá se podle zákonného vzorce.</p>
+                            </div>
+                        </div>
+
+                        <!-- 3: rozpočet -->
+                        <div class="vy-widget__head">
+                            <span class="vy-widget__badge"><i class="fas fa-wallet" aria-hidden="true"></i> Krok 3</span>
+                            <h2 class="vy-widget__title">Celý rozpočet, ne jen akontace</h2>
+                            <p class="vy-widget__desc">Tohle číslo nemusíte mít našetřené dnes. Musíte ho znát.</p>
+                        </div>
+
+                        <div class="vy-widget__body">
+                            <div class="vy-field">
+                                <label for="m-cena">Cena bytu, se kterou počítáte</label>
+                                <div class="vy-input-wrap">
+                                    <input type="text" id="m-cena" data-field="cena" inputmode="numeric" placeholder="3 800 000">
+                                    <span class="vy-input-suffix">Kč</span>
+                                </div>
+                                <p class="vy-field__hint">Nemusí jít o konkrétní byt. Stačí částka, která je ve vašem městě obvyklá.</p>
+                            </div>
+
+                            <div class="vy-field">
+                                <label for="m-poplatek">Poplatky spojené s nákupem</label>
+                                <div class="vy-input-wrap">
+                                    <input type="text" id="m-poplatek" data-field="poplatek" inputmode="numeric" placeholder="4">
+                                    <span class="vy-input-suffix">% z ceny</span>
+                                </div>
+                                <p class="vy-field__hint">Provize nebo servisní poplatek za vyhledání a přípravu, v praxi 3 až 5 % plus DPH.</p>
+                            </div>
+
+                            <div class="vy-field">
+                                <label for="m-rezerva">Rezerva na vybavení a přípravu</label>
+                                <div class="vy-input-wrap">
+                                    <input type="text" id="m-rezerva" data-field="rezerva" inputmode="numeric" placeholder="100 000">
+                                    <span class="vy-input-suffix">Kč</span>
+                                </div>
+                                <p class="vy-field__hint">Podle stavu bytu zhruba 50 000 až 150 000 Kč.</p>
+                            </div>
+
+                            <div class="vy-range-row">
+                                <div class="vy-field">
+                                    <label for="m-sazba">Očekávaná sazba hypotéky</label>
+                                    <div class="vy-input-wrap">
+                                        <input type="text" id="m-sazba" data-field="sazba" inputmode="decimal" placeholder="5,2">
+                                        <span class="vy-input-suffix">% p. a.</span>
+                                    </div>
+                                </div>
+                                <div class="vy-field">
+                                    <label for="m-splatnost">Splatnost</label>
+                                    <div class="vy-input-wrap">
+                                        <input type="text" id="m-splatnost" data-field="splatnost" inputmode="numeric" placeholder="25">
+                                        <span class="vy-input-suffix">let</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 4: jaký byt -->
+                        <div class="vy-widget__head">
+                            <span class="vy-widget__badge"><i class="fas fa-building" aria-hidden="true"></i> Krok 4</span>
+                            <h2 class="vy-widget__title">Jaký byt a kde</h2>
+                            <p class="vy-widget__desc">Kupujete investici, ne byt pro sebe.</p>
+                        </div>
+
+                        <div class="vy-widget__body">
+                            <div class="vy-range-row">
+                                <div class="vy-field">
+                                    <label for="m-dispozice">Dispozice</label>
+                                    <input type="text" id="m-dispozice" data-field="dispozice" placeholder="1+kk až 2+kk">
+                                </div>
+                                <div class="vy-field">
+                                    <label for="m-lokalita">Lokalita</label>
+                                    <input type="text" id="m-lokalita" data-field="lokalita" placeholder="Plzeň — blízko FN a univerzity">
+                                </div>
+                            </div>
+
+                            <div class="vy-field">
+                                <label for="m-proc">Proč zrovna tahle lokalita</label>
+                                <textarea id="m-proc" data-field="proc" rows="2" placeholder="Kdo tam bude chtít bydlet a proč se to nezmění za deset let."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- 5: scénáře -->
+                        <div class="vy-widget__head">
+                            <span class="vy-widget__badge"><i class="fas fa-chart-line" aria-hidden="true"></i> Krok 5</span>
+                            <h2 class="vy-widget__title">Tři scénáře výnosu</h2>
+                            <p class="vy-widget__desc">Rozhodujte se podle konzervativního. Když vyjde ten, ostatní vyjdou samy.</p>
+                        </div>
+
+                        <div class="vy-widget__body">
+                            <div class="vy-range-row">
+                                <div class="vy-field">
+                                    <label for="m-najem">Měsíční nájem, který byt unese</label>
+                                    <div class="vy-input-wrap">
+                                        <input type="text" id="m-najem" data-field="najem" inputmode="numeric" placeholder="16 000">
+                                        <span class="vy-input-suffix">Kč</span>
+                                    </div>
+                                    <p class="vy-field__hint">Bez záloh na energie — jen nájemné.</p>
+                                </div>
+                                <div class="vy-field">
+                                    <label for="m-naklady">Měsíční provozní náklady</label>
+                                    <div class="vy-input-wrap">
+                                        <input type="text" id="m-naklady" data-field="naklady" inputmode="numeric" placeholder="2 500">
+                                        <span class="vy-input-suffix">Kč</span>
+                                    </div>
+                                    <p class="vy-field__hint">Fond oprav, pojištění, daň z nájmu a rezerva na opravy.</p>
+                                </div>
+                            </div>
+
+                            <div class="js-mapa-vysledek"></div>
+
+                            <div class="vy-progress__actions" style="margin-top:22px;">
+                                <button type="button" class="cta-button" onclick="window.print()">Vytisknout mapu</button>
+                                <button type="button" class="cta-button cta-button--outline js-mapa-reset">Vymazat a začít znovu</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hub-action">
+                        <span class="hub-action__label">Až budete mít vyplněno</span>
+                        <h3>Zkuste test z konce první cihly</h3>
+                        <p>
+                            Cihla drží, když umíte bez přemýšlení říct: kolik chci a k jakému datu,
+                            jak velká je moje mezera, kolik reálně potřebuju na start, jakou dispozici
+                            kupuju a proč — a jestli moje splátka unese sazbu o procentní bod vyšší.
+                            Poslední otázku už máte spočítanou v konzervativním scénáři výše.
+                        </p>
+                        <a href="/investovat/cihla-1-plan" class="cta-button cta-button--outline">Zpět na Cihlu 1</a>
+                    </div>
+
+                    <div class="hub-disclaimer">
+                        <p>Informace v tomto kurzu jsou obecné povahy, popisují běžnou praxi na trhu s investičními nemovitostmi v ČR a nezohledňují specifika konkrétního případu. Nejde o investiční, právní ani daňové poradenství. Smlouvy k převodu nemovitosti nechte připravit advokátovi, financování konzultujte s hypotečním specialistou a daňové otázky s daňovým poradcem.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <div class="floating-buttons">
+        <a href="#" class="floating-button back-to-top" aria-label="Zpět nahoru"><i class="fas fa-arrow-up"></i></a>
+        <a href="tel:+420774052232" class="floating-button call" aria-label="Zavolat"><i class="fas fa-phone-alt"></i></a>
+        <a href="mailto:david.choc@ptf.cz" class="floating-button email" aria-label="Poslat email"><i class="fas fa-envelope"></i></a>
+    </div>
+
+    <script src="/script.js"></script>
+    <script src="/attribution.js"></script>
+    <script src="/common/common.js"></script>
+    <script src="/cookie-consent.js"></script>
+    <script src="/common/hub/hub-cta.js"></script>
+    <script src="/common/hub/hub-tools.js"></script>
+    <script src="/investovat/investovat-cta.js"></script>
+    <script src="/investovat/investovat-mapa.js"></script>
+</body>
+</html>
