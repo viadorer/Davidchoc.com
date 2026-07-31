@@ -53,6 +53,18 @@
         '<p>Vytiskněte si ji a projděte pět kroků z téhle kapitoly. Až budete mít vyplněno, jste připravení otevřít první inzerát.</p>'
     });
 
+    /* ── Pracovní list Finanční strop (Cihla 2) ── */
+    HubCTA.initGateById('investovat-strop-form', {
+      leadForm: 'investovat-financni-strop',
+      message: 'Žádost o pracovní list Finanční strop z Cihly 2.',
+      meta: { cihla: '2' },
+      gaEvent: 'investovat_pracovni_list',
+      gaLabel: 'financni_strop',
+      done: HOTOVO +
+        '<h3>Pracovní list je na cestě.</h3>' +
+        '<p>Spočítejte si strop a napište si ho vedle rozpočtu z Cihly 1. Když si obě čísla sedí, další krok je předschválení.</p>'
+    });
+
     /* ── Napište mi ── */
     HubCTA.initGateById('investovat-servis-form', {
       leadForm: 'investovat-servis',
