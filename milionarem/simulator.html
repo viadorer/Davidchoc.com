@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulátor cesty k milionu | Chci být milionářem</title>
+    <meta name="description" content="Posuňte posuvníky a uvidíte, co s vaším majetkem udělá jeden investiční byt za dvacet let — proti stejným penězům na spořicím účtu.">
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="icon" type="image/png" href="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/favicon.png">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/common/hub/hub.css">
+    <link rel="stylesheet" href="/common/hub/themes/zelena.css">
+    <link rel="stylesheet" href="/common/hub/themes/manifest.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TXGDD8D3GK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-TXGDD8D3GK');
+    </script>
+</head>
+<body class="hub-page is-light" data-hub-section="milionarem">
+    <div id="navbar-placeholder"></div>
+
+    <main>
+        <section class="hub-manifest">
+            <div class="container">
+                <span class="hub-manifest__eyebrow">Nástroj · Deset zlatých cihel</span>
+                <h1>Simulátor cesty k <em>milionu</em></h1>
+                <p class="hub-manifest__lead">
+                    Vyberte město, cenu bytu a kolik dáte z vlastního. Uvidíte, co s vaším majetkem
+                    udělá jeden byt za dvacet let — a hlavně kdy se přestane živit z vaší výplaty
+                    a začne se živit sám.
+                </p>
+                <div class="hub-manifest__cta">
+                    <a href="#simulator" class="cta-button">Pustit se do toho</a>
+                    <a href="/milionarem" class="cta-button cta-button--outline">Zpět na úvod</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="hub-chapter">
+            <div class="container">
+                <div class="hub-chapter__wrap">
+
+                    <div class="vy-widget" id="simulator">
+                        <div class="vy-widget__head">
+                            <span class="vy-widget__badge"><i class="fas fa-sliders" aria-hidden="true"></i> Vaše čísla</span>
+                            <h2 class="vy-widget__title">Nastavte si to podle sebe</h2>
+                            <p class="vy-widget__desc">Ukládá se vám to v prohlížeči. Nic se neodesílá a nikam vás to nepřesměruje.</p>
+                        </div>
+
+                        <div class="vy-widget__body">
+
+                            <div class="vy-field">
+                                <label for="s-mesto">Město <strong class="js-val-mesto"></strong></label>
+                                <select id="s-mesto" data-field="mesto">
+                                    <option value="7.1">Ústí nad Labem — výnos 7,1 %</option>
+                                    <option value="5.8">Ostrava — výnos 5,8 %</option>
+                                    <option value="5.7">Karlovy Vary — výnos 5,7 %</option>
+                                    <option value="5.6">Jihlava — výnos 5,6 %</option>
+                                    <option value="5.4">Zlín — výnos 5,4 %</option>
+                                    <option value="4.8">Pardubice — výnos 4,8 %</option>
+                                    <option value="4.7" selected>Plzeň — výnos 4,7 %</option>
+                                    <option value="4.6">Liberec — výnos 4,6 %</option>
+                                    <option value="4.5">České Budějovice — výnos 4,5 %</option>
+                                    <option value="4.5">Hradec Králové — výnos 4,5 %</option>
+                                    <option value="4.3">Olomouc — výnos 4,3 %</option>
+                                    <option value="4.1">Brno — výnos 4,1 %</option>
+                                    <option value="3.9">Praha — výnos 3,9 %</option>
+                                </select>
+                                <p class="vy-field__hint">Hrubý nájemní výnos, orientačně ke stavu trhu 2026.</p>
+                            </div>
+
+                            <div class="vy-range-row">
+                                <div class="vy-field">
+                                    <label for="s-cena">Cena bytu <strong class="js-val-cena"></strong></label>
+                                    <input type="range" id="s-cena" data-field="cena" min="1500000" max="10000000" step="100000" value="4000000">
+                                    <p class="vy-field__hint">Od 1,5 do 10 milionů.</p>
+                                </div>
+                                <div class="vy-field">
+                                    <label for="s-vlastni">Vlastní zdroje <strong class="js-val-vlastni"></strong></label>
+                                    <input type="range" id="s-vlastni" data-field="vlastni" min="30" max="100" step="5" value="30">
+                                    <p class="vy-field__hint">Minimum 30 % — banka u investiční hypotéky půjčí nejvýš 70 % (2026).</p>
+                                </div>
+                            </div>
+
+                            <div class="vy-range-row">
+                                <div class="vy-field">
+                                    <label for="s-sazba">Sazba hypotéky <strong class="js-val-sazba"></strong></label>
+                                    <input type="range" id="s-sazba" data-field="sazba" min="3" max="7" step="0.1" value="4.8">
+                                    <p class="vy-field__hint">Průměr nových hypoték byl v červnu 2026 4,79 %.</p>
+                                </div>
+                                <div class="vy-field">
+                                    <label for="s-splatnost">Splatnost <strong class="js-val-splatnost"></strong></label>
+                                    <input type="range" id="s-splatnost" data-field="splatnost" min="15" max="30" step="1" value="25">
+                                    <p class="vy-field__hint">Delší splatnost sníží splátku, ale zaplatíte víc na úrocích.</p>
+                                </div>
+                            </div>
+
+                            <div class="vy-range-row">
+                                <div class="vy-field">
+                                    <label for="s-rust">Růst ceny bytu <strong class="js-val-rust"></strong></label>
+                                    <input type="range" id="s-rust" data-field="rust" min="0" max="7" step="0.5" value="4">
+                                    <p class="vy-field__hint">Dlouhodobý průměr ČR je 7 % ročně. Čtyři procenta jsou opatrný odhad.</p>
+                                </div>
+                                <div class="vy-field">
+                                    <label for="s-najemRust">Růst nájmu <strong class="js-val-najemRust"></strong></label>
+                                    <input type="range" id="s-najemRust" data-field="najemRust" min="0" max="6" step="0.5" value="3">
+                                    <p class="vy-field__hint">Tohle číslo rozhoduje, kdy se byt začne živit sám.</p>
+                                </div>
+                            </div>
+
+                            <div class="vy-field">
+                                <label for="s-horizont">Jak dlouho byt držíte <strong class="js-val-horizont"></strong></label>
+                                <input type="range" id="s-horizont" data-field="horizont" min="5" max="30" step="1" value="20">
+                            </div>
+
+                            <!-- VÝSLEDEK -->
+                            <div class="hub-calc" style="margin-top:30px;">
+                                <div class="hub-calc__total">
+                                    <div class="hub-calc__total-side js-hlavni"></div>
+                                    <p class="hub-calc__promise js-podtitulek"></p>
+                                </div>
+
+                                <div class="hub-calc__block js-kpi"></div>
+                            </div>
+
+                            <div class="js-verdikt"></div>
+
+                            <div style="margin-top:30px;">
+                                <div style="display:flex; gap:22px; flex-wrap:wrap; margin-bottom:12px; font-size:0.92rem;">
+                                    <span style="display:flex; align-items:center; gap:8px;">
+                                        <span style="width:18px; height:4px; background:var(--hub-accent); display:inline-block;"></span>
+                                        Čistý majetek z bytu
+                                    </span>
+                                    <span style="display:flex; align-items:center; gap:8px;">
+                                        <span style="width:18px; height:4px; background:var(--hub-risk); display:inline-block;"></span>
+                                        Stejné peníze na spořicím účtu (2 % ročně)
+                                    </span>
+                                </div>
+                                <div class="js-graf"></div>
+                            </div>
+
+                            <div class="vy-progress__actions" style="margin-top:24px;">
+                                <button type="button" class="cta-button" onclick="window.print()">Vytisknout</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2>Jak se to počítá</h2>
+
+                    <p>
+                        Čistý majetek z bytu je <strong>hodnota nemovitosti minus zbytek úvěru plus
+                        nastřádaná hotovost</strong>. Měsíční doplatek ze mzdy se od majetku
+                        neodečítá — část z něj splácí jistinu, a ta už je v zůstatku úvěru
+                        započítaná. Nejsou to vyhozené peníze, jen je momentálně nevidíte na účtu.
+                    </p>
+
+                    <div class="hub-note">
+                        <p><strong>Právě proto dostane spořicí účet úplně stejné peníze.</strong> Vklad i každý měsíční doplatek. Porovnávat investora, který posílá peníze každý měsíc, se střadatelem, který uložil jednou a už nic, by výsledek posunulo o statisíce ve prospěch nemovitosti — a celé srovnání by nebylo k ničemu.</p>
+                    </div>
+
+                    <p>
+                        Nájem v modelu roste, splátka ne. Proto se to jednou otočí a byt se začne
+                        živit sám. Ten rok je v grafu vyznačený svislicí — a je to nejdůležitější
+                        číslo na téhle stránce, protože do té doby musíte rozdíl každý měsíc mít.
+                    </p>
+
+                    <div class="hub-statement">
+                        <p>Páka nezrychlí trh. Zvětší, co z něj máte.</p>
+                    </div>
+
+                    <div class="hub-disclaimer">
+                        <p>Zjednodušený model pro ilustraci principu páky a růstu hodnoty. Nejde o investiční, právní ani daňové poradenství ani o příslib konkrétního výnosu. Model počítá se srážkou 15 % z nájmu na opravy a neobsazenost, ale nezohledňuje daň z příjmu z nájmu, jednorázové velké opravy, mimořádné příspěvky SVJ ani změnu sazby po skončení fixace. Předpokládá rovnoměrný růst cen — ve skutečnosti roky kolísají a ceny mohou i klesat, jako v roce 2023. Uvedené výnosy podle měst a sazby platí k roku 2026. Reálná čísla si vždy ověřte s hypotečním specialistou.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <div class="floating-buttons">
+        <a href="#" class="floating-button back-to-top" aria-label="Zpět nahoru"><i class="fas fa-arrow-up"></i></a>
+        <a href="tel:+420774052232" class="floating-button call" aria-label="Zavolat"><i class="fas fa-phone-alt"></i></a>
+        <a href="mailto:david.choc@ptf.cz" class="floating-button email" aria-label="Poslat email"><i class="fas fa-envelope"></i></a>
+    </div>
+
+    <script src="/script.js"></script>
+    <script src="/attribution.js"></script>
+    <script src="/common/common.js"></script>
+    <script src="/cookie-consent.js"></script>
+    <script src="/common/hub/hub-cta.js"></script>
+    <script src="/common/hub/hub-tools.js"></script>
+    <script src="/milionarem/milionarem-cta.js"></script>
+    <script src="/milionarem/milionarem-simulator.js"></script>
+</body>
+</html>
