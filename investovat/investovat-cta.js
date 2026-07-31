@@ -65,6 +65,18 @@
         '<p>Spočítejte si strop a napište si ho vedle rozpočtu z Cihly 1. Když si obě čísla sedí, další krok je předschválení.</p>'
     });
 
+    /* ── Pracovní list Srovnání lokalit (Cihla 3) ── */
+    HubCTA.initGateById('investovat-lokality-form', {
+      leadForm: 'investovat-srovnani-lokalit',
+      message: 'Žádost o pracovní list Srovnání lokalit z Cihly 3.',
+      meta: { cihla: '3' },
+      gaEvent: 'investovat_pracovni_list',
+      gaLabel: 'srovnani_lokalit',
+      done: HOTOVO +
+        '<h3>Pracovní list je na cestě.</h3>' +
+        '<p>Vyberte tři města, najděte v každém tři inzeráty 2+kk a spočítejte si u nich výnos. Porovnávejte čísla, ne pocity.</p>'
+    });
+
     /* ── Napište mi ── */
     HubCTA.initGateById('investovat-servis-form', {
       leadForm: 'investovat-servis',
