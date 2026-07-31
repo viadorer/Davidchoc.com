@@ -77,6 +77,18 @@
         '<p>Vyberte tři města, najděte v každém tři inzeráty 2+kk a spočítejte si u nich výnos. Porovnávejte čísla, ne pocity.</p>'
     });
 
+    /* ── Pracovní list Prověrka před koupí (Cihla 4) ── */
+    HubCTA.initGateById('investovat-proverka-form', {
+      leadForm: 'investovat-proverka',
+      message: 'Žádost o pracovní list Prověrka před koupí z Cihly 4.',
+      meta: { cihla: '4' },
+      gaEvent: 'investovat_pracovni_list',
+      gaLabel: 'proverka_pred_koupi',
+      done: HOTOVO +
+        '<h3>Pracovní list je na cestě.</h3>' +
+        '<p>Vezměte si ho na prohlídku vytištěný. Papír se nenechá zmást čerstvou výmalbou.</p>'
+    });
+
     /* ── Napište mi ── */
     HubCTA.initGateById('investovat-servis-form', {
       leadForm: 'investovat-servis',
