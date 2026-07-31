@@ -89,6 +89,18 @@
         '<p>Vezměte si ho na prohlídku vytištěný. Papír se nenechá zmást čerstvou výmalbou.</p>'
     });
 
+    /* ── Pracovní list Kontrola rezervační smlouvy (Cihla 5) ── */
+    HubCTA.initGateById('investovat-rezervace-form', {
+      leadForm: 'investovat-rezervacni-smlouva',
+      message: 'Žádost o pracovní list Kontrola rezervační smlouvy z Cihly 5.',
+      meta: { cihla: '5' },
+      gaEvent: 'investovat_pracovni_list',
+      gaLabel: 'rezervacni_smlouva',
+      done: HOTOVO +
+        '<h3>Pracovní list je na cestě.</h3>' +
+        '<p>Projděte podle něj smlouvu dřív, než ji podepíšete. Po podpisu už nemáte co nabídnout výměnou.</p>'
+    });
+
     /* ── Napište mi ── */
     HubCTA.initGateById('investovat-servis-form', {
       leadForm: 'investovat-servis',
