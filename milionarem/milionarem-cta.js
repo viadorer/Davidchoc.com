@@ -27,6 +27,7 @@
     HubCTA.injectHelp();
 
     HubCTA.initGateById('milionarem-pdf-form', {
+      fields: { name: true },
       leadForm: 'milionarem-pdf',
       message: 'Žádost o výcvik Deset zlatých cihel v PDF.',
       gaEvent: 'milionarem_pdf',

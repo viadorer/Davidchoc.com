@@ -66,6 +66,31 @@ export async function odeslatEmail({ to, jmeno, subject, htmlContent, templateId
 }
 
 /**
+ * Načte kontakt podle e-mailu. Vrací `null`, když neexistuje.
+ *
+ * Slouží ke kontrole duplicit: Brevo je jediné trvalé úložiště, které
+ * tenhle statický web má. Serverless funkce si mezi voláními nic
+ * nepamatuje, takže stav o tom, kdo už co odeslal, držíme v atributech
+ * kontaktu.
+ */
+export async function nactiKontakt(email) {
+  if (!brevoNastaveno()) return null;
+
+  const r = await fetch(`${API}/contacts/${encodeURIComponent(email)}`, {
+    headers: hlavicky(),
+  });
+
+  if (r.status === 404) return null;
+  if (!r.ok) {
+    // Výpadek Brevo nesmí shodit příjem leadu — radši propustíme duplicitu,
+    // než abychom přišli o kontakt.
+    console.warn('[brevo] kontakt se nepodařilo načíst:', r.status);
+    return null;
+  }
+  return r.json().catch(() => null);
+}
+
+/**
  * Vloží nebo aktualizuje kontakt a zařadí ho do seznamu.
  * Na tenhle seznam se v Brevu navěsí automatizace se sekvencí.
  */

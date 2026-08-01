@@ -31,6 +31,7 @@
 
     /* ── Kompletní průvodce v PDF ── */
     HubCTA.initGateById('investovat-pdf-form', {
+      fields: { name: true },
       leadForm: 'investovat-pdf',
       message: 'Žádost o kompletního průvodce Deset zlatých cihel v PDF.',
       gaEvent: 'investovat_pdf',
@@ -43,6 +44,7 @@
 
     /* ── Pracovní list Mapa cihel (Cihla 1) ── */
     HubCTA.initGateById('investovat-mapa-form', {
+      fields: { name: true },
       leadForm: 'investovat-mapa-cihel',
       message: 'Žádost o pracovní list Mapa cihel z Cihly 1.',
       meta: { cihla: '1' },
@@ -55,6 +57,7 @@
 
     /* ── Pracovní list Finanční strop (Cihla 2) ── */
     HubCTA.initGateById('investovat-strop-form', {
+      fields: { name: true },
       leadForm: 'investovat-financni-strop',
       message: 'Žádost o pracovní list Finanční strop z Cihly 2.',
       meta: { cihla: '2' },
@@ -67,6 +70,7 @@
 
     /* ── Pracovní list Srovnání lokalit (Cihla 3) ── */
     HubCTA.initGateById('investovat-lokality-form', {
+      fields: { name: true },
       leadForm: 'investovat-srovnani-lokalit',
       message: 'Žádost o pracovní list Srovnání lokalit z Cihly 3.',
       meta: { cihla: '3' },
@@ -79,6 +83,7 @@
 
     /* ── Pracovní list Prověrka před koupí (Cihla 4) ── */
     HubCTA.initGateById('investovat-proverka-form', {
+      fields: { name: true },
       leadForm: 'investovat-proverka',
       message: 'Žádost o pracovní list Prověrka před koupí z Cihly 4.',
       meta: { cihla: '4' },
@@ -91,6 +96,7 @@
 
     /* ── Pracovní list Kontrola rezervační smlouvy (Cihla 5) ── */
     HubCTA.initGateById('investovat-rezervace-form', {
+      fields: { name: true },
       leadForm: 'investovat-rezervacni-smlouva',
       message: 'Žádost o pracovní list Kontrola rezervační smlouvy z Cihly 5.',
       meta: { cihla: '5' },
@@ -103,8 +109,8 @@
 
     /* ── Napište mi ── */
     HubCTA.initGateById('investovat-servis-form', {
-      leadForm: 'investovat-servis',
       fields: { name: true },
+      leadForm: 'investovat-servis',
       message: function (d) {
         return d.note || 'Zájem o pomoc s investičním bytem — bez bližšího popisu.';
       },

@@ -5,7 +5,7 @@
 //
 // Odhady zůstávají v Realvisoru — ty sem nechodí.
 
-import { odeslatEmail, ulozitKontakt, brevoNastaveno } from './_brevo.js';
+import { odeslatEmail, ulozitKontakt, nactiKontakt, brevoNastaveno } from './_brevo.js';
 import { potvrzeniPro } from './_emaily.js';
 
 const PTF_BACKEND = process.env.PTF_BACKEND_URL || 'https://ptf-production.up.railway.app';
@@ -45,6 +45,36 @@ const FORMULARE = {
   'nabidka-detail':     { source: 'web_formular', popis: 'Poptávka z detailu nabídky' },
   'posudek-inzeratu':   { source: 'web_formular', popis: 'Posouzení inzerátu — zaseknutý samoprodejce' },
   'newsletter':         { source: 'web_formular', popis: 'Přihlášení k odběru' },
+
+  // ── KUPUJÍCÍ ────────────────────────────────────────────────────────
+  // Jiná cílovka než výcvik: ten mluví k prodávajícím, tohle ke kupujícím.
+  // `kampan` se propisuje do utm_campaign, podle kterého se v adminu
+  // filtruje panel Zdroj — `source` je pevný enum a rozšířit ho z webu
+  // nejde.
+  //
+  // `dedup: true` znamená, že tentýž e-mail nezaloží druhý případ na
+  // tentýž formulář. Nový formulář od stejného člověka případ založí,
+  // protože to je nový signál — někdo, kdo si stáhl průvodce a pak si
+  // řekl o servis, se posunul.
+  'milionarem-pdf':     { source: 'web_formular', kampan: 'milionarem', dedup: true,
+                          popis: 'Milionářem — stažení výcviku' },
+  'milionarem-servis':  { source: 'web_formular', kampan: 'milionarem', dedup: true,
+                          popis: 'Milionářem — poptávka služby' },
+
+  'investovat-pdf':                { source: 'web_formular', kampan: 'milionarem', dedup: true,
+                                     popis: 'Milionářem — kompletní průvodce' },
+  'investovat-servis':             { source: 'web_formular', kampan: 'milionarem', dedup: true,
+                                     popis: 'Milionářem — poptávka služby' },
+  'investovat-mapa-cihel':         { source: 'web_formular', kampan: 'milionarem', dedup: true,
+                                     popis: 'Milionářem — pracovní list Mapa cihel' },
+  'investovat-financni-strop':     { source: 'web_formular', kampan: 'milionarem', dedup: true,
+                                     popis: 'Milionářem — pracovní list Finanční strop' },
+  'investovat-srovnani-lokalit':   { source: 'web_formular', kampan: 'milionarem', dedup: true,
+                                     popis: 'Milionářem — pracovní list Srovnání lokalit' },
+  'investovat-proverka':           { source: 'web_formular', kampan: 'milionarem', dedup: true,
+                                     popis: 'Milionářem — pracovní list Prověrka před koupí' },
+  'investovat-rezervacni-smlouva': { source: 'web_formular', kampan: 'milionarem', dedup: true,
+                                     popis: 'Milionářem — pracovní list Rezervační smlouva' },
 };
 
 const buckets = new Map();
@@ -132,6 +162,15 @@ function slozitZpravu(text, konfig, odkazy, metadata) {
 // Seznamy v Brevu, na které se věší automatizace se sekvencí.
 // ID se nastavují v prostředí — bez nich se kontakt jen založí.
 function seznamyPro(formular) {
+  const konfig = FORMULARE[formular];
+
+  // Kupující mají vlastní seznam — píše se jim něco jiného než
+  // prodávajícím z výcviku, takže nesmí spadnout do jedné sekvence.
+  if (konfig && konfig.kampan === 'milionarem') {
+    const idM = Number(process.env.BREVO_LIST_MILIONAR);
+    return Number.isFinite(idM) && idM > 0 ? [idM] : undefined;
+  }
+
   const mapa = {
     'posudek-inzeratu': process.env.BREVO_LIST_POSUDEK,
     'vycvik-pdf': process.env.BREVO_LIST_KNIHA,
@@ -141,8 +180,55 @@ function seznamyPro(formular) {
   return Number.isFinite(id) && id > 0 ? [id] : undefined;
 }
 
+/**
+ * Kontrola duplicity přes Brevo.
+ *
+ * V atributu FORMULARE si u kontaktu držíme čárkou oddělený seznam
+ * formulářů, které už odeslal. Když přijde tentýž formulář podruhé,
+ * do CRM ho nepustíme — jinak by se z jednoho člověka, který si stáhne
+ * tři pracovní listy, staly tři případy.
+ *
+ * Když Brevo neodpoví nebo není nastavené, duplicitu radši propustíme.
+ * Ztratit lead je horší než mít v adminu jeden navíc.
+ */
+async function jeDuplicita(formular, email) {
+  const konfig = FORMULARE[formular];
+  if (!konfig || !konfig.dedup || !brevoNastaveno()) return false;
+
+  try {
+    const kontakt = await nactiKontakt(email);
+    if (!kontakt || !kontakt.attributes) return false;
+    const odeslane = String(kontakt.attributes.FORMULARE || '')
+      .split(',')
+      .map(s => s.trim())
+      .filter(Boolean);
+    return odeslane.indexOf(formular) !== -1;
+  } catch (e) {
+    console.warn('[lead] kontrola duplicity selhala:', e.message);
+    return false;
+  }
+}
+
+/** Přidá formulář do seznamu odeslaných, bez duplicit a bez ztráty historie. */
+function pripojFormular(stavajici, formular) {
+  const seznam = String(stavajici || '')
+    .split(',')
+    .map(s => s.trim())
+    .filter(Boolean);
+  if (seznam.indexOf(formular) === -1) seznam.push(formular);
+  return seznam.join(',').slice(0, 500);
+}
+
 async function poslatPotvrzeni({ formular, email, jmeno, metadata, preskocitEmail }) {
   if (!brevoNastaveno()) return;
+
+  // Historii odeslaných formulářů udržujeme u kontaktu — je to zároveň
+  // paměť pro kontrolu duplicit a přehled o tom, kudy člověk prošel.
+  let historie = formular;
+  try {
+    const kontakt = await nactiKontakt(email);
+    historie = pripojFormular(kontakt && kontakt.attributes && kontakt.attributes.FORMULARE, formular);
+  } catch (e) { /* první kontakt nebo výpadek — zapíšeme aspoň tenhle */ }
 
   await ulozitKontakt({
     email,
@@ -152,6 +238,8 @@ async function poslatPotvrzeni({ formular, email, jmeno, metadata, preskocitEmai
     atributy: {
       ZDROJ: 'davidchoc.cz',
       FORMULAR: formular,
+      FORMULARE: historie,
+      KAMPAN: (FORMULARE[formular] && FORMULARE[formular].kampan) || '',
       SEGMENT: metadata.segment || '',
       INZERAT_URL: metadata.listing_url || '',
     },
@@ -261,11 +349,26 @@ export default async function handler(req, res) {
     metadata,
     utm_source: ocistit(utm.source, 100) || 'davidchoc.cz',
     utm_medium: ocistit(utm.medium, 100) || 'web',
-    utm_campaign: ocistit(utm.campaign, 100) || formular,
+    // Panel Zdroj v adminu filtruje podle kampaně. Vlastní UTM návštěvníka
+    // mají přednost — když přišel z reklamy, chceme vidět tu reklamu.
+    // Jinak sáhneme po značce sekce, ať jdou kupující oddělit od výcviku.
+    utm_campaign: ocistit(utm.campaign, 100) || konfig.kampan || formular,
     referrer_url: ocistit(body.referrer, 500) || undefined,
     ip_address: IP_RE.test(ip) ? ip : undefined,
     user_agent: (req.headers['user-agent'] || '').slice(0, 500) || undefined,
   };
+
+  // Tentýž člověk na tentýž formulář podruhé nezakládá druhý případ.
+  // Do Brevo ho ale zapíšeme — potvrzení mu přijde a v sekvenci zůstává.
+  if (await jeDuplicita(formular, email)) {
+    console.info('[lead] duplicita, případ se nezakládá:', formular, email);
+    try {
+      await poslatPotvrzeni({ formular, email, jmeno, metadata, preskocitEmail: false });
+    } catch (e) {
+      console.error('[lead] Brevo selhalo u duplicity:', e.message);
+    }
+    return res.status(200).json({ success: true, duplicita: true });
+  }
 
   try {
     const odpoved = await fetch(`${PTF_BACKEND}/api/leads`, {
