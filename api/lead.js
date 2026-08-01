@@ -60,6 +60,8 @@ const FORMULARE = {
                           popis: 'Milionářem — stažení výcviku' },
   'milionarem-servis':  { source: 'web_formular', kampan: 'milionarem', dedup: true,
                           popis: 'Milionářem — poptávka služby' },
+  'milionarem-mapa':    { source: 'web_formular', kampan: 'milionarem', dedup: true,
+                          popis: 'Milionářem — Cihla 1, zájem o další díly' },
 
   'investovat-pdf':                { source: 'web_formular', kampan: 'milionarem', dedup: true,
                                      popis: 'Milionářem — kompletní průvodce' },

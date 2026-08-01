@@ -26,6 +26,18 @@
   HubCTA.ready(function () {
     HubCTA.injectHelp();
 
+    HubCTA.initGateById('milionarem-mapa-form', {
+      fields: { name: true },
+      leadForm: 'milionarem-mapa',
+      message: 'Zájem o další cihly — z Cihly 1 (Mapa cihel).',
+      meta: { cihla: '1' },
+      gaEvent: 'milionarem_dalsi_cihly',
+      gaLabel: 'cihla_1',
+      done: '<i class="fas fa-circle-check" aria-hidden="true"></i>' +
+        '<h3>Platí.</h3>' +
+        '<p>Jakmile bude druhá cihla venku, přijde vám e-mail. Nic jiného od nás nedostanete.</p>'
+    });
+
     HubCTA.initGateById('milionarem-pdf-form', {
       fields: { name: true },
       leadForm: 'milionarem-pdf',
