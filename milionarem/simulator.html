@@ -151,9 +151,16 @@
                                     </div>
                                 </div>
 
-                                <div class="vy-field">
-                                    <label for="s-horizont">Jak dlouho byt držíte <strong class="js-val-horizont"></strong></label>
-                                    <input type="range" id="s-horizont" data-field="horizont" min="5" max="30" step="1" value="20">
+                                <div class="vy-range-row">
+                                    <div class="vy-field">
+                                        <label for="s-akcie">Zhodnocení akciového indexu <strong class="js-val-akcie"></strong></label>
+                                        <input type="range" id="s-akcie" data-field="akcie" min="0" max="12" step="0.5" value="7">
+                                        <p class="vy-field__hint">Pro srovnání se širokým indexem. Sedm procent je běžně uváděný dlouhodobý průměr — minulá výkonnost ale nezaručuje budoucí.</p>
+                                    </div>
+                                    <div class="vy-field">
+                                        <label for="s-horizont">Jak dlouho byt držíte <strong class="js-val-horizont"></strong></label>
+                                        <input type="range" id="s-horizont" data-field="horizont" min="5" max="30" step="1" value="20">
+                                    </div>
                                 </div>
                             </div>
 
@@ -173,10 +180,19 @@
                                         Čistý majetek z bytu
                                     </span>
                                     <span style="display:flex; align-items:center; gap:8px;">
+                                        <span style="width:18px; height:4px; background:var(--hub-alt); display:inline-block;"></span>
+                                        Akciový index
+                                    </span>
+                                    <span style="display:flex; align-items:center; gap:8px;">
                                         <span style="width:18px; height:4px; background:var(--hub-risk); display:inline-block;"></span>
-                                        Stejné peníze na spořicím účtu (2 % ročně)
+                                        Spořicí účet (2 % ročně)
                                     </span>
                                 </div>
+                                <p class="vy-field__hint" style="margin-bottom:14px;">
+                                    Všechny tři dostávají <strong>stejné peníze</strong> — vklad i každý měsíční
+                                    doplatek. Jinak by se porovnával investor, který posílá peníze každý měsíc,
+                                    s někým, kdo uložil jednou a už nic.
+                                </p>
                                 <div class="js-graf"></div>
                             </div>
 
@@ -290,7 +306,7 @@
                     </div>
 
                     <div class="hub-disclaimer">
-                        <p>Zjednodušený model pro ilustraci principu páky a růstu hodnoty. Nejde o investiční, právní ani daňové poradenství ani o příslib konkrétního výnosu. Model počítá se srážkou 15 % z nájmu na opravy a neobsazenost, ale nezohledňuje daň z příjmu z nájmu, jednorázové velké opravy, mimořádné příspěvky SVJ ani změnu sazby po skončení fixace. Předpokládá rovnoměrný růst cen — ve skutečnosti roky kolísají a ceny mohou i klesat, jako v roce 2023. Financování bez vlastních zdrojů zvyšuje riziko a jeho dostupnost posuzuje vždy konkrétní banka. Uvedené výnosy podle měst a sazby platí k roku 2026. Reálná čísla si vždy ověřte s hypotečním specialistou.</p>
+                        <p>Zjednodušený model pro ilustraci principu páky a růstu hodnoty. Nejde o investiční, právní ani daňové poradenství ani o příslib konkrétního výnosu. Model počítá se srážkou 15 % z nájmu na opravy a neobsazenost, ale nezohledňuje daň z příjmu z nájmu, jednorázové velké opravy, mimořádné příspěvky SVJ ani změnu sazby po skončení fixace. Předpokládá rovnoměrný růst cen — ve skutečnosti roky kolísají a ceny mohou i klesat, jako v roce 2023. Srovnání s akciovým indexem je rovněž zjednodušené: počítá s rovnoměrným zhodnocením, nezohledňuje poplatky ani daň z výnosu a nezachycuje kolísání, které u akcií bývá výrazně prudší než u nemovitostí. Minulá výkonnost nezaručuje budoucí ani u jednoho z nich. Financování bez vlastních zdrojů zvyšuje riziko a jeho dostupnost posuzuje vždy konkrétní banka. Uvedené výnosy podle měst a sazby platí k roku 2026. Reálná čísla si vždy ověřte s hypotečním specialistou.</p>
                     </div>
 
                 </div>

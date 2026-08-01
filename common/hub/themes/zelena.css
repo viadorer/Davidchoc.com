@@ -17,29 +17,38 @@
 .hub-page,
 .hub-theme-zelena {
     /* Základ */
-    --hub-ink: #0F1410;
-    --hub-ink-rgb: 15,20,16;
-    --hub-paper: #FBFCF7;
-    --hub-muted: #5A6B5C;
+    --hub-ink: #0D1411;
+    --hub-ink-rgb: 13,20,17;
+    --hub-paper: #F8FBF9;
+    --hub-muted: #566B60;
 
-    /* Zelená ve dvou rolích: signální linka a velká plocha */
-    --hub-accent: #2F5D3A;
-    --hub-accent-rgb: 47,93,58;
-    --hub-accent-surface: #D4E7B5;
-    --hub-accent-deep: #24482D;
-    --hub-accent-light: #EDF4E1;
+    /* Zelená ve dvou rolích: signální linka a velká plocha.
+       Odstín je záměrně smaragdový (149°), ne žlutozelený (83°) — v téhle
+       nice jezdí konkurence na žlutozelené a zaměnitelná značka je horší
+       než žádná. Konstrukce zůstává, posunul se jen tón. */
+    --hub-accent: #1F6B4A;
+    --hub-accent-rgb: 31,107,74;
+    --hub-accent-surface: #BEE3D0;
+    --hub-accent-deep: #14503A;
+    --hub-accent-light: #E8F4EE;
 
     /* Plochy a linky */
-    --hub-surface-1: #F6F9F0;
-    --hub-surface-2: #EDF4E1;
+    --hub-surface-1: #F1F7F3;
+    --hub-surface-2: #E8F4EE;
     --hub-surface-3: #FFFFFF;
-    --hub-surface-4: #F1F6E9;
-    --hub-line: #DCE5D0;
+    --hub-surface-4: #EDF5F0;
+    --hub-line: #D3E3DA;
 
-    /* Stavy — zelená jako potvrzení musí být jiná než zelená značky */
-    --hub-ok: #3E9C6D;
-    --hub-ok-rgb: 62,156,109;
-    --hub-ok-soft: #EAF5EF;
+    /* Stavy — potvrzení musí být odlišitelné od zelené značky, proto
+       posun do tyrkysu (171° proti 154°) a dost tmavý na text (4,9:1). */
+    --hub-ok: #0E7C6B;
+    --hub-ok-rgb: 14,124,107;
+    --hub-ok-soft: #E4F2EF;
+
+    /* Třetí datová řada v grafech — břidlicová modř, aby se nepletla
+       ani se zelenou, ani s hlínou (odstíny 216 / 154 / 24). */
+    --hub-alt: #4A5D7A;
+    --hub-alt-rgb: 74,93,122;
 
     /* Riziko: pálená hlína, ne červená. Na vzdělávacím webu, kde je
        varování na každé stránce, červená po třetím výskytu přestane

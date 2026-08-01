@@ -61,7 +61,7 @@
     if (!box) return;
 
     var pole = ['mesto', 'cena', 'ucel', 'vlastni', 'sazba', 'sazbaDofi',
-                'splatnost', 'rust', 'najemRust', 'horizont'];
+                'splatnost', 'rust', 'najemRust', 'akcie', 'horizont'];
 
     if (window.HubTools) {
       HubTools.initFields({
@@ -97,8 +97,10 @@
 
       var najemStart = cena * vynos / 12 * (1 - REZERVA);
 
-      var majetek = [], sporeni = [];
-      var hotovost = 0, sporeniStav = vlastni, doplaceno = 0;
+      var akcieSazba = num('akcie') / 100;
+
+      var majetek = [], sporeni = [], akcie = [];
+      var hotovost = 0, sporeniStav = vlastni, akcieStav = vlastni, doplaceno = 0;
       var rokSobestacnosti = null;
 
       for (var y = 0; y <= horizont; y++) {
@@ -107,7 +109,11 @@
 
         if (y > 0) {
           if (cf >= 0) hotovost += cf * 12; else doplaceno += -cf * 12;
+          // Spořicí účet i akciový index dostávají přesně tolik, kolik
+          // investor doplácí ze mzdy. Jinak by se porovnával člověk, který
+          // posílá peníze každý měsíc, s někým, kdo uložil jednou a už nic.
           sporeniStav = sporeniStav * (1 + SPORICI_SAZBA) + Math.max(0, -cf) * 12;
+          akcieStav = akcieStav * (1 + akcieSazba) + Math.max(0, -cf) * 12;
         }
         if (rokSobestacnosti === null && cf >= 0) rokSobestacnosti = y;
 
@@ -117,6 +123,7 @@
 
         majetek.push(cena * Math.pow(1 + rust, y) - zbytek + hotovost);
         sporeni.push(sporeniStav);
+        akcie.push(akcieStav);
       }
 
       // Rozpad první splátky. Úrok je náklad, jistina je váš majetek —
@@ -135,7 +142,8 @@
         najemStart: najemStart, cashflowStart: cashflowStart,
         najemKryjeUrok: najemStart >= urok,
         doplatekNaJistinu: doplatekNaJistinu, doplatekNaUrok: doplatekNaUrok,
-        majetek: majetek, sporeni: sporeni, horizont: horizont,
+        majetek: majetek, sporeni: sporeni, akcie: akcie, horizont: horizont,
+        akcieSazba: akcieSazba,
         doplaceno: doplaceno, rokSobestacnosti: rokSobestacnosti
       };
     }
@@ -143,7 +151,7 @@
     function graf(v) {
       var W = 820, H = 320, L = 78, R = 16, T = 16, B = 38;
       var pw = W - L - R, ph = H - T - B;
-      var max = Math.max.apply(null, v.majetek.concat(v.sporeni)) * 1.08 || 1;
+      var max = Math.max.apply(null, v.majetek.concat(v.sporeni, v.akcie)) * 1.08 || 1;
 
       function x(i) { return L + (i / v.horizont) * pw; }
       function y(val) { return T + ph - (val / max) * ph; }
@@ -179,10 +187,11 @@
       }
 
       s += '<path d="' + cesta(v.sporeni) + '" fill="none" stroke="var(--hub-risk)" stroke-width="3"/>';
+      s += '<path d="' + cesta(v.akcie) + '" fill="none" stroke="var(--hub-alt)" stroke-width="3"/>';
       s += '<path d="' + cesta(v.majetek) + '" fill="none" stroke="var(--hub-accent)" stroke-width="3.5"/>';
 
       return '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" ' +
-             'aria-label="Vývoj čistého majetku z nemovitosti proti spoření se stejnými vklady" ' +
+             'aria-label="Vývoj čistého majetku z nemovitosti proti akciovému indexu a spoření, vše se stejnými vklady" ' +
              'style="width:100%;height:auto;display:block;overflow:visible;">' + s + '</svg>';
     }
 
@@ -204,11 +213,13 @@
       box.querySelector('.js-val-splatnost').textContent = num('splatnost') + ' let';
       box.querySelector('.js-val-rust').textContent = des(el('rust').value) + ' %';
       box.querySelector('.js-val-najemRust').textContent = des(el('najemRust').value) + ' %';
+      box.querySelector('.js-val-akcie').textContent = des(el('akcie').value) + ' %';
       box.querySelector('.js-val-horizont').textContent = num('horizont') + ' let';
 
       var v = spocitat();
       var konec = v.majetek[v.horizont];
       var konecSporeni = v.sporeni[v.horizont];
+      var konecAkcie = v.akcie[v.horizont];
 
       // Řádek o dofinancování má smysl jen když nějaké je.
       var dofiRadek = box.querySelector('.js-dofi-radek');
@@ -222,7 +233,8 @@
         podtitulek = 'A to <strong>bez jediné vlastní koruny na startu</strong> — všechno je ' +
           'na dvou úvěrech. Zaplatíte to měsíčními splátkami, ne vkladem.';
       }
-      podtitulek += ' Na spořicím účtu byste při stejných vkladech měli ' + fmt(konecSporeni) + ' Kč.';
+      podtitulek += ' Se stejnými vklady byste na akciovém indexu měli ' + fmt(konecAkcie) +
+        ' Kč a na spořicím účtu ' + fmt(konecSporeni) + ' Kč.';
 
       box.querySelector('.js-headline').innerHTML =
         '<span class="sim-headline__label">Váš čistý majetek za ' + v.horizont + ' let</span>' +
@@ -248,11 +260,11 @@
                    'sim-stat--ok') +
         statistika('Byt se začne živit sám', sobestacnost,
                    kdy !== null && kdy <= v.horizont ? 'sim-stat--ok' : '') +
-        statistika('Úrok v prvním roce — jediný skutečný náklad',
-                   fmt(v.urok) + ' Kč měsíčně',
-                   v.najemKryjeUrok ? '' : 'sim-stat--warn') +
-        statistika('Hypotéka ' + (v.dofi > 0 ? '+ dofinancování' : 'od banky'),
-                   fmt(v.uverHlavni + v.dofi) + ' Kč');
+        // Šest dlaždic, aby mřížka vycházela na dvě plné řady po třech.
+        // Úrok je podrobně rozebraný v bloku pod tím, tak tu není zvlášť.
+        statistika('Tytéž peníze v akciovém indexu při ' + des(el('akcie').value) + ' % ročně',
+                   fmt(konecAkcie) + ' Kč',
+                   konec >= konecAkcie ? '' : 'sim-stat--warn');
 
       var verdikt = '';
       if (v.dofi > 0) {
