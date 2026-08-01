@@ -26,6 +26,18 @@
   HubCTA.ready(function () {
     HubCTA.injectHelp();
 
+    HubCTA.initGateById('milionarem-strop-form', {
+      fields: { name: true },
+      leadForm: 'milionarem-strop',
+      message: 'Zájem o další cihly — z Cihly 2 (Finanční strop).',
+      meta: { cihla: '2' },
+      gaEvent: 'milionarem_dalsi_cihly',
+      gaLabel: 'cihla_2',
+      done: '<i class="fas fa-circle-check" aria-hidden="true"></i>' +
+        '<h3>Platí.</h3>' +
+        '<p>Jakmile bude třetí cihla venku, přijde vám e-mail. Nic jiného od nás nedostanete.</p>'
+    });
+
     HubCTA.initGateById('milionarem-mapa-form', {
       fields: { name: true },
       leadForm: 'milionarem-mapa',
