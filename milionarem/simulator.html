@@ -31,9 +31,9 @@
                 <span class="hub-manifest__eyebrow">Nástroj · Deset zlatých cihel</span>
                 <h1>Simulátor cesty k <em>milionu</em></h1>
                 <p class="hub-manifest__lead">
-                    Vyberte město, cenu bytu a kolik dáte z vlastního. Uvidíte, co s vaším majetkem
-                    udělá jeden byt za dvacet let — a hlavně kdy se přestane živit z vaší výplaty
-                    a začne se živit sám.
+                    Vyberte město, cenu bytu a kolik dáte z vlastního — klidně nulu. Uvidíte, co
+                    s vaším majetkem udělá jeden byt za dvacet let a kdy se přestane živit z vaší
+                    výplaty.
                 </p>
                 <div class="hub-manifest__cta">
                     <a href="#simulator" class="cta-button">Pustit se do toho</a>
@@ -55,78 +55,97 @@
 
                         <div class="vy-widget__body">
 
-                            <div class="vy-field">
-                                <label for="s-mesto">Město <strong class="js-val-mesto"></strong></label>
-                                <select id="s-mesto" data-field="mesto">
-                                    <option value="7.1">Ústí nad Labem — výnos 7,1 %</option>
-                                    <option value="5.8">Ostrava — výnos 5,8 %</option>
-                                    <option value="5.7">Karlovy Vary — výnos 5,7 %</option>
-                                    <option value="5.6">Jihlava — výnos 5,6 %</option>
-                                    <option value="5.4">Zlín — výnos 5,4 %</option>
-                                    <option value="4.8">Pardubice — výnos 4,8 %</option>
-                                    <option value="4.7" selected>Plzeň — výnos 4,7 %</option>
-                                    <option value="4.6">Liberec — výnos 4,6 %</option>
-                                    <option value="4.5">České Budějovice — výnos 4,5 %</option>
-                                    <option value="4.5">Hradec Králové — výnos 4,5 %</option>
-                                    <option value="4.3">Olomouc — výnos 4,3 %</option>
-                                    <option value="4.1">Brno — výnos 4,1 %</option>
-                                    <option value="3.9">Praha — výnos 3,9 %</option>
-                                </select>
-                                <p class="vy-field__hint">Hrubý nájemní výnos, orientačně ke stavu trhu 2026.</p>
-                            </div>
+                            <!-- 1. BYT -->
+                            <div class="sim-group">
+                                <div class="sim-group__title">1 — Byt</div>
 
-                            <div class="vy-range-row">
+                                <div class="vy-field">
+                                    <label for="s-mesto">Město <strong class="js-val-mesto"></strong></label>
+                                    <select id="s-mesto" data-field="mesto">
+                                        <option value="7.1">Ústí nad Labem — výnos 7,1 %</option>
+                                        <option value="5.8">Ostrava — výnos 5,8 %</option>
+                                        <option value="5.7">Karlovy Vary — výnos 5,7 %</option>
+                                        <option value="5.6">Jihlava — výnos 5,6 %</option>
+                                        <option value="5.4">Zlín — výnos 5,4 %</option>
+                                        <option value="4.8">Pardubice — výnos 4,8 %</option>
+                                        <option value="4.7" selected>Plzeň — výnos 4,7 %</option>
+                                        <option value="4.6">Liberec — výnos 4,6 %</option>
+                                        <option value="4.5">České Budějovice — výnos 4,5 %</option>
+                                        <option value="4.3">Olomouc — výnos 4,3 %</option>
+                                        <option value="4.1">Brno — výnos 4,1 %</option>
+                                        <option value="3.9">Praha — výnos 3,9 %</option>
+                                    </select>
+                                    <p class="vy-field__hint">Hrubý nájemní výnos, orientačně ke stavu trhu 2026.</p>
+                                </div>
+
                                 <div class="vy-field">
                                     <label for="s-cena">Cena bytu <strong class="js-val-cena"></strong></label>
                                     <input type="range" id="s-cena" data-field="cena" min="1500000" max="10000000" step="100000" value="4000000">
-                                    <p class="vy-field__hint">Od 1,5 do 10 milionů.</p>
                                 </div>
+                            </div>
+
+                            <!-- 2. FINANCOVÁNÍ -->
+                            <div class="sim-group">
+                                <div class="sim-group__title">2 — Financování</div>
+
                                 <div class="vy-field">
                                     <label for="s-vlastni">Vlastní zdroje <strong class="js-val-vlastni"></strong></label>
-                                    <input type="range" id="s-vlastni" data-field="vlastni" min="30" max="100" step="5" value="30">
-                                    <p class="vy-field__hint">Minimum 30 % — banka u investiční hypotéky půjčí nejvýš 70 % (2026).</p>
+                                    <input type="range" id="s-vlastni" data-field="vlastni" min="0" max="100" step="5" value="30">
+                                    <p class="vy-field__hint">
+                                        Banka půjčí na tenhle byt nejvýš 70 % jeho hodnoty. Zbylých 30 % ale
+                                        <strong>nemusí být vaše hotovost</strong> — dají se dofinancovat odjinud,
+                                        nejčastěji úvěrem zajištěným jinou nemovitostí. Proto jde posuvník až na nulu.
+                                    </p>
+                                </div>
+
+                                <div class="vy-range-row">
+                                    <div class="vy-field">
+                                        <label for="s-sazba">Sazba hypotéky <strong class="js-val-sazba"></strong></label>
+                                        <input type="range" id="s-sazba" data-field="sazba" min="3" max="7" step="0.1" value="4.8">
+                                        <p class="vy-field__hint">Průměr nových hypoték byl v červnu 2026 4,79 %.</p>
+                                    </div>
+                                    <div class="vy-field">
+                                        <label for="s-splatnost">Splatnost <strong class="js-val-splatnost"></strong></label>
+                                        <input type="range" id="s-splatnost" data-field="splatnost" min="15" max="30" step="1" value="25">
+                                        <p class="vy-field__hint">Delší splatnost sníží splátku, ale zaplatíte víc na úrocích.</p>
+                                    </div>
+                                </div>
+
+                                <div class="vy-field js-dofi-radek" hidden>
+                                    <label for="s-sazbaDofi">Sazba dofinancování <strong class="js-val-sazbaDofi"></strong></label>
+                                    <input type="range" id="s-sazbaDofi" data-field="sazbaDofi" min="3" max="12" step="0.1" value="6.5">
+                                    <p class="vy-field__hint">Úvěr na chybějící část, zajištěný jinou nemovitostí. Bývá dražší než hypotéka na kupovaný byt.</p>
                                 </div>
                             </div>
 
-                            <div class="vy-range-row">
-                                <div class="vy-field">
-                                    <label for="s-sazba">Sazba hypotéky <strong class="js-val-sazba"></strong></label>
-                                    <input type="range" id="s-sazba" data-field="sazba" min="3" max="7" step="0.1" value="4.8">
-                                    <p class="vy-field__hint">Průměr nových hypoték byl v červnu 2026 4,79 %.</p>
-                                </div>
-                                <div class="vy-field">
-                                    <label for="s-splatnost">Splatnost <strong class="js-val-splatnost"></strong></label>
-                                    <input type="range" id="s-splatnost" data-field="splatnost" min="15" max="30" step="1" value="25">
-                                    <p class="vy-field__hint">Delší splatnost sníží splátku, ale zaplatíte víc na úrocích.</p>
-                                </div>
-                            </div>
+                            <!-- 3. PŘEDPOKLADY -->
+                            <div class="sim-group">
+                                <div class="sim-group__title">3 — Předpoklady</div>
 
-                            <div class="vy-range-row">
-                                <div class="vy-field">
-                                    <label for="s-rust">Růst ceny bytu <strong class="js-val-rust"></strong></label>
-                                    <input type="range" id="s-rust" data-field="rust" min="0" max="7" step="0.5" value="4">
-                                    <p class="vy-field__hint">Dlouhodobý průměr ČR je 7 % ročně. Čtyři procenta jsou opatrný odhad.</p>
+                                <div class="vy-range-row">
+                                    <div class="vy-field">
+                                        <label for="s-rust">Růst ceny bytu <strong class="js-val-rust"></strong></label>
+                                        <input type="range" id="s-rust" data-field="rust" min="0" max="7" step="0.5" value="4">
+                                        <p class="vy-field__hint">Dlouhodobý průměr ČR je 7 % ročně. Čtyři procenta jsou opatrný odhad.</p>
+                                    </div>
+                                    <div class="vy-field">
+                                        <label for="s-najemRust">Růst nájmu <strong class="js-val-najemRust"></strong></label>
+                                        <input type="range" id="s-najemRust" data-field="najemRust" min="0" max="6" step="0.5" value="3">
+                                        <p class="vy-field__hint">Tohle číslo rozhoduje, kdy se byt začne živit sám.</p>
+                                    </div>
                                 </div>
-                                <div class="vy-field">
-                                    <label for="s-najemRust">Růst nájmu <strong class="js-val-najemRust"></strong></label>
-                                    <input type="range" id="s-najemRust" data-field="najemRust" min="0" max="6" step="0.5" value="3">
-                                    <p class="vy-field__hint">Tohle číslo rozhoduje, kdy se byt začne živit sám.</p>
-                                </div>
-                            </div>
 
-                            <div class="vy-field">
-                                <label for="s-horizont">Jak dlouho byt držíte <strong class="js-val-horizont"></strong></label>
-                                <input type="range" id="s-horizont" data-field="horizont" min="5" max="30" step="1" value="20">
+                                <div class="vy-field">
+                                    <label for="s-horizont">Jak dlouho byt držíte <strong class="js-val-horizont"></strong></label>
+                                    <input type="range" id="s-horizont" data-field="horizont" min="5" max="30" step="1" value="20">
+                                </div>
                             </div>
 
                             <!-- VÝSLEDEK -->
-                            <div class="hub-calc" style="margin-top:30px;">
-                                <div class="hub-calc__total">
-                                    <div class="hub-calc__total-side js-hlavni"></div>
-                                    <p class="hub-calc__promise js-podtitulek"></p>
-                                </div>
-
-                                <div class="hub-calc__block js-kpi"></div>
+                            <div class="sim-group">
+                                <div class="sim-group__title">Výsledek</div>
+                                <div class="sim-headline js-headline"></div>
+                                <div class="sim-stats js-stats"></div>
                             </div>
 
                             <div class="js-verdikt"></div>
@@ -151,12 +170,28 @@
                         </div>
                     </div>
 
-                    <h2>Jak se to počítá</h2>
+                    <h2>Proč jde vlastní vklad až na nulu</h2>
 
                     <p>
-                        Čistý majetek z bytu je <strong>hodnota nemovitosti minus zbytek úvěru plus
+                        Sedmdesát procent je strop banky vůči <strong>kupovanému</strong> bytu, ne
+                        vůči vaší kapse. Zbylých třicet procent musí odněkud přijít — ale nemusí to
+                        být hotovost na účtu. Nejčastěji je to druhý úvěr zajištěný jinou
+                        nemovitostí.
+                    </p>
+
+                    <p>
+                        Proto simulátor při vkladu pod 30 % počítá <strong>se dvěma úvěry
+                        zvlášť</strong>, každým s vlastní sazbou. Nulový vklad není trik ani
+                        kouzlo — je to druhá splátka, kterou musíte unést, a druhá nemovitost,
+                        kterou ručíte. Když se investice nepovede, nepřijdete jen o ni.
+                    </p>
+
+                    <h2>Jak se počítá majetek</h2>
+
+                    <p>
+                        Čistý majetek je <strong>hodnota nemovitosti minus zbytek obou úvěrů plus
                         nastřádaná hotovost</strong>. Měsíční doplatek ze mzdy se od majetku
-                        neodečítá — část z něj splácí jistinu, a ta už je v zůstatku úvěru
+                        neodečítá: část z něj splácí jistinu, a ta už je v zůstatku úvěru
                         započítaná. Nejsou to vyhozené peníze, jen je momentálně nevidíte na účtu.
                     </p>
 
@@ -175,7 +210,7 @@
                     </div>
 
                     <div class="hub-disclaimer">
-                        <p>Zjednodušený model pro ilustraci principu páky a růstu hodnoty. Nejde o investiční, právní ani daňové poradenství ani o příslib konkrétního výnosu. Model počítá se srážkou 15 % z nájmu na opravy a neobsazenost, ale nezohledňuje daň z příjmu z nájmu, jednorázové velké opravy, mimořádné příspěvky SVJ ani změnu sazby po skončení fixace. Předpokládá rovnoměrný růst cen — ve skutečnosti roky kolísají a ceny mohou i klesat, jako v roce 2023. Uvedené výnosy podle měst a sazby platí k roku 2026. Reálná čísla si vždy ověřte s hypotečním specialistou.</p>
+                        <p>Zjednodušený model pro ilustraci principu páky a růstu hodnoty. Nejde o investiční, právní ani daňové poradenství ani o příslib konkrétního výnosu. Model počítá se srážkou 15 % z nájmu na opravy a neobsazenost, ale nezohledňuje daň z příjmu z nájmu, jednorázové velké opravy, mimořádné příspěvky SVJ ani změnu sazby po skončení fixace. Předpokládá rovnoměrný růst cen — ve skutečnosti roky kolísají a ceny mohou i klesat, jako v roce 2023. Financování bez vlastních zdrojů zvyšuje riziko a jeho dostupnost posuzuje vždy konkrétní banka. Uvedené výnosy podle měst a sazby platí k roku 2026. Reálná čísla si vždy ověřte s hypotečním specialistou.</p>
                     </div>
 
                 </div>
