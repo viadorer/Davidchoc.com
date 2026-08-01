@@ -15,7 +15,12 @@
 (function () {
   'use strict';
 
-  var LTV = 0.70;             // strop banky na kupovanou nemovitost (2026)
+  // Strop banky na kupovanou nemovitost se liší podle účelu úvěru (2026):
+  //   70 % — investiční hypotéka: třetí a další nemovitost NEBO jakákoli
+  //          nemovitost pořizovaná na pronájem, tedy i ta první
+  //   80 % — vlastní bydlení, první nebo druhá nemovitost
+  //   90 % — vlastní bydlení u žadatele do 36 let
+  // Hodnotu vybírá uživatel, protože z ní plyne, kolik musí sehnat jinde.
   var SPORICI_SAZBA = 0.02;   // ilustrativní úrok spořicího účtu
   var REZERVA = 0.15;         // srážka z nájmu na opravy a neobsazenost
 
@@ -55,7 +60,7 @@
     var box = document.getElementById('simulator');
     if (!box) return;
 
-    var pole = ['mesto', 'cena', 'vlastni', 'sazba', 'sazbaDofi',
+    var pole = ['mesto', 'cena', 'ucel', 'vlastni', 'sazba', 'sazbaDofi',
                 'splatnost', 'rust', 'najemRust', 'horizont'];
 
     if (window.HubTools) {
@@ -80,9 +85,10 @@
       var najemRust = num('najemRust') / 100;
       var horizont = num('horizont');
 
+      var ltv = num('ucel') / 100;
       var vlastni = cena * vlastniPct;
       var potreba = cena - vlastni;
-      var uverHlavni = Math.min(potreba, cena * LTV);
+      var uverHlavni = Math.min(potreba, cena * ltv);
       var dofi = Math.max(0, potreba - uverHlavni);
 
       var splatkaHlavni = splatka(uverHlavni, sazba, splatnost);
@@ -123,7 +129,7 @@
       var doplatekNaUrok = Math.max(0, -cashflowStart - doplatekNaJistinu);
 
       return {
-        cena: cena, vlastni: vlastni, uverHlavni: uverHlavni, dofi: dofi,
+        cena: cena, ltv: ltv, vlastni: vlastni, uverHlavni: uverHlavni, dofi: dofi,
         splatkaCelkem: splatkaCelkem, splatkaDofi: splatkaDofi,
         urok: urok, jistina: jistina,
         najemStart: najemStart, cashflowStart: cashflowStart,
@@ -189,7 +195,10 @@
     function prepocitat() {
       box.querySelector('.js-val-mesto').textContent = des(el('mesto').value) + ' %';
       box.querySelector('.js-val-cena').textContent = fmtKratce(num('cena')) + ' Kč';
+      box.querySelector('.js-val-ucel').textContent = 'LTV ' + num('ucel') + ' %';
       box.querySelector('.js-val-vlastni').textContent = num('vlastni') + ' %';
+      // Minimum bez dofinancování se mění s účelem úvěru.
+      box.querySelector('.js-min-vlastni').textContent = (100 - num('ucel')) + ' %';
       box.querySelector('.js-val-sazba').textContent = des(el('sazba').value) + ' %';
       box.querySelector('.js-val-sazbaDofi').textContent = des(el('sazbaDofi').value) + ' %';
       box.querySelector('.js-val-splatnost').textContent = num('splatnost') + ' let';
@@ -253,7 +262,8 @@
               '<span class="hub-risk__label">Dva úvěry místo jednoho</span>' +
               '<span class="hub-risk__level">' + fmt(v.dofi) + ' Kč</span>' +
             '</div>' +
-            '<p class="hub-risk__title">Banka na tenhle byt půjčí nejvýš 70 %. Zbytek musíte sehnat jinde.</p>' +
+            '<p class="hub-risk__title">Banka na tenhle byt půjčí nejvýš ' +
+              Math.round(v.ltv * 100) + ' %. Zbytek musíte sehnat jinde.</p>' +
             '<p>Model počítá, že ' + fmt(v.dofi) + ' Kč dofinancujete druhým úvěrem — typicky ' +
               'zajištěným jinou nemovitostí. Přidává to <strong>' + fmt(v.splatkaDofi) +
               ' Kč měsíčně</strong> ke splátce a ručíte i tou druhou nemovitostí.</p>' +

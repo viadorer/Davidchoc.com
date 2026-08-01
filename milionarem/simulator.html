@@ -89,11 +89,27 @@
                                 <div class="sim-group__title">2 — Financování</div>
 
                                 <div class="vy-field">
+                                    <label for="s-ucel">Účel úvěru <strong class="js-val-ucel"></strong></label>
+                                    <select id="s-ucel" data-field="ucel">
+                                        <option value="70" selected>Investiční — 3. a další nemovitost, nebo byt rovnou na pronájem</option>
+                                        <option value="80">Vlastní bydlení — 1. nebo 2. nemovitost</option>
+                                        <option value="90">Vlastní bydlení — 1. nebo 2. nemovitost, do 36 let</option>
+                                    </select>
+                                    <p class="vy-field__hint">
+                                        Od dubna 2026 platí strop 70 % pro investiční hypotéky. Tou se rozumí
+                                        <strong>třetí a další nemovitost — ale i ta první, když ji kupujete
+                                        na pronájem.</strong> U vlastního bydlení zůstává 80 %, a do 36 let
+                                        dokonce 90 %. Účel ale musí sedět: byt, ve kterém bydlet nebudete,
+                                        je investiční hypotéka bez ohledu na to, kolikátý je.
+                                    </p>
+                                </div>
+
+                                <div class="vy-field">
                                     <label for="s-vlastni">Vlastní zdroje <strong class="js-val-vlastni"></strong></label>
                                     <input type="range" id="s-vlastni" data-field="vlastni" min="0" max="100" step="5" value="30">
                                     <p class="vy-field__hint">
-                                        Banka půjčí na tenhle byt nejvýš 70 % jeho hodnoty. Zbylých 30 % ale
-                                        <strong>nemusí být vaše hotovost</strong> — dají se dofinancovat odjinud,
+                                        Bez dofinancování potřebujete aspoň <strong class="js-min-vlastni"></strong>.
+                                        Ani ty ale <strong>nemusí být vaše hotovost</strong> — dají se sehnat jinde,
                                         nejčastěji úvěrem zajištěným jinou nemovitostí. Proto jde posuvník až na nulu.
                                     </p>
                                 </div>
@@ -170,20 +186,62 @@
                         </div>
                     </div>
 
-                    <h2>Proč jde vlastní vklad až na nulu</h2>
+                    <h2>Kolik vám banka půjčí — a proč jde vklad až na nulu</h2>
 
                     <p>
-                        Sedmdesát procent je strop banky vůči <strong>kupovanému</strong> bytu, ne
-                        vůči vaší kapse. Zbylých třicet procent musí odněkud přijít — ale nemusí to
-                        být hotovost na účtu. Nejčastěji je to druhý úvěr zajištěný jinou
-                        nemovitostí.
+                        Strop není jeden. Od dubna 2026 platí tohle:
+                    </p>
+
+                    <div class="hub-table-wrap">
+                        <table class="hub-table">
+                            <thead>
+                                <tr>
+                                    <th>Účel úvěru</th>
+                                    <th>Banka půjčí</th>
+                                    <th>Musíte sehnat</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Vlastní bydlení, 1. nebo 2. nemovitost, <strong>do 36 let</strong></td>
+                                    <td><strong>90 %</strong></td>
+                                    <td>10 %</td>
+                                </tr>
+                                <tr>
+                                    <td>Vlastní bydlení, 1. nebo 2. nemovitost</td>
+                                    <td><strong>80 %</strong></td>
+                                    <td>20 %</td>
+                                </tr>
+                                <tr>
+                                    <td>Investiční — 3. a další nemovitost, <strong>nebo byt rovnou na pronájem</strong></td>
+                                    <td><strong>70 %</strong></td>
+                                    <td>30 %</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="hub-risk">
+                        <div class="hub-risk__head">
+                            <span class="hub-risk__label">Kde se to láme</span>
+                            <span class="hub-risk__level">Účel úvěru</span>
+                        </div>
+                        <p class="hub-risk__title">Osmdesát a devadesát procent je vázané na vlastní bydlení, ne na pořadí</p>
+                        <p>I první byt v životě spadá pod sedmdesát procent, když ho kupujete rovnou na pronájem. Investiční hypotékou se rozumí třetí a další nemovitost <strong>nebo jakákoli nemovitost pořizovaná k pronájmu</strong>.</p>
+                        <p>Brát úvěr na vlastní bydlení s tím, že v bytě bydlet nebudete, je nepravdivé prohlášení vůči bance a porušení úvěrové smlouvy. Když se situace časem skutečně změní a byt pronajmete, oznamte to bance — přecení úvěr a je to vyřízené.</p>
+                    </div>
+
+                    <p>
+                        Ať už na vás vyjde kterýkoli řádek, ta zbylá část <strong>nemusí být
+                        hotovost na účtu</strong>. Nejčastěji je to druhý úvěr zajištěný jinou
+                        nemovitostí. Proto jde posuvník vlastních zdrojů až na nulu a simulátor
+                        pak počítá <strong>se dvěma úvěry zvlášť</strong>, každým s vlastní sazbou.
                     </p>
 
                     <p>
-                        Proto simulátor při vkladu pod 30 % počítá <strong>se dvěma úvěry
-                        zvlášť</strong>, každým s vlastní sazbou. Nulový vklad není trik ani
-                        kouzlo — je to druhá splátka, kterou musíte unést, a druhá nemovitost,
-                        kterou ručíte. Když se investice nepovede, nepřijdete jen o ni.
+                        Nulový vklad není trik ani kouzlo — je to druhá splátka, kterou musíte
+                        unést, a druhá nemovitost, kterou ručíte. Když se investice nepovede,
+                        nepřijdete jen o ni.
                     </p>
 
                     <h2>Jak se počítá majetek</h2>
