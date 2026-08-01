@@ -113,10 +113,22 @@
         sporeni.push(sporeniStav);
       }
 
+      // Rozpad první splátky. Úrok je náklad, jistina je váš majetek —
+      // a tenhle rozdíl rozhoduje, jestli je záporný cashflow spoření,
+      // nebo skutečná ztráta.
+      var urok = (uverHlavni * sazba + dofi * sazbaDofi) / 12;
+      var jistina = Math.max(0, splatkaCelkem - urok);
+      var cashflowStart = najemStart - splatkaCelkem;
+      var doplatekNaJistinu = Math.max(0, Math.min(-cashflowStart, jistina));
+      var doplatekNaUrok = Math.max(0, -cashflowStart - doplatekNaJistinu);
+
       return {
         cena: cena, vlastni: vlastni, uverHlavni: uverHlavni, dofi: dofi,
         splatkaCelkem: splatkaCelkem, splatkaDofi: splatkaDofi,
-        najemStart: najemStart, cashflowStart: najemStart - splatkaCelkem,
+        urok: urok, jistina: jistina,
+        najemStart: najemStart, cashflowStart: cashflowStart,
+        najemKryjeUrok: najemStart >= urok,
+        doplatekNaJistinu: doplatekNaJistinu, doplatekNaUrok: doplatekNaUrok,
         majetek: majetek, sporeni: sporeni, horizont: horizont,
         doplaceno: doplaceno, rokSobestacnosti: rokSobestacnosti
       };
@@ -219,11 +231,17 @@
                    v.uverHlavni + v.dofi > 0 ? fmt(v.splatkaCelkem) + ' Kč' : 'bez úvěru') +
         statistika('Cashflow v prvním roce',
                    (v.cashflowStart >= 0 ? '+' : '') + fmt(v.cashflowStart) + ' Kč',
-                   v.cashflowStart >= 0 ? 'sim-stat--ok' : 'sim-stat--warn') +
+                   // Záporný cashflow není červená, dokud nájem pokrývá úrok —
+                   // to, co doplácíte, jde do jistiny, tedy do vašeho majetku.
+                   v.cashflowStart >= 0 || v.najemKryjeUrok ? 'sim-stat--ok' : 'sim-stat--warn') +
+        statistika('Z vaší měsíční platby jde na jistinu',
+                   v.cashflowStart >= 0 ? 'nedoplácíte nic' : fmt(v.doplatekNaJistinu) + ' Kč',
+                   'sim-stat--ok') +
         statistika('Byt se začne živit sám', sobestacnost,
-                   kdy !== null && kdy <= v.horizont ? 'sim-stat--ok' : 'sim-stat--warn') +
-        statistika('Než se to otočí, doplatíte', fmt(v.doplaceno) + ' Kč',
-                   v.doplaceno > 0 ? 'sim-stat--warn' : '') +
+                   kdy !== null && kdy <= v.horizont ? 'sim-stat--ok' : '') +
+        statistika('Úrok v prvním roce — jediný skutečný náklad',
+                   fmt(v.urok) + ' Kč měsíčně',
+                   v.najemKryjeUrok ? '' : 'sim-stat--warn') +
         statistika('Hypotéka ' + (v.dofi > 0 ? '+ dofinancování' : 'od banky'),
                    fmt(v.uverHlavni + v.dofi) + ' Kč');
 
@@ -244,24 +262,47 @@
           '</div>';
       }
 
-      if (v.cashflowStart < 0) {
+      if (v.cashflowStart < 0 && v.najemKryjeUrok) {
+        // Nájem pokryje celý úrok, takže doplatek majitele padá celý do jistiny.
+        // Není to ztráta, je to spoření se splatností — jen si ho nevybíráte.
         verdikt +=
           '<div class="hub-time">' +
             '<div class="hub-time__head">' +
-              '<span class="hub-time__label">Než se to otočí</span>' +
+              '<span class="hub-time__label">Nucené spoření</span>' +
               '<span class="hub-time__level">' +
-                (kdy !== null && kdy <= v.horizont ? 'Rok ' + kdy : 'Za horizontem') + '</span>' +
+                (kdy !== null && kdy <= v.horizont ? 'Otočí se v roce ' + kdy : 'Poroste dál') +
+              '</span>' +
             '</div>' +
-            '<p class="hub-time__title">První roky vás byt stojí ' +
-              fmt(Math.abs(v.cashflowStart)) + ' Kč měsíčně</p>' +
-            (kdy !== null && kdy <= v.horizont
-              ? '<p>Nájem roste, splátka ne — takže se to v <strong>' + kdy + '. roce</strong> ' +
-                'otočí a od té chvíle se byt živí sám. Do té doby ho dotujete ze mzdy: celkem ' +
-                fmt(v.doplaceno) + ' Kč.</p>'
-              : '<p>Při zadaných číslech se to do konce horizontu neotočí. Vyděláte na růstu ' +
-                'hodnoty, ne na nájmu — což je legitimní strategie, ale musíte na ni mít.</p>') +
-            '<p>Tyhle peníze nejsou pryč: splácí se jimi jistina, takže se vám vracejí v hodnotě ' +
-              'bytu. Ale musíte je každý měsíc mít.</p>' +
+            '<p class="hub-time__title">Doplácíte ' + fmt(Math.abs(v.cashflowStart)) +
+              ' Kč měsíčně — a celá ta částka jde do vašeho majetku</p>' +
+            '<p>Úrok ' + fmt(v.urok) + ' Kč <strong>zaplatí nájemník</strong>, ne vy. ' +
+              'Z jeho nájmu zbyde ještě ' + fmt(Math.max(0, v.najemStart - v.urok)) +
+              ' Kč na jistinu. Vašich ' + fmt(Math.abs(v.cashflowStart)) +
+              ' Kč se tedy do posledního haléře mění na splacený kus bytu.</p>' +
+            '<p>Není to výdaj. Je to spoření, které si nemůžete vybrat — a proto ho na rozdíl ' +
+              'od spořicího účtu opravdu dodržíte.' +
+              (kdy !== null && kdy <= v.horizont
+                ? ' V <strong>' + kdy + '. roce</strong> nájem splátku dožene a od té chvíle ' +
+                  'spoří nájemník za vás úplně sám.'
+                : ' Při zadaných číslech se to do konce horizontu neotočí — spoříte dál, ' +
+                  'ale pořád do svého.') +
+            '</p>' +
+          '</div>';
+      } else if (v.cashflowStart < 0) {
+        // Nájem nepokryje ani úrok — tady část peněz opravdu shoří.
+        verdikt +=
+          '<div class="hub-risk">' +
+            '<div class="hub-risk__head">' +
+              '<span class="hub-risk__label">Kde se to láme</span>' +
+              '<span class="hub-risk__level">' + fmt(v.doplatekNaUrok) + ' Kč měsíčně</span>' +
+            '</div>' +
+            '<p class="hub-risk__title">Tady už nájem nestačí ani na úrok</p>' +
+            '<p>Úrok je ' + fmt(v.urok) + ' Kč měsíčně, nájem po srážce jen ' +
+              fmt(v.najemStart) + ' Kč. Z vašich ' + fmt(Math.abs(v.cashflowStart)) +
+              ' Kč jde <strong>' + fmt(v.doplatekNaUrok) + ' Kč na úroky</strong> — a ty se vám ' +
+              'nevrátí v ničem. Do jistiny padne jen ' + fmt(v.doplatekNaJistinu) + ' Kč.</p>' +
+            '<p>Tohle je jediná situace, kdy záporný cashflow není spoření. Buď je cena vysoká ' +
+              'na daný nájem, nebo je málo vlastních zdrojů, nebo obojí.</p>' +
           '</div>';
       } else {
         verdikt +=
