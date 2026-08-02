@@ -4021,8 +4021,45 @@ body.is-light .hub-help__phone { text-decoration: none; }
 }
 .hub-action p:last-child { margin-bottom: 0; }
 
+/* ── NABÍDKA POMOCI ─────────────────────────────────────────────────────
+   Vědomě tišší než .hub-action: bílá plocha, jen linka vlevo. Kapitola
+   musí fungovat i pro toho, kdo tenhle blok přeskočí — je to východ pro
+   menšinu, ne pointa stránky. Proto žádná barevná plocha ani velký nadpis. */
+.hub-offer {
+    background: #fff;
+    border: 1px solid var(--hub-line, #E6E0D4);
+    border-left: 3px solid var(--hub-accent, #FFBF00);
+    border-radius: 0 12px 12px 0;
+    padding: 24px 28px;
+    margin: 38px 0;
+}
+.hub-offer__label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--hub-muted, #8B7D61);
+    margin-bottom: 10px;
+}
+.hub-offer h3 {
+    font-size: 1.12rem;
+    font-weight: 800;
+    margin: 0 0 10px;
+    color: var(--hub-ink, #1a1a1a);
+    line-height: 1.35;
+}
+.hub-offer p {
+    margin: 0 0 14px;
+    font-size: 0.98rem;
+    line-height: 1.7;
+    color: var(--hub-muted, #8B7D61);
+}
+.hub-offer .vy-gate__form { margin-top: 4px; }
+
 @media (max-width: 600px) {
     .hub-action { padding: 22px 20px; }
+    .hub-offer { padding: 20px 20px; }
     .hub-vs__side { padding: 20px 22px; }
     .hub-proof__item { padding: 18px 20px; }
     .hub-proof__num { font-size: 1.45rem; }

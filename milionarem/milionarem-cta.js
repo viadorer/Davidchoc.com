@@ -26,6 +26,23 @@
   HubCTA.ready(function () {
     HubCTA.injectHelp();
 
+    // Jediná nabídka služby v celé sekci. Stojí za nástrojem, kde čtenář
+    // právě zjistil, kolik té práce je — ne na začátku a ne místo obsahu.
+    HubCTA.initGateById('milionarem-servis-form', {
+      fields: { name: true, url: true },
+      leadForm: 'milionarem-servis',
+      message: function (d) {
+        return 'Prosba o posouzení konkrétního bytu — z Cihly 4 (Prověrka).\n\nOdkaz: ' + d.url;
+      },
+      meta: function (d) { return { cihla: '4', listing_url: d.url }; },
+      gaEvent: 'milionarem_servis',
+      gaLabel: 'cihla_4',
+      msgUrl: 'Vložte prosím celý odkaz na inzerát včetně https://',
+      done: HOTOVO +
+        '<h3>Mám ho.</h3>' +
+        '<p>Podívám se na katastr, zápisy a fond oprav a do dvou pracovních dnů vám napíšu, co bych řešil dřív než cenu.</p>'
+    });
+
     HubCTA.initGateById('milionarem-lokality-form', {
       fields: { name: true },
       leadForm: 'milionarem-lokality',
