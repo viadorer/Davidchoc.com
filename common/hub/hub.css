@@ -2458,6 +2458,24 @@ a.hub-tool:hover {
     margin-top: 6px;
     font-weight: 600;
 }
+/* Druhý sloupec karty výsledku, když v něm má být číslo i vysvětlení pod ním.
+   Bez obalu spadne třetí prvek do prvního sloupce (150 px) a text se láme
+   po dvou slovech. */
+.vy-result__col,
+.hub-result__col { display: block; }
+.vy-result__col .vy-result__value,
+.hub-result__col .hub-result__value {
+    display: block;
+    white-space: normal;
+    margin-bottom: 6px;
+}
+.vy-result__col .vy-result__body,
+.hub-result__col .hub-result__body {
+    display: block;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--hub-muted, #8B7D61);
+}
 .vy-result__body h2,
 .hub-result__body h2 {
     font-size: 1.6rem !important;

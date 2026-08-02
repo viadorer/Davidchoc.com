@@ -51,7 +51,7 @@
 
     if (window.HubTools) {
       HubTools.initFields({
-        storageKey: 'investovat-lokality',
+        storageKey: 'milionarem-lokality',
         container: '#srovnani-lokalit',
         resetEl: '.js-lokality-reset',
         onChange: prepocitat
@@ -151,7 +151,7 @@
           '</div>' +
           '<p class="hub-risk__title">Tohle je hrubý výnos. Do kapsy vám přijde míň.</p>' +
           '<p>Hrubý výnos nepočítá s fondem oprav, pojištěním, daní z nájmu, rezervou na opravy ani s měsíci, kdy je byt prázdný. Slouží k porovnání bytů mezi sebou, ne k rozhodnutí o koupi.</p>' +
-          '<p>Až budete mít favorita, protáhněte ho třemi scénáři v <a href="/investovat/mapa">Mapě cihel</a> — tam se počítá i se splátkou a s prázdnými měsíci.</p>' +
+          '<p>Až budete mít favorita, protáhněte ho třemi scénáři v <a href="/milionarem/cihla-1-plan#mapa">Mapě cihel</a> — tam se počítá i se splátkou a s prázdnými měsíci.</p>' +
         '</div>';
 
       out.innerHTML = html;

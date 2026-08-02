@@ -96,6 +96,69 @@
 .hub-page .hub-hero__lead { color: var(--hub-accent-deep); }
 .hub-page .hub-hero__sub { color: var(--hub-accent-deep); }
 
+/* Zbytky jantarové palety v hub.css, které nejdou přes token.
+   V původním tématu byl akcent zlatý, takže se pár míst napsalo natvrdo —
+   uvnitř zelené sekce vypadají jako cizí těleso. Nepřepisujeme kvůli tomu
+   hub.css: ta pravidla dál slouží výcviku, kde jsou správně. */
+
+/* Odznak nástroje: zlatý text na inkoustu měl kontrast 12:1, zelený má 2,1:1
+   a je nečitelný. Světlá mincovní na inkoustu dává 11,4:1. */
+.hub-page .vy-widget__badge,
+.hub-page .hub-widget__badge { color: var(--hub-accent-surface); }
+
+/* Krémové plochy → zelený nádech téhož jasu. */
+.hub-page .vy-result--realistic,
+.hub-page .hub-result--realistic,
+.hub-page .vy-verdict--warn,
+.hub-page .hub-verdict--warn { background: var(--hub-surface-1); }
+
+.hub-page .vy-result--warn,
+.hub-page .hub-result--warn {
+    background: linear-gradient(160deg, var(--hub-surface-1) 0%, var(--hub-surface-4) 100%);
+}
+.hub-page .vy-result--warn .vy-result__score span,
+.hub-page .hub-result--warn .hub-result__score span { color: var(--hub-accent-deep); }
+
+.hub-page .vy-result--fail,
+.hub-page .hub-result--fail,
+.hub-page .vy-calc__block--loss,
+.hub-page .hub-calc__block--loss {
+    background: linear-gradient(160deg, var(--hub-risk-soft) 0%, #F3E4D8 100%);
+}
+
+/* Zelený stav místo materiálové zelené z výchozí palety. */
+.hub-page .vy-verdict--ok,
+.hub-page .hub-verdict--ok { background: var(--hub-ok-soft); }
+.hub-page .vy-verdict--ok strong,
+.hub-page .hub-verdict--ok strong { color: var(--hub-ok) !important; }
+.hub-page .vy-result--pass,
+.hub-page .hub-result--pass {
+    background: linear-gradient(160deg, var(--hub-ok-soft) 0%, #D9EBE7 100%);
+}
+
+/* Hover na odesílacím tlačítku brány a na tlačítku nápovědy svítil zlatě. */
+.hub-page .vy-gate__form button[type="submit"]:hover:not(:disabled),
+.hub-page .hub-gate__form button[type="submit"]:hover:not(:disabled),
+.hub-page .vy-help__btn:hover,
+.hub-page .hub-help__btn:hover {
+    background: var(--hub-accent-deep);
+    color: #fff;
+}
+
+/* Chybová hláška brány je na světlé ploše — lososová na bílé je nečitelná. */
+.hub-page .vy-gate__msg--error,
+.hub-page .hub-gate__msg--error {
+    background: var(--hub-risk-soft);
+    border-color: rgba(var(--hub-risk-rgb), 0.4);
+    color: var(--hub-risk-deep);
+}
+
+/* Podtržítko nadpisu sekce kreslí styles.css jantarovým přechodem. */
+.hub-page.is-light .pripad-section__header h2::after,
+.hub-page .pripad-section__header h2::after {
+    background: linear-gradient(90deg, var(--hub-accent) 0%, rgba(var(--hub-accent-rgb), 0) 90%);
+}
+
 /* Plovoucí nabídka je globální prvek webu a nosí jantarovou. Uvnitř zelené
    sekce by křičela — přebarvuje se, chování zůstává. */
 .hub-page .popup-cta__image { border-color: var(--hub-accent); }

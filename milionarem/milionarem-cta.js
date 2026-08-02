@@ -26,6 +26,42 @@
   HubCTA.ready(function () {
     HubCTA.injectHelp();
 
+    HubCTA.initGateById('milionarem-lokality-form', {
+      fields: { name: true },
+      leadForm: 'milionarem-lokality',
+      message: 'Zájem o další cihly — z Cihly 3 (Srovnání lokalit).',
+      meta: { cihla: '3' },
+      gaEvent: 'milionarem_dalsi_cihly',
+      gaLabel: 'cihla_3',
+      done: HOTOVO +
+        '<h3>Platí.</h3>' +
+        '<p>Jakmile bude čtvrtá cihla venku, přijde vám e-mail. Nic jiného od nás nedostanete.</p>'
+    });
+
+    HubCTA.initGateById('milionarem-proverka-form', {
+      fields: { name: true },
+      leadForm: 'milionarem-proverka',
+      message: 'Zájem o další cihly — z Cihly 4 (Prověrka před koupí).',
+      meta: { cihla: '4' },
+      gaEvent: 'milionarem_dalsi_cihly',
+      gaLabel: 'cihla_4',
+      done: HOTOVO +
+        '<h3>Platí.</h3>' +
+        '<p>Jakmile bude pátá cihla venku, přijde vám e-mail. Nic jiného od nás nedostanete.</p>'
+    });
+
+    HubCTA.initGateById('milionarem-rezervace-form', {
+      fields: { name: true },
+      leadForm: 'milionarem-rezervace',
+      message: 'Zájem o další cihly — z Cihly 5 (Kontrola smlouvy).',
+      meta: { cihla: '5' },
+      gaEvent: 'milionarem_dalsi_cihly',
+      gaLabel: 'cihla_5',
+      done: HOTOVO +
+        '<h3>Platí.</h3>' +
+        '<p>Jakmile bude šestá cihla venku, přijde vám e-mail. Nic jiného od nás nedostanete.</p>'
+    });
+
     HubCTA.initGateById('milionarem-strop-form', {
       fields: { name: true },
       leadForm: 'milionarem-strop',

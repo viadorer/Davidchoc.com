@@ -64,6 +64,12 @@ const FORMULARE = {
                           popis: 'Milionářem — Cihla 1, zájem o další díly' },
   'milionarem-strop':   { source: 'web_formular', kampan: 'milionarem', dedup: true,
                           popis: 'Milionářem — Cihla 2, zájem o další díly' },
+  'milionarem-lokality': { source: 'web_formular', kampan: 'milionarem', dedup: true,
+                          popis: 'Milionářem — Cihla 3, zájem o další díly' },
+  'milionarem-proverka': { source: 'web_formular', kampan: 'milionarem', dedup: true,
+                          popis: 'Milionářem — Cihla 4, zájem o další díly' },
+  'milionarem-rezervace': { source: 'web_formular', kampan: 'milionarem', dedup: true,
+                          popis: 'Milionářem — Cihla 5, zájem o další díly' },
 
   'investovat-pdf':                { source: 'web_formular', kampan: 'milionarem', dedup: true,
                                      popis: 'Milionářem — kompletní průvodce' },
