@@ -322,12 +322,16 @@ export default async function handler(req, res) {
 
   // Cokoli navíc, co formulář poslal, uložíme do metadat — v CRM se
   // podle nich dá filtrovat, aniž bychom sahali na enum `source`.
+  // `kampan` je tu kvůli sekvencím v CRM: podmínka kroku pak zní
+  // {"metadata.kampan": "milionarem"} místo výčtu všech formulářů, takže
+  // další cihly do sekvence spadnou samy, bez zásahu v adminu.
   const metadata = {
     origin: 'davidchoc.cz',
     form: formular,
     form_label: konfig.popis,
     submitted_at: new Date().toISOString(),
   };
+  if (konfig.kampan) metadata.kampan = konfig.kampan;
   if (odkazy.length) metadata.links = odkazy;
   if (odkazy.length) metadata.listing_url = odkazy[0];
   if (body.meta && typeof body.meta === 'object') {
