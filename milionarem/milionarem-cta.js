@@ -26,11 +26,12 @@
   HubCTA.ready(function () {
     HubCTA.injectHelp();
 
-    // Nabídka pomoci stojí jen na trojce, čtyřce a pětce — tam, kde omyl
-    // stojí opravdové peníze a kde už čtenář řeší konkrétní byt. Jednička
-    // a dvojka zůstávají čistě vzdělávací: kdo je čte, ještě nekupuje.
+    // Nabídka pomoci stojí jen tam, kde omyl stojí opravdové peníze a kde
+    // už čtenář řeší konkrétní byt: trojka, čtyřka, pětka a osmička.
+    // Jednička a dvojka zůstávají čistě vzdělávací — kdo je čte, ještě
+    // nekupuje. Šestka a sedmička patří bance a řemeslníkům, ne mně.
     //
-    // Formulář je na všech třech stránkách stejný, liší se `data-cihla`.
+    // Formulář je na všech těch stránkách stejný, liší se `data-cihla`.
     var SERVIS = {
       '3': {
         zprava: 'Prosba o pomoc s výběrem bytu — z Cihly 3 (Lokalita).',
@@ -47,6 +48,11 @@
         zprava: 'Prosba o posouzení rezervační smlouvy — z Cihly 5 (Smlouva).',
         done: '<h3>Mám to.</h3>' +
               '<p>Ozvu se vám do 24 hodin. Smlouvu zatím nepodepisujte — po podpisu už nemáte co nabídnout výměnou.</p>'
+      },
+      '8': {
+        zprava: 'Zájem o garantovaný nájem — z Cihly 8 (Nájemník).',
+        done: '<h3>Mám to.</h3>' +
+              '<p>Podívám se na lokalitu i na to, za kolik se tam pronajímá, a napíšu vám rovnou, jestli by se vám garance vyplatila — i kdyby vyšlo, že ne.</p>'
       }
     };
 
@@ -76,6 +82,18 @@
         done: HOTOVO + servis.done
       });
     }
+
+    HubCTA.initGateById('milionarem-najemnik-form', {
+      fields: { name: true },
+      leadForm: 'milionarem-najemnik',
+      message: 'Zájem o další cihly — z Cihly 8 (Nájemník a garance).',
+      meta: { cihla: '8' },
+      gaEvent: 'milionarem_dalsi_cihly',
+      gaLabel: 'cihla_8',
+      done: HOTOVO +
+        '<h3>Platí.</h3>' +
+        '<p>Jakmile bude devátá cihla venku, přijde vám e-mail. Nic jiného od nás nedostanete.</p>'
+    });
 
     HubCTA.initGateById('milionarem-vybaveni-form', {
       fields: { name: true },
