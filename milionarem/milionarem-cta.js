@@ -27,9 +27,10 @@
     HubCTA.injectHelp();
 
     // Nabídka pomoci stojí jen tam, kde omyl stojí opravdové peníze a kde
-    // už čtenář řeší konkrétní byt: trojka, čtyřka, pětka a osmička.
-    // Jednička a dvojka zůstávají čistě vzdělávací — kdo je čte, ještě
-    // nekupuje. Šestka a sedmička patří bance a řemeslníkům, ne mně.
+    // už čtenář řeší konkrétní byt: trojka, čtyřka, pětka, osmička a na
+    // konci desítka. Jednička a dvojka zůstávají čistě vzdělávací — kdo
+    // je čte, ještě nekupuje. Šestka a sedmička patří bance a řemeslníkům,
+    // devítka daňovému poradci; tam nabídka nepatří.
     //
     // Formulář je na všech těch stránkách stejný, liší se `data-cihla`.
     var SERVIS = {
@@ -53,6 +54,11 @@
         zprava: 'Zájem o garantovaný nájem — z Cihly 8 (Nájemník).',
         done: '<h3>Mám to.</h3>' +
               '<p>Podívám se na lokalitu i na to, za kolik se tam pronajímá, a napíšu vám rovnou, jestli by se vám garance vyplatila — i kdyby vyšlo, že ne.</p>'
+      },
+      '10': {
+        zprava: 'Zájem o další krok po dokončení výcviku — z Cihly 10 (Růst).',
+        done: '<h3>Mám to. Ozvu se do 24 hodin.</h3>' +
+              '<p>Napište si zatím jedno číslo: kolik vám vyšlo v kalkulačce uvolněného kapitálu. Od něj se bude odvíjet celý hovor.</p>'
       }
     };
 
@@ -82,6 +88,18 @@
         done: HOTOVO + servis.done
       });
     }
+
+    HubCTA.initGateById('milionarem-sprava-form', {
+      fields: { name: true },
+      leadForm: 'milionarem-sprava',
+      message: 'Zájem o další cihly — z Cihly 9 (Správa).',
+      meta: { cihla: '9' },
+      gaEvent: 'milionarem_dalsi_cihly',
+      gaLabel: 'cihla_9',
+      done: HOTOVO +
+        '<h3>Platí.</h3>' +
+        '<p>Jakmile bude desátá cihla venku, přijde vám e-mail. Nic jiného od nás nedostanete.</p>'
+    });
 
     HubCTA.initGateById('milionarem-najemnik-form', {
       fields: { name: true },
