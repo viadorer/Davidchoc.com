@@ -4021,6 +4021,71 @@ body.is-light .hub-help__phone { text-decoration: none; }
 }
 .hub-action p:last-child { margin-bottom: 0; }
 
+/* ── ČASOVÁ OSA ─────────────────────────────────────────────────────────
+   Datum vlevo v pevné šířce, popis vpravo. Svislá linka spojuje kroky,
+   ať je vidět, že jde o sled, ne o seznam. */
+.hub-osa { margin: 4px 0 22px; }
+.hub-osa__krok {
+    display: grid;
+    grid-template-columns: 108px 1fr;
+    gap: 18px;
+    padding: 0 0 18px 0;
+    position: relative;
+}
+.hub-osa__krok::before {
+    content: "";
+    position: absolute;
+    left: 118px;
+    top: 9px;
+    bottom: -9px;
+    width: 2px;
+    background: var(--hub-line, #E6E0D4);
+}
+.hub-osa__krok:last-child { padding-bottom: 0; }
+.hub-osa__krok:last-child::before { display: none; }
+.hub-osa__datum {
+    font-size: 0.88rem;
+    font-weight: 800;
+    color: var(--hub-muted, #8B7D61);
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+    padding-top: 1px;
+}
+.hub-osa__popis {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--hub-ink, #1a1a1a);
+    line-height: 1.45;
+    padding-left: 16px;
+    position: relative;
+}
+.hub-osa__popis::before {
+    content: "";
+    position: absolute;
+    left: -9px;
+    top: 6px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--hub-accent, #FFBF00);
+}
+.hub-osa__popis small {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.88rem;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--hub-muted, #8B7D61);
+}
+
+@media (max-width: 560px) {
+    .hub-osa__krok { grid-template-columns: 1fr; gap: 4px; }
+    .hub-osa__krok::before { display: none; }
+    .hub-osa__datum { text-align: left; }
+    .hub-osa__popis { padding-left: 0; }
+    .hub-osa__popis::before { display: none; }
+}
+
 /* ── NABÍDKA POMOCI ─────────────────────────────────────────────────────
    Vědomě tišší než .hub-action: bílá plocha, jen linka vlevo. Kapitola
    musí fungovat i pro toho, kdo tenhle blok přeskočí — je to východ pro

@@ -77,6 +77,18 @@
       });
     }
 
+    HubCTA.initGateById('milionarem-cerpani-form', {
+      fields: { name: true },
+      leadForm: 'milionarem-cerpani',
+      message: 'Zájem o další cihly — z Cihly 6 (Úvěr a čerpání).',
+      meta: { cihla: '6' },
+      gaEvent: 'milionarem_dalsi_cihly',
+      gaLabel: 'cihla_6',
+      done: HOTOVO +
+        '<h3>Platí.</h3>' +
+        '<p>Jakmile bude sedmá cihla venku, přijde vám e-mail. Nic jiného od nás nedostanete.</p>'
+    });
+
     HubCTA.initGateById('milionarem-lokality-form', {
       fields: { name: true },
       leadForm: 'milionarem-lokality',

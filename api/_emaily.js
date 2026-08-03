@@ -102,6 +102,7 @@ POTVRZENI['milionarem-strop'] = MILIONAREM_PRUVODCE;
 POTVRZENI['milionarem-lokality'] = MILIONAREM_PRUVODCE;
 POTVRZENI['milionarem-proverka'] = MILIONAREM_PRUVODCE;
 POTVRZENI['milionarem-rezervace'] = MILIONAREM_PRUVODCE;
+POTVRZENI['milionarem-cerpani'] = MILIONAREM_PRUVODCE;
 POTVRZENI['milionarem-pdf'] = MILIONAREM_PRUVODCE;
 POTVRZENI['investovat-pdf'] = MILIONAREM_PRUVODCE;
 POTVRZENI['milionarem-servis'] = MILIONAREM_SERVIS;
