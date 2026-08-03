@@ -77,6 +77,18 @@
       });
     }
 
+    HubCTA.initGateById('milionarem-vybaveni-form', {
+      fields: { name: true },
+      leadForm: 'milionarem-vybaveni',
+      message: 'Zájem o další cihly — z Cihly 7 (Vybavení bytu).',
+      meta: { cihla: '7' },
+      gaEvent: 'milionarem_dalsi_cihly',
+      gaLabel: 'cihla_7',
+      done: HOTOVO +
+        '<h3>Platí.</h3>' +
+        '<p>Jakmile bude osmá cihla venku, přijde vám e-mail. Nic jiného od nás nedostanete.</p>'
+    });
+
     HubCTA.initGateById('milionarem-cerpani-form', {
       fields: { name: true },
       leadForm: 'milionarem-cerpani',

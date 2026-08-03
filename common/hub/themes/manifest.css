@@ -295,6 +295,14 @@ a.hub-brick:hover {
 }
 .sim-stat--warn .sim-stat__value { color: var(--hub-risk-deep, #6E3A20); }
 .sim-stat--ok .sim-stat__value { color: var(--hub-accent, #2F5D3A); }
+/* Druhé čtení téhož čísla — 87 měsíců vedle „7 let a 3 měsíce". */
+.sim-stat__note {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.84rem;
+    line-height: 1.5;
+    color: var(--hub-muted, #5A6B5C);
+}
 
 /* Skupiny ovládacích prvků — osm posuvníků v jedné hromadě je nepřehledných. */
 .sim-group { margin-top: 30px; }
