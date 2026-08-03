@@ -26,22 +26,56 @@
   HubCTA.ready(function () {
     HubCTA.injectHelp();
 
-    // Jediná nabídka služby v celé sekci. Stojí za nástrojem, kde čtenář
-    // právě zjistil, kolik té práce je — ne na začátku a ne místo obsahu.
-    HubCTA.initGateById('milionarem-servis-form', {
-      fields: { name: true, url: true },
-      leadForm: 'milionarem-servis',
-      message: function (d) {
-        return 'Prosba o posouzení konkrétního bytu — z Cihly 4 (Prověrka).\n\nOdkaz: ' + d.url;
+    // Nabídka pomoci stojí jen na trojce, čtyřce a pětce — tam, kde omyl
+    // stojí opravdové peníze a kde už čtenář řeší konkrétní byt. Jednička
+    // a dvojka zůstávají čistě vzdělávací: kdo je čte, ještě nekupuje.
+    //
+    // Formulář je na všech třech stránkách stejný, liší se `data-cihla`.
+    var SERVIS = {
+      '3': {
+        zprava: 'Prosba o pomoc s výběrem bytu — z Cihly 3 (Lokalita).',
+        done: '<h3>Mám to.</h3>' +
+              '<p>Podívám se na ty byty i na ulice kolem nich a do dvou pracovních dnů vám napíšu, který bych z nich koupil a proč.</p>'
       },
-      meta: function (d) { return { cihla: '4', listing_url: d.url }; },
-      gaEvent: 'milionarem_servis',
-      gaLabel: 'cihla_4',
-      msgUrl: 'Vložte prosím celý odkaz na inzerát včetně https://',
-      done: HOTOVO +
-        '<h3>Mám ho.</h3>' +
-        '<p>Podívám se na katastr, zápisy a fond oprav a do dvou pracovních dnů vám napíšu, co bych řešil dřív než cenu.</p>'
-    });
+      '4': {
+        url: true,
+        zprava: 'Prosba o posouzení konkrétního bytu — z Cihly 4 (Prověrka).',
+        done: '<h3>Mám ho.</h3>' +
+              '<p>Podívám se na katastr, zápisy a fond oprav a do dvou pracovních dnů vám napíšu, co bych řešil dřív než cenu.</p>'
+      },
+      '5': {
+        zprava: 'Prosba o posouzení rezervační smlouvy — z Cihly 5 (Smlouva).',
+        done: '<h3>Mám to.</h3>' +
+              '<p>Ozvu se vám do 24 hodin. Smlouvu zatím nepodepisujte — po podpisu už nemáte co nabídnout výměnou.</p>'
+      }
+    };
+
+    var servisEl = document.getElementById('milionarem-servis-form');
+    var servis = servisEl && SERVIS[servisEl.getAttribute('data-cihla')];
+    if (servis) {
+      var cihla = servisEl.getAttribute('data-cihla');
+      HubCTA.initGateById('milionarem-servis-form', {
+        fields: { name: true, url: servis.url === true },
+        leadForm: 'milionarem-servis',
+        message: function (d) {
+          var t = servis.zprava;
+          if (d.url) t += '\n\nOdkaz: ' + d.url;
+          if (d.note) t += '\n\n' + d.note;
+          return t;
+        },
+        // Odkazy zapsané do poznámky vytáhne z textu samo /api/lead —
+        // tady doplňujeme jen ten z vlastního pole.
+        meta: function (d) {
+          var m = { cihla: cihla };
+          if (d.url) m.listing_url = d.url;
+          return m;
+        },
+        gaEvent: 'milionarem_servis',
+        gaLabel: 'cihla_' + cihla,
+        msgUrl: 'Vložte prosím celý odkaz na inzerát včetně https://',
+        done: HOTOVO + servis.done
+      });
+    }
 
     HubCTA.initGateById('milionarem-lokality-form', {
       fields: { name: true },

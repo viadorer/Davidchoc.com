@@ -153,6 +153,52 @@
     color: var(--hub-risk-deep);
 }
 
+/* Pole formulářů v kitu počítají s tmavou plochou: bílé písmo na šesti
+   procentech bílé. Ve výcviku to sedí, protože brána tam stojí na tmavé
+   kartě. Tady stojí i na světlých blocích (.hub-action, .hub-offer), kde
+   je napsané jméno neviditelné — kontrast 1:1.
+
+   Výchozí je proto v téhle sekci světlá varianta a tmavá se vrací jen
+   uvnitř .vy-gate, což je ta tmavá karta ke stažení PDF. */
+.hub-page .vy-gate__form input[type="text"],
+.hub-page .vy-gate__form input[type="email"],
+.hub-page .vy-gate__form input[type="url"],
+.hub-page .vy-gate__form textarea,
+.hub-page .hub-gate__form input[type="text"],
+.hub-page .hub-gate__form input[type="email"],
+.hub-page .hub-gate__form input[type="url"],
+.hub-page .hub-gate__form textarea {
+    background: #fff;
+    border-color: var(--hub-line);
+    color: var(--hub-ink);
+}
+.hub-page .vy-gate__form input::placeholder,
+.hub-page .vy-gate__form textarea::placeholder,
+.hub-page .hub-gate__form input::placeholder,
+.hub-page .hub-gate__form textarea::placeholder { color: var(--hub-muted); }
+
+.hub-page .vy-gate__form input:focus,
+.hub-page .vy-gate__form textarea:focus,
+.hub-page .hub-gate__form input:focus,
+.hub-page .hub-gate__form textarea:focus {
+    border-color: var(--hub-accent);
+    background: #fff;
+}
+
+/* Tmavá karta ke stažení — tam platí původní varianta z kitu. */
+.hub-page .vy-gate .vy-gate__form input[type="text"],
+.hub-page .vy-gate .vy-gate__form input[type="email"],
+.hub-page .vy-gate .vy-gate__form input[type="url"],
+.hub-page .vy-gate .vy-gate__form textarea {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.18);
+    color: #fff;
+}
+.hub-page .vy-gate .vy-gate__form input::placeholder,
+.hub-page .vy-gate .vy-gate__form textarea::placeholder { color: #8a8a8a; }
+.hub-page .vy-gate .vy-gate__form input:focus,
+.hub-page .vy-gate .vy-gate__form textarea:focus { background: rgba(255,255,255,0.1); }
+
 /* Podtržítko nadpisu sekce kreslí styles.css jantarovým přechodem. */
 .hub-page.is-light .pripad-section__header h2::after,
 .hub-page .pripad-section__header h2::after {
