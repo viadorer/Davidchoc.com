@@ -5,6 +5,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // Absolutní cesty — fungují z root, /blog/, i /blog/posts/
     const commonPath = '/common/';
 
+    // Kurzy mají vlastní čistý layout. Navigace webu i patička z nich
+    // odvádějí pozornost a patička navíc odkazuje na dvacet míst mimo
+    // sekci — což je proti pravidlu, na kterém obě sekce stojí: čtenář
+    // nemá důvod odejít jinam.
+    //
+    // Poznává se to podle cesty, ne podle atributu v HTML. Nová kapitola
+    // se tak chová správně od chvíle, kdy vznikne, aniž by na to musel
+    // někdo myslet.
+    const cesta = window.location.pathname;
+    const bezOkoli = /^\/(milionarem|vycvik)(\/|$)/.test(cesta);
+
     // Načtení sitewide popup CTA (jen jednou, asynchronně, vždy z root)
     if (!document.querySelector('script[data-popup-cta-loader]')) {
         const popupScript = document.createElement('script');
@@ -18,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('Cesta k common:', commonPath); // Debug výpis
     
     // Načtení navigace - rozlišení mezi hlavní stránkou a podstránkami
-    const navbarPlaceholder = document.getElementById('navbar-placeholder');
+    const navbarPlaceholder = bezOkoli ? null : document.getElementById('navbar-placeholder');
     if (navbarPlaceholder) {
         // Zjistit, jestli jsme na hlavní stránce (pouze root index.html, ne podstránky jako blog/index.html)
         const isRootIndexPage = (currentPath === '/' || currentPath === '' || currentPath === 'index.html' || currentPath.endsWith('/index.html') && !currentPath.includes('/') && currentPath !== 'blog/index.html');
@@ -56,7 +67,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Načtení patičky - podobný přístup
     const footerPlaceholder = document.getElementById('footer-placeholder');
-    if (footerPlaceholder) {
+
+    // V kurzech místo celé patičky jen identifikace provozovatele a odkaz
+    // na zpracování údajů. Formuláře na stránce je vyžadují a nikam jinam
+    // to nevede.
+    if (bezOkoli && footerPlaceholder) {
+        footerPlaceholder.innerHTML =
+            '<footer class="hub-foot">' +
+              '<div class="container">' +
+                '<p class="hub-foot__kdo"><strong>David Choc</strong> · realitní agent · PTF reality, s.r.o.</p>' +
+                '<p class="hub-foot__kontakt">' +
+                  '<a href="tel:+420774052232">774 052 232</a>' +
+                  '<a href="mailto:david.choc@ptf.cz">david.choc@ptf.cz</a>' +
+                  '<a href="/osobni-udaje">Zpracování osobních údajů</a>' +
+                '</p>' +
+              '</div>' +
+            '</footer>';
+    } else if (footerPlaceholder) {
         fetch(commonPath + 'footer.html')
             .then(response => {
                 if (!response.ok) {

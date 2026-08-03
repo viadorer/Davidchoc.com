@@ -4021,6 +4021,38 @@ body.is-light .hub-help__phone { text-decoration: none; }
 }
 .hub-action p:last-child { margin-bottom: 0; }
 
+/* ── PATIČKA KURZU ──────────────────────────────────────────────────────
+   Místo celé patičky webu jen identifikace a odkaz na zpracování údajů.
+   Formuláře na stránce ho vyžadují, nic jiného tu nemá co dělat. */
+.hub-foot {
+    border-top: 1px solid var(--hub-line, #E6E0D4);
+    padding: 26px 0 34px;
+    margin-top: 60px;
+    background: var(--hub-paper, #F8F4E9);
+}
+/* Barvy jdou přes inkoust, ne přes akcent. Akcent je ve výcviku zlatý
+   a na krémové ploše má kontrast 1,5:1 — nečitelný. Inkoust funguje
+   v obou paletách. */
+.hub-foot p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: rgba(var(--hub-ink-rgb, 26,26,26), 0.72);
+}
+.hub-foot__kdo strong { color: var(--hub-ink, #1a1a1a); }
+.hub-foot__kontakt {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 22px;
+    margin-top: 6px !important;
+}
+.hub-foot__kontakt a {
+    color: var(--hub-ink, #1a1a1a);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(var(--hub-ink-rgb, 26,26,26), 0.3);
+}
+.hub-foot__kontakt a:hover { border-bottom-color: currentColor; }
+
 /* ── ČASOVÁ OSA ─────────────────────────────────────────────────────────
    Datum vlevo v pevné šířce, popis vpravo. Svislá linka spojuje kroky,
    ať je vidět, že jde o sled, ne o seznam. */
