@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | David Choc</title>
+    <meta name="description" content="">
+    <meta name="author" content="David Choc">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+    <link rel="icon" type="image/png" href="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/favicon.png">
+    <link rel="stylesheet" href="/styles.css?v=20260813">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" media="print" onload="this.media='all'">
+
+    <!--
+      Dynamický detail článku. Nahrazuje statické soubory blog/posts/*.html
+      (přesunuté do archiv/) — obsah teď žije v PTF a čte se přes
+      /api/blog-post, takže úprava článku v PTF administraci se projeví
+      tady bez nasazování webu.
+
+      Vzhled je 1:1 převzatý ze statických článků: stejný <style> blok,
+      stejná struktura (breadcrumb, blog-header, cover, blog-content,
+      aside s knihou, back-link). Meta tagy, canonical a JSON-LD skládá
+      skript níž ze stejných hodnot, jaké měly statické stránky.
+    -->
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.6; color: #1f2937; background: #fff; margin: 0; }
+        .blog-container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+        .blog-header { text-align: center; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid #e5e7eb; }
+        .blog-title { font-size: 2.25rem; font-weight: 800; color: #111827; margin: 0 0 16px; line-height: 1.2; }
+        .blog-meta { color: #6b7280; font-size: 0.95rem; }
+        .blog-meta .category { background: #FFBF00; color: #111827; padding: 4px 10px; border-radius: 4px; font-weight: 600; margin-right: 12px; }
+        .blog-cover { width: 100%; height: auto; border-radius: 12px; margin: 30px 0; }
+        .blog-content { font-size: 1.05rem; }
+        .blog-content h2 { font-size: 1.6rem; font-weight: 700; margin: 2rem 0 1rem; color: #111827; border-left: 4px solid #FFBF00; padding-left: 12px; }
+        .blog-content h3 { font-size: 1.25rem; font-weight: 600; margin: 1.5rem 0 0.75rem; color: #111827; }
+        .blog-content p { margin: 1rem 0; }
+        .blog-content ul, .blog-content ol { padding-left: 1.5rem; margin: 1rem 0; }
+        .blog-content li { margin: 0.4rem 0; }
+        .blog-content a { color: #B8860B; text-decoration: underline; }
+        .blog-content strong { color: #111827; }
+        .blog-content .lead { font-size: 1.2rem; color: #4b5563; font-weight: 500; }
+        .blog-content .bg-blue-50, .blog-content .bg-green-50, .blog-content .bg-red-50, .blog-content .bg-yellow-50 { padding: 1rem 1.25rem; border-left: 4px solid; margin: 1.5rem 0; border-radius: 6px; }
+        .blog-content .bg-blue-50 { background: #eff6ff; border-color: #60a5fa; }
+        .blog-content .bg-green-50 { background: #f0fdf4; border-color: #4ade80; }
+        .blog-content .bg-red-50 { background: #fef2f2; border-color: #f87171; }
+        .blog-content .bg-yellow-50 { background: #fefce8; border-color: #facc15; }
+        .blog-content svg { display: none; }
+        .blog-content .flex-shrink-0 { display: none; }
+        .back-link { display: inline-block; margin: 20px 0; color: #6b7280; text-decoration: none; }
+        .back-link:hover { color: #FFBF00; }
+        nav.breadcrumb { font-size: 0.9rem; color: #6b7280; margin-bottom: 20px; }
+        nav.breadcrumb a { color: #6b7280; text-decoration: none; }
+        nav.breadcrumb a:hover { color: #FFBF00; }
+    </style>
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <article class="blog-container" style="display:none" id="clanek">
+        <nav class="breadcrumb" aria-label="Drobečková navigace">
+            <a href="/">Domů</a> &rsaquo; <a href="/blog">Blog</a> &rsaquo; <span id="bc-title"></span>
+        </nav>
+
+        <header class="blog-header">
+            <h1 class="blog-title" id="post-title"></h1>
+            <div class="blog-meta">
+                <span class="category" id="post-category" style="display:none"></span>
+                <time id="post-date" datetime=""></time>
+                <span id="post-readtime"></span>
+            </div>
+        </header>
+
+        <img class="blog-cover" id="post-cover" src="" alt="" loading="eager" style="display:none">
+
+        <div class="blog-content" id="post-content"></div>
+
+    <aside class="blog-book">
+        <span class="blog-book__label">Z knihy Výcvik ziskového prodeje</span>
+        <a href="/vycvik" class="blog-book__link">
+            <span class="blog-book__title">Výcvik ziskového prodeje nemovitosti</span>
+            <span class="blog-book__lead">Až se rozhodnete prodávat, celá kniha je online a zdarma. Včetně sedmnácti nástrojů.</span>
+            <span class="blog-book__more">Číst online zdarma <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+        </a>
+    </aside>
+
+    <a href="/blog" class="back-link">&larr; Zpět na blog</a>
+    </article>
+
+    <div class="blog-container" id="stav" style="text-align:center; padding:80px 20px; color:#6b7280;">
+        Načítám článek…
+    </div>
+
+    <div id="footer-placeholder"></div>
+    <script src="/common/common.js" defer></script>
+    <script>
+    (async function () {
+        // Slug z adresy /blog/posts/<slug> (rewrite ve vercel.json).
+        var slug = location.pathname.split('/').filter(Boolean).pop().replace(/\.html$/, '');
+        var stav = document.getElementById('stav');
+
+        try {
+            var res = await fetch('/api/blog-post?slug=' + encodeURIComponent(slug));
+            if (!res.ok) throw new Error(res.status === 404 ? 'not-found' : 'error');
+            var p = await res.json();
+
+            document.title = (p.metaTitle || p.title) + ' | David Choc';
+
+            var canonical = 'https://www.davidchoc.cz/blog/posts/' + p.slug;
+            setMeta('description', p.metaDescription || p.excerpt || '');
+            setLink('canonical', p.canonicalUrl || canonical);
+            setOg('og:title', p.title);
+            setOg('og:description', p.metaDescription || p.excerpt || '');
+            setOg('og:type', 'article');
+            setOg('og:url', canonical);
+            setOg('og:locale', 'cs_CZ');
+            setOg('og:site_name', 'David Choc');
+            if (p.featuredImageUrl) setOg('og:image', p.featuredImageUrl);
+
+            document.getElementById('bc-title').textContent = p.title;
+            document.getElementById('post-title').textContent = p.title;
+
+            if (p.category && p.category.name) {
+                var kat = document.getElementById('post-category');
+                kat.textContent = p.category.name;
+                kat.style.display = '';
+            }
+            if (p.publishedAt) {
+                var datum = document.getElementById('post-date');
+                datum.setAttribute('datetime', p.publishedAt.slice(0, 10));
+                datum.textContent = new Date(p.publishedAt).toLocaleDateString('cs-CZ',
+                    { day: 'numeric', month: 'long', year: 'numeric' });
+            }
+            if (p.readingTimeMinutes) {
+                document.getElementById('post-readtime').textContent =
+                    '\u00a0\u00b7\u00a0 ' + p.readingTimeMinutes + ' min čtení';
+            }
+            if (p.featuredImageUrl) {
+                var img = document.getElementById('post-cover');
+                img.src = p.featuredImageUrl;
+                img.alt = p.featuredImageAlt || p.title;
+                img.style.display = '';
+            }
+
+            // Obsah je HTML z PTF — tam prochází sanitizací při vykreslení
+            // v administraci; sem přichází z téhož zdroje přes naši proxy.
+            document.getElementById('post-content').innerHTML = p.content || '';
+
+            // JSON-LD stejné jako na statických stránkách.
+            var ld = {
+                '@context': 'https://schema.org',
+                '@type': 'BlogPosting',
+                mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+                headline: p.title,
+                description: p.metaDescription || p.excerpt || '',
+                image: p.featuredImageUrl || undefined,
+                datePublished: p.publishedAt || undefined,
+                author: { '@type': 'Person', '@id': 'https://www.davidchoc.cz/#person', name: 'David Choc', url: 'https://www.davidchoc.cz' },
+                publisher: { '@type': 'Organization', name: 'David Choc' },
+                articleSection: p.category ? p.category.name : undefined,
+                inLanguage: 'cs-CZ'
+            };
+            var s = document.createElement('script');
+            s.type = 'application/ld+json';
+            s.textContent = JSON.stringify(ld);
+            document.head.appendChild(s);
+
+            stav.style.display = 'none';
+            document.getElementById('clanek').style.display = '';
+        } catch (e) {
+            stav.innerHTML = e.message === 'not-found'
+                ? 'Článek nenalezen. <a href="/blog">Zpět na blog</a>'
+                : 'Článek se nepodařilo načíst. Zkuste to prosím znovu. <a href="/blog">Zpět na blog</a>';
+        }
+
+        function setMeta(name, content) {
+            var el = document.querySelector('meta[name="' + name + '"]');
+            if (!el) { el = document.createElement('meta'); el.setAttribute('name', name); document.head.appendChild(el); }
+            el.setAttribute('content', content);
+        }
+        function setOg(property, content) {
+            var el = document.querySelector('meta[property="' + property + '"]');
+            if (!el) { el = document.createElement('meta'); el.setAttribute('property', property); document.head.appendChild(el); }
+            el.setAttribute('content', content);
+        }
+        function setLink(rel, href) {
+            var el = document.querySelector('link[rel="' + rel + '"]');
+            if (!el) { el = document.createElement('link'); el.setAttribute('rel', rel); document.head.appendChild(el); }
+            el.setAttribute('href', href);
+        }
+    })();
+    </script>
+</body>
+</html>
