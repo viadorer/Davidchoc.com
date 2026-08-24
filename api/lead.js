@@ -45,6 +45,9 @@ const FORMULARE = {
   'nabidka-detail':     { source: 'web_formular', popis: 'Poptávka z detailu nabídky' },
   'posudek-inzeratu':   { source: 'web_formular', popis: 'Posouzení inzerátu — zaseknutý samoprodejce' },
   'newsletter':         { source: 'web_formular', popis: 'Přihlášení k odběru' },
+  // Přímý odkup panelákových bytů. Prodávající, ne kupující — proto bez
+  // kampaně milionarem. metadata.verdikt nese výsledek kvalifikačního testu.
+  'bytvpanelaku':       { source: 'web_formular', popis: 'Byt v paneláku — poptávka odkupu' },
 
   // ── KUPUJÍCÍ ────────────────────────────────────────────────────────
   // Jiná cílovka než výcvik: ten mluví k prodávajícím, tohle ke kupujícím.
