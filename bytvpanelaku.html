@@ -137,6 +137,20 @@
         background: var(--inkoust);
     }
 
+    /* ── PÁS JISTOT pod hero ──────────────────────────────────────── */
+    .jistoty { border-top: 1px solid var(--linka); border-bottom: 1px solid var(--linka); background: var(--plocha); padding: 0; }
+    .jistoty__mrizka { display: grid; grid-template-columns: repeat(3, 1fr); }
+    .jistota { padding: 26px 28px; border-left: 1px solid var(--linka); }
+    .jistota:first-child { border-left: 0; padding-left: 0; }
+    .jistota strong { display: block; font-family: var(--serif); font-size: 1.15rem; margin-bottom: 4px; }
+    .jistota strong em { font-style: normal; color: var(--cihla); }
+    .jistota p { margin: 0; font-size: 0.92rem; color: var(--tlum); }
+    @media (max-width: 860px) {
+        .jistoty__mrizka { grid-template-columns: 1fr; }
+        .jistota { border-left: 0; padding: 18px 0; border-top: 1px solid var(--linka); }
+        .jistota:first-child { border-top: 0; }
+    }
+
     /* ── PROČ TO VÁZNE ────────────────────────────────────────────── */
     .duvody { background: var(--plocha); border-top: 1px solid var(--linka); border-bottom: 1px solid var(--linka); }
     .duvody__mrizka { display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px; margin-top: 34px; }
@@ -292,7 +306,7 @@
                             Investoři, se kterými pracuji, kupují panelákové byty
                             <strong>v původním stavu</strong>. Bez rekonstrukce, bez turnusů
                             prohlídek a bez čekání, jestli kupujícímu vyjde hypotéka.
-                            Jedna prohlídka, nabídka do 48 hodin.
+                            Jedna prohlídka, nabídka do 48 hodin — <strong>a pro vás úplně zdarma</strong>.
                         </p>
                         <div class="hero__cta">
                             <a href="#test" class="tl tl--plny">Ověřit svůj byt</a>
@@ -310,6 +324,26 @@
                 </div>
             </div>
         </header>
+
+        <!-- TAHÁK: tři jistoty, kvůli kterým má smysl napsat -->
+        <div class="jistoty">
+            <div class="obal">
+                <div class="jistoty__mrizka">
+                    <div class="jistota">
+                        <strong>Pro vás <em>zcela zdarma</em></strong>
+                        <p>Moji odměnu platí investor, kterému hledám byty. Vy neplatíte nic — teď ani při prodeji.</p>
+                    </div>
+                    <div class="jistota">
+                        <strong>Nabídka do 48 hodin</strong>
+                        <p>Jedna prohlídka a do dvou dnů znáte cenové pásmo, doložené srovnáním prodejů v okolí.</p>
+                    </div>
+                    <div class="jistota">
+                        <strong>K ničemu nezavazuje</strong>
+                        <p>Nabídka je informace, ne závazek. Klidně si ji nechte jen pro porovnání s klasickým prodejem.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- PROČ SE PŮVODNÍ STAV PRODÁVÁ ŠPATNĚ -->
         <section class="duvody">
