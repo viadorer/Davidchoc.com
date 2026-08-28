@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="cookie-container">
                 <div class="cookie-text">
                     <p>Tento web používá cookies pro zlepšení vašeho zážitku z prohlížení. 
-                    Používáním tohoto webu souhlasíte s naším <a href="cookies-policy.html">použitím cookies</a>.</p>
+                    Používáním tohoto webu souhlasíte s naším <a href="/cookies-policy">použitím cookies</a>.</p>
                 </div>
                 <div class="cookie-buttons">
                     <button id="cookie-accept" class="cookie-btn accept">Přijmout všechny</button>
@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         document.getElementById('cookie-settings').addEventListener('click', function() {
             // Přesměrování na stránku s nastavením cookies
-            window.location.href = 'cookies-policy.html';
+            window.location.href = '/cookies-policy';
         });
     }
 });

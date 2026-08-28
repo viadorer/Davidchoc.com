@@ -7,11 +7,16 @@
   const SHOW_AFTER_SCROLL_PCT = 30;
 
   // Skipped paths (case-insensitive contains)
+  // Kurzy jsou z popupu vynechané celé. Mají vlastní, silnější nabídky
+  // a slibují čtenáři, že ho nikdo nikam netlačí — vyskakovací karta
+  // uprostřed kapitoly jde proti tomu slibu i proti klidu na čtení.
   const SKIP_PATHS = [
     '/ocenit-online',
     '/pripad-pro-agenta',
     '/osobni-udaje',
     '/cookies-policy',
+    '/vycvik',
+    '/milionarem',
   ];
 
   const path = window.location.pathname.toLowerCase();
@@ -65,6 +70,24 @@
     if (shown) return;
     shown = true;
     const popup = buildPopup();
+
+    // Plovoucí tlačítka se posouvají nad popup. Posun se odvozuje od místa,
+    // které popup zabírá odspodu — pevná hodnota sedí na desktopu, ale na
+    // mobilu je popup o dvě stě pixelů nižší a tlačítka pak skončí uprostřed
+    // obrazovky přes čtený text. Měří se výška plus vlastní odsazení popupu,
+    // ne pozice na obrazovce: ta se během náběhové animace ještě mění.
+    const mereniProstoru = () => {
+      const odsazeni = parseFloat(getComputedStyle(popup).bottom) || 0;
+      document.documentElement.style
+        .setProperty('--popup-cta-space', (popup.offsetHeight + odsazeni) + 'px');
+    };
+    mereniProstoru();
+    if (window.ResizeObserver) new ResizeObserver(mereniProstoru).observe(popup);
+    // Pojistka pro otočení telefonu — tam se mění šířka i výška popupu naráz
+    // a samotný ResizeObserver se na to nedá spolehnout.
+    window.addEventListener('resize', mereniProstoru, { passive: true });
+    window.addEventListener('orientationchange', mereniProstoru, { passive: true });
+
     // small delay to ensure transition triggers
     requestAnimationFrame(() => {
       requestAnimationFrame(() => popup.classList.add('is-visible'));
