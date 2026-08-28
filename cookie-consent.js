@@ -152,6 +152,56 @@ document.addEventListener('DOMContentLoaded', function() {
                     justify-content: center;
                 }
             }
+
+            /* Na telefonu lišta brala třetinu obrazovky a překrývala hlavní
+               výzvu na každé vstupní stránce. Kompaktní varianta: menší text,
+               obě hlavní volby vedle sebe a nastavení jako odkaz.
+               Tlačítka zůstávají vysoká 44 px kvůli ovládání palcem. */
+            @media (max-width: 640px) {
+                #cookie-consent-banner { padding: 12px 16px; }
+
+                .cookie-text {
+                    margin-bottom: 10px;
+                    font-size: 0.82rem;
+                    line-height: 1.45;
+                }
+                .cookie-text p { margin: 0; }
+
+                .cookie-buttons {
+                    gap: 8px;
+                    flex-wrap: nowrap;
+                    align-items: center;
+                    justify-content: flex-start;
+                }
+                .cookie-btn {
+                    min-height: 44px;
+                    padding: 10px 12px;
+                    font-size: 0.85rem;
+                    white-space: nowrap;
+                }
+                .cookie-btn.accept,
+                .cookie-btn.deny { flex: 1 1 0; }
+                .cookie-btn.settings {
+                    border: none;
+                    padding: 10px 4px;
+                    font-weight: 600;
+                    text-decoration: underline;
+                    text-underline-offset: 3px;
+                    color: #FFBF00;
+                    flex: 0 0 auto;
+                }
+            }
+
+            /* Na nejužších displejích se tři volby na jeden řádek nevejdou
+               a nastavení vylézalo z obrazovky. Tam dostane vlastní řádek. */
+            @media (max-width: 360px) {
+                .cookie-buttons { flex-wrap: wrap; }
+                .cookie-btn.settings {
+                    flex: 1 0 100%;
+                    text-align: center;
+                    min-height: 36px;
+                }
+            }
         `;
         
         document.head.appendChild(style);
