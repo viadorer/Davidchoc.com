@@ -38,6 +38,12 @@
 .vycvik-page section + section,
 .hub-page section + section { border-top: 1px solid rgba(var(--hub-ink-rgb, 26,26,26), 0.08); }
 
+/* Kurzy běží bez navigační lišty, takže ani nepotřebují místo pod ni.
+   Osmdesát pixelů prázdna z .pripad-page odsouvalo na mobilu celé hero
+   o jednu desetinu obrazovky dolů. */
+.vycvik-page main,
+.hub-page main { padding-top: 0; }
+
 /* ─── HERO ─── */
 .vycvik-hero,
 .hub-hero {
@@ -97,6 +103,35 @@
 }
 .vycvik-hero__cta .cta-button,
 .hub-hero__cta .cta-button { padding: 16px 32px; font-size: 1rem; }
+/* Vedlejší cesty z hera. Tlačítko je jedno — tyhle dvě jsou navigace,
+   ne výzva, a jako tři stejně velká tlačítka jen rozmělňovaly, co je hlavní. */
+.vycvik-hero__links,
+.hub-hero__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 26px;
+    margin: 0 0 22px;
+}
+.vycvik-hero__links a,
+.hub-hero__links a {
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: var(--hub-ink, #1a1a1a);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+    text-decoration-color: rgba(var(--hub-ink-rgb, 26,26,26), 0.35);
+    padding: 4px 0;
+    transition: text-decoration-color 0.2s ease;
+}
+.vycvik-hero__links a:hover,
+.hub-hero__links a:hover { text-decoration-color: var(--hub-accent, #FFBF00); }
+.vycvik-hero__links a:focus-visible,
+.hub-hero__links a:focus-visible {
+    outline: 2px solid var(--hub-accent, #FFBF00);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
 .vycvik-hero__note,
 .hub-hero__note {
     font-size: 0.92rem;
@@ -3040,10 +3075,33 @@ a.hub-tool:hover {
 .hub-page section { padding: 56px 0; }
 }
 @media (max-width: 640px) {
+    /* Na mobilu rozhoduje první obrazovka. Obálka je tu jako podpis, ne jako
+       hlavní sdělení — v plné velikosti odsunula nadpis na hranu displeje
+       a tlačítko sto pixelů pod něj. Zmenšená se vejde nadpis, věta i výzva. */
     .vycvik-hero,
-.hub-hero { padding: 72px 0 56px !important; }
+.hub-hero { padding: 12px 0 52px !important; }
+    .vycvik-hero__grid,
+.hub-hero__grid { gap: 20px; }
+    .vycvik-book,
+.hub-book { width: 124px; height: 176px; }
+    .vycvik-hero__eyebrow,
+.hub-hero__eyebrow { margin-bottom: 12px; }
+    .vycvik-hero__sub,
+.hub-hero__sub { margin-bottom: 16px; }
+    .vycvik-book__face,
+.hub-book__face { padding: 22px 16px; border-left-width: 4px; }
+    .vycvik-book__label,
+.hub-book__label { font-size: 0.58rem; letter-spacing: 0.2em; margin-bottom: 8px; }
+    .vycvik-book__title,
+.hub-book__title { font-size: 0.92rem; }
+    .vycvik-book__author,
+.hub-book__author { font-size: 0.72rem; margin-top: 14px; }
+    .vycvik-book__year,
+.hub-book__year { font-size: 0.58rem; margin-top: 2px; }
+    .vycvik-hero__lead,
+.hub-hero__lead { margin-bottom: 18px; }
     .vycvik-hero__cta,
-.hub-hero__cta { flex-direction: column; align-items: stretch; }
+.hub-hero__cta { flex-direction: column; align-items: stretch; margin-bottom: 18px; }
     .vycvik-hero__cta .cta-button,
 .hub-hero__cta .cta-button { text-align: center; }
     .vycvik-tools__grid,
