@@ -4161,3 +4161,94 @@ body.is-light .hub-help__phone { text-decoration: none; }
     .hub-proof__item { padding: 18px 20px; }
     .hub-proof__num { font-size: 1.45rem; }
 }
+
+/* --- Hub: garance „Když neprodám, neplatíte nic" --- */
+.vycvik-garance {
+    background: linear-gradient(160deg, var(--hub-ink, #1a1a1a) 0%, #000 100%);
+    padding: 76px 0;
+}
+.vycvik-garance__inner { max-width: 880px; margin: 0 auto; text-align: center; }
+.vycvik-garance__label {
+    display: block;
+    color: var(--hub-accent, #FFBF00);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+}
+.vycvik-garance h2 {
+    color: #fff;
+    font-size: clamp(1.9rem, 4.2vw, 2.8rem);
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin: 0 0 18px;
+}
+.vycvik-garance__body {
+    color: #c8c8c8;
+    font-size: 1.05rem;
+    line-height: 1.72;
+    max-width: 44em;
+    margin: 0 auto;
+}
+.vycvik-garance__body strong { color: #fff; }
+.vycvik-garance__list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin: 36px 0;
+    padding: 0;
+}
+.vycvik-garance__list li {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(var(--hub-accent-rgb, 255,191,0), 0.35);
+    border-radius: 14px;
+    padding: 24px 22px;
+    text-align: center;
+}
+.vycvik-garance__list i {
+    display: block;
+    color: var(--hub-accent, #FFBF00);
+    font-size: 1.35rem;
+    margin-bottom: 12px;
+}
+.vycvik-garance__list strong {
+    display: block;
+    color: #fff;
+    font-size: 1.06rem;
+    line-height: 1.35;
+    margin-bottom: 6px;
+}
+.vycvik-garance__list span {
+    display: block;
+    color: #b0b0b0;
+    font-size: 0.93rem;
+    line-height: 1.55;
+}
+.vycvik-garance__quote {
+    color: var(--hub-accent, #FFBF00);
+    font-style: italic;
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin: 0 0 30px;
+}
+.vycvik-garance__quote span { color: #8a8a8a; font-style: normal; font-weight: 600; font-size: 0.88rem; }
+.vycvik-garance__cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+/* Obrysové tlačítko je jinde tmavé na světlé — tady stojí na černé,
+   a pravidlo body.is-light má vyšší specificitu, proto prefix. */
+.vycvik-garance .cta-button--outline,
+body.is-light .vycvik-garance .cta-button--outline {
+    color: #fff;
+    border-color: rgba(255,255,255,0.55);
+}
+.vycvik-garance .cta-button--outline:hover,
+body.is-light .vycvik-garance .cta-button--outline:hover {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+}
+@media (max-width: 860px) {
+    .vycvik-garance { padding: 56px 0; }
+    .vycvik-garance__list { grid-template-columns: 1fr; }
+}
