@@ -105,7 +105,7 @@
       html +=
         '<div class="hub-risk">' +
           '<div class="hub-risk__head">' +
-            '<span class="hub-risk__label">Kde se to láme</span>' +
+            '<span class="hub-risk__label">Pozor na tohle</span>' +
             '<span class="hub-risk__level">Druhý byt</span>' +
           '</div>' +
           '<p class="hub-risk__title">Kdo první hypotéku vezme na hranici stropu, nemá kam růst</p>' +

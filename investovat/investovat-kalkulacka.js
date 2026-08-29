@@ -227,7 +227,7 @@
         html +=
           '<div class="hub-risk">' +
             '<div class="hub-risk__head">' +
-              '<span class="hub-risk__label">Kde se to láme</span>' +
+              '<span class="hub-risk__label">Pozor na tohle</span>' +
               '<span class="hub-risk__level">Redukční hranice</span>' +
             '</div>' +
             '<p class="hub-risk__title">Z výdělku nad ' + fmt(HRANICE_1) +

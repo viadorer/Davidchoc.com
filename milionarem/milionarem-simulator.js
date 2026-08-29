@@ -315,7 +315,7 @@
         verdikt +=
           '<div class="hub-risk">' +
             '<div class="hub-risk__head">' +
-              '<span class="hub-risk__label">Kde se to láme</span>' +
+              '<span class="hub-risk__label">Pozor na tohle</span>' +
               '<span class="hub-risk__level">' + fmt(v.doplatekNaUrok) + ' Kč měsíčně</span>' +
             '</div>' +
             '<p class="hub-risk__title">Tady už nájem nestačí ani na úrok</p>' +

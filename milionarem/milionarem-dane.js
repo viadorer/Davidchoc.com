@@ -120,7 +120,7 @@
       html +=
         '<div class="hub-risk">' +
           '<div class="hub-risk__head">' +
-            '<span class="hub-risk__label">Kde se to láme</span>' +
+            '<span class="hub-risk__label">Pozor na tohle</span>' +
             '<span class="hub-risk__level">Orientačně</span>' +
           '</div>' +
           '<p class="hub-risk__title">Tohle je podklad k hovoru s poradcem, ne daňové přiznání</p>' +

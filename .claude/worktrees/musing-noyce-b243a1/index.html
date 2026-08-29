@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="application/ld+json" src="/ai-data.json"></script>
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM Context">
+    <meta name="description" content="David Choc - Realitní agent s více než 30 lety praxe. Specializuji se na prodej a pronájem nemovitostí v Plzeňském kraji. Nabízím profesionální služby a individuální přístup.">
+    <meta name="keywords" content="realitní agent, David Choc, prodej nemovitostí, pronájem nemovitostí, reality Plzeň, realitní makléř">
+    <meta name="author" content="David Choc">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="David Choc | Realitní agent">
+    <meta property="og:description" content="Realitní agent s více než 30 lety praxe. Specializuji se na prodej a pronájem nemovitostí v Plzeňském kraji.">
+    <meta property="og:image" content="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/davidchocagent.avif">
+    <meta property="og:url" content="https://davidchoc.com">
+    <meta property="og:type" content="website">
+    <title>David Choc | Realitní agent</title>
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/davidchocagent.avif" as="image">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" media="print" onload="this.media='all'">
+    <link rel="icon" type="image/png" href="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/favicon.png">
+    <link rel="canonical" href="https://davidchoc.com">
+    <!-- Schéma.org pro lepší SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "RealEstateAgent",
+      "name": "David Choc",
+      "image": "https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/davidchocagent.avif",
+      "description": "Realitní agent s více než 30 lety praxe. Specializuji se na prodej a pronájem nemovitostí v Plzeňském kraji.",
+      "url": "https://davidchoc.com",
+      "telephone": "+420702000000",
+      "email": "info@davidchoc.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Plzeň",
+        "addressRegion": "Plzeňský kraj",
+        "addressCountry": "CZ"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "09:00",
+        "closes": "17:00"
+      }
+    }
+    </script>
+    <!-- Person schema for author/entity -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "David Choc",
+      "url": "https://davidchoc.com",
+      "image": "https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/davidchocagent.avif",
+      "jobTitle": "Realitní agent",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "PTF reality"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Plzeň",
+        "addressRegion": "Plzeňský kraj",
+        "addressCountry": "CZ"
+      },
+      "email": "mailto:david.choc@ptf.cz",
+      "telephone": "+420774052232",
+      "sameAs": [
+        "https://www.facebook.com/people/David-Choc/100063620466370/",
+        "https://www.instagram.com/realitni_agent_david_choc/",
+        "https://www.linkedin.com/"
+      ]
+    }
+    </script>
+    
+    <!-- Hotjar Tracking Code for David Choc -->
+    <script>
+        (function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:5350059,hjsv:6};
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    </script>
+</head>
+<body>
+    <!-- Navigace -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Hero sekce -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>JMENUJI SE<br>DAVID CHOC<br>JSEM REALITNÍ AGENT<br>VE VAŠICH SLUŽBÁCH</h1>
+                <p class="experience-highlight">Více než 30 praxe, přes 5 000 případů a desítky tisíc klientů</p>
+                <a href="#konzultace" class="cta-button">Domluvte si konzultaci</a>
+            </div>
+            <div class="hero-image">
+                <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/davidchocagent.avif" alt="David Choc - Realitní agent" class="profile-image">
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <a href="#sluzby">
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
+        <div class="hero-background">
+            <video autoplay muted loop playsinline preload="metadata" id="hero-video" class="desktop-only">
+                <source src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/videos/file.mp4" type="video/mp4">
+                Váš prohlížeč nepodporuje přehrávání videa.
+            </video>
+            <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/heromobile.png" alt="David Choc - Realitní agent" class="mobile-only hero-mobile-img">
+        </div>
+    </section>
+
+    <!-- Sekce Nejnovější články -->
+    <section id="latest-blog" class="latest-blog-section" style="background: linear-gradient(135deg, #1a1a1a 0%, #000 100%); padding: 80px 0;">
+        <div class="container">
+            <div style="text-align:center; margin-bottom: 40px;">
+                <h2 style="color:#FFBF00; font-size:2.2rem; font-weight:800; margin:0 0 10px;">Nejnovější články</h2>
+                <p style="color:#ddd; opacity:.85; margin:0;">Z blogu realitního agenta</p>
+            </div>
+            <div id="latest-blog-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:24px;"></div>
+        </div>
+    </section>
+
+    <!-- Sekce Mise -->
+    <section id="sluzby" class="mission-section">
+        <div class="container">
+            <div class="mission-content">
+                <div class="mission-text">
+                    <h2>Vaše nemovitost může být moje příští mise</h2>
+                    <p>Každý detail má váhu. Každý krok rozhoduje. Cíl je jediný: prodat za nejlepší možnou cenu.</p>
+                    <h3>Proč ten smoking?</h3>
+                    <p>Protože chci, abyste se zastavili. Abych ve vás vyvolal emoci – přesně tak, jak ji musím vzbudit u kupujících. Nemovitosti se neprodávají čísly a tabulkami, ale emocemi.</p>
+                    <h3>Můj přístup</h3>
+                    <p>Vaši nemovitost beru jako svou vlastní. Plán, příprava, strategie, vyjednávání. Žádná improvizace, ale mise s jasným výsledkem.</p>
+                    <p>Profesionální služby. Osobní péče. Každý detail pod kontrolou.</p>
+                    <a href="#kontakt" class="cta-button mission-cta">Objednat realitní misi</a>
+                </div>
+                <div class="mission-video">
+                    <div class="video-container">
+                        <video autoplay muted loop playsinline preload="metadata" id="mission-video">
+                            <source src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/videos/fileagent.mp4" type="video/mp4">
+                            Váš prohlížeč nepodporuje přehrávání videa.
+                        </video>
+                        <button class="sound-toggle" id="mission-sound-toggle" aria-label="Vypnout/zapnout zvuk">
+                            <i class="fas fa-volume-mute" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sekce 7 kroků -->
+    <section id="reference" class="steps-section">
+        <div class="container">
+            <div class="steps-header">
+                <h2>Jak prodáváme nemovitosti aneb<br>7&nbsp;kroků k úspěchu mise</h2>
+                <a href="Jak prodávám nemovitosti David Choc realitní agent.pdf" class="cta-button download-button" download>
+                    <i class="fas fa-download"></i> Získat ebook
+                </a>
+                <p class="steps-intro">Každá mise je jedinečná, avšak vždy stojí na stejném základu: pečlivá příprava, vymazlený marketing a skvělé nabídkové řízení. To všechno se spojuje v jednu cestu, na kterou se vydáváme společně. Vaše nemovitost, moje příští mise. A beru to velmi osobně. S vášní a odborností naplánujeme každý krok, abychom společně dosáhli toho nejlepšího možného výsledku. Pojdťme na to.</p>
+            </div>
+            
+            <div class="steps-grid">
+                <!-- Krok 1 -->
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <div class="step-image">
+                            <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/steps/step01.png" alt="První schůzka" class="media-item" loading="lazy">
+                        </div>
+                        <h3>První schůzka</h3>
+                        <h4>Posouzení a porozumění.</h4>
+                        <p>Naše cesta začíná osobním setkáním, kde posoudím vaši nemovitost a porozumím vašim potřebám a cílům. Tento krok je zásadní pro vytvoření úspěšné strategie prodeje.</p>
+                    </div>
+                </div>
+
+                <!-- Krok 2 -->
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <div class="step-image">
+                            <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/steps/step02.png" alt="Stanovení prodejní ceny" class="media-item" loading="lazy">
+                        </div>
+                        <h3>Stanovení prodejní ceny</h3>
+                        <h4>Analýza trhu.</h4>
+                        <p>Díky důkladné tržní analýze a porovnání s podobnými nemovitostmi stanovím reálnou tržní cenu vaší nemovitosti. Cílem je zajistit atraktivní cenu, která přitáhne kupce za maximální možnou cenu na realitním trhu.</p>
+                    </div>
+                </div>
+
+                <!-- Krok 3 -->
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <div class="step-image">
+                            <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/steps/step03.avif" alt="Příprava nemovitosti" class="media-item" loading="lazy">
+                        </div>
+                        <h3>Příprava nemovitosti</h3>
+                        <h4>Zvýšení atraktivity</h4>
+                        <p>Společně se zaměříme na to, abychom vaši nemovitost představili v nejlepším možném světle. To může zahrnovat drobné opravy, home staging nebo profesionální fotografie, aby se zvýšila její atraktivita pro potenciální kupce.</p>
+                    </div>
+                </div>
+
+                <!-- Krok 4 -->
+                <div class="step-card">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <div class="step-image">
+                            <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/steps/step04.png" alt="Marketingová kampaň" class="media-item" loading="lazy">
+                        </div>
+                        <h3>Marketingová kampaň</h3>
+                        <h4>Maximální dosah</h4>
+                        <p>Využiji širokou paletu marketingových nástrojů - od online inzerce na předních realitních portálech, přes sociální média, až po tradiční marketing - abych zajistil, že vaše nemovitost dosáhne co nejširšího publika potenciálních kupců.</p>
+                    </div>
+                </div>
+
+                <!-- Krok 5 -->
+                <div class="step-card">
+                    <div class="step-number">05</div>
+                    <div class="step-content">
+                        <div class="step-image">
+                            <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/steps/step05.avif" alt="Prohlídky se zájemci" class="media-item" loading="lazy">
+                        </div>
+                        <h3>Prohlídky se zájemci</h3>
+                        <h4>Profesionální prezentace</h4>
+                        <p>Organizuji a provádím prohlídky nemovitosti s potenciálními kupci. Můj cíl je nejen ukázat nemovitost, ale také zdůraznit její klíčové vlastnosti a odpovědět na všechny dotazy zájemců.</p>
+                    </div>
+                </div>
+
+                <!-- Krok 6 -->
+                <div class="step-card">
+                    <div class="step-number">06</div>
+                    <div class="step-content">
+                        <div class="step-image">
+                            <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/steps/step06.png" alt="Vyjednávání" class="media-item" loading="lazy">
+                        </div>
+                        <h3>Vyjednávání</h3>
+                        <h4>Zajištění nejlepší dohody</h4>
+                        <p>Jako váš zástupce se zúčastním vyjednávání s potenciálními kupci, abychom dosáhli co nejlepší ceny a podmínek prodeje. Mé zkušenosti v oblasti vyjednávání zajišťují, že budete mít vždy výhodu.</p>
+                    </div>
+                </div>
+
+                <!-- Krok 7 -->
+                <div class="step-card">
+                    <div class="step-number">07</div>
+                    <div class="step-content">
+                        <div class="step-image">
+                            <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/steps/step07.png" alt="Závěrečná fáze" class="media-item" loading="lazy">
+                        </div>
+                        <h3>Závěrečná fáze</h3>
+                        <h4>Hladké dokončení</h4>
+                        <p>Po uzavření rezervační smlouvy zajistím, aby celý proces dokončení transakce proběhl co nejhladčeji, od právních formalit až po předání klíčů, bez jakýchkoli komplikací.</p>
+                    </div>
+                </div>
+                
+                <!-- Bonus 1 -->
+                <div class="step-card bonus-card">
+                    <div class="bonus-label">BONUS</div>
+                    <div class="step-content">
+                        <div class="step-image">
+                            <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/steps/step-bonus.png" alt="Následný servis" class="media-item" loading="lazy">
+                        </div>
+                        <h3>Následný servis</h3>
+                        <h4>Prodejem služby nekončí</h4>
+                        <p>Moje služby pokračují i po prodeji, nabízím vám poradenství pro další investice, komplexní správu a pronájem vaší nemovitosti, doplněné o pravidelné zprávy o stavu a vývoji na trhu s nemovitostmi.</p>
+                    </div>
+                </div>
+
+                <!-- Bonus 2 -->
+                <div class="step-card bonus-card">
+                    <div class="bonus-label">BONUS 2</div>
+                    <div class="step-content">
+                        <div class="step-image">
+                            <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/steps/step-bonus2.avif" alt="KLUB investorů" class="media-item" loading="lazy">
+                        </div>
+                        <h3>KLUB investorů</h3>
+                        <h4>Exkluzivní klub</h4>
+                        <p>Náš klub nabízí exkluzivní přístup k pokročilým službám a informacím v oblasti investic, správy a pronájmu nemovitostí, včetně detailních analýz trhu, aby členové mohli maximalizovat svůj investiční potenciál.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sekce Konzultace -->
+    <section id="konzultace" class="konzultace-section">
+        <div class="container">
+            <div class="konzultace-content">
+                <div class="konzultace-text">
+                    <h2>Konzultace</h2>
+                    <p>Potřebujete poradit s prodejem nebo pronájmem nemovitosti? Domluvte si nezávaznou 30 minutovou konzultaci. Po výběru termínu obdržíte potvrzení na váš e-mail.</p>
+                </div>
+                <div class="konzultace-kalendar">
+                    <!-- Calendly inline widget begin -->
+                    <div
+                      class="calendly-inline-widget"
+                      data-url="https://calendly.com/ptf-info/30min?hide_gdpr_banner=1"
+                      style="min-width:320px; height:630px;">
+                    </div>
+                    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+                    <!-- Calendly inline widget end -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sekce Na co se zaměřuji -->
+    <section id="zamereni" class="zamereni-section">
+        <div class="container">
+            <div class="zamereni-header">
+                <h2>Na co se zaměřujeme</h2>
+                <p>Rád dělám věci jednoduše a přehledně. Proto kombinuji moderní marketing, dlouholeté zkušenosti a osobní přístup, abych vám pomohl koupit, prodat či pronajmout nemovitost za co nejlepších podmínek. Spolupracuji přitom s týmem kolegů–odborníků, kteří se specializují na všechny klíčové oblasti realitního trhu. Každý krok, od prvního setkání až po dokončení transakce, s vámi pečlivě projdu a zajistím, aby vše proběhlo hladce.</p>
+            </div>
+            <div class="zamereni-grid">
+                <!-- Focus 1 -->
+                <div class="zamereni-card">
+                    <div class="zamereni-number">01</div>
+                    <div class="zamereni-content">
+                        <h3>Komerční nemovitosti</h3>
+                        <p>Hledáte kanceláře, obchodní prostory, sklady nebo třeba hotel? Rád vám pomůžu najít, koupit či prodat přesně to, co potřebujete. Můj tým a já: Připravíme podrobné tržní analýzy a investiční modely na míru vašim cílům.
+                            Ukážeme vám, jak zvýšit hodnotu a výnos vašich komerčních nemovitostí.
+                            Včas odhalíme možná rizika a pomůžeme je vyřešit.
+                            Díky tomu se můžete naplno věnovat svému podnikání, zatímco my dohlédneme, aby vše proběhlo hladce.</p>
+                    </div>
+                </div>
+
+                <!-- Focus 2 -->
+                <div class="zamereni-card">
+                    <div class="zamereni-number">02</div>
+                    <div class="zamereni-content">
+                        <h3>Rezidenční nemovitosti</h3>
+                        <p>Prodáváte, pronajímáte nebo hledáte nové bydlení? Společně s kolegy se postarám o vše potřebné:
+
+                            Pečlivě připravíme marketing, abychom oslovili ty správné zájemce.
+                            Budeme vás informovat o cenách na trhu, aktuální poptávce a konkurenčních nabídkách.
+                            Zajistíme kompletní servis od smluv až po financování a právní podporu.
+                            Naším cílem je, abyste měli jistotu a klid, že je o vás a vaši nemovitost postaráno profesionálně a s osobní péčí.</p>
+                    </div>
+                </div>
+
+                <!-- Focus 3 -->
+                <div class="zamereni-card">
+                    <div class="zamereni-number">03</div>
+                    <div class="zamereni-content">
+                        <h3>Poradenství</h3>
+                        <p>Chcete nemovitost koupit, prodat nebo do ní investovat? Včasné a správné informace jsou klíčem k úspěchu. Nabízím:
+
+                            Objektivní hodnocení nemovitostí na základě reálných dat.
+                            Investiční a prodejní strategie, které zohlední vaše cíle.
+                            Přehled o nejnovějších trendech a praktické tipy na úspěšnou transakci.
+                            Společně pak vymyslíme, jak co nejlépe využít váš potenciál a dosáhnout výsledku, se kterým budete spokojeni.</p>
+                    </div>
+                </div>
+
+                <!-- CTA Button -->
+                <div class="zamereni-cta">
+                    <a href="#kontakt" class="cta-button">Objednat realitní misi</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sekce Banner Ocenit Online -->
+    <section id="ocenit-banner" class="ocenit-banner-section">
+        <div class="container">
+            <div class="ocenit-banner-content">
+                <div class="ocenit-banner-text">
+                    <h2>Ocenit nemovitost online</h2>
+                    <p>Připravil jsem pro vás exkluzivní možnost zdarma a bez závazku ocenit si svoji nemovitost online. Zabere to dvě minuty a doufám, že vám tento bonus udělá radost. Můžete si spočítat cenu prodejní i cenu pronájmu.</p>
+                    <a href="ocenit-online.html" class="cta-button ocenit-banner-button">Ocenit nemovitost zdarma</a>
+                </div>
+                <div class="ocenit-banner-image">
+                    <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/ocenit-online.png" alt="Ocenit nemovitost online" class="ocenit-img" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sekce 3D prohlídky -->
+    <section id="ptf" class="ptf-section">
+        <div class="container">
+            <div class="ptf-header">
+                <h2>Virtuální prohlídka kanceláře PTF reality Plzeň</h2>
+            </div>
+            
+            <div class="ptf-text-columns">
+                <div class="ptf-column">
+                    <p>Chcete přilákat více zájemců a umožnit jim prohlédnout si nemovitost, aniž by museli hned osobně přijít? Podívejte se, jak vypadá naše kancelář nasnímaná moderním 3D skenerem.</p>
+                    
+                    <p>Stejně atraktivně může být prezentována i vaše nemovitost!</p>
+                </div>
+                
+                <div class="ptf-column">
+                    <p>Díky virtuální prohlídce mohou potenciální kupci či nájemci detailně prozkoumat každý kout prostoru z pohodlí domova, což výrazně zvyšuje zájem a urychluje prodej.</p>
+                    
+                    <p><strong>Zaujalo vás to?</strong> Ozvěte se nám a my vám rádi zprostředkujeme 3D prohlídku i pro vaši nemovitost.</p>
+                    
+                    <div class="column-cta">
+                        <a href="#kontakt" class="cta-button">Chci 3D prohlídku</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="ptf-tour">
+                <div class="matterport-container">
+                    <iframe width="853" height="480" src="https://my.matterport.com/show/?m=G3oPD56LnSV" frameborder="0" allowfullscreen allow="autoplay; fullscreen; web-share; xr-spatial-tracking;"></iframe>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sekce Videoprohlídka -->
+    <section id="videoprohlidka" class="videoprohlidka-section">
+        <div class="container">
+            <div class="videoprohlidka-content">
+                <div class="videoprohlidka-text">
+                    <h2>Videoprohlídka</h2>
+                    <p>Videoprezentace a prohlídky skutečně přidávají osobní dotek k mé online inzerci nemovitostí. Jako váš agent vytvořím komentované prohlídky, kde osobně představím každý detail nemovitosti a zvýrazním její klíčové vlastnosti.</p>
+                    <p>Video mi umožňuje zachytit nejen dynamiku prostoru, ale také jedinečnou atmosféru, která z domu dělá domov. Tento přístup mi pomáhá ukázat potenciálním kupcům nejen to, jak nemovitost vypadá, ale také jak se v ní cítíte, což fotky nebo popisy nemohou plně předat.</p>
+                    <a href="#kontakt" class="cta-button">Chci videoprohlídku</a>
+                </div>
+                <div class="videoprohlidka-video">
+                    <div class="video-player" id="videoContainer">
+                        <video id="promoVideo" loop playsinline preload="metadata">
+                            <source src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/videos/fileprohlidka.mp4" type="video/mp4">
+                            Váš prohlížeč nepodporuje přehrávání videa.
+                        </video>
+                        <div class="video-overlay">
+                            <span class="play-icon"><i class="fas fa-play-circle"></i></span>
+                        </div>
+                        <div class="video-controls">
+                            <button id="promo-sound-toggle" class="sound-toggle">
+                                <i class="fas fa-volume-mute"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Sekce Recenze -->
+    <section id="recenze" class="recenze-section">
+        <div class="container">
+            <div class="recenze-header">
+                <h2>Recenze našich klientů, vážíme si vaší důvěry.</h2>
+            </div>
+            <div class="recenze-grid">
+                <!-- Horizontální řada pro recenze klientů -->
+                <div class="recenze-row">
+                    <!-- Recenze 1 -->
+                    <div class="recenze-card">
+                        <div class="recenze-number">01</div>
+                        <div class="recenze-content">
+                            <div class="recenze-image">
+                                <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/recenze-blatenska.avif" alt="Recenze 1" class="recenze-img" loading="lazy">
+                            </div>
+                            <div class="client-info">
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <h3>Ing. Jana R.</h3>
+                                <h4>Prodej bytu 2+1 Plzeň - Slovany</h4>
+                                <p>Profesionální proaktivní přístup, bezproblémová komunikace, ochota, vstřícnost, příkladná ukázka práce realitní kanceláře. Jednoznačně doporučuji.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Recenze 2 -->
+                    <div class="recenze-card">
+                        <div class="recenze-number">02</div>
+                        <div class="recenze-content">
+                            <div class="recenze-image">
+                                <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/recenze-bory.avif" alt="Recenze 2" class="recenze-img">
+                            </div>
+                            <div class="client-info">
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <h3>Mgr. Jitka K.</h3>
+                                <h4>Prodej bytu 1+1 Plzeň - Bory</h4>
+                                <p>Profesionální přístup, rychlá bezproblémová spolupráce, vřele doporučuji.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Recenze 3 -->
+                    <div class="recenze-card">
+                        <div class="recenze-number">03</div>
+                        <div class="recenze-content">
+                            <div class="recenze-image">
+                                <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/recenze-005A5886.avif" alt="Recenze 3" class="recenze-img">
+                            </div>
+                            <div class="client-info">
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <h3>Alena B.</h3>
+                                <h4>Prodej bytu 1+kk Plzeň - Skvrňany</h4>
+                                <p>S PTF reality mám velmi dobré zkušenosti. Vždy jsem se mohla na ně obrátit v jakékoliv situaci, ať se jednalo o prodej nemovitosti nebo pronájem. Mohu každému vřele doporučit.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Recenze 4 -->
+                    <div class="recenze-card">
+                        <div class="recenze-number">04</div>
+                        <div class="recenze-content">
+                            <div class="recenze-image">
+                                <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/recenze-slovany.avif" alt="Recenze 4" class="recenze-img">
+                            </div>
+                            <div class="client-info">
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <h3>Jan Š.</h3>
+                                <h4>Prodej bytu 2+1 Plzeň - Slovany</h4>
+                                <p>Naprostá spokojenost, profesionalita, nic nebyl problém.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Recenze 5 -->
+                    <div class="recenze-card">
+                        <div class="recenze-number">05</div>
+                        <div class="recenze-content">
+                            <div class="recenze-image">
+                                <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/recenze-bolevec.avif" alt="Recenze 5" class="recenze-img">
+                            </div>
+                            <div class="client-info">
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <h3>David A.</h3>
+                                <h4>Prodej bytu 3+kk Plzeň - Bolevec</h4>
+                                <p>Rychlý prodej i pronájem, profi služby, díky!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Google recenze samostatně -->
+                <div class="recenze-card recenze-cta">
+                    <div class="recenze-content">
+                        <div class="recenze-image">
+                            <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/recenze-google.avif" alt="Google recenze" class="recenze-img">
+                        </div>
+                        <div class="client-info">
+                            <h3>Přidejte se k dalším spokojeným klientům</h3>
+                            <p>Byli jste spokojeni s mojí prací nebo kolegů? Budu rád, když o tom řeknete dalším klientům. Vyfoťte si prosím tento QR kód nebo klikněte na odkaz níže a napište nám recenzi. Mockrát děkuji.</p>
+                            <a href="https://search.google.com/local/writereview?placeid=ChIJj8TqefvxCkcRmUw2bqE94Us&source=g.page.m.ia._&laa=nmx-review-solicitation-ia2" class="cta-button recenze-button" target="_blank">Napsat recenzi</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Sekce Kontakt -->
+    <section id="kontakt" class="kontakt-section">
+        <div class="container">
+            <div class="kontakt-content">
+                <div class="kontakt-text">
+                    <h2>Máte dotaz? Napište&nbsp;mi</h2>
+                    <p>Chcete se poradit o konkrétním projektu nebo máte dotazy k našim službám? Vyplňte formulář a domluvte si konzultaci, rád vám vše vysvětlím.</p>
+                    
+                    <div class="kontakt-info">
+                        <div class="kontakt-item">
+                            <i class="fas fa-phone"></i>
+                            <span><a href="tel:+420774052232">774 052 232</a></span>
+                        </div>
+                        <div class="kontakt-item">
+                            <i class="fas fa-envelope"></i>
+                            <span><a href="mailto:david.choc@ptf.cz">david.choc@ptf.cz</a></span>
+                        </div>
+                    </div>
+                    <div class="kontakt-qr" style="margin-top: 1rem;">
+                        <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/vizitka-david-choc.png" alt="QR kontakt – uložit si kontakt na Davida Choce" loading="lazy" decoding="async" style="max-width: 220px; height: auto; border-radius: 8px;" />
+                        <p style="margin-top: .5rem;"><small>Naskenujte QR kód a uložte si kontakt.</small></p>
+                    </div>
+                    <div class="kontakt-social" style="margin-top: 1rem; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; color: #000;">
+                        <span style="font-weight: 600; margin-right: .25rem; color: #000;">Sledujte mě:</span>
+                        <a href="https://www.facebook.com/davidchoc.cz" target="_blank" aria-label="Facebook profil Davida Choce" title="Facebook" style="color: #000; font-size: 1.6rem; line-height: 1;">
+                            <i class="fab fa-facebook-f" style="color: inherit;"></i>
+                        </a>
+                        <a href="https://www.instagram.com/davidchoc.cz/" target="_blank" aria-label="Instagram profil Davida Choce" title="Instagram" style="color: #000; font-size: 1.6rem; line-height: 1;">
+                            <i class="fab fa-instagram" style="color: inherit;"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/david-choc-85194941/" target="_blank" aria-label="LinkedIn profil Davida Choce" title="LinkedIn" style="color: #000; font-size: 1.6rem; line-height: 1;">
+                            <i class="fab fa-linkedin-in" style="color: inherit;"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@davidchoc" target="_blank" aria-label="YouTube kanál Davida Choce" title="YouTube" style="color: #000; font-size: 1.6rem; line-height: 1;">
+                            <i class="fab fa-youtube" style="color: inherit;"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="kontakt-formular">
+                    <div id="f-21-125ab233e4603d4d7c84f5cbf8130258"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+    
+    <script src="script.js"></script>
+    <script src="common/common.js"></script>
+    <script src="cookie-consent.js"></script>
+    
+    <!-- Kontaktní formulář - Realvisor API -->
+    <script src="contact-form-handler.js?v=2"></script>
+
+    <script>
+      // Načtení 3 nejnovějších článků pro homepage
+      (function(){
+        const grid = document.getElementById('latest-blog-grid');
+        if (!grid) return;
+        fetch('/blog/posts.json')
+          .then(r => { if(!r.ok) throw new Error('posts.json load failed'); return r.json(); })
+          .then(data => {
+            const posts = (data.posts || []).slice().sort((a,b) => new Date(b.date) - new Date(a.date)).slice(0,3);
+            const createCard = (p) => {
+              const card = document.createElement('article');
+              card.style.cssText = 'background:rgba(255,255,255,0.06); border:1px solid rgba(255,191,0,0.2); border-radius:14px; overflow:hidden; transition:transform .3s ease, box-shadow .3s ease; cursor:pointer;';
+              card.onmouseover = () => { card.style.transform = 'translateY(-6px)'; card.style.boxShadow = '0 15px 30px rgba(255,191,0,0.18)'; };
+              card.onmouseout = () => { card.style.transform = 'none'; card.style.boxShadow = 'none'; };
+              card.onclick = () => { window.location.href = `/blog/detail.html?id=${p.id}` };
+              card.innerHTML = `
+                <div style="height:180px; overflow:hidden; position:relative;">
+                  <img src="${p.image}" alt="${p.imageAlt || p.title}" style="width:100%; height:100%; object-fit:cover;" onerror="this.src='/images/placeholder.jpg'">
+                  <span style="position:absolute; top:12px; left:12px; background:#FFBF00; color:#000; padding:6px 10px; border-radius:999px; font-size:.8rem; font-weight:700;">${p.categoryName || ''}</span>
+                </div>
+                <div style="padding:18px; color:#fff;">
+                  <div style="display:flex; gap:8px; align-items:center; color:#bbb; font-size:.9rem; margin-bottom:8px;">
+                    <span>${p.dateFormatted || ''}</span>
+                    <span>•</span>
+                    <span>${p.readTime} min čtení</span>
+                  </div>
+                  <h3 style="margin:0 0 8px; font-size:1.2rem; line-height:1.3; color:#fff;">${p.title}</h3>
+                  <p style="margin:0; color:#ddd; opacity:.9; line-height:1.6;">${p.excerpt}</p>
+                </div>
+              `;
+              return card;
+            };
+            posts.forEach(p => grid.appendChild(createCard(p)));
+          })
+          .catch(err => {
+            console.warn('Nejnovější články nelze načíst:', err);
+          });
+      })();
+    </script>
+
+    <!-- Plovoucí tlačítka -->
+    <div class="floating-buttons">
+        <a href="#" class="floating-button back-to-top" aria-label="Zpět nahoru">
+            <i class="fas fa-arrow-up"></i>
+        </a>
+        <a href="tel:+420774052232" class="floating-button call" aria-label="Zavolat">
+            <i class="fas fa-phone-alt"></i>
+        </a>
+        <a href="mailto:david.choc@ptf.cz" class="floating-button email" aria-label="Poslat email">
+            <i class="fas fa-envelope"></i>
+        </a>
+        <a href="https://wa.me/420604240086" class="floating-button whatsapp" aria-label="WhatsApp zpráva" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Google Analytics - defer loading -->
+    <script>
+      window.addEventListener('load', function() {
+        var script = document.createElement('script');
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-TXGDD8D3GK';
+        script.async = true;
+        document.head.appendChild(script);
+        
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-TXGDD8D3GK');
+      });
+    </script>
+    
+    <!-- Meta Pixel Code - defer loading -->
+    <script>
+      window.addEventListener('load', function() {
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1068206574973315');
+        fbq('track', 'PageView');
+      });
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1068206574973315&ev=PageView&noscript=1"
+    /></noscript>
+</body>
+</html>
