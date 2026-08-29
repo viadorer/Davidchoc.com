@@ -63,7 +63,7 @@
 .hub-hero__eyebrow {
     display: inline-block;
     font-size: 0.8rem;
-    color: var(--hub-muted, #8B7D61);
+    color: var(--hub-muted, #766A52);
     text-transform: uppercase;
     letter-spacing: 0.18em;
     font-weight: 700;
@@ -81,7 +81,7 @@
 .vycvik-hero__sub,
 .hub-hero__sub {
     font-size: clamp(1.05rem, 2vw, 1.3rem);
-    color: var(--hub-muted, #8B7D61);
+    color: var(--hub-muted, #766A52);
     font-weight: 600;
     margin: 0 0 24px;
     font-style: italic;
@@ -135,7 +135,7 @@
 .vycvik-hero__note,
 .hub-hero__note {
     font-size: 0.92rem;
-    color: #7a7a7a;
+    color: #6B6B6B;
     margin: 0;
     padding-top: 20px;
     border-top: 1px solid rgba(var(--hub-ink-rgb, 26,26,26), 0.12);
@@ -242,7 +242,7 @@
 .hub-quote p strong { color:var(--hub-ink, #1a1a1a); font-style: normal; }
 .vycvik-quote footer,
 .hub-quote footer {
-    color: var(--hub-muted, #8B7D61);
+    color: var(--hub-muted, #766A52);
     font-size: 0.92rem;
     font-weight: 600;
     margin-top: 8px;
@@ -333,7 +333,7 @@
     width: 52px; height: 52px;
     border-radius: 12px;
     background: rgba(var(--hub-accent-rgb, 255,191,0), 0.14);
-    color: var(--hub-muted, #8B7D61);
+    color: var(--hub-muted, #766A52);
     display: grid;
     place-items: center;
     font-size: 1.2rem;
@@ -353,19 +353,23 @@
 }
 .vycvik-toc__body,
 .hub-toc__body { display: flex; flex-direction: column; gap: 5px; }
+/* Názvy kapitol a nástrojů jsou nadpisy, ne text v odkazu — pro čtečku
+   obrazovky i pro vyhledávač. Vlastní odsazení nadpisu se ruší, o mezery
+   se stará gap v rodičovském flexu. */
 .vycvik-toc__title,
 .hub-toc__title {
     font-size: 1.08rem;
     font-weight: 700;
     color: var(--hub-ink, #1a1a1a);
     line-height: 1.3;
+    margin: 0;
 }
 .vycvik-toc__item--soon .vycvik-toc__title,
-.hub-toc__item--soon .hub-toc__title { color: #888; }
+.hub-toc__item--soon .hub-toc__title { color: #717171; }
 .vycvik-toc__desc,
 .hub-toc__desc {
     font-size: 0.9rem;
-    color: #777;
+    color: #6B6B6B;
     line-height: 1.45;
 }
 .vycvik-toc__arrow,
@@ -424,11 +428,12 @@ a.hub-tool:hover {
     font-weight: 700;
     color: var(--hub-ink, #1a1a1a);
     line-height: 1.3;
+    margin: 0;
 }
 .vycvik-tool__desc,
 .hub-tool__desc {
     font-size: 0.88rem;
-    color: #777;
+    color: #6B6B6B;
     line-height: 1.5;
 }
 .vycvik-tool--soon,
@@ -477,7 +482,7 @@ a.hub-tool:hover {
 .vycvik-author__motto,
 .hub-author__motto {
     font-style: italic;
-    color: var(--hub-muted, #8B7D61) !important;
+    color: var(--hub-muted, #766A52) !important;
     padding-left: 18px;
     border-left: 3px solid var(--hub-accent, #FFBF00);
 }
@@ -492,7 +497,7 @@ a.hub-tool:hover {
 }
 .vycvik-author__links a,
 .hub-author__links a {
-    color: var(--hub-muted, #8B7D61);
+    color: var(--hub-muted, #766A52);
     font-weight: 600;
     text-decoration: none;
     font-size: 0.95rem;
@@ -509,7 +514,7 @@ a.hub-tool:hover {
 .vycvik-crumb,
 .hub-crumb {
     font-size: 0.88rem;
-    color: var(--hub-muted, #8B7D61);
+    color: var(--hub-muted, #766A52);
     margin-bottom: 26px;
     display: flex;
     align-items: center;
@@ -517,7 +522,7 @@ a.hub-tool:hover {
     flex-wrap: wrap;
 }
 .vycvik-crumb a,
-.hub-crumb a { color: var(--hub-muted, #8B7D61); text-decoration: none; font-weight: 600; }
+.hub-crumb a { color: var(--hub-muted, #766A52); text-decoration: none; font-weight: 600; }
 .vycvik-crumb a:hover,
 .hub-crumb a:hover { color:var(--hub-ink, #1a1a1a); text-decoration: underline; }
 .vycvik-crumb span,
@@ -530,7 +535,7 @@ a.hub-tool:hover {
     font-weight: 800;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--hub-muted, #8B7D61);
+    color: var(--hub-muted, #766A52);
     margin-bottom: 14px;
 }
 .vycvik-chapter__wrap h1,
@@ -568,7 +573,7 @@ a.hub-tool:hover {
 .vycvik-chapter__wrap p strong,
 .hub-chapter__wrap p strong { color: var(--hub-ink, #1a1a1a); font-weight: 700; }
 .vycvik-chapter__wrap a,
-.hub-chapter__wrap a { color: var(--hub-muted, #8B7D61); text-decoration: underline; text-underline-offset: 3px; }
+.hub-chapter__wrap a { color: var(--hub-muted, #766A52); text-decoration: underline; text-underline-offset: 3px; }
 .vycvik-chapter__wrap a:hover,
 .hub-chapter__wrap a:hover { color:var(--hub-ink, #1a1a1a); }
 .vycvik-chapter__wrap ul,
@@ -812,7 +817,7 @@ a.hub-tool:hover {
 }
 .vycvik-exam__intro,
 .hub-exam__intro {
-    color: var(--hub-muted, #8B7D61) !important;
+    color: var(--hub-muted, #766A52) !important;
     font-style: italic;
     margin-bottom: 22px !important;
 }
@@ -879,7 +884,7 @@ a.hub-tool:hover {
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--hub-muted, #8B7D61);
+    color: var(--hub-muted, #766A52);
 }
 .vycvik-nav__title,
 .hub-nav__title {
@@ -989,7 +994,7 @@ a.hub-tool:hover {
 .vy-progress__count,
 .hub-progress__count {
     font-size: 0.92rem;
-    color: var(--hub-muted, #8B7D61);
+    color: var(--hub-muted, #766A52);
     font-weight: 600;
     font-variant-numeric: tabular-nums;
 }
@@ -1065,7 +1070,7 @@ a.hub-tool:hover {
     width: 48px; height: 48px;
     border-radius: 50%;
     background: rgba(var(--hub-accent-rgb, 255,191,0), 0.18);
-    color: var(--hub-muted, #8B7D61);
+    color: var(--hub-muted, #766A52);
     display: grid;
     place-items: center;
     font-weight: 900;
@@ -1097,7 +1102,7 @@ a.hub-tool:hover {
 .hub-phase__time {
     font-size: 0.82rem;
     font-weight: 700;
-    color: var(--hub-muted, #8B7D61);
+    color: var(--hub-muted, #766A52);
     background: rgba(var(--hub-accent-rgb, 255,191,0), 0.16);
     padding: 4px 12px;
     border-radius: 999px;
@@ -1176,7 +1181,7 @@ a.hub-tool:hover {
 .vy-widget__note,
 .hub-widget__note {
     font-size: 0.9rem !important;
-    color: var(--hub-muted, #8B7D61) !important;
+    color: var(--hub-muted, #766A52) !important;
     line-height: 1.6 !important;
     margin: 20px 0 0 !important;
     padding-top: 16px;
@@ -1195,7 +1200,7 @@ a.hub-tool:hover {
     margin-bottom: 8px;
 }
 .vy-field label strong,
-.hub-field label strong { color:var(--hub-muted, #8B7D61); float: right; font-variant-numeric: tabular-nums; }
+.hub-field label strong { color:var(--hub-muted, #766A52); float: right; font-variant-numeric: tabular-nums; }
 .vy-field input[type="text"],
 .hub-field input[type="text"],
 .vy-field input[type="number"],
@@ -1311,7 +1316,7 @@ a.hub-tool:hover {
     white-space: nowrap;
 }
 .vy-result--realistic .vy-result__value,
-.hub-result--realistic .hub-result__value { color:var(--hub-muted, #8B7D61); }
+.hub-result--realistic .hub-result__value { color:var(--hub-muted, #766A52); }
 
 .vy-verdict,
 .hub-verdict {
@@ -1352,7 +1357,7 @@ a.hub-tool:hover {
 .vy-verdict--warn,
 .hub-verdict--warn { border-left-color: var(--hub-accent-deep, #E0A800); background: #fffbf0; }
 .vy-verdict--warn strong,
-.hub-verdict--warn strong { color:var(--hub-muted, #8B7D61); }
+.hub-verdict--warn strong { color:var(--hub-muted, #766A52); }
 .vy-verdict--ok,
 .hub-verdict--ok { border-left-color: var(--hub-ok, #4CAF50); background: #f5faf5; }
 .vy-verdict--ok strong,
@@ -1428,7 +1433,7 @@ a.hub-tool:hover {
     width: 26px; height: 26px;
     border-radius: 50%;
     background: rgba(var(--hub-accent-rgb, 255,191,0), 0.2);
-    color: var(--hub-muted, #8B7D61);
+    color: var(--hub-muted, #766A52);
     font-size: 0.8rem;
     font-weight: 900;
     margin-right: 10px;
@@ -1444,7 +1449,7 @@ a.hub-tool:hover {
     flex-shrink: 0;
     font-size: 0.8rem;
     font-weight: 700;
-    color: var(--hub-muted, #8B7D61);
+    color: var(--hub-muted, #766A52);
     background: rgba(var(--hub-accent-rgb, 255,191,0), 0.14);
     padding: 5px 11px;
     border-radius: 999px;
@@ -1838,7 +1843,7 @@ a.hub-tool:hover {
 .hub-q__warn {
     padding-left: 24px;
     position: relative;
-    color: var(--hub-muted, #8B7D61) !important;
+    color: var(--hub-muted, #766A52) !important;
     font-size: 0.92rem !important;
 }
 .vy-q__warn::before,
@@ -1930,7 +1935,7 @@ a.hub-tool:hover {
     border-color: rgba(var(--hub-accent-rgb, 255,191,0), 0.55);
 }
 .vy-day--check,
-.hub-day--check { border-left: 4px solid var(--hub-muted, #8B7D61); }
+.hub-day--check { border-left: 4px solid var(--hub-muted, #766A52); }
 .vy-day--final,
 .hub-day--final {
     background: linear-gradient(160deg, var(--hub-ink, #1a1a1a) 0%, #000 100%);
@@ -1950,7 +1955,7 @@ a.hub-tool:hover {
 .vy-day__label,
 .hub-day__label {
     background: rgba(var(--hub-accent-rgb, 255,191,0), 0.16);
-    color: var(--hub-muted, #8B7D61);
+    color: var(--hub-muted, #766A52);
     border-radius: 10px;
     padding: 10px 12px;
     text-align: center;
@@ -1989,12 +1994,12 @@ a.hub-tool:hover {
 .vy-day__body p:last-child,
 .hub-day__body p:last-child { margin-bottom: 0 !important; }
 .vy-day__body a,
-.hub-day__body a { color: var(--hub-muted, #8B7D61); }
+.hub-day__body a { color: var(--hub-muted, #766A52); }
 .vy-day__warn,
 .hub-day__warn {
     padding-left: 24px;
     position: relative;
-    color: var(--hub-muted, #8B7D61) !important;
+    color: var(--hub-muted, #766A52) !important;
     font-size: 0.92rem !important;
 }
 .vy-day__warn::before,
@@ -2171,7 +2176,7 @@ a.hub-tool:hover {
     display: block;
     font-size: 2rem;
     font-weight: 900;
-    color: var(--hub-muted, #8B7D61);
+    color: var(--hub-muted, #766A52);
     line-height: 1;
     font-variant-numeric: tabular-nums;
 }
@@ -2249,7 +2254,7 @@ a.hub-tool:hover {
 .vy-disclaimer i,
 .hub-disclaimer i {
     font-size: 1.6rem;
-    color: var(--hub-muted, #8B7D61);
+    color: var(--hub-muted, #766A52);
     margin-top: 4px;
     flex-shrink: 0;
 }
@@ -2315,13 +2320,13 @@ a.hub-tool:hover {
     border-color: rgba(var(--hub-ok-rgb, 76,175,80), 0.45);
 }
 .vy-tl--final,
-.hub-tl--final { border-left: 4px solid var(--hub-muted, #8B7D61); }
+.hub-tl--final { border-left: 4px solid var(--hub-muted, #766A52); }
 .vy-tl__num,
 .hub-tl__num {
     width: 44px; height: 44px;
     border-radius: 50%;
     background: rgba(var(--hub-accent-rgb, 255,191,0), 0.18);
-    color: var(--hub-muted, #8B7D61);
+    color: var(--hub-muted, #766A52);
     display: grid;
     place-items: center;
     font-weight: 900;
@@ -2379,13 +2384,13 @@ a.hub-tool:hover {
 .vy-quiz__q.is-answered,
 .hub-quiz__q.is-answered { background: #fff; border-color: rgba(var(--hub-accent-rgb, 255,191,0), 0.4); }
 .vy-quiz__q--key,
-.hub-quiz__q--key { border-left: 4px solid var(--hub-muted, #8B7D61); }
+.hub-quiz__q--key { border-left: 4px solid var(--hub-muted, #766A52); }
 .vy-quiz__num,
 .hub-quiz__num {
     width: 40px; height: 40px;
     border-radius: 50%;
     background: rgba(var(--hub-accent-rgb, 255,191,0), 0.18);
-    color: var(--hub-muted, #8B7D61);
+    color: var(--hub-muted, #766A52);
     display: grid;
     place-items: center;
     font-weight: 900;
@@ -2441,7 +2446,7 @@ a.hub-tool:hover {
     text-decoration: none !important;
 }
 .vy-quiz__link:hover,
-.hub-quiz__link:hover { color: var(--hub-muted, #8B7D61) !important; text-decoration: underline !important; }
+.hub-quiz__link:hover { color: var(--hub-muted, #766A52) !important; text-decoration: underline !important; }
 
 #vy-evaluate:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
 
@@ -2480,7 +2485,7 @@ a.hub-tool:hover {
 .vy-result--pass .vy-result__score span,
 .hub-result--pass .hub-result__score span { color: #2e7d32; }
 .vy-result--good .vy-result__score span,
-.hub-result--good .hub-result__score span { color: var(--hub-muted, #8B7D61); }
+.hub-result--good .hub-result__score span { color: var(--hub-muted, #766A52); }
 .vy-result--warn .vy-result__score span,
 .hub-result--warn .hub-result__score span { color: #c78500; }
 .vy-result--fail .vy-result__score span,
@@ -2509,7 +2514,7 @@ a.hub-tool:hover {
     display: block;
     font-size: 0.95rem;
     line-height: 1.65;
-    color: var(--hub-muted, #8B7D61);
+    color: var(--hub-muted, #766A52);
 }
 .vy-result__body h2,
 .hub-result__body h2 {
@@ -2624,7 +2629,7 @@ a.hub-tool:hover {
     width: 44px; height: 44px;
     border-radius: 12px;
     background: rgba(var(--hub-accent-rgb, 255,191,0), 0.18);
-    color: var(--hub-muted, #8B7D61);
+    color: var(--hub-muted, #766A52);
     display: grid;
     place-items: center;
     font-weight: 900;
@@ -2650,7 +2655,7 @@ a.hub-tool:hover {
 .hub-path__link {
     margin-top: auto;
     padding-top: 16px;
-    color: var(--hub-muted, #8B7D61) !important;
+    color: var(--hub-muted, #766A52) !important;
     font-weight: 700;
     font-size: 0.95rem;
     text-decoration: none !important;
@@ -2782,7 +2787,7 @@ a.hub-tool:hover {
 .vy-signature__motto,
 .hub-signature__motto {
     font-style: italic;
-    color: var(--hub-muted, #8B7D61) !important;
+    color: var(--hub-muted, #766A52) !important;
     font-size: 1rem !important;
     line-height: 1.6 !important;
     margin: 0 0 14px !important;
@@ -2807,7 +2812,7 @@ a.hub-tool:hover {
 .vy-signature__contact a:hover,
 .hub-signature__contact a:hover { text-decoration: underline !important; }
 .vy-signature__contact i,
-.hub-signature__contact i { color: var(--hub-muted, #8B7D61); }
+.hub-signature__contact i { color: var(--hub-muted, #766A52); }
 
 @media (max-width: 980px) {
     .vy-paths,
@@ -2870,7 +2875,7 @@ a.hub-tool:hover {
     gap: 10px;
 }
 .vy-calc__block h3 i,
-.hub-calc__block h3 i { color: var(--hub-muted, #8B7D61); font-size: 0.98rem; }
+.hub-calc__block h3 i { color: var(--hub-muted, #766A52); font-size: 0.98rem; }
 .vy-calc__block--loss h3 i,
 .hub-calc__block--loss h3 i { color: var(--hub-risk-deep, #C0392B); }
 .vy-calc__block p,
@@ -2919,7 +2924,7 @@ a.hub-tool:hover {
 .vy-calc__row--sum span,
 .hub-calc__row--sum span { font-weight: 700; color: var(--hub-ink, #1a1a1a); }
 .vy-calc__row--sum strong,
-.hub-calc__row--sum strong { font-size: 1.08rem; color: var(--hub-muted, #8B7D61); }
+.hub-calc__row--sum strong { font-size: 1.08rem; color: var(--hub-muted, #766A52); }
 
 .vy-calc__total,
 .hub-calc__total {
@@ -3503,7 +3508,7 @@ a.hub-tool:hover {
 .vycvik-reviews .pripad-review footer,
 .hub-reviews .pripad-review footer { color:#666; border-top-color: rgba(0,0,0,0.08); }
 .vycvik-reviews .pripad-review footer strong,
-.hub-reviews .pripad-review footer strong { color:var(--hub-muted, #8B7D61); }
+.hub-reviews .pripad-review footer strong { color:var(--hub-muted, #766A52); }
 .vycvik-reviews .pripad-review__mark,
 .hub-reviews .pripad-review__mark { color: rgba(var(--hub-accent-rgb, 255,191,0), 0.45); }
 
@@ -3567,7 +3572,7 @@ a.hub-tool:hover {
 .vy-quote footer strong,
 .hub-quote-card footer strong {
     display: block;
-    color: var(--hub-muted, #8B7D61);
+    color: var(--hub-muted, #766A52);
     font-size: 0.92rem;
     font-weight: 800;
     margin-bottom: 3px;
@@ -3575,7 +3580,7 @@ a.hub-tool:hover {
 .vy-quote footer span,
 .hub-quote-card footer span {
     display: block;
-    color: #777;
+    color: #6B6B6B;
     font-size: 0.85rem;
 }
 
@@ -3634,7 +3639,7 @@ body.is-light .hub-help__phone { text-decoration: none; }
     font-weight: 800;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--hub-muted, #8B7D61) !important;
+    color: var(--hub-muted, #766A52) !important;
 }
 .vy-related ul,
 .hub-related ul {
@@ -3658,7 +3663,7 @@ body.is-light .hub-help__phone { text-decoration: none; }
     transition: color 0.2s ease, padding-left 0.2s ease;
 }
 .vy-related li a:hover,
-.hub-related li a:hover { color: var(--hub-muted, #8B7D61); padding-left: 6px; }
+.hub-related li a:hover { color: var(--hub-muted, #766A52); padding-left: 6px; }
 
 @media (max-width: 600px) {
     .vy-related,
@@ -3924,7 +3929,7 @@ body.is-light .hub-help__phone { text-decoration: none; }
     margin: 0 0 10px;
     font-size: 0.98rem;
     line-height: 1.68;
-    color: var(--hub-muted, #8B7D61);
+    color: var(--hub-muted, #766A52);
 }
 .hub-time p:last-child,
 .hub-risk p:last-child { margin-bottom: 0; }
@@ -3958,13 +3963,13 @@ body.is-light .hub-help__phone { text-decoration: none; }
     /* typografie i na kontejneru — část disclaimerů nemá text v <p> */
     font-size: 0.86rem;
     line-height: 1.65;
-    color: var(--hub-muted, #8B7D61);
+    color: var(--hub-muted, #766A52);
 }
 .hub-disclaimer p {
     margin: 0;
     font-size: 0.86rem;
     line-height: 1.65;
-    color: var(--hub-muted, #8B7D61);
+    color: var(--hub-muted, #766A52);
 }
 /* Disclaimer bývá sám o sobě <p>, takže ho jinak přebije .hub-chapter__wrap p
    (0,1,1). Tenhle selektor má (0,2,0) a vyhraje bez !important. */
@@ -3972,7 +3977,7 @@ body.is-light .hub-help__phone { text-decoration: none; }
 .vycvik-chapter__wrap .hub-disclaimer {
     font-size: 0.86rem;
     line-height: 1.65;
-    color: var(--hub-muted, #8B7D61);
+    color: var(--hub-muted, #766A52);
 }
 
 /* ── EKOSYSTÉM ──────────────────────────────────────────────────────────
@@ -4020,7 +4025,7 @@ body.is-light .hub-help__phone { text-decoration: none; }
     display: block;
     font-size: 0.92rem;
     line-height: 1.55;
-    color: var(--hub-muted, #8B7D61);
+    color: var(--hub-muted, #766A52);
 }
 
 /* ── DVA PŘÍBĚHY VEDLE SEBE ─────────────────────────────────────────────
@@ -4059,7 +4064,7 @@ body.is-light .hub-help__phone { text-decoration: none; }
     margin: 0 0 10px;
     font-size: 0.98rem;
     line-height: 1.68;
-    color: var(--hub-muted, #8B7D61);
+    color: var(--hub-muted, #766A52);
 }
 .hub-vs__side p:last-child { margin-bottom: 0; }
 
@@ -4091,7 +4096,7 @@ body.is-light .hub-help__phone { text-decoration: none; }
     margin: 0 0 16px;
     font-size: 1rem;
     line-height: 1.7;
-    color: var(--hub-muted, #8B7D61);
+    color: var(--hub-muted, #766A52);
 }
 .hub-action p:last-child { margin-bottom: 0; }
 
@@ -4152,7 +4157,7 @@ body.is-light .hub-help__phone { text-decoration: none; }
 .hub-osa__datum {
     font-size: 0.88rem;
     font-weight: 800;
-    color: var(--hub-muted, #8B7D61);
+    color: var(--hub-muted, #766A52);
     font-variant-numeric: tabular-nums;
     text-align: right;
     padding-top: 1px;
@@ -4181,7 +4186,7 @@ body.is-light .hub-help__phone { text-decoration: none; }
     font-size: 0.88rem;
     font-weight: 400;
     line-height: 1.6;
-    color: var(--hub-muted, #8B7D61);
+    color: var(--hub-muted, #766A52);
 }
 
 @media (max-width: 560px) {
@@ -4210,7 +4215,7 @@ body.is-light .hub-help__phone { text-decoration: none; }
     font-weight: 800;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--hub-muted, #8B7D61);
+    color: var(--hub-muted, #766A52);
     margin-bottom: 10px;
 }
 .hub-offer h3 {
@@ -4224,7 +4229,7 @@ body.is-light .hub-help__phone { text-decoration: none; }
     margin: 0 0 14px;
     font-size: 0.98rem;
     line-height: 1.7;
-    color: var(--hub-muted, #8B7D61);
+    color: var(--hub-muted, #766A52);
 }
 .hub-offer .vy-gate__form { margin-top: 4px; }
 
