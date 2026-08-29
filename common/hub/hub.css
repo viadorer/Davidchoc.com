@@ -3948,12 +3948,28 @@ body.is-light .hub-help__phone { text-decoration: none; }
    U obsahu, který mluví o výnosech, hypotékách a daních, patří na každou
    stránku — ne jen na tu první. */
 .hub-disclaimer {
+    display: block;
+    background: none;
+    border: none;
     border-top: 1px solid var(--hub-line, #E6E0D4);
+    border-radius: 0;
     margin: 56px 0 0;
     padding: 22px 0 0;
+    /* typografie i na kontejneru — část disclaimerů nemá text v <p> */
+    font-size: 0.86rem;
+    line-height: 1.65;
+    color: var(--hub-muted, #8B7D61);
 }
 .hub-disclaimer p {
     margin: 0;
+    font-size: 0.86rem;
+    line-height: 1.65;
+    color: var(--hub-muted, #8B7D61);
+}
+/* Disclaimer bývá sám o sobě <p>, takže ho jinak přebije .hub-chapter__wrap p
+   (0,1,1). Tenhle selektor má (0,2,0) a vyhraje bez !important. */
+.hub-chapter__wrap .hub-disclaimer,
+.vycvik-chapter__wrap .hub-disclaimer {
     font-size: 0.86rem;
     line-height: 1.65;
     color: var(--hub-muted, #8B7D61);
