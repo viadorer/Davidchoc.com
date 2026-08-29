@@ -1,4 +1,4 @@
-// Finanční strop — nástroj ke Cihle 2, přímo v kapitole.
+// Finanční strop — nástroj k Cihle 2, přímo v kapitole.
 //
 // Doporučení ČNB platná od 1. 4. 2026. Nejsou to zákony, jsou to
 // doporučení poskytovatelům — banky se jimi řídí, ale konkrétní případ
