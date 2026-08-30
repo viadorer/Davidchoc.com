@@ -28,6 +28,28 @@ document.addEventListener('DOMContentLoaded', function() {
     
     console.log('Cesta k common:', commonPath); // Debug výpis
     
+    // Rozcestník kurzu je vstupní stránka, ne kapitola. Kdo na něj přijde
+    // z vyhledávače nebo z reklamy, nemá jak zjistit, kam se dostal, ani
+    // jak se dostat na zbytek webu. Dostane proto tenkou lištu jen s logem
+    // a jedním odkazem — uvnitř kapitol zůstává čisto.
+    const jeRozcestnik = /^\/(milionarem|vycvik)\/?$/.test(cesta);
+    if (bezOkoli && jeRozcestnik) {
+        const misto = document.getElementById('navbar-placeholder');
+        if (misto) {
+            misto.innerHTML =
+                '<div class="hub-topbar">' +
+                  '<div class="container">' +
+                    '<a class="hub-topbar__znacka" href="/">' +
+                      '<img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/logo.png" ' +
+                           'alt="" width="34" height="34">' +
+                      '<span>David Choc</span>' +
+                    '</a>' +
+                    '<a class="hub-topbar__zpet" href="/">Zpět na davidchoc.cz</a>' +
+                  '</div>' +
+                '</div>';
+        }
+    }
+
     // Načtení navigace - rozlišení mezi hlavní stránkou a podstránkami
     const navbarPlaceholder = bezOkoli ? null : document.getElementById('navbar-placeholder');
     if (navbarPlaceholder) {

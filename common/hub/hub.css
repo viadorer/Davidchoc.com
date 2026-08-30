@@ -44,6 +44,60 @@
 .vycvik-page main,
 .hub-page main { padding-top: 0; }
 
+/* ─── Lišta rozcestníku ───
+   Jen na hubu kurzu, ne v kapitolách: identifikace a cesta zpátky pro
+   toho, kdo přišel z vyhledávače a neví, kde je. */
+.hub-topbar {
+    border-bottom: 1px solid rgba(var(--hub-ink-rgb, 26,26,26), 0.10);
+    background: var(--hub-paper, #F8F4E9);
+}
+.hub-topbar .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+.hub-topbar__znacka {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--hub-ink, #1a1a1a);
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: -0.01em;
+}
+.hub-topbar__znacka img { display: block; border-radius: 50%; }
+.hub-topbar__zpet {
+    color: var(--hub-muted, #766A52);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 600;
+    padding: 8px 0;
+    white-space: nowrap;
+}
+.hub-topbar__zpet:hover { color: var(--hub-ink, #1a1a1a); text-decoration: underline; }
+.hub-topbar__znacka:focus-visible,
+.hub-topbar__zpet:focus-visible {
+    outline: 2px solid var(--hub-accent, #FFBF00);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+/* Na mobilu se o každý pixel nad ohybem soupeří s hlavní výzvou,
+   takže lišta drží jen tolik místa, kolik nutně potřebuje. */
+@media (max-width: 640px) {
+    .hub-topbar .container { padding-top: 8px; padding-bottom: 8px; }
+    .hub-topbar__znacka { font-size: 0.94rem; gap: 8px; }
+    .hub-topbar__znacka img { width: 28px; height: 28px; }
+    .hub-topbar__zpet { font-size: 0.82rem; padding: 6px 0; }
+}
+@media (max-width: 400px) {
+    /* Na nejužších displejích stačí šipka a doména. */
+    .hub-topbar__zpet { font-size: 0.78rem; }
+}
+
 /* ─── HERO ─── */
 .vycvik-hero,
 .hub-hero {
@@ -372,6 +426,34 @@
     color: #6B6B6B;
     line-height: 1.45;
 }
+/* Rozcestník ukazuje šest nástrojů, ne sedmnáct. Dva skoro stejně
+   vypadající seznamy za sebou splývaly a celá stránka měla na mobilu
+   sedmnáct obrazovek — závěr s rozhodnutím pak nikdo neviděl. */
+.vycvik-tools__vic,
+.hub-tools__vic { margin: 26px 0 0; }
+.vycvik-tools__vic a,
+.hub-tools__vic a {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    color: var(--hub-ink, #1a1a1a);
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: underline;
+    text-underline-offset: 5px;
+    text-decoration-color: rgba(var(--hub-ink-rgb, 26,26,26), 0.32);
+    padding: 6px 0;
+    transition: text-decoration-color 0.2s ease;
+}
+.vycvik-tools__vic a:hover,
+.hub-tools__vic a:hover { text-decoration-color: var(--hub-accent, #FFBF00); }
+.vycvik-tools__vic a:focus-visible,
+.hub-tools__vic a:focus-visible {
+    outline: 2px solid var(--hub-accent, #FFBF00);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
 /* Odhad času u kapitoly. Bez něj člověk kliká do neznáma a u knihy
    na hodinu a půl je to rozdíl mezi „začnu“ a „zavřu“. */
 .vycvik-toc__cas,
@@ -3103,7 +3185,7 @@ a.hub-tool:hover {
        hlavní sdělení — v plné velikosti odsunula nadpis na hranu displeje
        a tlačítko sto pixelů pod něj. Zmenšená se vejde nadpis, věta i výzva. */
     .vycvik-hero,
-.hub-hero { padding: 12px 0 52px !important; }
+.hub-hero { padding: 6px 0 52px !important; }
     .vycvik-hero__grid,
 .hub-hero__grid { gap: 20px; }
     .vycvik-book,
