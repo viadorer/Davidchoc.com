@@ -411,15 +411,21 @@
 
                         <form id="vy-pdf-form" class="vy-gate__form" novalidate>
                             <div class="vy-gate__row">
-                                <input type="text" name="name" placeholder="Jméno" autocomplete="name" required>
-                                <input type="email" name="email" placeholder="E-mail" autocomplete="email" required>
-                                <button type="submit">Poslat knihu</button>
+                                <p class="vy-gate__field">
+                                    <label for="vy-pdf-jmeno">Jméno</label>
+                                    <input id="vy-pdf-jmeno" type="text" name="name" autocomplete="name" required>
+                                </p>
+                                <p class="vy-gate__field">
+                                    <label for="vy-pdf-email">E-mail</label>
+                                    <input id="vy-pdf-email" type="email" name="email" autocomplete="email" required>
+                                </p>
                             </div>
                             <label class="vy-gate__consent">
                                 <input type="checkbox" name="consent" required>
                                 <span>Souhlasím, aby mi David Choc poslal knihu a občas napsal, když bude mít k prodeji nemovitostí co říct. Odhlásit se můžu jedním kliknutím. <a href="/osobni-udaje" target="_blank">Zpracování údajů</a></span>
                             </label>
-                            <p class="vy-gate__msg" hidden></p>
+                            <button type="submit">Poslat knihu</button>
+                            <p class="vy-gate__msg" role="alert" hidden></p>
                         </form>
 
                         <p class="vy-gate__note">Nikdo vám kvůli tomu nezavolá. Píšu, když mám co říct, ne podle kalendáře.</p>

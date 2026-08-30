@@ -3302,6 +3302,28 @@ a.hub-tool:hover {
     flex-wrap: wrap;
     margin-bottom: 14px;
 }
+/* Pole s vlastním popiskem. Placeholder zmizí, jakmile člověk začne psát,
+   takže po vyplnění nebylo poznat, co je co — a popisek je navíc jediné,
+   co uslyší čtečka obrazovky. */
+.vy-gate__field,
+.hub-gate__field {
+    flex: 1;
+    min-width: 180px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 0;
+}
+.vy-gate__field label,
+.hub-gate__field label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #c8c8c8;
+    letter-spacing: 0.01em;
+}
+.vy-gate__field input,
+.hub-gate__field input { width: 100%; }
+
 .vy-gate__form input[type="text"],
 .hub-gate__form input[type="text"],
 .vy-gate__form input[type="email"],
@@ -3356,13 +3378,20 @@ a.hub-tool:hover {
 }
 .vy-gate__consent input[type="checkbox"],
 .hub-gate__consent input[type="checkbox"] {
-    margin-top: 3px;
-    width: 16px;
-    height: 16px;
+    margin-top: 1px;
+    width: 24px;
+    height: 24px;
     accent-color: var(--hub-accent, #FFBF00);
     flex-shrink: 0;
     cursor: pointer;
 }
+/* Souhlas stojí nad odesílacím tlačítkem, ne pod ním: kdo vyplňuje
+   formulář odshora dolů, klikal dřív, než ho vůbec uviděl, a dostal
+   chybu za krok, který ještě neminul. */
+.vy-gate__form > .vy-gate__consent,
+.hub-gate__form > .hub-gate__consent { margin-bottom: 18px; }
+.vy-gate__form > button[type="submit"],
+.hub-gate__form > button[type="submit"] { display: block; }
 .vy-gate__consent a,
 .hub-gate__consent a { color: var(--hub-accent, #FFBF00); text-decoration: underline; }
 

@@ -43,7 +43,7 @@
       </div>
       <div class="popup-cta__body">
         <p class="popup-cta__title">Potřebujete ocenit nemovitost?</p>
-        <a href="/ocenit-online.html" class="popup-cta__btn" data-popup-cta="ocenit">
+        <a href="/ocenit-online" class="popup-cta__btn" data-popup-cta="ocenit">
           Ocenit online <i class="fas fa-arrow-right" aria-hidden="true"></i>
         </a>
       </div>

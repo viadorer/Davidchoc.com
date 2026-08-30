@@ -2961,6 +2961,13 @@ address {
     text-decoration: none;
 }
 
+/* Ikonová tlačítka bez textu — bez viditelného stavu nebylo při
+   procházení tabulátorem poznat, kde kurzor stojí. */
+.floating-button:focus-visible {
+    outline: 3px solid #FFBF00;
+    outline-offset: 3px;
+}
+
 .floating-button:hover {
     transform: scale(1.1);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);

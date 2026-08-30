@@ -84,11 +84,16 @@
   /* ─────────────────────────────────────────────
      HLÁŠKY A VALIDACE
      ───────────────────────────────────────────── */
-  function showMsg(el, text, type) {
+  function showMsg(el, text, type, focusEl) {
     if (!el) return;
     el.textContent = text;
     el.className = 'vy-gate__msg vy-gate__msg--' + (type || 'error');
     el.hidden = false;
+    // Kurzor patří na pole, které chybu způsobilo. Kdo formulář ovládá
+    // klávesnicí nebo čtečkou, jinak o chybě neví a neví ani kam se vrátit.
+    if (focusEl && typeof focusEl.focus === 'function') {
+      try { focusEl.focus({ preventScroll: false }); } catch (e) { focusEl.focus(); }
+    }
   }
 
   HubCTA.showMsg = showMsg;
@@ -175,17 +180,23 @@
       var note = val('textarea');
       var consent = form.querySelector('input[type="checkbox"]');
 
+      function pole(sel) { return form.querySelector(sel); }
+
       if (f.name && !name) {
-        return showMsg(msg, opts.msgName || 'Napište mi prosím jméno, ať vím, komu píšu.');
+        return showMsg(msg, opts.msgName || 'Napište mi prosím jméno, ať vím, komu píšu.',
+          'error', pole('input[name="name"], input[name="jmeno"]'));
       }
       if (f.url && !HubCTA.isUrl(url)) {
-        return showMsg(msg, opts.msgUrl || 'Vložte prosím celý odkaz včetně https://');
+        return showMsg(msg, opts.msgUrl || 'Vložte prosím celý odkaz včetně https://',
+          'error', pole('input[name="odkaz"], input[type="url"]'));
       }
       if (!HubCTA.isEmail(email)) {
-        return showMsg(msg, opts.msgEmail || 'Zadejte prosím platnou e-mailovou adresu.');
+        return showMsg(msg, opts.msgEmail || 'Zadejte prosím platnou e-mailovou adresu.',
+          'error', pole('input[type="email"]'));
       }
       if (consent && !consent.checked) {
-        return showMsg(msg, opts.msgConsent || 'Pro odeslání potřebuji souhlas se zpracováním údajů.');
+        return showMsg(msg, opts.msgConsent || 'Pro odeslání potřebuji souhlas se zpracováním údajů.',
+          'error', consent);
       }
 
       var original = btn ? btn.textContent : '';
