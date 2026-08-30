@@ -19,7 +19,12 @@
     <link rel="icon" type="image/png" href="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/favicon.png">
     <link rel="stylesheet" href="/styles.css?v=20260805">
     <link rel="stylesheet" href="/common/hub/hub.css?v=20260805">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Ikony jsou dekorace, takže nesmí zdržovat vykreslení textu. Balík se
+         načte až po něm; do té doby je stránka čitelná. Font Awesome váží
+         248 kB (17,6 kB CSS + 125 kB solid + 105 kB brands). -->
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+          onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"></noscript>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TXGDD8D3GK"></script>
     <script>
