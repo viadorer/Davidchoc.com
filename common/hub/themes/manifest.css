@@ -69,6 +69,17 @@
     max-width: 56ch;
     margin: 0 0 36px;
 }
+/* Věta, která pojmenuje předmět kurzu. Hook nad ní nese emoci, tenhle
+   odstavec fakta — proto je menší a tlumenější, ať nesoupeří s H1. */
+.hub-manifest__what {
+    font-size: clamp(0.98rem, 1.4vw, 1.12rem);
+    line-height: 1.6;
+    color: var(--hub-muted, #566B60);
+    max-width: 60ch;
+    margin: 0 0 34px;
+}
+.hub-manifest__lead:has(+ .hub-manifest__what) { margin-bottom: 14px; }
+
 .hub-manifest__cta { display: flex; gap: 14px; flex-wrap: wrap; }
 .hub-manifest__cta .cta-button { padding: 18px 34px; font-size: 1rem; }
 
