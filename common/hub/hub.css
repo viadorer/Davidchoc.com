@@ -372,6 +372,15 @@
     color: #6B6B6B;
     line-height: 1.45;
 }
+/* Odhad času u kapitoly. Bez něj člověk kliká do neznáma a u knihy
+   na hodinu a půl je to rozdíl mezi „začnu“ a „zavřu“. */
+.vycvik-toc__cas,
+.hub-toc__cas {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #6B6B6B;
+    letter-spacing: 0.015em;
+}
 .vycvik-toc__arrow,
 .hub-toc__arrow { color: var(--hub-accent, #FFBF00); font-size: 0.95rem; }
 .vycvik-toc__badge,
@@ -523,6 +532,16 @@ a.hub-tool:hover {
 }
 .vycvik-crumb a,
 .hub-crumb a { color: var(--hub-muted, #766A52); text-decoration: none; font-weight: 600; }
+/* Kolikátá část z dvanácti. Bez toho čtenář uprostřed knihy neví, jestli
+   je za polovinou, a nemůže si naplánovat, kdy se vrátí. */
+.vycvik-crumb__postup,
+.hub-crumb__postup {
+    margin-left: auto;
+    padding-left: 14px;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    opacity: 0.85;
+}
 .vycvik-crumb a:hover,
 .hub-crumb a:hover { color:var(--hub-ink, #1a1a1a); text-decoration: underline; }
 .vycvik-crumb span,
