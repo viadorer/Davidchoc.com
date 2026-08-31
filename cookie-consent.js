@@ -23,6 +23,19 @@ document.addEventListener('DOMContentLoaded', function() {
         return null;
     }
 
+    // Úklid po odmítnutí: co se stihlo nastavit dřív, než člověk klikl,
+    // musí zmizet. Doména bez www, protože GA zapisuje na tečkovou variantu.
+    function smazatGaCookies() {
+        const domena = location.hostname.replace(/^www\./, '');
+        document.cookie.split(';').forEach(function (c) {
+            const jmeno = c.split('=')[0].trim();
+            if (jmeno.indexOf('_ga') === 0 || jmeno === '_gid' || jmeno.indexOf('_gac') === 0) {
+                document.cookie = jmeno + '=; Max-Age=0; path=/;';
+                document.cookie = jmeno + '=; Max-Age=0; path=/; domain=.' + domena + ';';
+            }
+        });
+    }
+
     // Kontrola, zda již existuje souhlas s cookies
     const consent = getCookie('cookie-consent');
     
@@ -207,16 +220,40 @@ document.addEventListener('DOMContentLoaded', function() {
         document.head.appendChild(style);
         
         // Event Listeners pro tlačítka
+        // Souhlas se propisuje do Google Consent Mode. Bez tohohle byla
+        // lišta jen dekorace: obě tlačítka zavřela okno a analytika běžela
+        // dál i tomu, kdo ji odmítl.
+        //
+        // Účinek má jen na stránkách, které mají v hlavičce
+        // gtag('consent', 'default', …) — jinak není co aktualizovat.
         document.getElementById('cookie-accept').addEventListener('click', function() {
             setCookie('cookie-consent', 'all', 365);
             document.getElementById('cookie-consent-banner').remove();
-            // Zde můžete aktivovat všechny cookies a analytické nástroje
+
+            if (typeof gtag === 'function') {
+                gtag('consent', 'update', {
+                    ad_storage:         'granted',
+                    ad_user_data:       'granted',
+                    ad_personalization: 'granted',
+                    analytics_storage:  'granted'
+                });
+            }
         });
         
         document.getElementById('cookie-deny').addEventListener('click', function() {
             setCookie('cookie-consent', 'necessary', 365);
             document.getElementById('cookie-consent-banner').remove();
-            // Zde byste měli deaktivovat nepovinné cookies
+
+            if (typeof gtag === 'function') {
+                gtag('consent', 'update', {
+                    ad_storage:         'denied',
+                    ad_user_data:       'denied',
+                    ad_personalization: 'denied',
+                    analytics_storage:  'denied'
+                });
+            }
+
+            smazatGaCookies();
         });
         
         document.getElementById('cookie-settings').addEventListener('click', function() {
