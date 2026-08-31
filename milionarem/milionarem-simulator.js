@@ -74,20 +74,29 @@
     function el(n) { return box.querySelector('[data-field="' + n + '"]'); }
     function num(n) { return parseFloat(el(n).value); }
 
-    function spocitat() {
+    // `odklad` je počet let, o které se koupě posune. Cílový rok zůstává
+    // stejný, takže se dají obě varianty postavit vedle sebe: byt mezitím
+    // podraží o `rust`, kdežto odložené vlastní zdroje narostou jen o úrok
+    // spořicího účtu. Kupující nemá o rok později procento z ceny — má
+    // tutéž korunovou částku, jen o něco větší.
+    function spocitat(odklad) {
+      odklad = odklad || 0;
+
       var vynos = num('mesto') / 100;
-      var cena = num('cena');
+      var cenaDnes = num('cena');
       var vlastniPct = num('vlastni') / 100;
       var sazba = num('sazba') / 100;
       var sazbaDofi = num('sazbaDofi') / 100;
       var splatnost = num('splatnost');
       var rust = num('rust') / 100;
       var najemRust = num('najemRust') / 100;
-      var horizont = num('horizont');
+      var horizont = num('horizont') - odklad;
+
+      var cena = cenaDnes * Math.pow(1 + rust, odklad);
 
       var ltv = num('ucel') / 100;
-      var vlastni = cena * vlastniPct;
-      var potreba = cena - vlastni;
+      var vlastni = cenaDnes * vlastniPct * Math.pow(1 + SPORICI_SAZBA, odklad);
+      var potreba = Math.max(0, cena - vlastni);
       var uverHlavni = Math.min(potreba, cena * ltv);
       var dofi = Math.max(0, potreba - uverHlavni);
 
@@ -104,8 +113,14 @@
       var rokSobestacnosti = null;
 
       for (var y = 0; y <= horizont; y++) {
+        // Po doplacení úvěru žádná splátka není. Bez tohohle si model
+        // protiřečí: zůstatek se správně zastaví na nule, ale splátka
+        // běží dál — a při horizontu delším než splatnost to ubere
+        // miliony, které by ve skutečnosti zůstaly majiteli.
+        var platba = (y <= splatnost) ? splatkaCelkem : 0;
+
         var najem = najemStart * Math.pow(1 + najemRust, y);
-        var cf = najem - splatkaCelkem;
+        var cf = najem - platba;
 
         if (y > 0) {
           if (cf >= 0) hotovost += cf * 12; else doplaceno += -cf * 12;
@@ -136,7 +151,8 @@
       var doplatekNaUrok = Math.max(0, -cashflowStart - doplatekNaJistinu);
 
       return {
-        cena: cena, ltv: ltv, vlastni: vlastni, uverHlavni: uverHlavni, dofi: dofi,
+        cena: cena, cenaDnes: cenaDnes, odklad: odklad, rust: rust,
+        ltv: ltv, vlastni: vlastni, uverHlavni: uverHlavni, dofi: dofi,
         splatkaCelkem: splatkaCelkem, splatkaDofi: splatkaDofi,
         urok: urok, jistina: jistina,
         najemStart: najemStart, cashflowStart: cashflowStart,
@@ -225,15 +241,21 @@
       var dofiRadek = box.querySelector('.js-dofi-radek');
       if (dofiRadek) dofiRadek.hidden = v.dofi <= 0;
 
+      // Násobek počítaný jen ze vstupního vkladu je tvrzení, které se dá
+      // rozebrat první námitkou — kromě vkladu jste za ta léta poslali
+      // ještě doplatky. Sečteme obojí; pravda je stejně silná a nikdo
+      // ji nerozporuje.
       var podtitulek;
       if (v.vlastni > 0) {
-        podtitulek = 'Z vlastního vkladu ' + fmt(v.vlastni) + ' Kč — to je <strong>' +
-          (konec / v.vlastni).toFixed(1).replace('.', ',') + 'násobek</strong> toho, co jste vložili.';
+        podtitulek = 'Vložili jste ' + fmt(v.vlastni) + ' Kč na startu a ' +
+          fmt(v.doplaceno) + ' Kč doplatků za ' + v.horizont + ' let — dohromady <strong>' +
+          fmt(v.vlastni + v.doplaceno) + ' Kč</strong>.';
       } else {
         podtitulek = 'A to <strong>bez jediné vlastní koruny na startu</strong> — všechno je ' +
-          'na dvou úvěrech. Zaplatíte to měsíčními splátkami, ne vkladem.';
+          'na dvou úvěrech. Zaplatíte to měsíčními splátkami, ne vkladem: dohromady ' +
+          fmt(v.doplaceno) + ' Kč za ' + v.horizont + ' let.';
       }
-      podtitulek += ' Se stejnými vklady byste na akciovém indexu měli ' + fmt(konecAkcie) +
+      podtitulek += ' Se stejnými penězi byste na akciovém indexu měli ' + fmt(konecAkcie) +
         ' Kč a na spořicím účtu ' + fmt(konecSporeni) + ' Kč.';
 
       box.querySelector('.js-headline').innerHTML =
@@ -338,6 +360,84 @@
 
       box.querySelector('.js-verdikt').innerHTML = verdikt;
       box.querySelector('.js-graf').innerHTML = graf(v);
+
+      // ── DRUHÉ ČÍSLO: CO STOJÍ ROK ODKLADU ─────────────────────────
+      // Stejný cílový rok, jen koupě o rok později. Byt mezitím podraží
+      // o zadaný růst, kdežto odložené vlastní zdroje narostou jen o úrok
+      // spořicího účtu — a rok se navíc nestihne odbydlet. Rozdíl počítá
+      // model, ne text stránky; proto se dá věřit i tomu, když vyjde nula.
+      var cenaOdkladu = null;
+      var odkladEl = box.querySelector('.js-odklad');
+      if (odkladEl) {
+        if (v.horizont >= 2) {
+          var vo = spocitat(1);
+          cenaOdkladu = konec - vo.majetek[vo.horizont];
+          var podrazeni = vo.cena - v.cena;
+          var narustUspor = vo.vlastni - v.vlastni;
+
+          if (cenaOdkladu > 0) {
+            odkladEl.innerHTML =
+              '<div class="hub-time">' +
+                '<div class="hub-time__head">' +
+                  '<span class="hub-time__label">Cena jednoho roku odkladu</span>' +
+                  '<span class="hub-time__level">−' + fmt(cenaOdkladu) + ' Kč</span>' +
+                '</div>' +
+                '<p class="hub-time__title">Kdybyste stejný byt kupovali o rok později, máte ve ' +
+                  'stejném roce o ' + fmt(cenaOdkladu) + ' Kč nižší majetek</p>' +
+                '<p>' +
+                  (podrazeni > 0
+                    ? 'Za ten rok byt podraží o <strong>' + fmt(podrazeni) + ' Kč</strong>' +
+                      (narustUspor > 0
+                        ? ', zatímco vaše odložené peníze na spořicím účtu narostou jen o ' +
+                          fmt(narustUspor) + ' Kč'
+                        : '') +
+                      '. A chybí vám celý rok, po který měl nájemník splácet váš úvěr.'
+                    : 'Cena bytu podle vašeho zadání neroste. Chybí vám ale celý rok, ' +
+                      'po který měl nájemník splácet váš úvěr — a ten dohnat nejde.') +
+                '</p>' +
+                '<p>Není to strašení. Je to rozdíl dvou stejných výpočtů, ' +
+                  've kterých se liší jediná věc — kdy začnete.</p>' +
+              '</div>';
+          } else {
+            // Poctivá druhá strana: při nízkém růstu ceny se čekat vyplatí.
+            odkladEl.innerHTML =
+              '<div class="vy-verdict">' +
+                '<strong>Rok odkladu vás při těchhle číslech nestojí nic.</strong>' +
+                '<p>Vychází to tak zřídka. Při vašem zadání by odložené peníze vydělaly ' +
+                  'víc, než kolik byste za ten rok získali na bytě. Je to ale předpoklad, ' +
+                  'ne předpověď — a platí jen do chvíle, než se některé z čísel nahoře změní.</p>' +
+              '</div>';
+          }
+        } else {
+          odkladEl.innerHTML = '';
+        }
+      }
+
+      // Nabídka pod výsledkem si bere zadání odsud, ať mluví o tom bytě,
+      // který má člověk právě na obrazovce.
+      var mestoEl = el('mesto');
+      var mesto = mestoEl.options[mestoEl.selectedIndex].text.split(' — ')[0];
+
+      var zadani = box.querySelector('.js-zadani');
+      if (zadani) zadani.textContent = mesto + ', ' + fmtKratce(v.cena) + ' Kč';
+
+      window.MilionaremSim = {
+        mesto: mesto,
+        cena: Math.round(v.cena),
+        vlastniPct: num('vlastni'),
+        vlastni: Math.round(v.vlastni),
+        ucelLtv: num('ucel'),
+        sazba: num('sazba'),
+        splatnost: num('splatnost'),
+        horizont: v.horizont,
+        najem: Math.round(v.najemStart),
+        splatka: Math.round(v.splatkaCelkem),
+        cashflow: Math.round(v.cashflowStart),
+        dofinancovani: Math.round(v.dofi),
+        majetek: Math.round(konec),
+        cenaOdkladu: cenaOdkladu === null ? null : Math.round(cenaOdkladu),
+        sobestacnost: kdy !== null && kdy <= v.horizont ? kdy : null
+      };
     }
 
     pole.forEach(function (n) {
