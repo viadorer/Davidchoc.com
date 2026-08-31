@@ -82,6 +82,24 @@ const FORMULARE = {
   'milionarem-sprava':  { source: 'web_formular', kampan: 'milionarem', dedup: true,
                           popis: 'Milionářem — Cihla 9, zájem o další díly' },
 
+  // Konverze u výsledku simulátoru. Dva typy podle toho, co člověk
+  // odpověděl v kvalifikaci — a hlavně podle toho, co mu na té stránce
+  // opravdu slíbíme. Kdo je do tří měsíců a má vyřízené financování,
+  // dostane konkrétní byty; ostatní posouzení vlastního zadání. Jeden
+  // společný typ by znamenal, že polovině lidí slíbíme něco jiného,
+  // než co jim přijde.
+  //
+  // Vlastní kampaň, ne 'milionarem'. Na tu je v CRM navěšená obecná
+  // šestidílná sekvence a její první krok (0 h) by přebil potvrzení
+  // z webu — člověk, kterému jsme slíbili tři konkrétní byty, by místo
+  // toho dostal úvod do kurzu. Dokud pro simulátor nebude vlastní
+  // sekvence, chodí odsud jen potvrzení z api/_emaily.js, a to sedí
+  // na to, co bylo slíbeno.
+  'milionarem-simulator-byty':  { source: 'web_formular', kampan: 'milionarem-simulator', dedup: true,
+                                  popis: 'Milionářem — simulátor, nabídka konkrétních bytů' },
+  'milionarem-simulator-cisla': { source: 'web_formular', kampan: 'milionarem-simulator', dedup: true,
+                                  popis: 'Milionářem — simulátor, posouzení zadání' },
+
   'investovat-pdf':                { source: 'web_formular', kampan: 'milionarem', dedup: true,
                                      popis: 'Milionářem — kompletní průvodce' },
   'investovat-servis':             { source: 'web_formular', kampan: 'milionarem', dedup: true,

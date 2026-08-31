@@ -433,16 +433,10 @@
     <priority>0.70</priority>
   </url>
   <url>
-    <loc>https://www.davidchoc.cz/milionarem</loc>
-    <lastmod>2026-08-30</lastmod>
+    <loc>https://www.davidchoc.cz/milionar</loc>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://www.davidchoc.cz/milionarem/simulator</loc>
-    <lastmod>2026-08-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://www.davidchoc.cz/milionarem/cihla-1-plan</loc>

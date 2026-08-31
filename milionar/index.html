@@ -3,17 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chci být milionářem — deset cihel od rozhodnutí k prvnímu nájemníkovi | David Choc</title>
-    <meta name="description" content="Bezplatný kurz o tom, jak si po cihlách postavit majetek z investičních bytů. Bez zkušeností a bez úspor. Deset kroků, u každého kalkulačka s vašimi čísly.">
+    <title>Investiční byt: spočítejte si, jestli na něj dosáhnete | David Choc</title>
+    <meta name="description" content="Zadejte město, cenu bytu a vlastní zdroje — uvidíte, kdy se investiční byt přestane živit z vaší výplaty a co vás stojí každý rok odkladu. Zdarma, bez registrace. Pod simulátorem celý výcvik o deseti cihlách.">
 
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.davidchoc.cz/milionar">
 
     <meta property="og:type" content="website">
     <meta property="og:locale" content="cs_CZ">
-    <meta property="og:title" content="Chci být milionářem — deset cihel od rozhodnutí k prvnímu nájemníkovi">
-    <meta property="og:description" content="Bezplatný kurz o tom, jak si po cihlách postavit majetek z investičních bytů. Bez zkušeností a bez úspor.">
+    <meta property="og:title" content="Deset let uteče tak jako tak. Rozdíl je, jestli vám mezitím někdo splácel byt.">
+    <meta property="og:description" content="Za dvě minuty a bez jediného údaje o sobě uvidíte, co s vaším majetkem udělá jeden investiční byt — a co vás stojí každý rok odkladu.">
     <meta property="og:url" content="https://www.davidchoc.cz/milionar">
+    <meta property="og:image" content="https://www.davidchoc.cz/images/og-milionar.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Simulátor investičního bytu a text: deset let uteče tak jako tak, rozdíl je, jestli vám mezitím někdo splácel byt.">
     <meta name="twitter:card" content="summary_large_image">
 
     <link rel="icon" type="image/png" href="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/favicon.png">
@@ -23,12 +28,225 @@
     <link rel="stylesheet" href="/common/hub/themes/manifest.css?v=20260805">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TXGDD8D3GK"></script>
+    <!-- Consent Mode. Výchozí stav musí být nastavený DŘÍV než gtag('config'),
+         jinak se měřicí cookie stihne zapsat ještě před rozhodnutím uživatele.
+         Souhlas pak aktualizuje /cookie-consent.js po kliknutí na liště. -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+
+      (function () {
+        var m = document.cookie.match(/(?:^|;\s*)cookie-consent=([^;]*)/);
+        var udeleno = !!m && m[1] === 'all';
+
+        gtag('consent', 'default', {
+          ad_storage:            udeleno ? 'granted' : 'denied',
+          ad_user_data:          udeleno ? 'granted' : 'denied',
+          ad_personalization:    udeleno ? 'granted' : 'denied',
+          analytics_storage:     udeleno ? 'granted' : 'denied',
+          functionality_storage: 'granted',
+          security_storage:      'granted',
+          wait_for_update: 500
+        });
+      })();
+
       gtag('js', new Date());
       gtag('config', 'G-TXGDD8D3GK');
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TXGDD8D3GK"></script>
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://www.davidchoc.cz/#david",
+      "name": "David Choc",
+      "givenName": "David",
+      "familyName": "Choc",
+      "jobTitle": "Realitní specialista",
+      "url": "https://www.davidchoc.cz/",
+      "image": "https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/davidchocagent.avif",
+      "telephone": "+420774052232",
+      "email": "david.choc@ptf.cz",
+      "worksFor": {
+        "@id": "https://www.davidchoc.cz/#ptf"
+      },
+      "knowsAbout": [
+        "Investiční nemovitosti",
+        "Nájemní bydlení",
+        "Hypoteční financování",
+        "Prodej nemovitostí",
+        "Správa nemovitostí"
+      ],
+      "knowsLanguage": "cs"
+    },
+    {
+      "@type": "RealEstateAgent",
+      "@id": "https://www.davidchoc.cz/#ptf",
+      "name": "PTF reality, s.r.o.",
+      "url": "https://www.davidchoc.cz/",
+      "telephone": "+420774052232",
+      "email": "david.choc@ptf.cz",
+      "areaServed": {
+        "@type": "Country",
+        "name": "Česká republika"
+      },
+      "employee": {
+        "@id": "https://www.davidchoc.cz/#david"
+      }
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "https://www.davidchoc.cz/milionar#simulator",
+      "name": "Simulátor investičního bytu",
+      "description": "Spočítá, co s vaším majetkem udělá jeden investiční byt: kdy se přestane živit z vaší výplaty, jak dopadne proti akciovému indexu a spořicímu účtu a kolik stojí každý rok odkladu.",
+      "url": "https://www.davidchoc.cz/milionar#simulator",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "inLanguage": "cs-CZ",
+      "isAccessibleForFree": true,
+      "author": {
+        "@id": "https://www.davidchoc.cz/#david"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "CZK"
+      }
+    },
+    {
+      "@type": "Course",
+      "@id": "https://www.davidchoc.cz/milionar#vycvik",
+      "name": "Chci být milionářem — deset zlatých cihel",
+      "alternateName": "Deset zlatých cihel",
+      "description": "Bezplatný výcvik o tom, jak v Česku koupit a pronajmout první investiční byt. Deset kroků od plánu přes financování až po správu, u každého kalkulačka s vlastními čísly.",
+      "url": "https://www.davidchoc.cz/milionar",
+      "inLanguage": "cs-CZ",
+      "isAccessibleForFree": true,
+      "educationalLevel": "Začátečník",
+      "learningResourceType": "Online kurz",
+      "teaches": [
+        "Sestavení investičního plánu před nákupem bytu",
+        "Financování investičního bytu včetně dofinancování",
+        "Výběr bytu podle nájemního výnosu",
+        "Prověrka nemovitosti a katastru před koupí",
+        "Klíčová ustanovení kupní a nájemní smlouvy",
+        "Čerpání hypotečního úvěru",
+        "Vybavení bytu pro pronájem",
+        "Výběr nájemníka a garance nájmu",
+        "Delegování správy nemovitosti",
+        "Škálování na druhý a další byt"
+      ],
+      "about": {
+        "@type": "Thing",
+        "name": "Investice do nájemních nemovitostí v České republice"
+      },
+      "provider": {
+        "@id": "https://www.davidchoc.cz/#ptf"
+      },
+      "author": {
+        "@id": "https://www.davidchoc.cz/#david"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "CZK",
+        "availability": "https://schema.org/InStock",
+        "category": "Free"
+      },
+      "hasCourseInstance": {
+        "@type": "CourseInstance",
+        "courseMode": "online",
+        "courseWorkload": "PT10H",
+        "instructor": {
+          "@id": "https://www.davidchoc.cz/#david"
+        },
+        "inLanguage": "cs-CZ"
+      },
+      "hasPart": [
+        {
+          "@type": "LearningResource",
+          "position": 1,
+          "name": "Plán, který vás žene",
+          "url": "https://www.davidchoc.cz/milionarem/cihla-1-plan"
+        },
+        {
+          "@type": "LearningResource",
+          "position": 2,
+          "name": "Peníze, které nemáte",
+          "url": "https://www.davidchoc.cz/milionarem/cihla-2-penize"
+        },
+        {
+          "@type": "LearningResource",
+          "position": 3,
+          "name": "Byt, který vydělá",
+          "url": "https://www.davidchoc.cz/milionarem/cihla-3-nemovitost"
+        },
+        {
+          "@type": "LearningResource",
+          "position": 4,
+          "name": "Hodina, která ušetří milion",
+          "url": "https://www.davidchoc.cz/milionarem/cihla-4-proverka"
+        },
+        {
+          "@type": "LearningResource",
+          "position": 5,
+          "name": "Pět vět, které vás chrání",
+          "url": "https://www.davidchoc.cz/milionarem/cihla-5-smlouva"
+        },
+        {
+          "@type": "LearningResource",
+          "position": 6,
+          "name": "Úvěr a čerpání",
+          "url": "https://www.davidchoc.cz/milionarem/cihla-6-uver"
+        },
+        {
+          "@type": "LearningResource",
+          "position": 7,
+          "name": "Byt, který umí vydělávat",
+          "url": "https://www.davidchoc.cz/milionarem/cihla-7-vybaveni"
+        },
+        {
+          "@type": "LearningResource",
+          "position": 8,
+          "name": "Vzorný nájemník a garance",
+          "url": "https://www.davidchoc.cz/milionarem/cihla-8-najemnik"
+        },
+        {
+          "@type": "LearningResource",
+          "position": 9,
+          "name": "Správa: ať pracuje byt, ne vy",
+          "url": "https://www.davidchoc.cz/milionarem/cihla-9-sprava"
+        },
+        {
+          "@type": "LearningResource",
+          "position": 10,
+          "name": "Růst: druhá, třetí, desátá cihla",
+          "url": "https://www.davidchoc.cz/milionarem/cihla-10-rust"
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.davidchoc.cz/milionar#drobecky",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "David Choc",
+          "item": "https://www.davidchoc.cz/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Chci být milionářem"
+        }
+      ]
+    }
+  ]
+}
     </script>
 </head>
 <body class="hub-page is-light" data-hub-section="milionar">
@@ -38,108 +256,424 @@
         <!-- HERO -->
         <section class="hub-manifest">
             <div class="container">
-                <span class="hub-manifest__eyebrow">Bezplatný kurz · Investiční byty v ČR · 2026</span>
-                <h1>Chci být <em>milionářem</em></h1>
+                <span class="hub-manifest__eyebrow">Bezplatný výcvik &middot; Investiční byty v ČR &middot; 2026</span>
+                <h1>Deset let <em>uteče</em> tak jako tak.</h1>
                 <p class="hub-manifest__lead">
-                    Deset cihel od rozhodnutí k prvnímu nájemníkovi.
-                </p>
-                <p class="hub-manifest__what">
-                    Bez zkušeností a bez úspor. Všechno spočítané, nic naslibované.
-                    Deset kroků, u každého kalkulačka, ve které uvidíte svoje vlastní čísla.
-                    Zdarma a bez registrace.
+                    <strong>Rozdíl je, jestli vám mezitím někdo splácel byt.</strong>
+                    Za dvě minuty a bez jediného údaje o sobě uvidíte, co s vaším majetkem udělá
+                    jeden investiční byt — kdy se přestane živit z vaší výplaty, začne se živit sám,
+                    a co vás stojí každý rok, o který to odložíte.
                 </p>
                 <div class="hub-manifest__cta">
-                    <a href="#cihly" class="cta-button">Podívat se na deset cihel</a>
-                    <a href="/milionarem/simulator" class="cta-button cta-button--outline">Spustit simulátor</a>
+                    <a href="#simulator" class="cta-button">Spočítat si to na svých číslech</a>
+                </div>
+                <p class="hub-manifest__what">
+                    <strong>Pro koho to je:</strong> pro člověka, který chodí do práce, něco si
+                    odkládá stranou a má pocit, že tímhle tempem se k majetku nedostane.
+                    <strong>Pro koho to není:</strong> pro toho, kdo hledá, co je to hypotéka.
+                    Tohle není učebnice. Je to postup, jak koupit první byt, který se platí sám.
+                </p>
+                <p class="hub-manifest__what">
+                    A rovnou na férovku: <strong>jsem realitní makléř, byty prodávám a na
+                    zprostředkování vydělávám.</strong> Proto vám kromě toho, co kupovat, ukazuju
+                    i to, co bych sám nekoupil — jinak by vám tahle stránka nebyla k ničemu.
+                </p>
+            </div>
+        </section>
+
+        <!-- SIMULÁTOR -->
+        <section class="hub-chapter">
+            <div class="container">
+                <div class="hub-chapter__wrap">
+
+                    <div class="vy-widget" id="simulator">
+                        <div class="vy-widget__head">
+                            <span class="vy-widget__badge"><i class="fas fa-sliders" aria-hidden="true"></i> Vaše čísla</span>
+                            <h2 class="vy-widget__title">Nastavte si to podle sebe</h2>
+                            <p class="vy-widget__desc">Ukládá se vám to v prohlížeči. Nic se neodesílá a nikam vás to nepřesměruje.</p>
+                        </div>
+
+                        <div class="vy-widget__body">
+
+                            <!-- 1. BYT -->
+                            <div class="sim-group">
+                                <div class="sim-group__title">1 — Byt</div>
+
+                                <div class="vy-field">
+                                    <label for="s-mesto">Město <strong class="js-val-mesto"></strong></label>
+                                    <select id="s-mesto" data-field="mesto">
+                                        <option value="7.1">Ústí nad Labem — výnos 7,1 %</option>
+                                        <option value="5.8">Ostrava — výnos 5,8 %</option>
+                                        <option value="5.7">Karlovy Vary — výnos 5,7 %</option>
+                                        <option value="5.6">Jihlava — výnos 5,6 %</option>
+                                        <option value="5.4">Zlín — výnos 5,4 %</option>
+                                        <option value="4.8">Pardubice — výnos 4,8 %</option>
+                                        <option value="4.7" selected>Plzeň — výnos 4,7 %</option>
+                                        <option value="4.6">Liberec — výnos 4,6 %</option>
+                                        <option value="4.5">České Budějovice — výnos 4,5 %</option>
+                                        <option value="4.3">Olomouc — výnos 4,3 %</option>
+                                        <option value="4.1">Brno — výnos 4,1 %</option>
+                                        <option value="3.9">Praha — výnos 3,9 %</option>
+                                    </select>
+                                    <p class="vy-field__hint">Hrubý nájemní výnos, orientačně ke stavu trhu 2026.</p>
+                                </div>
+
+                                <div class="vy-field">
+                                    <label for="s-cena">Cena bytu <strong class="js-val-cena"></strong></label>
+                                    <input type="range" id="s-cena" data-field="cena" min="1500000" max="10000000" step="100000" value="4000000">
+                                </div>
+                            </div>
+
+                            <!-- 2. FINANCOVÁNÍ -->
+                            <div class="sim-group">
+                                <div class="sim-group__title">2 — Financování</div>
+
+                                <div class="vy-field">
+                                    <label for="s-ucel">Účel úvěru <strong class="js-val-ucel"></strong></label>
+                                    <select id="s-ucel" data-field="ucel">
+                                        <option value="70" selected>Investiční — 3. a další nemovitost, nebo byt rovnou na pronájem</option>
+                                        <option value="80">Vlastní bydlení — 1. nebo 2. nemovitost</option>
+                                        <option value="90">Vlastní bydlení — 1. nebo 2. nemovitost, do 36 let</option>
+                                    </select>
+                                    <p class="vy-field__hint">
+                                        Od dubna 2026 platí strop 70 % pro investiční hypotéky. Tou se rozumí
+                                        <strong>třetí a další nemovitost — ale i ta první, když ji kupujete
+                                        na pronájem.</strong> U vlastního bydlení zůstává 80 %, a do 36 let
+                                        dokonce 90 %. Účel ale musí sedět: byt, ve kterém bydlet nebudete,
+                                        je investiční hypotéka bez ohledu na to, kolikátý je.
+                                    </p>
+                                </div>
+
+                                <div class="vy-field">
+                                    <label for="s-vlastni">Vlastní zdroje <strong class="js-val-vlastni"></strong></label>
+                                    <input type="range" id="s-vlastni" data-field="vlastni" min="0" max="100" step="5" value="30">
+                                    <p class="vy-field__hint">
+                                        Bez dofinancování potřebujete aspoň <strong class="js-min-vlastni"></strong>.
+                                        Ani ty ale <strong>nemusí být vaše hotovost</strong> — dají se sehnat jinde,
+                                        nejčastěji úvěrem zajištěným jinou nemovitostí. Proto jde posuvník až na nulu.
+                                    </p>
+                                </div>
+
+                                <div class="vy-range-row">
+                                    <div class="vy-field">
+                                        <label for="s-sazba">Sazba hypotéky <strong class="js-val-sazba"></strong></label>
+                                        <input type="range" id="s-sazba" data-field="sazba" min="3" max="7" step="0.1" value="4.8">
+                                        <p class="vy-field__hint">Průměr nových hypoték byl v červenci 2026 4,90 % a od jara mírně roste. Výchozí hodnota posuvníku je střed pásma, ne prognóza.</p>
+                                    </div>
+                                    <div class="vy-field">
+                                        <label for="s-splatnost">Splatnost <strong class="js-val-splatnost"></strong></label>
+                                        <input type="range" id="s-splatnost" data-field="splatnost" min="15" max="30" step="1" value="25">
+                                        <p class="vy-field__hint">Delší splatnost sníží splátku, ale zaplatíte víc na úrocích.</p>
+                                    </div>
+                                </div>
+
+                                <div class="vy-field js-dofi-radek" hidden>
+                                    <label for="s-sazbaDofi">Sazba dofinancování <strong class="js-val-sazbaDofi"></strong></label>
+                                    <input type="range" id="s-sazbaDofi" data-field="sazbaDofi" min="3" max="12" step="0.1" value="6.5">
+                                    <p class="vy-field__hint">Úvěr na chybějící část, zajištěný jinou nemovitostí. Bývá dražší než hypotéka na kupovaný byt.</p>
+                                </div>
+                            </div>
+
+                            <!-- 3. PŘEDPOKLADY -->
+                            <div class="sim-group">
+                                <div class="sim-group__title">3 — Předpoklady</div>
+
+                                <div class="vy-range-row">
+                                    <div class="vy-field">
+                                        <label for="s-rust">Růst ceny bytu <strong class="js-val-rust"></strong></label>
+                                        <input type="range" id="s-rust" data-field="rust" min="0" max="7" step="0.5" value="4">
+                                        <p class="vy-field__hint">Dlouhodobý průměr ČR je 7 % ročně. Čtyři procenta jsou opatrný odhad.</p>
+                                    </div>
+                                    <div class="vy-field">
+                                        <label for="s-najemRust">Růst nájmu <strong class="js-val-najemRust"></strong></label>
+                                        <input type="range" id="s-najemRust" data-field="najemRust" min="0" max="6" step="0.5" value="3">
+                                        <p class="vy-field__hint">Tohle číslo rozhoduje, kdy se byt začne živit sám.</p>
+                                    </div>
+                                </div>
+
+                                <div class="vy-range-row">
+                                    <div class="vy-field">
+                                        <label for="s-akcie">Zhodnocení akciového indexu <strong class="js-val-akcie"></strong></label>
+                                        <input type="range" id="s-akcie" data-field="akcie" min="0" max="12" step="0.5" value="7">
+                                        <p class="vy-field__hint">Pro srovnání se širokým indexem. Sedm procent je běžně uváděný dlouhodobý průměr — minulá výkonnost ale nezaručuje budoucí.</p>
+                                    </div>
+                                    <div class="vy-field">
+                                        <label for="s-horizont">Jak dlouho byt držíte <strong class="js-val-horizont"></strong></label>
+                                        <input type="range" id="s-horizont" data-field="horizont" min="5" max="30" step="1" value="20">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- VÝSLEDEK -->
+                            <div class="sim-group">
+                                <div class="sim-group__title">Výsledek</div>
+                                <div class="sim-headline js-headline"></div>
+                                <div class="sim-stats js-stats"></div>
+                            </div>
+
+                            <div class="js-verdikt"></div>
+
+                            <div style="margin-top:30px;">
+                                <div style="display:flex; gap:22px; flex-wrap:wrap; margin-bottom:12px; font-size:0.92rem;">
+                                    <span style="display:flex; align-items:center; gap:8px;">
+                                        <span style="width:18px; height:4px; background:var(--hub-accent); display:inline-block;"></span>
+                                        Čistý majetek z bytu
+                                    </span>
+                                    <span style="display:flex; align-items:center; gap:8px;">
+                                        <span style="width:18px; height:4px; background:var(--hub-alt); display:inline-block;"></span>
+                                        Akciový index
+                                    </span>
+                                    <span style="display:flex; align-items:center; gap:8px;">
+                                        <span style="width:18px; height:4px; background:var(--hub-risk); display:inline-block;"></span>
+                                        Spořicí účet (2 % ročně)
+                                    </span>
+                                </div>
+                                <p class="vy-field__hint" style="margin-bottom:14px;">
+                                    Všechny tři dostávají <strong>stejné peníze</strong> — vklad i každý měsíční
+                                    doplatek. Jinak by se porovnával investor, který posílá peníze každý měsíc,
+                                    s někým, kdo uložil jednou a už nic.
+                                </p>
+                                <div class="js-graf"></div>
+                            </div>
+
+                            <!-- CENA ODKLADU — druhé číslo výpočtu -->
+                            <div class="js-odklad" style="margin-top:28px;"></div>
+
+                            <!-- KONVERZE
+                                 Patří sem, na konec výpočtu. Ve chvíli, kdy má člověk na
+                                 obrazovce svoje číslo, je jeho ochota jednat nejvyšší, jakou
+                                 kdy bude mít — a zadání z posuvníků je kompletní investiční
+                                 profil, který by mu jinak nikdo nesestavil. -->
+                            <div class="hub-action" id="nabidka" style="margin-top:30px;">
+                                <span class="hub-action__label">Co s tím dál</span>
+                                <h3>Chcete k tomuhle zadání konkrétní byty?</h3>
+                                <p>
+                                    Vaše čísla teď znám — <strong class="js-zadani"></strong>.
+                                    Řekněte mi ještě dvě věci a podle nich vám napíšu. Zabere to
+                                    deset vteřin, nic nestojí a nikoho k ničemu nezavazuje.
+                                </p>
+
+                                <div class="vy-range-row">
+                                    <div class="vy-field">
+                                        <label for="q-kdy">Kdy to chcete řešit</label>
+                                        <select id="q-kdy">
+                                            <option value="">Vyberte&hellip;</option>
+                                            <option value="do3m">Do tří měsíců</option>
+                                            <option value="doroka">Do roka</option>
+                                            <option value="rozhlizim">Zatím se rozhlížím</option>
+                                        </select>
+                                    </div>
+                                    <div class="vy-field">
+                                        <label for="q-fin">Financování</label>
+                                        <select id="q-fin">
+                                            <option value="">Vyberte&hellip;</option>
+                                            <option value="mam">Mám vyřízené</option>
+                                            <option value="resim">Právě řeším</option>
+                                            <option value="zatim">Zatím nic</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <p class="js-slib" style="margin-top:6px;"></p>
+
+                                <form id="milionarem-simulator-form" class="vy-gate__form" novalidate>
+                                    <div class="vy-gate__row">
+                                        <input type="text" name="name" placeholder="Jméno" autocomplete="name" required>
+                                        <input type="email" name="email" placeholder="E-mail" autocomplete="email" required>
+                                        <button type="submit">Poslat mi to</button>
+                                    </div>
+                                    <label class="vy-gate__consent">
+                                        <input type="checkbox" name="consent" required>
+                                        <span>Souhlasím, aby mi David Choc odpověděl na tohle zadání a občas napsal, když bude mít k investování do nemovitostí co říct. Odhlásit se můžu jedním kliknutím. <a href="/osobni-udaje" target="_blank" rel="noopener">Zpracování údajů</a></span>
+                                    </label>
+                                    <p class="vy-gate__msg" hidden></p>
+                                </form>
+
+                                <p class="vy-gate__note">
+                                    Odpovídám osobně, ne šablonou. Nevoláme z call centra a
+                                    nikoho nepředáváme dál.
+                                </p>
+                            </div>
+
+                            <p class="vy-field__hint" style="margin-top:20px;">
+                                Chcete si výsledek odnést na papíře?
+                                <button type="button" onclick="window.print()"
+                                        style="background:none;border:0;padding:0;font:inherit;color:var(--hub-accent-deep);text-decoration:underline;cursor:pointer;">Vytisknout stránku</button>
+                            </p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
 
-        <!-- DOKÁŽE TO KAŽDÝ -->
+        <!-- DŮKAZ -->
+        <section class="hub-author">
+            <div class="container">
+                <div class="hub-author__inner">
+                    <div class="hub-author__photo">
+                        <img src="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/davidchocagent.avif"
+                             alt="David Choc — realitní specialista, autor výcviku" loading="lazy">
+                    </div>
+                    <div class="hub-author__text">
+                        <span class="hub-action__label">Kdo to počítá</span>
+                        <h2>David Choc</h2>
+                        <p>
+                            Realitní specialista PTF reality, s.r.o. V realitách od roku 1995.
+                            Za tu dobu zhruba <strong>1 500 prodaných nemovitostí</strong> a
+                            <strong>přes 3 000 pronájmů</strong>. To druhé číslo je pro vás
+                            důležitější než to první — znamená, že o nájemnících nepíšu z knížek.
+                        </p>
+                        <p>
+                            Zhruba <strong>150 bytů</strong> dneska patří lidem, kteří si je přes
+                            mě koupili právě jako investici. Chodí jim nájem a splácí jim to někdo
+                            jiný. Nezačínal z nich takhle skoro nikdo — většina přišla s tím, že
+                            na to nemá.
+                        </p>
+                        <p class="hub-author__motto">
+                            „Rozdíl mezi lidmi, kterým chodí nájem, a lidmi, kteří počítají drobné,
+                            nebyl v platu. Byl v tom, kdy začali.“
+                        </p>
+
+                        <!-- TODO (David): sem patří jeden konkrétní případ se souhlasem klienta.
+                             Jedna věta: rok, město, kupní cena — a co je z toho dneska: nájem,
+                             dnešní hodnota, kolik zbývá splatit. Jeden takový odstavec udělá pro
+                             důvěru víc než všechno nad ním. Dokud ho nemáme, radši tu nestojí
+                             nic než vata.
+                        <p class="hub-statement hub-statement--accent"><em>…případ…</em></p>
+                        -->
+
+                        <p class="hub-author__links">
+                            <a href="tel:+420774052232">774 052 232</a>
+                            <a href="mailto:david.choc@ptf.cz">david.choc@ptf.cz</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MECHANIKA — proč ta čísla vycházejí, jak vycházejí -->
         <section class="hub-chapter">
             <div class="container">
                 <div class="hub-chapter__wrap">
+
+                    <h2>Kolik vám banka půjčí — a proč jde vklad až na nulu</h2>
+
+                    <p>
+                        Strop není jeden. Od dubna 2026 platí tohle:
+                    </p>
+
+                    <div class="hub-table-wrap">
+                        <table class="hub-table">
+                            <thead>
+                                <tr>
+                                    <th>Účel úvěru</th>
+                                    <th>Banka půjčí</th>
+                                    <th>Musíte sehnat</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Vlastní bydlení, 1. nebo 2. nemovitost, <strong>do 36 let</strong></td>
+                                    <td><strong>90 %</strong></td>
+                                    <td>10 %</td>
+                                </tr>
+                                <tr>
+                                    <td>Vlastní bydlení, 1. nebo 2. nemovitost</td>
+                                    <td><strong>80 %</strong></td>
+                                    <td>20 %</td>
+                                </tr>
+                                <tr>
+                                    <td>Investiční — 3. a další nemovitost, <strong>nebo byt rovnou na pronájem</strong></td>
+                                    <td><strong>70 %</strong></td>
+                                    <td>30 %</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="hub-risk">
+                        <div class="hub-risk__head">
+                            <span class="hub-risk__label">Pozor na tohle</span>
+                            <span class="hub-risk__level">Účel úvěru</span>
+                        </div>
+                        <p class="hub-risk__title">Osmdesát a devadesát procent je vázané na vlastní bydlení, ne na pořadí</p>
+                        <p>I první byt v životě spadá pod sedmdesát procent, když ho kupujete rovnou na pronájem. Investiční hypotékou se rozumí třetí a další nemovitost <strong>nebo jakákoli nemovitost pořizovaná k pronájmu</strong>.</p>
+                        <p>Brát úvěr na vlastní bydlení s tím, že v bytě bydlet nebudete, je nepravdivé prohlášení vůči bance a porušení úvěrové smlouvy. Když se situace časem skutečně změní a byt pronajmete, oznamte to bance — přecení úvěr a je to vyřízené.</p>
+                    </div>
+
+                    <p>
+                        <strong>Strop LTV ale není jediný.</strong> Souběžně platí limit DTI 7:
+                        celkový dluh nesmí přesáhnout sedminásobek vašeho čistého ročního příjmu —
+                        a počítá se do něj všechno, i hypotéka na vlastní bydlení a leasing na auto.
+                        U prvního investičního bytu narazíte obvykle dřív na tenhle limit než na
+                        těch sedmdesát procent. Proto se posuvník vlastních zdrojů na nule počítá
+                        jako model, ne jako příslib: <strong>banka se dívá i na to, kolik
+                        vyděláváte.</strong>
+                    </p>
+
+                    <p>
+                        Ať už na vás vyjde kterýkoli řádek, ta zbylá část <strong>nemusí být
+                        hotovost na účtu</strong>. Nejčastěji je to druhý úvěr zajištěný jinou
+                        nemovitostí. Proto jde posuvník vlastních zdrojů až na nulu a simulátor
+                        pak počítá <strong>se dvěma úvěry zvlášť</strong>, každým s vlastní sazbou.
+                    </p>
+
+                    <p>
+                        Nulový vklad není trik ani kouzlo — je to druhá splátka, kterou musíte
+                        unést, a druhá nemovitost, kterou ručíte. Když se investice nepovede,
+                        nepřijdete jen o ni.
+                    </p>
+
+                    <h2>Jak se počítá majetek</h2>
+
+                    <p>
+                        Čistý majetek je <strong>hodnota nemovitosti minus zbytek obou úvěrů plus
+                        nastřádaná hotovost</strong>. Měsíční doplatek ze mzdy se od majetku
+                        neodečítá: část z něj splácí jistinu, a ta už je v zůstatku úvěru
+                        započítaná. Nejsou to vyhozené peníze, jen je momentálně nevidíte na účtu.
+                    </p>
+
+                    <div class="hub-note">
+                        <p><strong>Právě proto dostane spořicí účet úplně stejné peníze.</strong> Vklad i každý měsíční doplatek. Porovnávat investora, který posílá peníze každý měsíc, se střadatelem, který uložil jednou a už nic, by výsledek posunulo o statisíce ve prospěch nemovitosti — a celé srovnání by nebylo k ničemu.</p>
+                    </div>
+
+                    <p>
+                        Nájem v modelu roste, splátka ne. Proto se to jednou otočí a byt se začne
+                        živit sám. Ten rok je v grafu vyznačený svislicí.
+                    </p>
+
+                    <h2>Záporný cashflow není ztráta</h2>
+
+                    <p>
+                        Většina lidí se lekne, když jim vyjde, že budou první roky doplácet. Podívejte
+                        se ale, kam ty peníze doopravdy tečou. Splátka má dvě části: <strong>úrok je
+                        náklad, jistina je váš majetek.</strong>
+                    </p>
+
+                    <p>
+                        Na výchozím nastavení je úrok 11 200 Kč měsíčně a nájemník platí 13 317 Kč.
+                        <strong>Celý úrok tedy zaplatí on</strong> — a ještě zbyde na jistinu.
+                        Vašich 2 727 Kč, které doplácíte, se do posledního haléře mění na splacený
+                        kus bytu.
+                    </p>
+
+                    <p>
+                        Není to výdaj. Je to spoření, které si nemůžete vybrat — a proto ho na
+                        rozdíl od spořicího účtu opravdu dodržíte. Simulátor to počítá a rozliší
+                        jedinou situaci, kdy to neplatí: <strong>když nájem nepokryje ani
+                        úrok</strong>. Teprve tam část peněz skutečně shoří a nástroj na to
+                        upozorní.
+                    </p>
 
                     <div class="hub-statement">
-                        <p>Dokáže to každý, kdo se rozhodne.</p>
+                        <p>Páka nezrychlí trh. Zvětší, co z něj máte.</p>
                     </div>
 
-                    <p>
-                        Investování do nemovitostí vypadá zvenku jako klub, do kterého se musíte
-                        narodit. Není. Je to řemeslo s konečným počtem pravidel — a ta pravidla
-                        se dají naučit. Ne za víkend, ale za deset večerů ano.
-                    </p>
-
-                    <p>
-                        Za třicet let na českém trhu jsem viděl stovky lidí na obou koncích téhle
-                        cesty. Ti úspěšní neměli chytřejší hlavu ani větší štěstí. Měli jen dřív
-                        hotové to jediné, co je opravdu potřeba: rozhodli se a začali počítat.
-                    </p>
-
-                    <h3>Tři věci, o kterých si myslíte, že je potřebujete</h3>
-                    <ul>
-                        <li>
-                            <strong>Peníze.</strong> Většinu ceny bytu půjčí banka a splátku
-                            z podstatné části zaplatí nájemník. To, co musíte složit vy, nemusí
-                            ležet na spořicím účtu — dá se to pořešit i jinak a je to celá druhá cihla.
-                        </li>
-                        <li>
-                            <strong>Zkušenosti.</strong> Nepotřebujete roky praxe. Potřebujete jeden
-                            postup, dodržet ho v pořadí a umět si spočítat, jestli konkrétní byt
-                            dává smysl. To druhé za vás udělají kalkulačky v každé cihle.
-                        </li>
-                        <li>
-                            <strong>Konexe.</strong> Nepotřebujete známé na správných místech.
-                            Potřebujete advokáta, hypotečního specialistu a odhadce — a ti se
-                            normálně najímají. Kde je vzít a na co si u nich dát pozor, je součástí kurzu.
-                        </li>
-                    </ul>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- JAK TO FUNGUJE -->
-        <section class="hub-chapter">
-            <div class="container">
-                <div class="hub-chapter__wrap">
-
-                    <div class="hub-statement hub-statement--accent">
-                        <p>Nájemník splácí. Vy vlastníte.</p>
+                    <div class="hub-disclaimer">
+                        <p>Zjednodušený model pro ilustraci principu páky a růstu hodnoty. Nejde o investiční, právní ani daňové poradenství ani o příslib konkrétního výnosu. Model počítá se srážkou 15 % z nájmu na opravy a neobsazenost, ale nezohledňuje daň z příjmu z nájmu, jednorázové velké opravy, mimořádné příspěvky SVJ ani změnu sazby po skončení fixace. Předpokládá rovnoměrný růst cen — ve skutečnosti roky kolísají a ceny mohou i klesat, jako v roce 2023. Srovnání s akciovým indexem je rovněž zjednodušené: počítá s rovnoměrným zhodnocením, nezohledňuje poplatky ani daň z výnosu a nezachycuje kolísání, které u akcií bývá výrazně prudší než u nemovitostí. Minulá výkonnost nezaručuje budoucí ani u jednoho z nich. Financování bez vlastních zdrojů zvyšuje riziko a jeho dostupnost posuzuje vždy konkrétní banka. Uvedené výnosy podle měst a sazby platí k roku 2026. Reálná čísla si vždy ověřte s hypotečním specialistou.</p>
                     </div>
 
-                    <p>
-                        Celé je to postavené na jedné nudné mechanice, kterou si můžete
-                        přepočítat na papíře. Byt koupíte většinou za cizí peníze. Nájemník
-                        platí nájem, ze kterého se hradí úrok z úvěru a část jistiny. Vy
-                        prvních pár let doplácíte rozdíl mezi nájmem a splátkou.
-                    </p>
-
-                    <p>
-                        A tady je ta věc, která lidem obvykle mění rozhodnutí:
-                        <strong>ten doplatek není výdaj.</strong> Splátka má dvě části — úrok je
-                        náklad, jistina je váš majetek. Když nájemník pokryje celý úrok a ještě
-                        kus jistiny, mění se každá koruna, kterou přidáte, na splacený kus bytu.
-                        Je to spoření, které si nemůžete vybrat, a právě proto ho na rozdíl od
-                        spořicího účtu opravdu dodržíte.
-                    </p>
-
-                    <p>
-                        Nájem přitom v čase roste, splátka ne. Jednou se to tedy otočí a byt se
-                        začne živit sám. Ten rok si umíte spočítat dopředu — a je to obvykle dřív,
-                        než lidé čekají.
-                    </p>
-
-                    <div class="hub-action">
-                        <span class="hub-action__label">Ověřte si to na svých číslech</span>
-                        <h3>Co udělá jeden byt s vaším majetkem za dvacet let</h3>
-                        <p>
-                            Posuvníky, žádná registrace. Vyberte město, cenu a kolik dáte
-                            z vlastního — klidně nulu — a uvidíte, kdy se byt přestane živit
-                            z vaší výplaty a začne se živit sám.
-                        </p>
-                        <a href="/milionarem/simulator" class="cta-button">Spustit simulátor</a>
-                    </div>
 
                 </div>
             </div>
@@ -162,7 +696,12 @@
                     <ul>
                         <li><strong>Trvá to roky, ne měsíce.</strong> První byt je začátek, ne cíl.</li>
                         <li><strong>Ceny nemovitostí můžou klesat.</strong> Naposledy v roce 2023. Kdo počítal jen s růstem, měl problém.</li>
-                        <li><strong>Špatný nájemník umí stát stovky tisíc.</strong> Vystěhovat neplatiče trvá déle, než si kdokoli myslí.</li>
+                        <li>
+                            <strong>Špatný nájemník umí stát stovky tisíc.</strong> Za třicet let
+                            jsem pronajal přes tři tisíce bytů, takže neplatiče jsem viděl a vím,
+                            jak dlouho trvá se jich zbavit. Právě proto je koho do bytu nepustit
+                            celá osmá cihla.
+                        </li>
                         <li><strong>Páka funguje stejně silně oběma směry.</strong> Zvětšuje zisk i ztrátu. Když se investice nepovede, nepřijdete jen o ni.</li>
                         <li><strong>Prvních pár let budete doplácet.</strong> Musíte ten doplatek unést i ve chvíli, kdy byt měsíc stojí prázdný.</li>
                     </ul>
@@ -170,20 +709,21 @@
                     <p>
                         Nic z toho není důvod nezačít. Je to důvod začít s tužkou v ruce.
                         <strong>Všechno vyjmenované se dá spočítat dopředu</strong> — a přesně
-                        to v tomhle kurzu děláme. U každé cihly najdete nástroj, do kterého
-                        zadáte svoje čísla a uvidíte svůj vlastní výsledek, ne můj příklad.
+                        to v tomhle výcviku děláme. U každé cihly je nástroj, do kterého zadáte
+                        svoje čísla a uvidíte svůj vlastní výsledek, ne můj příklad.
                     </p>
 
                 </div>
             </div>
         </section>
 
-        <!-- DESET CIHEL -->
+        <!-- DESET CIHEL — až za konverzí. Deset odkazů pryč ze stránky nesmí
+             stát před jedinou nabídkou, kterou tu máme. -->
         <section class="hub-toc" id="cihly">
             <div class="container">
                 <header class="pripad-section__header">
                     <h2>Deset cihel</h2>
-                    <p>Stojí na sobě přesně v tomhle pořadí. Každá zabere jeden večer a na konci má nástroj, ve kterém uvidíte svoje vlastní číslo.</p>
+                    <p>Stojí na sobě přesně v tomhle pořadí. Každá zabere jeden večer a končí nástrojem, ve kterém uvidíte svoje vlastní číslo. Deset večerů proti deseti letům čekání — to je celý ten obchod.</p>
                 </header>
 
                 <div class="hub-bricks">
@@ -236,52 +776,19 @@
             <div class="container">
                 <div class="hub-chapter__wrap">
 
-                    <p>
-                        Nemusíte mít na účtu korunu navíc. Nemusíte mít vybraný byt, schválenou
-                        hypotéku ani jasno v tom, jestli chcete Plzeň, Pardubice, nebo Prahu.
-                        Stačí otevřít první cihlu a strávit u ní jeden večer.
-                    </p>
+                    <div class="hub-disclaimer">
+                        <p>Informace v tomto výcviku jsou obecné povahy, popisují běžnou praxi na trhu s investičními nemovitostmi v ČR a nezohledňují specifika konkrétního případu. Nejde o investiční, právní ani daňové poradenství. Investice do nemovitostí je spojena s rizikem, hodnota nemovitostí i výše nájmů mohou klesat a minulý vývoj trhu nezaručuje vývoj budoucí. Smlouvy k převodu nemovitosti nechte připravit advokátovi, financování konzultujte s hypotečním specialistou a daňové otázky s daňovým poradcem.</p>
+                    </div>
 
                     <div class="hub-statement hub-statement--accent">
-                        <p>Jediné, čeho budete litovat, je že jste se do toho nepustili dřív.</p>
+                        <p>Zavřít tuhle stránku je taky rozhodnutí. Jenom se u něj nic nestane.</p>
                     </div>
 
-                    <div class="hub-action">
-                        <span class="hub-action__label">Začněte tam, kde to nic nestojí</span>
-                        <h3>První cihla je celá jen o přemýšlení</h3>
-                        <p>
-                            Nepotřebujete k ní peníze ani byt. Jen hodinu a odpověď na otázku,
-                            proč to vlastně děláte. Je to jediná cihla, kterou položíte zadarmo —
-                            a ta, na které stojí zbylých devět.
-                        </p>
-                        <a href="/milionarem/cihla-1-plan" class="cta-button">Otevřít první cihlu</a>
+                    <div class="hub-manifest__cta" style="margin-top:26px;">
+                        <a href="#simulator" class="cta-button">Zpět k simulátoru</a>
+                        <a href="/milionarem/cihla-1-plan" class="cta-button cta-button--outline">Otevřít první cihlu</a>
                     </div>
 
-                </div>
-            </div>
-        </section>
-
-        <!-- AUTOR -->
-        <section class="hub-author">
-            <div class="container">
-                <div class="hub-author__inner">
-                    <div class="hub-author__text">
-                        <span class="hub-action__label">Autor a garant</span>
-                        <h3>David Choc</h3>
-                        <p>
-                            Realitní specialista PTF reality, s.r.o. Realitám se věnuje od roku 1995
-                            a za třicet let v oboru viděl stovky lidí na obou koncích tohohle příběhu —
-                            ty, kterým chodí nájem, i ty, kteří počítají drobné.
-                        </p>
-                        <p class="hub-author__links">
-                            <a href="tel:+420774052232">774 052 232</a>
-                            <a href="mailto:david.choc@ptf.cz">david.choc@ptf.cz</a>
-                        </p>
-
-                        <div class="hub-disclaimer">
-                            <p>Informace v tomto kurzu jsou obecné povahy, popisují běžnou praxi na trhu s investičními nemovitostmi v ČR a nezohledňují specifika konkrétního případu. Nejde o investiční, právní ani daňové poradenství. Investice do nemovitostí je spojena s rizikem, hodnota nemovitostí i výše nájmů mohou klesat a minulý vývoj trhu nezaručuje vývoj budoucí. Smlouvy k převodu nemovitosti nechte připravit advokátovi, financování konzultujte s hypotečním specialistou a daňové otázky s daňovým poradcem.</p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
@@ -289,10 +796,12 @@
 
     <div id="footer-placeholder"></div>
 
+    <!-- Plovoucí e-mail tady nestojí: na téhle stránce po člověku chceme
+         e-mail ve formuláři, ne aby nám psal do schránky. Telefon zůstává,
+         protože u rozhodnutého kupujícího je hovor cíl, ne obtěžování. -->
     <div class="floating-buttons">
         <a href="#" class="floating-button back-to-top" aria-label="Zpět nahoru"><i class="fas fa-arrow-up"></i></a>
         <a href="tel:+420774052232" class="floating-button call" aria-label="Zavolat"><i class="fas fa-phone-alt"></i></a>
-        <a href="mailto:david.choc@ptf.cz" class="floating-button email" aria-label="Poslat email"><i class="fas fa-envelope"></i></a>
     </div>
 
     <script src="/script.js?v=20260805"></script>
@@ -301,5 +810,7 @@
     <script src="/cookie-consent.js?v=20260805"></script>
     <script src="/common/hub/hub-cta.js?v=20260805"></script>
     <script src="/common/hub/hub-tools.js?v=20260805"></script>
+    <script src="/milionarem/milionarem-simulator.js?v=20260901"></script>
+    <script src="/milionarem/milionarem-cta.js?v=20260901"></script>
 </body>
 </html>

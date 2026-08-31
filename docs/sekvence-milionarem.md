@@ -81,7 +81,7 @@ hromadnému omylu, ne cíl.
 
 <p>Než se ozvu, udělejte jednu věc. Zabere dvě minuty a je to jediné číslo, které potřebujete, než začnete cokoli počítat:</p>
 
-<p><a href="https://www.davidchoc.cz/milionarem/simulator" class="btn">Spočítat si to na svých číslech</a></p>
+<p><a href="https://www.davidchoc.cz/milionar" class="btn">Spočítat si to na svých číslech</a></p>
 
 <p>Uvidíte, co s vaším majetkem udělá jeden byt za dvacet let — a hlavně kdy se přestane živit z vaší výplaty a začne se živit sám.</p>
 
@@ -190,3 +190,145 @@ hromadnému omylu, ne cíl.
 
 Cihly 6 až 10 se píšou. Až budou venku, patří sem tři až čtyři další
 kroky a šestý e-mail se posune na konec.
+
+---
+
+# Větev simulátoru — segment investoři
+
+Leady z konverze pod výsledkem simulátoru (`/milionar`) **nespadají do
+sekvence výše**. Mají vlastní kampaň:
+
+```json
+{"metadata.kampan": "milionarem-simulator"}
+```
+
+Důvod je jediný a je zásadní: obecná sekvence má krok s odstupem 0 hodin,
+který by přebil potvrzení z webu. Člověku, kterému jsme na stránce slíbili
+tři konkrétní byty do dvou pracovních dnů, by místo toho přišel úvod do
+kurzu — a tím by první e-mail po odeslání zboural přesně tu důvěru, na které
+celá stránka stojí.
+
+## Co se děje hned
+
+| Kdy | Co | Kdo |
+|---|---|---|
+| ihned | Potvrzení podle skóre (`api/_emaily.js`) — sedí na to, co bylo slíbeno | automat |
+| do 2 prac. dnů | **Tři konkrétní byty**, nebo posouzení zadání | David, ručně |
+| dnešní den u horkých | Telefonát | David |
+
+**Ruční krok je jádro celé věci a nejde zautomatizovat.** Skóre je v předmětu
+notifikace i v textu leadu (`SKÓRE: HORKÝ / VLAŽNÝ / STUDENÝ`). Horký znamená
+koupi do tří měsíců a vyřízené nebo rozpracované financování — tomu se volá
+týž den. Jediná mechanika v celém tomhle systému, která má za sebou tvrdý
+výzkum, je rychlost reakce; a nestojí nic.
+
+## Sekvence — pět kroků
+
+Spouští se až po ručním kroku. Kdo odpoví na cokoli, vypadá — jako u sekvence výše.
+
+| # | Odstup | Klíč šablony | Předmět | Zdroj textu |
+|---|---|---|---|---|
+| 1 | 168 h (7 dní) | `sim-chyba` | Chyba, kterou dělá skoro každý první investor | nový, níž |
+| 2 | 336 h (14 dní) | `mil-lokalita` | Dva byty, stejná cena, dvojnásobný výnos | převzít beze změny |
+| 3 | 504 h (21 dní) | `mil-proverka` | Hodina, která vám ušetří statisíce | převzít beze změny |
+| 4 | 720 h (30 dní) | `sim-spoluprace` | Co si za to beru | nový, níž |
+| 5 | 1080 h (45 dní) | `sim-konec` | Poslední e-mail ode mě | nový, níž |
+
+Nabídka spolupráce přichází až čtvrtá, po měsíci. U člověka, kterému jste
+měsíc zdarma posílali, co má dělat, je dřívější nabídka přiznáním, že to celé
+byla akvizice.
+
+---
+
+## Texty nových šablon
+
+### 1 — `sim-chyba` · 7 dní · „Chyba, kterou dělá skoro každý první investor"
+
+```html
+<p>{{formalGreeting}}</p>
+
+<p>Za třicet let jsem viděl první investiční byt asi stopadesátkrát. Chyba,
+která se opakuje nejčastěji, není v ceně ani v lokalitě. Je v pořadí.</p>
+
+<p>Skoro každý začne tím, že hledá byt. Prochází inzeráty, jezdí na
+prohlídky, srovnává metry a ceny — a teprve když se do některého zamiluje,
+jde se ptát banky, kolik dostane. V tu chvíli už ale nerozhoduje on. Rozhoduje
+za něj to, co mu banka nabídne, protože couvnout od bytu, který si v hlavě
+zařídil, dokáže málokdo.</p>
+
+<p><strong>Správné pořadí je opačné.</strong> Nejdřív si zjistíte, kolik
+dostanete a za jakou cenu, a teprve s tím číslem jdete hledat. Pak nehledáte
+byt, který se vám líbí. Hledáte byt, který vychází — a to je úplně jiná práce.</p>
+
+<p>Druhá věc, kterou z toho pořadí získáte: když se objeví byt, který sedí,
+můžete jednat hned. A ty dobré nemají v inzerci týden, mají dva dny.</p>
+
+<p>Vaše čísla mám. Kdyby se od minule změnila, napište mi — přepočítám to.</p>
+
+<p>{{agentName}}</p>
+```
+
+### 4 — `sim-spoluprace` · 30 dní · „Co si za to beru"
+
+```html
+<p>{{formalGreeting}}</p>
+
+<p>Měsíc vám sem chodí věci, které vám mají pomoct koupit byt samostatně.
+Byly zdarma a myslel jsem to vážně — kdo si to postaví sám, má u mě palec
+nahoru.</p>
+
+<p>Tenhle e-mail je jediný, ve kterém něco nabízím, ať víte, na čem jste.</p>
+
+<p><strong>Co dělám:</strong> hledám byty podle zadání, i mimo inzerci.
+Prověřím katastr, fond oprav a zápisy ze schůzí dřív, než se jede na
+prohlídku. Ohlídám rezervační i kupní smlouvu. Napojím vás na hypotečního
+specialistu a po koupi seženu nájemníka.</p>
+
+<p><strong>Co si za to beru:</strong> provizi od prodávající strany
+u nabídek, které mám. U bytu, který najdete jinde a chcete jen provést,
+se domluvíme dopředu na pevné částce — dozvíte se ji dřív, než cokoli
+podepíšete, a nikdy z toho nebude překvapení.</p>
+
+<p><strong>Co za to nechci:</strong> exkluzivitu, zálohu ani podpis na
+začátku. Když spolupráce nesedne, rozejdeme se a nic neplatíte.</p>
+
+<p>Jsem realitní makléř a na zprostředkování vydělávám. Právě proto vám
+u každého bytu píšu i to, co bych na něm nekupoval — makléř, kterému věříte
+jen to hezké, vám k ničemu není.</p>
+
+<p>Kdyby to bylo aktuální, stačí odpovědět na tenhle e-mail.</p>
+
+<p>{{agentName}}</p>
+```
+
+### 5 — `sim-konec` · 45 dní · „Poslední e-mail ode mě"
+
+```html
+<p>{{formalGreeting}}</p>
+
+<p>Tohle je poslední e-mail z téhle série. Dál už vám odsud nic chodit
+nebude — nemám ve zvyku psát podle kalendáře.</p>
+
+<p>Jestli jste mezitím koupil, gratuluju a zajímalo by mě, jak to dopadlo.
+Jestli ne, taky dobře; není to závod a špatný byt koupený rychle je dražší
+než dobrý byt koupený za rok.</p>
+
+<p>Kdyby cokoli — konkrétní byt k posouzení, smlouva k přečtení, nebo jen
+otázka, na kterou nikde nenajdete odpověď — napište nebo zavolejte.
+Odpovídám osobně a neúčtuju si za to.</p>
+
+<p>{{agentName}}</p>
+```
+
+---
+
+## Nastavení v adminu
+
+1. **Komunikace** → tři nové šablony (`sim-chyba`, `sim-spoluprace`, `sim-konec`).
+2. **Nastavení → Sekvence** → nová sekvence, spouštěč *lead_created*,
+   podmínka `{"metadata.kampan": "milionarem-simulator"}`.
+3. Kroky podle tabulky výše; kroky 2 a 3 ukazují na existující šablony.
+4. Test na sebe, teprve pak zapnout.
+
+**Notifikace na telefon.** U téhle kampaně ji zapněte — skóre je v textu
+leadu a rozhoduje, komu se volá dnes. Bez ní je celá kvalifikace k ničemu.

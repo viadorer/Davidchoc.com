@@ -158,6 +158,16 @@
   ],
   "redirects": [
     {
+      "source": "/milionarem",
+      "destination": "/milionar",
+      "permanent": true
+    },
+    {
+      "source": "/milionarem/simulator",
+      "destination": "/milionar",
+      "permanent": true
+    },
+    {
       "source": "/blog/posts/:slug.html",
       "destination": "/blog/posts/:slug",
       "permanent": true

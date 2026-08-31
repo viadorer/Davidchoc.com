@@ -78,7 +78,7 @@ const MILIONAREM_PRUVODCE = {
 <p style="${P}">Dobrý den,</p>
 <p style="${P}">díky. Výcvik se píše a <strong style="color:#1a1a1a;">dám vám vědět, jakmile bude první cihla venku</strong>. Do té doby vám odsud nic jiného nepřijde — žádný newsletter, žádné upomínky.</p>
 <p style="${P}">Než se ozvu, udělejte jednu věc. Zabere dvě minuty a je to jediné číslo, které potřebujete, než začnete cokoli počítat:</p>
-${tlacitko('https://www.davidchoc.cz/milionarem/simulator', 'Spočítat si to na svých číslech', 'zelena')}
+${tlacitko('https://www.davidchoc.cz/milionar', 'Spočítat si to na svých číslech', 'zelena')}
 <p style="${P}margin-top:22px;">Uvidíte, co s vaším majetkem udělá jeden byt za dvacet let — a hlavně kdy se přestane živit z vaší výplaty a začne se živit sám.</p>
 <p style="${P}">Kdyby cokoli, napište. Odpovídám osobně.</p>
 <p style="${P}">David Choc</p>
@@ -91,7 +91,7 @@ const MILIONAREM_LIST = {
 <p style="${P}">Dobrý den,</p>
 <p style="${P}">díky za zájem. Tištěná verze se dokončuje a pošlu vám ji, jakmile bude hotová.</p>
 <p style="${P}">Nemusíte na ni ale čekat — <strong style="color:#1a1a1a;">totéž si můžete vyplnit rovnou online</strong>, spočítá se to samo a uloží se vám to v prohlížeči:</p>
-${tlacitko('https://www.davidchoc.cz/milionarem/simulator', 'Otevřít nástroj', 'zelena')}
+${tlacitko('https://www.davidchoc.cz/milionar', 'Otevřít nástroj', 'zelena')}
 <p style="${P}margin-top:22px;">David Choc</p>
 `),
 };
@@ -102,10 +102,46 @@ const MILIONAREM_SERVIS = {
 <p style="${P}">Dobrý den,</p>
 <p style="${P}">zpráva dorazila. <strong style="color:#1a1a1a;">Ozvu se vám do 24 hodin</strong> — osobně, ne šablonou.</p>
 <p style="${P}">Než se ozvu, hodí se, když budete mít spočítaná svoje čísla. Mluví se pak úplně jinak:</p>
-${tlacitko('https://www.davidchoc.cz/milionarem/simulator', 'Spustit simulátor', 'zelena')}
+${tlacitko('https://www.davidchoc.cz/milionar', 'Spustit simulátor', 'zelena')}
 <p style="${P}margin-top:22px;">David Choc</p>
 `),
 };
+
+// ── SIMULÁTOR ─────────────────────────────────────────────────────────
+// Tohle je jediná konverze celé sekce, a proto jediná, kde se posílá
+// vlastní e-mail podle toho, co jsme na stránce slíbili. Kdo řeší koupi
+// do tří měsíců a má financování, dostal nabídku konkrétních bytů — ten
+// slib musí být v potvrzení doslova, jinak jsme první větou po odeslání
+// zbourali všechno, co stránka nad tím poctivě postavila.
+//
+// POZN.: až bude výcvik v PDF přepracovaný do vyplnitelné podoby (mapa
+// cihel, kontrolní otázky k bytu, pět vět ze smlouvy), patří sem odkaz
+// na něj jako první zásilka. Dokud v PDF ty části nejsou, neslibuje se.
+const MILIONAREM_SIM_BYTY = {
+  subject: 'Vaše zadání mám — byty pošlu do dvou pracovních dnů',
+  html: () => obal('Mám vaše zadání', `
+<p style="${P}">Dobrý den,</p>
+<p style="${P}">čísla ze simulátoru mi dorazila. <strong style="color:#1a1a1a;">Do dvou pracovních dnů vám pošlu tři konkrétní byty</strong>, které tomu zadání odpovídají — a u každého napíšu i to, co se mi na něm nelíbí. Kdyby žádný takový zrovna nebyl, napíšu vám i to; vymýšlet si nebudu.</p>
+<p style="${P}">Abych to nemusel odhadovat: <strong style="color:#1a1a1a;">stačí odpovědět na tenhle e-mail</strong> a připsat, jestli jde o první investiční byt, nebo další v pořadí. Mění to, co má smysl vám posílat.</p>
+<p style="${P}">A rovnou na férovku: jsem realitní makléř, byty prodávám a na zprostředkování vydělávám. Proto vám u každého napíšu i to, co bych na něm nekupoval — je to jediný způsob, jak vám k něčemu budu.</p>
+<p style="${P}margin-top:22px;">David Choc</p>
+`),
+};
+
+const MILIONAREM_SIM_CISLA = {
+  subject: 'Vaše zadání mám',
+  html: () => obal('Mám vaše zadání', `
+<p style="${P}">Dobrý den,</p>
+<p style="${P}">čísla ze simulátoru mi dorazila. <strong style="color:#1a1a1a;">Do dvou pracovních dnů se na ně podívám a napíšu vám, co bych na tom zadání změnil</strong> dřív, než začnete hledat konkrétní byt. Bez závazku — když si to pak postavíte celé sami, mám z toho stejně dobrý pocit.</p>
+<p style="${P}">Nejčastěji se mění dvě věci: lokalita a poměr vlastních zdrojů. Obojí umí s výsledkem udělat víc než cena bytu, o které se přitom smlouvá nejvíc.</p>
+<p style="${P}">Mezitím si klidně pohrajte s posuvníky — uložené to máte v prohlížeči:</p>
+${tlacitko('https://www.davidchoc.cz/milionar', 'Zpět do simulátoru', 'zelena')}
+<p style="${P}margin-top:22px;">David Choc</p>
+`),
+};
+
+POTVRZENI['milionarem-simulator-byty'] = MILIONAREM_SIM_BYTY;
+POTVRZENI['milionarem-simulator-cisla'] = MILIONAREM_SIM_CISLA;
 
 POTVRZENI['milionarem-mapa'] = MILIONAREM_PRUVODCE;
 POTVRZENI['milionarem-strop'] = MILIONAREM_PRUVODCE;

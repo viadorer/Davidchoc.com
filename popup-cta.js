@@ -16,7 +16,8 @@
     '/osobni-udaje',
     '/cookies-policy',
     '/vycvik',
-    '/milionarem',
+    // Pokrývá i /milionarem/* — porovnává se přes includes().
+    '/milionar',
   ];
 
   const path = window.location.pathname.toLowerCase();

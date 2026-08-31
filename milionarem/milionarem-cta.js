@@ -17,7 +17,10 @@
       action: { label: 'Napsat', href: 'mailto:david.choc@ptf.cz' },
       phone: { label: '774 052 232', href: 'tel:+420774052232' },
       // Úvod je manifest. Do manifestu se nabídka nevkládá.
-      skip: ['/milionarem', '/milionarem/', '/milionarem/index.html']
+      // Na landingu i v manifestu už jedna nabídka je. Druhá vedle ní
+      // znamená, že si čtenář nevybere ani jednu.
+      skip: ['/milionar', '/milionar/', '/milionar/index.html',
+             '/milionarem', '/milionarem/', '/milionarem/index.html']
     }
   };
 
@@ -196,6 +199,227 @@
         '<h3>Platí.</h3>' +
         '<p>Jakmile bude druhá cihla venku, přijde vám e-mail. Nic jiného od nás nedostanete.</p>'
     });
+
+    /* ─────────────────────────────────────────────
+       KONVERZE U VÝSLEDKU SIMULÁTORU
+
+       Jediné místo na webu, kde návštěvník sám od sebe říká, co chce
+       koupit a za kolik. Zadání z posuvníků je hotový investiční profil —
+       stačí k němu dvě otázky, které rozhodnou, komu se volá dnes.
+
+       Nejde přes HubCTA.initGate, protože slib i typ leadu se mění podle
+       těch dvou odpovědí; brána z kitu má obojí pevné. Odesílá se ale
+       stejným HubCTA.sendLead, takže atribuce i CRM zůstávají společné.
+       ───────────────────────────────────────────── */
+    (function () {
+      var box = document.getElementById('nabidka');
+      if (!box) return;
+
+      var form = document.getElementById('milionarem-simulator-form');
+      var kdyEl = document.getElementById('q-kdy');
+      var finEl = document.getElementById('q-fin');
+      var slibEl = box.querySelector('.js-slib');
+      if (!form || !kdyEl || !finEl || !slibEl) return;
+
+      var KDY = { do3m: 'do tří měsíců', doroka: 'do roka', rozhlizim: 'zatím se rozhlíží' };
+      var FIN = { mam: 'má vyřízené', resim: 'právě řeší', zatim: 'zatím nic' };
+      var SKORE_NAZEV = { horky: 'HORKÝ', vlazny: 'VLAŽNÝ', studeny: 'STUDENÝ' };
+
+      // Konkrétní byty slibujeme jen tomu, komu je opravdu pošleme:
+      // kdo kupuje do tří měsíců a financování má nebo řeší. Ostatním
+      // slíbíme posouzení jejich zadání — je to míň, ale unese se to.
+      function jeHorky() {
+        return kdyEl.value === 'do3m' && (finEl.value === 'mam' || finEl.value === 'resim');
+      }
+
+      function skore() {
+        if (jeHorky()) return 'horky';
+        if (kdyEl.value === 'do3m' ||
+            (kdyEl.value === 'doroka' && finEl.value !== 'zatim')) return 'vlazny';
+        return 'studeny';
+      }
+
+      var SLIB_BYTY =
+        '<strong>Vyberu tři konkrétní byty</strong>, které tomuhle zadání odpovídají, a u ' +
+        'každého napíšu i to, co se mi na něm nelíbí. Do dvou pracovních dnů. Kdyby žádný ' +
+        'takový zrovna nebyl, napíšu vám i to.';
+      var SLIB_CISLA =
+        '<strong>Projdu vaše zadání a napíšu vám, co bych na něm změnil</strong> dřív, než ' +
+        'začnete hledat konkrétní byt. Do dvou pracovních dnů, bez závazku.';
+      var SLIB_PRAZDNY =
+        'Vyberte obě odpovědi — podle nich poznám, co vám bude užitečnější poslat.';
+
+      function prekreslitSlib() {
+        if (!kdyEl.value || !finEl.value) {
+          slibEl.innerHTML = SLIB_PRAZDNY;
+          return;
+        }
+        slibEl.innerHTML = jeHorky() ? SLIB_BYTY : SLIB_CISLA;
+      }
+
+      kdyEl.addEventListener('change', prekreslitSlib);
+      finEl.addEventListener('change', prekreslitSlib);
+      prekreslitSlib();
+
+      function zprava(sim, s) {
+        var r = [];
+        r.push('Zadání ze simulátoru — ' + sim.mesto + ', byt za ' +
+               sim.cena.toLocaleString('cs-CZ') + ' Kč.');
+        r.push('Vlastní zdroje ' + sim.vlastniPct + ' % (' +
+               sim.vlastni.toLocaleString('cs-CZ') + ' Kč), LTV ' + sim.ucelLtv +
+               ' %, sazba ' + sim.sazba + ' %, splatnost ' + sim.splatnost + ' let.');
+        if (sim.dofinancovani > 0) {
+          r.push('Potřebuje dofinancovat ' + sim.dofinancovani.toLocaleString('cs-CZ') + ' Kč.');
+        }
+        r.push('Nájem po srážce ' + sim.najem.toLocaleString('cs-CZ') + ' Kč, splátka ' +
+               sim.splatka.toLocaleString('cs-CZ') + ' Kč, cashflow ' +
+               sim.cashflow.toLocaleString('cs-CZ') + ' Kč měsíčně.');
+        r.push('Čistý majetek za ' + sim.horizont + ' let: ' +
+               sim.majetek.toLocaleString('cs-CZ') + ' Kč.' +
+               (sim.sobestacnost !== null
+                 ? ' Byt se uživí sám v ' + sim.sobestacnost + '. roce.'
+                 : ' Do konce horizontu se sám neuživí.'));
+        r.push('');
+        r.push('Koupě: ' + (KDY[kdyEl.value] || '—') +
+               '. Financování: ' + (FIN[finEl.value] || '—') + '.');
+        r.push('SKÓRE: ' + (SKORE_NAZEV[s] || s) +
+               (s === 'horky' ? ' — slíbeny tři konkrétní byty, volat dnes.'
+                              : ' — slíbeno posouzení zadání.'));
+        return r.join('\n');
+      }
+
+      var msg = form.querySelector('.vy-gate__msg');
+      var btn = form.querySelector('button[type="submit"]');
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var emailEl = form.querySelector('input[type="email"]');
+        var jmenoEl = form.querySelector('input[name="name"]');
+        var consent = form.querySelector('input[type="checkbox"]');
+        var email = emailEl.value.trim();
+        var jmeno = jmenoEl ? jmenoEl.value.trim() : '';
+
+        if (!jmeno) {
+          return HubCTA.showMsg(msg, 'Napište mi prosím jméno, ať vím, komu píšu.', 'error', jmenoEl);
+        }
+        if (!kdyEl.value) {
+          return HubCTA.showMsg(msg, 'Vyberte prosím, kdy to chcete řešit.', 'error', kdyEl);
+        }
+        if (!finEl.value) {
+          return HubCTA.showMsg(msg, 'Vyberte prosím, jak jste na tom s financováním.', 'error', finEl);
+        }
+        if (!HubCTA.isEmail(email)) {
+          return HubCTA.showMsg(msg, 'Zadejte prosím platnou e-mailovou adresu.', 'error', emailEl);
+        }
+        if (consent && !consent.checked) {
+          return HubCTA.showMsg(msg, 'Pro odeslání potřebuji souhlas se zpracováním údajů.', 'error', consent);
+        }
+
+        var sim = window.MilionaremSim;
+        if (!sim) {
+          return HubCTA.showMsg(msg, 'Posuňte prosím nejdřív posuvníky — bez zadání nemám co posílat.');
+        }
+
+        var s = skore();
+        var horky = s === 'horky';
+        var puvodni = btn ? btn.textContent : '';
+        if (btn) { btn.disabled = true; btn.textContent = 'Odesílám…'; }
+
+        HubCTA.sendLead({
+          form: horky ? 'milionarem-simulator-byty' : 'milionarem-simulator-cisla',
+          name: jmeno,
+          email: email,
+          message: zprava(sim, s),
+          meta: {
+            skore: s,
+            kdy: kdyEl.value,
+            financovani: finEl.value,
+            mesto: sim.mesto,
+            cena: sim.cena,
+            vlastni_pct: sim.vlastniPct,
+            vlastni_kc: sim.vlastni,
+            ltv: sim.ucelLtv,
+            sazba: sim.sazba,
+            splatnost: sim.splatnost,
+            horizont: sim.horizont,
+            najem: sim.najem,
+            splatka: sim.splatka,
+            cashflow: sim.cashflow,
+            dofinancovani: sim.dofinancovani,
+            majetek: sim.majetek,
+            cena_odkladu: sim.cenaOdkladu,
+            segment: 'investor'
+          }
+        }).then(function () {
+          box.innerHTML =
+            '<div class="vy-gate__done">' + HOTOVO +
+              '<h3>Mám vaše zadání.</h3>' +
+              (horky
+                ? '<p>Do dvou pracovních dnů vám pošlu tři konkrétní byty, které mu odpovídají — ' +
+                  'a u každého i to, co se mi na něm nelíbí. Potvrzení máte v e-mailu; ' +
+                  'kdyby nedorazilo, mrkněte do hromadné pošty.</p>'
+                : '<p>Do dvou pracovních dnů se na něj podívám a napíšu vám, co bych na něm ' +
+                  'změnil. Potvrzení máte v e-mailu; kdyby nedorazilo, mrkněte do hromadné pošty.</p>') +
+              '<p>Než se ozvu, hodí se první cihla — je celá jen o přemýšlení a nepotřebujete ' +
+              'k ní ani korunu. <a href="/milionarem/cihla-1-plan">Otevřít první cihlu</a></p>' +
+            '</div>';
+
+          HubCTA.track('milionarem_simulator_lead', {
+            event_category: 'lead',
+            event_label: s,
+            skore: s,
+            mesto: sim.mesto,
+            cena: sim.cena
+          });
+          if (window.fbq) window.fbq('track', 'Lead', { content_name: 'milionarem-simulator' });
+        }).catch(function () {
+          if (btn) { btn.disabled = false; btn.textContent = puvodni; }
+          HubCTA.showMsg(msg, 'Něco se nepodařilo odeslat. Zkuste to prosím znovu, nebo mi ' +
+                              'napište na david.choc@ptf.cz.');
+        });
+      });
+
+      /* MĚŘENÍ — čtyři čísla, nic víc.
+         1) dojde vůbec někdo k nabídce, 2) sáhne na posuvníky,
+         3) odešle zadání (výš), 4) odejde do cihly. Zbytek se pozná
+         až v CRM: kolik zadání skončilo hovorem a kolik zakázkou. */
+      if (window.IntersectionObserver) {
+        var videno = false;
+        var io = new IntersectionObserver(function (zaznamy) {
+          zaznamy.forEach(function (z) {
+            if (z.isIntersecting && !videno) {
+              videno = true;
+              HubCTA.track('milionarem_nabidka_videna', { event_category: 'engagement' });
+              io.disconnect();
+            }
+          });
+        }, { threshold: 0.4 });
+        io.observe(box);
+      }
+    })();
+
+    var simBox = document.getElementById('simulator');
+    if (simBox) {
+      var sahnuto = false;
+      simBox.addEventListener('input', function () {
+        if (sahnuto) return;
+        sahnuto = true;
+        HubCTA.track('milionarem_simulator_start', { event_category: 'engagement' });
+      });
+    }
+
+    var cihlyBox = document.querySelector('.hub-bricks');
+    if (cihlyBox) {
+      cihlyBox.addEventListener('click', function (e) {
+        var a = e.target.closest ? e.target.closest('.hub-brick') : null;
+        if (!a) return;
+        HubCTA.track('milionarem_cihla_klik', {
+          event_category: 'engagement',
+          event_label: a.getAttribute('href') || ''
+        });
+      });
+    }
 
     HubCTA.initGateById('milionarem-pdf-form', {
       fields: { name: true },
