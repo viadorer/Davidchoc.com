@@ -6,11 +6,20 @@ Spouští se odesláním brány pod výsledkem dotazníku na
 
 ## Proč je dlouhá
 
-Prodávající je před nasazením nemovitosti na trh průměrně šest až
-osmnáct měsíců ve fázi zvažování a **77 % z nich osloví před podpisem
-jen jednoho makléře**. Tahle sekvence nemá za úkol nikoho přesvědčit.
-Má jediný úkol: být tím jedním, na koho si za rok vzpomenou. Proto se
-neměří konverzí na schůzku, ale tím, kolik lidí v ní po roce ještě je.
+Rozhodnutí prodat nemovitost zraje měsíce až roky a většina lidí osloví
+před podpisem jen málo makléřů — často jediného. Sekvence proto nemá za
+úkol nikoho přesvědčit. Má jediný úkol: být tím jedním, na koho si
+vzpomenou, až to dozraje. Neměří se konverzí na schůzku, ale tím, kolik
+lidí v ní po roce ještě je.
+
+> **Pozor na čísla.** Konkrétní údaje typu „prodávající se rozhoduje
+> 12–18 měsíců" nebo „77 % osloví jen jednoho makléře" kolují po
+> marketingových blozích bez dohledatelného primárního zdroje. Mechanismus
+> platí, čísla neověřuj a hlavně je **nedávej do textů na webu** — první
+> čtenář, který si je ověří, s nimi shodí důvěryhodnost všeho ostatního.
+> Doložitelné je z NAR 2025 tohle: medián držení nemovitosti 11 let,
+> 66 % prodávajících přichází přes doporučení, u 35 % rozhodla pověst.
+> I to jsou ale americká data a pro ČR jen proxy.
 
 ## Jak je to zapojené
 
