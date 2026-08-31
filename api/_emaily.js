@@ -46,13 +46,17 @@ ${tlacitko('https://www.davidchoc.cz/vycvik/diagnostika', 'Otevřít diagnostick
 `),
   },
 
+  // Původní znění slibovalo PDF, které se nikdy neposílalo. Kniha zůstává
+  // online a zdarma — tenhle e-mail tedy neslibuje přílohu, ale říká, kudy
+  // do ní vstoupit, aby si ji člověk nemusel číst celou popořadě.
   'vycvik-pdf': {
-    subject: 'Kniha Výcvik ziskového prodeje',
-    html: () => obal('Kniha je na cestě', `
+    subject: 'Kniha Výcvik ziskového prodeje — kudy do ní',
+    html: () => obal('Kniha je celá venku', `
 <p style="${P}">Dobrý den,</p>
-<p style="${P}">díky za zájem. Celou knihu si můžete číst online — bez registrace a bez čekání.</p>
-${tlacitko('https://www.davidchoc.cz/vycvik/uvod', 'Začít číst')}
-<p style="${P}margin-top:22px;">Kdyby cokoli, napište. Odpovídám osobně.</p>
+<p style="${P}">kniha je celá online, zdarma a bez registrace — nic vám nechodí v příloze a nic nemusíte stahovat. Zůstane tam i za dva roky.</p>
+<p style="${P}">Číst popořadě je nejpoctivější, ale nejpomalejší způsob. <strong style="color:#1a1a1a;">Rychlejší je začít dotazníkem</strong> — osm otázek, dvě minuty — a nechat si říct, které kapitoly se týkají zrovna vás.</p>
+${tlacitko('https://www.davidchoc.cz/vycvik/zvladnete-to-sami', 'Zvládnete to sami? (2 minuty)')}
+<p style="${P}margin-top:22px;">Kdybyste chtěl číst od začátku, <a href="https://www.davidchoc.cz/vycvik/uvod" style="color:#8B7D61;">úvod je tady</a>. A kdyby cokoli, napište — odpovídám osobně.</p>
 <p style="${P}">David Choc</p>
 `),
   },
@@ -161,6 +165,165 @@ POTVRZENI['investovat-financni-strop'] = MILIONAREM_LIST;
 POTVRZENI['investovat-srovnani-lokalit'] = MILIONAREM_LIST;
 POTVRZENI['investovat-proverka'] = MILIONAREM_LIST;
 POTVRZENI['investovat-rezervacni-smlouva'] = MILIONAREM_LIST;
+
+/* ══════════════════════════════════════════════════════════════════════
+   VÝCVIK — vstupní dotazník „Zvládnete to sami?"
+
+   Tohle je jediná brána celé sekce a e-mail za ní musí unést, co brána
+   slíbila: ne odkaz na obsah, který je stejně celý venku zdarma, ale
+   plán postavený z toho, co člověk sám označil za nezvládnuté.
+
+   Pořadí kroků v plánu není libovolné — je to pořadí prodeje. Kdo
+   nemá cenu, nemá co fotit; kdo nemá fotky, nemá co inzerovat. Proto
+   se kroky řadí podle čísla otázky a ne podle závažnosti.
+   ══════════════════════════════════════════════════════════════════════ */
+
+// Ke každé otázce dotazníku patří jeden konkrétní úkol a kapitola, kde
+// je rozepsaný. Klíč je číslo otázky, ne kapitoly — otázky 7 a 8 vedou
+// do stejné kapitoly, ale každá znamená jinou práci.
+const ZKOUSKA_KROKY = {
+  1: {
+    kapitola: 'Kapitola 1 — Cena',
+    url: 'https://www.davidchoc.cz/vycvik/kapitola-1-cena',
+    ukol: 'Sežeňte tři nezávislé zdroje a napište si tři částky: optimistickou, realistickou a nejnižší přijatelnou. Dokud je nemáte na papíře, nikam nevolejte — první číslo, které vyslovíte, se pak už jen snižuje.',
+  },
+  2: {
+    kapitola: 'Kapitola 2 — Příprava nemovitosti',
+    url: 'https://www.davidchoc.cz/vycvik/kapitola-2-priprava',
+    ukol: 'Nechte nemovitost projít někým zvenčí, kdo vám neřekne jen to hezké. Vy ji vidíte deset let a přestal jste vidět, co vidí kupující za prvních deset vteřin.',
+  },
+  3: {
+    kapitola: 'Kapitola 3 — Fotografie',
+    url: 'https://www.davidchoc.cz/vycvik/kapitola-3-fotografie',
+    ukol: 'Osm dobrých fotek, půdorys a virtuální prohlídka. O tom, jestli si vás někdo vůbec otevře, rozhoduje jediný náhled mezi dvaceti jinými.',
+  },
+  4: {
+    kapitola: 'Kapitola 4 — Inzerát',
+    url: 'https://www.davidchoc.cz/vycvik/kapitola-4-inzerat',
+    ukol: 'Doplňte konkrétní čísla, měsíční náklady, energetickou třídu — a jednu přiznanou nevýhodu. Ta přiznaná nevýhoda vám udělá víc než tři superlativy, protože zbytku textu dá důvěryhodnost.',
+  },
+  5: {
+    kapitola: 'Kapitola 5 — Inzerce a kanály',
+    url: 'https://www.davidchoc.cz/vycvik/kapitola-5-inzerce',
+    ukol: 'Víc než jeden kanál, cedule přímo na nemovitosti a poznámka u každého zájemce, odkud přišel. Bez toho posledního po měsíci nevíte, co vypnout a do čeho přidat.',
+  },
+  6: {
+    kapitola: 'Kapitola 6 — Telefonáty a prohlídky',
+    url: 'https://www.davidchoc.cz/vycvik/kapitola-6-prohlidky',
+    ukol: 'Kvalifikujte každého volajícího — hlavně jestli musí nejdřív sám něco prodat. A na prohlídku nechoďte sám, nikdy.',
+  },
+  7: {
+    kapitola: 'Kapitola 7 — Smlouvy a úschova',
+    url: 'https://www.davidchoc.cz/vycvik/kapitola-7-smlouvy',
+    ukol: 'Vyberte advokáta nebo notáře a trvejte na úschově kupní ceny. Tohle je jediné místo v celém prodeji, kde se chybou nepřichází o peníze, ale o peníze i o nemovitost zároveň.',
+  },
+  8: {
+    kapitola: 'Kapitola 7 — Smlouvy a úschova',
+    url: 'https://www.davidchoc.cz/vycvik/kapitola-7-smlouvy',
+    ukol: 'Vyřešte vlastní hypotéku, sepište konkrétní vady do kupní smlouvy a zjistěte, jak to u vás bude s daní z příjmu. Všechny tři věci se řeší předem — po podpisu už se neřeší, jen platí.',
+  },
+};
+
+// Verdikt musí být stejný jako na stránce. Kdyby se lišil, první, co
+// člověk po odeslání formuláře zjistí, je že mu web říká něco jiného
+// než e-mail — a to je konec důvěry v cokoli dalšího.
+function zkouskaVerdikt(skore) {
+  if (skore >= 8) return {
+    titul: 'Prošel jste.',
+    text: 'Máte to srovnané líp než většina lidí, kteří prodávají sami, a upřímně líp než část makléřů. Jděte do toho. Držte se svých tří čísel a nenechte si ujet sedmou kapitolu.',
+  };
+  if (skore >= 6) return {
+    titul: 'Chybí vám kus.',
+    text: 'Nic dramatického. Ale to, co chybí, doplňte dřív, než uděláte další krok — ne až se to připomene samo. Je to práce na jedno odpoledne.',
+  };
+  if (skore >= 4) return {
+    titul: 'Stojíte na hraně.',
+    text: 'Prodat to zvládnete. Otázka je za kolik a s jakými nervy. Většina toho, co vám chybí, se dá dohnat za týden — pokud víte, v jakém pořadí. Proto je ten seznam níž seřazený a ne jen vyjmenovaný.',
+  };
+  return {
+    titul: 'Nedělejte to sám.',
+    text: 'Neříkám to proto, abych vám nabídl služby. Říkám to proto, že přesně v tomhle stavu se nemovitosti prodávají pod cenou a podepisují smlouvy, které se pak předělávají. Není to o tom, že to nezvládnete — je to o tom, že takhle připravený to nezvládne nikdo.',
+  };
+}
+
+function zkouskaSeznam(idcka) {
+  if (!idcka.length) return '';
+  const polozky = idcka.map((id, i) => {
+    const krok = ZKOUSKA_KROKY[id];
+    if (!krok) return '';
+    return `<tr><td style="padding:0 0 20px;">
+<p style="margin:0 0 4px;font-size:13px;font-weight:700;color:#8B7D61;letter-spacing:.04em;">${i + 1}. KROK</p>
+<p style="margin:0 0 6px;font-size:15px;line-height:1.6;color:#444;">${krok.ukol}</p>
+<p style="margin:0;font-size:13px;"><a href="${krok.url}" style="color:#8B7D61;">${krok.kapitola} &rarr;</a></p>
+</td></tr>`;
+  }).join('');
+
+  return `<p style="${P}margin-top:26px;"><strong style="color:#1a1a1a;">Co doplnit, a v tomhle pořadí:</strong></p>
+<table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin:14px 0 0;">${polozky}</table>
+<p style="margin:6px 0 0;font-size:13px;line-height:1.6;color:#8a8378;">Pořadí není podle závažnosti, ale podle prodeje. Kdo nemá cenu, nemá co fotit — a kdo nemá fotky, nemá co inzerovat.</p>`;
+}
+
+function zkouskaRizika(rizika) {
+  if (!rizika) return '';
+  return `<table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin:26px 0 0;">
+<tr><td style="background:#fdf6e8;border-left:3px solid #FFBF00;padding:16px 18px;">
+<p style="margin:0 0 8px;font-size:14px;font-weight:700;color:#1a1a1a;">Tohle platí bez ohledu na skóre</p>
+<p style="margin:0 0 8px;font-size:14px;line-height:1.65;color:#444;">Označil jste: ${rizika}.</p>
+<p style="margin:0;font-size:14px;line-height:1.65;color:#444;">V takové situaci se poraďte s odborníkem, i kdybyste měl osm z osmi. Každá z těch situací umí prodej zastavit uprostřed — typicky ve chvíli, kdy už máte kupce a sám jste podepsal koupi něčeho jiného.</p>
+</td></tr></table>`;
+}
+
+const VYCVIK_ZKOUSKA = {
+  subject: (d) => `Váš výsledek: ${Number(d && d.score) || 0} z 8`,
+  html: (d) => {
+    const skore = Number(d && d.score) || 0;
+    const idcka = String((d && d.missing_ids) || '')
+      .split(',')
+      .map(s => parseInt(s, 10))
+      .filter(n => n >= 1 && n <= 8)
+      .sort((a, b) => a - b);
+    const rizika = String((d && d.risks) || '').trim();
+    const v = zkouskaVerdikt(skore);
+
+    // Další krok se liší podle toho, kolik toho chybí. U plného skóre by
+    // nabídka schůzky byla akvizice převlečená za radu; u nízkého by bylo
+    // neupřímné poslat člověka zpátky číst a nic víc neříct.
+    let dalsi;
+    if (skore >= 6) {
+      dalsi = `<p style="${P}margin-top:26px;">Nabídku spolupráce vám tady dávat nebudu — na to jste na ni odpověděl moc dobře. Všechny nástroje z knihy vám zůstávají otevřené, i kdybyste se k nim vrátil za dva roky.</p>
+${tlacitko('https://www.davidchoc.cz/vycvik/vybava', 'Vaše výbava')}`;
+    } else if (skore >= 4) {
+      dalsi = `<p style="${P}margin-top:26px;">Když si nad tím budete chtít sednout s někým, kdo tím prošel párkrát: dvacet minut, nezávazně, a nikdo vám pak nebude volat. Klidně jen proto, abyste si potvrdil, že to děláte správně.</p>
+${tlacitko('https://www.davidchoc.cz/pripad-pro-agenta', 'Nezávazná konzultace')}`;
+    } else {
+      dalsi = `<p style="${P}margin-top:26px;">Nabídnu vám dvě věci a obě myslím vážně. Buď si projděte kroky výš a pak si dotazník dejte znovu — je zdarma a nikdo vám ho nepočítá. Nebo mi napište, v čem jste, a řekneme si to za dvacet minut. <strong style="color:#1a1a1a;">Když z toho vyjde, že si to máte udělat sám, řeknu vám to</strong> — přijdu o zakázku a získám člověka, který o mně bude mluvit dobře. Ta druhá věc vydrží déle.</p>
+${tlacitko('https://www.davidchoc.cz/pripad-pro-agenta', 'Napsat, v čem jsem')}`;
+    }
+
+    return obal(`Váš výsledek: ${skore} z 8`, `
+<p style="${P}">Dobrý den,</p>
+<table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 20px;">
+<tr><td style="background:#1a1a1a;padding:14px 22px;border-radius:6px;">
+<span style="font-size:30px;font-weight:800;color:#FFBF00;line-height:1;">${skore}</span>
+<span style="font-size:15px;color:#c9c2b4;"> &nbsp;z 8</span>
+</td></tr></table>
+<p style="margin:0 0 12px;font-size:18px;font-weight:800;color:#1a1a1a;">${v.titul}</p>
+<p style="${P}">${v.text}</p>
+${zkouskaSeznam(idcka)}
+${zkouskaRizika(rizika)}
+${dalsi}
+<p style="margin:26px 0 0;font-size:13px;line-height:1.6;color:#8a8378;">Celá kniha zůstává online a zdarma, bez registrace — tenhle e-mail je jen váš plán, ne vstupenka. Kdykoli si dotazník dáte znovu, dostanete nový.</p>
+<p style="${P}margin-top:22px;">David Choc</p>
+`);
+  },
+};
+
+POTVRZENI['vycvik-zkouska'] = VYCVIK_ZKOUSKA;
+
+// Posouzení inzerátu z knihy je stejná služba jako na samostatné stránce,
+// takže i stejný slib. Kdyby tenhle klíč zůstal bez šablony, člověk se
+// zaseknutou nabídkou — nejteplejší lead celé sekce — nedostane nic.
+POTVRZENI['vycvik-posudek'] = POTVRZENI['posudek-inzeratu'];
 
 export function potvrzeniPro(formular) {
   return POTVRZENI[formular] || null;

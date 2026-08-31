@@ -3005,6 +3005,24 @@ address {
         height: 45px;
         font-size: 1rem;
     }
+
+    /* Na úzké obrazovce leží ikony přímo přes text úvodního odstavce —
+       tři kolečka o 45 px zabírají třetinu šířky řádku. Než návštěvník
+       začne rolovat, nemá je proč potřebovat: telefon i e-mail jsou
+       v hlavičce. Objeví se stejně jako tlačítko zpět nahoru, tedy až
+       po první obrazovce. */
+    .floating-buttons {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(12px);
+        transition: opacity .25s, visibility .25s, transform .25s;
+    }
+
+    body.is-scrolled .floating-buttons {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+    }
 }
 
 /* ============================================

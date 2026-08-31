@@ -32,7 +32,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // z vyhledávače nebo z reklamy, nemá jak zjistit, kam se dostal, ani
     // jak se dostat na zbytek webu. Dostane proto tenkou lištu jen s logem
     // a jedním odkazem — uvnitř kapitol zůstává čisto.
-    const jeRozcestnik = /^\/(milionar|milionarem|vycvik)\/?$/.test(cesta);
+    //
+    // Dotazník „Zvládnete to sami?" je vstup do výcviku úplně stejně jako
+    // rozcestník — míří na něj reklama i hlavní výzva z hubu — takže lištu
+    // potřebuje ze stejného důvodu.
+    const jeRozcestnik = /^\/(milionar|milionarem|vycvik)\/?$/.test(cesta)
+        || /^\/vycvik\/zvladnete-to-sami\/?$/.test(cesta);
     if (bezOkoli && jeRozcestnik) {
         const misto = document.getElementById('navbar-placeholder');
         if (misto) {
@@ -280,6 +285,9 @@ function initFooterFunctionality() {
             } else {
                 backToTopButton.classList.remove('visible');
             }
+            // Stejným prahem se na mobilu odkrývají kontaktní ikony —
+            // do té doby by ležely přes text úvodního odstavce.
+            document.body.classList.toggle('is-scrolled', window.pageYOffset > 300);
         });
         
         // Scroll nahoru po kliknutí

@@ -214,6 +214,9 @@ function seznamyPro(formular) {
     'posudek-inzeratu': process.env.BREVO_LIST_POSUDEK,
     'vycvik-pdf': process.env.BREVO_LIST_KNIHA,
     'vycvik-zkouska': process.env.BREVO_LIST_KNIHA,
+    // Zaseknutý samoprodejce patří do stejné sekvence jako ze samostatné
+    // stránky — je to tentýž člověk v téže situaci, jen přišel z knihy.
+    'vycvik-posudek': process.env.BREVO_LIST_POSUDEK,
   };
   const id = Number(mapa[formular]);
   return Number.isFinite(id) && id > 0 ? [id] : undefined;
@@ -281,6 +284,10 @@ async function poslatPotvrzeni({ formular, email, jmeno, metadata, preskocitEmai
       KAMPAN: (FORMULARE[formular] && FORMULARE[formular].kampan) || '',
       SEGMENT: metadata.segment || '',
       INZERAT_URL: metadata.listing_url || '',
+      // Skóre z dotazníku „Zvládnete to sami?". Bez něj by se sekvence
+      // v Brevu nedala větvit — a psát stejně člověku s osmi body jako
+      // tomu se dvěma je horší než nepsat vůbec.
+      SKORE: typeof metadata.score === 'number' ? metadata.score : '',
     },
   });
 
@@ -289,11 +296,18 @@ async function poslatPotvrzeni({ formular, email, jmeno, metadata, preskocitEmai
   const sablona = potvrzeniPro(formular);
   if (!sablona) return;
 
+  // Šablona dostane metadata formuláře — potvrzení, které má vrátit něco
+  // konkrétního (skóre z dotazníku, chybějící kapitoly), si z nich postaví
+  // obsah. Starší šablony argument ignorují.
+  const subject = typeof sablona.subject === 'function'
+    ? sablona.subject(metadata)
+    : sablona.subject;
+
   await odeslatEmail({
     to: email,
     jmeno: [jmeno.first_name, jmeno.last_name].filter(Boolean).join(' '),
-    subject: sablona.subject,
-    htmlContent: sablona.html(),
+    subject,
+    htmlContent: sablona.html(metadata),
   });
 }
 

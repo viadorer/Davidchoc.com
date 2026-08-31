@@ -212,6 +212,9 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             backToTopButton.classList.remove('visible');
         }
+        // Stejným prahem se na mobilu odkrývají kontaktní ikony —
+        // do té doby by ležely přes text úvodního odstavce.
+        document.body.classList.toggle('is-scrolled', window.scrollY > 300);
     });
     
     // Kliknutí na tlačítko zpět nahoru
