@@ -10,17 +10,24 @@
     leadApi: '/api/lead',
 
     // Patička pod kapitolami a nástroji — zavírá slepé uličky.
+    //
+    // Dřív tu stálo „Zaseklo se to? Napište mi" s odkazem na konzultaci.
+    // To je nabídka pro rozhodnutého, ale na konci třetí kapitoly stojí
+    // někdo, kdo se rozhoduje — a ten na „napište mi" neklikne. Míří to
+    // proto na dotazník: je to jediná konverzní událost celé sekce, stojí
+    // dvě minuty a člověku odpoví na otázku, kvůli které sem přišel.
     help: {
       wrapSelector: '.vycvik-chapter__wrap, .vycvik-tool-page__wrap',
-      title: 'Zaseklo se to?',
-      text: 'Napište mi, o co jde. Odpovím do 24 hodin, zdarma a bez závazku — i když to nakonec budete prodávat sami.',
-      action: { label: 'Napsat', href: '/pripad-pro-agenta' },
+      title: 'Týká se tahle kapitola zrovna vás?',
+      text: 'Osm otázek, dvě minuty — a víte, které kapitoly si máte přečíst a které klidně přeskočte. Výsledek se ukáže hned na obrazovce, e-mail po vás nechci.',
+      action: { label: 'Zvládnete to sami?', href: '/vycvik/zvladnete-to-sami' },
       phone: { label: '774 052 232', href: 'tel:+420774052232' },
       // Hub a stránky, kde už silná nabídka je.
       skip: [
         '/vycvik', '/vycvik/', '/vycvik/index.html', '/vycvik/vybava',
         '/vycvik/kolik-to-stoji', '/vycvik/zaver', '/vycvik/zvladnete-to-sami',
-        '/vycvik/posudte-inzerat'
+        '/vycvik/posudte-inzerat', '/vycvik/kapitola-9-zaseklo-se',
+        '/vycvik/krok-za-krokem'
       ]
     }
   };
@@ -75,30 +82,67 @@
     return 'Chcete těch ' + n + ' věcí seřazených do plánu?';
   }
 
-  function buildExamGate(score, missingChapters, risks, missingIds) {
+  /* Brána má tři podoby podle toho, co člověku ve výsledku vyšlo.
+     Jedna univerzální by musela slibovat průnik všeho — a průnik je
+     vždycky slabší než to, co ten konkrétní člověk právě potřebuje. */
+  function textyBrany(chybi, maRizika, score) {
+    if (maRizika) {
+      return {
+        label: 'Vaše situace',
+        h: 'Chcete to probrat, než uděláte další krok?',
+        p: 'Napište mi e-mail a pošlu vám shrnutí toho, co jste označil — co ta situace' +
+           ' u prodeje typicky znamená, co se ošetřuje předem a v jakém pořadí.' +
+           (chybi ? ' K tomu i zbytek vašeho plánu.' : ''),
+        li: ['Co konkrétně vaše situace u prodeje mění',
+             'Co se dá ošetřit předem a co až u smlouvy'].concat(
+             chybi ? ['Vaše kroky k doplnění, seřazené podle prodeje'] : []),
+        btn: 'Poslat mi to'
+      };
+    }
+    // Kdo má šest a víc, plán skoro nepotřebuje — ale u smluv a úschovy
+    // se pálí i připravení. Nabídnout mu pomoc až na tu chvíli je jediná
+    // nabídka, která mu po „jděte do toho sám" nezní jako protimluv.
+    if (score >= 6) {
+      return {
+        label: 'Až budete u smluv',
+        h: 'Mám se vám ozvat, až budete u smluv?',
+        p: 'Pošlu vám teď shrnutí výsledku. A pak už nic — až na jednu věc:' +
+           ' když mi napíšete, až budete u kupní smlouvy a úschovy, projdu vám ji.' +
+           ' I když prodáváte sám a nic spolu nepodepisujeme.',
+        li: (chybi ? ['Co vám ve výsledku chybělo a co s tím'] : ['Vaše skóre a co z něj plyne'])
+             .concat(['Na co si dát pozor u kupní smlouvy a úschovy']),
+        btn: 'Poslat mi výsledek'
+      };
+    }
+    return {
+      label: 'Váš plán',
+      h: nadpisBrany(chybi),
+      p: chybi
+        ? 'Pošlu vám vaše skóre a ke každé chybějící věci konkrétní úkol — ne odkaz na kapitolu, ale větu, co s tím udělat.'
+        : 'Pošlu vám vaše skóre a shrnutí, ať to máte černé na bílém.',
+      li: chybi > 1
+        ? ['Co udělat jako první, druhé, třetí — v pořadí prodeje, ne podle závažnosti',
+           'Ke každému kroku kapitola, kde je rozepsaný']
+        : chybi
+          ? ['Konkrétní úkol a kapitola, kde je rozepsaný']
+          : ['Vaše skóre a co z něj plyne'],
+      btn: 'Poslat mi plán'
+    };
+  }
+
+  function buildExamGate(score, missingChapters, risks, missingIds, riskIds) {
     var chybi = (missingChapters || []).length;
+    var maRizika = !!(risks && risks.length);
+    var t = textyBrany(chybi, maRizika, score);
     var el = document.createElement('div');
-    el.className = 'vy-gate';
+    el.className = 'vy-gate' + (maRizika ? ' vy-gate--urgent' : '');
     el.innerHTML =
       '<div class="vy-gate__head">' +
-        '<span class="vy-gate__label">Váš plán</span>' +
-        '<h3>' + nadpisBrany(chybi) + '</h3>' +
-        '<p>' + (chybi
-          ? 'Pošlu vám vaše skóre a ke každé chybějící věci konkrétní úkol — ne odkaz na kapitolu, ale větu, co s tím udělat.'
-          : 'Pošlu vám vaše skóre a shrnutí, ať to máte černé na bílém.') + '</p>' +
+        '<span class="vy-gate__label">' + t.label + '</span>' +
+        '<h3>' + t.h + '</h3>' +
+        '<p>' + t.p + '</p>' +
         '<ul class="vy-gate__list">' +
-          (chybi > 1
-            ? '<li>Co udělat jako první, druhé, třetí — v pořadí prodeje, ne podle závažnosti</li>' +
-              '<li>Ke každému kroku kapitola, kde je rozepsaný</li>'
-            : chybi
-              ? '<li>Konkrétní úkol a kapitola, kde je rozepsaný</li>'
-              : '<li>Vaše skóre a co z něj plyne</li>') +
-          // Rizika slibujeme jen tomu, kdo si nějaké označil. Slíbit
-          // shrnutí něčeho, co člověk nevyplnil, je ta samá vada jako
-          // slíbit PDF a poslat odkaz.
-          ((risks && risks.length)
-            ? '<li>Rizikové situace, které jste označil, a co s nimi</li>'
-            : '') +
+          t.li.map(function (x) { return '<li>' + x + '</li>'; }).join('') +
         '</ul>' +
         '<p class="vy-gate__note" style="margin:0;">Kniha zůstává celá online a zdarma — tohle není vstupenka do obsahu, je to váš plán.</p>' +
       '</div>' +
@@ -108,7 +152,7 @@
           '<input type="email" name="email" placeholder="vas@email.cz" required aria-label="E-mail">' +
         '</div>' +
         '<div class="vy-gate__row">' +
-          '<button type="submit">Poslat výsledek</button>' +
+          '<button type="submit">' + t.btn + '</button>' +
         '</div>' +
         '<label class="vy-gate__consent">' +
           '<input type="checkbox" name="gdpr" required>' +
@@ -143,6 +187,9 @@
         missing_chapters: chybiText,
         missing_ids: idText,
         risks: rizika,
+        // Čísla rizik, aby e-mail mohl ke každému napsat, co konkrétně
+        // u prodeje znamená. Podle názvů by to nešlo spolehlivě spárovat.
+        risk_ids: (riskIds || []).join(','),
         segment: segment
       },
       gaEvent: 'vycvik_plan_email',
@@ -158,8 +205,90 @@
     return el;
   }
 
-  // Export pro stránku zkoušky
-  window.VycvikCTA = { buildExamGate: buildExamGate };
+  /* ── Plán z průvodce „krok za krokem" ──
+     Druhý vstup do téže konverzní události. Člověk si právě sám spočítal,
+     kolik hodin a korun ho prodej stojí a u kterých fází řekl „tohle ne" —
+     takže brána nesmí nic vysvětlovat, jen nabídnout, že mu to shrnutí
+     zůstane. Slibovat se smí jen to, co odešle api/_emaily.js → VYCVIK_PLAN. */
+  function buildPlanGate(d) {
+    var ne = (d.ne || []).length;
+    var el = document.createElement('div');
+    el.className = 'vy-gate';
+    el.innerHTML =
+      '<div class="vy-gate__head">' +
+        '<span class="vy-gate__label">Váš rozpis</span>' +
+        '<h3>' + (ne
+          ? 'Chcete si tenhle rozpis nechat poslat?'
+          : 'Chcete si to nechat poslat, ať to nemusíte počítat znovu?') + '</h3>' +
+        '<p>Pošlu vám, co jste si tady odškrtal — v e-mailu, ke kterému se vrátíte za měsíc, ' +
+        'až budete rozhodovat doopravdy. Stav v prohlížeči vám zůstává tak jako tak.</p>' +
+        '<ul class="vy-gate__list">' +
+          '<li>Vaše hodiny a náklady rozepsané po fázích</li>' +
+          (ne
+            ? '<li>U ' + (ne === 1 ? 'fáze, kterou' : ne + ' fází, které') +
+              ' jste označil „tohle ne", co s ní jde udělat</li>'
+            : '<li>Kde se jednotlivé fáze nejčastěji rozbíjejí</li>') +
+        '</ul>' +
+        '<p class="vy-gate__note" style="margin:0;">Kniha i tenhle průvodce zůstávají celé online a zdarma — tohle není vstupenka do obsahu.</p>' +
+      '</div>' +
+      '<form id="vy-plan-form" class="vy-gate__form" novalidate>' +
+        '<div class="vy-gate__row">' +
+          '<input type="text" name="jmeno" placeholder="Jméno" autocomplete="name" required aria-label="Jméno">' +
+          '<input type="email" name="email" placeholder="vas@email.cz" required aria-label="E-mail">' +
+        '</div>' +
+        '<div class="vy-gate__row">' +
+          '<button type="submit">Poslat mi rozpis</button>' +
+        '</div>' +
+        '<label class="vy-gate__consent">' +
+          '<input type="checkbox" name="gdpr" required>' +
+          '<span>Souhlasím se zpracováním e-mailu podle <a href="/osobni-udaje" target="_blank" rel="noopener">zásad ochrany osobních údajů</a>. Odhlásit se dá jedním kliknutím.</span>' +
+        '</label>' +
+        '<p class="vy-gate__msg" hidden></p>' +
+      '</form>' +
+      '<p class="vy-gate__note">Nikdo vám kvůli tomu nezavolá. Píšu, když mám co říct, ne podle kalendáře.</p>';
+
+    // Kdo řekl „tohle ne" u pěti a víc fází, sám si spočítal, že to dělat
+    // nechce. To je jiný člověk než ten, komu chybí jedna věc, a v adminu
+    // to musí být vidět dřív, než se otevře detail.
+    var segment = ne >= 5 ? 'nechce-to-delat-sam'
+      : (ne >= 3 ? 'zvazujici-samoprodejce' : 'pripraveny-samoprodejce');
+
+    HubCTA.initGate({
+      form: el.querySelector('#vy-plan-form'),
+      doneTarget: el,
+      leadForm: 'vycvik-plan',
+      fields: { name: true },
+      message:
+        'Průvodce krok za krokem — prošel ' + d.prosel + ' z 10 fází.\n' +
+        (ne ? 'Nechce dělat sám: ' + d.ne.join(', ') + '.\n' : 'Všechny fáze označil jako zvládnutelné.\n') +
+        'Odhad: ' + d.hmin + '–' + d.hmax + ' hodin, ' + d.kc + ' Kč navíc.\n',
+      meta: {
+        prosel_fazi: d.prosel,
+        nechce_faze: (d.ne || []).join(', '),
+        // Čísla fází, aby e-mail ke každé napsal konkrétní větu.
+        // Podle názvů by se to párovalo přes diakritiku, což je křehké.
+        nechce_ids: (d.neIds || []).join(','),
+        pocet_ne: ne,
+        hodin_min: d.hmin,
+        hodin_max: d.hmax,
+        naklady: d.kc,
+        segment: segment
+      },
+      gaEvent: 'vycvik_rozpis_email',
+      gaLabel: 'ne_' + ne,
+      gaParams: { value: ne },
+      msgError: 'Něco se nepodařilo odeslat. Zkuste to prosím znovu.',
+      done: DONE_ICON +
+        '<h3>Odesláno. Rozpis je na cestě.</h3>' +
+        '<p>Za chvíli vám přijde e-mail s vašimi čísly a fázemi. Kdyby nedorazil do deseti minut, mrkněte do spamu — nebo mi napište na <a href="mailto:david.choc@ptf.cz">david.choc@ptf.cz</a>.</p>' +
+        '<p class="vy-gate__done-note">Odškrtané fáze vám zůstávají tady na stránce, i kdybyste e-mail nikdy neotevřel.</p>'
+    });
+
+    return el;
+  }
+
+  // Export pro stránky dotazníku a průvodce
+  window.VycvikCTA = { buildExamGate: buildExamGate, buildPlanGate: buildPlanGate };
 
   HubCTA.ready(function () {
     HubCTA.injectHelp();

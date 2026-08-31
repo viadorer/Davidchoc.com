@@ -360,21 +360,32 @@
         var verdict, cls, title, text, cta;
 
         if (score === 8) {
-          cls = 'pass'; title = 'Prošel jste.';
-          text = 'Máte to srovnané líp než většina lidí, kteří prodávají sami, a upřímně líp než část makléřů. Jděte do toho. Držte se svých čísel, nespěchejte a nenechte si ujet kapitolu 7.';
+          cls = 'pass'; title = 'Prošel jste. A je vás málo.';
+          text = 'Máte to srovnané líp než většina lidí, kteří prodávají sami, a upřímně líp než část makléřů. Nebudu vám vymlouvat něco, co zvládnete — jděte do toho. Jedna věc ale platí i pro vás: připravení lidé se nejčastěji spálí až u smluv a úschovy. Tam už nejde o to, jestli to umíte prodat, ale jestli o peníze nepřijdete.';
           cta = '<a href="/vycvik/vybava" class="cta-button">Vaše výbava — všechny nástroje</a>';
         } else if (score >= 6) {
           cls = 'good'; title = 'Chybí vám kus.';
-          text = 'Nic dramatického, ale to, co chybí, doplňte dřív, než uděláte další krok. Je to práce na jedno odpoledne.';
+          text = 'Nic dramatického, ale to, co chybí, doplňte dřív, než uděláte další krok. Je to práce na jedno odpoledne. Pak už zbyde jediné rizikové místo, a to je stejné pro všechny: smlouvy a úschova.';
           cta = '<a href="/vycvik/vybava" class="cta-button">Vaše výbava</a>';
         } else if (score >= 4) {
           cls = 'warn'; title = 'Stojíte na hraně.';
           text = 'Prodat to zvládnete. Otázka je za kolik a s jakými nervy. Doporučuji nezávaznou konzultaci — projdeme, co konkrétně vám chybí, a vy se pak rozhodnete sami.';
           cta = '<a href="/pripad-pro-agenta" class="cta-button">Nezávazná konzultace</a>';
         } else {
-          cls = 'fail'; title = 'Nedělejte to sám.';
-          text = 'Neříkám to proto, abych vám nabídl služby. Říkám to proto, že se v tomhle stavu prodávají nemovitosti pod cenou a podepisují smlouvy, které se pak předělávají. Vraťte se na začátek knihy, nebo mi zavolejte. Obojí je lepší než pokračovat teď.';
-          cta = '<a href="/pripad-pro-agenta" class="cta-button">Napište mi situaci</a> <a href="tel:+420774052232" class="cta-button cta-button--outline"><i class="fas fa-phone"></i> 774 052 232</a>';
+          cls = 'fail'; title = 'Takhle připravený do toho nechoďte.';
+          text = 'Neříkám to proto, abych vám nabídl služby. Říkám to proto, že přesně v tomhle stavu se nemovitosti prodávají pod cenou a podepisují smlouvy, které se pak předělávají. Není to o tom, že to nezvládnete — je to o tom, že takhle připravený to nezvládne nikdo. Projděte si kroky níž a dotazník si klidně dejte znovu.';
+          cta = '<a href="/pripad-pro-agenta" class="cta-button">Napište mi, v čem jsem</a> <a href="tel:+420774052232" class="cta-button cta-button--outline"><i class="fas fa-phone"></i> 774 052 232</a>';
+        }
+
+        // Právní překážka přebíjí skóre. Osm z osmi neznamená nic, když
+        // běží dědické řízení — a nabídnout takovému člověku „Vaši výbavu"
+        // je horší než mu nenabídnout nic, protože to znamená, že jsme si
+        // toho, co právě zaškrtl, nevšimli.
+        if (risks.length) {
+          cls = 'fail';
+          title = 'Tohle není o tom, jestli to umíte.';
+          text = 'Zaškrtl jste situaci, u které nerozhoduje skóre. Je to právní situace, a v ní se chyba nedá opravit slevou z ceny — buď se ošetří předem, nebo prodej zastaví uprostřed. Ve zbytku dotazníku jste měl ' + score + ' z 8, ale tady na tom nezáleží.';
+          cta = '<a href="/pripad-pro-agenta" class="cta-button">Chci to probrat</a> <a href="tel:+420774052232" class="cta-button cta-button--outline"><i class="fas fa-phone"></i> 774 052 232</a>';
         }
 
         var html = '<div class="vy-result vy-result--' + cls + '">' +
@@ -420,7 +431,7 @@
             .filter(function (n, i, arr) { return arr.indexOf(n) === i; });
           var riskNames = risks.map(function (r) { return RISK_LABELS[r]; });
           resultEl.appendChild(
-            window.VycvikCTA.buildExamGate(score, chapterNames, riskNames, missing)
+            window.VycvikCTA.buildExamGate(score, chapterNames, riskNames, missing, risks)
           );
         }
 

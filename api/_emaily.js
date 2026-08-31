@@ -229,7 +229,7 @@ const ZKOUSKA_KROKY = {
 // než e-mail — a to je konec důvěry v cokoli dalšího.
 function zkouskaVerdikt(skore) {
   if (skore >= 8) return {
-    titul: 'Prošel jste.',
+    titul: 'Prošel jste. A je vás málo.',
     text: 'Máte to srovnané líp než většina lidí, kteří prodávají sami, a upřímně líp než část makléřů. Jděte do toho. Držte se svých tří čísel a nenechte si ujet sedmou kapitolu.',
   };
   if (skore >= 6) return {
@@ -241,7 +241,7 @@ function zkouskaVerdikt(skore) {
     text: 'Prodat to zvládnete. Otázka je za kolik a s jakými nervy. Většina toho, co vám chybí, se dá dohnat za týden — pokud víte, v jakém pořadí. Proto je ten seznam níž seřazený a ne jen vyjmenovaný.',
   };
   return {
-    titul: 'Nedělejte to sám.',
+    titul: 'Takhle připravený do toho nechoďte.',
     text: 'Neříkám to proto, abych vám nabídl služby. Říkám to proto, že přesně v tomhle stavu se nemovitosti prodávají pod cenou a podepisují smlouvy, které se pak předělávají. Není to o tom, že to nezvládnete — je to o tom, že takhle připravený to nezvládne nikdo.',
   };
 }
@@ -263,18 +263,68 @@ function zkouskaSeznam(idcka) {
 <p style="margin:6px 0 0;font-size:13px;line-height:1.6;color:#8a8378;">Pořadí není podle závažnosti, ale podle prodeje. Kdo nemá cenu, nemá co fotit — a kdo nemá fotky, nemá co inzerovat.</p>`;
 }
 
-function zkouskaRizika(rizika) {
-  if (!rizika) return '';
+// Ke každé rizikové situaci to, co u prodeje reálně mění a kdy se to řeší.
+// Vědomě obecné a bez rad na míru — konkrétní postup patří advokátovi,
+// tohle má jen zabránit tomu, aby to člověk zjistil až u kupce.
+const ZKOUSKA_RIZIKA = {
+  1: {
+    nazev: 'Podílové spoluvlastnictví bez shody',
+    text: 'Kupní smlouvu musí podepsat všichni spoluvlastníci. Bez shody se neprodává celá nemovitost, ale jen váš podíl — a ten se prodává výrazně hůř a levněji. Shoda se řeší dřív, než dáte nabídku ven, ne až když máte kupce.',
+  },
+  2: {
+    nazev: 'Neukončené dědické řízení',
+    text: 'Dokud usnesení není pravomocné, nejste zapsaný vlastník a nemůžete převádět. Prodej se dá připravit — nafotit, ocenit, i inzerovat — ale podepisuje se až potom. Termíny s kupujícím tomu musí odpovídat, jinak vám odejde.',
+  },
+  3: {
+    nazev: 'Rozvod nebo dělení společného jmění',
+    text: 'Nemovitost ve společném jmění prodávají oba manželé společně. Když se SJM zrovna vypořádává, rozhoduje fáze, ve které je — určuje, kdo smlouvu podepisuje a co je k tomu potřeba doložit. Vyjasnit předem, ne u notáře.',
+  },
+  4: {
+    nazev: 'Zástava, exekuce, insolvence nebo věcné břemeno',
+    text: 'Je to na listu vlastnictví a uvidí to každá banka kupujícího. Zástava se typicky řeší výmazem proti splacení z kupní ceny, exekuce přes exekutora. Klíčové je, aby to bylo naplánované do úschovy — pořadí kroků tady rozhoduje o všem.',
+  },
+  5: {
+    nazev: 'Nájemce v nemovitosti',
+    text: 'Nájem přechází na kupujícího a nový majitel do bytu nenastěhuje. Tím vám odpadne většina kupujících, kteří chtějí bydlet, a zbydou investoři — což se promítne do ceny. Rozhodnutí, jestli prodávat s nájemcem nebo bez, se dělá před inzercí.',
+  },
+  6: {
+    nazev: 'Družstevní podíl',
+    text: 'Neprodáváte nemovitost, ale členský podíl v družstvu. Je to jiná smlouva, jiný proces a katastr do toho nevstupuje — takže ani úschova a převod nevypadají stejně. Postup určují stanovy družstva, sežeňte si je dřív, než začnete.',
+  },
+  7: {
+    nazev: 'Kupující nebo peníze ze zahraničí',
+    text: 'Banka i úschovatel prověřují původ peněz podrobněji a trvá to déle. Není to překážka, je to zdržení — ale musí se s ním počítat ve lhůtách v rezervační i kupní smlouvě, jinak vám propadnou termíny, které jste sám nastavil.',
+  },
+  8: {
+    nazev: 'Nesoulad se stavem v katastru',
+    text: 'Zazděné dveře, přístavba, jiná výměra než v dokumentaci. Vyjde to najevo u odhadce banky kupujícího a obchod se v tu chvíli zastaví na týdny. Řeší se před inzercí — po podpisu rezervace už jste ve vleku cizích termínů.',
+  },
+};
+
+function zkouskaRizika(rizika, idcka) {
+  if (!rizika && !(idcka && idcka.length)) return '';
+
+  const detaily = (idcka || [])
+    .map(id => ZKOUSKA_RIZIKA[id])
+    .filter(Boolean)
+    .map(r => `<p style="margin:0 0 14px;font-size:14px;line-height:1.65;color:#444;">
+<strong style="color:#1a1a1a;">${r.nazev}.</strong> ${r.text}</p>`)
+    .join('');
+
   return `<table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin:26px 0 0;">
-<tr><td style="background:#fdf6e8;border-left:3px solid #FFBF00;padding:16px 18px;">
-<p style="margin:0 0 8px;font-size:14px;font-weight:700;color:#1a1a1a;">Tohle platí bez ohledu na skóre</p>
-<p style="margin:0 0 8px;font-size:14px;line-height:1.65;color:#444;">Označil jste: ${rizika}.</p>
-<p style="margin:0;font-size:14px;line-height:1.65;color:#444;">V takové situaci se poraďte s odborníkem, i kdybyste měl osm z osmi. Každá z těch situací umí prodej zastavit uprostřed — typicky ve chvíli, kdy už máte kupce a sám jste podepsal koupi něčeho jiného.</p>
+<tr><td style="background:#fdf6e8;border-left:3px solid #FFBF00;padding:18px 20px;">
+<p style="margin:0 0 12px;font-size:15px;font-weight:700;color:#1a1a1a;">Tohle platí bez ohledu na skóre</p>
+${detaily || `<p style="margin:0 0 14px;font-size:14px;line-height:1.65;color:#444;">Označil jste: ${rizika}.</p>`}
+<p style="margin:0;font-size:14px;line-height:1.65;color:#666;">Tohle je obecný popis, ne rada na váš případ — konkrétní postup patří advokátovi a u těchhle situací se to nevyplácí obcházet. Napište mi, co přesně máte, a řeknu vám, co bych na vašem místě ošetřil první.</p>
 </td></tr></table>`;
 }
 
 const VYCVIK_ZKOUSKA = {
-  subject: (d) => `Váš výsledek: ${Number(d && d.score) || 0} z 8`,
+  // Předmět u právní překážky nemluví o skóre — skóre tam nerozhoduje
+  // a nadpis, který ho hlásí jako první, míří vedle.
+  subject: (d) => (String((d && d.risk_ids) || '').trim() || String((d && d.risks) || '').trim())
+    ? 'K tomu, co jste označil'
+    : `Váš výsledek: ${Number(d && d.score) || 0} z 8`,
   html: (d) => {
     const skore = Number(d && d.score) || 0;
     const idcka = String((d && d.missing_ids) || '')
@@ -283,15 +333,26 @@ const VYCVIK_ZKOUSKA = {
       .filter(n => n >= 1 && n <= 8)
       .sort((a, b) => a - b);
     const rizika = String((d && d.risks) || '').trim();
+    const rizikaIds = String((d && d.risk_ids) || '')
+      .split(',')
+      .map(s => parseInt(s, 10))
+      .filter(n => n >= 1 && n <= 8)
+      .sort((a, b) => a - b);
+    const maRizika = rizikaIds.length > 0 || !!rizika;
     const v = zkouskaVerdikt(skore);
 
-    // Další krok se liší podle toho, kolik toho chybí. U plného skóre by
+    // Další krok se liší podle toho, co člověku vyšlo. U plného skóre by
     // nabídka schůzky byla akvizice převlečená za radu; u nízkého by bylo
-    // neupřímné poslat člověka zpátky číst a nic víc neříct.
+    // neupřímné poslat člověka zpátky číst a nic víc neříct. A právní
+    // překážka přebíjí obojí — tam skóre nerozhoduje o ničem.
     let dalsi;
-    if (skore >= 6) {
-      dalsi = `<p style="${P}margin-top:26px;">Nabídku spolupráce vám tady dávat nebudu — na to jste na ni odpověděl moc dobře. Všechny nástroje z knihy vám zůstávají otevřené, i kdybyste se k nim vrátil za dva roky.</p>
-${tlacitko('https://www.davidchoc.cz/vycvik/vybava', 'Vaše výbava')}`;
+    if (maRizika) {
+      dalsi = `<p style="${P}margin-top:26px;">Ať už vám ve zbytku dotazníku vyšlo cokoli, tohle je ta věc, kterou bych na vašem místě řešil první. Napište mi, co přesně máte — <strong style="color:#1a1a1a;">odpovím osobně a řeknu vám, co se dá ošetřit předem a co si vyžádá advokáta.</strong> I kdyby z toho vyšlo, že mě k tomu nepotřebujete.</p>
+${tlacitko('https://www.davidchoc.cz/pripad-pro-agenta', 'Napsat, co mám za situaci')}`;
+    } else if (skore >= 6) {
+      dalsi = `<p style="${P}margin-top:26px;">Nabídku spolupráce vám tady dávat nebudu — na to jste na dotazník odpověděl moc dobře. Všechny nástroje z knihy vám zůstávají otevřené, i kdybyste se k nim vrátil za dva roky.</p>
+<p style="${P}">Jedna věc ale platí i pro vás. Připravení lidé se nejčastěji spálí až u kupní smlouvy a úschovy — tam už nejde o to, jestli to umíte prodat, ale jestli o peníze nepřijdete. <strong style="color:#1a1a1a;">Až budete u téhle fáze, napište mi a smlouvu vám projdu.</strong> I když prodáváte sám a nic spolu nepodepisujeme.</p>
+${tlacitko('https://www.davidchoc.cz/vycvik/kapitola-7-smlouvy', 'Kapitola 7 — smlouvy a úschova')}`;
     } else if (skore >= 4) {
       dalsi = `<p style="${P}margin-top:26px;">Když si nad tím budete chtít sednout s někým, kdo tím prošel párkrát: dvacet minut, nezávazně, a nikdo vám pak nebude volat. Klidně jen proto, abyste si potvrdil, že to děláte správně.</p>
 ${tlacitko('https://www.davidchoc.cz/pripad-pro-agenta', 'Nezávazná konzultace')}`;
@@ -300,7 +361,7 @@ ${tlacitko('https://www.davidchoc.cz/pripad-pro-agenta', 'Nezávazná konzultace
 ${tlacitko('https://www.davidchoc.cz/pripad-pro-agenta', 'Napsat, v čem jsem')}`;
     }
 
-    return obal(`Váš výsledek: ${skore} z 8`, `
+    return obal(maRizika ? 'K tomu, co jste označil' : `Váš výsledek: ${skore} z 8`, `
 <p style="${P}">Dobrý den,</p>
 <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 20px;">
 <tr><td style="background:#1a1a1a;padding:14px 22px;border-radius:6px;">
@@ -310,15 +371,105 @@ ${tlacitko('https://www.davidchoc.cz/pripad-pro-agenta', 'Napsat, v čem jsem')}
 <p style="margin:0 0 12px;font-size:18px;font-weight:800;color:#1a1a1a;">${v.titul}</p>
 <p style="${P}">${v.text}</p>
 ${zkouskaSeznam(idcka)}
-${zkouskaRizika(rizika)}
+${zkouskaRizika(rizika, rizikaIds)}
 ${dalsi}
-<p style="margin:26px 0 0;font-size:13px;line-height:1.6;color:#8a8378;">Celá kniha zůstává online a zdarma, bez registrace — tenhle e-mail je jen váš plán, ne vstupenka. Kdykoli si dotazník dáte znovu, dostanete nový.</p>
+<p style="margin:26px 0 0;font-size:13px;line-height:1.6;color:#8a8378;">Celá kniha zůstává online a zdarma, bez registrace — tenhle e-mail není vstupenka do obsahu. Kdykoli si dotazník dáte znovu, dostanete nový.</p>
 <p style="${P}margin-top:22px;">David Choc</p>
 `);
   },
 };
 
 POTVRZENI['vycvik-zkouska'] = VYCVIK_ZKOUSKA;
+
+/* ══════════════════════════════════════════════════════════════════════
+   VÝCVIK — rozpis z průvodce „krok za krokem"
+
+   Druhý vstup do téže konverzní události. Rozdíl proti dotazníku: tady
+   si člověk nespočítal, co umí, ale co ho to bude stát. E-mail proto
+   nevrací verdikt, vrací jeho vlastní čísla — a u fází, které odmítl,
+   jednu větu, co s nimi jde dělat, aniž by si musel najmout makléře.
+   ══════════════════════════════════════════════════════════════════════ */
+const PLAN_FAZE = {
+  1: ['Ocenění', 'Tuhle fázi za vás udělá odhad online a pak jeden telefonát na odhadce. Nemusíte umět oceňovat — musíte jen odmítnout rozhodnout se podle inzerce sousedů.'],
+  2: ['Příprava dokumentů', 'Nejotravnější, ale nejmíň odborná fáze celého prodeje. Je to série žádostí a čekání; dá se to celé odbýt e-mailem a dvěma návštěvami úřadu.'],
+  3: ['Příprava nemovitosti', 'Tady se dá koupit pomoc nejlevněji ze všech fází — úklidová firma, malíř, případně home staging. Vy musíte udělat jedinou věc: pustit do bytu někoho, kdo vám řekne pravdu.'],
+  4: ['Fotografie, půdorys, prohlídka', 'Fotograf na interiéry to udělá za jedno dopoledne. Tohle je nejlevnější položka s největším dopadem na cenu, na které se nevyplatí šetřit ani při samoprodeji.'],
+  5: ['Inzerce', 'Text napíše generátor z knihy, vložení na portály je hodina práce. Nejtěžší na téhle fázi není práce, ale disciplína sledovat čísla od prvního dne.'],
+  6: ['Telefonáty a prohlídky', 'Tuhle fázi si koupit nejde a delegovat taky ne. Je to nejtvrdší část samoprodeje: dostupnost na telefonu, cizí lidé v bytě a patnáct až třicet víkendových prohlídek.'],
+  7: ['Dohoda a rezervace', 'Vyjednávat za sebe je nejhorší možná pozice a nesouvisí to se schopnostmi. Když nic jiného, nechte si první nabídku přes noc uležet a mějte předem napsané číslo, pod které nejdete.'],
+  8: ['Smlouvy a úschova', 'Tuhle fázi neděláte sám ani s makléřem — dělá ji advokát a platíte ji tak jako tak. Vaše práce je vybrat ho a ohlídat pořadí: peníze do úschovy dřív než návrh na katastr.'],
+  9: ['Vklad do katastru', 'Tři až šest týdnů čekání, které neovlivníte. Vaše jediná práce je podat návrh se správnými přílohami a rychle reagovat, když katastr něco vytkne.'],
+  10: ['Předání a vyúčtování', 'Jeden protokol, tři přepisy energií a jedna otázka na daňového poradce. Nejpodceňovanější fáze — a jediná, kde se spory objeví až po prodeji.'],
+};
+
+const VYCVIK_PLAN = {
+  subject: 'Váš rozpis prodeje',
+  html: (d) => {
+    const prosel = Number(d && d.prosel_fazi) || 0;
+    const hmin = Number(d && d.hodin_min) || 0;
+    const hmax = Number(d && d.hodin_max) || 0;
+    const naklady = Number(d && d.naklady) || 0;
+    const ids = String((d && d.nechce_ids) || '')
+      .split(',')
+      .map(s => parseInt(s, 10))
+      .filter(n => n >= 1 && n <= 10)
+      .sort((a, b) => a - b);
+    const ne = ids.length;
+    const kc = new Intl.NumberFormat('cs-CZ').format(naklady);
+    const hod = hmin === hmax ? `${hmin}` : `${hmin}–${hmax}`;
+
+    let uvod;
+    if (ne === 0) {
+      uvod = 'Prošel jste průvodce a u žádné fáze jste neřekl „tohle ne". Podle vlastního odhadu to tedy zvládnete — a nebudu vám vymlouvat něco, co dáte.';
+    } else if (ne <= 2) {
+      uvod = `U ${ne === 1 ? 'jedné fáze' : 'dvou fází'} jste označil, že to dělat nechcete. Zbytek berete na sebe, což je slušný kus práce — a to, co vám nesedí, se dá buď naučit, nebo koupit zvlášť.`;
+    } else if (ne <= 4) {
+      uvod = `U ${ne} fází jste označil, že to dělat nechcete. To už není detail, ale pořád to není důvod couvnout — jen to znamená, že prodej sám u vás nebude o tolik levnější, kolik to vypadá.`;
+    } else {
+      uvod = `U ${ne} fází z deseti jste označil, že to dělat nechcete. Řeknu to rovnou, i když z toho vypadá, že si sháním zakázku: neznamená to, že to neumíte. Znamená to, že prodej sám u vás nebude levnější, jen jinak drahý.`;
+    }
+
+    const seznam = ne
+      ? `<p style="${P}margin-top:26px;"><strong style="color:#1a1a1a;">Fáze, které jste odmítl — a co s nimi:</strong></p>
+<table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin:14px 0 0;">
+${ids.map(id => {
+  const f = PLAN_FAZE[id];
+  if (!f) return '';
+  return `<tr><td style="padding:0 0 18px;">
+<p style="margin:0 0 5px;font-size:15px;font-weight:700;color:#1a1a1a;">${id}. ${f[0]}</p>
+<p style="margin:0;font-size:15px;line-height:1.65;color:#444;">${f[1]}</p>
+</td></tr>`;
+}).join('')}
+</table>`
+      : '';
+
+    const dalsi = ne >= 5
+      ? `<p style="${P}margin-top:26px;">Nabídnu vám dvacet minut nad vaší konkrétní nemovitostí. Nezávazně, a <strong style="color:#1a1a1a;">jestli z toho vyjde, že mě nepotřebujete, řeknu vám to</strong> — přijdu o zakázku a získám člověka, který o mně bude mluvit dobře. Ta druhá věc vydrží déle.</p>
+${tlacitko('https://www.davidchoc.cz/pripad-pro-agenta', 'Dvacet minut nad mojí situací')}`
+      : `<p style="${P}margin-top:26px;">Nabídku spolupráce vám tady dávat nebudu. Jedna věc ale platí i pro připravené: nejčastěji se lidé spálí až u kupní smlouvy a úschovy — tam už nejde o to, jestli to umíte prodat, ale jestli o peníze nepřijdete. <strong style="color:#1a1a1a;">Až budete u téhle fáze, napište mi a smlouvu vám projdu</strong>, i když prodáváte sám.</p>
+${tlacitko('https://www.davidchoc.cz/vycvik/kapitola-7-smlouvy', 'Kapitola 7 — smlouvy a úschova')}`;
+
+    return obal('Váš rozpis prodeje', `
+<p style="${P}">Dobrý den,</p>
+<p style="${P}">tady jsou vaše čísla z průvodce, ať je nemusíte počítat znovu.</p>
+<table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin:0 0 20px;">
+<tr><td style="background:#1a1a1a;padding:18px 22px;border-radius:6px;">
+<p style="margin:0 0 6px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#c9c2b4;">Vaše práce</p>
+<p style="margin:0 0 14px;font-size:26px;font-weight:800;color:#FFBF00;line-height:1;">${hod} hodin</p>
+<p style="margin:0 0 6px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#c9c2b4;">Náklady navíc oproti prodeji s makléřem</p>
+<p style="margin:0;font-size:26px;font-weight:800;color:#FFBF00;line-height:1;">${kc} Kč</p>
+</td></tr></table>
+<p style="margin:0 0 20px;font-size:13px;line-height:1.6;color:#8a8378;">Prošel jste ${prosel} z deseti fází. Právní část — smlouva, úschova, kolek — do porovnání nevstupuje, protože ji platíte s makléřem i bez něj. Čísla jsou orientační rozpětí, ne nabídka.</p>
+<p style="${P}">${uvod}</p>
+${seznam}
+${dalsi}
+<p style="margin:26px 0 0;font-size:13px;line-height:1.6;color:#8a8378;">Průvodce i celá kniha zůstávají online a zdarma, bez registrace. Odškrtané fáze máte uložené v prohlížeči — kdykoli si to můžete přepočítat znovu.</p>
+<p style="${P}margin-top:22px;">David Choc</p>
+`);
+  },
+};
+
+POTVRZENI['vycvik-plan'] = VYCVIK_PLAN;
 
 // Posouzení inzerátu z knihy je stejná služba jako na samostatné stránce,
 // takže i stejný slib. Kdyby tenhle klíč zůstal bez šablony, člověk se

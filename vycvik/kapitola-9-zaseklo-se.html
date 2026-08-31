@@ -123,6 +123,44 @@
 
                     <p>Tahle kapitola vám dá způsob, jak to ticho přečíst.</p>
 
+                    <!-- Sběr pro fázi „zaseklo se to". Tahle kapitola je jediné
+                         místo v knize, kam chodí lidé s aktivní bolestí — nabídka
+                         visí, telefon nezvoní. Jsou to nejteplejší leady celé
+                         sekce a do téhle chvíle na téhle stránce nebylo jediné
+                         pole na e-mail. Formulář je tentýž jako na /posudte-inzerat
+                         (klíč vycvik-posudek), takže padá do stejné sekvence. -->
+                    <div class="vy-gate vy-gate--urgent" id="posudek">
+                        <div class="vy-gate__head">
+                            <span class="vy-gate__label">Zdarma, za jeden odkaz</span>
+                            <h2>Osm týdnů bez poptávky není smůla. Je to diagnóza.</h2>
+                            <p>Můžete si projít čísla níž sám — nástroj na to je zdarma a nic se z něj nikam neodesílá. Ale ticho v telefonu se čte líp zvenku, protože vy tu nabídku vidíte pošesté a už ji nevidíte.</p>
+                            <p><strong>Pošlete mi odkaz na svůj inzerát a napíšu vám, proč podle mě stojí.</strong> Do dvou pracovních dnů, konkrétně, a i kdyby výsledek byl, že mě nepotřebujete.</p>
+                            <ul class="vy-gate__list">
+                                <li>Hlavní fotka tak, jak ji vidí kupující v přehledu mezi dvaceti jinými</li>
+                                <li>Cena proti skutečným prodejům ve vašem okolí, ne proti inzerci sousedů</li>
+                                <li>Jestli nesedíte těsně nad filtračním prahem, na kterém vás odfiltrují dřív, než vás uvidí</li>
+                                <li>Tři konkrétní věci, které bych změnil jako první, v pořadí podle dopadu</li>
+                            </ul>
+                        </div>
+
+                        <form id="vy-inzerat-form" class="vy-gate__form" novalidate>
+                            <div class="vy-gate__row">
+                                <input type="url" name="url" placeholder="https://odkaz na váš inzerát" required aria-label="Odkaz na inzerát">
+                            </div>
+                            <div class="vy-gate__row">
+                                <input type="email" name="email" placeholder="vas@email.cz" required aria-label="E-mail">
+                                <button type="submit">Poslat inzerát k posouzení</button>
+                            </div>
+                            <label class="vy-gate__consent">
+                                <input type="checkbox" name="gdpr" required>
+                                <span>Souhlasím, aby si David Choc můj inzerát prošel a odpověď mi poslal e-mailem. <a href="/osobni-udaje" target="_blank" rel="noopener">Zpracování údajů</a></span>
+                            </label>
+                            <p class="vy-gate__msg" hidden></p>
+                        </form>
+
+                        <p class="vy-gate__note">Telefon po vás nechci — odpověď přijde e-mailem. Nic nepodepisujete a není to zahájení spolupráce.</p>
+                    </div>
+
                     <hr>
 
                     <h2>Nejdřív jedna věta, kterou si nesmíte dovolit</h2>
@@ -482,6 +520,16 @@
                                 <p>To je nejdražší způsob prodeje, jaký existuje.</p>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="vy-gate vy-gate--urgent">
+                        <div class="vy-gate__head">
+                            <h2>Pořád nevíte, co s tím?</h2>
+                            <p>Pošlete mi odkaz na inzerát. Do dvou pracovních dnů napíšu, proč podle mě stojí a co bych změnil jako první — zdarma a bez toho, že by vám někdo volal.</p>
+                        </div>
+                        <p style="margin:18px 0 0;">
+                            <a href="#posudek" class="cta-button">Poslat inzerát k posouzení</a>
+                        </p>
                     </div>
 
                     <div class="vy-related">

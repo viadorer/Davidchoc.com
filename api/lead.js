@@ -37,7 +37,8 @@ const FORMULARE = {
   'pripad-pro-agenta':  { source: 'web_formular', popis: 'Případ pro agenta' },
   'chci-prodat':        { source: 'web_formular', popis: 'Chci prodat (landing page)' },
   'vycvik-pdf':         { source: 'web_formular', popis: 'Kniha Výcvik — PDF ke stažení' },
-  'vycvik-zkouska':     { source: 'web_formular', popis: 'Kniha Výcvik — výsledek zkoušky' },
+  'vycvik-zkouska':     { source: 'web_formular', popis: 'Kniha Výcvik — výsledek dotazníku' },
+  'vycvik-plan':        { source: 'web_formular', popis: 'Kniha Výcvik — rozpis krok za krokem' },
   'vycvik-posudek':     { source: 'web_formular', popis: 'Kniha Výcvik — posouzení inzerátu' },
   // Nabídka navázaná na konkrétní výsledek diagnostiky. Metadata nesou
   // `verdikt`, takže se dá zpětně zjistit, který závěr lidi přiměl napsat.
@@ -214,6 +215,7 @@ function seznamyPro(formular) {
     'posudek-inzeratu': process.env.BREVO_LIST_POSUDEK,
     'vycvik-pdf': process.env.BREVO_LIST_KNIHA,
     'vycvik-zkouska': process.env.BREVO_LIST_KNIHA,
+    'vycvik-plan': process.env.BREVO_LIST_KNIHA,
     // Zaseknutý samoprodejce patří do stejné sekvence jako ze samostatné
     // stránky — je to tentýž člověk v téže situaci, jen přišel z knihy.
     'vycvik-posudek': process.env.BREVO_LIST_POSUDEK,

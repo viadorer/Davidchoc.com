@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // rozcestník — míří na něj reklama i hlavní výzva z hubu — takže lištu
     // potřebuje ze stejného důvodu.
     const jeRozcestnik = /^\/(milionar|milionarem|vycvik)\/?$/.test(cesta)
-        || /^\/vycvik\/zvladnete-to-sami\/?$/.test(cesta);
+        || /^\/vycvik\/(zvladnete-to-sami|krok-za-krokem)\/?$/.test(cesta);
     if (bezOkoli && jeRozcestnik) {
         const misto = document.getElementById('navbar-placeholder');
         if (misto) {
