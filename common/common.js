@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // se tak chová správně od chvíle, kdy vznikne, aniž by na to musel
     // někdo myslet.
     const cesta = window.location.pathname;
-    const bezOkoli = /^\/(milionarem|vycvik)(\/|$)/.test(cesta);
+    const bezOkoli = /^\/(milionar|milionarem|vycvik)(\/|$)/.test(cesta);
 
     // Načtení sitewide popup CTA (jen jednou, asynchronně, vždy z root)
     if (!document.querySelector('script[data-popup-cta-loader]')) {
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // z vyhledávače nebo z reklamy, nemá jak zjistit, kam se dostal, ani
     // jak se dostat na zbytek webu. Dostane proto tenkou lištu jen s logem
     // a jedním odkazem — uvnitř kapitol zůstává čisto.
-    const jeRozcestnik = /^\/(milionarem|vycvik)\/?$/.test(cesta);
+    const jeRozcestnik = /^\/(milionar|milionarem|vycvik)\/?$/.test(cesta);
     if (bezOkoli && jeRozcestnik) {
         const misto = document.getElementById('navbar-placeholder');
         if (misto) {
