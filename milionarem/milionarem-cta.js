@@ -92,112 +92,151 @@
       });
     }
 
-    HubCTA.initGateById('milionarem-sprava-form', {
-      fields: { name: true },
-      leadForm: 'milionarem-sprava',
-      message: 'Zájem o další cihly — z Cihly 9 (Správa).',
-      meta: { cihla: '9' },
-      gaEvent: 'milionarem_dalsi_cihly',
-      gaLabel: 'cihla_9',
-      done: HOTOVO +
-        '<h3>Platí.</h3>' +
-        '<p>Jakmile bude desátá cihla venku, přijde vám e-mail. Nic jiného od nás nedostanete.</p>'
-    });
+    /* ─────────────────────────────────────────────
+       BRÁNY V KAPITOLÁCH — VÝSLEDEK NÁSTROJE NA E-MAIL
 
-    HubCTA.initGateById('milionarem-najemnik-form', {
-      fields: { name: true },
-      leadForm: 'milionarem-najemnik',
-      message: 'Zájem o další cihly — z Cihly 8 (Nájemník a garance).',
-      meta: { cihla: '8' },
-      gaEvent: 'milionarem_dalsi_cihly',
-      gaLabel: 'cihla_8',
-      done: HOTOVO +
-        '<h3>Platí.</h3>' +
-        '<p>Jakmile bude devátá cihla venku, přijde vám e-mail. Nic jiného od nás nedostanete.</p>'
-    });
+       Původně těchhle devět bran slibovalo „dám vám vědět, až bude venku
+       další cihla". Všech deset cihel je ale venku, takže ta nabídka byla
+       prázdná: čtenář vyplňoval e-mail za něco, co si mohl rozkliknout.
 
-    HubCTA.initGateById('milionarem-vybaveni-form', {
-      fields: { name: true },
-      leadForm: 'milionarem-vybaveni',
-      message: 'Zájem o další cihly — z Cihly 7 (Vybavení bytu).',
-      meta: { cihla: '7' },
-      gaEvent: 'milionarem_dalsi_cihly',
-      gaLabel: 'cihla_7',
-      done: HOTOVO +
-        '<h3>Platí.</h3>' +
-        '<p>Jakmile bude osmá cihla venku, přijde vám e-mail. Nic jiného od nás nedostanete.</p>'
-    });
+       Nabízejí proto to jediné, co v tu chvíli existuje a co si sám nikam
+       neuloží — jeho vlastní výsledek z nástroje nad formulářem. Nástroj
+       ho vydá v window.MilionaremVystup; kdo nástroj nevyplnil, nemá co
+       posílat a dozví se to.
+       ───────────────────────────────────────────── */
+    // Název nástroje je tady, ne z titulku widgetu: kontrolní seznamy jsou
+    // poskládané z několika widgetů a titulek prvního z nich by v e-mailu
+    // pojmenoval jen jeho část.
+    var VYSLEDKY = [
+      { klic: 'mapa',      cihla: '1', nastroj: 'Mapa cihel' },
+      { klic: 'strop',     cihla: '2', nastroj: 'Finanční strop' },
+      { klic: 'lokality',  cihla: '3', nastroj: 'Srovnání lokalit' },
+      { klic: 'proverka',  cihla: '4', nastroj: 'Prověrka před koupí' },
+      { klic: 'rezervace', cihla: '5', nastroj: 'Kontrola rezervační smlouvy' },
+      { klic: 'cerpani',   cihla: '6', nastroj: 'Harmonogram čerpání' },
+      { klic: 'vybaveni',  cihla: '7', nastroj: 'Rozpočet na vybavení' },
+      { klic: 'najemnik',  cihla: '8', nastroj: 'Výběr nájemníka' },
+      { klic: 'sprava',    cihla: '9', nastroj: 'Paušál vs. skutečné výdaje' }
+    ];
 
-    HubCTA.initGateById('milionarem-cerpani-form', {
-      fields: { name: true },
-      leadForm: 'milionarem-cerpani',
-      message: 'Zájem o další cihly — z Cihly 6 (Úvěr a čerpání).',
-      meta: { cihla: '6' },
-      gaEvent: 'milionarem_dalsi_cihly',
-      gaLabel: 'cihla_6',
-      done: HOTOVO +
-        '<h3>Platí.</h3>' +
-        '<p>Jakmile bude sedmá cihla venku, přijde vám e-mail. Nic jiného od nás nedostanete.</p>'
-    });
+    // Výsledek se čte z vykreslené stránky, ne z každého nástroje zvlášť.
+    // Všech devět jich staví výstup ze stejných tříd kitu, takže jeden
+    // čtenář je obslouží všechny — a další nástroj bude fungovat sám od
+    // sebe, aniž by se sem sahalo.
+    function nastrojBox() {
+      var boxy = document.querySelectorAll('.vy-widget');
+      for (var i = 0; i < boxy.length; i++) {
+        if (boxy[i].querySelector('.sim-headline__num, .sim-stat__value, .vy-result__value, .vy-progress__count')) {
+          return boxy[i];
+        }
+      }
+      return null;
+    }
 
-    HubCTA.initGateById('milionarem-lokality-form', {
-      fields: { name: true },
-      leadForm: 'milionarem-lokality',
-      message: 'Zájem o další cihly — z Cihly 3 (Srovnání lokalit).',
-      meta: { cihla: '3' },
-      gaEvent: 'milionarem_dalsi_cihly',
-      gaLabel: 'cihla_3',
-      done: HOTOVO +
-        '<h3>Platí.</h3>' +
-        '<p>Jakmile bude čtvrtá cihla venku, přijde vám e-mail. Nic jiného od nás nedostanete.</p>'
-    });
+    function text(el) {
+      return el ? el.textContent.replace(/\s+/g, ' ').trim() : '';
+    }
 
-    HubCTA.initGateById('milionarem-proverka-form', {
-      fields: { name: true },
-      leadForm: 'milionarem-proverka',
-      message: 'Zájem o další cihly — z Cihly 4 (Prověrka před koupí).',
-      meta: { cihla: '4' },
-      gaEvent: 'milionarem_dalsi_cihly',
-      gaLabel: 'cihla_4',
-      done: HOTOVO +
-        '<h3>Platí.</h3>' +
-        '<p>Jakmile bude pátá cihla venku, přijde vám e-mail. Nic jiného od nás nedostanete.</p>'
-    });
+    // Metadata leadu berou jen řetězce a ořezávají na 500 znaků, takže
+    // výstup posíláme jako předrenderovaný text, ne jako strukturu.
+    function vystupText(box) {
+      if (!box) return '';
+      var radky = [];
 
-    HubCTA.initGateById('milionarem-rezervace-form', {
-      fields: { name: true },
-      leadForm: 'milionarem-rezervace',
-      message: 'Zájem o další cihly — z Cihly 5 (Kontrola smlouvy).',
-      meta: { cihla: '5' },
-      gaEvent: 'milionarem_dalsi_cihly',
-      gaLabel: 'cihla_5',
-      done: HOTOVO +
-        '<h3>Platí.</h3>' +
-        '<p>Jakmile bude šestá cihla venku, přijde vám e-mail. Nic jiného od nás nedostanete.</p>'
-    });
+      var hl = box.querySelector('.sim-headline');
+      if (hl) {
+        radky.push(text(hl.querySelector('.sim-headline__label')) + ': ' +
+                   text(hl.querySelector('.sim-headline__num')));
+      }
 
-    HubCTA.initGateById('milionarem-strop-form', {
-      fields: { name: true },
-      leadForm: 'milionarem-strop',
-      message: 'Zájem o další cihly — z Cihly 2 (Finanční strop).',
-      meta: { cihla: '2' },
-      gaEvent: 'milionarem_dalsi_cihly',
-      gaLabel: 'cihla_2',
-      done: '<i class="fas fa-circle-check" aria-hidden="true"></i>' +
-        '<h3>Platí.</h3>' +
-        '<p>Jakmile bude třetí cihla venku, přijde vám e-mail. Nic jiného od nás nedostanete.</p>'
-    });
+      var dvojice = [
+        ['.sim-stat', '.sim-stat__label', '.sim-stat__value'],
+        ['.vy-result', '.vy-result__label', '.vy-result__value'],
+        // Kontrolní seznamy v cihlách 4, 5 a 8 nemají statistiky, ale postup.
+        ['.vy-progress__row', '.vy-progress__label', '.vy-progress__count']
+      ];
+      dvojice.forEach(function (d) {
+        Array.prototype.forEach.call(box.querySelectorAll(d[0]), function (el) {
+          var l = text(el.querySelector(d[1])), v = text(el.querySelector(d[2]));
+          if (l && v) radky.push(l + ': ' + v);
+        });
+      });
 
-    HubCTA.initGateById('milionarem-mapa-form', {
-      fields: { name: true },
-      leadForm: 'milionarem-mapa',
-      message: 'Zájem o další cihly — z Cihly 1 (Mapa cihel).',
-      meta: { cihla: '1' },
-      gaEvent: 'milionarem_dalsi_cihly',
-      gaLabel: 'cihla_1',
-      done: '<i class="fas fa-circle-check" aria-hidden="true"></i>' +
-        '<h3>Platí.</h3>' +
-        '<p>Jakmile bude druhá cihla venku, přijde vám e-mail. Nic jiného od nás nedostanete.</p>'
+      // Závěr nástroje jde na konec jako věta, ne jako dvojice.
+      var verdikt = box.querySelector('.vy-verdict strong, .sim-headline__sub');
+      if (verdikt) radky.push(text(verdikt));
+
+      if (!radky.length) return '';
+      return radky.slice(0, 8).join('\n').slice(0, 480);
+    }
+
+
+
+    VYSLEDKY.forEach(function (v) {
+      var form = document.getElementById('milionarem-' + v.klic + '-form');
+      if (!form) return;
+
+      var msg = form.querySelector('.vy-gate__msg');
+      var btn = form.querySelector('button[type="submit"]');
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var jmenoEl = form.querySelector('input[name="name"]');
+        var emailEl = form.querySelector('input[type="email"]');
+        var consent = form.querySelector('input[type="checkbox"]');
+        var jmeno = jmenoEl ? jmenoEl.value.trim() : '';
+        var email = emailEl ? emailEl.value.trim() : '';
+
+        if (!jmeno) {
+          return HubCTA.showMsg(msg, 'Napište mi prosím jméno, ať vím, komu píšu.', 'error', jmenoEl);
+        }
+        if (!HubCTA.isEmail(email)) {
+          return HubCTA.showMsg(msg, 'Zadejte prosím platnou e-mailovou adresu.', 'error', emailEl);
+        }
+        if (consent && !consent.checked) {
+          return HubCTA.showMsg(msg, 'Pro odeslání potřebuji souhlas se zpracováním údajů.', 'error', consent);
+        }
+
+        var box = nastrojBox();
+        var vystup = vystupText(box);
+        var nastroj = v.nastroj;
+        if (!vystup) {
+          // Slibovat výsledek někomu, kdo nástroj nevyplnil, by znamenalo
+          // poslat mu prázdný e-mail. Radši ho pošleme o kus výš.
+          return HubCTA.showMsg(msg,
+            'Nejdřív prosím vyplňte nástroj nad formulářem — bez vašich čísel nemám co poslat.');
+        }
+
+        var puvodni = btn ? btn.textContent : '';
+        if (btn) { btn.disabled = true; btn.textContent = 'Odesílám…'; }
+
+        HubCTA.sendLead({
+          form: 'milionarem-' + v.klic,
+          name: jmeno,
+          email: email,
+          message: 'Výsledek nástroje „' + nastroj + '" z Cihly ' + v.cihla + ':\n\n' + vystup,
+          meta: { cihla: v.cihla, nastroj: nastroj, vystup: vystup, segment: 'investor' }
+        }).then(function () {
+          form.innerHTML =
+            '<div class="vy-gate__done">' + HOTOVO +
+              '<h3>Poslal jsem vám to.</h3>' +
+              '<p>Váš výsledek máte v e-mailu, ať se k němu můžete vrátit, až ho budete ' +
+              'potřebovat. Kdyby nedorazil, mrkněte do hromadné pošty.</p>' +
+              '<p>Až budete mít konkrétní byt, napište — podívám se na něj a řeknu vám, ' +
+              'co bych na něm řešil dřív než cenu.</p>' +
+            '</div>';
+          HubCTA.track('milionarem_vysledek', {
+            event_category: 'lead',
+            event_label: 'cihla_' + v.cihla
+          });
+          if (window.fbq) window.fbq('track', 'Lead', { content_name: 'milionarem-' + v.klic });
+        }).catch(function () {
+          if (btn) { btn.disabled = false; btn.textContent = puvodni; }
+          HubCTA.showMsg(msg, 'Něco se nepodařilo odeslat. Zkuste to prosím znovu, nebo mi ' +
+                              'napište na david.choc@ptf.cz.');
+        });
+      });
     });
 
     /* ─────────────────────────────────────────────
@@ -421,15 +460,5 @@
       });
     }
 
-    HubCTA.initGateById('milionarem-pdf-form', {
-      fields: { name: true },
-      leadForm: 'milionarem-pdf',
-      message: 'Žádost o výcvik Deset zlatých cihel v PDF.',
-      gaEvent: 'milionarem_pdf',
-      gaLabel: 'vycvik',
-      done: HOTOVO +
-        '<h3>Mám to. Dám vám vědět.</h3>' +
-        '<p>Jakmile bude první cihla venku, přijde vám e-mail. Do té doby od nás nic jiného nedostanete.</p>'
-    });
   });
 })();

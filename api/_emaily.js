@@ -147,15 +147,45 @@ ${tlacitko('https://www.davidchoc.cz/milionar', 'Zpět do simulátoru', 'zelena'
 POTVRZENI['milionarem-simulator-byty'] = MILIONAREM_SIM_BYTY;
 POTVRZENI['milionarem-simulator-cisla'] = MILIONAREM_SIM_CISLA;
 
-POTVRZENI['milionarem-mapa'] = MILIONAREM_PRUVODCE;
-POTVRZENI['milionarem-strop'] = MILIONAREM_PRUVODCE;
-POTVRZENI['milionarem-lokality'] = MILIONAREM_PRUVODCE;
-POTVRZENI['milionarem-proverka'] = MILIONAREM_PRUVODCE;
-POTVRZENI['milionarem-rezervace'] = MILIONAREM_PRUVODCE;
-POTVRZENI['milionarem-cerpani'] = MILIONAREM_PRUVODCE;
-POTVRZENI['milionarem-vybaveni'] = MILIONAREM_PRUVODCE;
-POTVRZENI['milionarem-najemnik'] = MILIONAREM_PRUVODCE;
-POTVRZENI['milionarem-sprava'] = MILIONAREM_PRUVODCE;
+// Výsledek nástroje z kapitoly. Kdo si o něj řekne, dostane svoje čísla —
+// ne leták. Řádky chodí v metadatech jako předrenderovaný text, protože
+// metadata leadu nesou jen řetězce a čísla.
+const MILIONAREM_VYSLEDEK = {
+  subject: (d) => (d && d.nastroj) ? `Váš výsledek: ${d.nastroj}` : 'Váš výsledek',
+  html: (d) => {
+    const nastroj = (d && d.nastroj) || 'nástroj';
+    const radky = ((d && d.vystup) || '').split('\n').filter(Boolean).map((r) => {
+      const i = r.indexOf(': ');
+      if (i === -1) {
+        return `<p style="${P}margin:0 0 6px;"><strong style="color:#1a1a1a;">${r}</strong></p>`;
+      }
+      return `<p style="${P}margin:0 0 6px;">${r.slice(0, i)}: <strong style="color:#1a1a1a;">${r.slice(i + 2)}</strong></p>`;
+    }).join('');
+
+    return obal('Váš výsledek', `
+<p style="${P}">Dobrý den,</p>
+<p style="${P}">tady je to, co vám vyšlo v nástroji <strong style="color:#1a1a1a;">${nastroj}</strong>. Schovejte si to — až budete stát před konkrétním bytem, budou to jediná čísla, která budete potřebovat.</p>
+<div style="border-left:3px solid #1F6B4A;padding:14px 0 14px 16px;margin:20px 0;">
+${radky}
+</div>
+<p style="${P}">Čísla platí pro to, co jste zadal. Když se něco změní — sazba, příjem, cena bytu — přepočítejte si to znovu, nástroj vám hodnoty pamatuje v prohlížeči.</p>
+<p style="${P}">A jestli chcete vidět, co s vaším majetkem udělá celý byt za dvacet let, je na to samostatný nástroj:</p>
+${tlacitko('https://www.davidchoc.cz/milionar', 'Spustit simulátor', 'zelena')}
+<p style="${P}margin-top:22px;">Až budete mít konkrétní byt, napište. Podívám se na něj a řeknu vám, co bych na něm řešil dřív než cenu — i kdyby to nakonec bylo „tenhle nekupovat".</p>
+<p style="${P}">David Choc</p>
+`);
+  },
+};
+
+POTVRZENI['milionarem-mapa'] = MILIONAREM_VYSLEDEK;
+POTVRZENI['milionarem-strop'] = MILIONAREM_VYSLEDEK;
+POTVRZENI['milionarem-lokality'] = MILIONAREM_VYSLEDEK;
+POTVRZENI['milionarem-proverka'] = MILIONAREM_VYSLEDEK;
+POTVRZENI['milionarem-rezervace'] = MILIONAREM_VYSLEDEK;
+POTVRZENI['milionarem-cerpani'] = MILIONAREM_VYSLEDEK;
+POTVRZENI['milionarem-vybaveni'] = MILIONAREM_VYSLEDEK;
+POTVRZENI['milionarem-najemnik'] = MILIONAREM_VYSLEDEK;
+POTVRZENI['milionarem-sprava'] = MILIONAREM_VYSLEDEK;
 POTVRZENI['milionarem-pdf'] = MILIONAREM_PRUVODCE;
 POTVRZENI['investovat-pdf'] = MILIONAREM_PRUVODCE;
 POTVRZENI['milionarem-servis'] = MILIONAREM_SERVIS;
