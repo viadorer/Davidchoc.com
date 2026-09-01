@@ -168,6 +168,16 @@
       "permanent": true
     },
     {
+      "source": "/investovat",
+      "destination": "/milionar",
+      "permanent": true
+    },
+    {
+      "source": "/investovat/:path*",
+      "destination": "/milionar",
+      "permanent": true
+    },
+    {
       "source": "/milionarem/simulator",
       "destination": "/milionar",
       "permanent": true
