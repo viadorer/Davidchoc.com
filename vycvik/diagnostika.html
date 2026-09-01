@@ -14,7 +14,12 @@
     <meta property="og:title" content="Diagnostika inzerátu — proč se nemovitost neprodává">
     <meta property="og:description" content="Čtyři čísla a víte, kde je problém. Zdarma, bez registrace.">
     <meta property="og:url" content="https://www.davidchoc.cz/vycvik/diagnostika">
-    <meta property="og:image" content="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/davidchocagent.avif">
+    <meta property="og:image" content="https://www.davidchoc.cz/images/og-vycvik-kapitola.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Obálka knihy Výcvik ziskového prodeje nemovitosti — sedm chyb, devatenáct nástrojů, třicet let praxe.">
+    <meta name="twitter:card" content="summary_large_image">
 
     <link rel="icon" type="image/png" href="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/favicon.png">
     <link rel="stylesheet" href="/styles.css?v=20260805">
@@ -392,7 +397,7 @@
               '<div style="min-width:0;">' +
                 '<strong style="display:block; font-size:1.05rem; color:#1a1a1a;">' + n.nadpis + '</strong>' +
                 '<p style="margin:6px 0 0; color:#555; line-height:1.6;">' + n.text + '</p>' +
-                '<p style="margin:6px 0 0; color:#888; font-size:0.9rem;">Zdarma a do 24 hodin — i když to nakonec budete prodávat sami.</p>' +
+                '<p style="margin:6px 0 0; color:#888; font-size:0.9rem;">Zdarma a e-mailem do 24 hodin — i když to nakonec budete prodávat sami.</p>' +
               '</div>' +
             '</div>' +
             '<button type="button" class="cta-button" id="vy-diag-otevrit" style="margin-top:14px;">' + n.tlacitko + '</button>' +
@@ -482,7 +487,7 @@
           }).then(function (r) {
             if (!r.ok) throw new Error('API ' + r.status);
             form.innerHTML = '<p style="margin:0; color:#1f7a3d; font-weight:600;">' +
-              'Díky. Ozvu se do 24 hodin na ' + email + '.</p>';
+              'Díky. Odpovím vám do 24 hodin na ' + email + '.</p>';
             if (window.gtag) {
               window.gtag('event', 'vycvik_diagnostika_lead',
                 { event_category: 'vycvik', event_label: klic });

@@ -4792,3 +4792,184 @@ body.is-light .vycvik-garance .cta-button--outline:hover {
 @media (prefers-reduced-motion: reduce) {
     .kzk-faze, .kzk-check label { transition: none; }
 }
+
+/* ══════════════════════════════════════════════════════════════════════
+   MÍSTA PRO FOTKY A VIDEA
+
+   Fotka je tady důkaz, ne dekorace — a tomu odpovídá i její rám. Žádné
+   stíny, žádné zaoblení, popisek pod obrázkem drobným písmem s uvedením
+   zdroje. Vypadá to jako doklad, protože to doklad je.
+   ══════════════════════════════════════════════════════════════════════ */
+.hub-media {
+    margin: 30px 0;
+}
+.hub-media img,
+.hub-media video {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: var(--hub-surface-2, #F1EADB);
+    border: 1px solid var(--hub-line, #e6ddc8);
+}
+.hub-media__ram { object-fit: cover; }
+
+.hub-media figcaption,
+.hub-media > figcaption {
+    margin-top: 9px;
+    font-size: .88rem;
+    line-height: 1.55;
+    color: var(--hub-muted, #766A52);
+}
+.hub-media__kredit {
+    display: block;
+    margin-top: 3px;
+    font-size: .78rem;
+    letter-spacing: .04em;
+    color: var(--hub-muted, #766A52);
+    opacity: .8;
+}
+
+/* ── Dvojice před/po ────────────────────────────────────────────────
+   Vedle sebe, ne pod sebou — rozdíl se pozná jen srovnáním. Pod 560 px
+   se to zalomí, ale to je pořád lepší než dvě fotky na dvou obrazovkách. */
+.hub-media__par {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+.hub-media__pul { position: relative; }
+.hub-media__stitek {
+    display: block;
+    margin-top: 7px;
+    font-size: .8rem;
+    line-height: 1.45;
+    font-weight: 600;
+}
+.hub-media__pul--spatne .hub-media__stitek { color: var(--hub-risk, #c0392b); }
+.hub-media__pul--dobre  .hub-media__stitek { color: var(--hub-ok, #1F6B4A); }
+.hub-media__pul--spatne img { border-color: rgba(192, 57, 43, .4); }
+.hub-media__pul--dobre  img { border-color: rgba(31, 107, 74, .4); }
+
+@media (max-width: 560px) {
+    .hub-media__par { grid-template-columns: 1fr; gap: 16px; }
+}
+
+/* ── Zadání (jen s ?media v adrese) ─────────────────────────────────
+   Tohle návštěvník nikdy neuvidí. Je to list, který si otevře fotograf
+   nebo kameraman přímo na té stránce, pro kterou se točí. */
+.hub-media--zadani {
+    padding: 18px 20px;
+    background: repeating-linear-gradient(
+        135deg,
+        var(--hub-surface-1, #FDFAF2),
+        var(--hub-surface-1, #FDFAF2) 10px,
+        rgba(0, 0, 0, .022) 10px,
+        rgba(0, 0, 0, .022) 20px
+    );
+    border: 1px dashed var(--hub-line, #cfc3a6);
+    border-radius: 4px;
+}
+.hub-media--video-zadani { border-left: 3px solid #1F5E63; }
+.hub-media--foto-zadani  { border-left: 3px solid var(--hub-accent, #FFBF00); }
+.hub-media--chyba        { border-left: 3px solid var(--hub-risk, #c0392b); }
+
+.hub-media__hlava {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 12px;
+    margin: 0 0 10px !important;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: .72rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+.hub-media__id {
+    font-weight: 700;
+    color: var(--hub-ink, #1a1a1a);
+    background: var(--hub-surface-2, #F1EADB);
+    padding: 2px 7px;
+    border-radius: 2px;
+}
+.hub-media__typ { color: var(--hub-muted, #766A52); }
+.hub-media__stav {
+    margin-left: auto;
+    color: var(--hub-risk, #c0392b);
+    font-weight: 600;
+}
+
+.hub-media__nadpis {
+    margin: 0 0 8px !important;
+    font-size: 1.02rem !important;
+    font-weight: 800;
+    line-height: 1.3;
+    color: var(--hub-ink, #1a1a1a);
+}
+.hub-media__patri {
+    margin: 0 0 10px !important;
+    font-size: .95rem !important;
+    line-height: 1.6;
+    color: #4a453c;
+}
+.hub-media__zabery {
+    margin: 0 0 10px !important;
+    padding-left: 18px;
+}
+.hub-media__zabery li {
+    font-size: .9rem;
+    line-height: 1.55;
+    color: #4a453c;
+    margin-bottom: 5px;
+}
+.hub-media__proc {
+    margin: 0 0 10px !important;
+    font-size: .89rem !important;
+    line-height: 1.55;
+    color: var(--hub-muted, #766A52);
+}
+.hub-media__proc b {
+    display: block;
+    font-family: ui-monospace, Menlo, monospace;
+    font-size: .68rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+}
+.hub-media__param {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 22px;
+    margin: 12px 0 0;
+    padding-top: 10px;
+    border-top: 1px solid var(--hub-line, #e6ddc8);
+}
+.hub-media__param > div { display: flex; gap: 6px; align-items: baseline; }
+.hub-media__param dt {
+    font-family: ui-monospace, Menlo, monospace;
+    font-size: .66rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--hub-muted, #766A52);
+}
+.hub-media__param dd {
+    margin: 0;
+    font-size: .85rem;
+    color: #4a453c;
+}
+
+/* Lišta, která připomene, že se stránka prohlíží v režimu zadání —
+   jinak by se dalo zapomenout a divit se, proč to vidí i klient. */
+body.ma-media-zadani::before {
+    content: "Režim zadání pro média — tohle vidíte jen vy. Bez ?media v adrese je stránka bez prázdných míst.";
+    display: block;
+    padding: 8px 16px;
+    background: #1F5E63;
+    color: #fff;
+    font-family: ui-monospace, Menlo, monospace;
+    font-size: .72rem;
+    letter-spacing: .04em;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+}
