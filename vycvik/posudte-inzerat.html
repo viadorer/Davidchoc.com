@@ -146,20 +146,32 @@
 
                         <form id="vy-inzerat-form" class="vy-gate__form" novalidate>
                             <div class="vy-gate__row">
-                                <input type="url" name="odkaz" placeholder="Odkaz na inzerát (https://…)" required aria-label="Odkaz na inzerát">
+                                <p class="vy-gate__field">
+                                    <label for="vy-pos-odkaz">Odkaz na inzerát</label>
+                                    <input id="vy-pos-odkaz" type="url" name="odkaz" placeholder="https://" required>
+                                </p>
                             </div>
                             <div class="vy-gate__row">
-                                <input type="text" name="jmeno" placeholder="Jméno" autocomplete="name" aria-label="Jméno">
-                                <input type="email" name="email" placeholder="E-mail" autocomplete="email" required aria-label="E-mail">
+                                <p class="vy-gate__field">
+                                    <label for="vy-pos-jmeno">Jméno</label>
+                                    <input id="vy-pos-jmeno" type="text" name="jmeno" autocomplete="name">
+                                </p>
+                                <p class="vy-gate__field">
+                                    <label for="vy-pos-email">E-mail</label>
+                                    <input id="vy-pos-email" type="email" name="email" autocomplete="email" required>
+                                </p>
                             </div>
                             <div class="vy-gate__row">
-                                <textarea name="poznamka" rows="3" placeholder="Nepovinné: jak dlouho inzerujete, kolikrát jste zlevnili, co vás nejvíc trápí" aria-label="Poznámka"></textarea>
+                                <p class="vy-gate__field">
+                                    <label for="vy-pos-poznamka">Poznámka <span class="vy-gate__nepovinne">nepovinné</span></label>
+                                    <textarea id="vy-pos-poznamka" name="poznamka" rows="3" placeholder="Jak dlouho inzerujete, kolikrát jste zlevnili, co vás nejvíc trápí"></textarea>
+                                </p>
                             </div>
                             <label class="vy-gate__consent">
                                 <input type="checkbox" name="souhlas" required>
                                 <span>Souhlasím, aby si David Choc můj inzerát prošel a odpověď mi poslal e-mailem. <a href="/osobni-udaje" target="_blank" rel="noopener">Zpracování údajů</a></span>
                             </label>
-                            <p class="vy-gate__msg" hidden></p>
+                            <p class="vy-gate__msg" role="alert" hidden></p>
                             <div class="vy-gate__row" style="margin-top:14px;">
                                 <button type="submit">Poslat inzerát k posouzení</button>
                             </div>

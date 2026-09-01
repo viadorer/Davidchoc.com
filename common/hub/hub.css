@@ -3434,7 +3434,15 @@ a.hub-tool:hover {
     letter-spacing: 0.01em;
 }
 .vy-gate__field input,
-.hub-gate__field input { width: 100%; }
+.hub-gate__field input,
+.vy-gate__field textarea,
+.hub-gate__field textarea { width: 100%; }
+.vy-gate__nepovinne,
+.hub-gate__nepovinne {
+    font-weight: 400;
+    color: #9a9a9a;
+    font-size: 0.94em;
+}
 
 .vy-gate__form input[type="text"],
 .hub-gate__form input[type="text"],

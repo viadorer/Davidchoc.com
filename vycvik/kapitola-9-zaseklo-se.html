@@ -145,17 +145,25 @@
 
                         <form id="vy-inzerat-form" class="vy-gate__form" novalidate>
                             <div class="vy-gate__row">
-                                <input type="url" name="url" placeholder="https://odkaz na váš inzerát" required aria-label="Odkaz na inzerát">
+                                <p class="vy-gate__field">
+                                    <label for="vy-k9-url">Odkaz na inzerát</label>
+                                    <input id="vy-k9-url" type="url" name="url" placeholder="https://" required>
+                                </p>
                             </div>
                             <div class="vy-gate__row">
-                                <input type="email" name="email" placeholder="vas@email.cz" required aria-label="E-mail">
-                                <button type="submit">Poslat inzerát k posouzení</button>
+                                <p class="vy-gate__field">
+                                    <label for="vy-k9-email">E-mail</label>
+                                    <input id="vy-k9-email" type="email" name="email" autocomplete="email" required>
+                                </p>
                             </div>
+                            <!-- Souhlas nad tlačítkem: kdo vyplňuje odshora dolů, jinak
+                                 klikne na odeslání dřív, než ho vůbec uvidí. -->
                             <label class="vy-gate__consent">
                                 <input type="checkbox" name="gdpr" required>
                                 <span>Souhlasím, aby si David Choc můj inzerát prošel a odpověď mi poslal e-mailem. <a href="/osobni-udaje" target="_blank" rel="noopener">Zpracování údajů</a></span>
                             </label>
-                            <p class="vy-gate__msg" hidden></p>
+                            <button type="submit">Poslat inzerát k posouzení</button>
+                            <p class="vy-gate__msg" role="alert" hidden></p>
                         </form>
 
                         <p class="vy-gate__note">Telefon po vás nechci — odpověď přijde e-mailem. Nic nepodepisujete a není to zahájení spolupráce.</p>

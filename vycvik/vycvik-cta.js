@@ -148,17 +148,23 @@
       '</div>' +
       '<form id="vy-exam-form" class="vy-gate__form" novalidate>' +
         '<div class="vy-gate__row">' +
-          '<input type="text" name="jmeno" placeholder="Jméno" autocomplete="name" required aria-label="Jméno">' +
-          '<input type="email" name="email" placeholder="vas@email.cz" required aria-label="E-mail">' +
+          '<p class="vy-gate__field">' +
+            '<label for="vy-exam-jmeno">Jméno</label>' +
+            '<input id="vy-exam-jmeno" type="text" name="jmeno" autocomplete="name" required>' +
+          '</p>' +
+          '<p class="vy-gate__field">' +
+            '<label for="vy-exam-email">E-mail</label>' +
+            '<input id="vy-exam-email" type="email" name="email" autocomplete="email" required>' +
+          '</p>' +
         '</div>' +
-        '<div class="vy-gate__row">' +
-          '<button type="submit">' + t.btn + '</button>' +
-        '</div>' +
+        // Souhlas stojí nad tlačítkem: kdo vyplňuje odshora dolů, jinak
+        // klikne na odeslání dřív, než ho vůbec uvidí.
         '<label class="vy-gate__consent">' +
           '<input type="checkbox" name="gdpr" required>' +
           '<span>Souhlasím se zpracováním e-mailu podle <a href="/osobni-udaje" target="_blank" rel="noopener">zásad ochrany osobních údajů</a>. Odhlásit se dá jedním kliknutím.</span>' +
         '</label>' +
-        '<p class="vy-gate__msg" hidden></p>' +
+        '<button type="submit">' + t.btn + '</button>' +
+        '<p class="vy-gate__msg" role="alert" hidden></p>' +
       '</form>' +
       '<p class="vy-gate__note">Nikdo vám kvůli tomu nezavolá. Píšu, když mám co říct, ne podle kalendáře.</p>';
 
@@ -233,17 +239,23 @@
       '</div>' +
       '<form id="vy-plan-form" class="vy-gate__form" novalidate>' +
         '<div class="vy-gate__row">' +
-          '<input type="text" name="jmeno" placeholder="Jméno" autocomplete="name" required aria-label="Jméno">' +
-          '<input type="email" name="email" placeholder="vas@email.cz" required aria-label="E-mail">' +
+          '<p class="vy-gate__field">' +
+            '<label for="vy-plan-jmeno">Jméno</label>' +
+            '<input id="vy-plan-jmeno" type="text" name="jmeno" autocomplete="name" required>' +
+          '</p>' +
+          '<p class="vy-gate__field">' +
+            '<label for="vy-plan-email">E-mail</label>' +
+            '<input id="vy-plan-email" type="email" name="email" autocomplete="email" required>' +
+          '</p>' +
         '</div>' +
-        '<div class="vy-gate__row">' +
-          '<button type="submit">Poslat mi rozpis</button>' +
-        '</div>' +
+        // Souhlas stojí nad tlačítkem: kdo vyplňuje odshora dolů, jinak
+        // klikne na odeslání dřív, než ho vůbec uvidí.
         '<label class="vy-gate__consent">' +
           '<input type="checkbox" name="gdpr" required>' +
           '<span>Souhlasím se zpracováním e-mailu podle <a href="/osobni-udaje" target="_blank" rel="noopener">zásad ochrany osobních údajů</a>. Odhlásit se dá jedním kliknutím.</span>' +
         '</label>' +
-        '<p class="vy-gate__msg" hidden></p>' +
+        '<button type="submit">Poslat mi rozpis</button>' +
+        '<p class="vy-gate__msg" role="alert" hidden></p>' +
       '</form>' +
       '<p class="vy-gate__note">Nikdo vám kvůli tomu nezavolá. Píšu, když mám co říct, ne podle kalendáře.</p>';
 
