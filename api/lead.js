@@ -54,6 +54,17 @@ const FORMULARE = {
                           popis: 'Kniha Výcvik — kapitola 3, seznam záběrů' },
   'vycvik-kapitola-smlouvy': { source: 'web_formular',
                           popis: 'Kniha Výcvik — kapitola 7, na co pozor u úschovy' },
+  // Základní brána sekce: rozpis deseti fází s hodinami a náklady.
+  // Je to nabídka pro člověka, který zatím nic nevyplnil — stojí na
+  // začátku a ptá se, co ho čeká.
+  'vycvik-rozpis':      { source: 'web_formular', popis: 'Kniha Výcvik — rozpis deseti fází' },
+  // Eskalace. Kdo označí právní překážku, je nejcennější lead celé
+  // sekce a rozhoduje se u něj rychlost, ne skóre.
+  'vycvik-rizika':      { source: 'web_formular', popis: 'Kniha Výcvik — riziková situace' },
+  // Dlouhý ocas: člověk, který teď neprodává. Dedup schválně — kdo se
+  // přihlásí podruhé, nemá zakládat druhý případ.
+  'hlidani-ceny':       { source: 'web_formular', dedup: true,
+                          popis: 'Hlídání ceny — čtvrtletní přehled' },
   // Nabídka navázaná na konkrétní výsledek diagnostiky. Metadata nesou
   // `verdikt`, takže se dá zpětně zjistit, který závěr lidi přiměl napsat.
   'vycvik-diagnostika': { source: 'web_formular', popis: 'Kniha Výcvik — diagnostika inzerátu' },
@@ -233,6 +244,19 @@ function seznamyPro(formular) {
     // Zaseknutý samoprodejce patří do stejné sekvence jako ze samostatné
     // stránky — je to tentýž člověk v téže situaci, jen přišel z knihy.
     'vycvik-posudek': process.env.BREVO_LIST_POSUDEK,
+    'vycvik-rozpis': process.env.BREVO_LIST_KNIHA,
+    // Nedokončený dotazník a brány v kapitolách patří do téže sekvence
+    // jako dokončený dotazník — je to tentýž člověk, jen se zastavil dřív.
+    'vycvik-zkouska-nedokonceny': process.env.BREVO_LIST_KNIHA,
+    'vycvik-kapitola-cena': process.env.BREVO_LIST_KNIHA,
+    'vycvik-kapitola-fotky': process.env.BREVO_LIST_KNIHA,
+    'vycvik-kapitola-smlouvy': process.env.BREVO_LIST_KNIHA,
+    // Zaseknutá nabídka — stejná situace jako posouzení inzerátu.
+    'vycvik-diagnostika': process.env.BREVO_LIST_POSUDEK,
+    // Hlídání ceny má vlastní seznam: chodí do něj jeden e-mail za
+    // čtvrt roku a nic jiného. Kdyby spadlo do sekvence knihy, dostal
+    // by člověk pět e-mailů, o které si neřekl.
+    'hlidani-ceny': process.env.BREVO_LIST_HLIDANI,
   };
   const id = Number(mapa[formular]);
   return Number.isFinite(id) && id > 0 ? [id] : undefined;

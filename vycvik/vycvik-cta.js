@@ -427,6 +427,306 @@
     }
   };
 
+  /* ── Sdílený stav sekce ──
+     Dvě místa v knize si pamatují, co člověk vyplnil: dotazník
+     („vycvik-zkouska") a průvodce po fázích („vycvik-krok-za-krokem").
+     Základní brána je čte obě, aby na páté kapitole neříkala „chcete
+     vědět, co vás čeká?" někomu, kdo si to už spočítal.
+
+     Rizikové situace jsou schválně v témže klíči jako dotazník: kdo je
+     zaškrtne kdekoli na webu, najde je zaškrtnuté i v dotazníku. Dvě
+     různá místa s vlastní pamětí by znamenala, že se web ptá dvakrát
+     na totéž a jednu z odpovědí zahodí. */
+  var KLIC_ZKOUSKA = 'vycvik-zkouska';
+  var KLIC_PRUVODCE = 'vycvik-krok-za-krokem';
+
+  function nactiKlic(klic) {
+    try { return JSON.parse(localStorage.getItem(klic)) || {}; }
+    catch (e) { return {}; }
+  }
+
+  function ulozKlic(klic, data) {
+    try { localStorage.setItem(klic, JSON.stringify(data)); } catch (e) {}
+  }
+
+  function stavSekce() {
+    var z = nactiKlic(KLIC_ZKOUSKA);
+    var pr = nactiKlic(KLIC_PRUVODCE);
+
+    var odpovedi = z.answers || {};
+    var zodpovezeno = 0, spravne = 0;
+    for (var i = 1; i <= 8; i++) {
+      if (odpovedi[i] === '1') { zodpovezeno++; spravne++; }
+      else if (odpovedi[i] === '0') { zodpovezeno++; }
+    }
+
+    var prosel = 0, ne = [];
+    for (var f = 1; f <= 10; f++) {
+      var v = pr['f' + f];
+      if (!v) continue;
+      prosel++;
+      if (v === 'ne') ne.push(f);
+    }
+
+    return {
+      rizika: Object.keys(z.risks || {}),
+      // Skóre má smysl jen z dokončeného dotazníku. Hlásit „3 z 8"
+      // někomu, kdo odpověděl tři otázky, by byl výsledek, který si
+      // nezasloužil — a ještě špatný.
+      skore: zodpovezeno === 8 ? spravne : null,
+      prosel: prosel,
+      ne: ne
+    };
+  }
+
+  /* ── Základní brána sekce ──
+     Jedna komponenta, tři podoby. Na stránce smí být jen jednou.
+
+     default    — nikde nic nevyplnil: nabídne rozpis deseti fází
+     diagnosed  — něco už spočítal: mluví jeho čísly
+     eskalace   — označil právní překážku: přebíjí obojí
+
+     Slíbit se smí jen to, co e-mail doopravdy odešle
+     (api/_emaily.js → VYCVIK_ROZPIS, VYCVIK_RIZIKA). */
+  var PATICKA_BRANY =
+    'David Choc · realitní agent v Plzni od roku 1995 · přes 5 000 obchodů · ' +
+    'když nemovitost neprodám, neplatíte mi nic.';
+
+  function textyHlavniBrany(st) {
+    if (st.rizika.length) {
+      return {
+        varianta: 'eskalace',
+        leadForm: 'vycvik-rizika',
+        label: 'Vaše situace',
+        h: 'Tohle není o tom, jestli to umíte.',
+        p: 'Označil jste ' + (st.rizika.length === 1 ? 'situaci' : 'situace') +
+           ', kde se chyba nedá opravit slevou z ceny. Pošlu vám, co to u prodeje ' +
+           'reálně mění a co se ošetřuje předem — a pak vám odpovím osobně.',
+        li: ['Co konkrétně vaše situace u prodeje mění',
+             'Co se dá ošetřit předem a co až u smlouvy'],
+        btn: 'Chci to probrat',
+        pod: 'Odpovím do hodiny, mezi osmou a osmou. Bez závazku a bez podpisu.'
+      };
+    }
+
+    if (st.prosel >= 3 || st.skore !== null) {
+      var uvod = st.prosel >= 3
+        ? 'Prošel jste ' + st.prosel + ' z deseti fází průvodce' +
+          (st.ne.length
+            ? ' a u ' + (st.ne.length === 1 ? 'jedné' : st.ne.length) + ' jste řekl „tohle ne".'
+            : '.')
+        : 'Z dotazníku vám vyšlo ' + st.skore + ' z 8.';
+      return {
+        varianta: 'diagnosed',
+        leadForm: 'vycvik-rozpis',
+        label: 'Váš rozpis',
+        h: 'Chcete si to nechat poslat, ať to nemusíte počítat znovu?',
+        p: uvod + ' Pošlu vám celý rozpis deseti fází — hodiny, koruny a co se ' +
+           'v každé fázi nejčastěji rozbije' +
+           (st.ne.length ? ' — a u fází, které jste odmítl, jednu větu, co s nimi jde dělat.' : '.'),
+        li: ['Deset fází v pořadí, ve kterém se dělají',
+             'U každé hodiny, koruny a místo, kde se to nejčastěji láme',
+             'Součet: kolik hodin a kolik korun to dělá dohromady'],
+        btn: 'Poslat mi rozpis',
+        pod: 'Přijde hned. Nikdo vám nevolá — volám jen tomu, kdo si o to řekne.'
+      };
+    }
+
+    return {
+      varianta: 'default',
+      leadForm: 'vycvik-rozpis',
+      label: 'Než se do toho pustíte',
+      h: 'Chcete vědět, co přesně vás čeká?',
+      p: 'Pošlu vám prodej rozepsaný na deset fází — u každé kolik hodin práce ' +
+         'zabere, kolik stojí a co se v ní nejčastěji rozbije. Ceny jsou plzeňské ' +
+         'a platí pro rok 2026, do knihy se nevešly, protože se každý rok mění.',
+      li: ['Deset fází v pořadí, ve kterém se dělají',
+           'U každé hodiny, koruny a místo, kde se to nejčastěji láme',
+           'Součet: kolik hodin a kolik korun to dělá dohromady'],
+      btn: 'Poslat mi rozpis',
+      pod: 'Přijde hned. Nikdo vám nevolá — volám jen tomu, kdo si o to řekne. Odhlásit jedním kliknutím.'
+    };
+  }
+
+  function buildHlavniBranu(zdroj) {
+    var st = stavSekce();
+    var t = textyHlavniBrany(st);
+    var id = 'vy-hlavni-' + Math.random().toString(36).slice(2, 8);
+
+    var el = document.createElement('div');
+    el.className = 'vy-gate' + (t.varianta === 'eskalace' ? ' vy-gate--urgent' : '');
+    el.innerHTML =
+      '<div class="vy-gate__head">' +
+        '<span class="vy-gate__label">' + t.label + '</span>' +
+        '<h3>' + t.h + '</h3>' +
+        '<p>' + t.p + '</p>' +
+        '<ul class="vy-gate__list">' +
+          t.li.map(function (x) { return '<li>' + x + '</li>'; }).join('') +
+        '</ul>' +
+        '<p class="vy-gate__note" style="margin:0;">Kniha zůstává celá online a zdarma — tohle není vstupenka do obsahu.</p>' +
+      '</div>' +
+      '<form class="vy-gate__form" novalidate>' +
+        '<p class="vy-gate__field">' +
+          '<label for="' + id + '-email">E-mail</label>' +
+          '<input id="' + id + '-email" type="email" name="email" autocomplete="email" required>' +
+        '</p>' +
+        '<label class="vy-gate__consent">' +
+          '<input type="checkbox" name="gdpr" required>' +
+          '<span>Souhlasím se zpracováním e-mailu podle <a href="/osobni-udaje" target="_blank" rel="noopener">zásad ochrany osobních údajů</a>. Odhlásit se dá jedním kliknutím.</span>' +
+        '</label>' +
+        '<button type="submit">' + t.btn + '</button>' +
+        '<p class="vy-gate__msg" role="alert" hidden></p>' +
+      '</form>' +
+      '<p class="vy-gate__note">' + t.pod + '</p>' +
+      '<p class="vy-gate__note vy-gate__note--author">' + PATICKA_BRANY + '</p>';
+
+    HubCTA.initGate({
+      form: el.querySelector('form'),
+      doneTarget: el,
+      leadForm: t.leadForm,
+      fields: {},
+      message: t.varianta === 'eskalace'
+        ? 'Riziková situace označená v knize: ' + st.rizika.join(', ') + '.\n'
+        : 'Rozpis deseti fází' +
+          (st.prosel ? ', prošel ' + st.prosel + ' z 10 fází průvodce' : '') +
+          (st.ne.length ? ', odmítl fáze ' + st.ne.join(', ') : '') +
+          (st.skore !== null ? ', dotazník ' + st.skore + '/8' : '') + '.\n',
+      meta: {
+        zdroj_stranka: zdroj,
+        varianta: t.varianta,
+        risk_ids: st.rizika.join(','),
+        nechce_ids: st.ne.join(','),
+        prosel_fazi: st.prosel,
+        score: st.skore,
+        // Rizikovou situaci řeším dřív než cokoli jiného — v adminu to
+        // musí být poznat bez otevírání detailu.
+        segment: t.varianta === 'eskalace' ? 'rizikova-situace' : 'ctenar-knihy'
+      },
+      gaEvent: 'vycvik_hlavni_brana',
+      gaLabel: t.varianta + '_' + zdroj,
+      msgError: 'Něco se nepodařilo odeslat. Zkuste to prosím znovu.',
+      done: t.varianta === 'eskalace'
+        ? DONE_ICON +
+          '<h3>Mám to. Dívám se na to.</h3>' +
+          '<p>Za chvíli vám přijde shrnutí toho, co jste označil. A pak odpovím osobně — do hodiny, mezi osmou a osmou. Napište mi klidně rovnou na <a href="mailto:david.choc@ptf.cz">david.choc@ptf.cz</a>, co přesně máte.</p>'
+        : DONE_ICON +
+          '<h3>Odesláno. Rozpis je na cestě.</h3>' +
+          '<p>Za chvíli vám přijde deset fází i s hodinami a náklady. Kdyby nedorazil do deseti minut, mrkněte do spamu — nebo mi napište na <a href="mailto:david.choc@ptf.cz">david.choc@ptf.cz</a>.</p>'
+    });
+
+    return el;
+  }
+
+  /* ── Osm rizikových situací mimo dotazník ──
+     Nejvýnosnější zakázky sekce dosud neměly na webu jediné tlačítko:
+     kdo o dědickém řízení věděl, musel na to sám přijít v dotazníku.
+     Blok se dá vložit do kterékoli stránky přes <div data-vy-rizika>.
+
+     Zaškrtnutí se ukládá do stavu dotazníku, takže se nikde neptáme
+     dvakrát, a hned pod blokem vyjede eskalační brána — čekat s ní na
+     konec stránky by znamenalo spoléhat, že člověk doroluje. */
+  var RIZIKA = [
+    [1, 'Nemovitost je v podílovém spoluvlastnictví a nejsou všichni zajedno'],
+    [2, 'Dědické řízení není pravomocně ukončené, nebo prodávám krátce po něm'],
+    [3, 'Prodávám v souvislosti s rozvodem nebo se dělí společné jmění'],
+    [4, 'Vázne tam zástava, exekuce, insolvence nebo věcné břemeno'],
+    [5, 'V nemovitosti bydlí nájemce nebo je pronajatá na dobu určitou'],
+    [6, 'Prodávám družstevní podíl, ne nemovitost'],
+    [7, 'Kupující je ze zahraničí nebo peníze přicházejí ze zahraničí'],
+    [8, 'Skutečný stav neodpovídá katastru nebo dokumentaci']
+  ];
+
+  function initRizikaBlok() {
+    var hostitele = document.querySelectorAll('[data-vy-rizika]');
+    if (!hostitele.length) return;
+
+    Array.prototype.forEach.call(hostitele, function (host) {
+      if (host.querySelector('.vy-widget')) return;
+      var stav = nactiKlic(KLIC_ZKOUSKA);
+      stav.risks = stav.risks || {};
+
+      var el = document.createElement('div');
+      el.className = 'vy-widget';
+      el.innerHTML =
+        '<div class="vy-widget__head">' +
+          '<span class="vy-widget__badge" style="background:#c0392b; color:#fff;">' +
+            '<i class="fas fa-triangle-exclamation" aria-hidden="true"></i> Nezávisle na všem ostatním' +
+          '</span>' +
+          '<h2 class="vy-widget__title">Platí u vás něco z tohoto?</h2>' +
+          '<p class="vy-widget__desc">Tyhle situace nerozhoduje to, jestli prodej zvládnete. ' +
+          'Rozhoduje je právo — a chyba se v nich nedá opravit slevou z ceny.</p>' +
+        '</div>' +
+        '<div class="vy-widget__body">' +
+          RIZIKA.map(function (r) {
+            return '<label class="vy-check"><input type="checkbox" data-risk="' + r[0] + '"' +
+              (stav.risks[r[0]] ? ' checked' : '') +
+              '><span class="vy-check__text">' + r[1] + '</span></label>';
+          }).join('') +
+          '<div class="vy-rizika__brana"></div>' +
+        '</div>';
+
+      var branaEl = el.querySelector('.vy-rizika__brana');
+
+      function prekresli() {
+        var aktualni = nactiKlic(KLIC_ZKOUSKA);
+        var pocet = Object.keys(aktualni.risks || {}).length;
+        branaEl.innerHTML = '';
+        if (!pocet) return;
+        branaEl.appendChild(buildHlavniBranu('rizika-blok'));
+      }
+
+      el.addEventListener('change', function (ev) {
+        var vstup = ev.target;
+        if (!vstup || !vstup.getAttribute || !vstup.getAttribute('data-risk')) return;
+        var klic = vstup.getAttribute('data-risk');
+        var aktualni = nactiKlic(KLIC_ZKOUSKA);
+        aktualni.risks = aktualni.risks || {};
+        if (vstup.checked) aktualni.risks[klic] = true;
+        else delete aktualni.risks[klic];
+        ulozKlic(KLIC_ZKOUSKA, aktualni);
+        prekresli();
+        if (vstup.checked && window.gtag) {
+          window.gtag('event', 'vycvik_riziko_oznaceno', {
+            event_category: 'vycvik', event_label: 'riziko_' + klic
+          });
+        }
+      });
+
+      host.appendChild(el);
+      prekresli();
+    });
+  }
+
+  /* ── Umístění základní brány ──
+     Placeholder <div data-vy-brana="zdroj"> kdekoli, a jako záchranná
+     síť konec každé části knihy, která vlastní bránu nemá. Dvanáct částí
+     knihy mělo dohromady tři nabídky — zbytek končil navigační šipkou. */
+  var BEZ_BRANY = [
+    // Vlastní silnější nabídka přímo na stránce.
+    '/vycvik/kapitola-9-zaseklo-se'
+  ];
+
+  function initZakladniBrana() {
+    var hostitele = document.querySelectorAll('[data-vy-brana]');
+    Array.prototype.forEach.call(hostitele, function (host) {
+      if (host.querySelector('.vy-gate')) return;
+      host.appendChild(buildHlavniBranu(host.getAttribute('data-vy-brana') || 'stranka'));
+    });
+
+    var cesta = window.location.pathname.replace(/\.html$/, '').replace(/\/$/, '');
+    if (KAPITOLY[cesta]) return false;
+    if (BEZ_BRANY.indexOf(cesta) !== -1) return false;
+
+    var wrap = document.querySelector('.vycvik-chapter__wrap');
+    if (!wrap || wrap.querySelector('.vy-gate')) return false;
+
+    var el = buildHlavniBranu(cesta.replace('/vycvik/', '') || 'kniha');
+    var pred = wrap.querySelector('.vy-related, .vycvik-verified, .vycvik-nav');
+    if (pred) wrap.insertBefore(el, pred);
+    else wrap.appendChild(el);
+    return true;
+  }
+
   function initChapterGate() {
     var cesta = window.location.pathname.replace(/\.html$/, '').replace(/\/$/, '');
     var k = KAPITOLY[cesta];
@@ -492,13 +792,22 @@
   window.VycvikCTA = {
     buildExamGate: buildExamGate,
     buildPlanGate: buildPlanGate,
-    buildDropoutGate: buildDropoutGate
+    buildDropoutGate: buildDropoutGate,
+    buildHlavniBranu: buildHlavniBranu,
+    stavSekce: stavSekce
   };
 
   HubCTA.ready(function () {
-    // Brána se staví první: patička pomoci se na těch kapitolách přeskakuje
-    // (viz help.skip), aby pod textem nestály dvě nabídky vedle sebe.
+    // Brána se staví první: patička pomoci se pod ní přeskakuje, aby
+    // pod textem nestály dvě nabídky vedle sebe. Kapitoly s vlastní
+    // bránou to mají natvrdo v help.skip, u ostatních se cesta přidá
+    // až ve chvíli, kdy tam základní brána opravdu skončila.
     initChapterGate();
+    if (initZakladniBrana()) {
+      var c = window.location.pathname.replace(/\.html$/, '').replace(/\/$/, '');
+      window.HubConfig.help.skip.push(c);
+    }
+    initRizikaBlok();
     HubCTA.injectHelp();
     initInzeratForm();
   });

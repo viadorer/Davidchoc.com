@@ -562,6 +562,220 @@ POTVRZENI['vycvik-kapitola-smlouvy'] = VYCVIK_KAPITOLA_SMLOUVY;
 // zaseknutou nabídkou — nejteplejší lead celé sekce — nedostane nic.
 POTVRZENI['vycvik-posudek'] = POTVRZENI['posudek-inzeratu'];
 
+/* ══════════════════════════════════════════════════════════════════════
+   ZKRATKA — nedokončený dotazník
+
+   Kdo se v dotazníku zasekl, dostane rovnou to, kvůli čemu tam šel:
+   všech osm bodů i s úkolem. Body, které už zodpověděl, zůstávají
+   odškrtnuté — jinak by e-mail vypadal, že jeho práci zahodil.
+   ══════════════════════════════════════════════════════════════════════ */
+const VYCVIK_ZKRATKA = {
+  subject: 'Osm bodů, které rozhodují o prodeji',
+  html: (d) => {
+    const hotovo = String((d && d.hotovo_ids) || '')
+      .split(',')
+      .map(x => parseInt(x, 10))
+      .filter(n => n >= 1 && n <= 8);
+
+    const radky = [1, 2, 3, 4, 5, 6, 7, 8].map(id => {
+      const k = ZKOUSKA_KROKY[id];
+      if (!k) return '';
+      const ma = hotovo.indexOf(id) !== -1;
+      return `<tr><td style="padding:0 0 18px;">
+<p style="margin:0 0 5px;font-size:15px;font-weight:700;color:#1a1a1a;">${id}. ${k.kapitola}${ma ? ' <span style="font-weight:400;color:#1f7a3d;">— tohle už máte</span>' : ''}</p>
+<p style="margin:0 0 6px;font-size:15px;line-height:1.65;color:${ma ? '#8a8378' : '#444'};">${k.ukol}</p>
+<a href="${k.url}" style="font-size:14px;color:#8B7D61;">Otevřít kapitolu</a>
+</td></tr>`;
+    }).join('');
+
+    const uvod = hotovo.length
+      ? `Dotazník jste nedodělal, tak posílám rovnou celý seznam. ${hotovo.length === 1 ? 'Bod, který' : 'Body, které'} jste stihl odpovědět, nechávám označené jako hotové.`
+      : 'Dotazník je jen způsob, jak se k těmhle osmi bodům dostat. Tady jsou rovnou, i s úkolem u každého.';
+
+    return obal('Osm bodů, které rozhodují o prodeji', `
+<p style="${P}">Dobrý den,</p>
+<p style="${P}">${uvod}</p>
+<table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin:22px 0 0;">
+${radky}
+</table>
+<p style="${P}margin-top:8px;">Dotazník vám zůstal rozdělaný v prohlížeči. Když ho dodělte, dostanete k tomu skóre a pořadí, ve kterém to řešit.</p>
+${tlacitko('https://www.davidchoc.cz/vycvik/zvladnete-to-sami', 'Dodělat dotazník (2 minuty)')}
+<p style="margin:26px 0 0;font-size:13px;line-height:1.6;color:#8a8378;">Kniha je celá online a zdarma, bez registrace. Nikdo vám kvůli tomuhle e-mailu nevolá.</p>
+<p style="${P}margin-top:22px;">David Choc</p>
+`);
+  },
+};
+
+/* ══════════════════════════════════════════════════════════════════════
+   DIAGNOSTIKA ZASEKNUTÉ NABÍDKY
+
+   Tady se neposílá rada — na stránce jsem slíbil osobní odpověď do
+   hodiny a tenhle e-mail ji nesmí předstírat. Potvrzuje příjem, vrací
+   verdikt, který člověk viděl na obrazovce, a říká, kdy odpovím já.
+   ══════════════════════════════════════════════════════════════════════ */
+const DIAG_VERDIKT = {
+  cena: 'čísla ukazují na cenu',
+  fotky: 'čísla ukazují na první dojem z inzerátu',
+  inzerat: 'čísla ukazují na text a rozsah inzerátu',
+  dosah: 'čísla ukazují na dosah — nabídku vidí málo lidí',
+  nabidka: 'máte na stole nabídku a řešíte, jestli ji vzít',
+  brzy: 'na závěry je zatím brzo',
+};
+
+const VYCVIK_DIAGNOSTIKA = {
+  subject: 'Mám vaši diagnostiku — dívám se na to',
+  html: (d) => {
+    const klic = String((d && d.verdikt) || '').trim();
+    const veta = DIAG_VERDIKT[klic];
+    return obal('Mám vaši diagnostiku', `
+<p style="${P}">Dobrý den,</p>
+<p style="${P}">vaše čísla mi dorazila${veta ? ` — vyšlo z nich, že ${veta}` : ''}. Podívám se na ně a <strong style="color:#1a1a1a;">odpovím vám do hodiny, mezi osmou ráno a osmou večer</strong>. Osobně, ne šablonou.</p>
+<p style="${P}">Napíšu vám, co se s tou nabídkou podle mě děje a co bych s ní udělal jako první — i kdyby výsledek byl, že mě nepotřebujete.</p>
+<p style="${P}">Než se ozvu, nedělejte jednu věc: <strong style="color:#1a1a1a;">nezlevňujte.</strong> Zlevnění bez důvodu je pro trh signál, že přijde další, takže se čeká — a nabídka visí dál, jen levnější.</p>
+${tlacitko('https://www.davidchoc.cz/vycvik/kapitola-9-zaseklo-se', 'Kapitola 9 — když už to visí')}
+<p style="${P}margin-top:22px;">David Choc</p>
+`);
+  },
+};
+
+/* ══════════════════════════════════════════════════════════════════════
+   ROZPIS DESETI FÁZÍ — základní brána sekce
+
+   E-mail pro člověka, který zatím nic nevyplnil: stojí na začátku a ptá
+   se, co ho čeká. Nedostane názor, dostane rozsah práce a čísla —
+   a rozhodne se sám. Hodiny a ceny musí souhlasit s průvodcem
+   /vycvik/krok-za-krokem a s kalkulačkou /vycvik/kolik-to-stoji. Když se
+   změní tam, musí se změnit i tady.
+   ══════════════════════════════════════════════════════════════════════ */
+const KZK_FAZE = [
+  [1, 'Ocenění', '3–5 h', '0 Kč', 'Cena nastavená podle toho, kolik potřebujete, ne kolik trh dá. Nabídka pak visí a každé zlevnění je pro trh signál, že přijde další.'],
+  [2, 'Příprava dokumentů', '4–6 h', '3 000 Kč', 'Nesoulad mezi skutečným stavem a katastrem. Vyjde to najevo u odhadce banky kupujícího a obchod stojí týdny.'],
+  [3, 'Příprava nemovitosti', '8–12 h', '12 000 Kč', 'Bydlíte v tom a nedokážete to vidět očima cizího člověka. To není chyba povahy, to je normální — proto se to dělá s někým zvenku.'],
+  [4, 'Fotografie, půdorys', '2–4 h', '4 500 Kč', 'Fotky z mobilu. Ušetříte tři tisíce a zaplatíte to na ceně, protože nabídka nedostane ani ten první klik.'],
+  [5, 'Inzerce', '2–4 h', '3 500 Kč', 'Nikdo nesleduje čísla. Bez nich nepoznáte, jestli je problém v ceně, ve fotkách, nebo jen ještě neuplynul čas.'],
+  [6, 'Telefonáty a prohlídky', '12–16 h', '0 Kč', 'Majitel je na prohlídce a mluví. Kupující potřebuje ticho a prostor říct nahlas, co se mu nelíbí — což před majitelem neřekne nikdy.'],
+  [7, 'Dohoda a rezervace', '2–3 h', '0 Kč', 'Emoce. Po osmi týdnech ticha je první konkrétní nabídka úleva a přijme se i výrazně pod cenou. Ne z hlouposti — z vyčerpání.'],
+  [8, 'Smlouvy a úschova', '3–5 h', '18 000 Kč', 'Pořadí kroků. Peníze musí být zajištěné dřív, než se cokoli podává na katastr. Kdo tohle otočí, hraje o všechno.'],
+  [9, 'Vklad do katastru', '1 h', '2 000 Kč', 'Vrácený návrh kvůli formální chybě. Celé řízení běží znovu — a s ním i nervy kupujícího, který má domluvené stěhování.'],
+  [10, 'Předání a vyúčtování', '3–4 h', '1 000 Kč', 'Neexistující předávací protokol. Za tři měsíce přijde reklamace na něco, co tam bylo nebo nebylo, a nikdo to neumí doložit.'],
+];
+
+const VYCVIK_ROZPIS = {
+  subject: 'Deset fází prodeje — hodiny a koruny',
+  html: (d) => {
+    // Kdo v průvodci označil fáze, které dělat nechce, dostane k nim
+    // navíc jednu větu — brána mu to slíbila. Texty jsou tytéž jako
+    // v rozpisu z průvodce (PLAN_FAZE): dvě různá znění téhož by
+    // znamenala, že si někde vymýšlím.
+    const ids = String((d && d.nechce_ids) || '')
+      .split(',')
+      .map(x => parseInt(x, 10))
+      .filter(n => n >= 1 && n <= 10)
+      .sort((a, b) => a - b);
+
+    const odmitnute = ids.length
+      ? `<p style="${P}margin-top:26px;"><strong style="color:#1a1a1a;">Fáze, u kterých jste řekl „tohle ne" — a co s nimi:</strong></p>
+<table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin:14px 0 0;">
+${ids.map(id => {
+  const f = PLAN_FAZE[id];
+  if (!f) return '';
+  return `<tr><td style="padding:0 0 18px;">
+<p style="margin:0 0 5px;font-size:15px;font-weight:700;color:#1a1a1a;">${id}. ${f[0]}</p>
+<p style="margin:0;font-size:15px;line-height:1.65;color:#444;">${f[1]}</p>
+</td></tr>`;
+}).join('')}
+</table>`
+      : '';
+
+    return obal('Co obnáší prodat nemovitost sám', `
+<p style="${P}">Dobrý den,</p>
+<p style="${P}">tady je celý prodej rozepsaný na deset fází. U každé kolik hodin práce zabere, kolik stojí a co se v ní nejčastěji rozbije. Ceny jsou plzeňské a platí pro rok 2026 — jsou to orientační rozpětí, ne nabídka.</p>
+<table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin:0 0 20px;">
+<tr><td style="background:#1a1a1a;padding:18px 22px;border-radius:6px;">
+<p style="margin:0 0 6px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#c9c2b4;">Vaše práce dohromady</p>
+<p style="margin:0 0 14px;font-size:26px;font-weight:800;color:#FFBF00;line-height:1;">40–60 hodin</p>
+<p style="margin:0 0 6px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#c9c2b4;">Náklady navíc oproti prodeji s makléřem</p>
+<p style="margin:0;font-size:26px;font-weight:800;color:#FFBF00;line-height:1;">24 000 Kč</p>
+</td></tr></table>
+<p style="margin:0 0 22px;font-size:13px;line-height:1.6;color:#8a8378;">Celkem vyjdou přímé náklady na zhruba 44 000 Kč, ale 20 000 Kč z toho je právní část — smlouva, úschova, kolek. Tu platíte s makléřem i bez něj, takže do porovnání nepatří.</p>
+<table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin:0;">
+${KZK_FAZE.map(f => `<tr><td style="padding:0 0 18px;">
+<p style="margin:0 0 4px;font-size:15px;font-weight:700;color:#1a1a1a;">${f[0]}. ${f[1]}</p>
+<p style="margin:0 0 5px;font-size:13px;color:#8a8378;">${f[2]} · ${f[3]}</p>
+<p style="margin:0;font-size:15px;line-height:1.65;color:#444;">${f[4]}</p>
+</td></tr>`).join('')}
+</table>
+${odmitnute}
+<p style="${P}margin-top:26px;">Jestli si chcete u každé fáze říct, co si vezmete na sebe a co ne, průvodce to sečte za vás — hodiny i koruny podle toho, co odškrtáte.</p>
+${tlacitko('https://www.davidchoc.cz/vycvik/krok-za-krokem', 'Projít si prodej krok za krokem')}
+<p style="margin:26px 0 0;font-size:13px;line-height:1.6;color:#8a8378;">Kniha, ze které to je, zůstává celá online a zdarma, bez registrace. Nikdo vám kvůli tomuhle e-mailu nevolá — volám jen tomu, kdo si o to řekne.</p>
+<p style="${P}margin-top:22px;">David Choc</p>
+`);
+  },
+};
+
+/* ══════════════════════════════════════════════════════════════════════
+   RIZIKOVÁ SITUACE — eskalace
+
+   Osm právních situací, u kterých nerozhoduje, jestli to člověk umí
+   prodat. Chyba se v nich nedá opravit slevou z ceny, takže tenhle
+   e-mail neposílá návod — pojmenuje, co ta situace mění, a slíbí
+   osobní odpověď. Texty jsou tytéž jako u dotazníku, schválně: dvě
+   různá znění téhož by znamenala, že si někde vymýšlím.
+   ══════════════════════════════════════════════════════════════════════ */
+const VYCVIK_RIZIKA = {
+  subject: 'K tomu, co jste označil',
+  html: (d) => {
+    const idcka = String((d && d.risk_ids) || '')
+      .split(',')
+      .map(x => parseInt(x, 10))
+      .filter(n => n >= 1 && n <= 8);
+    const detaily = idcka
+      .map(id => ZKOUSKA_RIZIKA[id])
+      .filter(Boolean)
+      .map(r => `<p style="margin:0 0 16px;font-size:15px;line-height:1.65;color:#444;">
+<strong style="color:#1a1a1a;">${r.nazev}.</strong> ${r.text}</p>`)
+      .join('');
+
+    return obal('K tomu, co jste označil', `
+<p style="${P}">Dobrý den,</p>
+<p style="${P}">tohle není o tom, jestli prodej zvládnete. Je to právní situace a v ní se chyba nedá opravit slevou z ceny — proto ji píšu zvlášť a dřív než cokoli jiného.</p>
+${detaily || `<p style="${P}">Napište mi prosím, co přesně máte — ať vám odpovím na vaši situaci, ne obecně.</p>`}
+<p style="${P}">Tohle je obecný popis, ne rada na váš případ. <strong style="color:#1a1a1a;">Odpovím vám osobně do hodiny, mezi osmou ráno a osmou večer</strong> — napište mi, co přesně máte, a řeknu vám, co bych na vašem místě ošetřil první. I kdyby výsledek byl, že mě nepotřebujete.</p>
+${tlacitko('mailto:david.choc@ptf.cz?subject=Moje%20situace', 'Napsat Davidovi')}
+<p style="margin:26px 0 0;font-size:13px;line-height:1.6;color:#8a8378;">Volám jen tomu, kdo si o to řekne. Kniha i nástroje zůstávají zdarma bez ohledu na to, jak se rozhodnete.</p>
+<p style="${P}margin-top:22px;">David Choc</p>
+`);
+  },
+};
+
+/* ══════════════════════════════════════════════════════════════════════
+   HLÍDÁNÍ CENY
+
+   Většina lidí, kteří si dnes spočítají odhad, letos neprodá — medián
+   držení nemovitosti je jedenáct let. Tohle je jediná nabídka na webu,
+   která s tím počítá: čtvrtletní e-mail s čísly, žádná nabídka.
+   Rozesílku řídí Brevo, tenhle e-mail jen potvrzuje, do čeho člověk šel.
+   ══════════════════════════════════════════════════════════════════════ */
+const HLIDANI_CENY = {
+  subject: 'Cenu vaší nemovitosti hlídám',
+  html: (d) => obal('Hlídám cenu', `
+<p style="${P}">Dobrý den,</p>
+<p style="${P}">zapsal jsem si to${(d && d.lokalita) ? ` — ${d.lokalita}` : ''}. <strong style="color:#1a1a1a;">Jednou za čtvrt roku</strong> vám napíšu, jak se cena ve vaší lokalitě pohnula, kolik nemovitostí se tam za kvartál prodalo a jedno číslo navíc, o kterém se nepíše.</p>
+<p style="${P}">Žádná nabídka v tom nebude. Když budete chtít prodávat, ozvete se sám — a když ne, budete aspoň vědět, na čem jste. Odhlásit se dá jedním kliknutím v každém e-mailu.</p>
+<p style="${P}">Do té doby vám zůstává všechno ostatní: kniha, nástroje i odhad ceny, kdykoli si ho budete chtít přepočítat.</p>
+${tlacitko('https://www.davidchoc.cz/ocenit-online', 'Přepočítat odhad ceny')}
+<p style="${P}margin-top:22px;">David Choc</p>
+`),
+};
+
+POTVRZENI['vycvik-zkouska-nedokonceny'] = VYCVIK_ZKRATKA;
+POTVRZENI['vycvik-diagnostika'] = VYCVIK_DIAGNOSTIKA;
+POTVRZENI['vycvik-rozpis'] = VYCVIK_ROZPIS;
+POTVRZENI['vycvik-rizika'] = VYCVIK_RIZIKA;
+POTVRZENI['hlidani-ceny'] = HLIDANI_CENY;
+
+
 export function potvrzeniPro(formular) {
   return POTVRZENI[formular] || null;
 }
