@@ -34,7 +34,9 @@ const PHONE_RE = /^[+0-9 ()\-]{6,20}$/;
 // jemnější rozlišení nese metadata.form.
 const FORMULARE = {
   'kontakt':            { source: 'web_formular', popis: 'Kontaktní formulář' },
-  'pripad-pro-agenta':  { source: 'web_formular', popis: 'Případ pro agenta' },
+  // Klíč zůstává historický, protože se drží u kontaktů v CRM.
+  // Stránka se jmenuje Chci si to jen ověřit.
+  'pripad-pro-agenta':  { source: 'web_formular', popis: 'Chci si to jen ověřit' },
   'chci-prodat':        { source: 'web_formular', popis: 'Chci prodat (landing page)' },
   'vycvik-pdf':         { source: 'web_formular', popis: 'Kniha Výcvik — PDF ke stažení' },
   'vycvik-zkouska':     { source: 'web_formular', popis: 'Kniha Výcvik — výsledek dotazníku' },

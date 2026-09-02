@@ -12,7 +12,7 @@
   // uprostřed kapitoly jde proti tomu slibu i proti klidu na čtení.
   const SKIP_PATHS = [
     '/ocenit-online',
-    '/pripad-pro-agenta',
+    '/chci-si-to-overit',
     '/osobni-udaje',
     '/cookies-policy',
     '/vycvik',

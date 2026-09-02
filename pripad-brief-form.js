@@ -1,4 +1,4 @@
-// Multi-step formulář "Brief pro agenta" — Případ pro agenta
+// Multi-step formulář "Brief pro agenta" — stránka Chci si to jen ověřit
 // Posílá data na stávající Railway endpoint se sourcem pripad-pro-agenta.
 (function () {
   const form = document.getElementById('brief-form');

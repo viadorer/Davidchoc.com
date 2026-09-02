@@ -1,0 +1,73 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "landing-8188",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "/private/tmp/claude-501/-Users-davidchoc-Downloads-Cascade-Davidchoc-com/fa53a8ab-895b-40c5-b94b-6c352040625f/scratchpad/server.js"
+      ],
+      "port": 8188,
+      "url": "http://localhost:8188"
+    },
+    {
+      "name": "milionarem-8177",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "/private/tmp/claude-501/-Users-davidchoc-Downloads-Cascade-Web-nab-dky-nov--s-db/6ee79e8c-8198-45de-a567-8fa559f7c734/scratchpad/server.js"
+      ],
+      "port": 8177,
+      "url": "http://localhost:8177"
+    },
+    {
+      "name": "static",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "/private/tmp/claude-501/-Users-davidchoc-Downloads-Cascade-Davidchoc-com/8414537f-9080-42b6-bf8b-cf6300934bbc/scratchpad/server.js"
+      ],
+      "port": 8099
+    },
+    {
+      "name": "audit-vycvik",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "/private/tmp/claude-501/-Users-davidchoc-Downloads-Cascade-Davidchoc-com/135cb42d-a929-4b46-8eed-6c78a5960cbb/scratchpad/server.js"
+      ],
+      "port": 8145
+    },
+    {
+      "name": "static-8123",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "/private/tmp/claude-501/-Users-davidchoc-Downloads-Cascade-Davidchoc-com/dfc74bee-bf42-43d6-b5c2-99421d7648a4/scratchpad/server.js"
+      ],
+      "port": 8123
+    },
+    {
+      "name": "vycvik-8211",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "/private/tmp/claude-501/-Users-davidchoc-Downloads-Cascade-Davidchoc-com/e8f7c864-b311-4624-9c29-e98ae37383d9/scratchpad/server.js"
+      ],
+      "port": 8211
+    },
+    {
+      "name": "kzk-8266",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "/private/tmp/claude-501/-Users-davidchoc-Downloads-Cascade-Davidchoc-com/2ff7736e-4893-457e-8f94-e49bc80875d2/scratchpad/server.js"
+      ],
+      "port": 8266,
+      "url": "http://localhost:8266"
+    },
+    {
+      "name": "vycvik-audit",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "/private/tmp/claude-501/-Users-davidchoc-Downloads-Cascade-ptf-reality/92548e8e-a719-48ee-a2cb-c802926ec8e3/scratchpad/server.js"
+      ],
+      "port": 8321,
+      "url": "http://localhost:8321"
+    }
+  ]
+}

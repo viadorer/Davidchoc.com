@@ -378,17 +378,17 @@ const VYCVIK_ZKOUSKA = {
     let dalsi;
     if (maRizika) {
       dalsi = `<p style="${P}margin-top:26px;">Ať už vám ve zbytku dotazníku vyšlo cokoli, tohle je ta věc, kterou bych na vašem místě řešil první. Napište mi, co přesně máte — <strong style="color:#1a1a1a;">odpovím osobně a řeknu vám, co se dá ošetřit předem a co si vyžádá advokáta.</strong> I kdyby z toho vyšlo, že mě k tomu nepotřebujete.</p>
-${tlacitko('https://www.davidchoc.cz/pripad-pro-agenta', 'Napsat, co mám za situaci')}`;
+${tlacitko('https://www.davidchoc.cz/chci-si-to-overit', 'Napsat, co mám za situaci')}`;
     } else if (skore >= 6) {
       dalsi = `<p style="${P}margin-top:26px;">Nabídku spolupráce vám tady dávat nebudu — na to jste na dotazník odpověděl moc dobře. Všechny nástroje z knihy vám zůstávají otevřené, i kdybyste se k nim vrátil za dva roky.</p>
 <p style="${P}">Jedna věc ale platí i pro vás. Připravení lidé se nejčastěji spálí až u kupní smlouvy a úschovy — tam už nejde o to, jestli to umíte prodat, ale jestli o peníze nepřijdete. <strong style="color:#1a1a1a;">Až budete u téhle fáze, napište mi a smlouvu vám projdu.</strong> I když prodáváte sám a nic spolu nepodepisujeme.</p>
 ${tlacitko('https://www.davidchoc.cz/vycvik/kapitola-7-smlouvy', 'Kapitola 7 — smlouvy a úschova')}`;
     } else if (skore >= 4) {
       dalsi = `<p style="${P}margin-top:26px;">Když si nad tím budete chtít sednout s někým, kdo tím prošel párkrát: dvacet minut, nezávazně, a nikdo vám pak nebude volat. Klidně jen proto, abyste si potvrdil, že to děláte správně.</p>
-${tlacitko('https://www.davidchoc.cz/pripad-pro-agenta', 'Nezávazná konzultace')}`;
+${tlacitko('https://www.davidchoc.cz/chci-si-to-overit', 'Nezávazná konzultace')}`;
     } else {
       dalsi = `<p style="${P}margin-top:26px;">Nabídnu vám dvě věci a obě myslím vážně. Buď si projděte kroky výš a pak si dotazník dejte znovu — je zdarma a nikdo vám ho nepočítá. Nebo mi napište, v čem jste, a řekneme si to za dvacet minut. <strong style="color:#1a1a1a;">Když z toho vyjde, že si to máte udělat sám, řeknu vám to</strong> — přijdu o zakázku a získám člověka, který o mně bude mluvit dobře. Ta druhá věc vydrží déle.</p>
-${tlacitko('https://www.davidchoc.cz/pripad-pro-agenta', 'Napsat, v čem jsem')}`;
+${tlacitko('https://www.davidchoc.cz/chci-si-to-overit', 'Napsat, v čem jsem')}`;
     }
 
     return obal(maRizika ? 'K tomu, co jste označil' : `Váš výsledek: ${skore} z 8`, `
@@ -475,7 +475,7 @@ ${ids.map(id => {
 
     const dalsi = ne >= 5
       ? `<p style="${P}margin-top:26px;">Nabídnu vám dvacet minut nad vaší konkrétní nemovitostí. Nezávazně, a <strong style="color:#1a1a1a;">jestli z toho vyjde, že mě nepotřebujete, řeknu vám to</strong> — přijdu o zakázku a získám člověka, který o mně bude mluvit dobře. Ta druhá věc vydrží déle.</p>
-${tlacitko('https://www.davidchoc.cz/pripad-pro-agenta', 'Dvacet minut nad mojí situací')}`
+${tlacitko('https://www.davidchoc.cz/chci-si-to-overit', 'Dvacet minut nad mojí situací')}`
       : `<p style="${P}margin-top:26px;">Nabídku spolupráce vám tady dávat nebudu. Jedna věc ale platí i pro připravené: nejčastěji se lidé spálí až u kupní smlouvy a úschovy — tam už nejde o to, jestli to umíte prodat, ale jestli o peníze nepřijdete. <strong style="color:#1a1a1a;">Až budete u téhle fáze, napište mi a smlouvu vám projdu</strong>, i když prodáváte sám.</p>
 ${tlacitko('https://www.davidchoc.cz/vycvik/kapitola-7-smlouvy', 'Kapitola 7 — smlouvy a úschova')}`;
 

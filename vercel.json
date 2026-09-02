@@ -158,6 +158,16 @@
   ],
   "redirects": [
     {
+      "source": "/pripad-pro-agenta",
+      "destination": "/chci-si-to-overit",
+      "permanent": true
+    },
+    {
+      "source": "/pripad-pro-agenta.html",
+      "destination": "/chci-si-to-overit",
+      "permanent": true
+    },
+    {
       "source": "/vycvik/zkouska",
       "destination": "/vycvik/zvladnete-to-sami",
       "permanent": true
@@ -199,7 +209,7 @@
     },
     {
       "source": "/vycvik/konzultace",
-      "destination": "/pripad-pro-agenta",
+      "destination": "/chci-si-to-overit",
       "permanent": false
     },
     {

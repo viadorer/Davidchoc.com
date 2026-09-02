@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Případ pro agenta | Poradenství v nemovitostech — David Choc</title>
+    <title>Chci si to jen ověřit — nezávazná konzultace k nemovitosti | David Choc</title>
     <meta name="description" content="Nevíte si rady s nemovitostí? Poradíme vám. Prodej, koupě, pronájem, ocenění, dědictví, exekuce, rozvod, investice. 30 let praxe v Plzeňském kraji. Diskrétně, odpověď e-mailem do hodiny, bez závazku.">
     <meta name="keywords" content="realitní poradenství, realitní agent, David Choc, prodej nemovitosti, koupě nemovitosti, ocenění nemovitosti, dědictví, exekuce, rozvod, Plzeň, PTF reality">
-    <link rel="canonical" href="https://www.davidchoc.cz/pripad-pro-agenta">
+    <link rel="canonical" href="https://www.davidchoc.cz/chci-si-to-overit">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:locale" content="cs_CZ">
-    <meta property="og:title" content="Případ pro agenta | Poradenství v nemovitostech — David Choc">
+    <meta property="og:title" content="Chci si to jen ověřit — nezávazná konzultace | David Choc">
     <meta property="og:description" content="Nevíte si rady s nemovitostí? Poradíme vám. Prodej, koupě, pronájem, ocenění, dědictví, exekuce, rozvod, investice. 30 let praxe v Plzeňském kraji.">
-    <meta property="og:url" content="https://www.davidchoc.cz/pripad-pro-agenta.html">
+    <meta property="og:url" content="https://www.davidchoc.cz/chci-si-to-overit">
     <meta property="og:image" content="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/davidchocagent.avif">
 
     <link rel="icon" type="image/png" href="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/favicon.png">
@@ -36,7 +36,7 @@
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Domů", "item": "https://www.davidchoc.cz/" },
-        { "@type": "ListItem", "position": 2, "name": "Případ pro agenta", "item": "https://www.davidchoc.cz/pripad-pro-agenta.html" }
+        { "@type": "ListItem", "position": 2, "name": "Chci si to jen ověřit", "item": "https://www.davidchoc.cz/chci-si-to-overit" }
       ]
     }
     </script>
@@ -60,7 +60,7 @@
     {
       "@context": "https://schema.org",
       "@type": "Service",
-      "name": "Případ pro agenta — realitní poradenství",
+      "name": "Chci si to jen ověřit — realitní poradenství",
       "provider": {
         "@type": "RealEstateAgent",
         "name": "David Choc",
@@ -157,7 +157,7 @@
                 <div class="pripad-hero__grid">
                     <div class="pripad-hero__text">
                         <span class="pripad-hero__eyebrow">Poradenství v nemovitostech</span>
-                        <h1>Případ pro agenta</h1>
+                        <h1>Chci si to jen ověřit</h1>
                         <p class="pripad-hero__lead">Konzultace zdarma. Odpovím e-mailem do hodiny, mezi osmou a osmou.</p>
                         <p class="pripad-hero__body">
                             Prodej, koupě, pronájem, ocenění. Dědictví, exekuce, rozvod, sourozenecký spor o nemovitost po rodičích. Nemusíte vědět, co přesně potřebujete — stačí popsat situaci. Najdeme řešení společně. Diskrétně a bez závazku.
@@ -235,7 +235,182 @@
             </div>
         </section>
 
-        <!-- 02 │ TŘI KROKY -->
+        <!-- 02 │ FORMULÁŘ — ZADÁNÍ
+             Formulář stál původně jako osmá sekce z deseti. Kdo sem
+             přijde, už se rozhodl a nepotřebuje přesvědčovat — potřebuje
+             odeslat. Zbytek stránky zůstává pod ním pro toho, kdo si
+             ještě chce něco ověřit. -->
+        <section class="pripad-brief" id="brief">
+            <div class="container">
+                <header class="pripad-section__header pripad-section__header--center">
+                    <h2>Popište svou situaci</h2>
+                    <p>Tři kroky, dvě minuty. Odpovím e-mailem do hodiny, mezi osmou a osmou.</p>
+                </header>
+
+                <div class="pripad-brief__wrap">
+                    <!-- Progress bar -->
+                    <div class="pripad-brief__progress" aria-hidden="true">
+                        <div class="pripad-brief__progress-bar" data-step="1"></div>
+                        <div class="pripad-brief__progress-labels">
+                            <span class="active">Nemovitost</span>
+                            <span>Případ</span>
+                            <span>Kontakt</span>
+                        </div>
+                    </div>
+
+                    <form id="brief-form" class="pripad-brief__form" novalidate>
+                        <!-- Krok 1 -->
+                        <div class="pripad-brief__step" data-step="1">
+                            <h3>O jakou nemovitost jde?</h3>
+                            <p class="pripad-brief__hint">Klikněte na jednu možnost. Pomůže mi to se připravit.</p>
+
+                            <div class="pripad-brief__options">
+                                <label class="pripad-brief__option">
+                                    <input type="radio" name="propertyType" value="byt" required>
+                                    <span>Byt</span>
+                                </label>
+                                <label class="pripad-brief__option">
+                                    <input type="radio" name="propertyType" value="dum">
+                                    <span>Dům</span>
+                                </label>
+                                <label class="pripad-brief__option">
+                                    <input type="radio" name="propertyType" value="pozemek">
+                                    <span>Pozemek</span>
+                                </label>
+                                <label class="pripad-brief__option">
+                                    <input type="radio" name="propertyType" value="komercni">
+                                    <span>Komerční prostor</span>
+                                </label>
+                                <label class="pripad-brief__option pripad-brief__option--wide">
+                                    <input type="radio" name="propertyType" value="jine">
+                                    <span>Něco jiného nebo zatím nevím přesně</span>
+                                </label>
+                            </div>
+
+                            <div class="pripad-brief__nav">
+                                <button type="button" class="cta-button" data-action="next">Pokračovat</button>
+                            </div>
+                        </div>
+
+                        <!-- Krok 2 -->
+                        <div class="pripad-brief__step" data-step="2" hidden>
+                            <h3>Co potřebujete vyřešit?</h3>
+                            <p class="pripad-brief__hint">Vyberte to, co je nejblíž vaší situaci.</p>
+
+                            <div class="pripad-brief__options">
+                                <label class="pripad-brief__option">
+                                    <input type="radio" name="caseType" value="prodat" required>
+                                    <span>Prodat</span>
+                                </label>
+                                <label class="pripad-brief__option">
+                                    <input type="radio" name="caseType" value="koupit">
+                                    <span>Koupit</span>
+                                </label>
+                                <label class="pripad-brief__option">
+                                    <input type="radio" name="caseType" value="pronajmout">
+                                    <span>Pronajmout</span>
+                                </label>
+                                <label class="pripad-brief__option">
+                                    <input type="radio" name="caseType" value="ocenit">
+                                    <span>Ocenit</span>
+                                </label>
+                                <label class="pripad-brief__option">
+                                    <input type="radio" name="caseType" value="komplikovany">
+                                    <span>Komplikovanější případ</span>
+                                </label>
+                                <label class="pripad-brief__option">
+                                    <input type="radio" name="caseType" value="zvazuji">
+                                    <span>Zatím jen zvažuji</span>
+                                </label>
+                            </div>
+
+                            <div class="pripad-brief__nav">
+                                <button type="button" class="pripad-brief__back" data-action="back">Zpět</button>
+                                <button type="button" class="cta-button" data-action="next">Pokračovat</button>
+                            </div>
+                        </div>
+
+                        <!-- Krok 3 -->
+                        <div class="pripad-brief__step" data-step="3" hidden>
+                            <h3>Kam se vám mám ozvat?</h3>
+                            <p class="pripad-brief__hint">Tři pole, jedno zaškrtnutí. Hotovo.</p>
+
+                            <div class="pripad-brief__field">
+                                <label for="brief-name">Jméno a příjmení</label>
+                                <input type="text" id="brief-name" name="name" autocomplete="name" required placeholder="Jan Novák">
+                            </div>
+
+                            <div class="pripad-brief__field">
+                                <label>Jak se vám mám ozvat?</label>
+                                <div class="pripad-channels" id="brief-channels">
+                                    <label class="pripad-channel">
+                                        <input type="radio" name="kanal" value="email" checked>
+                                        <span><i class="fas fa-envelope" aria-hidden="true"></i> Napsat e-mail</span>
+                                    </label>
+                                    <label class="pripad-channel">
+                                        <input type="radio" name="kanal" value="telefon">
+                                        <span><i class="fas fa-phone" aria-hidden="true"></i> Zavolat</span>
+                                    </label>
+                                    <label class="pripad-channel">
+                                        <input type="radio" name="kanal" value="whatsapp">
+                                        <span><i class="fab fa-whatsapp" aria-hidden="true"></i> WhatsApp</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="pripad-brief__row">
+                                <div class="pripad-brief__field">
+                                    <label for="brief-email">E-mail</label>
+                                    <input type="email" id="brief-email" name="email" autocomplete="email" required placeholder="jan@example.cz">
+                                </div>
+                                <div class="pripad-brief__field" id="brief-phone-field">
+                                    <label for="brief-phone">Telefon <span class="pripad-brief__opt" id="brief-phone-opt">(nepovinné)</span></label>
+                                    <input type="tel" id="brief-phone" name="phone" autocomplete="tel" placeholder="+420 774 052 232">
+                                </div>
+                            </div>
+
+                            <div class="pripad-brief__field">
+                                <label for="brief-message">Krátký popis (volitelné)</label>
+                                <textarea id="brief-message" name="message" rows="4" maxlength="500" placeholder="Stručně, co je třeba vyřešit. Klidně jedna věta. Vše ostatní probereme při hovoru."></textarea>
+                            </div>
+
+                            <label class="pripad-brief__consent">
+                                <input type="checkbox" name="gdpr" required>
+                                <span>Souhlasím se zpracováním osobních údajů podle <a href="/osobni-udaje.html" target="_blank" rel="noopener">zásad ochrany osobních údajů</a>.</span>
+                            </label>
+
+                            <div class="pripad-brief__nav">
+                                <button type="button" class="pripad-brief__back" data-action="back">Zpět</button>
+                                <button type="submit" class="cta-button">Poslat zadání</button>
+                            </div>
+
+                            <p class="pripad-brief__after">
+                                Odpovím e-mailem do hodiny, mezi osmou a osmou. Konzultace je zdarma a nezavazuje vás k ničemu — ani k další schůzce.
+                            </p>
+
+                            <p class="pripad-brief__trust">
+                                Diskrétně. Bez závazku. Pokud chcete radši volat: <a href="tel:+420774052232">774 052 232</a> (pondělí–neděle, 8–20 h).
+                            </p>
+                        </div>
+
+                        <!-- Confirmation -->
+                        <div class="pripad-brief__step pripad-brief__success" data-step="done" hidden>
+                            <div class="pripad-brief__success-icon" aria-hidden="true">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <h3>Děkuji, máme to.</h3>
+                            <p>Odpovím vám e-mailem do hodiny, mezi osmou a osmou, a probereme, co dál. Pokud potřebujete dřív, zavolejte na <a href="tel:+420774052232">774 052 232</a> nebo napište na <a href="mailto:david.choc@ptf.cz">david.choc@ptf.cz</a>.</p>
+                            <p class="pripad-brief__success-meta">Mezitím se můžete podívat na <a href="/nabidky.html">aktuální nabídky</a> nebo si <a href="/ocenit-online.html">ocenit nemovitost online</a>.</p>
+                        </div>
+
+                        <!-- Error -->
+                        <div class="pripad-brief__error" hidden role="alert"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- 03 │ TŘI KROKY -->
         <section class="pripad-steps">
             <div class="container">
                 <header class="pripad-section__header">
@@ -575,177 +750,6 @@
                             <span>Plzeň – Bolevec · prodej bytu 3+kk</span>
                         </footer>
                     </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- 08 │ FORMULÁŘ — ZADÁNÍ -->
-        <section class="pripad-brief" id="brief">
-            <div class="container">
-                <header class="pripad-section__header pripad-section__header--center">
-                    <h2>Popište svou situaci</h2>
-                    <p>Tři kroky, dvě minuty. Odpovím e-mailem do hodiny, mezi osmou a osmou.</p>
-                </header>
-
-                <div class="pripad-brief__wrap">
-                    <!-- Progress bar -->
-                    <div class="pripad-brief__progress" aria-hidden="true">
-                        <div class="pripad-brief__progress-bar" data-step="1"></div>
-                        <div class="pripad-brief__progress-labels">
-                            <span class="active">Nemovitost</span>
-                            <span>Případ</span>
-                            <span>Kontakt</span>
-                        </div>
-                    </div>
-
-                    <form id="brief-form" class="pripad-brief__form" novalidate>
-                        <!-- Krok 1 -->
-                        <div class="pripad-brief__step" data-step="1">
-                            <h3>O jakou nemovitost jde?</h3>
-                            <p class="pripad-brief__hint">Klikněte na jednu možnost. Pomůže mi to se připravit.</p>
-
-                            <div class="pripad-brief__options">
-                                <label class="pripad-brief__option">
-                                    <input type="radio" name="propertyType" value="byt" required>
-                                    <span>Byt</span>
-                                </label>
-                                <label class="pripad-brief__option">
-                                    <input type="radio" name="propertyType" value="dum">
-                                    <span>Dům</span>
-                                </label>
-                                <label class="pripad-brief__option">
-                                    <input type="radio" name="propertyType" value="pozemek">
-                                    <span>Pozemek</span>
-                                </label>
-                                <label class="pripad-brief__option">
-                                    <input type="radio" name="propertyType" value="komercni">
-                                    <span>Komerční prostor</span>
-                                </label>
-                                <label class="pripad-brief__option pripad-brief__option--wide">
-                                    <input type="radio" name="propertyType" value="jine">
-                                    <span>Něco jiného nebo zatím nevím přesně</span>
-                                </label>
-                            </div>
-
-                            <div class="pripad-brief__nav">
-                                <button type="button" class="cta-button" data-action="next">Pokračovat</button>
-                            </div>
-                        </div>
-
-                        <!-- Krok 2 -->
-                        <div class="pripad-brief__step" data-step="2" hidden>
-                            <h3>Co potřebujete vyřešit?</h3>
-                            <p class="pripad-brief__hint">Vyberte to, co je nejblíž vaší situaci.</p>
-
-                            <div class="pripad-brief__options">
-                                <label class="pripad-brief__option">
-                                    <input type="radio" name="caseType" value="prodat" required>
-                                    <span>Prodat</span>
-                                </label>
-                                <label class="pripad-brief__option">
-                                    <input type="radio" name="caseType" value="koupit">
-                                    <span>Koupit</span>
-                                </label>
-                                <label class="pripad-brief__option">
-                                    <input type="radio" name="caseType" value="pronajmout">
-                                    <span>Pronajmout</span>
-                                </label>
-                                <label class="pripad-brief__option">
-                                    <input type="radio" name="caseType" value="ocenit">
-                                    <span>Ocenit</span>
-                                </label>
-                                <label class="pripad-brief__option">
-                                    <input type="radio" name="caseType" value="komplikovany">
-                                    <span>Komplikovanější případ</span>
-                                </label>
-                                <label class="pripad-brief__option">
-                                    <input type="radio" name="caseType" value="zvazuji">
-                                    <span>Zatím jen zvažuji</span>
-                                </label>
-                            </div>
-
-                            <div class="pripad-brief__nav">
-                                <button type="button" class="pripad-brief__back" data-action="back">Zpět</button>
-                                <button type="button" class="cta-button" data-action="next">Pokračovat</button>
-                            </div>
-                        </div>
-
-                        <!-- Krok 3 -->
-                        <div class="pripad-brief__step" data-step="3" hidden>
-                            <h3>Kam se vám mám ozvat?</h3>
-                            <p class="pripad-brief__hint">Tři pole, jedno zaškrtnutí. Hotovo.</p>
-
-                            <div class="pripad-brief__field">
-                                <label for="brief-name">Jméno a příjmení</label>
-                                <input type="text" id="brief-name" name="name" autocomplete="name" required placeholder="Jan Novák">
-                            </div>
-
-                            <div class="pripad-brief__field">
-                                <label>Jak se vám mám ozvat?</label>
-                                <div class="pripad-channels" id="brief-channels">
-                                    <label class="pripad-channel">
-                                        <input type="radio" name="kanal" value="email" checked>
-                                        <span><i class="fas fa-envelope" aria-hidden="true"></i> Napsat e-mail</span>
-                                    </label>
-                                    <label class="pripad-channel">
-                                        <input type="radio" name="kanal" value="telefon">
-                                        <span><i class="fas fa-phone" aria-hidden="true"></i> Zavolat</span>
-                                    </label>
-                                    <label class="pripad-channel">
-                                        <input type="radio" name="kanal" value="whatsapp">
-                                        <span><i class="fab fa-whatsapp" aria-hidden="true"></i> WhatsApp</span>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="pripad-brief__row">
-                                <div class="pripad-brief__field">
-                                    <label for="brief-email">E-mail</label>
-                                    <input type="email" id="brief-email" name="email" autocomplete="email" required placeholder="jan@example.cz">
-                                </div>
-                                <div class="pripad-brief__field" id="brief-phone-field">
-                                    <label for="brief-phone">Telefon <span class="pripad-brief__opt" id="brief-phone-opt">(nepovinné)</span></label>
-                                    <input type="tel" id="brief-phone" name="phone" autocomplete="tel" placeholder="+420 774 052 232">
-                                </div>
-                            </div>
-
-                            <div class="pripad-brief__field">
-                                <label for="brief-message">Krátký popis (volitelné)</label>
-                                <textarea id="brief-message" name="message" rows="4" maxlength="500" placeholder="Stručně, co je třeba vyřešit. Klidně jedna věta. Vše ostatní probereme při hovoru."></textarea>
-                            </div>
-
-                            <label class="pripad-brief__consent">
-                                <input type="checkbox" name="gdpr" required>
-                                <span>Souhlasím se zpracováním osobních údajů podle <a href="/osobni-udaje.html" target="_blank" rel="noopener">zásad ochrany osobních údajů</a>.</span>
-                            </label>
-
-                            <div class="pripad-brief__nav">
-                                <button type="button" class="pripad-brief__back" data-action="back">Zpět</button>
-                                <button type="submit" class="cta-button">Poslat zadání</button>
-                            </div>
-
-                            <p class="pripad-brief__after">
-                                Odpovím e-mailem do hodiny, mezi osmou a osmou. Konzultace je zdarma a nezavazuje vás k ničemu — ani k další schůzce.
-                            </p>
-
-                            <p class="pripad-brief__trust">
-                                Diskrétně. Bez závazku. Pokud chcete radši volat: <a href="tel:+420774052232">774 052 232</a> (pondělí–neděle, 8–20 h).
-                            </p>
-                        </div>
-
-                        <!-- Confirmation -->
-                        <div class="pripad-brief__step pripad-brief__success" data-step="done" hidden>
-                            <div class="pripad-brief__success-icon" aria-hidden="true">
-                                <i class="fas fa-check"></i>
-                            </div>
-                            <h3>Děkuji, máme to.</h3>
-                            <p>Odpovím vám e-mailem do hodiny, mezi osmou a osmou, a probereme, co dál. Pokud potřebujete dřív, zavolejte na <a href="tel:+420774052232">774 052 232</a> nebo napište na <a href="mailto:david.choc@ptf.cz">david.choc@ptf.cz</a>.</p>
-                            <p class="pripad-brief__success-meta">Mezitím se můžete podívat na <a href="/nabidky.html">aktuální nabídky</a> nebo si <a href="/ocenit-online.html">ocenit nemovitost online</a>.</p>
-                        </div>
-
-                        <!-- Error -->
-                        <div class="pripad-brief__error" hidden role="alert"></div>
-                    </form>
                 </div>
             </div>
         </section>

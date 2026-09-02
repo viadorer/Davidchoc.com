@@ -240,12 +240,12 @@
           verdikt = '<strong>Samoprodej vás podle těchto čísel vyjde dráž.</strong>' +
             '<p>Rozdíl je <strong>' + fmt(rozdilMin) + ' až ' + fmt(rozdilMax) + ' Kč</strong> v neprospěch samoprodeje — a to ještě nepočítám riziko, že se něco pokazí v kapitole 7.</p>';
           verdiktCta = '<a href="/chci-prodat" class="cta-button">Chci to předat</a>' +
-                       '<a href="/pripad-pro-agenta" class="cta-button cta-button--outline">Nejdřív se poradit</a>';
+                       '<a href="/chci-si-to-overit" class="cta-button cta-button--outline">Nejdřív se poradit</a>';
         } else if (rozdilMax > 0) {
           verdiktCls = 'warn';
           verdikt = '<strong>Může to dopadnout tak i tak.</strong>' +
             '<p>Podle toho, jak se trefíte do ceny, jste na tom od <strong>' + fmt(Math.abs(rozdilMin)) + ' Kč lépe</strong> po <strong>' + fmt(rozdilMax) + ' Kč hůř</strong>. Rozhoduje o tom hlavně kapitola 1 — cena.</p>';
-          verdiktCta = '<a href="/pripad-pro-agenta" class="cta-button">Ověřit si cenu zdarma</a>' +
+          verdiktCta = '<a href="/chci-si-to-overit" class="cta-button">Ověřit si cenu zdarma</a>' +
                        '<a href="/vycvik/kapitola-1-cena" class="cta-button cta-button--outline">Zpět ke kapitole 1</a>';
         } else {
           verdiktCls = 'ok';
