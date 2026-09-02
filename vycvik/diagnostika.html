@@ -408,7 +408,10 @@
             // stejná trojice oprav jako na branách sekce. Placeholder není
             // popisek: zmizí, jakmile člověk začne psát, a čtečka obrazovky
             // ho neohlásí jako název pole.
-            '<form id="vy-diag-form" hidden style="margin-top:14px;">' +
+            // novalidate: hlášku i kurzor řídí stránka sama. Bez toho prohlížeč
+            // zobrazí vlastní bublinu, kterou nejde sladit se zbytkem sekce
+            // a která nemá nic společného s hláškou v role="alert".
+            '<form id="vy-diag-form" novalidate hidden style="margin-top:14px;">' +
               '<p style="margin:0 0 10px;">' +
                 '<label for="vy-diag-odkaz" style="' + LBL + '">Odkaz na váš inzerát <span style="font-weight:400; color:#8a8a8a;">nepovinné</span></label>' +
                 '<input id="vy-diag-odkaz" type="url" name="odkaz" placeholder="https://" style="' + POLE + '">' +
@@ -478,7 +481,10 @@
         function chyba(text, poleEl) {
           if (msg) {
             msg.textContent = text;
-            msg.style.color = '#c0392b';
+            // `.vy-result__body p` má barvu s !important, takže obyčejný
+            // inline styl by chybovou hlášku obarvil na běžnou šeď a nebyla
+            // by k rozeznání od zbytku výsledku.
+            msg.style.setProperty('color', '#c0392b', 'important');
             msg.hidden = false;
           }
           if (poleEl && typeof poleEl.focus === 'function') poleEl.focus();
@@ -530,7 +536,7 @@
             if (tlac) { tlac.disabled = false; tlac.textContent = 'Odeslat'; }
             if (msg) {
               msg.textContent = 'Odeslání se nepodařilo. Zkuste to prosím znovu, nebo mi zavolejte na 774 052 232.';
-              msg.style.color = '#c0392b';
+              msg.style.setProperty('color', '#c0392b', 'important');
               msg.hidden = false;
             }
           });
