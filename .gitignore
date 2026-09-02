@@ -13,3 +13,6 @@ node_modules/
 # Velké binární soubory
 archiv/
 *.pdf
+
+# Pracovní adresář Claude Code — worktrees a lokální konfigurace
+.claude/
