@@ -4856,6 +4856,21 @@ body.is-light .vycvik-garance .cta-button--outline:hover {
 .kzk-pocitadlo__ne dd { color: var(--hub-accent, #FFBF00); }
 .kzk-pocitadlo .cta-button { flex: 0 0 auto; }
 
+/* Lišta sedí u spodní hrany okna, kam patří i plovoucí tlačítka, takže
+   do sebe narážely: kolečko „zpět nahoru" leželo přesně na pravém konci
+   hlavního tlačítka lišty (50 × 47 px na 1000 px šířky) a klepnutí do
+   toho rohu odrolovalo nahoru místo zobrazení výsledku. Tlačítka proto
+   uhnou nad lištu — stejný princip, jakým už uhýbají popupu.
+
+   Výšku lišty měří skript stránky do --kzk-bar-space, protože se podle
+   šířky láme z jednoho řádku na dva (89 px na desktopu, 133 px pod
+   780 px, 182 px na 375 px) a jedna pevná hodnota by seděla vždycky jen
+   na jedné z nich. Záložní hodnota kryje i ten nejvyšší případ, takže
+   bez skriptu se tlačítka nepřekryjí, jen budou o kus výš. */
+body:has(.kzk-pocitadlo:not([hidden])) .floating-buttons {
+    bottom: calc(var(--kzk-bar-space, 182px) + 16px);
+}
+
 /* ── Závěr ─────────────────────────────────────────────────────────── */
 .kzk-zaver { margin: 34px 0 0; }
 .kzk-zaver__in {

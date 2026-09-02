@@ -708,7 +708,21 @@
         document.getElementById('pKc').textContent = fmt.format(s.kc);
         document.getElementById('pNe').textContent = s.ne.length;
         listEl.hidden = s.prosel === 0;
+        zmerListu();
       }
+
+      /* Plovoucí tlačítka vpravo dole sedí na stejném místě jako lišta.
+         CSS je nad ni umí posunout, ale musí vědět o kolik — lišta se
+         podle šířky láme z jednoho řádku na dva a mění výšku o sto pixelů.
+         Měříme ji tedy tady a předáváme do --kzk-bar-space. */
+      function zmerListu() {
+        var v = listEl.hidden ? 0 : Math.round(listEl.getBoundingClientRect().height);
+        document.documentElement.style.setProperty('--kzk-bar-space', v + 'px');
+      }
+
+      if (window.ResizeObserver) new ResizeObserver(zmerListu).observe(listEl);
+      window.addEventListener('resize', zmerListu);
+      window.addEventListener('orientationchange', zmerListu);
 
       /* Sklonění: „1 fázi", „2–4 fáze", „5+ fází" */
       function fazeSlovo(n) {

@@ -159,6 +159,13 @@ brána slíbila.
 *Pořád bez nabídky. Nástroj, který umí vyjít proti mně, je nejlepší důkaz,
 že nelžu.*
 
+> **Doplněk k E2/E3.** Od 2. 9. 2026 existuje stránka `/kolik-si-berem`
+> — provize uvedená veřejně (3–6 % podle charakteru obchodu) a rozepsaná
+> na šest částí i s tím, co by každá stála koupit zvlášť. Patří do E3
+> jako důkaz radikální transparentnosti: nejdřív ukážu, co stojí prodej
+> sám, pak co stojím já a co v tom čísle je. V opačném pořadí by to byla
+> obhajoba ceny, ne informace.
+
 ---
 
 ## E3 — po 12 dnech · všechny segmenty

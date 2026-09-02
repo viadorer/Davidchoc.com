@@ -92,6 +92,20 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
 
+
+    /* Patička si nese vlastní blok plovoucích tlačítek, ale většina
+       kořenových stránek ho má i ve svém HTML. Po vložení patičky pak
+       existoval dvakrát: kolečka ležela přesně na sobě, odečítač obrazovky
+       četl „Zavolat", „WhatsApp zpráva" a „Zpět nahoru" dvakrát a druhý
+       „zpět nahoru" nikdy nedostal obsluhu, protože se váže vždy na první
+       v pořadí. Zahazujeme ten z patičky, ne ten stránkový — stránkový
+       bývá bohatší (má i e-mail) a už na něm visí posluchače ze script.js. */
+    function odstranDuplicitniTlacitka(placeholder) {
+        if (document.querySelectorAll('.floating-buttons').length < 2) return;
+        const zPaticky = placeholder.querySelector('.floating-buttons');
+        if (zPaticky) zPaticky.remove();
+    }
+
     // Načtení patičky - podobný přístup
     const footerPlaceholder = document.getElementById('footer-placeholder');
 
@@ -120,6 +134,7 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(data => {
                 footerPlaceholder.innerHTML = data;
+                odstranDuplicitniTlacitka(footerPlaceholder);
                 initFooterFunctionality();
             })
             .catch(error => {
@@ -132,6 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     .then(response => response.text())
                     .then(data => {
                         footerPlaceholder.innerHTML = data;
+                        odstranDuplicitniTlacitka(footerPlaceholder);
                         initFooterFunctionality();
                     })
                     .catch(err => console.error('Chyba při načítání patičky:', err));
