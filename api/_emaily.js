@@ -501,6 +501,62 @@ ${dalsi}
 
 POTVRZENI['vycvik-plan'] = VYCVIK_PLAN;
 
+// ── BRÁNY V KAPITOLÁCH ────────────────────────────────────────────────
+// Kdo dočte kapitolu a uvědomí si, že mu něco chybí, měl dosud jedinou
+// možnost: vrátit se na rozcestník a začít dotazník od začátku. Tyhle tři
+// e-maily jsou přesně to, co brána v kapitole slibuje — nic víc — a všechno
+// v nich vede na nástroje, které na webu opravdu jsou.
+
+const VYCVIK_KAPITOLA_CENA = {
+  subject: 'Tři zdroje, ze kterých se cena dá podložit',
+  html: () => obal('Tři zdroje k ceně', `
+<p style="${P}">Dobrý den,</p>
+<p style="${P}">slíbil jsem tři nezávislé zdroje. Schválně v tomhle pořadí — každý další je pomalejší, ale přesnější.</p>
+<p style="${P}"><strong style="color:#1a1a1a;">1. Online odhad.</strong> Do dvou minut a zdarma. Berte ho jako první orientaci, ne jako číslo do inzerátu.</p>
+${tlacitko('https://www.davidchoc.cz/ocenit-online', 'Odhadnout cenu online')}
+<p style="${P}margin-top:22px;"><strong style="color:#1a1a1a;">2. Skutečně dokončené prodeje ve vašem okolí</strong>, ne inzertní ceny sousedů. Inzerát říká, co si kdo přeje. Kupní smlouva říká, za kolik se to nakonec prodalo — a to jsou dvě různá čísla, obvykle o desítky tisíc.</p>
+<p style="${P}"><strong style="color:#1a1a1a;">3. Znalecký posudek</strong>, pokud jde o netypickou nemovitost nebo o ni bude spor. U běžného bytu je to zbytečný náklad, u domu s pozemkem nebo v dědickém řízení se vyplatí.</p>
+<p style="${P}">Až budete mít čísla, napište si tři částky: optimistickou, realistickou a nejnižší přijatelnou. Tu poslední si schovejte a nikomu ji neříkejte — je to jediné číslo, které vás při vyjednávání udrží na nohou.</p>
+<p style="${P}margin-top:22px;">Kdyby se zdroje rozcházely a nevěděl jste, kterému věřit, napište mi. Odpovídám osobně.</p>
+<p style="${P}">David Choc</p>
+`),
+};
+
+const VYCVIK_KAPITOLA_FOTKY = {
+  subject: 'Osm záběrů, které v inzerátu musí být',
+  html: () => obal('Seznam záběrů', `
+<p style="${P}">Dobrý den,</p>
+<p style="${P}">seznam je na webu jako odškrtávací list — otevřete si ho v telefonu při focení. Stav se uloží v prohlížeči, takže se k němu můžete vrátit.</p>
+${tlacitko('https://www.davidchoc.cz/vycvik/fotky', 'Otevřít seznam záběrů')}
+<p style="${P}margin-top:22px;">Tři věci, na kterých to stojí:</p>
+<p style="${P}"><strong style="color:#1a1a1a;">Hlavní fotka rozhoduje o všem ostatním.</strong> Kupující ji vidí tři vteřiny mezi dvaceti dalšími. Nemá to být koupelna ani chodba — má to být nejlepší pohled do nejlepší místnosti.</p>
+<p style="${P}"><strong style="color:#1a1a1a;">Ukliďte víc, než vám přijde nutné.</strong> Na fotce je vidět všechno, čeho si doma po letech už nevšimnete.</p>
+<p style="${P}"><strong style="color:#1a1a1a;">Foťte za světla</strong>, ne večer s rozsvíceným lustrem. Rozdíl mezi dopoledním a večerním snímkem téhož pokoje je větší než rozdíl mezi telefonem a zrcadlovkou.</p>
+<p style="${P}margin-top:22px;">David Choc</p>
+`),
+};
+
+const VYCVIK_KAPITOLA_SMLOUVY = {
+  subject: 'Na co si dát pozor u úschovy',
+  html: () => obal('Úschova — na co si dát pozor', `
+<p style="${P}">Dobrý den,</p>
+<p style="${P}">tohle je jediná část prodeje, kde se chyba nedá opravit slevou z ceny. Buď je úschova ošetřená, nebo o peníze přijdete — mezi tím není nic.</p>
+<p style="${P}"><strong style="color:#1a1a1a;">Peníze nikdy nesmí jít přímo prodávajícímu ani kupujícímu.</strong> Patří do úschovy u advokáta, notáře nebo banky a uvolní se až po zápisu do katastru.</p>
+<p style="${P}"><strong style="color:#1a1a1a;">Úschova u realitní kanceláře na jejím běžném účtu není úschova.</strong> Ptejte se, kde peníze leží a kdo k nim má přístup.</p>
+<p style="${P}"><strong style="color:#1a1a1a;">Ve smlouvě musí stát, co se stane, když se vklad nepovede.</strong> Nejen kdy se peníze vyplatí, ale i kdy a komu se vrátí.</p>
+<p style="${P}">Řádek po řádku je to rozepsané tady — projděte si to dřív, než něco podepíšete:</p>
+${tlacitko('https://www.davidchoc.cz/vycvik/uschova', 'Co musí být ve smlouvě o úschově')}
+<p style="${P}margin-top:22px;">A jestli chcete vidět, kdy se co v transakci děje, <a href="https://www.davidchoc.cz/vycvik/transakce" style="color:#8B7D61;">časová osa je tady</a> — čtrnáct kroků od rezervace po daňové přiznání.</p>
+<p style="${P}margin-top:22px;">Tady se pálí i připravení lidé. Až budete u kupní smlouvy a úschovy, klidně mi ji pošlete — projdu vám ji, i když prodáváte sám a nic spolu nepodepisujeme.</p>
+<p style="${P}">David Choc</p>
+`),
+};
+
+POTVRZENI['vycvik-kapitola-cena'] = VYCVIK_KAPITOLA_CENA;
+POTVRZENI['vycvik-kapitola-fotky'] = VYCVIK_KAPITOLA_FOTKY;
+POTVRZENI['vycvik-kapitola-smlouvy'] = VYCVIK_KAPITOLA_SMLOUVY;
+
+
 // Posouzení inzerátu z knihy je stejná služba jako na samostatné stránce,
 // takže i stejný slib. Kdyby tenhle klíč zůstal bez šablony, člověk se
 // zaseknutou nabídkou — nejteplejší lead celé sekce — nedostane nic.

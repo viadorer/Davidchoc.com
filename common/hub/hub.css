@@ -524,9 +524,13 @@ a.hub-tool:hover {
     transform: translateY(-3px);
     text-decoration: none;
 }
+/* Ikona stojí na světlé kartě, kde je značková žlutá #FFBF00 prakticky
+   neviditelná — 1,58 : 1 proti podkladu karty. Tmavší odstín téže barvy
+   dá 3,66 : 1, tedy nad hranicí pro netextové prvky, a značku neztratí.
+   Tokenem proto, aby si ho zelené téma přebilo vlastním odstínem. */
 .vycvik-tool i,
 .hub-tool i {
-    color: var(--hub-accent, #FFBF00);
+    color: var(--hub-accent-ink, #A67C00);
     font-size: 1.5rem;
     margin-bottom: 6px;
 }
@@ -3327,10 +3331,20 @@ a.hub-tool:hover {
     white-space: nowrap;
     border-bottom: 1px solid rgba(0,0,0,0.18);
 }
+/* Totéž jako u ikon nástrojů: patička pomoci má bílý podklad. */
 .vy-help__phone i,
-.hub-help__phone i { color: var(--hub-accent, #FFBF00); margin-right: 6px; }
+.hub-help__phone i { color: var(--hub-accent-ink, #A67C00); margin-right: 6px; }
 .vy-help__phone:hover,
 .hub-help__phone:hover { border-bottom-color: var(--hub-accent, #FFBF00); color: var(--hub-ink, #1a1a1a); }
+
+/* Patička pomoci uvnitř kapitoly.
+   `.vycvik-chapter__wrap a` má vyšší specificitu než `.vy-help__btn`, takže
+   popisek tlačítka dostával barvu odkazů v textu (#766A52) a na žlutém
+   pozadí měl kontrast 3,21 : 1. Tohle mu vrací tmavý inkoust. */
+.vycvik-chapter__wrap .vy-help__btn,
+.vycvik-tool-page__wrap .vy-help__btn,
+.hub-chapter__wrap .hub-help__btn,
+.hub-tool-page__wrap .hub-help__btn { color: var(--hub-ink, #1a1a1a); }
 
 @media (max-width: 700px) {
     .vy-help,
@@ -3871,6 +3885,18 @@ body.is-light .vy-gate a,
 body.is-light .hub-gate a,
 body.is-light .vy-gate__done a,
 body.is-light .hub-gate__done a { color:var(--hub-accent, #FFBF00); }
+/* Výjimka pro tlačítka. Pravidlo výš je pro odkazy v textu brány, ale
+   trefovalo i tlačítko uvnitř ní — a to má žluté pozadí, takže žlutý
+   popisek na něm zmizel úplně (kontrast 1 : 1). Týkalo se to mimo jiné
+   hlavní výzvy celého rozcestníku „Zvládnete to sami?". */
+body.is-light .vy-gate a.cta-button,
+body.is-light .hub-gate a.cta-button,
+body.is-light .vy-gate__done a.cta-button,
+body.is-light .hub-gate__done a.cta-button { color:#1a1a1a; }
+body.is-light .vy-gate a.cta-button--outline,
+body.is-light .hub-gate a.cta-button--outline,
+body.is-light .vy-gate__done a.cta-button--outline,
+body.is-light .hub-gate__done a.cta-button--outline { color:#fff; }
 body.is-light .vy-help__btn,
 body.is-light .hub-help__btn,
 body.is-light .vy-help__phone,
