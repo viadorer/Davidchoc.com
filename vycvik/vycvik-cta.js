@@ -548,6 +548,22 @@
     };
   }
 
+  /* Brány na stránce si držíme v seznamu, protože se můžou během čtení
+     změnit: kdo v půlce kapitoly zaškrtne dědické řízení, musí pod sebou
+     najít eskalaci, ne nabídku rozpisu. Odeslanou bránu překreslovat
+     nesmíme — smazali bychom člověku poděkování i to, co si přečetl. */
+  var BRANY = [];
+
+  function obnovBrany() {
+    BRANY.forEach(function (z) {
+      if (!z.el || !z.el.parentNode) return;
+      if (z.el.querySelector('.vy-gate__done')) return;
+      var novy = buildHlavniBranu(z.zdroj);
+      z.el.parentNode.replaceChild(novy, z.el);
+      z.el = novy;
+    });
+  }
+
   function buildHlavniBranu(zdroj) {
     var st = stavSekce();
     var t = textyHlavniBrany(st);
@@ -667,12 +683,19 @@
 
       var branaEl = el.querySelector('.vy-rizika__brana');
 
+      /* Vlastní brána se pod seznamem staví jen tehdy, když na stránce
+         žádná jiná není. Kde je (třeba na konci kapitoly), stačí ji
+         překreslit — dvě nabídky pod sebou nutí vybírat mezi nimi
+         místo mezi „chci" a „nechci". */
       function prekresli() {
         var aktualni = nactiKlic(KLIC_ZKOUSKA);
         var pocet = Object.keys(aktualni.risks || {}).length;
+        obnovBrany();
+        if (BRANY.length) { branaEl.innerHTML = ''; return; }
         branaEl.innerHTML = '';
         if (!pocet) return;
-        branaEl.appendChild(buildHlavniBranu('rizika-blok'));
+        var b = buildHlavniBranu('rizika-blok');
+        branaEl.appendChild(b);
       }
 
       el.addEventListener('change', function (ev) {
@@ -710,7 +733,10 @@
     var hostitele = document.querySelectorAll('[data-vy-brana]');
     Array.prototype.forEach.call(hostitele, function (host) {
       if (host.querySelector('.vy-gate')) return;
-      host.appendChild(buildHlavniBranu(host.getAttribute('data-vy-brana') || 'stranka'));
+      var zdroj = host.getAttribute('data-vy-brana') || 'stranka';
+      var b = buildHlavniBranu(zdroj);
+      host.appendChild(b);
+      BRANY.push({ zdroj: zdroj, el: b });
     });
 
     var cesta = window.location.pathname.replace(/\.html$/, '').replace(/\/$/, '');
@@ -720,10 +746,12 @@
     var wrap = document.querySelector('.vycvik-chapter__wrap');
     if (!wrap || wrap.querySelector('.vy-gate')) return false;
 
-    var el = buildHlavniBranu(cesta.replace('/vycvik/', '') || 'kniha');
+    var zdroj = cesta.replace('/vycvik/', '') || 'kniha';
+    var el = buildHlavniBranu(zdroj);
     var pred = wrap.querySelector('.vy-related, .vycvik-verified, .vycvik-nav');
     if (pred) wrap.insertBefore(el, pred);
     else wrap.appendChild(el);
+    BRANY.push({ zdroj: zdroj, el: el });
     return true;
   }
 

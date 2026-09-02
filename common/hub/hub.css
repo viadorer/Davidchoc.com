@@ -3662,6 +3662,25 @@ a.hub-tool:hover {
     line-height: 1.55;
 }
 
+/* Patička brány — kdo za tou nabídkou stojí a za jakých podmínek.
+   Nejsilnější věta webu („když neprodám, neplatíte nic") stála dosud
+   v sedmdesáti procentech rolování rozcestníku; tady je u každého
+   rozhodnutí, ale tiše: v okamžiku rozhodnutí má být důkaz po ruce,
+   ne přes celou obrazovku. */
+.vy-gate__note--author {
+    margin-top: 10px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    font-size: 0.8rem;
+    color: #7d7d7d;
+}
+
+/* Eskalační brána pod zaškrtnutou rizikovou situací. Vyjede hned pod
+   seznamem, ne až na konci stránky — čekat na doskrolování by u téhle
+   skupiny znamenalo přijít o ni. */
+.vy-rizika__brana:empty { display: none; }
+.vy-rizika__brana .vy-gate { margin: 20px 0 0; }
+
 .vy-gate__done,
 .hub-gate__done { text-align: left; }
 .vy-gate__done i,
