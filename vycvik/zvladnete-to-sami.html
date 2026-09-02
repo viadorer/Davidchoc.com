@@ -282,7 +282,7 @@
     <script src="/common/hub/hub-cta.js?v=20260805"></script>
     <script src="/vycvik/vycvik-cta.js?v=20260805"></script>
     <script src="/common/hub/hub-media.js?v=20260901"></script>
-    <script src="/vycvik/vycvik-media.js?v=20260901"></script>
+    <script src="/vycvik/vycvik-media.js?v=20260902"></script>
     <script src="/common/hub/hub-tools.js?v=20260805"></script>
     <script>
     (function () {
@@ -498,6 +498,13 @@
             '<p><strong>V takové situaci se poraďte s odborníkem, i kdybyste měli osm z osmi.</strong> Každá z nich umí prodej zastavit uprostřed — ve chvíli, kdy už máte kupce a podepsali jste koupi nového bydlení.</p></div>';
         }
 
+        // Video o provizi patří podle manifestu k nejnižšímu skóre — přichází
+        // hned po nepříjemné zprávě. U právní překážky se nevkládá: tam je
+        // jediný správný krok konzultace a video o penězích by od něj odvádělo.
+        if (cls === 'fail' && !risks.length) {
+          html += '<div data-media="V3"></div>';
+        }
+
         html += '<div class="vy-result__cta">' + cta + '</div></div></div>';
 
         resultEl.innerHTML = html;
@@ -517,6 +524,10 @@
             window.VycvikCTA.buildExamGate(score, chapterNames, riskNames, missing, risks)
           );
         }
+
+        // Kotva V3 vznikla až teď — vykreslovač médií běžel při načtení
+        // stránky, takže ji musí projít znovu. Init je idempotentní.
+        if (window.HubMedia) window.HubMedia.init();
 
         resultEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
