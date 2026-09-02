@@ -207,6 +207,30 @@ function rozdelitJmeno(cele) {
   return { first_name: casti[0], last_name: casti.slice(1).join(' ') };
 }
 
+/**
+ * Náhradní jméno z e-mailu.
+ *
+ * Většina bran v knize schválně jméno nechce — jedno pole navíc stojí
+ * část lidí, kteří by e-mail nechali. Server ale jméno vyžadoval, takže
+ * každá taková brána vracela „Vyplňte prosím jméno." a lead tiše mizel.
+ * Odhadnout jméno z adresy je horší než ho mít, ale nesrovnatelně lepší
+ * než přijít o kontakt. Že je odhadnuté, nese metadata.jmeno_odhadnute.
+ */
+function jmenoZEmailu(email) {
+  const misto = String(email || '').split('@')[0];
+  const casti = misto
+    .replace(/[._\-+]+/g, ' ')
+    .replace(/\d+/g, ' ')
+    .split(/\s+/)
+    .filter(c => c.length > 1)
+    .slice(0, 2)
+    .map(c => c.charAt(0).toUpperCase() + c.slice(1));
+
+  if (casti.length >= 2) return { first_name: casti[0], last_name: casti[1] };
+  if (casti.length === 1) return { first_name: casti[0], last_name: 'z webu' };
+  return { first_name: 'Zájemce', last_name: 'z webu' };
+}
+
 // Zpráva, jak ji uvidí makléř v adminu. Vlastní text klienta nahoře,
 // pod čarou odkud lead přišel — ať je to poznat i bez klikání do metadat.
 function slozitZpravu(text, konfig, odkazy, metadata) {
@@ -393,16 +417,18 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Neznámý formulář' });
   }
 
-  const jmeno = rozdelitJmeno(body.name);
   const email = ocistit(body.email, 100).toLowerCase();
   const telefon = ocistit(body.phone, 30);
 
-  if (!jmeno) {
-    return res.status(400).json({ error: 'Vyplňte prosím jméno.' });
-  }
+  // E-mail se ověřuje první: je to jediné pole, které chceme po všech.
   if (!EMAIL_RE.test(email)) {
     return res.status(400).json({ error: 'Zadejte prosím platnou e-mailovou adresu.' });
   }
+
+  // Jméno je nepovinné. Formuláře, které ho sbírají, si ho ohlídají samy
+  // na stránce; brány v knize ho schválně nechtějí.
+  const zadaneJmeno = rozdelitJmeno(body.name);
+  const jmeno = zadaneJmeno || jmenoZEmailu(email);
   if (telefon && !PHONE_RE.test(telefon)) {
     return res.status(400).json({ error: 'Telefonní číslo nemá platný formát.' });
   }
@@ -423,6 +449,9 @@ export default async function handler(req, res) {
     form_label: konfig.popis,
     submitted_at: new Date().toISOString(),
   };
+  // Ať je v adminu na první pohled poznat, že jméno nikdo nenapsal —
+  // oslovit člověka odhadem z adresy je horší než ho neoslovit vůbec.
+  if (!zadaneJmeno) metadata.jmeno_odhadnute = true;
   if (konfig.kampan) metadata.kampan = konfig.kampan;
   if (odkazy.length) metadata.links = odkazy;
   if (odkazy.length) metadata.listing_url = odkazy[0];
