@@ -62,10 +62,10 @@ ${tlacitko('https://www.davidchoc.cz/vycvik/zvladnete-to-sami', 'Zvládnete to s
   },
 
   'bytvpanelaku': {
-    subject: 'Mám vaši zprávu — ozvu se do 24 hodin',
+    subject: 'Mám vaši zprávu — ozvu se do hodiny',
     html: () => obal('Mám vaši zprávu', `
 <p style="${P}">Dobrý den,</p>
-<p style="${P}">zpráva o vašem bytě dorazila. <strong style="color:#1a1a1a;">Ozvu se vám do 24 hodin</strong> — domluvíme termín prohlídky a do 48 hodin od ní budete znát cenové pásmo, doložené srovnáním prodejů v domě a okolí.</p>
+<p style="${P}">zpráva o vašem bytě dorazila. <strong style="color:#1a1a1a;">Ozvu se vám do hodiny, mezi osmou a osmou</strong> — domluvíme termín prohlídky a do 48 hodin od ní budete znát cenové pásmo, doložené srovnáním prodejů v domě a okolí.</p>
 <p style="${P}">Do té doby nic nepodepisujete a nikomu nic neplatíte. Nabídka vás k ničemu nezavazuje — klidně si ji nechte jen pro porovnání.</p>
 <p style="${P}margin-top:22px;">David Choc</p>
 `),
@@ -101,10 +101,10 @@ ${tlacitko('https://www.davidchoc.cz/milionar', 'Otevřít nástroj', 'zelena')}
 };
 
 const MILIONAREM_SERVIS = {
-  subject: 'Ozvu se vám do 24 hodin',
+  subject: 'Ozvu se vám do hodiny',
   html: () => obal('Mám vaši zprávu', `
 <p style="${P}">Dobrý den,</p>
-<p style="${P}">zpráva dorazila. <strong style="color:#1a1a1a;">Ozvu se vám do 24 hodin</strong> — osobně, ne šablonou.</p>
+<p style="${P}">zpráva dorazila. <strong style="color:#1a1a1a;">Ozvu se vám do hodiny, mezi osmou a osmou</strong> — osobně, ne šablonou.</p>
 <p style="${P}">Než se ozvu, hodí se, když budete mít spočítaná svoje čísla. Mluví se pak úplně jinak:</p>
 ${tlacitko('https://www.davidchoc.cz/milionar', 'Spustit simulátor', 'zelena')}
 <p style="${P}margin-top:22px;">David Choc</p>

@@ -13,7 +13,7 @@
     help: {
       wrapSelector: '.hub-chapter__wrap, .hub-tool-page__wrap',
       title: 'Nevíte, kde začít?',
-      text: 'Napište mi jednu větu o tom, kde stojíte. Odpovím do 24 hodin, zdarma a bez závazku — i když si to nakonec postavíte celé sami.',
+      text: 'Napište mi jednu větu o tom, kde stojíte. Odpovím do hodiny, mezi osmou a osmou, zdarma a bez závazku — i když si to nakonec postavíte celé sami.',
       action: { label: 'Napsat', href: 'mailto:david.choc@ptf.cz' },
       phone: { label: '774 052 232', href: 'tel:+420774052232' },
       // Úvod je manifest. Do manifestu se nabídka nevkládá.
@@ -51,7 +51,7 @@
       '5': {
         zprava: 'Prosba o posouzení rezervační smlouvy — z Cihly 5 (Smlouva).',
         done: '<h3>Mám to.</h3>' +
-              '<p>Ozvu se vám do 24 hodin. Smlouvu zatím nepodepisujte — po podpisu už nemáte co nabídnout výměnou.</p>'
+              '<p>Odpovím vám do hodiny, mezi osmou a osmou. Smlouvu zatím nepodepisujte — po podpisu už nemáte co nabídnout výměnou.</p>'
       },
       '8': {
         zprava: 'Zájem o garantovaný nájem — z Cihly 8 (Nájemník).',
@@ -60,7 +60,7 @@
       },
       '10': {
         zprava: 'Zájem o další krok po dokončení výcviku — z Cihly 10 (Růst).',
-        done: '<h3>Mám to. Ozvu se do 24 hodin.</h3>' +
+        done: '<h3>Mám to. Odpovím do hodiny, mezi osmou a osmou.</h3>' +
               '<p>Napište si zatím jedno číslo: kolik vám vyšlo v kalkulačce uvolněného kapitálu. Od něj se bude odvíjet celý hovor.</p>'
       }
     };

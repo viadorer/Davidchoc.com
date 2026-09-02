@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     ">✕</button>
                 </div>
                 <div style="padding:22px;">
-                    <p style="margin-top:0; color:#ddd;">Zanechte mi zprávu a já se vám ozvu. Odpovídám zpravidla <strong>do 24 hodin</strong>.</p>
+                    <p style="margin-top:0; color:#ddd;">Zanechte mi zprávu a já se vám ozvu. Odpovídám <strong>do hodiny, mezi osmou ráno a osmou večer</strong>.</p>
                     <form id="contact-modal-form" novalidate>
                         <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
                             <div>
