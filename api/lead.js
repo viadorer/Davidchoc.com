@@ -70,6 +70,9 @@ const FORMULARE = {
   'vycvik-diagnostika': { source: 'web_formular', popis: 'Kniha Výcvik — diagnostika inzerátu' },
   'nabidka-detail':     { source: 'web_formular', popis: 'Poptávka z detailu nabídky' },
   'posudek-inzeratu':   { source: 'web_formular', popis: 'Posouzení inzerátu — zaseknutý samoprodejce' },
+  // Rozbor k odhadu ceny. Stránka ho slibovala ve FAQ, ale neměla
+  // formulář, kterým by si o něj šlo říct.
+  'ocenit-rozbor':      { source: 'web_formular', popis: 'Odhad ceny — rozbor k výsledku' },
   'newsletter':         { source: 'web_formular', popis: 'Přihlášení k odběru' },
   // Přímý odkup panelákových bytů. Prodávající, ne kupující — proto bez
   // kampaně milionarem. metadata.verdikt nese výsledek kvalifikačního testu.
@@ -256,6 +259,7 @@ function seznamyPro(formular) {
     // Hlídání ceny má vlastní seznam: chodí do něj jeden e-mail za
     // čtvrt roku a nic jiného. Kdyby spadlo do sekvence knihy, dostal
     // by člověk pět e-mailů, o které si neřekl.
+    'ocenit-rozbor': process.env.BREVO_LIST_KNIHA,
     'hlidani-ceny': process.env.BREVO_LIST_HLIDANI,
   };
   const id = Number(mapa[formular]);

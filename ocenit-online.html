@@ -18,6 +18,7 @@
 
     <link rel="icon" type="image/png" href="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/favicon.png">
     <link rel="stylesheet" href="styles.css?v=20260728195323">
+    <link rel="stylesheet" href="/common/hub/hub.css?v=20260902">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <!-- Widget pro online odhad -->
@@ -297,6 +298,67 @@
                 <p class="ocenit-widget-note">
                     Odhad vychází z realizovaných prodejů v katastru nemovitostí a z inzertních portálů. Je orientační a nenahrazuje znalecký posudek.
                 </p>
+
+                <!-- Číslo je zdarma a bez e-mailu — gatuje se rozbor, ne číslo.
+                     Opačně by to popřelo větu, na které stojí celý web. FAQ tenhle
+                     rozbor slibovalo už dřív, ale nebyl formulář, kterým by si o něj
+                     šlo říct; slib bez formuláře je horší než žádný slib. -->
+                <div class="vy-gate" style="max-width:760px; margin:34px auto 0;">
+                    <div class="vy-gate__head">
+                        <span class="vy-gate__label">K vašemu odhadu</span>
+                        <h3>Chcete vědět, z čeho to číslo vzniklo?</h3>
+                        <p>Odhad je z veřejných dat. Napište mi, o kterou nemovitost jde, a pošlu vám rozbor — z jakých konkrétních prodejů v okolí to číslo vzniklo a co by u vás cenu posunulo nahoru.</p>
+                        <ul class="vy-gate__list">
+                            <li>Ze kterých prodejů v okolí odhad vychází</li>
+                            <li>Co u vaší nemovitosti cenu posouvá nahoru a co dolů</li>
+                        </ul>
+                    </div>
+                    <form id="ocenit-rozbor-form" class="vy-gate__form" novalidate>
+                        <p class="vy-gate__field">
+                            <label for="or-adresa">Ulice a město, typ nemovitosti</label>
+                            <textarea id="or-adresa" name="poznamka" rows="2" required></textarea>
+                        </p>
+                        <p class="vy-gate__field">
+                            <label for="or-email">Váš e-mail</label>
+                            <input id="or-email" type="email" name="email" autocomplete="email" required>
+                        </p>
+                        <label class="vy-gate__consent">
+                            <input type="checkbox" name="gdpr" required>
+                            <span>Souhlasím se zpracováním e-mailu podle <a href="/osobni-udaje" target="_blank" rel="noopener">zásad ochrany osobních údajů</a>. Odhlásit se dá jedním kliknutím.</span>
+                        </label>
+                        <button type="submit">Poslat mi rozbor</button>
+                        <p class="vy-gate__msg" role="alert" hidden></p>
+                    </form>
+                    <p class="vy-gate__note">Odpovím do hodiny, mezi osmou ráno a osmou večer. Nevolám — volám jen tomu, kdo si o to řekne.</p>
+                </div>
+
+                <!-- Tišší nabídka pro těch pár set lidí ročně, kteří si odhad
+                     spočítají a letos neprodají. Medián držení nemovitosti je
+                     jedenáct let; jednorázový trychtýř s tím nepočítá vůbec. -->
+                <div class="vy-gate vy-gate--slim" style="max-width:760px; margin:22px auto 0;">
+                    <div class="vy-gate__head">
+                        <span class="vy-gate__label">Neprodáváte teď?</span>
+                        <h3>Můžu vám cenu hlídat.</h3>
+                        <p>Jednou za čtvrt roku e-mail: jak se cena ve vaší ulici pohnula, kolik nemovitostí se tam za kvartál prodalo a jedno číslo navíc, o kterém se nepíše. Žádná nabídka, jen čísla.</p>
+                    </div>
+                    <form id="hlidani-ceny-form" class="vy-gate__form" novalidate>
+                        <p class="vy-gate__field">
+                            <label for="hc-lokalita">Ulice a město</label>
+                            <textarea id="hc-lokalita" name="poznamka" rows="1" required></textarea>
+                        </p>
+                        <p class="vy-gate__field">
+                            <label for="hc-email">Váš e-mail</label>
+                            <input id="hc-email" type="email" name="email" autocomplete="email" required>
+                        </p>
+                        <label class="vy-gate__consent">
+                            <input type="checkbox" name="gdpr" required>
+                            <span>Souhlasím se zpracováním e-mailu podle <a href="/osobni-udaje" target="_blank" rel="noopener">zásad ochrany osobních údajů</a>. Odhlásit se dá jedním kliknutím.</span>
+                        </label>
+                        <button type="submit">Hlídat cenu mé nemovitosti</button>
+                        <p class="vy-gate__msg" role="alert" hidden></p>
+                    </form>
+                    <p class="vy-gate__note">Odhlásit jedním kliknutím v každém e-mailu. Nikdo vám kvůli tomu nevolá.</p>
+                </div>
             </div>
         </section>
 
@@ -507,5 +569,65 @@
     <script src="script.js"></script>
     <script src="common/common.js"></script>
     <script src="cookie-consent.js"></script>
+    <script src="/common/hub/hub-cta.js?v=20260902"></script>
+    <script>
+    (function () {
+      'use strict';
+      window.HubConfig = { section: 'ocenit', leadApi: '/api/lead' };
+      var HOTOVO = '<i class="fas fa-circle-check" aria-hidden="true"></i>';
+
+      /* Bez adresy se rozbor napsat nedá a hlídat cenu taky ne. Kontrola
+         musí běžet dřív než odeslání, proto se věší na formulář dřív než
+         HubCTA — posluchače na témže prvku se volají v pořadí, v jakém
+         byly zaregistrované. */
+      function vyzadovatText(id, hlaska) {
+        var form = document.getElementById(id);
+        if (!form) return;
+        form.addEventListener('submit', function (e) {
+          var pole = form.querySelector('textarea');
+          var msg = form.querySelector('.vy-gate__msg');
+          if (pole && !pole.value.trim()) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            if (msg) { msg.hidden = false; msg.textContent = hlaska; msg.className = 'vy-gate__msg vy-gate__msg--error'; }
+            pole.focus();
+          }
+        });
+      }
+
+      HubCTA.ready(function () {
+        vyzadovatText('ocenit-rozbor-form', 'Napište mi prosím ulici a město — bez toho nemám co porovnávat.');
+        vyzadovatText('hlidani-ceny-form', 'Napište mi prosím ulici a město, ať vím, kde cenu hlídat.');
+
+        HubCTA.initGateById('ocenit-rozbor-form', {
+          leadForm: 'ocenit-rozbor',
+          fields: {},
+          message: function (d) {
+            return 'Žádost o rozbor k odhadu ceny.\nNemovitost: ' + (d.note || '(neuvedena)');
+          },
+          meta: function (d) { return { lokalita: d.note, segment: 'odhad-ceny' }; },
+          gaEvent: 'ocenit_rozbor_email',
+          msgError: 'Odeslání se nepodařilo. Zkuste to prosím znovu, nebo mi napište na david.choc@ptf.cz.',
+          done: HOTOVO +
+            '<h3>Mám to. Dívám se na to.</h3>' +
+            '<p>Rozbor vám přijde do hodiny, mezi osmou a osmou. Kdyby nedorazil, mrkněte do spamu — nebo mi napište na <a href="mailto:david.choc@ptf.cz">david.choc@ptf.cz</a>.</p>'
+        });
+
+        HubCTA.initGateById('hlidani-ceny-form', {
+          leadForm: 'hlidani-ceny',
+          fields: {},
+          message: function (d) {
+            return 'Hlídání ceny — čtvrtletní přehled.\nLokalita: ' + (d.note || '(neuvedena)');
+          },
+          meta: function (d) { return { lokalita: d.note, segment: 'hlidani-ceny' }; },
+          gaEvent: 'hlidani_ceny_prihlaseni',
+          msgError: 'Odeslání se nepodařilo. Zkuste to prosím znovu.',
+          done: HOTOVO +
+            '<h3>Hlídám.</h3>' +
+            '<p>Ozvu se jednou za čtvrt roku s čísly z vaší lokality. Nic mezitím, a odhlásit se dá jedním kliknutím.</p>'
+        });
+      });
+    })();
+    </script>
 </body>
 </html>

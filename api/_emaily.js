@@ -769,6 +769,27 @@ ${tlacitko('https://www.davidchoc.cz/ocenit-online', 'Přepočítat odhad ceny')
 `),
 };
 
+/* ══════════════════════════════════════════════════════════════════════
+   ROZBOR K ODHADU CENY
+
+   Číslo z kalkulačky člověk viděl zdarma a bez e-mailu — gatuje se
+   rozbor, ne číslo. Rozbor píšu ručně, takže tenhle e-mail jen
+   potvrzuje, že mám zadání, a říká, kdy odpovím.
+   ══════════════════════════════════════════════════════════════════════ */
+const OCENIT_ROZBOR = {
+  subject: 'Mám vaši nemovitost — posílám rozbor',
+  html: () => obal('Dívám se na to', `
+<p style="${P}">Dobrý den,</p>
+<p style="${P}">zadání mi dorazilo. <strong style="color:#1a1a1a;">Odpovím vám do hodiny, mezi osmou ráno a osmou večer</strong> — napíšu, z jakých konkrétních prodejů v okolí to číslo vzniklo a co by u vaší nemovitosti cenu posunulo nahoru.</p>
+<p style="${P}">Jedna věc předem, ať s ní můžete počítat: online odhad pracuje s tím, co je v datech. Nezná stav zevnitř, rekonstrukci, výhled ani hluk — a právě tyhle věci dělají u konkrétní nemovitosti největší rozdíl.</p>
+<p style="${P}">Než se ozvu, může se hodit kapitola o ceně. Jsou v ní tři zdroje, ze kterých se cena dá podložit, a hlavně pravidlo, které platí bez ohledu na to, kdo prodává: <strong style="color:#1a1a1a;">cena, kterou vyslovíte první, se pak už jen snižuje.</strong></p>
+${tlacitko('https://www.davidchoc.cz/vycvik/kapitola-1-cena', 'Kapitola 1 — cena')}
+<p style="${P}margin-top:22px;">David Choc</p>
+`),
+};
+
+POTVRZENI['ocenit-rozbor'] = OCENIT_ROZBOR;
+
 POTVRZENI['vycvik-zkouska-nedokonceny'] = VYCVIK_ZKRATKA;
 POTVRZENI['vycvik-diagnostika'] = VYCVIK_DIAGNOSTIKA;
 POTVRZENI['vycvik-rozpis'] = VYCVIK_ROZPIS;
