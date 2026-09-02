@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plánovač rekonstrukce bytu — kdy bude hotovo a co objednat | David Choc</title>
+<meta name="description" content="Zadejte rozsah prací a uvidíte termín dokončení, co musíte objednat a kdy, a kde se čeká na technologické přestávky. Zdarma, bez registrace.">
+<meta name="keywords" content="rekonstrukce bytu, jak dlouho trvá rekonstrukce, postup rekonstrukce bytu, harmonogram rekonstrukce, rekonstrukce bytového jádra">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://www.davidchoc.cz/planovac-rekonstrukce">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="cs_CZ">
+<meta property="og:title" content="Kdy bude byt hotový? Spočítejte si harmonogram rekonstrukce">
+<meta property="og:description" content="Termín dokončení, seznam objednávek s termíny a technologické přestávky. Zdarma a bez registrace.">
+<meta property="og:url" content="https://www.davidchoc.cz/planovac-rekonstrukce.html">
+<meta property="og:image" content="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/davidchocagent.avif">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" type="image/png" href="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/favicon.png">
+<link rel="stylesheet" href="styles.css">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TXGDD8D3GK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-TXGDD8D3GK');
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Plánovač rekonstrukce bytu",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CZK" },
+  "description": "Nástroj pro sestavení harmonogramu rekonstrukce bytu včetně technologických přestávek a termínů objednávek.",
+  "provider": { "@type": "RealEstateAgent", "name": "David Choc", "url": "https://www.davidchoc.cz" }
+}
+</script>
+</head>
+<body>
+<div id="navbar-placeholder"></div>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=JetBrains+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+  :root {
+    --bg: #F8F4E9;
+    --surface: #FFFFFF;
+    --surface-2: #F4EBD7;
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --ink-faint: #78828F;
+    --line: #E6DBBC;
+    --line-strong: #C4B896;
+    --blue: #8B7D61;
+    --blue-deep: #6D6249;
+    --blue-soft: rgba(255, 191, 0, .14);
+    --red: #C0362A;
+    --red-soft: rgba(192, 54, 42, .10);
+    --amber: #8A5B0F;
+    --amber-soft: rgba(138, 91, 15, .10);
+    --green: #226B4F;
+    --green-soft: rgba(34, 107, 79, .10);
+    --dark: #1a1a1a;
+    --on-dark: #EDF0F4;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0F1319; --surface: #171C24; --surface-2: #1D232D;
+      --ink: #E4E8EE; --ink-soft: #9EA9B7; --ink-faint: #77818E;
+      --line: #29303B; --line-strong: #3B4451;
+      --blue: #63AEE0; --blue-deep: #8CC4EA; --blue-soft: rgba(99, 174, 224, .14);
+      --red: #E8776A; --red-soft: rgba(232, 119, 106, .14);
+      --amber: #D4A24F; --amber-soft: rgba(212, 162, 79, .14);
+      --green: #62B98C; --green-soft: rgba(98, 185, 140, .14);
+      --dark: #0A0D12; --on-dark: #E4E8EE;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0F1319; --surface: #171C24; --surface-2: #1D232D;
+    --ink: #E4E8EE; --ink-soft: #9EA9B7; --ink-faint: #77818E;
+    --line: #29303B; --line-strong: #3B4451;
+    --blue: #63AEE0; --blue-deep: #8CC4EA; --blue-soft: rgba(99, 174, 224, .14);
+    --red: #E8776A; --red-soft: rgba(232, 119, 106, .14);
+    --amber: #D4A24F; --amber-soft: rgba(212, 162, 79, .14);
+    --green: #62B98C; --green-soft: rgba(98, 185, 140, .14);
+    --dark: #0A0D12; --on-dark: #E4E8EE;
+  }
+
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font-family: Lora, Georgia, serif; font-size: 17px; line-height: 1.6; margin: 0; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 22px; }
+  section { padding: 56px 0; }
+  p { margin: 0 0 16px; }
+
+  /* ---------- HERO ---------- */
+  .pl-hero { background: var(--dark); color: var(--on-dark); padding: 0; }
+  .pl-hero .wrap { padding-top: 64px; padding-bottom: 60px; }
+  .kicker { font-family: "JetBrains Mono", monospace; font-size: 11.5px; letter-spacing: .16em; text-transform: uppercase; color: #FFBF00; margin: 0 0 20px; }
+  h1 { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: clamp(40px, 8vw, 82px); line-height: .95; letter-spacing: -.005em; text-transform: uppercase; margin: 0 0 22px; max-width: 17ch; }
+  .pl-hero .lead { font-size: 20px; max-width: 60ch; color: #D8D2C4; margin: 0 0 30px; }
+  .pl-hero .lead b { color: #FFF; font-weight: 600; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .btn {
+    font-family: "Barlow Condensed", sans-serif; font-weight: 600; font-size: 17px;
+    text-transform: uppercase; letter-spacing: .06em; padding: 13px 24px;
+    background: #FFBF00; color: #1a1a1a; border: 1px solid #FFBF00; cursor: pointer; font-weight: 700;
+    text-decoration: none; display: inline-block; line-height: 1.2;
+  }
+  .btn:hover { background: #E6AB00; border-color: #E6AB00; }
+  .btn.ghost { background: transparent; color: #D8D2C4; border-color: #4a4a4a; }
+  .btn.ghost:hover { color: #FFF; border-color: #FFBF00; background: transparent; }
+  .btn:focus-visible { outline: 2px solid #FFBF00; outline-offset: 3px; }
+  .pl-hero-note { font-family: "JetBrains Mono", monospace; font-size: 11.5px; color: #9a9284; margin-top: 16px; }
+
+  .hook { border-top: 1px solid #3a3a3a; margin-top: 44px; padding-top: 26px; display: grid; grid-template-columns: 1fr; gap: 24px; }
+  @media (min-width: 780px) { .hook { grid-template-columns: repeat(3, 1fr); gap: 32px; } }
+  .hk .n { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 40px; line-height: 1; color: #FFBF00; }
+  .hk p { font-size: 15.5px; color: #C4BCA8; margin: 8px 0 0; }
+
+  /* ---------- TOOL ---------- */
+  .tool { background: var(--bg); }
+  .sec-head { margin-bottom: 26px; }
+  .sec-head .eyebrow { font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: .15em; text-transform: uppercase; color: var(--blue); margin: 0 0 10px; }
+  h2 { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: clamp(30px, 5vw, 44px); line-height: 1.02; text-transform: uppercase; margin: 0 0 14px; }
+  .sec-head p { color: var(--ink-soft); max-width: 62ch; margin: 0; font-size: 18px; }
+
+  .app { display: grid; grid-template-columns: 1fr; gap: 24px; }
+  @media (min-width: 1000px) { .app { grid-template-columns: 330px minmax(0,1fr); gap: 32px; align-items: start; } }
+
+  .panel { background: var(--surface); border: 1px solid var(--line); }
+  @media (min-width: 1000px) { .panel { position: sticky; top: 16px; max-height: calc(100vh - 32px); overflow-y: auto; } }
+  .panel-in { padding: 18px 20px 22px; }
+  .fieldset { border: 0; margin: 0 0 18px; padding: 0; }
+  .fieldset:last-child { margin-bottom: 0; }
+  legend, .flabel {
+    font-family: "Barlow Condensed", sans-serif; font-weight: 600; font-size: 13px;
+    text-transform: uppercase; letter-spacing: .09em; color: var(--ink-faint);
+    padding: 0 0 8px; margin: 0 0 10px; display: block; width: 100%; border-bottom: 1px solid var(--line);
+  }
+  .row { display: flex; gap: 10px; margin-bottom: 10px; }
+  .row > div { flex: 1; }
+  label.lbl { display: block; font-size: 12px; color: var(--ink-soft); margin-bottom: 3px; font-family: "Barlow Condensed", sans-serif; text-transform: uppercase; letter-spacing: .05em; }
+  input[type="date"], input[type="number"], input[type="text"], input[type="email"], select {
+    width: 100%; padding: 8px 10px; font-family: "JetBrains Mono", monospace; font-size: 13px;
+    background: var(--surface-2); color: var(--ink); border: 1px solid var(--line); border-radius: 0;
+  }
+  input:focus-visible, select:focus-visible { outline: 2px solid var(--blue); outline-offset: 1px; }
+  .chk { display: flex; align-items: flex-start; gap: 8px; padding: 4px 0; cursor: pointer; font-size: 14.5px; }
+  .chk input { margin: 4px 0 0; accent-color: var(--blue); flex: none; width: 15px; height: 15px; }
+  .chk .hint { display: block; font-family: "JetBrains Mono", monospace; font-size: 10.5px; color: var(--ink-faint); margin-top: 1px; }
+  .presets { display: flex; flex-wrap: wrap; gap: 6px; }
+  .preset { font-family: "Barlow Condensed", sans-serif; font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: .05em; padding: 6px 10px; background: var(--surface-2); border: 1px solid var(--line); color: var(--ink-soft); cursor: pointer; }
+  .preset:hover { border-color: var(--blue); color: var(--blue); }
+  .preset[aria-pressed="true"] { background: var(--blue-soft); border-color: var(--blue); color: var(--blue); }
+
+  .out { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
+  h3 { font-family: "Barlow Condensed", sans-serif; font-weight: 600; font-size: 23px; text-transform: uppercase; margin: 0 0 10px; padding-bottom: 8px; border-bottom: 1px solid var(--line-strong); display: flex; align-items: baseline; gap: 10px; }
+  h3 .cnt { font-family: "JetBrains Mono", monospace; font-size: 11.5px; color: var(--ink-faint); }
+
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .kpi { background: var(--surface); padding: 14px 16px; }
+  .kpi .v { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 27px; line-height: 1.05; font-variant-numeric: tabular-nums; }
+  .kpi .v.warn { color: var(--red); }
+  .kpi .k { font-family: "JetBrains Mono", monospace; font-size: 9.5px; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-faint); margin-top: 4px; }
+
+  .alerts { display: flex; flex-direction: column; gap: 9px; }
+  .alert { padding: 12px 15px; border: 1px solid var(--line); border-left: 3px solid var(--ink-faint); background: var(--surface); font-size: 15.5px; }
+  .alert.crit { border-left-color: var(--red); background: var(--red-soft); }
+  .alert.warn { border-left-color: var(--amber); background: var(--amber-soft); }
+  .alert.tip { border-left-color: var(--green); background: var(--green-soft); }
+
+  .tablewrap { overflow-x: auto; border: 1px solid var(--line); background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; font-size: 14px; }
+  th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-family: "Barlow Condensed", sans-serif; font-size: 12px; text-transform: uppercase; letter-spacing: .07em; color: var(--ink-soft); font-weight: 600; background: var(--surface-2); white-space: nowrap; }
+  tbody tr:last-child td { border-bottom: none; }
+  td.d { font-family: "JetBrains Mono", monospace; font-size: 12.5px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  tr.late td { background: var(--red-soft); }
+  tr.late td.d { color: var(--red); font-weight: 500; }
+  .pill { font-family: "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: .08em; text-transform: uppercase; padding: 2px 6px; border: 1px solid currentColor; white-space: nowrap; }
+  .pill.crit { color: var(--red); }
+
+  .gantt { border: 1px solid var(--line); background: var(--surface); overflow-x: auto; }
+  .grow { display: grid; grid-template-columns: 180px minmax(280px, 1fr); border-bottom: 1px solid var(--line); min-width: 540px; }
+  .grow:last-child { border-bottom: 0; }
+  .grow.head { background: var(--surface-2); }
+  .gname { padding: 7px 12px; font-size: 13.5px; border-right: 1px solid var(--line); display: flex; align-items: center; gap: 7px; }
+  .gname .p { font-family: "JetBrains Mono", monospace; font-size: 10px; color: var(--ink-faint); }
+  .gtrack { position: relative; padding: 7px 12px; min-height: 31px; }
+  .bar { position: absolute; top: 10px; height: 14px; background: var(--blue); }
+  .bar.crit { background: var(--red); }
+  .wait { position: absolute; top: 13px; height: 8px; background: var(--red-soft); border: 1px dashed var(--red); }
+  .glabel { position: absolute; top: 8px; font-family: "JetBrains Mono", monospace; font-size: 10px; color: var(--ink-faint); white-space: nowrap; }
+  .gscale { padding: 6px 12px; font-family: "JetBrains Mono", monospace; font-size: 10px; color: var(--ink-faint); display: flex; justify-content: space-between; }
+  .legend { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 9px; font-family: "JetBrains Mono", monospace; font-size: 10.5px; color: var(--ink-faint); }
+  .legend i { display: inline-block; width: 15px; height: 8px; margin-right: 5px; vertical-align: middle; }
+  .legend .b1 { background: var(--red); } .legend .b2 { background: var(--blue); } .legend .b3 { border: 1px dashed var(--red); background: var(--red-soft); }
+
+  /* ---------- GATE ---------- */
+  .gate { border: 2px solid var(--blue); background: var(--surface); padding: 24px; }
+  .gate h4 { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 25px; text-transform: uppercase; margin: 0 0 10px; }
+  .gate .g-lead { color: var(--ink-soft); max-width: 56ch; margin: 0 0 18px; }
+  .gate ul { margin: 0 0 20px; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; font-size: 15.5px; }
+  .gate ul li::marker { color: var(--blue); }
+  .gform { display: grid; grid-template-columns: 1fr; gap: 10px; max-width: 520px; }
+  @media (min-width: 620px) { .gform .two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; } }
+  .gdpr { display: flex; gap: 8px; align-items: flex-start; font-size: 13.5px; color: var(--ink-soft); }
+  .gdpr input { margin-top: 4px; accent-color: var(--blue); }
+  .gmsg { font-family: "JetBrains Mono", monospace; font-size: 12.5px; padding: 10px 12px; background: var(--green-soft); border-left: 3px solid var(--green); color: var(--ink); }
+  .blurred { position: relative; }
+  .blurred .veil { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent, var(--bg) 78%); pointer-events: none; }
+
+  /* ---------- SERVICES ---------- */
+  .dark-sec { background: var(--dark); color: var(--on-dark); }
+  .dark-sec h2 { color: #FFF; }
+  .dark-sec .sec-head p { color: #C4BCA8; }
+  .dark-sec .eyebrow { color: #FFBF00; }
+  .svcs { display: grid; grid-template-columns: 1fr; gap: 1px; background: #3a3a3a; border: 1px solid #3a3a3a; }
+  @media (min-width: 700px) { .svcs { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1000px) { .svcs { grid-template-columns: repeat(3, 1fr); } }
+  .svc { background: var(--dark); padding: 22px 20px; }
+  .svc .when { font-family: "JetBrains Mono", monospace; font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: #FFBF00; margin-bottom: 8px; }
+  .svc h4 { font-family: "Barlow Condensed", sans-serif; font-weight: 600; font-size: 20px; text-transform: uppercase; margin: 0 0 8px; color: #FFF; }
+  .svc p { font-size: 15px; color: #C4BCA8; margin: 0; }
+
+  /* ---------- FAQ ---------- */
+  .faq { display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--line); }
+  .qa { border-bottom: 1px solid var(--line); padding: 18px 0; }
+  .qa h4 { font-family: "Barlow Condensed", sans-serif; font-weight: 600; font-size: 21px; text-transform: uppercase; margin: 0 0 8px; }
+  .qa p { color: var(--ink-soft); margin: 0; max-width: 68ch; }
+
+  footer { background: var(--dark); color: #9a9284; padding: 36px 0; font-family: "JetBrains Mono", monospace; font-size: 11.5px; line-height: 1.8; }
+  footer a { color: #FFBF00; }
+  .todo { background: var(--amber-soft); border-left: 3px solid var(--amber); padding: 12px 16px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--ink-soft); margin-top: 18px; }
+</style>
+
+<!-- ================= HERO ================= -->
+<div class="pl-hero">
+  <div class="wrap">
+    <p class="kicker">Plánovač rekonstrukce bytu · zdarma</p>
+    <h1>Kdy bude byt hotový?</h1>
+    <p class="lead">Zaškrtni, co se bude dělat. Za pár vteřin uvidíš termín dokončení, pořadí profesí a hlavně <b>co musíš objednat dnes, aby ses za dva měsíce nedíval na hotový byt bez kuchyně.</b></p>
+    <div class="cta-row">
+      <a class="btn" href="#planovac">Spočítat harmonogram</a>
+      <a class="btn ghost" href="#jak">Jak to funguje</a>
+    </div>
+    <p class="pl-hero-note">Bez registrace. Výsledek uvidíš hned na obrazovce.</p>
+
+    <div class="hook">
+      <div class="hk">
+        <div class="n">8–16</div>
+        <p>týdnů trvá výroba kuchyně na míru. Objednaná po převzetí klíčů dorazí do bytu, který je jinak hotový a jen v něm běží úroky.</p>
+      </div>
+      <div class="hk">
+        <div class="n">3–10</div>
+        <p>týdnů schne potěr, než na něj smí podlaha. Volba potěru je rozhodnutí o době držení kapitálu, ne o ceně směsi.</p>
+      </div>
+      <div class="hk">
+        <div class="n">8</div>
+        <p>kontrolních bodů blokuje další práci. Kdo je přeskočí, bourá hotové — a zjistí to až u kupujícího.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= TOOL ================= -->
+<section class="tool" id="planovac">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Krok 1 — zadání</p>
+      <h2>Vyber rozsah prací</h2>
+      <p>Buď rychlou předvolbou, nebo si odklikej jednotlivé práce. Harmonogram se přepočítá při každé změně.</p>
+    </div>
+
+    <div class="app">
+      <form class="panel" id="form" aria-label="Zadání rekonstrukce">
+        <div class="panel-in">
+
+          <fieldset class="fieldset">
+            <legend>1 — K čemu byt bude</legend>
+            <div class="row"><div>
+              <label class="lbl" for="ucel">Záměr</label>
+              <select id="ucel">
+                <option value="prodej" selected>Rekonstrukce a prodej</option>
+                <option value="pronajem">Dlouhodobý pronájem</option>
+                <option value="kratkodoby">Krátkodobý pronájem</option>
+                <option value="vlastni">Vlastní bydlení</option>
+              </select>
+            </div></div>
+            <div class="row">
+              <div><label class="lbl" for="area">Plocha m²</label><input type="number" id="area" value="62" min="15" max="300"></div>
+              <div><label class="lbl" for="budget">Rozpočet tis. Kč</label><input type="number" id="budget" value="900" min="0" step="50"></div>
+            </div>
+            <div class="row">
+              <div><label class="lbl" for="start">Předání klíčů</label><input type="date" id="start" value="2026-09-15"></div>
+              <div><label class="lbl" for="rok">Rok výstavby</label><input type="number" id="rok" value="1975" min="1850" max="2026"></div>
+            </div>
+            <div class="row"><div>
+              <label class="lbl" for="azbest">Azbest</label>
+              <select id="azbest">
+                <option value="nevim" selected>zatím neřešeno</option>
+                <option value="vylouceno">vyloučen průzkumem</option>
+                <option value="potvrzeno">potvrzen — nutná sanace</option>
+              </select>
+            </div></div>
+          </fieldset>
+
+          <fieldset class="fieldset">
+            <legend>2 — Rozsah prací</legend>
+            <div class="presets">
+              <button type="button" class="preset" data-preset="komplet">Kompletní</button>
+              <button type="button" class="preset" data-preset="jadro">Bytové jádro</button>
+              <button type="button" class="preset" data-preset="pronajem">K pronájmu</button>
+              <button type="button" class="preset" data-preset="kosmetika">Kosmetická</button>
+            </div>
+          </fieldset>
+
+          <fieldset class="fieldset">
+            <legend>Bourání</legend>
+            <label class="chk"><input type="checkbox" id="w_jadro" checked><span>Bytové jádro</span></label>
+            <label class="chk"><input type="checkbox" id="w_pricky" checked><span>Bourání příček</span></label>
+            <label class="chk"><input type="checkbox" id="w_podlahy" checked><span>Odstranění podlah</span></label>
+            <label class="chk"><input type="checkbox" id="w_obklady" checked><span>Otlučení obkladů</span></label>
+          </fieldset>
+
+          <fieldset class="fieldset">
+            <legend>Konstrukce</legend>
+            <label class="chk"><input type="checkbox" id="w_nosna"><span>Otvor v nosné zdi<span class="hint">vyžaduje povolení</span></span></label>
+            <label class="chk"><input type="checkbox" id="w_novepricky" checked><span>Nové příčky</span></label>
+            <label class="chk"><input type="checkbox" id="w_sdk" checked><span>Sádrokartonové podhledy</span></label>
+            <label class="chk"><input type="checkbox" id="w_okna"><span>Výměna oken<span class="hint">souhlas SVJ</span></span></label>
+          </fieldset>
+
+          <fieldset class="fieldset">
+            <legend>Instalace</legend>
+            <label class="chk"><input type="checkbox" id="w_voda" checked><span>Voda a odpady</span></label>
+            <label class="chk"><input type="checkbox" id="w_topeni" checked><span>Topení</span></label>
+            <label class="chk"><input type="checkbox" id="w_elektro" checked><span>Elektroinstalace</span></label>
+            <label class="chk"><input type="checkbox" id="w_vzt"><span>Vzduchotechnika</span></label>
+          </fieldset>
+
+          <fieldset class="fieldset">
+            <legend>Povrchy</legend>
+            <label class="chk"><input type="checkbox" id="w_omitky" checked><span>Omítky</span></label>
+            <div class="row"><div>
+              <label class="lbl" for="typomitky">Typ omítky</label>
+              <select id="typomitky">
+                <option value="vc" selected>vápenocementová + štuk</option>
+                <option value="sadrova">sádrová jednovrstvá</option>
+                <option value="sucha">suchá omítka — lepené desky</option>
+              </select>
+            </div></div>
+            <label class="chk"><input type="checkbox" id="w_koupelna" checked><span>Hydroizolace a obklady</span></label>
+            <label class="chk"><input type="checkbox" id="w_malby" checked><span>Malby</span></label>
+          </fieldset>
+
+          <fieldset class="fieldset">
+            <span class="flabel">Podlaha</span>
+            <div class="row"><div>
+              <label class="lbl" for="poter">Potěr</label>
+              <select id="poter">
+                <option value="none">bez nového potěru</option>
+                <option value="anhydrit" selected>anhydritový</option>
+                <option value="cement">cementový</option>
+                <option value="rychly">rychleschnoucí</option>
+                <option value="sucha">suchá podlaha</option>
+              </select>
+            </div></div>
+            <div class="row"><div>
+              <label class="lbl" for="krytina">Nášlapná vrstva</label>
+              <select id="krytina">
+                <option value="none">žádná</option>
+                <option value="dlazba">dlažba</option>
+                <option value="vinyl" selected>vinyl / PVC</option>
+                <option value="drevo">dřevo / laminát</option>
+              </select>
+            </div></div>
+            <div class="row">
+              <div><label class="lbl" for="vyska">Volná výška mm</label><input type="number" id="vyska" value="60" min="0" max="200" step="5"></div>
+              <div>
+                <label class="lbl" for="topeni_p">Podlahové topení</label>
+                <select id="topeni_p">
+                  <option value="ne" selected>žádné</option>
+                  <option value="elektro">elektrické — koupelna</option>
+                  <option value="teplovodni">teplovodní — celý byt</option>
+                </select>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="fieldset">
+            <legend>Kompletace</legend>
+            <label class="chk"><input type="checkbox" id="w_dvere" checked><span>Zárubně a dveře</span></label>
+            <div class="row"><div>
+              <label class="lbl" for="zarubne">Typ zárubní</label>
+              <select id="zarubne">
+                <option value="oblozkove" selected>obložkové — až na hotovou podlahu</option>
+                <option value="ocelove">ocelové zazdívané — před omítkami</option>
+                <option value="rozponove">ocelové rozponové — do hotového otvoru</option>
+              </select>
+            </div></div>
+            <label class="chk"><input type="checkbox" id="w_kuchyne" checked><span>Kuchyně na míru</span></label>
+            <label class="chk"><input type="checkbox" id="w_deska" checked><span>Kamenná deska</span></label>
+            <label class="chk"><input type="checkbox" id="w_sanita" checked><span>Sanita a sprchový kout</span></label>
+            <label class="chk"><input type="checkbox" id="w_skrine"><span>Vestavěné skříně</span></label>
+          </fieldset>
+
+          <fieldset class="fieldset">
+            <legend>4 — Potvrzené dodávky</legend>
+            <p style="font-size:13px;color:var(--ink-soft);margin:0 0 10px">Máte-li od dodavatele potvrzený termín, zadejte ho. Přepíše odhad a plán se přepočítá.</p>
+            <div class="row"><div><label class="lbl" for="d_kuchyne">Kuchyňská linka</label><input type="date" id="d_kuchyne"></div></div>
+            <div class="row"><div><label class="lbl" for="d_dvere">Dveře a zárubně</label><input type="date" id="d_dvere"></div></div>
+            <div class="row"><div><label class="lbl" for="d_obklady">Obklady a dlažba</label><input type="date" id="d_obklady"></div></div>
+            <div class="row"><div><label class="lbl" for="d_okna">Okna</label><input type="date" id="d_okna"></div></div>
+            <div class="row"><div><label class="lbl" for="d_sanita">Sprchový kout a sanita</label><input type="date" id="d_sanita"></div></div>
+            <div class="row"><div><label class="lbl" for="d_podlahy">Podlahová krytina</label><input type="date" id="d_podlahy"></div></div>
+          </fieldset>
+
+        </div>
+      </form>
+
+      <div class="out" id="out"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section class="dark-sec" id="sluzby">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Krok 3 — když v tom nechceš zůstat sám</p>
+      <h2>Co umíme převzít</h2>
+      <p>Harmonogram je zdarma a je tvůj. Tohle jsou věci, které z něj vyplývají a se kterými se dá pomoct.</p>
+    </div>
+    <div class="svcs">
+      <div class="svc">
+        <div class="when">ještě před bouráním</div>
+        <h4>Financování rekonstrukce</h4>
+        <p>Navýšení hypotéky nebo úvěr na rekonstrukci. Harmonogram je zároveň podklad pro banku, která u větších částek čerpá po etapách.</p>
+      </div>
+      <div class="svc">
+        <div class="when">před zahájením</div>
+        <h4>Pojištění na dobu rekonstrukce</h4>
+        <p>Běžné pojištění domácnosti byt v rekonstrukci často nekryje. Řeší se to jednou větou před začátkem, nebo draze potom.</p>
+      </div>
+      <div class="svc">
+        <div class="when">v den nákupu</div>
+        <h4>Obklady a dlažba</h4>
+        <p>Vlastní showroom s italskou keramikou. Harmonogram ti řekne, kdy nejpozději objednat, aby se nečekalo.</p>
+      </div>
+      <div class="svc">
+        <div class="when">8× během stavby</div>
+        <h4>Kontrolní dny</h4>
+        <p>Osm bodů, kdy se něco přebírá — zkoušky před zakrytím, měření vlhkosti, revize. Přijedeme, zkontrolujeme, sepíšeme protokol.</p>
+      </div>
+      <div class="svc">
+        <div class="when">průběžně</div>
+        <h4>Koordinace řemesel</h4>
+        <p>Držíme termíny, voláme profesím, hlídáme návaznosti. Ty se nemusíš starat o to, kdo má přijít v úterý.</p>
+      </div>
+      <div class="svc">
+        <div class="when">4–6 týdnů před koncem</div>
+        <h4>Nájemník ke dni dokončení</h4>
+        <p>Datum dokončení známe dopředu, takže hledání nájemníka spustíme včas. Byt nestojí měsíc prázdný — a to je nejrychleji vydělaná částka z celého projektu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOW ================= -->
+<section id="jak">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Proč to počítá jinak než tabulka v Excelu</p>
+      <h2>Jak to funguje</h2>
+    </div>
+    <div class="faq">
+      <div class="qa">
+        <h4>Počítá se zpětně, ne dopředu</h4>
+        <p>Většina harmonogramů začne dnem zahájení a přičítá dny. Jenže zpoždění nevzniká na stavbě — vzniká objednávkami. Termín „objednat do“ se proto počítá zpětně od data montáže, včetně rezervy na to, že dodací lhůta u většiny dodavatelů neběží od objednávky, ale až od zálohy nebo zaměření.</p>
+      </div>
+      <div class="qa">
+        <h4>Technologické přestávky nejsou zdržení, ale fyzika</h4>
+        <p>Potěr, omítka, hydroizolace a lepidlo mají dobu zrání, kterou nezkrátí žádný počet lidí na stavbě. Model s nimi počítá jako s pevnými podmínkami — a ukáže, že u dřeva na cementovém potěru se čeká i deset týdnů, zatímco rychleschnoucí potěr to zkrátí na dny.</p>
+      </div>
+      <div class="qa">
+        <h4>Rozlišuje tvrdé a měkké závislosti</h4>
+        <p>Obložková zárubeň se musí měřit k hotové podlaze — to je tvrdá závislost, kterou nelze obejít. Pořadí malíře a podlaháře je zvyk, který jde při skluzu prohodit. Nástroj ten rozdíl zná, takže při zpoždění umí navrhnout přeuspořádání místo pouhého posunu termínu.</p>
+      </div>
+      <div class="qa">
+        <h4>Co nástroj nedokáže</h4>
+        <p>Nenahradí stavební dozor. Neví, že za stěnou je vlhko a že se pod starou podlahou najde něco, s čím nikdo nepočítal. Doby trvání jsou výchozí odhady, které se u konkrétní party liší. Co ale zvládne spolehlivě, jsou návaznosti, technologické přestávky a termíny objednávek — a právě tam vzniká většina zbytečných ztrát.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Plánovač rekonstrukce · orientační podklad k ověření, nenahrazuje projektovou dokumentaci ani stavební dozor.<br>
+    Doby trvání jsou výchozí odhady pro byt kolem 60 m². Technologické přestávky vycházejí z technických listů výrobců a českých norem.<br>
+    U zásahů do nosných konstrukcí, do společných částí domu a při podezření na azbest je vždy potřeba odborné posouzení.
+  </div>
+</footer>
+
+<div id="footer-placeholder"></div>
+<script src="common/common.js"></script>
+
+<script>
+(function () {
+  "use strict";
+  var MS = 86400000;
+  function parseDate(s) { var p = s.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function clone(d) { return new Date(d.getTime()); }
+  function addCal(d, n) { var x = clone(d); x.setDate(x.getDate() + n); return x; }
+  function isWeekend(d) { var g = d.getDay(); return g === 0 || g === 6; }
+  function nextWork(d) { var x = clone(d); while (isWeekend(x)) x.setDate(x.getDate() + 1); return x; }
+  function prevWork(d) { var x = clone(d); while (isWeekend(x)) x.setDate(x.getDate() - 1); return x; }
+  function endOfSpan(start, dur) { var x = nextWork(start), left = dur - 1; while (left > 0) { x.setDate(x.getDate() + 1); if (!isWeekend(x)) left--; } return x; }
+  function fmt(d) { var dn = ["ne","po","út","st","čt","pá","so"][d.getDay()]; return dn + " " + d.getDate() + "." + (d.getMonth()+1) + "." + d.getFullYear(); }
+  function fmtShort(d) { return d.getDate() + "." + (d.getMonth()+1) + "."; }
+  function diffDays(a, b) { return Math.round((b - a) / MS); }
+  function plural(n,a,b,c){ return n===1?a:(n>=2&&n<=4?b:c); }
+  function days(n) { return n + " " + plural(n,"den","dny","dnů"); }
+
+  // Orientační doby vysychání potěru 50 mm (kalendářní dny) do dosažení mezní
+  // zbytkové vlhkosti dle ČSN 74 4505. POZOR: norma žádné doby neuvádí — určuje
+  // jen mezní vlhkost. Termín uvolňuje měření CM metodou, tohle je jen odhad pro plán.
+  // Anhydrit má limit 0,5 % shodně pro dlažbu, vinyl i dřevo → doba se podle krytiny neliší.
+  // Cement má limity odstupňované: dlažba 5,0 % hm, vinyl 3,5 %, dřevo 2,5 % → doba roste.
+  var DRY = {
+    sucha:{dlazba:2,vinyl:2,drevo:2,none:2},
+    rychly:{dlazba:1,vinyl:2,drevo:4,none:1},
+    anhydrit:{dlazba:50,vinyl:50,drevo:50,none:50},
+    cement:{dlazba:28,vinyl:42,drevo:77,none:28}
+  };
+  // doba zrání omítky před malbou (kalendářní dny) podle typu
+  var OMITKA = {
+    vc:      { zrani: 21, dur: 3, name: "vápenocementová s jádrem a štukem", pozn: "jádrová omítka zraje zhruba 10 dní na centimetr tloušťky, k tomu štuk" },
+    sadrova: { zrani: 14, dur: 2, name: "sádrová jednovrstvá", pozn: "výrobci žádají 1 den na milimetr, nejméně však 14 dní; štuk se nedělá" },
+    sucha:   { zrani: 2,  dur: 2, name: "suchá omítka z lepených desek", pozn: "žádné mokré procesy — místo zrání jen tmelení a broušení; skladba ale ubere 22 až 33 mm z místnosti" }
+  };
+  function omitkaCfg(s){ return OMITKA[s.typomitky] || OMITKA.vc; }
+
+  // orientační podíly jednotlivých prací na ceně kompletní rekonstrukce (součet = 1,0)
+  var WEIGHT = {
+    bourani:0.08, novepricky:0.05, sdk:0.04, elektro:0.12, voda:0.10, topeni:0.05,
+    omitky:0.09, koupelna:0.13, poter:0.04, podlahy:0.07, malby:0.03, dvere:0.05,
+    kuchyne:0.10, deska:0.02, sanita:0.02, skrine:0.01
+  };
+  // publikované tržní rozpětí kompletní rekonstrukce bytu, Kč/m²
+  var KOMPLET_MIN = 12000, KOMPLET_MAX = 25000;
+
+  var UCEL = {
+    prodej: { name:"prodej po rekonstrukci",
+      rada:"Rozhoduje první dojem a rychlost. Standard volte podle lokality, ne podle vlastního vkusu — investice nad úroveň okolní zástavby se v prodejní ceně nevrátí. Každý týden navíc stojí úrok." },
+    pronajem: { name:"dlouhodobý pronájem",
+      rada:"Volte odolné a snadno vyměnitelné povrchy. Vinyl místo dřeva, neutrální barvy, kvalitní kování. Cílem není nejhezčí byt, ale nejnižší náklady na údržbu při obvyklém nájmu v lokalitě." },
+    kratkodoby: { name:"krátkodobý pronájem",
+      rada:"Počítejte s několikanásobným opotřebením a s obměnou vybavení po třech až pěti letech. Vyplatí se investovat do povrchů, které vydrží, a do vybavení, které se dá rychle nahradit." },
+    vlastni: { name:"vlastní bydlení",
+      rada:"Jediný případ, kdy nemusíte řešit návratnost. Vyplatí se udělat pořádně vše, co je pod omítkou a pod podlahou — na to se pak dvacet let nesahá." }
+  };
+
+  function chk(id){ var e=document.getElementById(id); return e?e.checked:false; }
+  function readState() {
+    return {
+      start: parseDate(document.getElementById("start").value || "2026-09-15"),
+      area: Math.max(15, +document.getElementById("area").value || 60),
+      ucel: document.getElementById("ucel").value,
+      budget: Math.max(0, +document.getElementById("budget").value || 0) * 1000,
+      rok: +document.getElementById("rok").value || 1975,
+      azbest: document.getElementById("azbest").value,
+      zarubne: document.getElementById("zarubne").value,
+      typomitky: document.getElementById("typomitky").value,
+      dodavky: (function(){
+        var out={}, ids=["kuchyne","dvere","obklady","okna","sanita","podlahy"];
+        ids.forEach(function(k){
+          var e=document.getElementById("d_"+k);
+          if(e && e.value) out[k]=parseDate(e.value);
+        });
+        return out;
+      })(),
+      vyska: Math.max(0, +document.getElementById("vyska").value || 0),
+      topeniP: document.getElementById("topeni_p").value,
+      poter: document.getElementById("poter").value,
+      krytina: document.getElementById("krytina").value,
+      jadro:chk("w_jadro"), pricky:chk("w_pricky"), podlahyD:chk("w_podlahy"), obkladyD:chk("w_obklady"),
+      nosna:chk("w_nosna"), novepricky:chk("w_novepricky"), sdk:chk("w_sdk"), okna:chk("w_okna"),
+      voda:chk("w_voda"), topeni:chk("w_topeni"), elektro:chk("w_elektro"), vzt:chk("w_vzt"),
+      omitky:chk("w_omitky"), koupelna:chk("w_koupelna"), malby:chk("w_malby"),
+      dvere:chk("w_dvere"), kuchyne:chk("w_kuchyne"), deska:chk("w_deska"),
+      sanita:chk("w_sanita"), skrine:chk("w_skrine")
+    };
+  }
+  function dryLag(s){ if(s.poter==="none") return 0; var r=DRY[s.poter]||DRY.anhydrit; return r[s.krytina]!==undefined?r[s.krytina]:r.none; }
+  function hasPodlahy(s){ return s.krytina!=="none"; }
+
+  // ==== GENEROVÁNO z kroky.json v2026.08.30-1 — NEEDITOVAT RUČNĚ ====
+  function buildTasks(s) {
+    var f = Math.max(0.65, Math.min(1.8, 0.55 + 0.45*(s.area/60)));
+    function d(b){ return Math.max(1, Math.round(b*f)); }
+    var anyDemol = s.jadro||s.pricky||s.podlahyD||s.obkladyD;
+    var anyInst = s.voda||s.topeni||s.elektro||s.vzt;
+    var azb = s.azbest === "potvrzeno";
+    return [
+      {id:"ochrana",name:"Ochrana prostor a zajištění médií",prof:"příprava",dur:1,deps:[],on:true},
+      {id:"vyklizeni",name:"Demontáž vybavení a vyklizení",prof:"bourací parta",dur:d(2),deps:[{id:"ochrana"}],on:true},
+      {id:"azb_pasmo",name:"Zřízení kontrolovaného pásma",prof:"sanační firma",dur:1,deps:[{id:"vyklizeni"}],on:azb},
+      {id:"azb_sanace",name:"Odstranění azbestu",prof:"sanační firma",dur:3,deps:[{id:"azb_pasmo"}],on:azb},
+      {id:"azb_mereni",name:"Kontrolní měření a protokol",prof:"kontrolní bod",dur:2,gate:true,deps:[{id:"azb_sanace"}],on:azb},
+      {id:"bourani",name:"Bourání příček a jádra",prof:"bourací parta",dur:d(3),deps:[{id:"azb_mereni"},{id:"vyklizeni"}],on:s.jadro||s.pricky},
+      {id:"otluceni",name:"Odstranění podlah a obkladů",prof:"bourací parta",dur:d(2),deps:[{id:"azb_mereni"},{id:"vyklizeni"}],on:s.podlahyD||s.obkladyD},
+      {id:"skrabani",name:"Škrábání starých maleb a tapet",prof:"malíř",dur:d(2),deps:[{id:"azb_mereni"},{id:"vyklizeni"}],on:s.malby},
+      {id:"nosna",name:"Otvor v nosné zdi a překlad",prof:"zedník + statik",dur:3,deps:[{id:"bourani"},{id:"otluceni"}],on:s.nosna},
+      {id:"odvoz",name:"Odvoz suti",prof:"doprava",dur:1,deps:[{id:"bourani"},{id:"otluceni"}],on:anyDemol},
+      {id:"okna",name:"Výměna oken",prof:"montážní firma",dur:2,deps:[{id:"nosna"},{id:"bourani"},{id:"vyklizeni"}],on:s.okna},
+      {id:"pricky",name:"Vyzdění nových příček",prof:"zedník",dur:d(3),deps:[{id:"nosna"},{id:"bourani"},{id:"vyklizeni"}],on:s.novepricky},
+      {id:"zarubne_oc",name:"Osazení ocelových zazdívaných zárubní",prof:"zedník",dur:1,deps:[{id:"pricky"},{id:"bourani"},{id:"vyklizeni"}],on:s.dvere&&s.zarubne==="ocelove"},
+      {id:"odpady",name:"Rozvody odpadů",prof:"instalatér",dur:2,deps:[{id:"pricky"},{id:"bourani"},{id:"vyklizeni"}],on:s.voda},
+      {id:"voda",name:"Rozvody vody",prof:"instalatér",dur:2,deps:[{id:"odpady"}],on:s.voda},
+      {id:"vzt",name:"Vzduchotechnika a odvětrání",prof:"vzduchotechnik",dur:1,deps:[{id:"pricky"},{id:"bourani"},{id:"vyklizeni"}],on:s.vzt},
+      {id:"topeni",name:"Rozvody topení",prof:"topenář",dur:2,deps:[{id:"voda"},{id:"vzt"},{id:"pricky"},{id:"bourani"},{id:"vyklizeni"}],on:s.topeni},
+      {id:"elektro",name:"Elektroinstalace — drážky a rozvody",prof:"elektrikář",dur:d(3),deps:[{id:"topeni"},{id:"voda"},{id:"vzt"},{id:"pricky"},{id:"bourani"},{id:"vyklizeni"}],on:s.elektro},
+      {id:"zkousky",name:"Tlakové a dilatační zkoušky",prof:"kontrolní bod",dur:1,gate:true,deps:[{id:"elektro"},{id:"topeni"},{id:"voda"}],on:anyInst},
+      {id:"sdkk",name:"Sádrokarton — konstrukce a opláštění",prof:"sádrokartonář",dur:d(2),deps:[{id:"zkousky"},{id:"elektro"},{id:"pricky"},{id:"bourani"},{id:"vyklizeni"}],on:s.sdk},
+      {id:"omitky",name:(s.typomitky==="sucha"?"Zapravení a lepení desek na terče":"Zapravení drážek a omítky"),prof:(s.typomitky==="sucha"?"sádrokartonář":"zedník"),dur:d(3),deps:[{id:"zkousky"},{id:"okna"},{id:"zarubne_oc"},{id:"pricky"},{id:"skrabani"},{id:"bourani"},{id:"vyklizeni"}],on:s.omitky},
+      {id:"hydro",name:"Hydroizolační stěrka v koupelně",prof:"obkladač",dur:1,deps:[{id:"omitky"},{id:"zkousky"},{id:"pricky"},{id:"vyklizeni"}],on:s.koupelna},
+      {id:"poter",name:"Podlahové souvrství a potěr",prof:"podlahář",dur:2,deps:[{id:"omitky"},{id:"zkousky"},{id:"pricky"},{id:"vyklizeni"}],on:s.poter!=="none"},
+      {id:"obklady",name:"Obklady a dlažba",prof:"obkladač",dur:d(4),deps:[{id:"hydro",lag:1,note:"schnutí hydroizolace"}],on:s.koupelna},
+      {id:"sdkt",name:"Tmelení, broušení, penetrace",prof:"sádrokartonář",dur:d(3),deps:[{id:"sdkk",lag:2,note:"vyzrání lepicího tmelu"},{id:"omitky"}],on:s.sdk},
+      {id:"malba",name:"Penetrace a malby",prof:"malíř",dur:d(3),deps:[{id:"omitky",lag:omitkaCfg(s).zrani,note:"zrání omítky před nátěrem"},{id:"sdkt"},{id:"obklady"},{id:"zkousky"},{id:"vyklizeni"}],on:s.malby},
+      {id:"podlahy",name:"Pokládka nášlapné vrstvy",prof:"podlahář",dur:d(2),deps:[{id:"poter",lag:dryLag(s),note:"vyschnutí potěru"},{id:"malba"},{id:"obklady"},{id:"vyklizeni"}],on:hasPodlahy(s)},
+      {id:"dvere",name:(s.zarubne==="ocelove"?"Osazení dveřních křídel":(s.zarubne==="rozponove"?"Rozponové zárubně a dveře":"Obložkové zárubně a dveře")),prof:"truhlář",dur:2,deps:[{id:"podlahy"},{id:"malba"},{id:"zarubne_oc"}],on:s.dvere},
+      {id:"elektrok",name:"Kompletace elektro",prof:"elektrikář",dur:1,deps:[{id:"malba"},{id:"podlahy"}],on:s.elektro},
+      {id:"revize",name:"Výchozí revize elektroinstalace",prof:"kontrolní bod",dur:1,gate:true,deps:[{id:"elektrok"}],on:s.elektro},
+      {id:"sanita",name:"Sanita, baterie, sprchový kout",prof:"instalatér",dur:2,deps:[{id:"obklady"},{id:"podlahy"},{id:"malba"}],on:s.sanita},
+      {id:"kuchyne",name:"Montáž kuchyňské linky",prof:"truhlář",dur:2,deps:[{id:"podlahy"},{id:"obklady"},{id:"elektrok"},{id:"malba"}],on:s.kuchyne},
+      {id:"deska",name:"Zaměření a montáž pracovní desky",prof:"kameník",dur:1,deps:[{id:"kuchyne",lag:14,note:"výroba desky po zaměření"}],on:s.deska&&s.kuchyne},
+      {id:"skrine",name:"Montáž vestavěných skříní",prof:"truhlář",dur:1,deps:[{id:"podlahy"},{id:"malba"}],on:s.skrine},
+      {id:"dokonceni",name:"Silikony, opravy, dočištění",prof:"dokončovací práce",dur:2,deps:[{id:"deska"},{id:"kuchyne"},{id:"sanita"},{id:"skrine"},{id:"revize"},{id:"dvere"},{id:"elektrok"},{id:"podlahy"},{id:"malba"},{id:"obklady"},{id:"vyklizeni"}],on:true},
+      {id:"uklid",name:"Stavební a finální úklid",prof:"úklid",dur:1,deps:[{id:"dokonceni"}],on:true},
+      {id:"predani",name:"Dokumentace, fotografie a předání",prof:"investor",dur:1,deps:[{id:"uklid"}],on:true}
+    ];
+  }
+  // ==== KONEC GENEROVANÉHO BLOKU ====
+
+  function resolveDeps(all) {
+    var byId = {}; all.forEach(function(t){ byId[t.id]=t; });
+    function expand(list, seen) {
+      var out = [];
+      list.forEach(function(dep){
+        var t = byId[dep.id]; if(!t) return;
+        if(t.on){ out.push(dep); return; }
+        if(seen[dep.id]) return; seen[dep.id]=1;
+        expand(t.deps, seen).forEach(function(d2){
+          out.push({id:d2.id, lag:(d2.lag||0)+(dep.lag||0), note:dep.note||d2.note});
+        });
+      });
+      return out;
+    }
+    var active = all.filter(function(t){ return t.on; });
+    active.forEach(function(t){
+      var ex = expand(t.deps, {}), m = {};
+      ex.forEach(function(d){ if(!m[d.id] || (d.lag||0) > (m[d.id].lag||0)) m[d.id]=d; });
+      t.rdeps = Object.keys(m).map(function(k){ return m[k]; });
+    });
+    return active;
+  }
+
+  function schedule(tasks, s) {
+    var byId={}; tasks.forEach(function(t){ byId[t.id]=t; });
+    // potvrzené dodávky → tvrdé omezení na úkol montáže
+    if(s.dodavky) Object.keys(s.dodavky).forEach(function(k){
+      var mapa={kuchyne:"kuchyne",dvere:"dvere",obklady:"obklady",okna:"okna",sanita:"sanita",podlahy:"podlahy"};
+      var t=byId[mapa[k]]; if(t) t.minStart=s.dodavky[k];
+    });
+    var order=[], mark={};
+    function visit(t){
+      if(mark[t.id]===2) return; mark[t.id]=1;
+      t.rdeps.forEach(function(d){ if(byId[d.id] && mark[byId[d.id].id]!==2) visit(byId[d.id]); });
+      mark[t.id]=2; order.push(t);
+    }
+    tasks.forEach(function(t){ if(mark[t.id]!==2) visit(t); });
+
+    order.forEach(function(t){
+      var es = nextWork(s.start), maxWait = 0;
+      t.waitFrom = null; t.waitNote = null;
+      t.rdeps.forEach(function(d){
+        var p = byId[d.id]; if(!p) return;
+        var lag = d.lag || 0;
+        var cand = nextWork(addCal(p.end, 1 + lag));
+        if(cand > es) es = cand;
+        if(lag > maxWait){ maxWait = lag; t.waitNote = d.note; t.waitFrom = p; }
+      });
+      // potvrzená dodávka je tvrdé omezení: montáž nemůže začít dřív
+      if(t.minStart){
+        var md = nextWork(addCal(t.minStart, 1));
+        if(md > es){ es = md; t.driverDodavka = true; }
+      }
+      t.start = es; t.end = endOfSpan(es, t.dur); t.wait = maxWait;
+    });
+
+    var projEnd = order.reduce(function(a,t){ return t.end > a ? t.end : a; }, order[0].end);
+    var succ = {};
+    order.forEach(function(t){ t.rdeps.forEach(function(d){ (succ[d.id]=succ[d.id]||[]).push({t:t,lag:d.lag||0}); }); });
+    for (var i = order.length-1; i >= 0; i--) {
+      var t = order[i], list = succ[t.id];
+      if(!list || !list.length){ t.lateEnd = prevWork(projEnd); }
+      else {
+        var lf = null;
+        list.forEach(function(x){
+          var cand = prevWork(addCal(x.t.lateStart, -(1 + x.lag)));
+          if(lf === null || cand < lf) lf = cand;
+        });
+        t.lateEnd = lf;
+      }
+      var ls = clone(t.lateEnd), left = t.dur - 1;
+      while(left > 0){ ls.setDate(ls.getDate()-1); if(!isWeekend(ls)) left--; }
+      t.lateStart = ls;
+      var wd = 0, cur = clone(t.start);
+      while(cur < t.lateStart){ cur.setDate(cur.getDate()+1); if(!isWeekend(cur)) wd++; }
+      t.slack = Math.max(0, wd); t.critical = t.slack === 0;
+    }
+    return { tasks: order, end: projEnd };
+  }
+
+  // Dodací lhůty (kalendářní dny). Ověřeno u výrobců 29. 8. 2026.
+  // Rozlišení skladem / na míru je zásadní — u některých položek je rozdíl řádový.
+  var MATERIALS = [
+    {name:"Okna", lead:56, leadSklad:35, task:"okna",
+     note:"Vekra i Oknostyl deklarují 8 týdnů; rychlí online prodejci 3–6 týdnů", on:function(s){return s.okna;}},
+    {name:"Interiérové dveře a zárubně", lead:56, leadSklad:10, task:"dvere",
+     note:"Sapeli do 8 týdnů, přes prodejce 4–10; skladové řady v řádu dnů", on:function(s){return s.dvere;}},
+    {name:"Kuchyňská linka na míru", lead:70, leadSklad:21, task:"kuchyne",
+     note:"Oresi 6–8 týdnů, Gorenje 8–11; katalogové sestavy výrazně rychleji", on:function(s){return s.kuchyne;}},
+    {name:"Obklady a dlažba", lead:35, leadSklad:5, task:"obklady",
+     note:"na zakázku 3–5 týdnů včetně dovozu z keramičky; skladem dny", on:function(s){return s.koupelna;}},
+    {name:"Sprchový kout a vanička", lead:21, leadSklad:10, task:"sanita",
+     note:"sériové Ravak 3–10 dní; atypické sklo 2–3 týdny, vaničku v atypu nikdo nevyrobí", on:function(s){return s.sanita;}},
+    {name:"Podlahová krytina", lead:21, leadSklad:5, task:"podlahy",
+     note:"vinyl a laminát skladem expedice do 48 h; dřevo na zakázku déle", on:function(s){return s.krytina!=="none";}},
+    {name:"Vestavěné skříně", lead:28, leadSklad:14, task:"skrine",
+     note:"", on:function(s){return s.skrine;}}
+  ];
+  var DECISION_BUFFER = 7;
+
+  function orders(sch, s) {
+    var byId={}; sch.tasks.forEach(function(t){ byId[t.id]=t; });
+    var out=[];
+    MATERIALS.forEach(function(m){
+      if(!m.on(s)) return;
+      var t = byId[m.task]; if(!t) return;
+      var by = addCal(t.start, -(m.lead + DECISION_BUFFER));
+      var potvrzeno = s.dodavky && s.dodavky[m.task];
+      out.push({name:m.name, by:by, lead:m.lead, note:m.note, install:t.start, task:m.task,
+        potvrzeno: potvrzeno || null, ridiDodavka: !!t.driverDodavka,
+        late: !potvrzeno && by < s.start, lateBy: by < s.start ? diffDays(by, s.start) : 0});
+    });
+    out.sort(function(a,b){ return a.by - b.by; });
+    return out;
+  }
+
+  function money(n){
+    return Math.round(n/1000).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " tis. Kč";
+  }
+  function estimate(s) {
+    var w = 0;
+    if(s.jadro||s.pricky||s.podlahyD||s.obkladyD) w += WEIGHT.bourani;
+    if(s.novepricky) w += WEIGHT.novepricky;
+    if(s.sdk) w += WEIGHT.sdk;
+    if(s.elektro) w += WEIGHT.elektro;
+    if(s.voda) w += WEIGHT.voda;
+    if(s.topeni) w += WEIGHT.topeni;
+    if(s.omitky) w += WEIGHT.omitky;
+    if(s.koupelna) w += WEIGHT.koupelna;
+    if(s.poter!=="none") w += WEIGHT.poter;
+    if(s.krytina!=="none") w += WEIGHT.podlahy;
+    if(s.malby) w += WEIGHT.malby;
+    if(s.dvere) w += WEIGHT.dvere;
+    if(s.kuchyne) w += WEIGHT.kuchyne;
+    if(s.deska&&s.kuchyne) w += WEIGHT.deska;
+    if(s.sanita) w += WEIGHT.sanita;
+    if(s.skrine) w += WEIGHT.skrine;
+    if(s.okna) w += 0.06;
+    if(s.nosna) w += 0.03;
+    return { min: w*KOMPLET_MIN*s.area, max: w*KOMPLET_MAX*s.area, share: w };
+  }
+
+  // co se vejde do dané volné výšky podlahy (mm)
+  function podlahaOptions(v) {
+    var o = [];
+    if(v >= 80) o.push("betonový potěr s podlahovkou a silnou kročejovou izolací");
+    if(v >= 60) o.push("plnohodnotná teplovodní podlahovka se systémovou deskou (od 67 mm)");
+    if(v >= 45) o.push("plovoucí anhydritový potěr s kročejovou izolací");
+    if(v >= 40) o.push("cementový litý potěr (od 40 mm)");
+    if(v >= 35) o.push("anhydrit jako spojený potěr (30–35 mm)");
+    if(v >= 25) o.push("suchá podlaha Fermacell 2E22 (25 mm)");
+    if(v >= 20) o.push("suchá podlaha Fermacell 2E11 (20 mm)");
+    if(v >= 18) o.push("elektrická topná rohož pod dlažbu (18 mm skladby)");
+    if(v >= 15) o.push("tenkovrstvý teplovodní systém pro renovace (15–17 mm)");
+    if(v >= 10) o.push("topná fólie pod plovoucí podlahu (10 mm)");
+    if(v >= 5)  o.push("samonivelační stěrka a tenká krytina");
+    if(v < 5)   o.push("pouze renovace stávající podlahy nebo výměna krytiny jedna za jednu");
+    return o;
+  }
+  function topeniVerdikt(s) {
+    if(s.topeniP === "ne") return null;
+    if(s.topeniP === "elektro"){
+      if(s.vyska >= 20) return { ok:true, txt:"<b>Elektrická topná rohož se vejde.</b> Samotná rohož má podle typu 2,4 až 4 mm, ale reálná skladba nad podkladem vychází na 20 až 35 mm — výrobci předepisují zahlazení rohože jednou vrstvou tmelu, technologickou přestávku a teprve pak lepidlo s dlažbou. Počítejte s horní hranicí, pokud je podklad nerovný nebo jde o velkoformátovou dlažbu. V bytě na dálkovém teple je to standardní řešení pro koupelnu: nezasahuje do otopné soustavy domu, takže nepotřebuje souhlas SVJ. Výkon bývá 150 W/m², ve sprchovém koutě 200, a bez programovatelného regulátoru s podlahovým čidlem se provoz prodraží." };
+      if(s.vyska >= 10) return { ok:true, txt:"<b>Na rohož pod dlažbu (18 mm) výška nestačí, ale topná fólie ano.</b> Ta má jen 0,4 mm a pokládá se pod plovoucí podlahu, celá skladba kolem 10 mm. Pozor na omezení výkonu na 80 W/m² — při vyšším se lamely plovoucí podlahy kroutí." };
+      return { ok:false, txt:"<b>Na elektrické podlahové topení nezbývá výška.</b> Pod dlažbu potřebuješ zhruba 18 mm, pod plovoucí podlahu s fólií aspoň 10 mm." };
+    }
+    // teplovodní
+    if(s.vyska >= 65) return { ok:true, txt:"<b>Výška na klasickou teplovodní podlahovku stačí.</b> Skladby se pohybují od zhruba 47 mm (systémová deska bez izolace a tekutý potěr) až přes 95 mm u desky s izolací; často citovaných 67 mm je jedna konkrétní varianta, ne normové minimum. Rozhodující je krytí trubky potěrem — u tekutého potěru běžně 40 mm, u nižších tříd pevnosti méně, ale se zkouškou únosnosti. Zbývá právní stránka, a ta bývá tvrdší než technická (viz níže)." };
+    if(s.vyska >= 46) return { ok:true, txt:"<b>Teplovodní podlahovka se vejde jen v nízké variantě</b> — bez systémové desky, trubka na sponkách a tenčí potěr, dohromady kolem 46 až 50 mm. Cenou za to bývá vynechaná kročejová izolace, což je v panelovém domě problém: norma po roce 2020 zpřísnila požadavek na kročejovou neprůzvučnost a soused pod vámi má vymahatelný nárok. Ověřte krytí trubky u konkrétního systému." };
+    if(s.vyska >= 25) return { ok:true, txt:"<b>Klasická mokrá skladba se nevejde, suchý systém ano.</b> Suché systémy s hliníkovými lamelami začínají kolem 25 mm a nevyžadují zalití potěrem, takže odpadá i čekání na vyschnutí." };
+    if(s.vyska >= 15) return { ok:true, txt:"<b>Zbývá tenkovrstvý renovační systém.</b> Ty začínají kolem 15 mm včetně stěrky, mají tenkou trubku kolem 10 mm a lepí se přímo na stávající rovný potěr. Při takhle malé rezervě je to prakticky jediná teplovodní cesta a vyžaduje rovný podklad — konkrétní minimum si ověřte u zvoleného systému." };
+    return { ok:false, txt:"<b>Na teplovodní podlahové topení výška nestačí ani v renovační variantě.</b> Zbývá elektrická fólie nebo rohož, případně zvýšit podlahu na úkor světlé výšky místnosti a upravit zárubně." };
+  }
+
+  function el(tag, cls, html){ var e=document.createElement(tag); if(cls) e.className=cls; if(html!==undefined) e.innerHTML=html; return e; }
+  function sect(title, node, cnt){
+    var s2=el("section"); var h=el("h3");
+    h.innerHTML = title + (cnt ? " <span class='cnt'>"+cnt+"</span>" : "");
+    s2.appendChild(h); s2.appendChild(node); return s2;
+  }
+  function krytinaName(k){ return {dlazba:"dlažbu",vinyl:"vinyl",drevo:"dřevo",none:"krytinu"}[k]||"krytinu"; }
+
+  var unlocked = false;
+
+  function render() {
+    var s = readState();
+    var out = document.getElementById("out");
+    out.innerHTML = "";
+    var active = resolveDeps(buildTasks(s));
+    if(!active.length){ out.appendChild(el("div","alert","Zaškrtni alespoň jednu práci.")); return; }
+    var sch = schedule(active, s);
+    var ord = orders(sch, s);
+    var total = diffDays(s.start, sch.end) + 1;
+    var waitDays = 0;
+    sch.tasks.forEach(function(t){ if(t.critical && t.wait) waitDays += t.wait; });
+
+    // KPI
+    var kpis = el("div","kpis");
+    function kpi(v,k,warn){ var b=el("div","kpi"); b.appendChild(el("div","v"+(warn?" warn":""),v)); b.appendChild(el("div","k",k)); kpis.appendChild(b); }
+    kpi(fmtShort(sch.end), "byt hotový");
+    kpi(String(total), "kalendářních dnů");
+    kpi(String(Math.round(total/7)), "týdnů");
+    kpi(String(waitDays), "dnů čekání", waitDays > total*0.35);
+    out.appendChild(sect("Výsledek", kpis, ""));
+
+    // záměr a rozpočet
+    var est = estimate(s);
+    var rez = est.max * 0.18;
+    var bud = el("div","alerts");
+    bud.appendChild(el("div","alert","<b>Záměr: "+UCEL[s.ucel].name+".</b> "+UCEL[s.ucel].rada));
+    var bt = el("div","alert");
+    bt.innerHTML = "<b>Odhad nákladů na vybraný rozsah: "+money(est.min)+" až "+money(est.max)+"</b>"+
+      " (byt "+s.area+" m², zhruba "+Math.round(est.share*100)+" % rozsahu kompletní rekonstrukce). " +
+      "K tomu rezerva na skryté vady 15–20 %, tedy dalších zhruba "+money(rez)+".";
+    bud.appendChild(bt);
+    if(s.budget > 0){
+      var celkem = est.max + rez;
+      if(s.budget < est.min){
+        bud.appendChild(el("div","alert crit","<b>Rozpočet "+money(s.budget)+" na tento rozsah nestačí</b> ani při spodní hranici cen. Buď zúžit rozsah, nebo navýšit rozpočet — a rozhodnout se teď, ne až v polovině stavby, kdy jsou rozvody rozdělané."));
+      } else if(s.budget < celkem){
+        bud.appendChild(el("div","alert warn","<b>Rozpočet "+money(s.budget)+" vyjde jen při spodní hranici cen a bez rezervy.</b> Doporučená částka včetně rezervy je kolem "+money(celkem)+". U bytů starších padesáti let se skoro vždy najde něco za stěnou."));
+      } else {
+        bud.appendChild(el("div","alert tip","<b>Rozpočet "+money(s.budget)+" na tento rozsah vychází</b> včetně rezervy na skryté vady."));
+      }
+    }
+    bud.appendChild(el("div","todo","Odhad vychází z publikovaného tržního rozpětí 12–25 tis. Kč/m² za kompletní rekonstrukci a z podílu vybraných prací. Není to rozpočet — ten vzniká až z položkové nabídky."));
+    out.appendChild(sect("Záměr a rozpočet", bud, ""));
+
+    // podlaha a topení
+    if(s.poter !== "none" || s.krytina !== "none" || s.topeniP !== "ne"){
+      var pd = el("div","alerts");
+      var opts = podlahaOptions(s.vyska);
+      pd.appendChild(el("div","alert","<b>Do volné výšky "+s.vyska+" mm se vejde:</b> "+opts.join(" · ")+"."));
+      var tv = topeniVerdikt(s);
+      if(tv) pd.appendChild(el("div","alert "+(tv.ok?"tip":"crit"), tv.txt));
+      if(s.topeniP === "teplovodni"){
+        pd.appendChild(el("div","alert crit","<b>U bytu na dálkovém teple je teplovodní podlahovka hlavně právní problém, ne technický.</b> Celá otopná soustava včetně rozvodů a radiátorů ve vašem bytě je společná část domu, a podlaha je společná část také — potřebujete tedy souhlas shromáždění SVJ hned ze dvou důvodů. K tomu projekt topení, směšovací uzel (dálkové teplo jede kolem 70 °C, podlahovka potřebuje 40), nové hydraulické vyvážení soustavy a vyřešené rozúčtování, protože na podlahovku nejdou běžné indikátory. Počítejte s vysokým rizikem zamítnutí."));
+      }
+      if(s.topeniP !== "ne" && s.krytina === "drevo"){
+        pd.appendChild(el("div","alert warn","<b>Dřevo nad podlahovým topením jen s rozmyslem.</b> Tepelný odpor krytiny nesmí překročit 0,15 m²K/W. Vícevrstvé dřevo do 15 mm vyhoví, masiv 22 mm už ne — a u topné fólie navíc platí strop 80 W/m². Dlažba a lepený vinyl jsou z tohoto pohledu ideální."));
+      }
+      if(s.poter === "anhydrit" && s.koupelna){
+        pd.appendChild(el("div","alert warn","<b>Anhydrit v koupelně jen s hydroizolační stěrkou</b> — je citlivý na vlhkost. Kde se počítá s trvalejším namáháním vodou, patří tam cementový potěr."));
+      }
+      out.appendChild(sect("Podlaha a topení", pd, ""));
+    }
+
+    // azbest
+    var az = el("div","alerts");
+    if(s.azbest === "potvrzeno"){
+      az.appendChild(el("div","alert crit","<b>Azbest je potvrzen — než se sáhne na cokoli jiného, musí ven.</b> Sanační firma potřebuje povolení hygienické stanice, na které se čeká <b>30 dnů</b>, a zároveň má <b>i vy jako stavebník vlastní ohlašovací povinnost 3 dny předem</b>, a to i když práce provádí firma. Sanace je v harmonogramu zařazená jako první práce, protože se odstraňuje před vším ostatním, a další práce smí začít až po podlimitním kontrolním měření."));
+      az.appendChild(el("div","alert warn","<b>Harmonogram níže nezahrnuje 30 dnů čekání na povolení.</b> Pokud jste ho ještě nezažádali, posuňte si celý plán o měsíc — nebo si povolení vyřiďte souběžně s dokončováním nákupu."));
+    } else if(s.rok < 1995 && (s.jadro || s.podlahyD || s.obkladyD)){
+      az.appendChild(el("div","alert crit","<b>Byt z roku "+s.rok+" — azbest je nutné vyloučit průzkumem, ne odhadem.</b> Umakart sám azbest neobsahuje, ale azbestocementové desky se v jádrech a příčkách používaly až do devadesátých let a poznat je od pohledu nelze. Rozbor v akreditované laboratoři stojí kolem tisíce až dvou a půl tisíce korun za vzorek a trvá do sedmi dnů."));
+      az.appendChild(el("div","alert tip","<b>Vzorky odeberte při prohlídce bytu, ne až po převzetí klíčů.</b> Když se azbest zjistí až na začátku rekonstrukce, přidá to k harmonogramu pět až sedm týdnů kvůli čekání na povolení. Když se ví dopředu, je to prakticky nula — a zároveň je to argument při vyjednávání o ceně."));
+    }
+    if(az.children.length) out.appendChild(sect("Azbest", az, ""));
+
+    // alerts
+    var alerts = el("div","alerts");
+    var lateO = ord.filter(function(o){ return o.late; });
+    if(lateO.length){
+      alerts.appendChild(el("div","alert crit","<b>"+lateO.length+" "+plural(lateO.length,"položku je nutné objednat","položky je nutné objednat","položek je nutné objednat")+" ještě před převzetím bytu.</b> Dodací lhůta se nedá dohnat prací — pokud se objedná až po klíčích, termín se o odpovídající dobu posune."));
+    }
+    if(s.nosna){
+      alerts.appendChild(el("div","alert crit","<b>Otvor v nosné zdi vyžaduje povolení.</b> Řízení trvá 60 dnů, k tomu projekt a statický posudek. Počítej 3 až 5 měsíců, než se vůbec začne bourat."));
+    }
+    if(s.poter==="cement" && s.krytina!=="none"){
+      var now = DRY.cement[s.krytina], alt = DRY.anhydrit[s.krytina];
+      if(now > alt) alerts.appendChild(el("div","alert tip","<b>Cementový potěr pod "+krytinaName(s.krytina)+" schne "+days(now)+".</b> Anhydrit by zkrátil čekání o "+days(now-alt)+", rychleschnoucí potěr o "+days(now-DRY.rychly[s.krytina])+". Rozdíl v ceně směsi bývá menší než úrok za ušetřené týdny."));
+    }
+    if(s.omitky){
+      var oc = omitkaCfg(s);
+      alerts.appendChild(el("div","alert","<b>Zvolená omítka: "+oc.name+" — v plánu počítáme se zráním "+days(oc.zrani)+" před malbou.</b> "+oc.pozn+". I tady ale platí, že o termínu nerozhoduje kalendář: výrobci nátěrů žádají vlhkost podkladu do 4 % objemových u minerálních omítek a do 1 % u sádrových, a pH mezi 7 a 9. U silnějších vrstev je uvedená doba spodní hranicí."));
+      if(s.typomitky==="sadrova" && s.koupelna){
+        alerts.appendChild(el("div","alert warn","<b>Sádrová omítka do běžné koupelny smí, do sprchy sama o sobě ne.</b> Výrobci ji připouštějí pro místnosti s obvyklou vlhkostí včetně koupelen, ale v místech ostřikovaných vodou pod ni patří hydroizolační stěrka. A pod obklad se nesmí hladit ani filcovat — povrch musí zůstat zdrsněný a napenetrovaný."));
+      }
+      if(s.typomitky==="sucha"){
+        alerts.appendChild(el("div","alert tip","<b>Suchá omítka ušetří tři týdny čekání, ale zabere místo.</b> Desky lepené na terče vytvoří skladbu 22 až 33 mm od stěny, o tolik se místnost z každé strany zmenší. Lepit lze jen na svislé konstrukce, na strop tahle technologie není."));
+      }
+    }
+    if(s.okna){
+      alerts.appendChild(el("div","alert warn","<b>Okna jsou společná část domu.</b> K výměně nestačí oznámení — potřebuješ rozhodnutí shromáždění SVJ, které se schází zpravidla jednou ročně."));
+    }
+    if(alerts.children.length) out.appendChild(sect("Na co si dát pozor", alerts, ""));
+
+    // technologická pravidla
+    var tech = el("div","alerts");
+    if(s.koupelna && s.omitky){
+      tech.appendChild(el("div","alert crit","<b>Řekněte zedníkovi předem, kam až bude sahat obklad.</b> Obklad se na štuk lepit nemá: štukové a vápenné omítky mají deklarovanou přídržnost kolem 0,1 MPa, zatímco lepidlo pod obkladem po vyzrání táhne 0,5 MPa u třídy C1 a 1,0 MPa u C2, a pro podklad pod obklad se v praxi žádá nad 0,3 MPa. Slabá vrstva se utrhne i s obkladem. V ploše obkladu se proto štuk vůbec nenanáší — a zedník to musí vědět dřív, než začne omítat, ne až přijde obkladač."));
+      tech.appendChild(el("div","alert warn","<b>Obklad s lepidlem přidá 10 až 15 mm.</b> Buď se v ploše obkladu vynechá štuk a vznikne přechodová hrana, kterou řeší ukončovací lišta, nebo se stěna o tuto tloušťku podsekne a obklad je v rovině s omítkou. Druhá varianta vypadá lépe, ale je výrazně náročnější na přípravu."));
+    }
+    if(s.koupelna){
+      tech.appendChild(el("div","alert warn","<b>Domluvte s obkladačem pořadí obkladu a dlažby předem.</b> Odborně převažuje postup, kdy se stěny obkládají bez spodní řady, pak se položí dlažba až ke stěně a spodní řada se dolepí — spára v koutu je pak těsnější a dořez obkladu je snazší než dořez dlažby. Druhá varianta, dlažba první, je také legitimní a dává obkladači rovnou pracovní plochu. Co legitimní není: spárovat kout mezi stěnou a podlahou spárovací hmotou. Tam patří sanitární silikon, protože je to místo vzájemného pohybu."));
+      tech.appendChild(el("div","alert","<b>Hydroizolace má normové výšky:</b> nejméně 30 cm nad sprchovou hlavicí, u stěnových sprch 2 m od podlahy, pod vanami a sokly 10 cm, podlaha celoplošně. Vždy dvě vrstvy o celkové tloušťce 1,5 až 2 mm a s těsnicími pásy zatlačenými do čerstvé první vrstvy — bez pásků v koutech a manžet u prostupů je nátěr nefunkční."));
+    }
+    if(s.poter==="anhydrit" && (s.koupelna || s.krytina==="dlazba")){
+      tech.appendChild(el("div","alert crit","<b>Na anhydrit se nesmí cementové lepidlo bez uzavírající penetrace.</b> Sírany z anhydritu reagují s cementem za vzniku ettringitu, který několikanásobně expanduje a rozhraní roztrhne. Řešení je buď uzavírající penetrace, nebo disperzní či reaktivní lepidlo místo cementového."));
+    }
+    if(s.poter!=="none" && s.krytina!=="none"){
+      tech.appendChild(el("div","alert warn","<b>Potěr se před pokládkou musí obrousit, ne jen zamést.</b> Cementový šlem a u anhydritu povrchová vrstva výkvětu jsou slabé vrstvy, které by se staly dělicí rovinou. Broušení zvyšuje smykovou únosnost zhruba o 40 %. Teprve po vysátí následuje penetrace a případná nivelační stěrka."));
+      tech.appendChild(el("div","alert crit","<b>Datum pokládky v tomto plánu je odhad, ne termín — rozhoduje měření.</b> Norma neuvádí žádné doby ve dnech, jen mezní zbytkovou vlhkost, a tu uvolní protokol z měření CM metodou. Pro cementový potěr platí odstupňovaně 5,0 % hmotnostních pod dlažbu, 3,5 % pod vinyl a 2,5 % pod dřevo; u anhydritu je limit 0,5 % shodně pro všechny tyto krytiny. S podlahovým vytápěním se u cementu odečítá 0,5 % a u anhydritu 0,2 %."));
+      tech.appendChild(el("div","alert warn","<b>Nejčastější a nejdražší chyba v tomhle místě je záměna jednotek.</b> Procenta hmotnostní a procenta CM nejsou totéž a u cementového potěru se liší řádově — 5,0 % hmotnostních odpovídá zhruba 3,2 % CM. Kdo si splete stupnici a pustí dřevěnou podlahu na potěr s dvojnásobkem povolené vlhkosti, dostane vydutou podlahu a spor, který nemůže vyhrát. Vždy si vyžádejte protokol s uvedenou metodou měření."));
+      tech.appendChild(el("div","alert","<b>A ještě jedna dvojice, která se plete:</b> 28 dnů u cementového potěru je doba dosažení pevnosti, ne vyschnutí. Vyschnutí trvá násobně déle."));
+    }
+    if(s.zarubne==="ocelove" && s.dvere){
+      tech.appendChild(el("div","alert","<b>Zazdívané ocelové zárubně jsou v plánu zařazené před omítky</b>, protože je to zabudovaný prvek, který omítka dokrývá a zalícuje. V obkládané stěně potřebujete zárubeň s větší celkovou tloušťkou — obklad s lepidlem ji jinak přeroste. Do sádrokartonové příčky se ocelová zárubeň naopak osazuje ještě před opláštěním, tedy při stavbě příčky."));
+    }
+    if(s.zarubne==="rozponove" && s.dvere){
+      tech.appendChild(el("div","alert","<b>Rozponové zárubně se montují do hotového otvoru</b>, tedy až na omítnutou stěnu a na čistou podlahu — proto jsou v plánu zařazené na konci vedle obložkových. Mají regulaci tloušťky stěny v rozsahu zhruba plus patnáct a mínus pět milimetrů, což je jejich hlavní výhoda při rekonstrukci, kde se skutečná tloušťka stěny liší od výkresu."));
+    }
+    if(s.zarubne==="oblozkove" && s.dvere){
+      tech.appendChild(el("div","alert warn","<b>U obložkových zárubní je technickou podmínkou hotová podlaha a klima, ne malba.</b> Výrobci žádají relativní vlhkost 30 až 50 procent a teplotu aspoň šestnáct stupňů; vlhkost zdiva a podlahy do dvanácti procent. Montáž po výmalbě je zavedená a rozumná praxe kvůli ochraně povrchu, ale není to normový požadavek. U plovoucích podlah nezapomeňte na dilatační mezeru mezi zárubní a krytinou."));
+    }
+    if(s.sdk || s.novepricky){
+      tech.appendChild(el("div","alert crit","<b>Co kde bude viset, se rozhoduje teď — ne až u montáže.</b> Naplněná metrová horní skříňka váží zhruba 55 až 95 kg. Sádrokartonová příčka s jednoduchým opláštěním 12,5 mm a profily CW 50 unese u skříňky hloubky 320 mm kolem 55 až 62 kg, takže plná linka bývá nad limitem. Neznamená to, že to nejde — znamená to, že se musí rozhodnout dopředu: zdvojit opláštění nebo použít pevnější desku (zvedne limit na 70 kg na metr), zhustit profily, nebo vložit výměnu. Kotví se vždy nejméně dvěma dutinovými hmoždinkami ve vzdálenosti aspoň 75 mm. Přidat se to dá jen dokud je příčka otevřená."));
+      tech.appendChild(el("div","alert warn","<b>Pozor na dvě čísla, která se běžně pletou.</b> Únosnost 40 kg se často cituje bez kontextu — platí pro excentricitu 300 mm, což odpovídá skříňce hluboké 600 mm. Horní kuchyňská skříňka má hloubku 320 až 350 mm, takže excentricita je kolem 170 mm a únosnost výrazně vyšší. A stejně tak se plete hmotnost skříňky s liniovým zatížením v kilogramech na metr — jsou to jiné veličiny a záměna vede k předimenzování i k poddimenzování."));
+      if(s.sanita){
+        tech.appendChild(el("div","alert crit","<b>Závěsné WC se nikdy nekotví do opláštění.</b> Norma pro závěsné mísy žádá odolnost 4 kN, tedy zhruba 400 kg — u stojících keramických se tahle zkouška nedělá. Vždy se používá předstěnový nosič kotvený k profilům z obou stran, a u sádrokartonu musí jít o systém určený pro suchou výstavbu; prvky pro zdivo v příčce nefungují. Umyvadlo má normový požadavek 1,5 kN a při opření se na něj dynamicky přenese i sto kilo."));
+      }
+    }
+    if(tech.children.length) out.appendChild(sect("Technologická pravidla", tech, ""));
+
+    // priority — teď nebo nikdy
+    var pri = el("div","alerts");
+    var ted = [], pak = [];
+    if(s.elektro) ted.push("elektroinstalace"); else pak.push("elektroinstalace");
+    if(s.voda) ted.push("rozvody vody a odpadů"); else pak.push("rozvody vody a odpadů");
+    if(s.novepricky||s.jadro) ted.push("dispozice a příčky"); else pak.push("změna dispozice");
+    if(s.poter!=="none") ted.push("podlahové souvrství"); else pak.push("podlahové souvrství");
+    if(s.koupelna) ted.push("hydroizolace koupelny"); else pak.push("hydroizolace koupelny");
+    var pozdeji = [];
+    if(!s.kuchyne) pozdeji.push("kuchyňská linka");
+    if(!s.skrine) pozdeji.push("vestavěné skříně");
+    if(!s.dvere) pozdeji.push("interiérové dveře");
+    if(!s.malby) pozdeji.push("malby");
+
+    pri.appendChild(el("div","alert tip","<b>Pravidlo, které rozhoduje o tom, co je opravdu nutné:</b> co je pod omítkou a pod podlahou, se dělá teď, nebo se to za tři roky dělá znovu i s bouráním hotového. Co je viditelné a vyměnitelné, může počkat na příště."));
+    if(ted.length) pri.appendChild(el("div","alert","<b>V tomto rozsahu řešíte teď a napořád:</b> "+ted.join(", ")+". Tohle jsou vrstvy, ke kterým se bez demolice nevrátíte."));
+    if(pak.length) pri.appendChild(el("div","alert warn","<b>Vynecháváte věci, které jsou skryté:</b> "+pak.join(", ")+". Pokud se k nim budete chtít vrátit, znamená to znovu bourat, omítat a malovat. Zvažte, jestli je úspora dnes větší než celá druhá rekonstrukce potom."));
+    if(pozdeji.length) pri.appendChild(el("div","alert tip","<b>Naopak bez obav odložit lze:</b> "+pozdeji.join(", ")+". Tyhle položky se dají doplnit kdykoli později bez zásahu do konstrukcí."));
+    out.appendChild(sect("Co je opravdu nutné", pri, ""));
+
+    // dopad potvrzených dodávek
+    var ridici = ord.filter(function(o){ return o.ridiDodavka; });
+    if(ridici.length){
+      var dd = el("div","alerts");
+      dd.appendChild(el("div","alert crit","<b>"+ridici.length+" potvrzená dodávka řídí termín dokončení.</b> "+
+        ridici.map(function(o){ return o.name.toLowerCase()+" (dorazí "+fmt(o.potvrzeno)+")"; }).join(", ")+
+        ". Stavba je na ni připravená dřív a čeká — buď se to dohodne s dodavatelem, nebo se tím termín prostě posouvá."));
+      out.appendChild(sect("Dopad potvrzených dodávek", dd, ""));
+    }
+
+    // objednávky
+    if(ord.length){
+      var tw=el("div","tablewrap"), tb=el("table");
+      tb.innerHTML = "<thead><tr><th>Objednat do</th><th>Položka</th><th>Lhůta</th><th>Montáž</th><th>Stav</th></tr></thead>";
+      var body=el("tbody");
+      ord.forEach(function(o){
+        var tr=el("tr", o.late?"late":"");
+        var stav = o.potvrzeno
+          ? "<span class='pill' style='color:var(--green)'>potvrzeno "+fmtShort(o.potvrzeno)+"</span>"
+          : "<span style='color:var(--ink-faint);font-family:\"JetBrains Mono\",monospace;font-size:11px'>odhad</span>";
+        if(o.ridiDodavka) stav += " <span class='pill crit'>řídí termín</span>";
+        tr.innerHTML = "<td class='d'>"+(o.potvrzeno?"—":fmt(o.by))+"</td><td>"+o.name+(o.late?" <span class='pill crit'>před klíči</span>":"")+"</td><td class='d'>"+(o.potvrzeno?"—":Math.round(o.lead/7)+" týd.")+"</td><td class='d'>"+fmt(o.install)+"</td><td>"+stav+"</td>";
+        body.appendChild(tr);
+      });
+      tb.appendChild(body); tw.appendChild(tb);
+      out.appendChild(sect("Kdy co objednat", tw, ord.length+""));
+    }
+
+    // gantt
+    var g=el("div","gantt"), span=Math.max(1, diffDays(s.start, sch.end));
+    var head=el("div","grow head");
+    head.appendChild(el("div","gname","<b style='font-family:\"Barlow Condensed\",sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:12px'>Práce</b>"));
+    head.appendChild(el("div","gscale","<span>"+fmt(s.start)+"</span><span>"+fmt(sch.end)+"</span>"));
+    g.appendChild(head);
+    sch.tasks.forEach(function(t){
+      var r=el("div","grow"), nm=el("div","gname");
+      nm.innerHTML="<span>"+t.name+"</span>";
+      nm.appendChild(el("span","p", t.gate?"kontrola":t.prof));
+      r.appendChild(nm);
+      var tr=el("div","gtrack"), off=diffDays(s.start,t.start), len=diffDays(t.start,t.end)+1;
+      if(t.wait && t.waitFrom){
+        var ws=diffDays(s.start,t.waitFrom.end), wl=Math.max(0, off-ws);
+        if(wl>0){ var w=el("div","wait"); w.style.left=(ws/span*100)+"%"; w.style.width=Math.max(0.6,wl/span*100)+"%"; w.title=(t.waitNote||"přestávka")+" — "+days(t.wait); tr.appendChild(w); }
+      }
+      var bar=el("div","bar"+(t.critical?" crit":""));
+      bar.style.left=(off/span*100)+"%"; bar.style.width=Math.max(0.8,len/span*100)+"%";
+      bar.title=t.name+": "+fmt(t.start)+" – "+fmt(t.end);
+      tr.appendChild(bar);
+      var lab=el("div","glabel",fmtShort(t.start)), lp=off/span*100;
+      if(lp>72){ lab.style.right=(100-lp)+"%"; lab.style.paddingRight="6px"; }
+      else { lab.style.left=(lp+Math.max(0.8,len/span*100))+"%"; lab.style.paddingLeft="6px"; }
+      tr.appendChild(lab); r.appendChild(tr); g.appendChild(r);
+    });
+    var gw=el("div"); gw.appendChild(g);
+    var lg=el("div","legend");
+    lg.innerHTML="<span><i class='b1'></i>kritická cesta</span><span><i class='b2'></i>má rezervu</span><span><i class='b3'></i>technologická přestávka</span>";
+    gw.appendChild(lg);
+    out.appendChild(sect("Harmonogram", gw, sch.tasks.length+" "+plural(sch.tasks.length,"úkol","úkoly","úkolů")));
+
+    // spolehlivost výstupu
+    var rel = el("div","alerts");
+    rel.appendChild(el("div","alert tip","<b>Co v tomto výstupu stojí na normě a technickém listu:</b> pořadí prací a technologické závislosti, doby technologických přestávek u omítek, hydroizolace a sádrokartonu, požadavky na přídržnost podkladu, nosnosti příček a kotvení, lhůty a povinnosti u azbestu. Tahle část je doložitelná zdrojem a dá se obhájit."));
+    rel.appendChild(el("div","alert warn","<b>Co je odhad a je nutné to nahradit vlastními daty:</b> doby trvání jednotlivých prací (výchozí hodnoty pro byt kolem 60 m²), přepočet podle plochy, rozpad ceny na jednotlivé práce a konkrétní doby schnutí potěru pro jednotlivé kombinace krytin — u těch jsou doložená jen pásma, ne přesná čísla. Termín dokončení proto berte jako řádový odhad, ne jako závazek."));
+    rel.appendChild(el("div","alert","<b>Co tenhle nástroj nenahrazuje:</b> projektovou dokumentaci, statické posouzení ani stavební dozor. Neví, co je za stěnou, a nezná kapacitu konkrétních řemeslníků. U zásahů do nosných konstrukcí, do společných částí domu a u podezření na azbest je vždy potřeba odborné posouzení."));
+    out.appendChild(sect("Nakolik se dá výstupu věřit", rel, ""));
+
+    // gate / detailní rozpis
+    if(unlocked){
+      var tw2=el("div","tablewrap"), t2=el("table");
+      t2.innerHTML="<thead><tr><th>Od</th><th>Do</th><th>Práce</th><th>Profese</th><th>Rezerva</th></tr></thead>";
+      var b2=el("tbody");
+      sch.tasks.forEach(function(t){
+        var tr=el("tr");
+        tr.innerHTML="<td class='d'>"+fmt(t.start)+"</td><td class='d'>"+fmt(t.end)+"</td><td>"+t.name+
+          (t.wait?"<br><span style='font-family:\"JetBrains Mono\",monospace;font-size:11px;color:var(--ink-faint)'>před tím "+days(t.wait)+" — "+(t.waitNote||"přestávka")+"</span>":"")+
+          "</td><td>"+(t.gate?"—":t.prof)+"</td><td class='d'>"+(t.critical?"0":t.slack+" d")+"</td>";
+        b2.appendChild(tr);
+      });
+      t2.appendChild(b2); tw2.appendChild(t2);
+      out.appendChild(sect("Rozpis den po dni", tw2, ""));
+    } else {
+      out.appendChild(sect("Detailní rozpis", buildGate(), ""));
+    }
+  }
+
+  function potvrzeni(text, typ){
+    var o = document.getElementById("out");
+    if(!o) return;
+    var st = o.querySelector(".gmsg");
+    if(!st){ st = el("div","gmsg"); o.insertBefore(st, o.firstChild); }
+    st.textContent = text;
+    st.style.borderLeftColor = typ==="ok" ? "var(--green)" : "var(--amber)";
+    st.style.background = typ==="ok" ? "var(--green-soft)" : "var(--amber-soft)";
+    st.scrollIntoView({behavior:"smooth", block:"center"});
+  }
+
+  function buildGate() {
+    var g = el("div","gate");
+    g.innerHTML =
+      "<h4>Chceš celý plán a hlídání termínů?</h4>" +
+      "<p class='g-lead'>Harmonogram nahoře je tvůj a zůstane zdarma. Za e-mail ti pošleme zbytek, který se do stránky nevejde:</p>" +
+      "<ul>" +
+      "<li><b>Rozpis den po dni</b> — kdy má kdo nastoupit a kolik má která práce rezervy</li>" +
+      "<li><b>Připomínky termínů</b> — upozorníme, kdy objednat a kdy potvrdit dodavatele</li>" +
+      "<li><b>Checklist kontrolních bodů</b> — co u které zkoušky převzít, aby se nebouralo hotové</li>" +
+      "<li><b>Seznam otázek pro řemeslníky</b> — na co se ptát, než podepíšeš</li>" +
+      "</ul>";
+    var form = el("form","gform");
+    form.innerHTML =
+      "<div class='two'><input type='text' id='ln' placeholder='Jméno' autocomplete='name'>" +
+      "<input type='email' id='le' placeholder='E-mail' autocomplete='email' required></div>" +
+      "<input type='tel' id='lt' placeholder='Telefon (nepovinné)' autocomplete='tel'>" +
+      "<label class='gdpr'><input type='checkbox' id='lg' required><span>Souhlasím se zpracováním osobních údajů za účelem zaslání plánu a souvisejících informací. Podrobnosti v <a href='/osobni-udaje.html' target='_blank' rel='noopener'>zásadách zpracování</a>.</span></label>" +
+      "<button type='submit' class='btn'>Poslat mi celý plán</button>" +
+      "<div id='lmsg' style='font-family:\"JetBrains Mono\",monospace;font-size:12px;margin-top:4px'></div>";
+    function utm(){
+      try {
+        var p=new URLSearchParams(location.search), u={};
+        if(p.get("utm_source")) u.source=p.get("utm_source");
+        if(p.get("utm_medium")) u.medium=p.get("utm_medium");
+        if(p.get("utm_campaign")) u.campaign=p.get("utm_campaign");
+        return u;
+      } catch(e){ return {}; }
+    }
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+      var jm = document.getElementById("ln").value.trim();
+      var em = document.getElementById("le").value.trim();
+      var tel = document.getElementById("lt").value.trim();
+      var ok = document.getElementById("lg").checked;
+      var msg = document.getElementById("lmsg");
+      if(!em || em.indexOf("@") < 1 || !ok){
+        msg.textContent = "Vyplňte e-mail a potvrďte souhlas.";
+        msg.style.color = "var(--red)";
+        return;
+      }
+      var st = readState(), prace = [];
+      for(var k in st){ if(st[k]===true) prace.push(k); }
+      var popis = "Plánovač rekonstrukce — byt " + st.area + " m², rok " + st.rok +
+        ", záměr: " + st.ucel + ", rozpočet: " + (st.budget ? Math.round(st.budget/1000)+" tis." : "neuveden") +
+        ". Potěr: " + st.poter + ", krytina: " + st.krytina + ", volná výška: " + st.vyska + " mm" +
+        ", podlahové topení: " + st.topeniP + ", omítka: " + st.typomitky +
+        ", azbest: " + st.azbest + ". Rozsah prací: " + prace.join(", ") + ".";
+
+      msg.textContent = "Odesílám…"; msg.style.color = "var(--ink-faint)";
+      fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          form: "planovac-rekonstrukce",
+          name: jm, email: em, phone: tel,
+          message: popis, gdpr: true,
+          meta: { plocha: st.area, rok: st.rok, ucel: st.ucel, rozpocet: st.budget,
+                  poter: st.poter, krytina: st.krytina, vyska: st.vyska },
+          referrer: document.referrer || "",
+          utm: utm()
+        })
+      }).then(function(r){
+        if(!r.ok) throw new Error("API " + r.status);
+        potvrzeni("Děkujeme. Plán vám pošleme na " + em + ". Rozpis den po dni se právě odemkl níže.", "ok");
+        if(window.gtag) window.gtag("event","planovac_lead",{event_category:"lead",event_label:st.ucel});
+      }).catch(function(){
+        potvrzeni("Odeslání se nepodařilo — zkuste to prosím znovu. Rozpis níže je i tak odemčený.", "warn");
+      });
+      unlocked = true;
+      render();
+      var o = document.getElementById("out");
+      var msg = el("div","gmsg","Díky. Plán ti dorazí na " + em + ". Rozpis den po dni se právě odemkl níž na stránce.");
+      o.insertBefore(msg, o.firstChild);
+      msg.scrollIntoView({behavior:"smooth", block:"center"});
+    });
+    g.appendChild(form);
+
+    return g;
+  }
+
+  // presets
+  var PRESETS = {
+    komplet:{on:["w_jadro","w_pricky","w_podlahy","w_obklady","w_novepricky","w_sdk","w_voda","w_topeni","w_elektro","w_omitky","w_koupelna","w_malby","w_dvere","w_kuchyne","w_deska","w_sanita"],poter:"anhydrit",krytina:"vinyl"},
+    jadro:{on:["w_jadro","w_obklady","w_novepricky","w_voda","w_elektro","w_omitky","w_koupelna","w_malby","w_sanita"],poter:"none",krytina:"dlazba"},
+    pronajem:{on:["w_podlahy","w_obklady","w_elektro","w_omitky","w_koupelna","w_malby","w_dvere","w_kuchyne","w_sanita"],poter:"rychly",krytina:"vinyl"},
+    kosmetika:{on:["w_podlahy","w_malby","w_kuchyne"],poter:"none",krytina:"vinyl"}
+  };
+  var ALL=["w_jadro","w_pricky","w_podlahy","w_obklady","w_nosna","w_novepricky","w_sdk","w_okna","w_voda","w_topeni","w_elektro","w_vzt","w_omitky","w_koupelna","w_malby","w_dvere","w_kuchyne","w_deska","w_sanita","w_skrine"];
+  function applyPreset(k){
+    var p=PRESETS[k]; if(!p) return;
+    ALL.forEach(function(id){ var e=document.getElementById(id); if(e) e.checked = p.on.indexOf(id)!==-1; });
+    document.getElementById("poter").value=p.poter;
+    document.getElementById("krytina").value=p.krytina;
+    Array.prototype.forEach.call(document.querySelectorAll(".preset"), function(b){
+      b.setAttribute("aria-pressed", b.getAttribute("data-preset")===k ? "true":"false");
+    });
+    render();
+  }
+  Array.prototype.forEach.call(document.querySelectorAll(".preset"), function(b){
+    b.addEventListener("click", function(){ applyPreset(b.getAttribute("data-preset")); });
+  });
+  document.getElementById("form").addEventListener("input", function(){
+    Array.prototype.forEach.call(document.querySelectorAll(".preset"), function(b){ b.setAttribute("aria-pressed","false"); });
+    render();
+  });
+  document.getElementById("form").addEventListener("change", render);
+  render();
+})();
+</script>

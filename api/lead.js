@@ -38,6 +38,9 @@ const FORMULARE = {
   // Stránka se jmenuje Chci si to jen ověřit.
   'pripad-pro-agenta':  { source: 'web_formular', popis: 'Chci si to jen ověřit' },
   'chci-prodat':        { source: 'web_formular', popis: 'Chci prodat (landing page)' },
+  // Plánovač rekonstrukce — lead nese v metadatech parametry bytu,
+  // takže je z něj rovnou vidět rozsah zakázky i rozpočet.
+  'planovac-rekonstrukce': { source: 'web_formular', popis: 'Plánovač rekonstrukce bytu' },
   'vycvik-pdf':         { source: 'web_formular', popis: 'Kniha Výcvik — PDF ke stažení' },
   'vycvik-zkouska':     { source: 'web_formular', popis: 'Kniha Výcvik — výsledek dotazníku' },
   'vycvik-plan':        { source: 'web_formular', popis: 'Kniha Výcvik — rozpis krok za krokem' },
