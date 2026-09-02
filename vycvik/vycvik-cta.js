@@ -27,7 +27,12 @@
         '/vycvik', '/vycvik/', '/vycvik/index.html', '/vycvik/vybava',
         '/vycvik/kolik-to-stoji', '/vycvik/zaver', '/vycvik/zvladnete-to-sami',
         '/vycvik/posudte-inzerat', '/vycvik/kapitola-9-zaseklo-se',
-        '/vycvik/krok-za-krokem'
+        '/vycvik/krok-za-krokem',
+        // Kapitoly s vlastní bránou na téma kapitoly. Patička by pod ní
+        // byla druhá nabídka v řadě a čtenář by si vybíral mezi dvěma
+        // výzvami místo mezi „chci" a „nechci".
+        '/vycvik/kapitola-1-cena', '/vycvik/kapitola-3-fotografie',
+        '/vycvik/kapitola-7-smlouvy'
       ]
     }
   };
@@ -299,10 +304,201 @@
     return el;
   }
 
+  /* ── Zkratka pro nedokončený dotazník ──
+     Kdo se zasekne uprostřed, dnes neodejde jen bez plánu — odejde beze
+     stopy. Tahle brána proto neslibuje výsledek, který nemáme z čeho
+     spočítat, ale to jediné, co jde poslat i bez dokončení: všech osm
+     bodů, které se hlídají, a u každého konkrétní úkol.
+
+     Co už člověk odpověděl, se v e-mailu odškrtne — proto se posílají
+     čísla otázek, ne jen jejich počet. */
+  function buildDropoutGate(odpovedi, rizika) {
+    var hotovo = [];
+    var chybi = [];
+    for (var i = 1; i <= 8; i++) {
+      if (odpovedi[i] === '1') hotovo.push(i);
+      else if (odpovedi[i] === '0') chybi.push(i);
+    }
+    var zodpovezeno = hotovo.length + chybi.length;
+
+    var el = document.createElement('div');
+    el.className = 'vy-gate vy-gate--slim';
+    el.innerHTML =
+      '<div class="vy-gate__head">' +
+        '<span class="vy-gate__label">Zkratka</span>' +
+        '<h3>Pošlu vám osm bodů i bez dokončení</h3>' +
+        '<p>Dotazník je jen způsob, jak se k nim dostat. Když ho dodělat nechcete, ' +
+        'pošlu vám rovnou celý seznam — a u každého bodu jednu větu, co s ním udělat.</p>' +
+        '<ul class="vy-gate__list">' +
+          '<li>Osm bodů v pořadí prodeje, u každého konkrétní úkol</li>' +
+          (hotovo.length
+            ? '<li>' + (hotovo.length === 1 ? 'Bod, který' : 'Body, které') +
+              ' už máte, ' + (hotovo.length === 1 ? 'zůstane' : 'zůstanou') + ' odškrtnuté</li>'
+            : '<li>Ke každému bodu kapitola, kde je rozepsaný</li>') +
+        '</ul>' +
+        '<p class="vy-gate__note" style="margin:0;">Dotazník vám zůstane rozdělaný tady na stránce. Kdykoli ho dodělat můžete.</p>' +
+      '</div>' +
+      '<form class="vy-gate__form" novalidate>' +
+        '<p class="vy-gate__field">' +
+          '<label for="vy-zkratka-email">E-mail</label>' +
+          '<input id="vy-zkratka-email" type="email" name="email" autocomplete="email" required>' +
+        '</p>' +
+        '<label class="vy-gate__consent">' +
+          '<input type="checkbox" name="gdpr" required>' +
+          '<span>Souhlasím se zpracováním e-mailu podle <a href="/osobni-udaje" target="_blank" rel="noopener">zásad ochrany osobních údajů</a>. Odhlásit se dá jedním kliknutím.</span>' +
+        '</label>' +
+        '<button type="submit">Poslat mi osm bodů</button>' +
+        '<p class="vy-gate__msg" role="alert" hidden></p>' +
+      '</form>' +
+      '<p class="vy-gate__note">Nikdo vám kvůli tomu nezavolá. Píšu, když mám co říct, ne podle kalendáře.</p>';
+
+    HubCTA.initGate({
+      form: el.querySelector('form'),
+      doneTarget: el,
+      leadForm: 'vycvik-zkouska-nedokonceny',
+      fields: {},
+      message:
+        'Dotazník „Zvládnete to sami?" — nedokončený, zodpovězeno ' + zodpovezeno + ' z 8.\n' +
+        (hotovo.length ? 'Má hotové otázky: ' + hotovo.join(', ') + '.\n' : '') +
+        (chybi.length ? 'Chybí mu otázky: ' + chybi.join(', ') + '.\n' : ''),
+      meta: {
+        zodpovezeno: zodpovezeno,
+        hotovo_ids: hotovo.join(','),
+        chybi_ids: chybi.join(','),
+        risk_ids: (rizika || []).join(','),
+        // Nedokončený dotazník neříká, jak je člověk připravený — říká jen,
+        // že se zastavil. Segment proto nesmí předstírat víc.
+        segment: 'nedokonceny-dotaznik'
+      },
+      gaEvent: 'vycvik_zkratka_email',
+      gaLabel: 'odpovezeno_' + zodpovezeno,
+      gaParams: { value: zodpovezeno },
+      msgError: 'Něco se nepodařilo odeslat. Zkuste to prosím znovu.',
+      done: DONE_ICON +
+        '<h3>Odesláno. Osm bodů je na cestě.</h3>' +
+        '<p>Za chvíli vám přijde e-mail se všemi osmi body a úkolem u každého. Kdyby nedorazil do deseti minut, mrkněte do spamu — nebo mi napište na <a href="mailto:david.choc@ptf.cz">david.choc@ptf.cz</a>.</p>' +
+        '<p class="vy-gate__done-note">Rozdělaný dotazník vám zůstává tady na stránce.</p>'
+    });
+
+    return el;
+  }
+
+  /* ── Brány v kapitolách ──
+     Osmnáct stránek z dvaadvaceti nemělo kam nechat kontakt. Kdo dočetl
+     kapitolu o ceně a došlo mu, že cenu nemá čím podložit, se musel vrátit
+     na rozcestník a začít dotazník od začátku — a většina lidí se nevrátí.
+
+     Zakládat kvůli tomu další stránky by byla chyba, kterou tahle sekce
+     jednou zavírala. Brána proto stojí přímo v kapitole, je na téma té
+     kapitoly a je záměrně malá: jedno pole, jedna věta, žádné jméno.
+
+     Platí tu totéž co u velkých bran — slíbit se smí jen to, co e-mail
+     doopravdy odešle (api/_emaily.js → VYCVIK_KAPITOLA_*). */
+  var KAPITOLY = {
+    '/vycvik/kapitola-1-cena': {
+      leadForm: 'vycvik-kapitola-cena',
+      label: 'K téhle kapitole',
+      h: 'Chcete tři zdroje, ze kterých se cena dá podložit?',
+      p: 'Pošlu vám tři konkrétní místa, kde si cenu ověříte sám — u každého to, co v něm hledat a čemu v něm nevěřit.',
+      li: ['Tři zdroje a u každého jedna věta, na co si u něj dát pozor',
+           'Jak z nich složit ty tři částky, o kterých je celá tahle kapitola'],
+      btn: 'Poslat mi tři zdroje',
+      done: 'Za chvíli vám přijdou tři zdroje a co v každém z nich hledat.'
+    },
+    '/vycvik/kapitola-3-fotografie': {
+      leadForm: 'vycvik-kapitola-fotky',
+      label: 'K téhle kapitole',
+      h: 'Chcete seznam záběrů s sebou k focení?',
+      p: 'Pošlu vám osm záběrů, které v inzerátu musí být, v pořadí, ve kterém se fotí. Ať u toho nemusíte listovat kapitolou.',
+      li: ['Osm záběrů v pořadí, ve kterém se fotí',
+           'Tři chyby, kvůli kterým se fotka přeskočí, i když je ostrá'],
+      btn: 'Poslat mi seznam záběrů',
+      done: 'Za chvíli vám přijde osm záběrů i s pořadím, ve kterém je fotit.'
+    },
+    '/vycvik/kapitola-7-smlouvy': {
+      leadForm: 'vycvik-kapitola-smlouvy',
+      label: 'K téhle kapitole',
+      h: 'Chcete vědět, na co si dát pozor u úschovy?',
+      p: 'Tohle je jediné místo prodeje, kde se chybou nepřichází o část ceny, ale o peníze i o nemovitost zároveň. Pošlu vám, kde se to láme.',
+      li: ['Pět míst, na kterých se u kupní smlouvy a úschovy chybuje',
+           'Pořadí kroků, které se nesmí prohodit'],
+      btn: 'Poslat mi, na co dát pozor',
+      done: 'Za chvíli vám přijde pět míst, kde se u úschovy chybuje, i s pořadím kroků.'
+    }
+  };
+
+  function initChapterGate() {
+    var cesta = window.location.pathname.replace(/\.html$/, '').replace(/\/$/, '');
+    var k = KAPITOLY[cesta];
+    if (!k) return;
+
+    var wrap = document.querySelector('.vycvik-chapter__wrap');
+    if (!wrap || wrap.querySelector('.vy-gate')) return;
+
+    var idBase = 'vy-kap-' + k.leadForm.replace(/[^a-z]/g, '');
+    var el = document.createElement('div');
+    el.className = 'vy-gate vy-gate--slim';
+    el.innerHTML =
+      '<div class="vy-gate__head">' +
+        '<span class="vy-gate__label">' + k.label + '</span>' +
+        '<h3>' + k.h + '</h3>' +
+        '<p>' + k.p + '</p>' +
+        '<ul class="vy-gate__list">' +
+          k.li.map(function (x) { return '<li>' + x + '</li>'; }).join('') +
+        '</ul>' +
+        '<p class="vy-gate__note" style="margin:0;">Kapitola i celá kniha zůstávají online a zdarma — tohle není vstupenka do obsahu.</p>' +
+      '</div>' +
+      '<form class="vy-gate__form" novalidate>' +
+        '<p class="vy-gate__field">' +
+          '<label for="' + idBase + '-email">E-mail</label>' +
+          '<input id="' + idBase + '-email" type="email" name="email" autocomplete="email" required>' +
+        '</p>' +
+        // Souhlas nad tlačítkem, stejně jako na ostatních branách sekce.
+        '<label class="vy-gate__consent">' +
+          '<input type="checkbox" name="gdpr" required>' +
+          '<span>Souhlasím se zpracováním e-mailu podle <a href="/osobni-udaje" target="_blank" rel="noopener">zásad ochrany osobních údajů</a>. Odhlásit se dá jedním kliknutím.</span>' +
+        '</label>' +
+        '<button type="submit">' + k.btn + '</button>' +
+        '<p class="vy-gate__msg" role="alert" hidden></p>' +
+      '</form>' +
+      '<p class="vy-gate__note">Nikdo vám kvůli tomu nezavolá. Píšu, když mám co říct, ne podle kalendáře.</p>';
+
+    HubCTA.initGate({
+      form: el.querySelector('form'),
+      doneTarget: el,
+      leadForm: k.leadForm,
+      fields: {},
+      message: 'Zájem o materiál ke kapitole: ' + k.h + '\n',
+      // Člověk, který si řekne o materiál k jedné kapitole, ještě neřekl
+      // nic o tom, jak je na prodej připravený. Segment proto říká jen to,
+      // co doopravdy víme — u které kapitoly se zastavil.
+      meta: { segment: 'ctenar-kapitoly', kapitola: cesta },
+      gaEvent: 'vycvik_kapitola_email',
+      gaLabel: k.leadForm,
+      msgError: 'Něco se nepodařilo odeslat. Zkuste to prosím znovu.',
+      done: DONE_ICON +
+        '<h3>Odesláno.</h3>' +
+        '<p>' + k.done + ' Kdyby nedorazil do deseti minut, mrkněte do spamu — nebo mi napište na <a href="mailto:david.choc@ptf.cz">david.choc@ptf.cz</a>.</p>'
+    });
+
+    // Brána patří za text kapitoly, ale před odkazy na blog a navigaci —
+    // tam čtenář dočetl a rozhoduje se, kam dál.
+    var pred = wrap.querySelector('.vy-related, .vycvik-verified, .vycvik-nav');
+    if (pred) wrap.insertBefore(el, pred);
+    else wrap.appendChild(el);
+  }
+
   // Export pro stránky dotazníku a průvodce
-  window.VycvikCTA = { buildExamGate: buildExamGate, buildPlanGate: buildPlanGate };
+  window.VycvikCTA = {
+    buildExamGate: buildExamGate,
+    buildPlanGate: buildPlanGate,
+    buildDropoutGate: buildDropoutGate
+  };
 
   HubCTA.ready(function () {
+    // Brána se staví první: patička pomoci se na těch kapitolách přeskakuje
+    // (viz help.skip), aby pod textem nestály dvě nabídky vedle sebe.
+    initChapterGate();
     HubCTA.injectHelp();
     initInzeratForm();
   });

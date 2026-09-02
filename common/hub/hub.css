@@ -44,6 +44,23 @@
 .vycvik-page main,
 .hub-page main { padding-top: 0; }
 
+/* ─── Plovoucí kontakty v kurzu ───
+   Bubliny telefonu, e-mailu a WhatsAppu jsou fixed v pravém pruhu širokém
+   65 px a text jim na mobilu zabíhá pod ně — naměřeno 69 řádků včetně H1.
+   V kurzu jsou navíc: kontakt je v liště nahoře, v patičce, v patičce každé
+   kapitoly i v každém CTA bloku. Tlačítko zpět nahoru zůstává, na stránce
+   dlouhé čtrnáct obrazovek má funkci — a samo o sobě zabírá čtvrtinu místa. */
+.vycvik-page .floating-button.call,
+.vycvik-page .floating-button.email,
+.vycvik-page .floating-button.whatsapp,
+.hub-page .floating-button.call,
+.hub-page .floating-button.email,
+.hub-page .floating-button.whatsapp { display: none; }
+
+/* Zbylé tlačítko drží co nejníž, kde je text nejřidší a kde ho lidé čekají. */
+.vycvik-page .floating-buttons,
+.hub-page .floating-buttons { bottom: 20px; }
+
 /* ─── Lišta rozcestníku ───
    Jen na hubu kurzu, ne v kapitolách: identifikace a cesta zpátky pro
    toho, kdo přišel z vyhledávače a neví, kde je. */
@@ -3344,6 +3361,93 @@ a.hub-tool:hover {
     border-left: 4px solid #c0392b;
 }
 
+/* Zkratka u nedokončeného dotazníku. Je to nabídka pro toho, kdo právě
+   nechce pokračovat — takže nesmí vypadat jako další překážka. Jedna
+   řádka textu a odkaz; brána se rozbalí až po kliknutí. */
+.vy-shortcut {
+    margin: 18px 0 4px;
+    padding: 14px 16px;
+    background: rgba(0,0,0,0.03);
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 4px;
+}
+.vy-shortcut__line {
+    margin: 0;
+    font-size: 0.93rem;
+    line-height: 1.6;
+    color: #6a6a6a;
+}
+.vy-shortcut__btn {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    font-weight: 700;
+    color: #8B7D61;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.vy-shortcut__btn:hover { color: #6f6349; }
+.vy-shortcut .vy-gate { margin-top: 16px; margin-bottom: 0; }
+
+/* Štíhlá varianta pro brány uvnitř kapitol. Stojí uprostřed čtení, ne
+   po vyhodnocení nástroje, takže nesmí zabrat obrazovku — jedno pole,
+   jedna věta, žádné jméno. Konstrukce i barvy zůstávají stejné, aby
+   čtenář poznal, že je to tatáž věc jako brána na konci dotazníku. */
+.vy-gate--slim,
+.hub-gate--slim {
+    margin: 44px 0;
+    padding: 26px 28px;
+}
+.vy-gate--slim .vy-gate__head,
+.hub-gate--slim .hub-gate__head { margin-bottom: 18px; }
+.vy-gate--slim .vy-gate__head h3,
+.hub-gate--slim .hub-gate__head h3 { font-size: 1.22rem; }
+.vy-gate--slim .vy-gate__field,
+.hub-gate--slim .hub-gate__field { margin-bottom: 14px; }
+
+@media (max-width: 700px) {
+    .vy-gate--slim,
+.hub-gate--slim { padding: 22px 20px; }
+}
+
+/* Brána uvnitř textu kapitoly.
+   -------------------------------------------------------------------------
+   `.vycvik-chapter__wrap p` má vyšší specificitu než `.vy-gate__note`, takže
+   odstavce uvnitř brány dostávaly barvu textu kapitoly — tmavě šedou #333 na
+   tmavém podkladu brány. Poznámka pod formulářem tím měla kontrast 1,32 : 1
+   a byla prakticky neviditelná. Tohle vrací bráně její vlastní typografii
+   všude, kde stojí uvnitř kapitoly nebo nástroje. */
+.vycvik-chapter__wrap .vy-gate__note,
+.vycvik-tool-page__wrap .vy-gate__note,
+.hub-chapter__wrap .hub-gate__note,
+.hub-tool-page__wrap .hub-gate__note {
+    color: #8a8a8a;
+    font-size: 0.85rem;
+    line-height: 1.55;
+}
+.vycvik-chapter__wrap .vy-gate__head p,
+.vycvik-tool-page__wrap .vy-gate__head p,
+.hub-chapter__wrap .hub-gate__head p,
+.hub-tool-page__wrap .hub-gate__head p {
+    color: #c8c8c8;
+    font-size: 1rem;
+}
+.vycvik-chapter__wrap .vy-gate__msg,
+.vycvik-tool-page__wrap .vy-gate__msg,
+.hub-chapter__wrap .hub-gate__msg,
+.hub-tool-page__wrap .hub-gate__msg {
+    color: #e0e0e0;
+    font-size: 0.92rem;
+}
+.vycvik-chapter__wrap .vy-gate__field,
+.vycvik-tool-page__wrap .vy-gate__field,
+.hub-chapter__wrap .hub-gate__field,
+.hub-tool-page__wrap .hub-gate__field {
+    color: #c8c8c8;
+    font-size: 0.82rem;
+}
+
 .vy-gate__head,
 .hub-gate__head { margin-bottom: 24px; }
 .vy-gate__label,
@@ -4498,6 +4602,16 @@ body.is-light .vycvik-garance .cta-button--outline:hover {
 }
 .kzk-faze.is-hotovo { border-color: rgba(var(--hub-accent-rgb, 255,191,0), .55); }
 
+/* .kzk-faze je <section> uvnitř .vycvik-page, takže karty přebíjelo obecné
+   rozvržení sekcí výše (padding 72/56 px a linka mezi sousedy) — měly nulový
+   boční padding a cizí šedou linku nahoře. Karta si své musí vzít zpátky. */
+.vycvik-page .kzk-faze,
+.hub-page .kzk-faze { padding: 26px 28px; }
+.vycvik-page .kzk-faze + .kzk-faze,
+.hub-page .kzk-faze + .kzk-faze { border-top-color: var(--hub-line, #e6ddc8); }
+.vycvik-page .kzk-faze.is-hotovo,
+.hub-page .kzk-faze.is-hotovo { border-color: rgba(var(--hub-accent-rgb, 255,191,0), .55); }
+
 .kzk-faze__head {
     display: flex;
     align-items: center;
@@ -4746,7 +4860,8 @@ body.is-light .vycvik-garance .cta-button--outline:hover {
 }
 
 @media (max-width: 780px) {
-    .kzk-faze { padding: 20px 18px; }
+    .vycvik-page .kzk-faze,
+    .hub-page .kzk-faze { padding: 20px 18px; }
     .kzk-faze__body { grid-template-columns: 1fr; gap: 18px; }
     .kzk-faze__nazev { font-size: 1.12rem !important; }
     .kzk-zaver__in { padding: 22px 18px; }

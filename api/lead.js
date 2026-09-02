@@ -40,6 +40,20 @@ const FORMULARE = {
   'vycvik-zkouska':     { source: 'web_formular', popis: 'Kniha Výcvik — výsledek dotazníku' },
   'vycvik-plan':        { source: 'web_formular', popis: 'Kniha Výcvik — rozpis krok za krokem' },
   'vycvik-posudek':     { source: 'web_formular', popis: 'Kniha Výcvik — posouzení inzerátu' },
+  // Zkratka pro toho, kdo dotazník nedodělal. Je to slabší signál než
+  // dokončený dotazník — nemá skóre — ale silnější než nic, což byla
+  // dosud jediná stopa, kterou po sobě odpadlík nechal.
+  'vycvik-zkouska-nedokonceny': { source: 'web_formular',
+                          popis: 'Kniha Výcvik — nedokončený dotazník, zkratka' },
+  // Brány přímo v kapitolách. Metadata nesou cestu, takže je zpětně
+  // vidět, u které kapitoly se čtenář zastavil — a to je jiná informace
+  // než skóre z dotazníku.
+  'vycvik-kapitola-cena':    { source: 'web_formular',
+                          popis: 'Kniha Výcvik — kapitola 1, tři zdroje k ceně' },
+  'vycvik-kapitola-fotky':   { source: 'web_formular',
+                          popis: 'Kniha Výcvik — kapitola 3, seznam záběrů' },
+  'vycvik-kapitola-smlouvy': { source: 'web_formular',
+                          popis: 'Kniha Výcvik — kapitola 7, na co pozor u úschovy' },
   // Nabídka navázaná na konkrétní výsledek diagnostiky. Metadata nesou
   // `verdikt`, takže se dá zpětně zjistit, který závěr lidi přiměl napsat.
   'vycvik-diagnostika': { source: 'web_formular', popis: 'Kniha Výcvik — diagnostika inzerátu' },

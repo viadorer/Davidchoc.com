@@ -3025,6 +3025,26 @@ address {
     }
 }
 
+/* Sekce Výcvik: plovoucí kontakty pryč.
+   -------------------------------------------------------------------------
+   Tři kolečka visela v pravém pruhu širokém 65 px přes celou stránku a při
+   rolování projela textem kapitoly — na 375 px do nich zasahovalo 69 řádků
+   včetně nadpisu. Skrytí na první obrazovce vyčistilo první dojem, ale ne
+   zbytek čtení.
+
+   Kniha slibuje, že nikoho nikam netlačí, takže tři nalepené výzvy k akci
+   nad textem, který právě čte, jsou proti tomu slibu. Kontakt zůstává
+   v horní liště, v patičce a v každém CTA bloku kapitoly — nezmizel, jen
+   přestal ležet přes obsah.
+
+   Návrat nahoru zůstává: je to navigace, ne nabídka, a na kapitole dlouhé
+   dvacet obrazovek se bez něj čte hůř. */
+body.vycvik-page .floating-button.call,
+body.vycvik-page .floating-button.email,
+body.vycvik-page .floating-button.whatsapp {
+    display: none;
+}
+
 /* ============================================
    PŘÍPAD PRO AGENTA — landing page
    Black/gold theme, navazuje na existující design tokeny.

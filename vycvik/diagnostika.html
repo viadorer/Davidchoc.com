@@ -18,7 +18,7 @@
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Obálka knihy Výcvik ziskového prodeje nemovitosti — sedm chyb, devatenáct nástrojů, třicet let praxe.">
+    <meta property="og:image:alt" content="Obálka knihy Výcvik ziskového prodeje nemovitosti — sedm chyb, devatenáct nástrojů, praxe od roku 1995.">
     <meta name="twitter:card" content="summary_large_image">
 
     <link rel="icon" type="image/png" href="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/favicon.png">
@@ -387,6 +387,9 @@
         }
       };
 
+      var LBL = 'display:block; margin-bottom:5px; font-size:0.88rem; font-weight:700; color:#444;';
+      var POLE = 'width:100%; padding:11px 13px; border:1px solid #ddd; border-radius:8px; font-size:1rem; font-family:inherit;';
+
       function nabidkaHtml(klic) {
         var n = NABIDKY[klic] || NABIDKY.cena;
         return '' +
@@ -401,17 +404,30 @@
               '</div>' +
             '</div>' +
             '<button type="button" class="cta-button" id="vy-diag-otevrit" style="margin-top:14px;">' + n.tlacitko + '</button>' +
+            // Popisky nad poli, souhlas nad tlačítkem a hláška s role="alert" —
+            // stejná trojice oprav jako na branách sekce. Placeholder není
+            // popisek: zmizí, jakmile člověk začne psát, a čtečka obrazovky
+            // ho neohlásí jako název pole.
             '<form id="vy-diag-form" hidden style="margin-top:14px;">' +
-              '<input type="url" name="odkaz" placeholder="Odkaz na váš inzerát" style="width:100%; padding:11px 13px; margin-bottom:8px; border:1px solid #ddd; border-radius:8px; font-size:1rem;">' +
-              '<input type="email" name="email" required placeholder="Váš e-mail" style="width:100%; padding:11px 13px; margin-bottom:8px; border:1px solid #ddd; border-radius:8px; font-size:1rem;">' +
-              '<textarea name="poznamka" rows="2" placeholder="Co vás na tom nejvíc trápí (nepovinné)" style="width:100%; padding:11px 13px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px; font-size:1rem;"></textarea>' +
-              '<label style="display:flex; gap:8px; align-items:flex-start; font-size:0.86rem; color:#666; margin-bottom:10px;">' +
-                '<input type="checkbox" name="gdpr" required style="margin-top:3px;">' +
-                '<span>Souhlasím se <a href="/osobni-udaje.html" target="_blank" rel="noopener">zpracováním osobních údajů</a> za účelem odpovědi.</span>' +
+              '<p style="margin:0 0 10px;">' +
+                '<label for="vy-diag-odkaz" style="' + LBL + '">Odkaz na váš inzerát <span style="font-weight:400; color:#8a8a8a;">nepovinné</span></label>' +
+                '<input id="vy-diag-odkaz" type="url" name="odkaz" placeholder="https://" style="' + POLE + '">' +
+              '</p>' +
+              '<p style="margin:0 0 10px;">' +
+                '<label for="vy-diag-email" style="' + LBL + '">Váš e-mail</label>' +
+                '<input id="vy-diag-email" type="email" name="email" autocomplete="email" required style="' + POLE + '">' +
+              '</p>' +
+              '<p style="margin:0 0 10px;">' +
+                '<label for="vy-diag-poznamka" style="' + LBL + '">Co vás na tom nejvíc trápí <span style="font-weight:400; color:#8a8a8a;">nepovinné</span></label>' +
+                '<textarea id="vy-diag-poznamka" name="poznamka" rows="2" style="' + POLE + '"></textarea>' +
+              '</p>' +
+              '<label style="display:flex; gap:10px; align-items:flex-start; font-size:0.86rem; color:#666; margin-bottom:12px;">' +
+                '<input type="checkbox" name="gdpr" required style="margin-top:2px; width:22px; height:22px; flex-shrink:0;">' +
+                '<span>Souhlasím se <a href="/osobni-udaje" target="_blank" rel="noopener">zpracováním osobních údajů</a> za účelem odpovědi.</span>' +
               '</label>' +
               '<button type="submit" class="cta-button">Odeslat</button>' +
               '<p style="margin:8px 0 0; color:#888; font-size:0.86rem;">Telefon po vás nechci. Odpověď přijde e-mailem. — David Choc</p>' +
-              '<p class="vy-diag__msg" hidden style="margin:8px 0 0; font-size:0.92rem;"></p>' +
+              '<p class="vy-diag__msg" role="alert" hidden style="margin:10px 0 0; font-size:0.92rem;"></p>' +
             '</form>' +
           '</div>';
       }
@@ -456,10 +472,28 @@
           }
         });
 
+        // Chyba se musí ozvat. Dřív se při chybějícím e-mailu nebo souhlasu
+        // jen tiše vyskočilo z funkce — člověk zmáčkl Odeslat a nestalo se
+        // nic, což vypadá jako rozbitá stránka, ne jako chybějící údaj.
+        function chyba(text, poleEl) {
+          if (msg) {
+            msg.textContent = text;
+            msg.style.color = '#c0392b';
+            msg.hidden = false;
+          }
+          if (poleEl && typeof poleEl.focus === 'function') poleEl.focus();
+        }
+
         form.addEventListener('submit', function (e) {
           e.preventDefault();
           var email = (form.email.value || '').trim();
-          if (!email || !form.gdpr.checked) return;
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            return chyba('Zadejte prosím platnou e-mailovou adresu, ať vám mám kam odpovědět.', form.email);
+          }
+          if (!form.gdpr.checked) {
+            return chyba('Bez souhlasu se zpracováním údajů vám nemůžu odpovědět.', form.gdpr);
+          }
+          if (msg) msg.hidden = true;
 
           var tlac = form.querySelector('button[type="submit"]');
           if (tlac) { tlac.disabled = true; tlac.textContent = 'Odesílám…'; }

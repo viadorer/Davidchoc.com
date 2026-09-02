@@ -228,6 +228,20 @@
                         </div>
                     </div>
 
+                    <!-- Zkratka pro toho, kdo dotazník nedokončí.
+                         Osm otázek je osm míst, kde se dá odpadnout, a odpadlík
+                         dosud nezanechal nic — přitom kdo se zasekne u otázky
+                         o smlouvách, je zajímavější než ten, kdo doklikal.
+                         Ukáže se sama až tehdy, když je někdo rozdělaný a chvíli
+                         se nic neděje; kdo klikne osmkrát v kuse, ji neuvidí. -->
+                    <div class="vy-shortcut" id="vy-shortcut" hidden>
+                        <p class="vy-shortcut__line">
+                            Nechce se vám odpovídat do konce?
+                            <button type="button" class="vy-shortcut__btn" id="vy-shortcut-open">Pošlu vám osm bodů i tak</button>
+                        </p>
+                        <div id="vy-shortcut-gate"></div>
+                    </div>
+
                     <!-- Tlačítko vyhodnotit -->
                     <button type="button" class="cta-button" id="vy-evaluate" style="width:100%; padding:18px; font-size:1.05rem; margin-top:8px;">
                         Ukázat výsledek
@@ -279,6 +293,9 @@
       var fillEl = document.getElementById('vy-fill');
       var resultEl = document.getElementById('vy-result');
       var evalBtn = document.getElementById('vy-evaluate');
+      var shortcutEl = document.getElementById('vy-shortcut');
+      var shortcutBtn = document.getElementById('vy-shortcut-open');
+      var shortcutGateEl = document.getElementById('vy-shortcut-gate');
 
       var CHAPTERS = {
         1: { name: 'Cena', url: '/vycvik/kapitola-1-cena' },
@@ -335,6 +352,61 @@
           : 'Ukázat výsledek';
       }
 
+      /* ── Zkratka pro nedokončený dotazník ──
+         Podmínka „aspoň tři a míň než osm" je záměrná: kdo neodpověděl nic,
+         ještě nezačal a nabídka by mu byla pro nic; kdo odpověděl všechno,
+         má za chvíli výsledek a brána za ním. Zbývá ten, kdo se rozjel
+         a zasekl — a ten dnes odchází beze stopy.
+
+         Časová prodleva je tam proto, aby nabídka nevyskočila člověku,
+         který klikne osmkrát v kuse za dvacet vteřin. Kdo se vrátí
+         k rozdělanému dotazníku později, uvidí ji hned. */
+      var ZKRATKA_PRODLEVA = 25000;
+      var zkratkaTimer = null;
+      var zkratkaVidena = false;
+
+      function pocetOdpovedi() {
+        return Object.keys(state.answers || {}).length;
+      }
+
+      function skrytZkratku() {
+        clearTimeout(zkratkaTimer);
+        if (shortcutEl) shortcutEl.hidden = true;
+      }
+
+      function ukazatZkratku() {
+        if (!shortcutEl || shortcutEl.hidden === false) return;
+        shortcutEl.hidden = false;
+        if (!zkratkaVidena) {
+          zkratkaVidena = true;
+          if (window.gtag) {
+            window.gtag('event', 'vycvik_zkratka_zobrazena', {
+              event_category: 'vycvik',
+              event_label: 'odpovezeno_' + pocetOdpovedi()
+            });
+          }
+        }
+      }
+
+      function zvazitZkratku(hned) {
+        clearTimeout(zkratkaTimer);
+        var n = pocetOdpovedi();
+        if (n >= 8) { skrytZkratku(); return; }
+        if (n < 3) { skrytZkratku(); return; }
+        if (hned || shortcutEl.hidden === false) ukazatZkratku();
+        else zkratkaTimer = setTimeout(ukazatZkratku, ZKRATKA_PRODLEVA);
+      }
+
+      if (shortcutBtn) {
+        shortcutBtn.addEventListener('click', function () {
+          if (!window.VycvikCTA || !window.VycvikCTA.buildDropoutGate) return;
+          shortcutBtn.hidden = true;
+          shortcutGateEl.appendChild(
+            window.VycvikCTA.buildDropoutGate(state.answers || {}, Object.keys(state.risks || {}))
+          );
+        });
+      }
+
       form.addEventListener('change', function (e) {
         if (e.target.type !== 'radio') return;
         var q = e.target.name.replace('q', '');
@@ -342,6 +414,7 @@
         state.answers[q] = e.target.value;
         save(state);
         updateProgress();
+        zvazitZkratku(false);
 
         var block = e.target.closest('.vy-quiz__q');
         if (block) block.classList.add('is-answered');
@@ -429,6 +502,7 @@
 
         resultEl.innerHTML = html;
         resultEl.hidden = false;
+        skrytZkratku();
 
         // Nejteplejší moment celé sekce. Výsledek už člověk vidí zdarma —
         // brána stojí až před plánem, který se z něj dá postavit.
@@ -462,6 +536,10 @@
       });
 
       updateProgress();
+      // Kdo se vrací k rozdělanému dotazníku, měl už jednou příležitost ho
+      // dokončit a nedokončil ho — čekat na něj dalších pětadvacet vteřin
+      // nemá smysl.
+      zvazitZkratku(true);
     })();
     </script>
 </body>
