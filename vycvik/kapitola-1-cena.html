@@ -31,6 +31,10 @@
           onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"></noscript>
 
+    <!-- Nástroj třetí strany pro odhad ceny. Async — kapitola musí být
+         čitelná, i kdyby widget nedojel vůbec. -->
+    <script src="https://cemap.cz/beta2/inc/js/widget.js" async></script>
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TXGDD8D3GK"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -215,14 +219,28 @@
                         </div>
                     </div>
 
-                    <a href="/ocenit-online" class="vycvik-toollink">
-                        <span class="vycvik-toollink__icon"><i class="fas fa-calculator" aria-hidden="true"></i></span>
-                        <span class="vycvik-toollink__text">
-                            <span class="vycvik-toollink__name">Odhad vaší nemovitosti online</span>
-                            <span class="vycvik-toollink__desc">Zdarma, do dvou minut, bez registrace — krok 4 z pěti výše</span>
-                        </span>
-                        <span class="vycvik-toollink__arrow"><i class="fas fa-arrow-right" aria-hidden="true"></i></span>
-                    </a>
+                    <!-- ═══ NÁSTROJ: ODHAD CENY ═══
+                         Dřív to byl odkaz na /ocenit-online, tedy ven z knihy.
+                         Čtenář je uprostřed kroku 4 z pěti a poslat ho pryč
+                         znamená, že se z knihy většinou nevrátí. Widget je
+                         tady, kde se odhad probírá; vlastní stránku má na
+                         /vycvik/odhad pro výbavu a pro odkazy zvenčí. -->
+                    <div class="vy-widget" id="vy-odhad">
+                        <div class="vy-widget__head">
+                            <span class="vy-widget__badge">Krok 4 z pěti</span>
+                            <h2 class="vy-widget__title">Odhad vaší nemovitosti online</h2>
+                            <p class="vy-widget__desc">Zdarma, do dvou minut, bez registrace. <strong>Číslo uvidíte hned a nikam se neodesílá</strong> — je to první ze tří zdrojů, ne poslední.</p>
+                        </div>
+                        <div class="vy-widget__body">
+                            <div class="cemap-widget" data-options="id=101"></div>
+                            <noscript>
+                                <p>Nástroj potřebuje zapnutý JavaScript. Bez něj si cenu odvodíte z realizovaných prodejů v okolí — postup je popsaný výš.</p>
+                            </noscript>
+                            <p style="margin:14px 0 0; font-size:0.9rem; line-height:1.6; color:#8a8378;">
+                                Odhad vychází z realizovaných prodejů v katastru a z inzertních portálů. Ví, za kolik se prodávaly podobné nemovitosti ve vašem okolí — neví, jak vypadá zrovna ta vaše. Proto tři zdroje, ne jeden.
+                            </p>
+                        </div>
+                    </div>
 
                     <!-- ═══ NÁSTROJ: KALKULAČKA TŘÍ CEN ═══ -->
                     <div class="vy-widget" id="vy-tri-ceny">

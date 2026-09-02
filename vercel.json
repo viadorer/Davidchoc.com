@@ -198,11 +198,6 @@
       "permanent": true
     },
     {
-      "source": "/vycvik/odhad",
-      "destination": "/ocenit-online",
-      "permanent": false
-    },
-    {
       "source": "/vycvik/konzultace",
       "destination": "/pripad-pro-agenta",
       "permanent": false
