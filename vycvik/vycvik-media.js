@@ -185,6 +185,46 @@
     popisek: 'Přesně k tomuhle ta mapa je'
   };
 
+  /* ── FOTKY Z AKCÍ ──────────────────────────────────────────────────
+     Jediné tři fotky, na kterých je David. Pravidlo zůstává: důkaz, ne
+     dekorace — skutečná zakázka, skuteční klienti, se svolením. Aranžovaná
+     verze s figuranty je stock se známou tváří a platí pro ni zákaz klišé. */
+  polozky['F6-1'] = {
+    typ: 'foto', stav: 'chybi', stran: '3:2',
+    nadpis: 'Z prohlídky se zájemci',
+    kde: 'Hub, sekce „Nejsem teoretik", pod recenzemi.',
+    zdroj: 'Skutečná prohlídka na zakázce, se svolením všech na fotce. Klienti mohou být zády nebo z profilu.',
+    patri: 'David na prohlídce se zájemci — v bytě, ne v ateliéru. Momentka, ne póza: ukazuje dispozici, v ruce desky se záznamovým listem z knihy.',
+    proc: 'Sekce se jmenuje „Nejsem teoretik" a důkaz zatím nesou jen tři obecné citace. Fotka z reálné prohlídky je druh důkazu, který recenze dát neumí.',
+    src: FOTO + 'F6-prohlidka.avif',
+    alt: 'David Choc na prohlídce bytu se zájemci',
+    popisek: 'Prohlídka na zakázce v Plzni'
+  };
+
+  polozky['F6-2'] = {
+    typ: 'foto', stav: 'chybi', stran: '3:2',
+    nadpis: 'Předání klíčů po dokončeném prodeji',
+    kde: 'Hub, pás „A teď k provizi", mezi třemi „žádná" a citací z kapitoly 8.',
+    zdroj: 'Skutečné předání na zakázce, se svolením klienta. Bez adresy.',
+    patri: 'Okamžik předání klíčů — klienti s Davidem u dveří, nebo detail klíčů a předávacího protokolu na stole. Ne podání rukou do kamery.',
+    proc: 'Pás říká „zaplaceno dostanu, až peníze dorazí na váš účet". Tahle fotka je přesně ten okamžik, o kterém ten slib mluví — dokončený prodej.',
+    src: FOTO + 'F6-klice.avif',
+    alt: 'Předání klíčů novým majitelům po dokončeném prodeji',
+    popisek: 'Dokončený prodej — teprve tady vzniká moje provize'
+  };
+
+  polozky['F6-3'] = {
+    typ: 'foto', stav: 'chybi', stran: '3:2',
+    nadpis: 'Jednání nad smlouvou',
+    kde: 'Závěr knihy, mezi sliby „Co ode mě můžete čekat" a blokem „Proč to tak mám".',
+    zdroj: 'Skutečné jednání na zakázce, se svolením. Dokumenty čitelné jen jako dokumenty, ne jako text.',
+    patri: 'David s klientem u stolu nad smlouvou — pracovní momentka, dokumenty a poznámky na stole.',
+    proc: 'Závěr vyjmenovává sliby o chování. Fotka ukazuje, že se ty sliby odehrávají u skutečného stolu se skutečnými lidmi — bez ní jsou to jen věty.',
+    src: FOTO + 'F6-jednani.avif',
+    alt: 'David Choc s klientem při jednání nad smlouvou',
+    popisek: 'Smlouvy se čtou nahlas a řádek po řádku'
+  };
+
   /* Miniatury k seznamu záběrů. Malé a funkční — člověk stojí v pokoji
      a potřebuje vidět, co znamená „z rohu u dveří". Velké fotky by
      z nástroje udělaly portfolio, a to je jiná stránka. */

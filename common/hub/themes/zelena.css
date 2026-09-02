@@ -30,6 +30,9 @@
     --hub-accent-rgb: 31,107,74;
     --hub-accent-surface: #BEE3D0;
     --hub-accent-deep: #14503A;
+    /* Akcent pro ikony na světlé ploše. U zelené je hlavní odstín
+       dost tmavý sám o sobě, takže se jen zopakuje. */
+    --hub-accent-ink: #1F6B4A;
     --hub-accent-light: #E8F4EE;
 
     /* Plochy a linky */
