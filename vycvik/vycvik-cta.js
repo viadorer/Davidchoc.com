@@ -521,8 +521,8 @@
         leadForm: 'vycvik-rozpis',
         label: 'Váš rozpis',
         h: 'Chcete si to nechat poslat, ať to nemusíte počítat znovu?',
-        p: uvod + ' Pošlu vám celý rozpis deseti fází — hodiny, koruny a co se ' +
-           'v každé fázi nejčastěji rozbije' +
+        p: uvod + ' Pošlu vám celý rozpis deseti fází — hodiny, orientační náklady ' +
+           'a co se v každé fázi nejčastěji rozbije' +
            (st.ne.length ? ' — a u fází, které jste odmítl, jednu větu, co s nimi jde dělat.' : '.'),
         li: ['Deset fází v pořadí, ve kterém se dělají',
              'U každé hodiny, koruny a místo, kde se to nejčastěji láme',
@@ -537,9 +537,12 @@
       leadForm: 'vycvik-rozpis',
       label: 'Než se do toho pustíte',
       h: 'Chcete vědět, co přesně vás čeká?',
+      // Čísla jsou zatím odhad českého trhu, ne Davidův ceník (viz
+      // docs/vycvik-cisla-k-overeni.md). Brána proto slibuje řád, ne
+      // ověřená data — slib, který e-mail nesplní, je horší než žádný.
       p: 'Pošlu vám prodej rozepsaný na deset fází — u každé kolik hodin práce ' +
-         'zabere, kolik stojí a co se v ní nejčastěji rozbije. Ceny jsou plzeňské ' +
-         'a platí pro rok 2026, do knihy se nevešly, protože se každý rok mění.',
+         'zabere, kolik zhruba stojí a co se v ní nejčastěji rozbije. Orientační ' +
+         'rozpětí, ať víte, o jakém řádu se bavíme.',
       li: ['Deset fází v pořadí, ve kterém se dělají',
            'U každé hodiny, koruny a místo, kde se to nejčastěji láme',
            'Součet: kolik hodin a kolik korun to dělá dohromady'],

@@ -40,6 +40,27 @@ web nemá kde držet stav ani co by ho po pěti dnech probudilo.
 | `BREVO_API_KEY` | povinná, bez ní se e-maily neodesílají |
 | `BREVO_LIST_KNIHA` | ID seznamu pro tuhle sekvenci |
 | `BREVO_LIST_POSUDEK` | posouzení inzerátu — jiná sekvence, jiní lidé |
+| `BREVO_LIST_HLIDANI` | hlídání ceny — čtvrtletní přehled, viz `hlidani-ceny.md` |
+
+### Kudy se do sekvence dá vstoupit
+
+Dotazník byl původně jediný vchod. Dnes jich je víc a všechny míří do
+téhož seznamu (`BREVO_LIST_KNIHA`), protože je to tentýž člověk v téže
+situaci — liší se jen tím, kde se zastavil.
+
+| Formulář | Odkud | Co dostane hned |
+|---|---|---|
+| `vycvik-zkouska` | dotazník, dokončený | skóre, mezery, rizika |
+| `vycvik-zkouska-nedokonceny` | zkratka v rozdělaném dotazníku | osm bodů i s úkolem |
+| `vycvik-plan` | závěr průvodce krok za krokem | vlastní hodiny a náklady |
+| `vycvik-rozpis` | základní brána — rozcestník, konec kapitol, kalkulačka | deset fází s hodinami a náklady |
+| `vycvik-kapitola-cena/fotky/smlouvy` | brány uvnitř kapitol 1, 3 a 7 | materiál k té kapitole |
+| `ocenit-rozbor` | pod kalkulačkou odhadu | osobní rozbor do hodiny |
+| `vycvik-rizika` | blok osmi situací kdekoli v knize | co ta situace u prodeje mění |
+| `vycvik-diagnostika`, `vycvik-posudek` | zaseknutá nabídka | osobní odpověď, jiný seznam |
+
+**Rizikové situace a zaseknutá nabídka nejsou sekvence, ale fronta.**
+Oba míří na osobní odpověď do hodiny; automat je smí jen potvrdit.
 
 ### Atributy kontaktu, podle kterých se větví
 

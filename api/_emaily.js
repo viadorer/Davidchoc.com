@@ -689,7 +689,7 @@ ${ids.map(id => {
 
     return obal('Co obnáší prodat nemovitost sám', `
 <p style="${P}">Dobrý den,</p>
-<p style="${P}">tady je celý prodej rozepsaný na deset fází. U každé kolik hodin práce zabere, kolik stojí a co se v ní nejčastěji rozbije. Ceny jsou plzeňské a platí pro rok 2026 — jsou to orientační rozpětí, ne nabídka.</p>
+<p style="${P}">tady je celý prodej rozepsaný na deset fází. U každé kolik hodin práce zabere, kolik zhruba stojí a co se v ní nejčastěji rozbije. Čísla jsou orientační rozpětí českého trhu — ne ceník a ne nabídka.</p>
 <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin:0 0 20px;">
 <tr><td style="background:#1a1a1a;padding:18px 22px;border-radius:6px;">
 <p style="margin:0 0 6px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#c9c2b4;">Vaše práce dohromady</p>
