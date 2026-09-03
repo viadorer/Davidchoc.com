@@ -877,6 +877,95 @@ POTVRZENI['vycvik-rizika'] = VYCVIK_RIZIKA;
 POTVRZENI['hlidani-ceny'] = HLIDANI_CENY;
 
 
+// ── PLÁNOVAČ REKONSTRUKCE ─────────────────────────────────────────────
+// Brána na stránce slibuje za e-mail rozpis (odemyká se na stránce),
+// termíny objednávek, checklist kontrolních bodů a otázky pro řemeslníky.
+// Tenhle e-mail doručuje všechno kromě rozpisu — a nic navíc neslibuje.
+// Data přicházejí v metadatech leadu, dopočítaná na stránce.
+
+const PLANOVAC_KONTROLY = [
+  ['Tlaková zkouška rozvodů', 'před zakrytím vody a topení; chtějte protokol, ne ústní „drží to".'],
+  ['Výchozí revize elektro', 'bez revizní zprávy nezkolaudujete a nepojistíte; patří k předání.'],
+  ['Hydroizolace před obkladem', 'dvě vrstvy, pásky v koutech, 30 cm nad sprchovou hlavicí a 2 m u stěnových sprch — vyfoťte, než zmizí pod obkladem.'],
+  ['Potěr před pokládkou', 'termín uvolňuje protokol z měření CM metodou, ne kalendář. Pozor na záměnu % hmotnostních a % CM.'],
+  ['Omítky před malbou', 'vlhkost do 4 % objemových u minerálních, do 1 % u sádrových; u silných vrstev je doba zrání spodní hranice.'],
+  ['Rozsah obkladu vs. štuk', 'v ploše obkladu se štuk nenanáší — domluvit se zedníkem předem, zkontrolovat před omítáním.'],
+  ['Krytí a spáry', 'kout mezi stěnou a podlahou patří silikonu, ne spárovací hmotě; na anhydrit žádné cementové lepidlo bez uzavírající penetrace.'],
+  ['Předání díla', 'protokol, stavy měřidel, fotografie a soupis vad s termíny odstranění — u každé party, ne jen na konci.'],
+];
+
+const PLANOVAC_OTAZKY = [
+  'Od kdy běží vaše dodací lhůta — od objednávky, od zálohy, nebo až od zaměření?',
+  'Kdo a čím změří vlhkost potěru před pokládkou? Dostanu protokol s uvedenou metodou?',
+  'Co přesně je v ceně — a co už je vícepráce? Chci to písemně před začátkem.',
+  'Kdo odpovídá za byt a klíče mezi jednotlivými partami?',
+  'Co se stane s termínem, když se vaše práce zpozdí? Máte v nabídce rezervu?',
+  'Kdo po vás uklízí a kdo odveze suť — je to v ceně?',
+];
+
+POTVRZENI['planovac-rekonstrukce'] = {
+  subject: (d) => (d && d.konec)
+    ? `Plán rekonstrukce — hotovo ${d.konec}`
+    : 'Váš plán rekonstrukce',
+  html: (d) => {
+    const konec = String((d && d.konec) || '').trim();
+    const dnu = Number(d && d.dnu) || 0;
+    const cekani = Number(d && d.cekani) || 0;
+    const objednavky = String((d && d.objednavky) || '')
+      .split('|').map(s => s.trim()).filter(Boolean);
+    const predKlici = Number(d && d.pred_klici) || 0;
+
+    const hlava = konec
+      ? `<table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 20px;">
+<tr><td style="background:#1a1a1a;padding:14px 22px;border-radius:6px;">
+<span style="font-size:13px;color:#c9c2b4;text-transform:uppercase;letter-spacing:.08em;">Byt hotový</span><br>
+<span style="font-size:26px;font-weight:800;color:#FFBF00;line-height:1.2;">${konec}</span>
+${dnu ? `<br><span style="font-size:13px;color:#c9c2b4;">${dnu} kalendářních dnů${cekani ? `, z toho ${cekani} technologické čekání` : ''}</span>` : ''}
+</td></tr></table>`
+      : '';
+
+    const objHtml = objednavky.length
+      ? `<p style="margin:0 0 10px;font-size:15px;font-weight:700;color:#1a1a1a;">Nejbližší objednávky</p>
+<ul style="margin:0 0 6px;padding-left:20px;">
+${objednavky.map(o => `<li style="${P}margin-bottom:6px;">${o}</li>`).join('')}
+</ul>
+<p style="margin:0 0 22px;font-size:13px;line-height:1.6;color:#8a8378;">Termíny „objednat do" jsou počítané zpětně od montáže včetně rezervy na to, že lhůta u většiny dodavatelů běží až od zálohy nebo zaměření.</p>`
+      : '';
+
+    const pozdeHtml = predKlici > 0
+      ? `<table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin:0 0 22px;">
+<tr><td style="background:#fdeeee;border-left:3px solid #c0392b;padding:14px 18px;">
+<p style="margin:0;font-size:14px;line-height:1.65;color:#444;"><strong style="color:#1a1a1a;">${predKlici === 1 ? 'Jedna položka se musí objednat' : predKlici + ' položky se musí objednat'} ještě před převzetím bytu.</strong> Dodací lhůta se nedá dohnat prací — když se objedná až po klíčích, termín se o odpovídající dobu posune.</p>
+</td></tr></table>`
+      : '';
+
+    const kontrolyHtml = `<p style="margin:26px 0 10px;font-size:15px;font-weight:700;color:#1a1a1a;">Kontrolní body — co převzít, aby se nebouralo hotové</p>
+<ul style="margin:0 0 22px;padding-left:20px;">
+${PLANOVAC_KONTROLY.map(k => `<li style="${P}margin-bottom:8px;"><strong style="color:#1a1a1a;">${k[0]}.</strong> ${k[1]}</li>`).join('')}
+</ul>`;
+
+    const otazkyHtml = `<p style="margin:0 0 10px;font-size:15px;font-weight:700;color:#1a1a1a;">Na co se ptát, než podepíšete</p>
+<ul style="margin:0 0 22px;padding-left:20px;">
+${PLANOVAC_OTAZKY.map(o => `<li style="${P}margin-bottom:6px;">${o}</li>`).join('')}
+</ul>`;
+
+    return obal(konec ? 'Váš plán rekonstrukce' : 'Plán rekonstrukce', `
+<p style="${P}">Dobrý den,</p>
+<p style="${P}">tady je plán, který jste si sestavil v plánovači — a k němu dvě věci, které se na stránku nevešly: kontrolní body a otázky pro řemeslníky.</p>
+${hlava}
+${objHtml}
+${pozdeHtml}
+${kontrolyHtml}
+${otazkyHtml}
+<p style="${P}">Plán si můžete kdykoli upravit a vytisknout — na stránce je k tomu tlačítko:</p>
+${tlacitko('https://www.davidchoc.cz/planovac-rekonstrukce', 'Otevřít plánovač')}
+<p style="${P}margin-top:24px;">A poctivá poznámka na závěr: tohle je orientační plán, ne závazek. O termínech na stavbě rozhoduje měření a skutečný stav, ne kalendář — a plánovač nenahrazuje projekt ani stavební dozor.</p>
+<p style="${P}">Kdybyste chtěl plán projít osobně, napište mi — <strong style="color:#1a1a1a;">odpovím e-mailem do hodiny, mezi osmou a osmou.</strong> Volám jen tomu, kdo si o to řekne.</p>
+<p style="${P}margin-top:22px;">David Choc</p>
+`);
+  },
+};
+
 export function potvrzeniPro(formular) {
   return POTVRZENI[formular] || null;
 }

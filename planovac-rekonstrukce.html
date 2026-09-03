@@ -13,7 +13,7 @@
 <meta property="og:locale" content="cs_CZ">
 <meta property="og:title" content="Kdy bude byt hotový? Spočítejte si harmonogram rekonstrukce">
 <meta property="og:description" content="Termín dokončení, seznam objednávek s termíny a technologické přestávky. Zdarma a bez registrace.">
-<meta property="og:url" content="https://www.davidchoc.cz/planovac-rekonstrukce.html">
+<meta property="og:url" content="https://www.davidchoc.cz/planovac-rekonstrukce">
 <meta property="og:image" content="https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/davidchocagent.avif">
 <meta name="twitter:card" content="summary_large_image">
 
@@ -200,6 +200,23 @@
   .legend { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 9px; font-family: "JetBrains Mono", monospace; font-size: 10.5px; color: var(--ink-faint); }
   .legend i { display: inline-block; width: 15px; height: 8px; margin-right: 5px; vertical-align: middle; }
   .legend .b1 { background: var(--red); } .legend .b2 { background: var(--blue); } .legend .b3 { border: 1px dashed var(--red); background: var(--red-soft); }
+  .legend .b4 { width: 9px; height: 9px; border-radius: 50%; background: var(--red); }
+  .odot { position: absolute; top: 50%; transform: translate(-50%, -50%); width: 10px; height: 10px; border-radius: 50%; background: var(--red); box-shadow: 0 0 0 2px var(--surface); cursor: help; }
+
+  .printbtn { font-family: "Barlow Condensed", sans-serif; font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: .06em; padding: 8px 14px; background: transparent; border: 1px solid var(--line-strong); color: var(--ink-soft); cursor: pointer; align-self: flex-start; }
+  .printbtn:hover { border-color: var(--blue); color: var(--blue); }
+
+  /* Tisk: jen výstup plánu — bez formuláře, hero, služeb a bran. Kdo
+     tiskne, ukládá si plán; PDF vznikne v prohlížeči přes „uložit jako PDF". */
+  @media print {
+    section:not(.tool), footer, #footer-placeholder, .panel, .gate, .gmsg, .printbtn, .floating-buttons, .sec-head { display: none !important; }
+    .app { display: block; }
+    .panel { display: none !important; }
+    .gantt, .tablewrap { overflow: visible; }
+    body { background: #fff; }
+    section.tool { padding: 0; }
+    .out section { break-inside: avoid; }
+  }
 
   /* ---------- GATE ---------- */
   .gate { border: 2px solid var(--blue); background: var(--surface); padding: 24px; }
@@ -299,6 +316,20 @@
             <div class="row">
               <div><label class="lbl" for="start">Předání klíčů</label><input type="date" id="start" value="2026-09-15"></div>
               <div><label class="lbl" for="rok">Rok výstavby</label><input type="number" id="rok" value="1975" min="1850" max="2026"></div>
+            </div>
+            <div class="row">
+              <div><label class="lbl" for="konstrukce">Konstrukce domu</label>
+                <select id="konstrukce">
+                  <option value="panel" selected>panelová</option>
+                  <option value="cihla">zděná — cihla, smíšené zdivo</option>
+                </select>
+              </div>
+              <div><label class="lbl" for="financovani">Financování</label>
+                <select id="financovani">
+                  <option value="vlastni" selected>vlastní prostředky</option>
+                  <option value="uver">úvěr / hypotéka</option>
+                </select>
+              </div>
             </div>
             <div class="row"><div>
               <label class="lbl" for="azbest">Azbest</label>
@@ -586,6 +617,8 @@
         });
         return out;
       })(),
+      konstrukce: document.getElementById("konstrukce").value,
+      financovani: document.getElementById("financovani").value,
       vyska: Math.max(0, +document.getElementById("vyska").value || 0),
       topeniP: document.getElementById("topeni_p").value,
       poter: document.getElementById("poter").value,
@@ -649,6 +682,23 @@
     ];
   }
   // ==== KONEC GENEROVANÉHO BLOKU ====
+
+  // Vlivy konstrukce a financování. Generovaný blok se needituje ručně,
+  // proto vstupují až tady, nad hotovým seznamem úkolů.
+  function applyMods(tasks, s) {
+    var byId = {}; tasks.forEach(function(t){ byId[t.id] = t; });
+    // Panel: drážky se řežou do železobetonu — elektro je pomalejší.
+    if (s.konstrukce === "panel" && byId.elektro && byId.elektro.on) byId.elektro.dur += 1;
+    // Cihla: nasákavý a křivější podklad — omítky zaberou déle.
+    if (s.konstrukce === "cihla" && byId.omitky && byId.omitky.on) byId.omitky.dur += 1;
+    // Úvěr: práce nezačnou dřív, než banka pustí peníze. 20 pracovních
+    // dnů ≈ 4 týdny; reálné rozpětí 3–5 týdnů vysvětluje upozornění níž.
+    if (s.financovani === "uver") {
+      tasks.unshift({id:"uver", name:"Úvěr — odhadce, schválení a čerpání", prof:"banka", dur:20, gate:true, deps:[], on:true});
+      if (byId.ochrana) byId.ochrana.deps = byId.ochrana.deps.concat([{id:"uver"}]);
+    }
+    return tasks;
+  }
 
   function resolveDeps(all) {
     var byId = {}; all.forEach(function(t){ byId[t.id]=t; });
@@ -838,7 +888,7 @@
     var s = readState();
     var out = document.getElementById("out");
     out.innerHTML = "";
-    var active = resolveDeps(buildTasks(s));
+    var active = resolveDeps(applyMods(buildTasks(s), s));
     if(!active.length){ out.appendChild(el("div","alert","Zaškrtni alespoň jednu práci.")); return; }
     var sch = schedule(active, s);
     var ord = orders(sch, s);
@@ -854,6 +904,10 @@
     kpi(String(Math.round(total/7)), "týdnů");
     kpi(String(waitDays), "dnů čekání", waitDays > total*0.35);
     out.appendChild(sect("Výsledek", kpis, ""));
+    var pb = el("button","printbtn","Vytisknout / uložit jako PDF");
+    pb.type = "button";
+    pb.addEventListener("click", function(){ window.print(); });
+    out.appendChild(pb);
 
     // záměr a rozpočet
     var est = estimate(s);
@@ -917,9 +971,23 @@
     if(s.nosna){
       alerts.appendChild(el("div","alert crit","<b>Otvor v nosné zdi vyžaduje povolení.</b> Řízení trvá 60 dnů, k tomu projekt a statický posudek. Počítej 3 až 5 měsíců, než se vůbec začne bourat."));
     }
-    if(s.poter==="cement" && s.krytina!=="none"){
-      var now = DRY.cement[s.krytina], alt = DRY.anhydrit[s.krytina];
-      if(now > alt) alerts.appendChild(el("div","alert tip","<b>Cementový potěr pod "+krytinaName(s.krytina)+" schne "+days(now)+".</b> Anhydrit by zkrátil čekání o "+days(now-alt)+", rychleschnoucí potěr o "+days(now-DRY.rychly[s.krytina])+". Rozdíl v ceně směsi bývá menší než úrok za ušetřené týdny."));
+    if(s.financovani === "uver"){
+      alerts.appendChild(el("div","alert warn","<b>Úvěr: v plánu jsou 4 týdny na odhadce, schválení a čerpání</b> — reálné rozpětí je 3 až 5 týdnů podle banky. U větších částek banka navíc čerpá po etapách proti fakturám, takže si s dodavateli domluvte fakturaci po ucelených celcích, jinak stavba čeká na peníze i uprostřed."));
+    }
+    // „Co kdyby": stejný plán s rychleschnoucím potěrem — ne odhad ve dnech
+    // schnutí, ale skutečný posun termínu předání spočítaný celým plánem.
+    if((s.poter==="cement" || s.poter==="anhydrit") && s.krytina!=="none"){
+      var altState = {}; for(var _k in s) altState[_k] = s[_k];
+      altState.poter = "rychly";
+      var altActive = resolveDeps(applyMods(buildTasks(altState), altState));
+      if(altActive.length){
+        var altSch = schedule(altActive, altState);
+        var usetreno = diffDays(altSch.end, sch.end);
+        if(usetreno >= 7){
+          var tydnu = Math.round(usetreno/7);
+          alerts.appendChild(el("div","alert tip","<b>Co kdyby: rychleschnoucí potěr místo zvoleného.</b> Předání "+fmt(altSch.end)+" místo "+fmt(sch.end)+" — <b>o "+days(usetreno)+" dřív</b>. Směs je dražší, ale rozdíl bývá menší než "+tydnu+" "+plural(tydnu,"týden","týdny","týdnů")+" fondu oprav, energií a úroku za prázdný byt. Vyžaduje přesnou technologii pokládky — ověřte u podlaháře, že s ní umí."));
+        }
+      }
     }
     if(s.omitky){
       var oc = omitkaCfg(s);
@@ -1027,6 +1095,23 @@
     head.appendChild(el("div","gname","<b style='font-family:\"Barlow Condensed\",sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:12px'>Práce</b>"));
     head.appendChild(el("div","gscale","<span>"+fmt(s.start)+"</span><span>"+fmt(sch.end)+"</span>"));
     g.appendChild(head);
+    // Objednávkové milníky přímo v ose — zpoždění nevzniká na stavbě,
+    // vzniká objednávkami, tak ať jsou vidět vedle prací.
+    var ordDots = ord.filter(function(o){ return o.by >= s.start; });
+    if(ordDots.length){
+      var orow = el("div","grow"), onm = el("div","gname","<span>Objednávky</span>");
+      onm.appendChild(el("span","p","objednat do"));
+      orow.appendChild(onm);
+      var otr = el("div","gtrack");
+      ordDots.forEach(function(o){
+        var dot = el("span","odot");
+        dot.style.left = (diffDays(s.start, o.by)/span*100)+"%";
+        dot.title = o.name+" — objednat do "+fmt(o.by);
+        otr.appendChild(dot);
+      });
+      orow.appendChild(otr);
+      g.appendChild(orow);
+    }
     sch.tasks.forEach(function(t){
       var r=el("div","grow"), nm=el("div","gname");
       nm.innerHTML="<span>"+t.name+"</span>";
@@ -1048,7 +1133,7 @@
     });
     var gw=el("div"); gw.appendChild(g);
     var lg=el("div","legend");
-    lg.innerHTML="<span><i class='b1'></i>kritická cesta</span><span><i class='b2'></i>má rezervu</span><span><i class='b3'></i>technologická přestávka</span>";
+    lg.innerHTML="<span><i class='b1'></i>kritická cesta</span><span><i class='b2'></i>má rezervu</span><span><i class='b3'></i>technologická přestávka</span><span><i class='b4'></i>objednat do</span>";
     gw.appendChild(lg);
     out.appendChild(sect("Harmonogram", gw, sch.tasks.length+" "+plural(sch.tasks.length,"úkol","úkoly","úkolů")));
 
@@ -1096,7 +1181,7 @@
       "<p class='g-lead'>Harmonogram nahoře je tvůj a zůstane zdarma. Za e-mail ti pošleme zbytek, který se do stránky nevejde:</p>" +
       "<ul>" +
       "<li><b>Rozpis den po dni</b> — kdy má kdo nastoupit a kolik má která práce rezervy</li>" +
-      "<li><b>Připomínky termínů</b> — upozorníme, kdy objednat a kdy potvrdit dodavatele</li>" +
+      "<li><b>Termíny objednávek v e-mailu</b> — ať je máte po ruce, až budete obvolávat dodavatele</li>" +
       "<li><b>Checklist kontrolních bodů</b> — co u které zkoušky převzít, aby se nebouralo hotové</li>" +
       "<li><b>Seznam otázek pro řemeslníky</b> — na co se ptát, než podepíšeš</li>" +
       "</ul>";
@@ -1134,7 +1219,7 @@
       // dopočítej výsledek, ať ho e-mail může zopakovat
       var vysl = {};
       try {
-        var _a = resolveDeps(buildTasks(st));
+        var _a = resolveDeps(applyMods(buildTasks(st), st));
         var _s = schedule(_a, st);
         var _o = orders(_s, st);
         var _cek = 0; _s.tasks.forEach(function(t){ if(t.critical && t.wait) _cek += t.wait; });
@@ -1180,6 +1265,14 @@
       var o = document.getElementById("out");
       var msg = el("div","gmsg","Díky. Plán ti dorazí na " + em + ". Rozpis den po dni se právě odemkl níž na stránce.");
       o.insertBefore(msg, o.firstChild);
+      // Nejteplejší chvíle celé stránky: člověk právě dostal plán. Nabídka
+      // hovoru je pozvání, ne past — termín si vybírá sám a nikdo mu nevolá.
+      var dek = el("div","gate");
+      dek.innerHTML =
+        "<h4>Chcete plán projít osobně?</h4>" +
+        "<p class='g-lead'>Patnáct minut online nad vaším harmonogramem — kde jsou největší rizika, co objednat první a co se dá stihnout jinak. Termín si vyberete sám; volám jen tomu, kdo si o to řekne.</p>" +
+        "<p style='margin:0'><a class='btn' href='https://calendly.com/ptf-info/30min' target='_blank' rel='noopener'>Vybrat si termín hovoru</a></p>";
+      o.insertBefore(dek, msg.nextSibling);
       msg.scrollIntoView({behavior:"smooth", block:"center"});
     });
     g.appendChild(form);
