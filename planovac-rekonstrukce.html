@@ -1131,11 +1131,27 @@
       }
       var st = readState(), prace = [];
       for(var k in st){ if(st[k]===true) prace.push(k); }
+      // dopočítej výsledek, ať ho e-mail může zopakovat
+      var vysl = {};
+      try {
+        var _a = resolveDeps(buildTasks(st));
+        var _s = schedule(_a, st);
+        var _o = orders(_s, st);
+        var _cek = 0; _s.tasks.forEach(function(t){ if(t.critical && t.wait) _cek += t.wait; });
+        vysl = {
+          konec: fmt(_s.end),
+          dnu: diffDays(st.start, _s.end) + 1,
+          cekani: _cek,
+          objednavky: _o.slice(0,3).map(function(o){ return o.name + " do " + fmt(o.by); }).join(" | "),
+          predKlici: _o.filter(function(o){ return o.late; }).length
+        };
+      } catch(ex){}
       var popis = "Plánovač rekonstrukce — byt " + st.area + " m², rok " + st.rok +
         ", záměr: " + st.ucel + ", rozpočet: " + (st.budget ? Math.round(st.budget/1000)+" tis." : "neuveden") +
         ". Potěr: " + st.poter + ", krytina: " + st.krytina + ", volná výška: " + st.vyska + " mm" +
         ", podlahové topení: " + st.topeniP + ", omítka: " + st.typomitky +
-        ", azbest: " + st.azbest + ". Rozsah prací: " + prace.join(", ") + ".";
+        ", azbest: " + st.azbest + ". Rozsah prací: " + prace.join(", ") + "." +
+        (vysl.konec ? " VÝSLEDEK: hotovo " + vysl.konec + " (" + vysl.dnu + " dnů, z toho " + vysl.cekani + " čekání)." : "");
 
       msg.textContent = "Odesílám…"; msg.style.color = "var(--ink-faint)";
       fetch("/api/lead", {
@@ -1146,7 +1162,9 @@
           name: jm, email: em, phone: tel,
           message: popis, gdpr: true,
           meta: { plocha: st.area, rok: st.rok, ucel: st.ucel, rozpocet: st.budget,
-                  poter: st.poter, krytina: st.krytina, vyska: st.vyska },
+                  poter: st.poter, krytina: st.krytina, vyska: st.vyska,
+                  konec: vysl.konec || "", dnu: vysl.dnu || 0, cekani: vysl.cekani || 0,
+                  objednavky: vysl.objednavky || "", pred_klici: vysl.predKlici || 0 },
           referrer: document.referrer || "",
           utm: utm()
         })
