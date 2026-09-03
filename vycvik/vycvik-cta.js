@@ -37,6 +37,16 @@
     }
   };
 
+  // Šablony e-mailů žijí v PTF adminu a Handlebars tam neumí rozdělit
+  // řetězec na seznam. Posíláme proto vedle čitelného výčtu i příznaky:
+  // { q1: true, q3: true }. Šablona pak jen píše {{#if chybi.q1}} a text
+  // úkolu zůstává v ní — tam, kde se dá upravit bez nasazení webu.
+  function priznaky(ids, predpona) {
+    var out = {};
+    (ids || []).forEach(function (i) { out[(predpona || 'q') + i] = true; });
+    return out;
+  }
+
   var DONE_ICON = '<i class="fas fa-circle-check" aria-hidden="true"></i>';
 
   /* ── Posouzení inzerátu ── */
@@ -197,10 +207,12 @@
         score: score,
         missing_chapters: chybiText,
         missing_ids: idText,
+        chybi: priznaky(missingIds),
         risks: rizika,
         // Čísla rizik, aby e-mail mohl ke každému napsat, co konkrétně
         // u prodeje znamená. Podle názvů by to nešlo spolehlivě spárovat.
         risk_ids: (riskIds || []).join(','),
+        riziko: priznaky(riskIds, 'r'),
         segment: segment
       },
       gaEvent: 'vycvik_plan_email',
@@ -285,6 +297,7 @@
         // Čísla fází, aby e-mail ke každé napsal konkrétní větu.
         // Podle názvů by se to párovalo přes diakritiku, což je křehké.
         nechce_ids: (d.neIds || []).join(','),
+        nechce: priznaky(d.neIds, 'f'),
         pocet_ne: ne,
         hodin_min: d.hmin,
         hodin_max: d.hmax,
@@ -365,7 +378,9 @@
         zodpovezeno: zodpovezeno,
         hotovo_ids: hotovo.join(','),
         chybi_ids: chybi.join(','),
+        chybi: priznaky(chybi),
         risk_ids: (rizika || []).join(','),
+        riziko: priznaky(rizika, 'r'),
         // Nedokončený dotazník neříká, jak je člověk připravený — říká jen,
         // že se zastavil. Segment proto nesmí předstírat víc.
         segment: 'nedokonceny-dotaznik'

@@ -546,9 +546,15 @@ export default async function handler(req, res) {
     // Potvrzení a zařazení do sekvence. Běží až po zápisu do CRM a
     // nesmí ho shodit — když Brevo zlobí, lead je pořád uložený
     // a člověk dostal na stránce potvrzení.
-    // Když si uvítací e-mail vzala na starost sekvence v CRM, vlastní
-    // potvrzení neposíláme — jinak by člověku přišly dva naráz.
-    const resilaSekvence = Number(data.sequences) > 0;
+    // Když uvítací e-mail odeslalo CRM — ať už sekvencí, nebo vlastní
+    // šablonou podle metadata.form — svoje potvrzení neposíláme; jinak
+    // by člověku přišly dva naráz.
+    //
+    // `welcome_sent` je novější a přesnější: CRM od migrace 253 posílá
+    // e-maily z knihy Výcvik samo, a to i když je sekvence prázdná.
+    // Samotné `sequences` by na to nestačilo. Starší CRM ho neposílá,
+    // pak zůstává původní chování.
+    const resilaSekvence = Number(data.sequences) > 0 || data.welcome_sent === true;
 
     await poslatPotvrzeni({ formular, email, jmeno, metadata, preskocitEmail: resilaSekvence }).catch((e) => {
       console.error('[lead] Brevo selhalo (lead je v CRM uložený):', e.message);
