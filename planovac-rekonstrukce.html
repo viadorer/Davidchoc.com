@@ -241,6 +241,35 @@
   .cta-box h4 { font-family:"Barlow Condensed",sans-serif; font-weight:700; font-size:24px; text-transform:uppercase; margin:0 0 10px; color:#fff; }
   .cta-box p { color:#C4BCA8; font-size:16px; margin:0 0 16px; }
   .cta-box .btn { margin-top:4px; }
+  details.sbal { border:1px solid var(--line); background:var(--surface); margin-top:10px; }
+  details.detaily { margin:0 0 18px; background:var(--surface-2); }
+  details.detaily > summary { font-size:14px; padding:11px 13px; }
+  details.detaily .sbal-in { padding:4px 13px 10px; }
+  details.detaily .fieldset { margin-bottom:12px; }
+  details.detaily legend { font-size:11.5px; padding-bottom:6px; margin-bottom:7px; }
+  details.sbal > summary {
+    cursor:pointer; padding:13px 16px; list-style:none;
+    font-family:"Barlow Condensed",sans-serif; font-weight:600; font-size:16px;
+    text-transform:uppercase; letter-spacing:.04em; color:var(--ink-soft);
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+  }
+  details.sbal > summary::-webkit-details-marker { display:none; }
+  details.sbal > summary::after {
+    content:"rozbalit"; font-family:"JetBrains Mono",monospace; font-size:10.5px;
+    text-transform:none; letter-spacing:0; color:var(--ink-faint); white-space:nowrap;
+  }
+  details.sbal[open] > summary::after { content:"sbalit"; }
+  details.sbal[open] > summary { border-bottom:1px solid var(--line); }
+  details.sbal > summary:hover { color:var(--blue); }
+  details.sbal > summary:focus-visible { outline:2px solid var(--blue); outline-offset:-2px; }
+  .sbal-in { padding:14px 16px; }
+  /* Nativní skrývání obsahu v details tu přebíjelo jiné pravidlo — vynutit. */
+  details.sbal:not([open]) > .sbal-in { display:none; }
+  .sbal-in > .alerts { gap:9px; }
+  summary .pocet {
+    font-family:"JetBrains Mono",monospace; font-size:11px; color:var(--ink-faint);
+    text-transform:none; letter-spacing:0; margin-left:auto; padding-right:12px;
+  }
   .gmsg { font-family: "JetBrains Mono", monospace; font-size: 12.5px; padding: 10px 12px; background: var(--green-soft); border-left: 3px solid var(--green); color: var(--ink); }
   .blurred { position: relative; }
   .blurred .veil { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent, var(--bg) 78%); pointer-events: none; }
@@ -377,7 +406,10 @@
             </div>
           </fieldset>
 
-          <fieldset class="fieldset">
+          <details class="sbal detaily">
+            <summary>Doladit jednotlivé práce<span class="pocet">20 položek</span></summary>
+            <div class="sbal-in">
+            <fieldset class="fieldset">
             <legend>Bourání</legend>
             <label class="chk"><input type="checkbox" id="w_jadro" checked><span>Bytové jádro</span></label>
             <label class="chk"><input type="checkbox" id="w_pricky" checked><span>Bourání příček</span></label>
@@ -466,8 +498,13 @@
             <label class="chk"><input type="checkbox" id="w_sanita" checked><span>Sanita a sprchový kout</span></label>
             <label class="chk"><input type="checkbox" id="w_skrine"><span>Vestavěné skříně</span></label>
           </fieldset>
+            </div>
+          </details>
 
-          <fieldset class="fieldset">
+          <details class="sbal detaily">
+            <summary>3 — Potvrzené dodávky<span class="pocet">nepovinné</span></summary>
+            <div class="sbal-in">
+            <fieldset class="fieldset">
             <legend>3 — Potvrzené dodávky</legend>
             <p style="font-size:13px;color:var(--ink-soft);margin:0 0 10px">Máte-li od dodavatele potvrzený termín, zadejte ho. Přepíše odhad a plán se přepočítá.</p>
             <div class="row"><div><label class="lbl" for="d_kuchyne">Kuchyňská linka</label><input type="date" id="d_kuchyne"></div></div>
@@ -477,6 +514,8 @@
             <div class="row"><div><label class="lbl" for="d_sanita">Sprchový kout a sanita</label><input type="date" id="d_sanita"></div></div>
             <div class="row"><div><label class="lbl" for="d_podlahy">Podlahová krytina</label><input type="date" id="d_podlahy"></div></div>
           </fieldset>
+            </div>
+          </details>
 
         </div>
       </form>
@@ -974,6 +1013,20 @@
   }
 
   function el(tag, cls, html){ var e=document.createElement(tag); if(cls) e.className=cls; if(html!==undefined) e.innerHTML=html; return e; }
+  function sectSbal(title, node, pocet, otevreno){
+    var d = el("details","sbal");
+    if(otevreno) d.open = true;
+    var sum = document.createElement("summary");
+    sum.innerHTML = title + (pocet ? '<span class="pocet">' + pocet + '</span>' : '');
+    d.appendChild(sum);
+    var in_ = el("div","sbal-in");
+    in_.appendChild(node);
+    d.appendChild(in_);
+    var wrap = el("section");
+    wrap.appendChild(d);
+    return wrap;
+  }
+
   function sect(title, node, cnt){
     var s2=el("section"); var h=el("h3");
     h.innerHTML = title + (cnt ? " <span class='cnt'>"+cnt+"</span>" : "");
@@ -1080,7 +1133,7 @@
       if(s.poter === "anhydrit" && s.koupelna){
         pd.appendChild(el("div","alert warn","<b>Anhydrit v koupelně jen s hydroizolační stěrkou</b> — je citlivý na vlhkost. Kde se počítá s trvalejším namáháním vodou, patří tam cementový potěr."));
       }
-      out.appendChild(sect("Podlaha a topení", pd, ""));
+      out.appendChild(sectSbal("Podlaha a topení", pd, "", false));
     }
 
     // azbest
@@ -1171,7 +1224,7 @@
         tech.appendChild(el("div","alert crit","<b>Závěsné WC se nikdy nekotví do opláštění.</b> Norma pro závěsné mísy žádá odolnost 4 kN, tedy zhruba 400 kg — u stojících keramických se tahle zkouška nedělá. Vždy se používá předstěnový nosič kotvený k profilům z obou stran, a u sádrokartonu musí jít o systém určený pro suchou výstavbu; prvky pro zdivo v příčce nefungují. Umyvadlo má normový požadavek 1,5 kN a při opření se na něj dynamicky přenese i sto kilo."));
       }
     }
-    if(tech.children.length) out.appendChild(sect("Technologická pravidla", tech, ""));
+    if(tech.children.length) out.appendChild(sectSbal("Technologická pravidla", tech, tech.children.length + " pravidel", false));
 
     // priority — teď nebo nikdy
     var pri = el("div","alerts");
@@ -1191,7 +1244,7 @@
     if(ted.length) pri.appendChild(el("div","alert","<b>V tomto rozsahu řešíte teď a napořád:</b> "+ted.join(", ")+". Tohle jsou vrstvy, ke kterým se bez demolice nevrátíte."));
     if(pak.length) pri.appendChild(el("div","alert warn","<b>Vynecháváte věci, které jsou skryté:</b> "+pak.join(", ")+". Pokud se k nim budete chtít vrátit, znamená to znovu bourat, omítat a malovat. Zvažte, jestli je úspora dnes větší než celá druhá rekonstrukce potom."));
     if(pozdeji.length) pri.appendChild(el("div","alert tip","<b>Naopak bez obav odložit lze:</b> "+pozdeji.join(", ")+". Tyhle položky se dají doplnit kdykoli později bez zásahu do konstrukcí."));
-    out.appendChild(sect("Co je opravdu nutné", pri, ""));
+    out.appendChild(sectSbal("Co je opravdu nutné a co počká", pri, "", false));
 
     // dopad potvrzených dodávek
     var ridici = ord.filter(function(o){ return o.ridiDodavka; });
@@ -1323,7 +1376,7 @@
     rel.appendChild(el("div","alert tip","<b>Co v tomto výstupu stojí na normě a technickém listu:</b> pořadí prací a technologické závislosti, doby technologických přestávek u omítek, hydroizolace a sádrokartonu, požadavky na přídržnost podkladu, nosnosti příček a kotvení, lhůty a povinnosti u azbestu. Tahle část je doložitelná zdrojem a dá se obhájit."));
     rel.appendChild(el("div","alert warn","<b>Co je odhad a je nutné to nahradit vlastními daty:</b> doby trvání jednotlivých prací (výchozí hodnoty pro byt kolem 60 m²), přepočet podle plochy, rozpad ceny na jednotlivé práce a konkrétní doby schnutí potěru pro jednotlivé kombinace krytin — u těch jsou doložená jen pásma, ne přesná čísla. Termín dokončení proto berte jako řádový odhad, ne jako závazek."));
     rel.appendChild(el("div","alert","<b>Co tenhle nástroj nenahrazuje:</b> projektovou dokumentaci, statické posouzení ani stavební dozor. Neví, co je za stěnou, a nezná kapacitu konkrétních řemeslníků. U zásahů do nosných konstrukcí, do společných částí domu a u podezření na azbest je vždy potřeba odborné posouzení."));
-    out.appendChild(sect("Nakolik se dá výstupu věřit", rel, ""));
+    out.appendChild(sectSbal("Nakolik se dá výstupu věřit", rel, "", false));
 
     // gate / detailní rozpis
     if(unlocked){
