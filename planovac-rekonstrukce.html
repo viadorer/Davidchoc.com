@@ -270,6 +270,12 @@
     font-family:"JetBrains Mono",monospace; font-size:11px; color:var(--ink-faint);
     text-transform:none; letter-spacing:0; margin-left:auto; padding-right:12px;
   }
+  figure.ilu { margin:0 0 14px; border:1px solid var(--line); background:var(--surface); padding:16px 16px 12px; }
+  figure.ilu svg { width:100%; height:auto; display:block; }
+  figure.ilu figcaption {
+    font-family:"JetBrains Mono",monospace; font-size:11px; line-height:1.6;
+    color:var(--ink-faint); margin-top:10px;
+  }
   .gmsg { font-family: "JetBrains Mono", monospace; font-size: 12.5px; padding: 10px 12px; background: var(--green-soft); border-left: 3px solid var(--green); color: var(--ink); }
   .blurred { position: relative; }
   .blurred .veil { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent, var(--bg) 78%); pointer-events: none; }
@@ -1012,6 +1018,100 @@
     return Math.round(n/1000) + " tis.";
   }
 
+
+  // Skladba podlahy pro zadanou volnou výšku. Kreslí se z dat, ne z obrázku —
+  // vrstvy i verdikt se mění podle toho, co uživatel zvolil.
+  function skladbaPodlahy(s) {
+    var v = s.vyska;
+    var vrstvy = [];
+
+    if (s.poter === "sucha") {
+      vrstvy.push({ h: 25, n: "suchá podlaha (desky)", c: "var(--blue)" });
+    } else if (s.poter !== "none") {
+      var kroc = v >= 45 ? 15 : 0;
+      if (kroc) vrstvy.push({ h: kroc, n: "kročejová izolace", c: "var(--ink-faint)" });
+      var pot = s.poter === "rychly" ? 35 : (v >= 45 ? 35 : 30);
+      vrstvy.push({ h: pot, n: "potěr " + (s.poter === "anhydrit" ? "anhydritový" : s.poter === "cement" ? "cementový" : "rychleschnoucí"), c: "var(--blue)" });
+    }
+    if (s.topeniP === "elektro") vrstvy.push({ h: 20, n: "topná rohož v lepidle", c: "var(--red)" });
+    else if (s.topeniP === "teplovodni") vrstvy.push({ h: v >= 65 ? 67 : (v >= 46 ? 48 : 16), n: "teplovodní topení", c: "var(--red)" });
+    if (s.krytina !== "none") {
+      var kh = s.krytina === "dlazba" ? 10 : (s.krytina === "drevo" ? 15 : 5);
+      vrstvy.push({ h: kh, n: s.krytina === "dlazba" ? "dlažba s lepidlem" : s.krytina === "drevo" ? "dřevo / laminát" : "vinyl", c: "var(--green)" });
+    }
+    if (!vrstvy.length) return null;
+
+    var soucet = vrstvy.reduce(function(a, x){ return a + x.h; }, 0);
+    var vejde = soucet <= v;
+    var W = 640, PAD = 116, MAX = Math.max(soucet, v);
+    var skala = (W - PAD - 90) / MAX;   // mm → px
+
+    var x = PAD, casti = [];
+    vrstvy.forEach(function(vr){
+      var w = Math.max(2, vr.h * skala);
+      casti.push('<rect x="' + x.toFixed(1) + '" y="46" width="' + w.toFixed(1) + '" height="46" fill="' + vr.c + '" fill-opacity=".22" stroke="' + vr.c + '" stroke-width="1.2"/>');
+      if (w > 34) casti.push('<text x="' + (x + w/2).toFixed(1) + '" y="74" text-anchor="middle" font-size="11" fill="currentColor">' + vr.h + '</text>');
+      x += w;
+    });
+
+    // dostupná výška jako rámec
+    var dostW = v * skala;
+    casti.push('<rect x="' + PAD + '" y="40" width="' + dostW.toFixed(1) + '" height="58" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="5 4" opacity=".5"/>');
+    casti.push('<text x="' + (PAD + dostW/2).toFixed(1) + '" y="30" text-anchor="middle" font-size="11.5" fill="currentColor" opacity=".7">volná výška ' + v + ' mm</text>');
+
+    // legenda vrstev
+    var ly = 122, leg = [];
+    vrstvy.forEach(function(vr, i){
+      var cx = PAD + (i % 2) * 250, cy = ly + Math.floor(i / 2) * 19;
+      leg.push('<rect x="' + cx + '" y="' + (cy - 8) + '" width="10" height="10" fill="' + vr.c + '" fill-opacity=".22" stroke="' + vr.c + '" stroke-width="1"/>');
+      leg.push('<text x="' + (cx + 16) + '" y="' + cy + '" font-size="11.5" fill="currentColor">' + vr.n + ' — ' + vr.h + ' mm</text>');
+    });
+    var H = ly + Math.ceil(vrstvy.length / 2) * 19 + 26;
+
+    var verdikt = vejde
+      ? 'Skladba ' + soucet + ' mm se do ' + v + ' mm vejde.'
+      : 'Skladba ' + soucet + ' mm se do ' + v + ' mm NEVEJDE — chybí ' + (soucet - v) + ' mm.';
+
+    return '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + verdikt + '">' +
+      '<g font-family="\'JetBrains Mono\', monospace" fill="currentColor">' +
+      '<text x="0" y="74" font-size="12" opacity=".75">podklad</text>' +
+      '<line x1="70" y1="40" x2="70" y2="98" stroke="currentColor" stroke-width="2.5"/>' +
+      casti.join('') + leg.join('') +
+      '<text x="' + PAD + '" y="' + (H - 8) + '" font-size="12" fill="' + (vejde ? 'var(--green)' : 'var(--red)') + '" font-weight="500">' + verdikt + '</text>' +
+      '</g></svg>';
+  }
+
+
+  function ilustracePoradi() {
+    var kroky = [
+      { n: "odpady",  d: "spád se neohne", c: "var(--red)" },
+      { n: "vzduch",  d: "velký průřez",   c: "var(--ink-faint)" },
+      { n: "voda",    d: "ohebná",          c: "var(--blue)" },
+      { n: "topení",  d: "ohebné",          c: "var(--blue)" },
+      { n: "elektro", d: "projde kudykoli", c: "var(--green)" }
+    ];
+    var W = 640, X0 = 8, GAP = 16, BW = (W - X0*2 - GAP*4) / 5;
+    var casti = [];
+    kroky.forEach(function(k, i){
+      var x = X0 + i * (BW + GAP);
+      casti.push('<rect x="' + x.toFixed(1) + '" y="30" width="' + BW.toFixed(1) + '" height="44" fill="' + k.c + '" fill-opacity=".16" stroke="' + k.c + '" stroke-width="1.3"/>');
+      casti.push('<text x="' + (x + BW/2).toFixed(1) + '" y="49" text-anchor="middle" font-size="12.5" fill="currentColor" font-weight="500">' + k.n + '</text>');
+      casti.push('<text x="' + (x + BW/2).toFixed(1) + '" y="65" text-anchor="middle" font-size="10" fill="currentColor" opacity=".65">' + k.d + '</text>');
+      if (i < 4) {
+        var ax = x + BW + 3, ax2 = x + BW + GAP - 3;
+        casti.push('<path d="M ' + ax + ' 52 L ' + ax2 + ' 52" stroke="currentColor" stroke-width="1.2" opacity=".45" marker-end="url(#sipka)"/>');
+      }
+    });
+    return '<svg viewBox="0 0 ' + W + ' 100" role="img" aria-label="Pořadí instalací: odpady, vzduchotechnika, voda, topení, elektro — od nejmenší volnosti trasy k největší.">' +
+      '<defs><marker id="sipka" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">' +
+      '<path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor" opacity=".45"/></marker></defs>' +
+      '<g font-family="\'JetBrains Mono\', monospace">' +
+      '<text x="' + X0 + '" y="16" font-size="11" fill="currentColor" opacity=".7">nejmenší volnost trasy</text>' +
+      '<text x="' + (W - X0) + '" y="16" text-anchor="end" font-size="11" fill="currentColor" opacity=".7">největší volnost</text>' +
+      casti.join('') + '<text x="' + X0 + '" y="94" font-size="11" fill="currentColor" opacity=".65">Kdo pořadí obrátí, přetrasovává — a to už je bourání zapraveného.</text>' +
+      '</g></svg>';
+  }
+
   function el(tag, cls, html){ var e=document.createElement(tag); if(cls) e.className=cls; if(html!==undefined) e.innerHTML=html; return e; }
   function sectSbal(title, node, pocet, otevreno){
     var d = el("details","sbal");
@@ -1119,20 +1219,29 @@
 
     // podlaha a topení
     if(s.poter !== "none" || s.krytina !== "none" || s.topeniP !== "ne"){
-      var pd = el("div","alerts");
+      var pd = el("div");
+      var svgSkladba = skladbaPodlahy(s);
+      if (svgSkladba) {
+        var fig = el("figure","ilu");
+        fig.innerHTML = svgSkladba +
+          '<figcaption>Vrstvy v milimetrech proti volné výšce, kterou jste zadal. Čárkovaný rámeček je prostor, který máte k dispozici po vybourání původní skladby.</figcaption>';
+        pd.appendChild(fig);
+      }
+      var pdA = el("div","alerts");
       var opts = podlahaOptions(s.vyska);
-      pd.appendChild(el("div","alert","<b>Do volné výšky "+s.vyska+" mm se vejde:</b> "+opts.join(" · ")+"."));
+      pdA.appendChild(el("div","alert","<b>Do volné výšky "+s.vyska+" mm se vejde:</b> "+opts.join(" · ")+"."));
       var tv = topeniVerdikt(s);
-      if(tv) pd.appendChild(el("div","alert "+(tv.ok?"tip":"crit"), tv.txt));
+      if(tv) pdA.appendChild(el("div","alert "+(tv.ok?"tip":"crit"), tv.txt));
       if(s.topeniP === "teplovodni"){
-        pd.appendChild(el("div","alert crit","<b>U bytu na dálkovém teple je teplovodní podlahovka hlavně právní problém, ne technický.</b> Celá otopná soustava včetně rozvodů a radiátorů ve vašem bytě je společná část domu, a podlaha je společná část také — potřebujete tedy souhlas shromáždění SVJ hned ze dvou důvodů. K tomu projekt topení, směšovací uzel (dálkové teplo jede kolem 70 °C, podlahovka potřebuje 40), nové hydraulické vyvážení soustavy a vyřešené rozúčtování, protože na podlahovku nejdou běžné indikátory. Počítejte s vysokým rizikem zamítnutí."));
+        pdA.appendChild(el("div","alert crit","<b>U bytu na dálkovém teple je teplovodní podlahovka hlavně právní problém, ne technický.</b> Celá otopná soustava včetně rozvodů a radiátorů ve vašem bytě je společná část domu, a podlaha je společná část také — potřebujete tedy souhlas shromáždění SVJ hned ze dvou důvodů. K tomu projekt topení, směšovací uzel (dálkové teplo jede kolem 70 °C, podlahovka potřebuje 40), nové hydraulické vyvážení soustavy a vyřešené rozúčtování, protože na podlahovku nejdou běžné indikátory. Počítejte s vysokým rizikem zamítnutí."));
       }
       if(s.topeniP !== "ne" && s.krytina === "drevo"){
-        pd.appendChild(el("div","alert warn","<b>Dřevo nad podlahovým topením jen s rozmyslem.</b> Tepelný odpor krytiny nesmí překročit 0,15 m²K/W. Vícevrstvé dřevo do 15 mm vyhoví, masiv 22 mm už ne — a u topné fólie navíc platí strop 80 W/m². Dlažba a lepený vinyl jsou z tohoto pohledu ideální."));
+        pdA.appendChild(el("div","alert warn","<b>Dřevo nad podlahovým topením jen s rozmyslem.</b> Tepelný odpor krytiny nesmí překročit 0,15 m²K/W. Vícevrstvé dřevo do 15 mm vyhoví, masiv 22 mm už ne — a u topné fólie navíc platí strop 80 W/m². Dlažba a lepený vinyl jsou z tohoto pohledu ideální."));
       }
       if(s.poter === "anhydrit" && s.koupelna){
-        pd.appendChild(el("div","alert warn","<b>Anhydrit v koupelně jen s hydroizolační stěrkou</b> — je citlivý na vlhkost. Kde se počítá s trvalejším namáháním vodou, patří tam cementový potěr."));
+        pdA.appendChild(el("div","alert warn","<b>Anhydrit v koupelně jen s hydroizolační stěrkou</b> — je citlivý na vlhkost. Kde se počítá s trvalejším namáháním vodou, patří tam cementový potěr."));
       }
+            pd.appendChild(pdA);
       out.appendChild(sectSbal("Podlaha a topení", pd, "", false));
     }
 
@@ -1190,6 +1299,13 @@
     if(alerts.children.length) out.appendChild(sect("Na co si dát pozor", alerts, ""));
 
     // technologická pravidla
+    var techWrap = el("div");
+    if (s.voda || s.elektro || s.topeni) {
+      var figP = el("figure","ilu");
+      figP.innerHTML = ilustracePoradi() +
+        '<figcaption>Pořadí uvnitř hrubých instalací není zvyk, ale fyzika: co má nejmenší volnost trasy, jde první.</figcaption>';
+      techWrap.appendChild(figP);
+    }
     var tech = el("div","alerts");
     if(s.koupelna && s.omitky){
       tech.appendChild(el("div","alert crit","<b>Řekněte zedníkovi předem, kam až bude sahat obklad.</b> Obklad se na štuk lepit nemá: štukové a vápenné omítky mají deklarovanou přídržnost kolem 0,1 MPa, zatímco lepidlo pod obkladem po vyzrání táhne 0,5 MPa u třídy C1 a 1,0 MPa u C2, a pro podklad pod obklad se v praxi žádá nad 0,3 MPa. Slabá vrstva se utrhne i s obkladem. V ploše obkladu se proto štuk vůbec nenanáší — a zedník to musí vědět dřív, než začne omítat, ne až přijde obkladač."));
@@ -1224,7 +1340,8 @@
         tech.appendChild(el("div","alert crit","<b>Závěsné WC se nikdy nekotví do opláštění.</b> Norma pro závěsné mísy žádá odolnost 4 kN, tedy zhruba 400 kg — u stojících keramických se tahle zkouška nedělá. Vždy se používá předstěnový nosič kotvený k profilům z obou stran, a u sádrokartonu musí jít o systém určený pro suchou výstavbu; prvky pro zdivo v příčce nefungují. Umyvadlo má normový požadavek 1,5 kN a při opření se na něj dynamicky přenese i sto kilo."));
       }
     }
-    if(tech.children.length) out.appendChild(sectSbal("Technologická pravidla", tech, tech.children.length + " pravidel", false));
+    if(tech.children.length) techWrap.appendChild(tech);
+      out.appendChild(sectSbal("Technologická pravidla", techWrap, tech.children.length + " pravidel", false));
 
     // priority — teď nebo nikdy
     var pri = el("div","alerts");
