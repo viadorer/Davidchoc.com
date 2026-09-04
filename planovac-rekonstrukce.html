@@ -228,6 +228,19 @@
   @media (min-width: 620px) { .gform .two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; } }
   .gdpr { display: flex; gap: 8px; align-items: flex-start; font-size: 13.5px; color: var(--ink-soft); }
   .gdpr input { margin-top: 4px; accent-color: var(--blue); }
+  .nabidka { border:1px solid var(--line); background:var(--surface); }
+  .nab-row { display:grid; grid-template-columns:1fr auto; gap:8px 16px; padding:13px 16px; border-bottom:1px solid var(--line); align-items:baseline; }
+  .nab-row:last-of-type { border-bottom:0; }
+  .nab-row .co { font-size:15.5px; }
+  .nab-row .co small { display:block; font-family:"JetBrains Mono",monospace; font-size:11px; color:var(--ink-faint); margin-top:2px; }
+  .nab-row .kc { font-family:"Barlow Condensed",sans-serif; font-weight:700; font-size:19px; white-space:nowrap; font-variant-numeric:tabular-nums; }
+  .nab-sum { display:grid; grid-template-columns:1fr auto; gap:16px; padding:14px 16px; background:var(--surface-2); border-top:2px solid var(--line-strong); align-items:baseline; }
+  .nab-sum .co { font-family:"Barlow Condensed",sans-serif; text-transform:uppercase; letter-spacing:.05em; font-size:14px; color:var(--ink-soft); }
+  .nab-sum .kc { font-family:"Barlow Condensed",sans-serif; font-weight:700; font-size:23px; white-space:nowrap; }
+  .cta-box { background:var(--dark); color:#EDF0F4; padding:24px 26px; margin-top:18px; }
+  .cta-box h4 { font-family:"Barlow Condensed",sans-serif; font-weight:700; font-size:24px; text-transform:uppercase; margin:0 0 10px; color:#fff; }
+  .cta-box p { color:#C4BCA8; font-size:16px; margin:0 0 16px; }
+  .cta-box .btn { margin-top:4px; }
   .gmsg { font-family: "JetBrains Mono", monospace; font-size: 12.5px; padding: 10px 12px; background: var(--green-soft); border-left: 3px solid var(--green); color: var(--ink); }
   .blurred { position: relative; }
   .blurred .veil { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent, var(--bg) 78%); pointer-events: none; }
@@ -309,6 +322,19 @@
                 <option value="vlastni">Vlastní bydlení</option>
               </select>
             </div></div>
+            <div class="row"><div>
+              <label class="lbl" for="faze">V jaké jste fázi</label>
+              <select id="faze">
+                <option value="vlastnim" selected>Byt už vlastním</option>
+                <option value="vybiram">Vybírám konkrétní byt</option>
+                <option value="hledam">Teprve hledám</option>
+              </select>
+            </div></div>
+            <div class="row">
+              <div><label class="lbl" for="kupni">Kupní cena tis.</label><input type="number" id="kupni" value="0" min="0" step="100" placeholder="nepovinné"></div>
+              <div><label class="lbl" for="vystup">Prodej / nájem</label><input type="number" id="vystup" value="0" min="0" step="10" placeholder="nepovinné"></div>
+            </div>
+            <p style="font-size:12px;color:var(--ink-faint);margin:-4px 0 0;font-family:'JetBrains Mono',monospace;line-height:1.5">U prodeje očekávaná prodejní cena v tisících, u pronájmu měsíční nájem v tisících. Nepovinné — bez nich se spočítá jen harmonogram.</p>
             <div class="row">
               <div><label class="lbl" for="area">Plocha m²</label><input type="number" id="area" value="62" min="15" max="300"></div>
               <div><label class="lbl" for="budget">Rozpočet tis. Kč</label><input type="number" id="budget" value="900" min="0" step="50"></div>
@@ -606,6 +632,9 @@
       ucel: document.getElementById("ucel").value,
       budget: Math.max(0, +document.getElementById("budget").value || 0) * 1000,
       rok: +document.getElementById("rok").value || 1975,
+      faze: document.getElementById("faze").value,
+      kupni: Math.max(0, +document.getElementById("kupni").value || 0) * 1000,
+      vystup: Math.max(0, +document.getElementById("vystup").value || 0) * 1000,
       azbest: document.getElementById("azbest").value,
       zarubne: document.getElementById("zarubne").value,
       typomitky: document.getElementById("typomitky").value,
@@ -874,6 +903,76 @@
     return { ok:false, txt:"<b>Na teplovodní podlahové topení výška nestačí ani v renovační variantě.</b> Zbývá elektrická fólie nebo rohož, případně zvýšit podlahu na úkor světlé výšky místnosti a upravit zárubně." };
   }
 
+
+  // ── EKONOMIKA A NABÍDKA SLUŽEB ──────────────────────────────────────
+  // Sazby jsou z ceníku Flatbooku. Když se ceník změní, mění se tady.
+  var SAZBY = {
+    akvizice:     { popis: "Vyhledání a prověření bytu",      sazba: 0.04,  zaklad: "kupni",  text: "4 % z kupní ceny" },
+    hypoteka:     { popis: "Zprostředkování hypotéky",        sazba: 0.008, zaklad: "uver",   text: "0,8 % z úvěru" },
+    koordinace:   { popis: "Koordinace přípravy bytu",        sazba: 0.12,  zaklad: "rekon", text: "12 % z rozpočtu přípravy" },
+    prodej:       { popis: "Zprostředkování prodeje",         sazba: 0.04,  zaklad: "vystup", text: "4 % z prodejní ceny" },
+    najemnik:     { popis: "Umístění nájemníka",              sazba: 1,     zaklad: "najem",  text: "jeden měsíční nájem" },
+    sprava:       { popis: "Průběžná správa nemovitosti",     sazba: 0.08,  zaklad: "rocni",  text: "8 % z ročního nájmu", rocne: true },
+    pojisteni:    { popis: "Pojištění nemovitosti",           sazba: 0.30,  zaklad: "pojistne", text: "30 % z pojistného, 1. rok" },
+    dane:         { popis: "Daňové poradenství",              pevna: 3000,  text: "3 000 Kč ročně", rocne: true }
+  };
+
+  function ekonomika(s, rekonMin, rekonMax) {
+    var e = { maRozpocet: s.kupni > 0 || s.vystup > 0 };
+    var jeNajem = (s.ucel === "pronajem" || s.ucel === "kratkodoby");
+    e.jeNajem = jeNajem;
+    e.rekonStred = (rekonMin + rekonMax) / 2;
+
+    if (s.vystup > 0) {
+      if (jeNajem) {
+        e.najem = s.vystup;
+        e.rocniNajem = s.vystup * 12;
+        if (s.kupni > 0) {
+          e.vlozeno = s.kupni + e.rekonStred;
+          e.vynos = e.rocniNajem / e.vlozeno * 100;   // hrubý výnos p.a.
+        }
+      } else {
+        e.prodejni = s.vystup;
+        if (s.kupni > 0) {
+          e.vlozeno = s.kupni + e.rekonStred;
+          e.marze = s.vystup - e.vlozeno;
+          e.marzeProc = e.marze / e.vlozeno * 100;
+        }
+      }
+    }
+    return e;
+  }
+
+  // Které služby dávají smysl pro danou fázi a záměr
+  function nabidka(s, e, rekonMin, rekonMax) {
+    var out = [];
+    function pridej(klic, castkaMin, castkaMax) {
+      var d = SAZBY[klic];
+      out.push({ popis: d.popis, text: d.text, min: castkaMin, max: castkaMax, rocne: !!d.rocne });
+    }
+    var uver = s.kupni * 0.8;
+
+    if (s.faze === "hledam" || s.faze === "vybiram") {
+      if (s.kupni > 0) pridej("akvizice", s.kupni * 0.04, s.kupni * 0.04);
+      if (s.kupni > 0) pridej("hypoteka", uver * 0.008, uver * 0.008);
+    }
+    pridej("koordinace", rekonMin * 0.12, rekonMax * 0.12);
+
+    if (e.jeNajem) {
+      if (e.najem) pridej("najemnik", e.najem, e.najem);
+      if (e.rocniNajem) pridej("sprava", e.rocniNajem * 0.08, e.rocniNajem * 0.08);
+      out.push({ popis: SAZBY.dane.popis, text: SAZBY.dane.text, min: 3000, max: 3000, rocne: true });
+    } else if (s.ucel === "prodej" && e.prodejni) {
+      pridej("prodej", e.prodejni * 0.04, e.prodejni * 0.04);
+    }
+    return out;
+  }
+
+  function kcKratce(n) {
+    if (n >= 1000000) return (n/1000000).toFixed(n >= 10000000 ? 0 : 1).replace(".", ",") + " mil.";
+    return Math.round(n/1000) + " tis.";
+  }
+
   function el(tag, cls, html){ var e=document.createElement(tag); if(cls) e.className=cls; if(html!==undefined) e.innerHTML=html; return e; }
   function sect(title, node, cnt){
     var s2=el("section"); var h=el("h3");
@@ -931,6 +1030,39 @@
     }
     bud.appendChild(el("div","todo","Odhad vychází z publikovaného tržního rozpětí 12–25 tis. Kč/m² za kompletní rekonstrukci a z podílu vybraných prací. Není to rozpočet — ten vzniká až z položkové nabídky."));
     out.appendChild(sect("Záměr a rozpočet", bud, ""));
+
+    // ── EKONOMIKA: vyplatí se to? ──────────────────────────────────
+    var eko = ekonomika(s, est.min, est.max);
+    if (eko.maRozpocet) {
+      var ek = el("div","alerts");
+      if (eko.marze !== undefined) {
+        var dobra = eko.marzeProc >= 15;
+        ek.appendChild(el("div","alert " + (dobra ? "tip" : "crit"),
+          "<b>Marže při prodeji: " + kcKratce(eko.marze) + " Kč (" + Math.round(eko.marzeProc) + " %).</b> " +
+          "Vloženo " + kcKratce(eko.vlozeno) + " Kč — kupní cena plus střed rozpočtu rekonstrukce. " +
+          (dobra
+            ? "To je pásmo, ve kterém dává fix&amp;flip smysl, pokud se termín udrží."
+            : "Pod patnácti procenty je málo prostoru na skryté vady. U bytů starších padesáti let se skoro vždy něco najde — počítejte s rezervou 15 až 20 %.")));
+        var mesicu = Math.max(1, Math.round(total / 30));
+        var urok = eko.vlozeno * 0.07 / 12 * mesicu;
+        ek.appendChild(el("div","alert",
+          "<b>Držení kapitálu: " + mesicu + " měsíců.</b> Při sedmi procentech ročně to je zhruba " +
+          kcKratce(urok) + " Kč na úrocích — tedy " + Math.round(urok / eko.marze * 100) + " % z marže. " +
+          "Každý ušetřený týden je tady vidět."));
+      } else if (eko.vynos !== undefined) {
+        ek.appendChild(el("div","alert tip",
+          "<b>Hrubý výnos z pronájmu: " + eko.vynos.toFixed(1).replace(".", ",") + " % ročně.</b> " +
+          "Roční nájem " + kcKratce(eko.rocniNajem) + " Kč proti vloženým " + kcKratce(eko.vlozeno) + " Kč. " +
+          "Čistý výnos bude nižší o daň, správu, pojištění a neobsazenost."));
+      } else if (eko.najem) {
+        ek.appendChild(el("div","alert",
+          "<b>Roční nájem: " + kcKratce(eko.rocniNajem) + " Kč.</b> Doplňte kupní cenu a spočítá se výnos."));
+      } else if (eko.prodejni) {
+        ek.appendChild(el("div","alert",
+          "<b>Prodejní cena: " + kcKratce(eko.prodejni) + " Kč.</b> Doplňte kupní cenu a spočítá se marže."));
+      }
+      out.appendChild(sect("Vyplatí se to", ek, ""));
+    }
 
     // podlaha a topení
     if(s.poter !== "none" || s.krytina !== "none" || s.topeniP !== "ne"){
@@ -1137,6 +1269,55 @@
     gw.appendChild(lg);
     out.appendChild(sect("Harmonogram", gw, sch.tasks.length+" "+plural(sch.tasks.length,"úkol","úkoly","úkolů")));
 
+    // ── NABÍDKA SLUŽEB Z CENÍKU ────────────────────────────────────
+    var nab = nabidka(s, eko, est.min, est.max);
+    if (nab.length) {
+      var box = el("div","nabidka");
+      var jMin = 0, jMax = 0, rMin = 0;
+      nab.forEach(function(n){
+        var castka = Math.abs(n.max - n.min) < 1
+          ? kcKratce(n.min) + " Kč"
+          : kcKratce(n.min) + " – " + kcKratce(n.max) + " Kč";
+        var r = el("div","nab-row");
+        r.innerHTML = "<div class='co'>" + n.popis + "<small>" + n.text + (n.rocne ? " · opakuje se" : "") + "</small></div>" +
+                      "<div class='kc'>" + castka + "</div>";
+        box.appendChild(r);
+        if (n.rocne) rMin += n.min; else { jMin += n.min; jMax += n.max; }
+      });
+      if (jMin > 0) {
+        var sum = el("div","nab-sum");
+        sum.innerHTML = "<div class='co'>Jednorázově</div><div class='kc'>" +
+          (Math.abs(jMax - jMin) < 1 ? kcKratce(jMin) : kcKratce(jMin) + " – " + kcKratce(jMax)) + " Kč</div>";
+        box.appendChild(sum);
+      }
+      if (rMin > 0) {
+        var sum2 = el("div","nab-sum");
+        sum2.innerHTML = "<div class='co'>Každý rok</div><div class='kc'>" + kcKratce(rMin) + " Kč</div>";
+        box.appendChild(sum2);
+      }
+
+      var wrap2 = el("div");
+      wrap2.appendChild(box);
+
+      var cta = el("div","cta-box");
+      var nadpis, popis;
+      if (s.faze === "hledam") {
+        nadpis = "Najdu vám byt, který tahle čísla splní";
+        popis = "Třicet let v Plzeňském kraji a přes pět tisíc obchodů. Vím, které byty se po rekonstrukci prodají a které zůstanou viset. Řekněte mi rozpočet a lokalitu — ozvu se do hodiny, mezi osmou a osmou.";
+      } else if (s.faze === "vybiram") {
+        nadpis = "Prověřím ten konkrétní byt, než ho koupíte";
+        popis = "Pošlete adresu bytu, který zvažujete. Řeknu vám, jestli cena sedí na stav, co v něm bude překvapení, a za kolik se dá po rekonstrukci prodat nebo pronajmout — s doloženým srovnáním obchodů v okolí.";
+      } else {
+        nadpis = "Můžu tu rekonstrukci vzít za vás";
+        popis = "Koordinace řemesel, hlídání termínů a kontrolní dny — a pak nájemník ke dni dokončení nebo prodej. Vy se o nic nestaráte a nemusíte obvolávat patnáct profesí.";
+      }
+      cta.innerHTML = "<h4>" + nadpis + "</h4><p>" + popis + "</p>" +
+        "<a class='btn' href='#planovac-kontakt'>Ozvat se Davidovi</a>";
+      wrap2.appendChild(cta);
+      wrap2.appendChild(el("div","todo","Ceny jsou dopočítané ze sazeb ceníku a z rozpočtu, který plánovač odhadl. Konkrétní nabídka se potvrzuje po prohlídce bytu."));
+      out.appendChild(sect("Co z toho můžu převzít", wrap2, ""));
+    }
+
     // spolehlivost výstupu
     var rel = el("div","alerts");
     rel.appendChild(el("div","alert tip","<b>Co v tomto výstupu stojí na normě a technickém listu:</b> pořadí prací a technologické závislosti, doby technologických přestávek u omítek, hydroizolace a sádrokartonu, požadavky na přídržnost podkladu, nosnosti příček a kotvení, lhůty a povinnosti u azbestu. Tahle část je doložitelná zdrojem a dá se obhájit."));
@@ -1145,6 +1326,15 @@
     out.appendChild(sect("Nakolik se dá výstupu věřit", rel, ""));
 
     // gate / detailní rozpis
+    if(unlocked){
+      var kont = el("div","cta-box");
+      kont.id = "planovac-kontakt";
+      kont.innerHTML = "<h4>Chcete to probrat na konkrétním bytě?</h4>" +
+        "<p>Napište mi adresu a co s bytem plánujete. Odpovím e-mailem do hodiny, mezi osmou a osmou — a volám jen tomu, kdo si o to řekne.</p>" +
+        "<a class='btn' href='mailto:david.choc@ptf.cz?subject=" + encodeURIComponent("Plánovač rekonstrukce — konkrétní byt") + "'>Napsat Davidovi</a> " +
+        "<a class='btn ghost' href='tel:+420774052232' style='margin-left:8px'>774 052 232</a>";
+      out.appendChild(sect("Další krok", kont, ""));
+    }
     if(unlocked){
       var tw2=el("div","tablewrap"), t2=el("table");
       t2.innerHTML="<thead><tr><th>Od</th><th>Do</th><th>Práce</th><th>Profese</th><th>Rezerva</th></tr></thead>";
@@ -1176,6 +1366,7 @@
 
   function buildGate() {
     var g = el("div","gate");
+    g.id = "planovac-kontakt";
     g.innerHTML =
       "<h4>Chceš celý plán a hlídání termínů?</h4>" +
       "<p class='g-lead'>Harmonogram nahoře je tvůj a zůstane zdarma. Za e-mail ti pošleme zbytek, který se do stránky nevejde:</p>" +
@@ -1237,12 +1428,18 @@
           predKlici: _o.filter(function(o){ return o.late; }).length
         };
       } catch(ex){}
-      var popis = "Plánovač rekonstrukce — byt " + st.area + " m², rok " + st.rok +
+      var FAZE_TEXT = { vlastnim: "byt už vlastní", vybiram: "vybírá konkrétní byt", hledam: "teprve hledá" };
+      var popis = "Plánovač rekonstrukce — FÁZE: " + (FAZE_TEXT[st.faze] || st.faze).toUpperCase() +
+        ". Byt " + st.area + " m², rok " + st.rok +
         ", záměr: " + st.ucel + ", rozpočet: " + (st.budget ? Math.round(st.budget/1000)+" tis." : "neuveden") +
         ". Potěr: " + st.poter + ", krytina: " + st.krytina + ", volná výška: " + st.vyska + " mm" +
         ", podlahové topení: " + st.topeniP + ", omítka: " + st.typomitky +
         ", azbest: " + st.azbest + ". Rozsah prací: " + prace.join(", ") + "." +
-        (vysl.konec ? " VÝSLEDEK: hotovo " + vysl.konec + " (" + vysl.dnu + " dnů, z toho " + vysl.cekani + " čekání)." : "");
+        (vysl.konec ? " VÝSLEDEK: hotovo " + vysl.konec + " (" + vysl.dnu + " dnů, z toho " + vysl.cekani + " čekání)." : "") +
+        (st.kupni ? " Kupní cena " + Math.round(st.kupni/1000) + " tis." : "") +
+        (st.vystup ? (st.ucel === "pronajem" || st.ucel === "kratkodoby"
+            ? " Nájem " + Math.round(st.vystup/1000) + " tis./měs."
+            : " Očekávaný prodej " + Math.round(st.vystup/1000) + " tis.") : "");
 
       msg.textContent = "Odesílám…"; msg.style.color = "var(--ink-faint)";
       fetch("/api/lead", {
@@ -1254,6 +1451,7 @@
           message: popis, gdpr: true,
           meta: { plocha: st.area, rok: st.rok, ucel: st.ucel, rozpocet: st.budget,
                   poter: st.poter, krytina: st.krytina, vyska: st.vyska,
+                  faze: st.faze, kupni_cena: st.kupni, vystup: st.vystup,
                   konec: vysl.konec || "", dnu: vysl.dnu || 0, cekani: vysl.cekani || 0,
                   objednavky: vysl.objednavky || "", pred_klici: vysl.predKlici || 0,
                   rozpis: vysl.rozpis || "" },
