@@ -455,9 +455,15 @@ export default async function handler(req, res) {
   if (konfig.kampan) metadata.kampan = konfig.kampan;
   if (odkazy.length) metadata.links = odkazy;
   if (odkazy.length) metadata.listing_url = odkazy[0];
+  // Pole, která nesou strukturovaný výstup nástroje, ne jen štítek.
+  // Rozpis harmonogramu má u kompletní rekonstrukce přes tisíc znaků —
+  // s obecným limitem 500 by dorazila třetina prací a potvrzovací e-mail
+  // by slíbený rozpis poslal oříznutý uprostřed.
+  const DELSI_META = { rozpis: 4000, objednavky: 2000 };
+
   if (body.meta && typeof body.meta === 'object') {
     for (const [k, v] of Object.entries(body.meta)) {
-      if (typeof v === 'string') metadata[k] = v.slice(0, 500);
+      if (typeof v === 'string') metadata[k] = v.slice(0, DELSI_META[k] || 500);
       else if (typeof v === 'number' || typeof v === 'boolean') metadata[k] = v;
     }
   }

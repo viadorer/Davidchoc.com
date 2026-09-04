@@ -34,85 +34,6 @@ function tlacitko(href, text, barva) {
 }
 
 // Formulář → potvrzovací e-mail. Co tu není, potvrzení nedostane.
-// ── PLÁNOVAČ REKONSTRUKCE ─────────────────────────────────────────────
-// Formulář slibuje čtyři věci: rozpis, hlídání termínů, checklist
-// kontrolních bodů a otázky pro řemeslníky. Rozpis a termíny jsou na
-// stránce — odkaz sem vede zpět s předvyplněným zadáním. Checklist
-// a otázky na stránce nejsou, takže je e-mail nese celé.
-const PLANOVAC = {
-  subject: (d) => {
-    const konec = d && d.konec ? String(d.konec) : '';
-    return konec ? `Váš plán rekonstrukce — hotovo ${konec}` : 'Váš plán rekonstrukce';
-  },
-  html: (d) => {
-    const plocha = Number(d && d.plocha) || 0;
-    const rok = Number(d && d.rok) || 0;
-    const konec = d && d.konec ? String(d.konec) : '';
-    const dnu = Number(d && d.dnu) || 0;
-    const cekani = Number(d && d.cekani) || 0;
-    const objednavky = String((d && d.objednavky) || '').split('|').map(s => s.trim()).filter(Boolean);
-    const predKlici = Number(d && d.pred_klici) || 0;
-
-    let uvod;
-    if (konec && dnu) {
-      const podil = cekani && dnu ? Math.round(cekani / dnu * 100) : 0;
-      uvod = `Podle zadání vychází dokončení na <strong style="color:#1a1a1a;">${konec}</strong>, tedy ${dnu} kalendářních dnů.` +
-        (podil >= 25 ? ` Z toho je ${cekani} dnů čisté čekání na technologické přestávky — schnutí potěru a zrání omítky. Tuhle část nezkrátí žádný počet řemeslníků, jen jiná technologie.` : '');
-    } else {
-      uvod = 'Posíláme vám podklady k plánu rekonstrukce, který jste si spočítal.';
-    }
-
-    const objBlok = objednavky.length
-      ? `<p style="${P}"><strong style="color:#1a1a1a;">Co objednat nejdřív:</strong></p>
-         <ul style="margin:0 0 15px;padding-left:20px;">
-         ${objednavky.map(o => `<li style="font-size:15px;line-height:1.7;color:#444;margin-bottom:6px;">${o}</li>`).join('')}
-         </ul>` +
-        (predKlici > 0
-          ? `<p style="${P}background:#FFF8E1;border-left:3px solid #FFBF00;padding:12px 15px;"><strong style="color:#1a1a1a;">Pozor:</strong> ${predKlici === 1 ? 'jednu položku' : `${predKlici} položky`} je potřeba objednat ještě <strong>před převzetím bytu</strong>. Dodací lhůta se nedá dohnat prací — když se objedná až po klíčích, termín se o odpovídající dobu posune.</p>`
-          : '')
-      : '';
-
-    return obal('Váš plán rekonstrukce', `
-<p style="${P}">Dobrý den,</p>
-<p style="${P}">${uvod}</p>
-${plocha ? `<p style="${P}">Zadání: byt ${plocha} m²${rok ? `, dům z roku ${rok}` : ''}.</p>` : ''}
-${objBlok}
-
-<p style="${P}margin-top:26px;"><strong style="color:#1a1a1a;font-size:17px;">Osm kontrolních bodů, které blokují další práci</strong></p>
-<p style="${P}">Tohle jsou místa, kde se něco přebírá. Když se přeskočí, platí se to bouráním hotového — a zjistí se to obvykle až u kupujícího.</p>
-<ol style="margin:0 0 15px;padding-left:20px;">
-  <li style="font-size:15px;line-height:1.7;color:#444;margin-bottom:8px;"><strong>Dilatační zkouška topení</strong> — dva cykly ohřevu a vychladnutí. Musí proběhnout dřív, než se zapraví drážky a zalije potěr.</li>
-  <li style="font-size:15px;line-height:1.7;color:#444;margin-bottom:8px;"><strong>Prohlídka elektro před zakrytím</strong> — jinak technik nemůže posoudit uložení a dimenze.</li>
-  <li style="font-size:15px;line-height:1.7;color:#444;margin-bottom:8px;"><strong>Tlakové zkoušky vody a kanalizace</strong> — před zazděním. Netěsnost objevená pod hotovou podlahou stojí celou podlahu.</li>
-  <li style="font-size:15px;line-height:1.7;color:#444;margin-bottom:8px;"><strong>Fotodokumentace tras</strong> — jediný doklad o tom, co je ve stěnách. Za rok se do nich vrtá držák televize.</li>
-  <li style="font-size:15px;line-height:1.7;color:#444;margin-bottom:8px;"><strong>Měření zbytkové vlhkosti potěru</strong> — protokol z měření CM metodou. Kalendář nestačí a elektronický vlhkoměr k prokázání taky ne.</li>
-  <li style="font-size:15px;line-height:1.7;color:#444;margin-bottom:8px;"><strong>Kontrola rovinnosti podkladu</strong> — 2 mm na dvoumetrové lati. Bývá potřeba stěrka, se kterou rozpočty nepočítají.</li>
-  <li style="font-size:15px;line-height:1.7;color:#444;margin-bottom:8px;"><strong>Fotodokumentace dilatace podlahy</strong> — obvodový pásek musí být celistvý. Jedna kapka betonu přes něj shodí akustiku a soused má vymahatelný nárok.</li>
-  <li style="font-size:15px;line-height:1.7;color:#444;margin-bottom:8px;"><strong>Výchozí revize elektroinstalace</strong> — dělá ji revizní technik, ne elektrikář, který to zapojil. Zprávu vyžaduje odhadce i banka kupujícího.</li>
-</ol>
-
-<p style="${P}margin-top:26px;"><strong style="color:#1a1a1a;font-size:17px;">Na co se ptát řemeslníka, než podepíšete</strong></p>
-<ol style="margin:0 0 15px;padding-left:20px;">
-  <li style="font-size:15px;line-height:1.7;color:#444;margin-bottom:8px;"><strong>Kdy nastoupíte a kdy skončíte?</strong> Konkrétní datum, ne „někdy v květnu". Bez toho se nedá plánovat nic navazujícího.</li>
-  <li style="font-size:15px;line-height:1.7;color:#444;margin-bottom:8px;"><strong>Kolik zakázek pojedete současně?</strong> Odpověď „jen tu vaši" bývá zdvořilá, ne pravdivá. Zajímá vás, kolik dní v týdnu tam reálně bude parta.</li>
-  <li style="font-size:15px;line-height:1.7;color:#444;margin-bottom:8px;"><strong>Co potřebujete mít hotové ode mě?</strong> Rozhodnutý obklad, poloha zásuvek, vybraná baterie. Nerozhodnutá věc zastaví práci spolehlivěji než počasí.</li>
-  <li style="font-size:15px;line-height:1.7;color:#444;margin-bottom:8px;"><strong>Kam až bude sahat obklad?</strong> Tohle musí vědět zedník <em>před</em> omítáním — v ploše obkladu se štuk nenanáší, protože se pod lepidlem utrhne.</li>
-  <li style="font-size:15px;line-height:1.7;color:#444;margin-bottom:8px;"><strong>Jaký potěr navrhujete a proč?</strong> Volba potěru je rozhodnutí o době držení bytu, ne o ceně směsi. Rozdíl mezi variantami bývá měsíc.</li>
-  <li style="font-size:15px;line-height:1.7;color:#444;margin-bottom:8px;"><strong>Kdo a čím změří vlhkost před pokládkou?</strong> Chcete slyšet „CM metodou a dám vám protokol". Cokoli jiného je odhad.</li>
-  <li style="font-size:15px;line-height:1.7;color:#444;margin-bottom:8px;"><strong>Co bude viset na příčkách?</strong> Kuchyň, televize, bojler. Zesílení se dá přidat jen dokud je příčka otevřená, potom už jen bouráním.</li>
-  <li style="font-size:15px;line-height:1.7;color:#444;margin-bottom:8px;"><strong>Je v bytě azbest a kdo ho ověřil?</strong> U domů do roku 1995 se to nedá poznat od pohledu. Od ledna 2026 má ohlašovací povinnost i majitel, ne jen firma.</li>
-</ol>
-
-<p style="${P}margin-top:26px;">Plán si můžete kdykoli přepočítat — třeba když dodavatel potvrdí jiný termín, než jste čekal. Potvrzené dodávky se dají zadat a uvidíte, jestli posunou konec.</p>
-${tlacitko('https://www.davidchoc.cz/planovac-rekonstrukce.html', 'Otevřít plánovač', '#FFBF00')}
-
-<p style="${P}margin-top:22px;">Kdyby cokoli nesedělo nebo jste chtěl probrat konkrétní byt, ozvěte se.</p>
-<p style="${P}margin-top:22px;">David Choc</p>
-<p style="${P}font-size:13px;color:#888;margin-top:26px;">Plán je orientační podklad k ověření. Doby prací jsou výchozí odhady, technologické přestávky vycházejí z technických listů výrobců a českých norem. Nenahrazuje projektovou dokumentaci ani stavební dozor — u zásahů do nosných konstrukcí, do společných částí domu a při podezření na azbest je potřeba odborné posouzení.</p>
-`);
-  },
-};
-
 export const POTVRZENI = {
   'posudek-inzeratu': {
     subject: 'Mám váš inzerát',
@@ -140,7 +61,6 @@ ${tlacitko('https://www.davidchoc.cz/vycvik/zvladnete-to-sami', 'Zvládnete to s
 `),
   },
 
-  'planovac-rekonstrukce': PLANOVAC,
   'bytvpanelaku': {
     subject: 'Mám vaši zprávu — ozvu se do hodiny',
     html: () => obal('Mám vaši zprávu', `
@@ -915,6 +835,37 @@ POTVRZENI['planovac-rekonstrukce'] = {
       .split('|').map(s => s.trim()).filter(Boolean);
     const predKlici = Number(d && d.pred_klici) || 0;
 
+    // Rozpis den po dni. Formulář ho slibuje jako první věc, takže patří
+    // do e-mailu celý, ne jen odkazem. Formát z formuláře:
+    // od|do|název|profese|rezerva (K = kritická)|čekání ; ...
+    const radky = String((d && d.rozpis) || '')
+      .split(';').map(r => r.split('|')).filter(r => r.length >= 5);
+
+    const bunka = 'padding:6px 8px;font-size:13px;line-height:1.5;border-bottom:1px solid #f0ebe0;color:#444;';
+    const hlavicka = 'text-align:left;padding:7px 8px;font-size:12px;color:#8a8378;border-bottom:2px solid #e6dbbc;font-weight:600;';
+
+    const rozpisHtml = radky.length
+      ? `<p style="margin:26px 0 10px;font-size:15px;font-weight:700;color:#1a1a1a;">Rozpis den po dni</p>
+<p style="margin:0 0 12px;font-size:13px;line-height:1.6;color:#8a8378;">Tučně jsou práce na kritické cestě — u těch se každý ztracený den propíše rovnou do termínu dokončení. U ostatních je vpravo rezerva ve dnech.</p>
+<table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin:0 0 8px;border-collapse:collapse;">
+<tr><th style="${hlavicka}">Od</th><th style="${hlavicka}">Do</th><th style="${hlavicka}">Práce</th><th style="${hlavicka}">Kdo</th><th style="${hlavicka}text-align:right;">Rezerva</th></tr>
+${radky.map(r => {
+  const od = r[0], doo = r[1], nazev = r[2], kdo = r[3], rez = r[4];
+  const cekDnu = Number(r[5]) || 0;
+  const krit = rez === 'K';
+  return `<tr>
+<td style="${bunka}white-space:nowrap;">${od}</td>
+<td style="${bunka}white-space:nowrap;">${doo}</td>
+<td style="${bunka}${krit ? 'font-weight:700;color:#1a1a1a;' : ''}">${nazev}${cekDnu ? `<br><span style="font-size:11px;color:#c0392b;">před tím ${cekDnu} dnů čekání</span>` : ''}</td>
+<td style="${bunka}color:#8a8378;">${kdo}</td>
+<td style="${bunka}text-align:right;white-space:nowrap;${krit ? 'color:#c0392b;font-weight:600;' : ''}">${krit ? 'kritická' : rez + ' d'}</td>
+</tr>`;
+}).join('')}
+</table>
+<p style="margin:0 0 22px;font-size:13px;line-height:1.6;color:#8a8378;">Platí pro zadání, se kterým jste plán počítal. Když se něco posune, přepočítejte si ho — odkaz je níž.</p>`
+      : '';
+
+
     const hlava = konec
       ? `<table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 20px;">
 <tr><td style="background:#1a1a1a;padding:14px 22px;border-radius:6px;">
@@ -925,7 +876,7 @@ ${dnu ? `<br><span style="font-size:13px;color:#c9c2b4;">${dnu} kalendářních 
       : '';
 
     const objHtml = objednavky.length
-      ? `<p style="margin:0 0 10px;font-size:15px;font-weight:700;color:#1a1a1a;">Nejbližší objednávky</p>
+      ? `<p style="margin:0 0 10px;font-size:15px;font-weight:700;color:#1a1a1a;">Co objednat a do kdy</p>
 <ul style="margin:0 0 6px;padding-left:20px;">
 ${objednavky.map(o => `<li style="${P}margin-bottom:6px;">${o}</li>`).join('')}
 </ul>
@@ -951,10 +902,11 @@ ${PLANOVAC_OTAZKY.map(o => `<li style="${P}margin-bottom:6px;">${o}</li>`).join(
 
     return obal(konec ? 'Váš plán rekonstrukce' : 'Plán rekonstrukce', `
 <p style="${P}">Dobrý den,</p>
-<p style="${P}">tady je plán, který jste si sestavil v plánovači — a k němu dvě věci, které se na stránku nevešly: kontrolní body a otázky pro řemeslníky.</p>
+<p style="${P}">tady je plán, který jste si sestavil — rozpis den po dni, termíny objednávek, a k tomu dvě věci, které se na stránku nevešly: kontrolní body a otázky pro řemeslníky.</p>
 ${hlava}
 ${objHtml}
 ${pozdeHtml}
+${rozpisHtml}
 ${kontrolyHtml}
 ${otazkyHtml}
 <p style="${P}">Plán si můžete kdykoli upravit a vytisknout — na stránce je k tomu tlačítko:</p>

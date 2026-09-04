@@ -1227,7 +1227,13 @@
           konec: fmt(_s.end),
           dnu: diffDays(st.start, _s.end) + 1,
           cekani: _cek,
-          objednavky: _o.slice(0,3).map(function(o){ return o.name + " do " + fmt(o.by); }).join(" | "),
+          objednavky: _o.map(function(o){ return o.name + " do " + fmt(o.by); }).join(" | "),
+          rozpis: _s.tasks.map(function(t){
+            return [fmtShort(t.start), fmtShort(t.end), t.name,
+                    (t.gate ? "kontrola" : t.prof),
+                    (t.critical ? "K" : String(t.slack)),
+                    (t.wait || 0)].join("|");
+          }).join(";"),
           predKlici: _o.filter(function(o){ return o.late; }).length
         };
       } catch(ex){}
@@ -1249,7 +1255,8 @@
           meta: { plocha: st.area, rok: st.rok, ucel: st.ucel, rozpocet: st.budget,
                   poter: st.poter, krytina: st.krytina, vyska: st.vyska,
                   konec: vysl.konec || "", dnu: vysl.dnu || 0, cekani: vysl.cekani || 0,
-                  objednavky: vysl.objednavky || "", pred_klici: vysl.predKlici || 0 },
+                  objednavky: vysl.objednavky || "", pred_klici: vysl.predKlici || 0,
+                  rozpis: vysl.rozpis || "" },
           referrer: document.referrer || "",
           utm: utm()
         })
