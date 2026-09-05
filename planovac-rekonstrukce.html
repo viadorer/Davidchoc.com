@@ -310,6 +310,67 @@
 
   footer { background: var(--dark); color: #9a9284; padding: 36px 0; font-family: "JetBrains Mono", monospace; font-size: 11.5px; line-height: 1.8; }
   footer a { color: #FFBF00; }
+  /* ── částečná rekonstrukce ─────────────────────────────────────── */
+  .rezim { display:grid; gap:8px; }
+  @media (min-width:600px){ .rezim { grid-template-columns:1fr 1fr; } }
+  .chk.radio { align-items:flex-start; }
+  .fs-lead { font-size:13px; color:var(--ink-faint); margin:-2px 0 10px; line-height:1.5;
+             font-family:"JetBrains Mono",monospace; }
+  .baliky { display:grid; gap:8px; }
+  @media (min-width:600px){ .baliky { grid-template-columns:1fr 1fr; } }
+  .sec-lead { color:var(--ink-soft); margin:0 0 14px; max-width:68ch; }
+
+  .pasma { display:grid; gap:1px; background:var(--line); border:1px solid var(--line); }
+  @media (min-width:820px){ .pasma { grid-template-columns:0.85fr 1.15fr 1fr; } }
+  .pas { background:var(--surface); padding:16px 18px; }
+  .pas.nutne { background:var(--surface-2); }
+  .pas > .st { font-family:"JetBrains Mono",monospace; font-size:10px; letter-spacing:.13em;
+    text-transform:uppercase; color:var(--ink-faint); display:block; margin-bottom:10px;
+    padding-bottom:8px; border-bottom:1px solid var(--line); }
+  .pas.nutne > .st { color:var(--red); }
+  .pas.mozna > .st { color:var(--amber); }
+  .pas ul { margin:0; padding:0; list-style:none; }
+  .pas li { font-size:14.5px; line-height:1.45; margin:0 0 11px; color:var(--ink-soft); }
+  .pas li:last-child { margin-bottom:0; }
+  .pas li b { color:var(--ink); font-weight:600; }
+  .pas li em { font-style:normal; color:var(--ink-faint); font-size:13px; display:block; margin-top:3px; }
+
+  .gate-odkaz { border:1px dashed var(--line-strong); background:var(--surface-2);
+    padding:16px 18px; font-size:15px; line-height:1.55; color:var(--ink-soft); }
+  .gate-odkaz b { color:var(--ink); }
+
+  .obyv { display:grid; gap:1px; background:var(--line); border:1px solid var(--line); margin:0 0 14px; }
+  @media (min-width:520px){ .obyv { grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); } }
+  .obyv-p { background:var(--surface); padding:16px 18px; }
+  .obyv-p .n { font-family:"Barlow Condensed",sans-serif; font-weight:700; font-size:40px;
+    line-height:1; color:var(--red); font-variant-numeric:tabular-nums; }
+  .obyv-p .l { font-family:"JetBrains Mono",monospace; font-size:11.5px; color:var(--ink-soft);
+    margin-top:6px; letter-spacing:.03em; }
+
+  .brana { border:1px solid var(--line-strong); background:var(--surface); margin:0 0 14px; }
+  .brana-hl { display:flex; flex-wrap:wrap; gap:6px 14px; align-items:baseline;
+    padding:13px 17px; border-bottom:1px solid var(--line-strong); background:var(--amber-soft); }
+  .brana-hl h4 { margin:0; flex:1 1 240px; font-family:"Barlow Condensed",sans-serif;
+    font-weight:600; font-size:20px; text-transform:uppercase; }
+  .brana-hl .tag { font-family:"JetBrains Mono",monospace; font-size:10px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--ink-faint); }
+  .brana-telo { padding:16px 17px; }
+  .crit { font-family:"JetBrains Mono",monospace; font-size:12.5px; line-height:1.6;
+    background:var(--surface-2); padding:11px 13px; border-left:2px solid var(--line-strong);
+    margin:0 0 14px; overflow-x:auto; color:var(--ink-soft); }
+  .crit b { color:var(--ink); }
+  .vetve { display:grid; gap:1px; background:var(--line); }
+  @media (min-width:620px){ .vetve { grid-template-columns:1fr 1fr; } }
+  .vetev { padding:14px 16px; background:var(--surface); }
+  .vetev.ok { background:var(--green-soft); }
+  .vetev.ne { background:var(--amber-soft); }
+  .vetev > .st { font-family:"JetBrains Mono",monospace; font-size:10px; letter-spacing:.13em;
+    text-transform:uppercase; margin-bottom:6px; display:block; }
+  .vetev.ok > .st { color:var(--green); }
+  .vetev.ne > .st { color:var(--red); }
+  .vetev p { font-size:14.5px; line-height:1.5; margin:0; color:var(--ink-soft); }
+  .vetev p b { color:var(--ink); }
+
   .todo { background: var(--amber-soft); border-left: 3px solid var(--amber); padding: 12px 16px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--ink-soft); margin-top: 18px; }
 </style>
 
@@ -318,7 +379,7 @@
   <div class="wrap">
     <p class="kicker">Plánovač rekonstrukce bytu · zdarma</p>
     <h1>Kdy bude byt hotový?</h1>
-    <p class="lead">Zaškrtněte, co se bude dělat. Za pár vteřin uvidíte termín dokončení, pořadí profesí a hlavně <b>co musíte objednat dnes, abyste se za dva měsíce nedívali na hotový byt bez kuchyně.</b></p>
+    <p class="lead">Celý byt, nebo jen koupelnu, podlahy či elektriku. Za pár vteřin uvidíte termín dokončení, pořadí profesí a hlavně <b>skutečnou hranici toho, co jste si vybrali — bývá širší, než se čeká.</b></p>
     <div class="cta-row">
       <a class="btn" href="#planovac">Spočítat harmonogram</a>
       <a class="btn ghost" href="#jak">Jak to funguje</a>
@@ -347,8 +408,8 @@
   <div class="wrap">
     <div class="sec-head">
       <p class="eyebrow">Krok 1 — zadání</p>
-      <h2>Vyberte rozsah prací</h2>
-      <p>Buď rychlou předvolbou, nebo si odklikejte jednotlivé práce. Harmonogram se přepočítá při každé změně.</p>
+      <h2>Co se bude dělat</h2>
+      <p>Nejdřív řekněte, jestli jde o celý byt, nebo jen o jeho část. Harmonogram se přepočítá při každé změně.</p>
     </div>
 
     <div class="app">
@@ -412,7 +473,49 @@
           </fieldset>
 
           <fieldset class="fieldset">
-            <legend>2 — Rozsah prací</legend>
+            <legend>2 — Co řešíte</legend>
+            <div class="rezim">
+              <label class="chk radio"><input type="radio" name="rezim" value="cely" id="r_cely" checked><span>Celý byt<span class="hint">kompletní rekonstrukce</span></span></label>
+              <label class="chk radio"><input type="radio" name="rezim" value="castecny" id="r_castecny"><span>Jednu nebo pár částí<span class="hint">koupelna, podlahy, elektrika…</span></span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="fieldset" id="fs_baliky" hidden>
+            <legend>Které části</legend>
+            <p class="fs-lead">Vyberte, co se má dělat. Nástroj vám pak ukáže, co k tomu nutně patří — hranice bývá širší, než se čeká.</p>
+            <div class="baliky" id="baliky"></div>
+          </fieldset>
+
+          <fieldset class="fieldset" id="fs_kontext" hidden>
+            <legend>Podmínky na místě</legend>
+            <p class="fs-lead">U částečné rekonstrukce tohle rozhoduje o termínu víc než samotné práce.</p>
+            <div class="row"><div>
+              <label class="lbl" for="bydli">Bydlí se v bytě během prací</label>
+              <select id="bydli">
+                <option value="ne" selected>ne, byt je prázdný</option>
+                <option value="ano">ano, bydlí se tam</option>
+              </select>
+            </div></div>
+            <div class="row"><div>
+              <label class="lbl" for="svj">Dům spravuje SVJ nebo družstvo</label>
+              <select id="svj">
+                <option value="ano" selected>ano</option>
+                <option value="ne">ne, rodinný dům</option>
+                <option value="nevim">nevím</option>
+              </select>
+            </div></div>
+            <div class="row" id="row_stoupacky" hidden><div>
+              <label class="lbl" for="stoupacky">Plánuje SVJ výměnu stoupaček</label>
+              <select id="stoupacky">
+                <option value="nevim" selected>nevím</option>
+                <option value="ne">ne, v nejbližších letech ne</option>
+                <option value="ano">ano, plánuje</option>
+              </select>
+            </div></div>
+          </fieldset>
+
+          <fieldset class="fieldset" id="fs_presety">
+            <legend>Rozsah prací</legend>
             <div class="presets">
               <button type="button" class="preset" data-preset="komplet">Kompletní</button>
               <button type="button" class="preset" data-preset="jadro">Bytové jádro</button>
@@ -683,9 +786,193 @@
       rada:"Jediný případ, kdy nemusíte řešit návratnost. Vyplatí se udělat pořádně vše, co je pod omítkou a pod podlahou — na to se pak dvacet let nesahá." }
   };
 
+  // ══════════════════════════════════════════════════════════════════
+  // ČÁSTEČNÁ REKONSTRUKCE
+  //
+  // Částečná rekonstrukce není podmnožina té celkové. Když se nebourá
+  // všechno, závislosti nezmizí — změní se jim typ: z konstrukční
+  // (předchůdce se staví) na ověřovací (předchůdce existuje a musí se
+  // změřit). Proto tu vedle příznaků prací žijí ještě dvě věci:
+  //
+  //   hranice — co balíček nutně a co pravděpodobně táhne s sebou
+  //   brany   — co se nestaví, ale ověřuje, a co se stane při nesplnění
+  // ══════════════════════════════════════════════════════════════════
+
+  var BALIKY = {
+    koupelna: {
+      name: "Koupelna a WC", mokry: true,
+      // Koupelna není jedna položka. Je to malá kompletní rekonstrukce na 4 m².
+      flags: { jadro:1, obkladyD:1, voda:1, elektro:1, vzt:1, omitky:1,
+               koupelna:1, sanita:1, malby:1, dvere:1 },
+      brany: ["obklad_podklad", "elektro_stav"],
+      nutne: [
+        ["Sedm dalších profesí", "Odpady, voda, elektro, vzduchotechnika, hydroizolace, obklad, sanita. Koupelna se zadává jako jedna položka, ale je to malá kompletní rekonstrukce na čtyřech metrech."],
+        ["Elektro na dnešní normu", "ČSN 33 2000-7-701 ed. 3 platí od 1. 6. 2025: proudový chránič do 30 mA na všech obvodech v místnosti — výjimka pro ohřívač vody padla. K tomu doplňující ochranné pospojování všech kovových částí."],
+        ["Hydroizolační stěrka a její zrání", "Nanáší se nejméně ve dvou vrstvách, rohy a prostupy s těsnicími pásy. Dlažba na ni smí až po vyzrání."]
+      ],
+      mozna: [
+        ["Výměna rozvodnice", "Když ve staré není místo na chránič."],
+        ["Nová podlaha v navazující místnosti", "Nová dlažba mění výšku prahu."],
+        ["Azbest v jádru", "Umakartové jádro v domě do roku 1995."]
+      ]
+    },
+
+    kuchyne: {
+      name: "Kuchyně", mokry: true,
+      flags: { voda:1, elektro:1, omitky:1, malby:1, kuchyne:1, deska:1, podlahyD:0 },
+      brany: ["elektro_stav"],
+      nutne: [
+        ["Zaměření až podle hotových stěn a podlahy", "Tvrdá závislost. Zaměřuje se skutečnost, ne výkres — a linka se pak vyrábí 8 až 16 týdnů."],
+        ["Přípojky vody, odpadu a elektra na nové pozice", "Trouba a varná deska chtějí samostatný okruh."],
+        ["Obklad za linkou"],
+        ["Odvětrání digestoře"]
+      ],
+      mozna: [
+        ["Úprava podlahy pod linkou", "Stará krytina často končí na hraně staré linky."],
+        ["Malby celé místnosti", "Po demontáži staré linky zůstane na stěnách otisk."]
+      ]
+    },
+
+    podlahy: {
+      name: "Podlahy", mokry: false,
+      flags: { podlahyD:1, dvere:1, malby:1 },
+      brany: ["podklad_podlaha", "azbest_podlaha"],
+      nutne: [
+        ["Výškové schéma celého bytu", "Kreslí se po místnostech, ne průměrem — a i pro místnosti mimo rozsah. Rozhraní se zbytkem bytu je přesně to místo, kde se to pokazí."],
+        ["Zkrácení dveřních křídel nebo úprava prahů", "Nová skladba má jinou výšku než ta stará. U dveří jinak vznikne zub."],
+        ["Přechodové lišty na střed dveřního křídla", "Musí se určit předem — závisí na tom, kam se dveře otevírají a jestli jsou polodrážkové."]
+      ],
+      mozna: [
+        ["Malby", "Spodek stěn se při demontáži lišt a staré krytiny skoro vždy poškodí."],
+        ["Nový potěr i s dobou zrání", "Když podklad neprojde branou. To je ta drahá větev."]
+      ]
+    },
+
+    elektro: {
+      name: "Elektroinstalace", mokry: false,
+      flags: { elektro:1, omitky:1, malby:1 },
+      brany: ["elektro_stav"],
+      nutne: [
+        ["Drážky, pak omítky, pak malby", "Tohle není volitelné. „Jen elektrika“ udělá staveniště z celého bytu — je to nejrozsáhlejší zásah, který se tváří jako jedna položka."],
+        ["Výchozí revize změněné části", "ČSN 33 2000-6 ed. 2. Bez revizní zprávy nemá pojišťovna důvod plnit."],
+        ["Odsunutí nábytku od všech stěn"]
+      ],
+      mozna: [
+        ["Rozšíření na celý byt", "Když jsou stávající rozvody hliníkové — viz brána níže."],
+        ["Zásah do podlahy", "Když rozvody vedou v podlaze, ne ve stěnách."]
+      ]
+    },
+
+    rozvody: {
+      name: "Rozvody vody a odpadů", mokry: true,
+      flags: { voda:1, omitky:1, malby:1, obkladyD:1 },
+      brany: [],
+      nutne: [
+        ["Otlučení obkladu v trase", "Potrubí se nevede po povrchu. Kde se kope, jde obklad dolů."],
+        ["Tlaková zkouška před zakrytím", "Kontrolní bod, který blokuje další práci. Kdo ho přeskočí, bourá hotové."],
+        ["Souhlas SVJ, pokud se jde do stoupaček", "Stoupačka je společná část domu, ne vaše."]
+      ],
+      mozna: [
+        ["Nové obklady v celé koupelně", "Starý obklad se v trase nedá nastavit tak, aby to nebylo vidět."]
+      ]
+    },
+
+    topeni: {
+      name: "Topení", mokry: true,
+      flags: { topeni:1, omitky:1, malby:1 },
+      brany: [],
+      nutne: [
+        ["Tlaková zkouška soustavy"],
+        ["Zapravení a malby v trase"],
+        ["Odstávka topení po dohodě s domem", "Mimo topnou sezónu, jinak se to týká i sousedů."]
+      ],
+      mozna: [
+        ["Souhlas SVJ", "Když se zasahuje do stoupaček nebo se mění otopná plocha."]
+      ]
+    },
+
+    okna: {
+      name: "Okna a vstupní dveře", mokry: false,
+      flags: { okna:1, omitky:1, malby:1 },
+      brany: [],
+      nutne: [
+        ["Rozhodnutí shromáždění SVJ", "Okna jsou společná část domu. Nestačí oznámení a shromáždění se schází zpravidla jednou ročně — tohle je nejdelší lhůta v celém balíčku."],
+        ["Zapravení ostění a parapetů"],
+        ["Malby v okolí oken"]
+      ],
+      mozna: [
+        ["Vnitřní parapety a žaluzie"],
+        ["Řešení vlhkosti", "Těsnější okna bez řízeného větrání zvýší vlhkost v bytě."]
+      ]
+    },
+
+    malby: {
+      name: "Malby a povrchy", mokry: false,
+      flags: { malby:1 },
+      brany: [],
+      nutne: [
+        ["Škrábání starých maleb a tapet", "Nová malba na starou klihovku nedrží."],
+        ["Vyklizení nebo zakrytí nábytku"]
+      ],
+      mozna: [
+        ["Zapravení prasklin a nerovností", "Vyjde najevo až po oškrábání."]
+      ]
+    }
+  };
+
+  // Průzkumové brány. Nahrazují krok, který se v částečné rekonstrukci
+  // nestaví, ale dědí — a proto se musí ověřit. Každá má obě větve
+  // spočítané dopředu, jinak by to byl jen varovný odstavec.
+  var BRANY = {
+    podklad_podlaha: {
+      name: "Podklad pod novou podlahu",
+      nahrazuje: "nový potěr a jeho zrání",
+      meri: "Vlhkost gravimetricky dle ČSN EN ISO 12570, nejméně 3 zkušební místa (1 na každých 100 m²). Soudržnost odtrhovou zkouškou. Rovinnost latí.",
+      kriterium: "Soudržnost kotveného potěru nejméně 0,5 MPa pro nepojížděné podlahy. Vlhkost podle krytiny a pojiva.",
+      zdroj: "ČSN 74 4505",
+      cena: [2000, 5000],
+      ok: "Pokračuje se penetrací a pokládkou. Měření stálo jeden den.",
+      ne: "Do rozsahu se vrací nový potěr i s dobou zrání. U cementového pod dřevo je to řádově deset týdnů — posune se celý termín.",
+      neDny: 45
+    },
+    obklad_podklad: {
+      name: "Stávající obklad jako podklad",
+      nahrazuje: "otlučení až na nosnou konstrukci a novou jádrovou omítku",
+      meri: "Přídržnost poklepem po celé ploše, rovinnost vodováhou, stav spár a rohů.",
+      kriterium: "Obklad drží po celé ploše, není prasklý ani dutý. Povrch se mechanicky zdrsní a napenetruje kontaktním můstkem, lepí se tenkovrstvým lepidlem pro problematické podklady.",
+      zdroj: "technické listy výrobců lepidel",
+      cena: [0, 1500],
+      ok: "Ušetří se bourání, odvoz suti i jádrová omítka — řádově týden. Ale stěna i podlaha vyroste o 10 až 15 mm, což musí projít výškovou kontrolou: dveře, práh, zásuvky, vývody vody.",
+      ne: "Otlučení až na nosnou konstrukci, odvoz suti, nová jádrová omítka a její zrání. Plná varianta, jako by se šlo od začátku.",
+      neDny: 10
+    },
+    elektro_stav: {
+      name: "Stávající elektroinstalace",
+      nahrazuje: "výměnu rozvodů v celém bytě",
+      meri: "Materiál vodičů (hliník nebo měď), stav rozvodnice, přítomnost proudového chrániče, počet a zatížení okruhů.",
+      kriterium: "Hliník a měď nesmí nikdy pod jeden šroub — jen přes Al/Cu spojky nebo svorky značené AI. Jinak vzniká elektrochemický článek a spoj se časem uvolní.",
+      zdroj: "ČSN 33 2000-6 ed. 2 — výchozí revize změněné části",
+      cena: [1500, 4000],
+      ok: "Doplní se, co chybí, a udělá se výchozí revize změněné části. Nová zásuvka je opravdu jen nová zásuvka.",
+      ne: "Napojování nové mědi na starý hliník je v praxi cesta k výměně celého okruhu. Rozsah se z „přidat zásuvku“ mění na výměnu rozvodů — a to znamená drážky, omítky a malby v celém bytě.",
+      neDny: 14
+    },
+    azbest_podlaha: {
+      name: "Azbest ve staré skladbě",
+      nahrazuje: "nic — tahle brána se nedá přeskočit",
+      meri: "Odběr vzorku z místa zásahu, laboratorní rozbor. Výsledek do 7 dní.",
+      kriterium: "Spouští se u domu do roku 1995 při jakémkoli zásahu do staré skladby — i pouhé strhnutí PVC. Riziko je v černém bitumenovém lepidle pod PVC a parketami, v azbestocementových deskách bytového jádra a ve starých kouřovodech. Vzhled materiálu nic nedokazuje.",
+      zdroj: "§ 41 zák. č. 258/2000 Sb. ve znění zák. č. 167/2023 Sb.",
+      cena: [1000, 2350],
+      ok: "Pokračuje se normálně. Rozbor stál pár tisíc a několik dní čekání.",
+      ne: "Ohlášení KHS 3 dny předem — od 1. 1. 2026 i pro fyzickou osobu jako stavebníka, i když práce dělá firma. Firma navíc potřebuje povolení KHS se lhůtou 30 dnů. Sanace jde vždy první, další práce až po kontrolním měření.",
+      neDny: 35
+    }
+  };
+
   function chk(id){ var e=document.getElementById(id); return e?e.checked:false; }
   function readState() {
-    return {
+    var st = {
       start: parseDate(document.getElementById("start").value || "2026-09-15"),
       area: Math.max(15, +document.getElementById("area").value || 60),
       ucel: document.getElementById("ucel").value,
@@ -721,6 +1008,29 @@
       dvere:chk("w_dvere"), kuchyne:chk("w_kuchyne"), deska:chk("w_deska"),
       sanita:chk("w_sanita"), skrine:chk("w_skrine")
     };
+    st.rezim = (document.querySelector('input[name="rezim"]:checked')||{}).value || "cely";
+    st.baliky = [];
+    if (st.rezim === "castecny") {
+      Object.keys(BALIKY).forEach(function(k){ if (chk("b_"+k)) st.baliky.push(k); });
+      // Příznaky prací se v částečném režimu neberou ze zaškrtávátek, ale
+      // z balíčků. Detailní seznam prací je v tomhle režimu skrytý — jeho
+      // hodnoty by jinak tiše prosakovaly do rozsahu.
+      ["jadro","pricky","podlahyD","obkladyD","nosna","novepricky","sdk","okna",
+       "voda","topeni","elektro","vzt","omitky","koupelna","malby","dvere",
+       "kuchyne","deska","sanita","skrine"].forEach(function(f){ st[f] = false; });
+      st.baliky.forEach(function(k){
+        var fl = BALIKY[k].flags;
+        Object.keys(fl).forEach(function(f){ if (fl[f]) st[f] = true; });
+      });
+      // Podlahy se řeší jen v balíčku Podlahy; jinak krytina nevstupuje.
+      if (st.baliky.indexOf("podlahy") === -1) { st.krytina = "none"; st.poter = "none"; }
+      st.bydli     = document.getElementById("bydli").value;
+      st.svj       = document.getElementById("svj").value;
+      st.stoupacky = document.getElementById("stoupacky").value;
+    } else {
+      st.bydli = "ne"; st.svj = "ano"; st.stoupacky = "ne";
+    }
+    return st;
   }
   function dryLag(s){ if(s.poter==="none") return 0; var r=DRY[s.poter]||DRY.anhydrit; return r[s.krytina]!==undefined?r[s.krytina]:r.none; }
   function hasPodlahy(s){ return s.krytina!=="none"; }
@@ -1031,6 +1341,78 @@
   }
 
   // "a, b, c" → "a, b a c" — ať výčty ve výzvách nezní jako seznam z tabulky
+  // ── HRANICE ROZSAHU ────────────────────────────────────────────────
+  // Co který krok znemožňuje a co je hlučné. Pro toho, kdo v bytě bydlí,
+  // je počet dní bez sprchy důležitější číslo než datum dokončení.
+  var ZNEMOZNUJE = {
+    bourani:["wc","sprcha"], otluceni:["sprcha"], odpady:["wc","sprcha"], voda:["wc","sprcha"],
+    hydro:["sprcha"], obklady:["sprcha"], sanita:["wc","sprcha"],
+    kuchyne:["kuchyn"], deska:["kuchyn"]
+  };
+  var HLUCNE = { bourani:1, otluceni:1, nosna:1, elektro:1, pricky:1, odvoz:1, skrabani:1, zarubne_oc:1 };
+  var OMEZENI_NAZEV = { wc:"bez WC", sprcha:"bez sprchy", kuchyn:"bez kuchyně" };
+
+  // Kroky se překrývají, takže se počítají unikátní dny, ne součet trvání.
+  function obyvatelnost(sch) {
+    var dny = { wc:{}, sprcha:{}, kuchyn:{} };
+    sch.tasks.forEach(function(t){
+      var co = ZNEMOZNUJE[t.id];
+      if (!co || t.gate) return;
+      var d = new Date(t.start.getTime());
+      while (d <= t.end) {
+        var k = d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate();
+        co.forEach(function(x){ dny[x][k] = 1; });
+        d.setDate(d.getDate()+1);
+      }
+    });
+    var out = [];
+    ["wc","sprcha","kuchyn"].forEach(function(x){
+      var n = Object.keys(dny[x]).length;
+      if (n) out.push({ co: OMEZENI_NAZEV[x], dnu: n });
+    });
+    return out;
+  }
+
+  // Uživatel zadal jednu položku. Tohle mu ukáže její skutečnou hranici:
+  // co si vybral, co k tomu nutně patří a co se pravděpodobně objeví.
+  // Každá položka s důvodem — bez důvodu to vypadá jako nafukování zakázky.
+  function hraniceRozsahu(s) {
+    if (s.rezim !== "castecny" || !s.baliky.length) return null;
+    var vRozsahu = [], nutne = [], mozna = [], videt = {};
+    function pridej(cil, dvojice) {
+      var klic = dvojice[0];
+      if (videt[klic]) return;
+      videt[klic] = true;
+      cil.push({ co: dvojice[0], proc: dvojice[1] || "" });
+    }
+    s.baliky.forEach(function(k){
+      var b = BALIKY[k];
+      vRozsahu.push({ co: b.name, proc: "" });
+      (b.nutne || []).forEach(function(x){ pridej(nutne, x); });
+      (b.mozna || []).forEach(function(x){ pridej(mozna, x); });
+    });
+    return { vRozsahu: vRozsahu, nutne: nutne, mozna: mozna };
+  }
+
+  // Které brány se pro zadaný rozsah otevřou. Azbestová se přidává i tam,
+  // kde ji balíček sám nevyžaduje — rozhoduje stáří domu a zásah do skladby.
+  function branyProRozsah(s) {
+    if (s.rezim !== "castecny" || !s.baliky.length) return [];
+    var ids = [], videt = {};
+    s.baliky.forEach(function(k){
+      (BALIKY[k].brany || []).forEach(function(g){
+        if (!videt[g]) { videt[g] = true; ids.push(g); }
+      });
+    });
+    var stary = s.rok < 1995;
+    var bourase = s.jadro || s.obkladyD || s.podlahyD;
+    if (stary && bourase && s.azbest !== "vylouceno" && !videt.azbest_podlaha) {
+      ids.push("azbest_podlaha");
+    }
+    if (s.azbest === "vylouceno") ids = ids.filter(function(g){ return g !== "azbest_podlaha"; });
+    return ids.map(function(g){ return { id: g, d: BRANY[g] }; });
+  }
+
   function vyjmenuj(pole) {
     if (pole.length < 2) return pole[0] || "";
     return pole.slice(0, -1).join(", ") + " a " + pole[pole.length - 1];
@@ -1206,6 +1588,146 @@
     }
     bud.appendChild(el("div","todo","Odhad vychází z publikovaného tržního rozpětí 12–25 tis. Kč/m² za kompletní rekonstrukci a z podílu vybraných prací. Není to rozpočet — ten vzniká až z položkové nabídky."));
     out.appendChild(sect("Záměr a rozpočet", bud, ""));
+
+    var gateNahore = false;
+    var brany = branyProRozsah(s);
+
+    // ── HRANICE ROZSAHU ────────────────────────────────────────────
+    // Nejdůležitější výstup částečného režimu, a stojí hned nahoře:
+    // kdo si vybral jednu položku, musí vidět její skutečnou hranici dřív,
+    // než se začne probírat harmonogramem.
+    var hr = hraniceRozsahu(s);
+    if (hr) {
+      var hw = el("div");
+      hw.appendChild(el("p","sec-lead",
+        "Vybral jste " + hr.vRozsahu.length + " " +
+        plural(hr.vRozsahu.length,"část","části","částí") +
+        ". Tohle je jejich skutečná hranice — u každé položky je důvod, proč tam patří."));
+
+      var pasma = el("div","pasma");
+      function pasmo(trida, nadpis, polozky){
+        var d = el("div","pas " + trida);
+        d.appendChild(el("span","st",nadpis));
+        var ul = document.createElement("ul");
+        polozky.forEach(function(x){
+          var li = document.createElement("li");
+          li.innerHTML = "<b>" + x.co + "</b>" + (x.proc ? "<em>" + x.proc + "</em>" : "");
+          ul.appendChild(li);
+        });
+        d.appendChild(ul);
+        pasma.appendChild(d);
+      }
+      pasmo("", "V rozsahu", hr.vRozsahu);
+      pasmo("nutne", "Nutně přijde s tím", hr.nutne);
+      if (hr.mozna.length) pasmo("mozna", "Pravděpodobně se objeví", hr.mozna);
+      hw.appendChild(pasma);
+
+      out.appendChild(sect("Skutečná hranice rozsahu", hw,
+        (hr.nutne.length + hr.mozna.length) + " navíc"));
+    }
+
+    // ── OBYVATELNOST A HLUK ────────────────────────────────────────
+    if (s.rezim === "castecny" && (s.bydli === "ano" || s.svj !== "ne")) {
+      var ow = el("div");
+      if (s.bydli === "ano") {
+        var om = obyvatelnost(sch);
+        if (om.length) {
+          var pas = el("div","obyv");
+          om.forEach(function(x){
+            var d = el("div","obyv-p");
+            d.innerHTML = "<div class='n'>" + x.dnu + "</div><div class='l'>" +
+              plural(x.dnu,"den","dny","dní") + " " + x.co + "</div>";
+            pas.appendChild(d);
+          });
+          ow.appendChild(pas);
+          ow.appendChild(el("div","alert warn",
+            "<b>Bydlí se tam, takže tohle jsou závazky, ne odhady.</b> Domluvte je s partou předem a písemně. " +
+            "Bez toho se z „na dva dny vypneme vodu“ stane týden a nikdo za to nemůže."));
+        }
+      }
+      if (s.svj !== "ne") {
+        var hlucnych = sch.tasks.filter(function(t){ return HLUCNE[t.id] && !t.gate; }).length;
+        if (hlucnych) {
+          ow.appendChild(el("div","alert",
+            "<b>" + hlucnych + " " + plural(hlucnych,"hlučná práce","hlučné práce","hlučných prací") +
+            " podléhá domovnímu řádu.</b> Ten typicky povoluje hlučné práce po–pá 8–17 a v sobotu 10–16, " +
+            "v neděli a o svátcích vůbec. Noční klid 22–6 plyne ze zákona č. 258/2000 Sb. " +
+            "Bourání, drážkování a vrtání proto neběží na plný pracovní týden — počítejte s tím při " +
+            "domlouvání termínů s partou."));
+        }
+      }
+      if (ow.childNodes.length) out.appendChild(sect("Život v bytě během prací", ow, ""));
+    }
+
+    // ── E-MAIL NA VRCHOLU ──────────────────────────────────────────
+    // Nejsilnější okamžik částečného režimu je ten, kdy člověk uvidí, že
+    // „jen podlahy“ znamená šest dalších věcí a několik měření. Formulář
+    // proto stojí hned tady — karty bran pod ním pak slouží jako důkaz,
+    // co přesně se v protokolu pošle.
+    if (!unlocked && s.rezim === "castecny" && brany.length) {
+      out.appendChild(sect("Co si nechat ověřit", buildGate(), ""));
+      gateNahore = true;
+    }
+
+    // ── PRŮZKUMOVÉ BRÁNY ───────────────────────────────────────────
+    // Tam, kde se v kompletní rekonstrukci něco staví, se v částečné
+    // něco měří. Obě větve musí mít termín a cenu, jinak je to jen
+    // varovný odstavec a nástroj nedělá nic navíc oproti článku.
+    if (brany.length) {
+      var bw = el("div");
+      bw.appendChild(el("p","sec-lead",
+        "Tyhle věci se nestaví, ale dědí — a proto se musí ověřit. " +
+        "U každé je uvedeno, co se měří, podle čeho se to posuzuje a jak dopadne obě větve."));
+      var celkNe = 0;
+      brany.forEach(function(g){
+        var d = g.d;
+        celkNe += d.neDny || 0;
+        var b = el("div","brana");
+        b.innerHTML =
+          "<div class='brana-hl'><h4>" + d.name + "</h4>" +
+          "<span class='tag'>místo: " + d.nahrazuje + "</span></div>" +
+          "<div class='brana-telo'>" +
+            "<p class='crit'><b>Měří se:</b> " + d.meri + "<br>" +
+            "<b>Kritérium:</b> " + d.kriterium + "<br>" +
+            "<b>Zdroj:</b> " + d.zdroj + " · <b>Cena:</b> " +
+            (d.cena[0] === d.cena[1] ? kcKratce(d.cena[0]) : kcKratce(d.cena[0]) + " – " + kcKratce(d.cena[1])) + " Kč</p>" +
+            "<div class='vetve'>" +
+              "<div class='vetev ok'><span class='st'>projde</span><p>" + d.ok + "</p></div>" +
+              "<div class='vetev ne'><span class='st'>neprojde</span><p>" + d.ne +
+                (d.neDny ? " <b>Termín se posune řádově o " + d.neDny + " dní.</b>" : "") + "</p></div>" +
+            "</div>" +
+          "</div>";
+        bw.appendChild(b);
+      });
+      bw.appendChild(el("div","todo",
+        "Harmonogram níž počítá s tím, že všechny brány projdou. Kdyby neprošla ani jedna, " +
+        "je konec zhruba o " + celkNe + " dní dál. Proto se brány řeší dřív než objednávky."));
+      out.appendChild(sect("Co se rozhodne až na místě", bw,
+        brany.length + " " + plural(brany.length,"brána","brány","bran")));
+    }
+
+    // ── STOUPAČKY ──────────────────────────────────────────────────
+    // Nejdražší přehlédnutá otázka v mokrých balíčcích.
+    if (s.rezim === "castecny" && s.stoupacky !== "ne" &&
+        s.baliky.some(function(k){ return BALIKY[k].mokry; }) && s.svj !== "ne") {
+      var sw = el("div","alerts");
+      var jisto = s.stoupacky === "ano";
+      sw.appendChild(el("div","alert " + (jisto ? "warn" : "warn"),
+        "<b>" + (jisto
+          ? "SVJ výměnu stoupaček plánuje — a to mění pořadí."
+          : "Nevíte, jestli SVJ plánuje výměnu stoupaček. Zjistěte to, než objednáte obklad.") + "</b> " +
+        "Stoupačky jsou společná část domu. Když je SVJ vymění po tom, co si zrekonstruujete koupelnu, " +
+        "mají dělníci právo vstupu a nové obklady jdou dolů."));
+      sw.appendChild(el("div","alert",
+        "Nejvyšší soud to potvrdil usnesením <b>26 Cdo 1750/2025</b> z 10. 9. 2025: SVJ smí hradit bourací " +
+        "a zednické práce v bytech nutné pro přístup ke společným částem a je povinno škodu nahradit, " +
+        "primárně uvedením do původního stavu. V řešeném případě šlo o vícepráce za 693 323,50 Kč. " +
+        "O peníze tedy nepřijdete — přijdete o čas, o svůj konkrétní obklad a o koupelnu na další tři týdny."));
+      sw.appendChild(el("div","alert tip",
+        "<b>Co s tím:</b> napište výboru SVJ jednu větu — jestli je v plánu oprav výměna stoupaček " +
+        "a v jakém horizontu. Odpověď buď rozsah nezmění, nebo ušetří celou rekonstrukci koupelny navíc."));
+      out.appendChild(sect(jisto ? "Stoupačky: udělejte to zároveň" : "Stoupačky: otázka za sedm set tisíc", sw, ""));
+    }
 
     // ── EKONOMIKA: vyplatí se to? ──────────────────────────────────
     var eko = ekonomika(s, est.min, est.max);
@@ -1560,7 +2082,11 @@
       t2.appendChild(b2); tw2.appendChild(t2);
       out.appendChild(sect("Rozpis den po dni", tw2, ""));
     } else {
-      out.appendChild(sect("Detailní rozpis", buildGate(), ""));
+      out.appendChild(sect("Detailní rozpis",
+        gateNahore
+          ? el("div","gate-odkaz","<b>Rozpis den po dni se odemkne po zadání e-mailu výše.</b> " +
+              "Formulář je v sekci „Co si nechat ověřit“ — pošleme vám protokol k branám i celý rozpis.")
+          : buildGate(), ""));
     }
   }
 
@@ -1578,15 +2104,36 @@
   function buildGate() {
     var g = el("div","gate");
     g.id = "planovac-kontakt";
-    g.innerHTML =
-      "<h4>Chcete celý plán a hlídání termínů?</h4>" +
-      "<p class='g-lead'>Harmonogram nahoře je váš a zůstane zdarma. Za e-mail vám pošleme zbytek, který se do stránky nevejde:</p>" +
-      "<ul>" +
-      "<li><b>Rozpis den po dni</b> — kdy má kdo nastoupit a kolik má která práce rezervy</li>" +
-      "<li><b>Termíny objednávek v e-mailu</b> — ať je máte po ruce, až budete obvolávat dodavatele</li>" +
-      "<li><b>Checklist kontrolních bodů</b> — co u které zkoušky převzít, aby se nebouralo hotové</li>" +
-      "<li><b>Seznam otázek pro řemeslníky</b> — na co se ptát, než podepíšete</li>" +
-      "</ul>";
+    var st = readState();
+    var brany = branyProRozsah(st);
+
+    // U částečné rekonstrukce je nejcennější věcí seznam bran — co si nechat
+    // změřit a na co se zeptat, DŘÍV než se objedná materiál. To je jiný slib
+    // než rozpis den po dni a pro tenhle typ zakázky mnohem konkrétnější.
+    if (st.rezim === "castecny" && brany.length) {
+      var jmena = brany.map(function(b){ return b.d.name.toLowerCase(); });
+      g.innerHTML =
+        "<h4>Pošleme vám seznam, co si ověřit, než začnete</h4>" +
+        "<p class='g-lead'>Hranice rozsahu nahoře je vaše a zůstane zdarma. Za e-mail vám přijde to, " +
+        "co se do stránky nevejde a co u částečné rekonstrukce rozhoduje o ceně:</p>" +
+        "<ul>" +
+        "<li><b>Protokol k " + brany.length + " " + plural(brany.length,"bráně","branám","branám") + "</b> — " +
+          vyjmenuj(jmena) + ". Co přesně změřit, podle jaké normy a co s výsledkem.</li>" +
+        "<li><b>Otázky na SVJ a na řemeslníky</b> — přesné znění, ať se neptáte obecně a nedostanete obecnou odpověď</li>" +
+        "<li><b>Rozpis den po dni</b> — kdy má kdo nastoupit a kolik má která práce rezervy</li>" +
+        "<li><b>Termíny objednávek</b> — ať je máte po ruce, až budete obvolávat dodavatele</li>" +
+        "</ul>";
+    } else {
+      g.innerHTML =
+        "<h4>Chcete celý plán a hlídání termínů?</h4>" +
+        "<p class='g-lead'>Harmonogram nahoře je váš a zůstane zdarma. Za e-mail vám pošleme zbytek, který se do stránky nevejde:</p>" +
+        "<ul>" +
+        "<li><b>Rozpis den po dni</b> — kdy má kdo nastoupit a kolik má která práce rezervy</li>" +
+        "<li><b>Termíny objednávek v e-mailu</b> — ať je máte po ruce, až budete obvolávat dodavatele</li>" +
+        "<li><b>Checklist kontrolních bodů</b> — co u které zkoušky převzít, aby se nebouralo hotové</li>" +
+        "<li><b>Seznam otázek pro řemeslníky</b> — na co se ptát, než podepíšete</li>" +
+        "</ul>";
+    }
     var form = el("form","gform");
     form.innerHTML =
       "<div class='two'><input type='text' id='ln' placeholder='Jméno' autocomplete='name'>" +
@@ -1640,7 +2187,17 @@
         };
       } catch(ex){}
       var FAZE_TEXT = { vlastnim: "byt už vlastní", vybiram: "vybírá konkrétní byt", hledam: "teprve hledá" };
-      var popis = "Plánovač rekonstrukce — FÁZE: " + (FAZE_TEXT[st.faze] || st.faze).toUpperCase() +
+      var branyL = branyProRozsah(st);
+      var castecna = st.rezim === "castecny";
+      var popis = "Plánovač rekonstrukce — " +
+        (castecna
+          ? "ČÁSTEČNÁ: " + st.baliky.map(function(k){ return BALIKY[k].name; }).join(" + ").toUpperCase() +
+            (branyL.length ? " | BRÁNY: " + branyL.map(function(b){ return b.d.name; }).join("; ") : "") +
+            (st.bydli === "ano" ? " | BYDLÍ SE TAM" : "") +
+            (st.stoupacky === "nevim" && st.svj !== "ne" ? " | STOUPAČKY NEVYJASNĚNÉ" : "") +
+            (st.stoupacky === "ano" ? " | SVJ PLÁNUJE STOUPAČKY" : "") + ". "
+          : "KOMPLETNÍ. ") +
+        "FÁZE: " + (FAZE_TEXT[st.faze] || st.faze).toUpperCase() +
         ". Byt " + st.area + " m², rok " + st.rok +
         ", záměr: " + st.ucel + ", rozpočet: " + (st.budget ? Math.round(st.budget/1000)+" tis." : "neuveden") +
         ". Potěr: " + st.poter + ", krytina: " + st.krytina + ", volná výška: " + st.vyska + " mm" +
@@ -1665,13 +2222,20 @@
                   faze: st.faze, kupni_cena: st.kupni, vystup: st.vystup,
                   konec: vysl.konec || "", dnu: vysl.dnu || 0, cekani: vysl.cekani || 0,
                   objednavky: vysl.objednavky || "", pred_klici: vysl.predKlici || 0,
-                  rozpis: vysl.rozpis || "" },
+                  rozpis: vysl.rozpis || "",
+                  rezim: st.rezim,
+                  baliky: castecna ? st.baliky.join(",") : "",
+                  brany: castecna ? branyL.map(function(b){ return b.id; }).join(",") : "",
+                  bydli: st.bydli, svj: st.svj, stoupacky: st.stoupacky },
           referrer: document.referrer || "",
           utm: utm()
         })
       }).then(function(r){
         if(!r.ok) throw new Error("API " + r.status);
-        potvrzeni("Děkujeme. Plán vám pošleme na " + em + ". Rozpis den po dni se právě odemkl níže.", "ok");
+        potvrzeni("Děkujeme. " + (castecna && branyL.length
+          ? "Seznam, co si ověřit, vám pošleme na " + em + "."
+          : "Plán vám pošleme na " + em + ".") +
+          " Rozpis den po dni se právě odemkl níže.", "ok");
         if(window.gtag) window.gtag("event","planovac_lead",{event_category:"lead",event_label:st.ucel});
       }).catch(function(){
         potvrzeni("Odeslání se nepodařilo — zkuste to prosím znovu. Rozpis níže je i tak odemčený.", "warn");
@@ -1714,6 +2278,45 @@
     });
     render();
   }
+  // Zaškrtávátka balíčků se generují z BALIKY, ať seznam nežije na dvou místech.
+  (function(){
+    var box = document.getElementById("baliky");
+    Object.keys(BALIKY).forEach(function(k){
+      var l = document.createElement("label");
+      l.className = "chk";
+      l.innerHTML = "<input type='checkbox' id='b_" + k + "'><span>" + BALIKY[k].name + "</span>";
+      box.appendChild(l);
+    });
+  })();
+
+  // Přepínání režimu. V částečném se skryjí předvolby i detailní seznam prací —
+  // rozsah řídí balíčky a zaškrtnuté práce by do něj jinak tiše prosakovaly.
+  function prepniRezim(){
+    var castecny = document.getElementById("r_castecny").checked;
+    document.getElementById("fs_baliky").hidden   = !castecny;
+    document.getElementById("fs_kontext").hidden  = !castecny;
+    document.getElementById("fs_presety").hidden  = castecny;
+    var det = document.querySelector("details.detaily");
+    if (det) { det.hidden = castecny; if (castecny) det.open = false; }
+    prepniStoupacky();
+  }
+  // Na stoupačky se ptáme jen tam, kde na ně může dojít.
+  function prepniStoupacky(){
+    var mokry = Object.keys(BALIKY).some(function(k){
+      var e = document.getElementById("b_" + k);
+      return e && e.checked && BALIKY[k].mokry;
+    });
+    var svj = document.getElementById("svj").value !== "ne";
+    document.getElementById("row_stoupacky").hidden = !(mokry && svj);
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('input[name="rezim"]'), function(r){
+    r.addEventListener("change", function(){ prepniRezim(); render(); });
+  });
+  document.getElementById("svj").addEventListener("change", prepniStoupacky);
+  Object.keys(BALIKY).forEach(function(k){
+    document.getElementById("b_" + k).addEventListener("change", prepniStoupacky);
+  });
+
   Array.prototype.forEach.call(document.querySelectorAll(".preset"), function(b){
     b.addEventListener("click", function(){ applyPreset(b.getAttribute("data-preset")); });
   });
@@ -1740,6 +2343,7 @@
   });
   document.getElementById("form").addEventListener("change", render);
   prepniVystup();
+  prepniRezim();
   render();
 })();
 </script>

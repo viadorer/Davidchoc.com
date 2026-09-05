@@ -823,6 +823,39 @@ const PLANOVAC_OTAZKY = [
   'Kdo po vás uklízí a kdo odveze suť — je to v ceně?',
 ];
 
+// Průzkumové brány pro částečnou rekonstrukci. Zrcadlí BRANY
+// v planovac-rekonstrukce.html — [název, měří se, kritérium, zdroj, když neprojde].
+const PLANOVAC_BRANY = {
+  podklad_podlaha: [
+    'Podklad pod novou podlahu',
+    'Vlhkost gravimetricky dle ČSN EN ISO 12570, nejméně 3 zkušební místa (1 na každých 100 m²). Soudržnost odtrhovou zkouškou. Rovinnost latí.',
+    'Soudržnost kotveného potěru nejméně 0,5 MPa pro nepojížděné podlahy. Vlhkost podle krytiny a pojiva.',
+    'ČSN 74 4505',
+    'Vrací se nový potěr i s dobou zrání — u cementového pod dřevo řádově deset týdnů.',
+  ],
+  obklad_podklad: [
+    'Stávající obklad jako podklad',
+    'Přídržnost poklepem po celé ploše, rovinnost vodováhou, stav spár a rohů.',
+    'Obklad drží po celé ploše, není prasklý ani dutý. Povrch se zdrsní a napenetruje kontaktním můstkem. Pozor: nová vrstva přidá 10–15 mm — zkontrolujte dveře, práh, zásuvky a vývody vody.',
+    'technické listy výrobců lepidel',
+    'Otlučení až na nosnou konstrukci, odvoz suti, nová jádrová omítka a její zrání.',
+  ],
+  elektro_stav: [
+    'Stávající elektroinstalace',
+    'Materiál vodičů (hliník nebo měď), stav rozvodnice, přítomnost proudového chrániče, počet a zatížení okruhů.',
+    'Hliník a měď nesmí nikdy pod jeden šroub — jen přes Al/Cu spojky nebo svorky značené AI. V koupelně navíc chránič do 30 mA na všech obvodech (ČSN 33 2000-7-701 ed. 3, platí od 1. 6. 2025).',
+    'ČSN 33 2000-6 ed. 2 — výchozí revize změněné části',
+    'Napojování mědi na starý hliník vede v praxi k výměně celého okruhu — a to znamená drážky, omítky a malby.',
+  ],
+  azbest_podlaha: [
+    'Azbest ve staré skladbě',
+    'Odběr vzorku z místa zásahu, laboratorní rozbor. Výsledek do 7 dní, cena 1 000–2 350 Kč.',
+    'Týká se domů do roku 1995 při jakémkoli zásahu do staré skladby — i pouhého strhnutí PVC. Riziko je v černém bitumenovém lepidle, v deskách bytového jádra a ve starých kouřovodech. Vzhled materiálu nic nedokazuje.',
+    '§ 41 zák. č. 258/2000 Sb. ve znění zák. č. 167/2023 Sb.',
+    'Ohlášení KHS 3 dny předem — od 1. 1. 2026 i pro fyzickou osobu, i když práce dělá firma. Firma potřebuje povolení KHS se lhůtou 30 dnů.',
+  ],
+};
+
 POTVRZENI['planovac-rekonstrukce'] = {
   subject: (d) => (d && d.konec)
     ? `Plán rekonstrukce — hotovo ${d.konec}`
@@ -895,6 +928,25 @@ ${objednavky.map(o => `<li style="${P}margin-bottom:6px;">${o}</li>`).join('')}
 ${PLANOVAC_KONTROLY.map(k => `<li style="${P}margin-bottom:8px;"><strong style="color:#1a1a1a;">${k[0]}.</strong> ${k[1]}</li>`).join('')}
 </ul>`;
 
+    // Částečná rekonstrukce: protokol k průzkumovým branám. Formulář ho
+    // slibuje jako první bod, takže bez něj je ten e-mail nesplněný slib.
+    const branyIds = String((d && d.brany) || '').split(',').map(x => x.trim()).filter(Boolean);
+    const branyHtml = branyIds.length ? `<p style="margin:0 0 4px;font-size:15px;font-weight:700;color:#1a1a1a;">Co si nechat změřit, než cokoli objednáte</p>
+<p style="${P}margin:0 0 12px;color:#666;">Tohle jsou místa, kde se u částečné rekonstrukce rozhoduje o ceně i termínu. Ověřuje se na místě — a výsledek může rozsah změnit.</p>
+${branyIds.map(id => {
+  const b = PLANOVAC_BRANY[id];
+  if (!b) return '';
+  return `<div style="border:1px solid #e6dbbc;margin:0 0 12px;">
+<div style="background:#faf5e6;padding:10px 12px;font-size:14px;font-weight:700;color:#1a1a1a;border-bottom:1px solid #e6dbbc;">${b[0]}</div>
+<div style="padding:10px 12px;font-size:13px;line-height:1.6;color:#444;">
+<strong style="color:#1a1a1a;">Měří se:</strong> ${b[1]}<br>
+<strong style="color:#1a1a1a;">Kritérium:</strong> ${b[2]}<br>
+<strong style="color:#1a1a1a;">Zdroj:</strong> ${b[3]}<br>
+<strong style="color:#1a1a1a;">Když neprojde:</strong> ${b[4]}
+</div></div>`;
+}).join('')}
+<p style="${P}margin:0 0 22px;color:#666;">Rozbor i odtrhovou zkoušku dělají specializované firmy. Když chcete, projdu to s vámi na místě — napište mi.</p>` : '';
+
     const otazkyHtml = `<p style="margin:0 0 10px;font-size:15px;font-weight:700;color:#1a1a1a;">Na co se ptát, než podepíšete</p>
 <ul style="margin:0 0 22px;padding-left:20px;">
 ${PLANOVAC_OTAZKY.map(o => `<li style="${P}margin-bottom:6px;">${o}</li>`).join('')}
@@ -906,6 +958,7 @@ ${PLANOVAC_OTAZKY.map(o => `<li style="${P}margin-bottom:6px;">${o}</li>`).join(
 ${hlava}
 ${objHtml}
 ${pozdeHtml}
+${branyHtml}
 ${rozpisHtml}
 ${kontrolyHtml}
 ${otazkyHtml}
