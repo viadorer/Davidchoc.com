@@ -18,6 +18,10 @@
     '/vycvik',
     // Pokrývá i /milionarem/* — porovnává se přes includes().
     '/milionar',
+    // Plánovač má vlastní trychtýř: nabídku služeb dopočítanou z bytu
+    // a formulář na konci výstupu. Karta s oceněním by kradla klik
+    // vlastní, konkrétnější výzvě.
+    '/planovac-rekonstrukce',
   ];
 
   const path = window.location.pathname.toLowerCase();

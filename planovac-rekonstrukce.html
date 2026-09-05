@@ -235,6 +235,9 @@
   .nab-row .co small { display:block; font-family:"JetBrains Mono",monospace; font-size:11px; color:var(--ink-faint); margin-top:2px; }
   .nab-row .kc { font-family:"Barlow Condensed",sans-serif; font-weight:700; font-size:19px; white-space:nowrap; font-variant-numeric:tabular-nums; }
   .nab-sum { display:grid; grid-template-columns:1fr auto; gap:16px; padding:14px 16px; background:var(--surface-2); border-top:2px solid var(--line-strong); align-items:baseline; }
+  .nab-chybi { padding:13px 16px; border-bottom:1px solid var(--line); background:var(--amber-soft);
+               font-size:14.5px; color:var(--ink-soft); line-height:1.55; }
+  .nab-chybi a { color:var(--ink); text-underline-offset:3px; }
   .nab-sum .co { font-family:"Barlow Condensed",sans-serif; text-transform:uppercase; letter-spacing:.05em; font-size:14px; color:var(--ink-soft); }
   .nab-sum .kc { font-family:"Barlow Condensed",sans-serif; font-weight:700; font-size:23px; white-space:nowrap; }
   .cta-box { background:var(--dark); color:#EDF0F4; padding:24px 26px; margin-top:18px; }
@@ -292,6 +295,12 @@
   .svc .when { font-family: "JetBrains Mono", monospace; font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: #FFBF00; margin-bottom: 8px; }
   .svc h4 { font-family: "Barlow Condensed", sans-serif; font-weight: 600; font-size: 20px; text-transform: uppercase; margin: 0 0 8px; color: #FFF; }
   .svc p { font-size: 15px; color: #C4BCA8; margin: 0; }
+  .svc-cta { display:flex; flex-wrap:wrap; align-items:center; gap:14px 18px;
+             margin-top:22px; padding:20px 22px; border:1px solid #FFBF00; }
+  .svc-cta p { margin:0; flex:1 1 320px; font-size:16px; color:#EDF0F4; }
+  .svc-cta p b { color:#FFBF00; }
+  .svc-cta .btn { flex:0 0 auto; }
+  .svc-cta .btn.ghost { color:#FFBF00; border-color:#FFBF00; }
 
   /* ---------- FAQ ---------- */
   .faq { display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--line); }
@@ -309,12 +318,12 @@
   <div class="wrap">
     <p class="kicker">Plánovač rekonstrukce bytu · zdarma</p>
     <h1>Kdy bude byt hotový?</h1>
-    <p class="lead">Zaškrtni, co se bude dělat. Za pár vteřin uvidíš termín dokončení, pořadí profesí a hlavně <b>co musíš objednat dnes, aby ses za dva měsíce nedíval na hotový byt bez kuchyně.</b></p>
+    <p class="lead">Zaškrtněte, co se bude dělat. Za pár vteřin uvidíte termín dokončení, pořadí profesí a hlavně <b>co musíte objednat dnes, abyste se za dva měsíce nedívali na hotový byt bez kuchyně.</b></p>
     <div class="cta-row">
       <a class="btn" href="#planovac">Spočítat harmonogram</a>
       <a class="btn ghost" href="#jak">Jak to funguje</a>
     </div>
-    <p class="pl-hero-note">Bez registrace. Výsledek uvidíš hned na obrazovce.</p>
+    <p class="pl-hero-note">Bez registrace. Výsledek uvidíte hned na obrazovce.</p>
 
     <div class="hook">
       <div class="hk">
@@ -338,8 +347,8 @@
   <div class="wrap">
     <div class="sec-head">
       <p class="eyebrow">Krok 1 — zadání</p>
-      <h2>Vyber rozsah prací</h2>
-      <p>Buď rychlou předvolbou, nebo si odklikej jednotlivé práce. Harmonogram se přepočítá při každé změně.</p>
+      <h2>Vyberte rozsah prací</h2>
+      <p>Buď rychlou předvolbou, nebo si odklikejte jednotlivé práce. Harmonogram se přepočítá při každé změně.</p>
     </div>
 
     <div class="app">
@@ -367,9 +376,9 @@
             </div></div>
             <div class="row">
               <div><label class="lbl" for="kupni">Kupní cena tis.</label><input type="number" id="kupni" min="0" step="100" placeholder="např. 4200"></div>
-              <div><label class="lbl" for="vystup">Prodej / nájem</label><input type="number" id="vystup" min="0" step="10" placeholder="např. 6200"></div>
+              <div><label class="lbl" for="vystup" id="vystup_lbl">Prodejní cena tis.</label><input type="number" id="vystup" min="0" step="10" placeholder="např. 6200"></div>
             </div>
-            <p style="font-size:12px;color:var(--ink-faint);margin:-4px 0 0;font-family:'JetBrains Mono',monospace;line-height:1.5">Vyplňte a spočítá se i marže nebo výnos — u prodeje očekávaná cena v tisících, u pronájmu měsíční nájem. Bez nich vyjde jen harmonogram.</p>
+            <p id="vystup_hint" style="font-size:12px;color:var(--ink-faint);margin:-4px 0 0;font-family:'JetBrains Mono',monospace;line-height:1.5">Vyplňte a spočítá se i marže nebo výnos. Bez nich vyjde jen harmonogram.</p>
             <div class="row">
               <div><label class="lbl" for="area">Plocha m²</label><input type="number" id="area" value="62" min="15" max="300"></div>
               <div><label class="lbl" for="budget">Rozpočet tis. Kč</label><input type="number" id="budget" value="900" min="0" step="50"></div>
@@ -535,9 +544,9 @@
 <section class="dark-sec" id="sluzby">
   <div class="wrap">
     <div class="sec-head">
-      <p class="eyebrow">Krok 3 — když v tom nechceš zůstat sám</p>
+      <p class="eyebrow">Krok 3 — když v tom nechcete zůstat sám</p>
       <h2>Co umíme převzít</h2>
-      <p>Harmonogram je zdarma a je tvůj. Tohle jsou věci, které z něj vyplývají a se kterými se dá pomoct.</p>
+      <p>Harmonogram je zdarma a je váš. Tohle jsou věci, které z něj vyplývají a se kterými se dá pomoct.</p>
     </div>
     <div class="svcs">
       <div class="svc">
@@ -553,7 +562,7 @@
       <div class="svc">
         <div class="when">v den nákupu</div>
         <h4>Obklady a dlažba</h4>
-        <p>Vlastní showroom s italskou keramikou. Harmonogram ti řekne, kdy nejpozději objednat, aby se nečekalo.</p>
+        <p>Vlastní showroom s italskou keramikou. Harmonogram vám řekne, kdy nejpozději objednat, aby se nečekalo.</p>
       </div>
       <div class="svc">
         <div class="when">8× během stavby</div>
@@ -563,13 +572,18 @@
       <div class="svc">
         <div class="when">průběžně</div>
         <h4>Koordinace řemesel</h4>
-        <p>Držíme termíny, voláme profesím, hlídáme návaznosti. Ty se nemusíš starat o to, kdo má přijít v úterý.</p>
+        <p>Držíme termíny, voláme profesím, hlídáme návaznosti. Vy se nemusíte starat o to, kdo má přijít v úterý.</p>
       </div>
       <div class="svc">
         <div class="when">4–6 týdnů před koncem</div>
         <h4>Nájemník ke dni dokončení</h4>
         <p>Datum dokončení známe dopředu, takže hledání nájemníka spustíme včas. Byt nestojí měsíc prázdný — a to je nejrychleji vydělaná částka z celého projektu.</p>
       </div>
+    </div>
+    <div class="svc-cta">
+      <p>Co z toho dává smysl u <b>vašeho</b> bytu a kolik to stojí, spočítá plánovač — nabídku dostanete na míru podle toho, co v bytě děláte.</p>
+      <a class="btn" href="#planovac">Spočítat pro můj byt</a>
+      <a class="btn ghost" href="tel:+420774052232">774 052 232</a>
     </div>
   </div>
 </section>
@@ -679,7 +693,10 @@
       rok: +document.getElementById("rok").value || 1975,
       faze: document.getElementById("faze").value,
       kupni: Math.max(0, +document.getElementById("kupni").value || 0) * 1000,
-      vystup: Math.max(0, +document.getElementById("vystup").value || 0) * 1000,
+      // Pole je u prodeje v tisících, u pronájmu v korunách za měsíc — viz prepniVystup()
+      vystup: Math.max(0, +document.getElementById("vystup").value || 0) *
+              (document.getElementById("ucel").value === "pronajem" ||
+               document.getElementById("ucel").value === "kratkodoby" ? 1 : 1000),
       azbest: document.getElementById("azbest").value,
       zarubne: document.getElementById("zarubne").value,
       typomitky: document.getElementById("typomitky").value,
@@ -938,7 +955,7 @@
     if(s.topeniP === "elektro"){
       if(s.vyska >= 20) return { ok:true, txt:"<b>Elektrická topná rohož se vejde.</b> Samotná rohož má podle typu 2,4 až 4 mm, ale reálná skladba nad podkladem vychází na 20 až 35 mm — výrobci předepisují zahlazení rohože jednou vrstvou tmelu, technologickou přestávku a teprve pak lepidlo s dlažbou. Počítejte s horní hranicí, pokud je podklad nerovný nebo jde o velkoformátovou dlažbu. V bytě na dálkovém teple je to standardní řešení pro koupelnu: nezasahuje do otopné soustavy domu, takže nepotřebuje souhlas SVJ. Výkon bývá 150 W/m², ve sprchovém koutě 200, a bez programovatelného regulátoru s podlahovým čidlem se provoz prodraží." };
       if(s.vyska >= 10) return { ok:true, txt:"<b>Na rohož pod dlažbu (18 mm) výška nestačí, ale topná fólie ano.</b> Ta má jen 0,4 mm a pokládá se pod plovoucí podlahu, celá skladba kolem 10 mm. Pozor na omezení výkonu na 80 W/m² — při vyšším se lamely plovoucí podlahy kroutí." };
-      return { ok:false, txt:"<b>Na elektrické podlahové topení nezbývá výška.</b> Pod dlažbu potřebuješ zhruba 18 mm, pod plovoucí podlahu s fólií aspoň 10 mm." };
+      return { ok:false, txt:"<b>Na elektrické podlahové topení nezbývá výška.</b> Pod dlažbu potřebujete zhruba 18 mm, pod plovoucí podlahu s fólií aspoň 10 mm." };
     }
     // teplovodní
     if(s.vyska >= 65) return { ok:true, txt:"<b>Výška na klasickou teplovodní podlahovku stačí.</b> Skladby se pohybují od zhruba 47 mm (systémová deska bez izolace a tekutý potěr) až přes 95 mm u desky s izolací; často citovaných 67 mm je jedna konkrétní varianta, ne normové minimum. Rozhodující je krytí trubky potěrem — u tekutého potěru běžně 40 mm, u nižších tříd pevnosti méně, ale se zkouškou únosnosti. Zbývá právní stránka, a ta bývá tvrdší než technická (viz níže)." };
@@ -1011,6 +1028,12 @@
       pridej("prodej", e.prodejni * 0.04, e.prodejni * 0.04);
     }
     return out;
+  }
+
+  // "a, b, c" → "a, b a c" — ať výčty ve výzvách nezní jako seznam z tabulky
+  function vyjmenuj(pole) {
+    if (pole.length < 2) return pole[0] || "";
+    return pole.slice(0, -1).join(", ") + " a " + pole[pole.length - 1];
   }
 
   function kcKratce(n) {
@@ -1141,7 +1164,7 @@
     var out = document.getElementById("out");
     out.innerHTML = "";
     var active = resolveDeps(applyMods(buildTasks(s), s));
-    if(!active.length){ out.appendChild(el("div","alert","Zaškrtni alespoň jednu práci.")); return; }
+    if(!active.length){ out.appendChild(el("div","alert","Zaškrtněte alespoň jednu práci.")); return; }
     var sch = schedule(active, s);
     var ord = orders(sch, s);
     var total = diffDays(s.start, sch.end) + 1;
@@ -1294,7 +1317,7 @@
       }
     }
     if(s.okna){
-      alerts.appendChild(el("div","alert warn","<b>Okna jsou společná část domu.</b> K výměně nestačí oznámení — potřebuješ rozhodnutí shromáždění SVJ, které se schází zpravidla jednou ročně."));
+      alerts.appendChild(el("div","alert warn","<b>Okna jsou společná část domu.</b> K výměně nestačí oznámení — potřebujete rozhodnutí shromáždění SVJ, které se schází zpravidla jednou ročně."));
     }
     if(alerts.children.length) out.appendChild(sect("Na co si dát pozor", alerts, ""));
 
@@ -1437,12 +1460,28 @@
     var lg=el("div","legend");
     lg.innerHTML="<span><i class='b1'></i>kritická cesta</span><span><i class='b2'></i>má rezervu</span><span><i class='b3'></i>technologická přestávka</span><span><i class='b4'></i>objednat do</span>";
     gw.appendChild(lg);
-    out.appendChild(sect("Harmonogram", gw, sch.tasks.length+" "+plural(sch.tasks.length,"úkol","úkoly","úkolů")));
-
     // ── NABÍDKA SLUŽEB Z CENÍKU ────────────────────────────────────
     var nab = nabidka(s, eko, est.min, est.max);
     if (nab.length) {
       var box = el("div","nabidka");
+
+      // Část žebříčku se dopočítává z cen. Když pole chybí, seznam vypadá kratší,
+      // než je — tak řekni, co doplnit a co se tím odemkne. Slibuj ale jen to,
+      // co pro danou fázi a záměr opravdu přibude.
+      var jeNajem = (s.ucel === "pronajem" || s.ucel === "kratkodoby");
+      var predKoupi = (s.faze === "hledam" || s.faze === "vybiram");
+      var chybi = [], odemkne = [];
+      if (s.kupni === 0 && predKoupi) { chybi.push("kupní cenu"); odemkne.push("vyhledání bytu", "hypotéka"); }
+      if (s.vystup === 0) {
+        if (jeNajem)                  { chybi.push("očekávaný nájem"); odemkne.push("umístění nájemníka", "správa"); }
+        else if (s.ucel === "prodej") { chybi.push("očekávanou prodejní cenu"); odemkne.push("prodej bytu"); }
+      }
+      if (chybi.length && odemkne.length) {
+        box.appendChild(el("div","nab-chybi",
+          "Doplňte " + vyjmenuj(chybi) + " v <a href='#planovac'>zadání</a> a " +
+          (odemkne.length > 1 ? "přibudou" : "přibude") + " sem " + vyjmenuj(odemkne) + "."));
+      }
+
       var jMin = 0, jMax = 0, rMin = 0;
       nab.forEach(function(n){
         var castka = Math.abs(n.max - n.min) < 1
@@ -1486,6 +1525,8 @@
       wrap2.appendChild(cta);
       wrap2.appendChild(el("div","todo","Ceny jsou dopočítané ze sazeb ceníku a z rozpočtu, který plánovač odhadl. Konkrétní nabídka se potvrzuje po prohlídce bytu."));
       out.appendChild(sect("Co z toho můžu převzít", wrap2, ""));
+
+    out.appendChild(sect("Harmonogram", gw, sch.tasks.length+" "+plural(sch.tasks.length,"úkol","úkoly","úkolů")));
     }
 
     // spolehlivost výstupu
@@ -1538,13 +1579,13 @@
     var g = el("div","gate");
     g.id = "planovac-kontakt";
     g.innerHTML =
-      "<h4>Chceš celý plán a hlídání termínů?</h4>" +
-      "<p class='g-lead'>Harmonogram nahoře je tvůj a zůstane zdarma. Za e-mail ti pošleme zbytek, který se do stránky nevejde:</p>" +
+      "<h4>Chcete celý plán a hlídání termínů?</h4>" +
+      "<p class='g-lead'>Harmonogram nahoře je váš a zůstane zdarma. Za e-mail vám pošleme zbytek, který se do stránky nevejde:</p>" +
       "<ul>" +
       "<li><b>Rozpis den po dni</b> — kdy má kdo nastoupit a kolik má která práce rezervy</li>" +
       "<li><b>Termíny objednávek v e-mailu</b> — ať je máte po ruce, až budete obvolávat dodavatele</li>" +
       "<li><b>Checklist kontrolních bodů</b> — co u které zkoušky převzít, aby se nebouralo hotové</li>" +
-      "<li><b>Seznam otázek pro řemeslníky</b> — na co se ptát, než podepíšeš</li>" +
+      "<li><b>Seznam otázek pro řemeslníky</b> — na co se ptát, než podepíšete</li>" +
       "</ul>";
     var form = el("form","gform");
     form.innerHTML =
@@ -1676,11 +1717,29 @@
   Array.prototype.forEach.call(document.querySelectorAll(".preset"), function(b){
     b.addEventListener("click", function(){ applyPreset(b.getAttribute("data-preset")); });
   });
+  // Prodejní cena se zadává v tisících, nájem v korunách za měsíc. Pole je jedno,
+  // takže se s obsahem musí měnit i popisek — jinak si každý přečte tu druhou jednotku.
+  function prepniVystup(){
+    var najem = document.getElementById("ucel").value === "pronajem" ||
+                document.getElementById("ucel").value === "kratkodoby";
+    var lbl = document.getElementById("vystup_lbl");
+    var inp = document.getElementById("vystup");
+    var hint = document.getElementById("vystup_hint");
+    lbl.textContent = najem ? "Měsíční nájem Kč" : "Prodejní cena tis.";
+    inp.placeholder  = najem ? "např. 18000" : "např. 6200";
+    inp.step         = najem ? 500 : 10;
+    hint.textContent = najem
+      ? "Vyplňte kupní cenu a nájem a spočítá se hrubý výnos. Nájem zadávejte v korunách za měsíc. Bez nich vyjde jen harmonogram."
+      : "Vyplňte kupní a prodejní cenu a spočítá se marže. Obě v tisících korun. Bez nich vyjde jen harmonogram.";
+  }
+  document.getElementById("ucel").addEventListener("change", prepniVystup);
+
   document.getElementById("form").addEventListener("input", function(){
     Array.prototype.forEach.call(document.querySelectorAll(".preset"), function(b){ b.setAttribute("aria-pressed","false"); });
     render();
   });
   document.getElementById("form").addEventListener("change", render);
+  prepniVystup();
   render();
 })();
 </script>
