@@ -59,6 +59,16 @@ const FORMULARE = {
                           popis: 'Kniha Výcvik — kapitola 3, seznam záběrů' },
   'vycvik-kapitola-smlouvy': { source: 'web_formular',
                           popis: 'Kniha Výcvik — kapitola 7, na co pozor u úschovy' },
+  // Tytéž tři nabídky, ale ze stránky nástroje. E-mail chodí stejný —
+  // klíč je vlastní, protože „přečetl kapitolu o ceně" a „spočítal si
+  // cenu v kalkulačce" jsou dva různě horké signály a v adminu se
+  // nesmějí slít do jednoho řádku.
+  'vycvik-nastroj-odhad':    { source: 'web_formular',
+                          popis: 'Kniha Výcvik — odhad ceny, tři zdroje k ceně' },
+  'vycvik-nastroj-fotky':    { source: 'web_formular',
+                          popis: 'Kniha Výcvik — seznam záběrů do e-mailu' },
+  'vycvik-nastroj-uschova':  { source: 'web_formular',
+                          popis: 'Kniha Výcvik — úschova, na co si dát pozor' },
   // Základní brána sekce: rozpis deseti fází s hodinami a náklady.
   // Je to nabídka pro člověka, který zatím nic nevyplnil — stojí na
   // začátku a ptá se, co ho čeká.

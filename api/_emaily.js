@@ -556,6 +556,14 @@ POTVRZENI['vycvik-kapitola-cena'] = VYCVIK_KAPITOLA_CENA;
 POTVRZENI['vycvik-kapitola-fotky'] = VYCVIK_KAPITOLA_FOTKY;
 POTVRZENI['vycvik-kapitola-smlouvy'] = VYCVIK_KAPITOLA_SMLOUVY;
 
+// Stejná brána stojí i na třech stránkách nástrojů — u kalkulačky ceny,
+// u seznamu záběrů a u úschovy. Slibuje totéž, takže posílá totéž;
+// oddělený klíč má jen proto, aby v adminu bylo poznat, jestli si o to
+// člověk řekl po čtení kapitoly, nebo až když sáhl na vlastní čísla.
+POTVRZENI['vycvik-nastroj-odhad'] = VYCVIK_KAPITOLA_CENA;
+POTVRZENI['vycvik-nastroj-fotky'] = VYCVIK_KAPITOLA_FOTKY;
+POTVRZENI['vycvik-nastroj-uschova'] = VYCVIK_KAPITOLA_SMLOUVY;
+
 
 // Posouzení inzerátu z knihy je stejná služba jako na samostatné stránce,
 // takže i stejný slib. Kdyby tenhle klíč zůstal bez šablony, člověk se

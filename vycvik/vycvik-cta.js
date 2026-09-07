@@ -32,7 +32,9 @@
         // byla druhá nabídka v řadě a čtenář by si vybíral mezi dvěma
         // výzvami místo mezi „chci" a „nechci".
         '/vycvik/kapitola-1-cena', '/vycvik/kapitola-3-fotografie',
-        '/vycvik/kapitola-7-smlouvy'
+        '/vycvik/kapitola-7-smlouvy',
+        // Nástroje s vlastní bránou na téma toho nástroje — totéž.
+        '/vycvik/odhad', '/vycvik/fotky', '/vycvik/uschova'
       ]
     }
   };
@@ -398,18 +400,23 @@
     return el;
   }
 
-  /* ── Brány v kapitolách ──
+  /* ── Brány na téma stránky ──
      Osmnáct stránek z dvaadvaceti nemělo kam nechat kontakt. Kdo dočetl
      kapitolu o ceně a došlo mu, že cenu nemá čím podložit, se musel vrátit
      na rozcestník a začít dotazník od začátku — a většina lidí se nevrátí.
 
      Zakládat kvůli tomu další stránky by byla chyba, kterou tahle sekce
-     jednou zavírala. Brána proto stojí přímo v kapitole, je na téma té
-     kapitoly a je záměrně malá: jedno pole, jedna věta, žádné jméno.
+     jednou zavírala. Brána proto stojí přímo na stránce, je na její téma
+     a je záměrně malá: jedno pole, jedna věta, žádné jméno.
+
+     Tři nástroje mají stejnou nabídku jako kapitola, ke které patří —
+     kdo si právě spočítal cenu, potřebuje slyšet totéž co ten, kdo dočetl
+     kapitolu o ceně, jen v jiné chvíli. E-mail je proto sdílený, klíč
+     formuláře ne: v adminu musí být vidět, jestli člověk četl, nebo počítal.
 
      Platí tu totéž co u velkých bran — slíbit se smí jen to, co e-mail
      doopravdy odešle (api/_emaily.js → VYCVIK_KAPITOLA_*). */
-  var KAPITOLY = {
+  var TEMATA = {
     '/vycvik/kapitola-1-cena': {
       leadForm: 'vycvik-kapitola-cena',
       label: 'K téhle kapitole',
@@ -439,6 +446,45 @@
            'Pořadí kroků, které se nesmí prohodit'],
       btn: 'Poslat mi, na co dát pozor',
       done: 'Za chvíli vám přijde pět míst, kde se u úschovy chybuje, i s pořadím kroků.'
+    },
+
+    /* Nástroje. Člověk tu právě něco spočítal nebo odškrtal — brána proto
+       nemluví o kapitole, ale o tom, co má v tu chvíli na obrazovce. */
+    '/vycvik/odhad': {
+      nastroj: true,
+      leadForm: 'vycvik-nastroj-odhad',
+      label: 'K tomuhle číslu',
+      h: 'Chcete si to číslo ověřit ještě odjinud?',
+      p: 'Tenhle odhad je první orientace, ne číslo do inzerátu. Pošlu vám tři nezávislé zdroje, ze kterých se cena dá podložit — u každého to, co v něm hledat a čemu v něm nevěřit.',
+      li: ['Tři zdroje a u každého jedna věta, na co si u něj dát pozor',
+           'Jak z nich složit tři částky, se kterými se dá jít do vyjednávání'],
+      btn: 'Poslat mi tři zdroje',
+      pozn: 'Kalkulačka i celá kniha zůstávají online a zdarma — tohle není vstupenka do obsahu.',
+      done: 'Za chvíli vám přijdou tři zdroje a co v každém z nich hledat.'
+    },
+    '/vycvik/fotky': {
+      nastroj: true,
+      leadForm: 'vycvik-nastroj-fotky',
+      label: 'K seznamu',
+      h: 'Chcete seznam mít i v e-mailu?',
+      p: 'Odškrtané záběry vám tady v prohlížeči zůstanou. Ale telefon u focení bývá plný jiných věcí — pošlu vám odkaz sem a k tomu tři věci, na kterých focení stojí a v seznamu nejsou.',
+      li: ['Odkaz na seznam, ať ho najdete i za týden',
+           'Tři věci, kvůli kterým fotka propadne, i když je ostrá'],
+      btn: 'Poslat mi seznam',
+      pozn: 'Seznam záběrů i celá kniha zůstávají online a zdarma — tohle není vstupenka do obsahu.',
+      done: 'Za chvíli vám přijde odkaz na seznam i tři věci, na kterých focení stojí.'
+    },
+    '/vycvik/uschova': {
+      nastroj: true,
+      leadForm: 'vycvik-nastroj-uschova',
+      label: 'K úschově',
+      h: 'Chcete to mít po ruce, až budete podepisovat?',
+      p: 'Tohle je jediné místo prodeje, kde se chyba nedá opravit slevou z ceny. Pošlu vám tři body, na kterých úschova stojí, a odkaz sem — ať to máte v e-mailu ve chvíli, kdy před vámi bude smlouva.',
+      li: ['Tři věci, které ve smlouvě o úschově musí být',
+           'Časová osa transakce — kdy se co v prodeji děje'],
+      btn: 'Poslat mi to k úschově',
+      pozn: 'Tenhle seznam i celá kniha zůstávají online a zdarma — tohle není vstupenka do obsahu.',
+      done: 'Za chvíli vám přijdou tři body k úschově i odkaz na časovou osu.'
     }
   };
 
@@ -744,7 +790,15 @@
      knihy mělo dohromady tři nabídky — zbytek končil navigační šipkou. */
   var BEZ_BRANY = [
     // Vlastní silnější nabídka přímo na stránce.
-    '/vycvik/kapitola-9-zaseklo-se'
+    '/vycvik/kapitola-9-zaseklo-se',
+    // Nástroje, které si bránu staví samy až podle výsledku. Jejich
+    // formulář v DOMu v tuhle chvíli ještě není (nebo je schovaný), takže
+    // by ho kontrola `.vy-gate` nenašla a základní brána by se postavila
+    // vedle něj — dvě nabídky pod sebou místo jedné.
+    '/vycvik/zvladnete-to-sami',
+    '/vycvik/krok-za-krokem',
+    '/vycvik/diagnostika',
+    '/vycvik/posudte-inzerat'
   ];
 
   function initZakladniBrana() {
@@ -758,10 +812,12 @@
     });
 
     var cesta = window.location.pathname.replace(/\.html$/, '').replace(/\/$/, '');
-    if (KAPITOLY[cesta]) return false;
+    if (TEMATA[cesta]) return false;
     if (BEZ_BRANY.indexOf(cesta) !== -1) return false;
 
-    var wrap = document.querySelector('.vycvik-chapter__wrap');
+    // Nástroje jsou v tomhle stejné jako kapitoly: člověk si něco spočítal
+    // nebo odškrtal a stránka mu dosud končila navigační šipkou.
+    var wrap = document.querySelector('.vycvik-chapter__wrap, .vycvik-tool-page__wrap');
     if (!wrap || wrap.querySelector('.vy-gate')) return false;
 
     var zdroj = cesta.replace('/vycvik/', '') || 'kniha';
@@ -773,12 +829,18 @@
     return true;
   }
 
-  function initChapterGate() {
+  function metaBrany(k, cesta) {
+    var m = { segment: k.nastroj ? 'uzivatel-nastroje' : 'ctenar-kapitoly' };
+    m[k.nastroj ? 'nastroj' : 'kapitola'] = cesta;
+    return m;
+  }
+
+  function initTematickaBrana() {
     var cesta = window.location.pathname.replace(/\.html$/, '').replace(/\/$/, '');
-    var k = KAPITOLY[cesta];
+    var k = TEMATA[cesta];
     if (!k) return;
 
-    var wrap = document.querySelector('.vycvik-chapter__wrap');
+    var wrap = document.querySelector('.vycvik-chapter__wrap, .vycvik-tool-page__wrap');
     if (!wrap || wrap.querySelector('.vy-gate')) return;
 
     var idBase = 'vy-kap-' + k.leadForm.replace(/[^a-z]/g, '');
@@ -792,7 +854,9 @@
         '<ul class="vy-gate__list">' +
           k.li.map(function (x) { return '<li>' + x + '</li>'; }).join('') +
         '</ul>' +
-        '<p class="vy-gate__note" style="margin:0;">Kapitola i celá kniha zůstávají online a zdarma — tohle není vstupenka do obsahu.</p>' +
+        '<p class="vy-gate__note" style="margin:0;">' +
+          (k.pozn || 'Kapitola i celá kniha zůstávají online a zdarma — tohle není vstupenka do obsahu.') +
+        '</p>' +
       '</div>' +
       '<form class="vy-gate__form" novalidate>' +
         '<p class="vy-gate__field">' +
@@ -814,12 +878,14 @@
       doneTarget: el,
       leadForm: k.leadForm,
       fields: {},
-      message: 'Zájem o materiál ke kapitole: ' + k.h + '\n',
+      message: 'Zájem o materiál ' + (k.nastroj ? 'k nástroji: ' : 'ke kapitole: ') + k.h + '\n',
       // Člověk, který si řekne o materiál k jedné kapitole, ještě neřekl
       // nic o tom, jak je na prodej připravený. Segment proto říká jen to,
-      // co doopravdy víme — u které kapitoly se zastavil.
-      meta: { segment: 'ctenar-kapitoly', kapitola: cesta },
-      gaEvent: 'vycvik_kapitola_email',
+      // co doopravdy víme — kde se zastavil. Čtenář a ten, kdo si něco
+      // spočítal, jsou přitom dva různé signály: prvního zaujal text,
+      // druhý už sáhl na vlastní čísla.
+      meta: metaBrany(k, cesta),
+      gaEvent: k.nastroj ? 'vycvik_nastroj_email' : 'vycvik_kapitola_email',
       gaLabel: k.leadForm,
       msgError: 'Něco se nepodařilo odeslat. Zkuste to prosím znovu.',
       done: DONE_ICON +
@@ -827,8 +893,8 @@
         '<p>' + k.done + ' Kdyby nedorazil do deseti minut, mrkněte do spamu — nebo mi napište na <a href="mailto:david.choc@ptf.cz">david.choc@ptf.cz</a>.</p>'
     });
 
-    // Brána patří za text kapitoly, ale před odkazy na blog a navigaci —
-    // tam čtenář dočetl a rozhoduje se, kam dál.
+    // Brána patří za obsah stránky, ale před odkazy na blog a navigaci —
+    // tam čtenář dočetl (nebo dopočítal) a rozhoduje se, kam dál.
     var pred = wrap.querySelector('.vy-related, .vycvik-verified, .vycvik-nav');
     if (pred) wrap.insertBefore(el, pred);
     else wrap.appendChild(el);
@@ -845,10 +911,10 @@
 
   HubCTA.ready(function () {
     // Brána se staví první: patička pomoci se pod ní přeskakuje, aby
-    // pod textem nestály dvě nabídky vedle sebe. Kapitoly s vlastní
+    // pod textem nestály dvě nabídky vedle sebe. Stránky s vlastní
     // bránou to mají natvrdo v help.skip, u ostatních se cesta přidá
     // až ve chvíli, kdy tam základní brána opravdu skončila.
-    initChapterGate();
+    initTematickaBrana();
     if (initZakladniBrana()) {
       var c = window.location.pathname.replace(/\.html$/, '').replace(/\/$/, '');
       window.HubConfig.help.skip.push(c);
