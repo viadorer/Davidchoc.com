@@ -197,14 +197,15 @@
     border: 1px solid var(--hub-line, #DCE5D0);
     margin: 44px 0;
 }
-@media (min-width: 620px) { .hub-bricks { grid-template-columns: repeat(5, 1fr); } }
+/* Pět sloupců až tam, kde se do dlaždice vejde i popisek. Dřív by z
+   každé cihly byl svislý sloupec písmen. */
+@media (min-width: 1000px) { .hub-bricks { grid-template-columns: repeat(5, 1fr); } }
 .hub-brick {
     background: var(--hub-surface-3, #fff);
     padding: 24px 22px;
     min-height: 138px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     text-decoration: none;
     transition: background 0.18s ease;
 }
@@ -225,12 +226,30 @@ a.hub-brick:hover {
     font-weight: 700;
     line-height: 1.35;
     color: var(--hub-ink, #0F1410);
+    margin-bottom: 8px;
+}
+/* Název sám je hádanka — dlaždice musí říct, co si čtenář odnese a kolik
+   času ho to stojí. Čas je čtení, ne práce s nástrojem; ta zabere večer. */
+.hub-brick__desc {
+    font-size: 0.83rem;
+    line-height: 1.45;
+    color: var(--hub-muted, #5A6B5C);
+}
+.hub-brick__time {
+    margin-top: auto;
+    padding-top: 14px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--hub-accent, #2F5D3A);
 }
 /* Nenapsaná cihla je světlejší, ale číslo zůstává čitelné — zeď z deseti
    šedých čísel by vypadala vypnutě, a přitom je to obsah, ne chyba. */
 .hub-brick--soon { background: var(--hub-surface-1, #F6F9F0); }
 .hub-brick--soon .hub-brick__num { color: var(--hub-muted, #5A6B5C); opacity: 0.75; }
 .hub-brick--soon .hub-brick__name { color: var(--hub-muted, #5A6B5C); }
+.hub-brick--soon .hub-brick__time { color: var(--hub-muted, #5A6B5C); }
 
 @media (max-width: 780px) {
     .hub-manifest { padding: 76px 0 58px !important; }
