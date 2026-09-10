@@ -5608,3 +5608,38 @@ body.is-light .pripad-faq__group-hint { color:#888; }
     .pripad-channels { flex-direction: column; }
     .pripad-channel { min-width: 0; }
 }
+
+/* ---------- Banner Plánovač rekonstrukce (varianta tmavého pruhu) ---------- */
+/* Stejná kostra jako banner Ocenit online, jen bez obrázku a v tmavé barvě —
+   dvě žluté karty pod sebou by na hlavní stránce splynuly v jednu. */
+.planovac-banner {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+}
+
+.planovac-banner__text {
+    max-width: 100%;
+}
+
+.planovac-banner__text h2 {
+    color: #FFBF00;
+}
+
+.planovac-banner__text h2:after {
+    background-color: #FFBF00;
+}
+
+.planovac-banner__text p {
+    color: #D8D2C4;
+    max-width: 70ch;
+}
+
+.planovac-banner__button {
+    background-color: #FFBF00;
+    color: #1a1a1a;
+}
+
+.planovac-banner__button:hover {
+    background-color: #E6AB00;
+    color: #1a1a1a;
+}

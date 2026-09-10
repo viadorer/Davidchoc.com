@@ -1023,7 +1023,15 @@
         Object.keys(fl).forEach(function(f){ if (fl[f]) st[f] = true; });
       });
       // Podlahy se řeší jen v balíčku Podlahy; jinak krytina nevstupuje.
-      if (st.baliky.indexOf("podlahy") === -1) { st.krytina = "none"; st.poter = "none"; }
+      if (st.baliky.indexOf("podlahy") === -1) { st.krytina = "none"; }
+      // Nový potěr do částečné rekonstrukce nepatří jako výchozí stav. Stránka
+      // na dvou místech tvrdí, že harmonogram počítá s tím, že všechny brány
+      // projdou — a brána „podklad pod novou podlahu“ říká, že se potěr vrací
+      // do rozsahu teprve tehdy, když podklad neprojde. Výběr potěru je navíc
+      // v tomhle režimu schovaný, takže hodnota ze skrytého selectu (výchozí
+      // anhydrit, 50 dní zrání) sem tiše prosakovala a přidávala k termínu
+      // dva měsíce práce, o které nástroj sám tvrdil, že nebude.
+      st.poter = "none";
       st.bydli     = document.getElementById("bydli").value;
       st.svj       = document.getElementById("svj").value;
       st.stoupacky = document.getElementById("stoupacky").value;
@@ -1109,8 +1117,15 @@
         var t = byId[dep.id]; if(!t) return;
         if(t.on){ out.push(dep); return; }
         if(seen[dep.id]) return; seen[dep.id]=1;
+        // Předchůdce se nedělá, takže se závislost přepíná na jeho vlastní
+        // předchůdce — ale jeho technologická přestávka s ním musí zmizet.
+        // Všech pět prodlev v modelu (schnutí potěru, zrání omítky a
+        // hydroizolace, vyzrání lepidla, výroba desky po zaměření) způsobuje
+        // ten materiál, který se právě nepokládá. Když se lag sčítal dál,
+        // čekal harmonogram na vyzrání omítky i tam, kde se vůbec neomítá —
+        // u samotné výměny podlah to dělalo tři týdny prostoje navíc.
         expand(t.deps, seen).forEach(function(d2){
-          out.push({id:d2.id, lag:(d2.lag||0)+(dep.lag||0), note:dep.note||d2.note});
+          out.push({id:d2.id, lag:(d2.lag||0), note:d2.note});
         });
       });
       return out;
@@ -1568,20 +1583,26 @@
 
     // záměr a rozpočet
     var est = estimate(s);
-    var rez = est.max * 0.18;
+    // Doporučená částka se počítá ze STŘEDU tržního rozpětí, ne z jeho horní
+    // hranice. Horní hranice je pražská cena s prémiovými materiály — kdo ji
+    // vezme za základ a přidá k ní ještě rezervu, řekne skoro každému, že mu
+    // rozpočet nestačí. To není varování, to je šum, který se přestane číst.
+    var stred = (est.min + est.max) / 2;
+    var rez = stred * 0.18;
+    var celkem = stred + rez;
     var bud = el("div","alerts");
     bud.appendChild(el("div","alert","<b>Záměr: "+UCEL[s.ucel].name+".</b> "+UCEL[s.ucel].rada));
     var bt = el("div","alert");
     bt.innerHTML = "<b>Odhad nákladů na vybraný rozsah: "+money(est.min)+" až "+money(est.max)+"</b>"+
       " (byt "+s.area+" m², zhruba "+Math.round(est.share*100)+" % rozsahu kompletní rekonstrukce). " +
-      "K tomu rezerva na skryté vady 15–20 %, tedy dalších zhruba "+money(rez)+".";
+      "Střed rozpětí je "+money(stred)+"; k němu patří rezerva na skryté vady 15–20 %, tedy dalších zhruba "+money(rez)+
+      ". <b>Počítejte s "+money(celkem)+".</b>";
     bud.appendChild(bt);
     if(s.budget > 0){
-      var celkem = est.max + rez;
       if(s.budget < est.min){
         bud.appendChild(el("div","alert crit","<b>Rozpočet "+money(s.budget)+" na tento rozsah nestačí</b> ani při spodní hranici cen. Buď zúžit rozsah, nebo navýšit rozpočet — a rozhodnout se teď, ne až v polovině stavby, kdy jsou rozvody rozdělané."));
       } else if(s.budget < celkem){
-        bud.appendChild(el("div","alert warn","<b>Rozpočet "+money(s.budget)+" vyjde jen při spodní hranici cen a bez rezervy.</b> Doporučená částka včetně rezervy je kolem "+money(celkem)+". U bytů starších padesáti let se skoro vždy najde něco za stěnou."));
+        bud.appendChild(el("div","alert warn","<b>Rozpočet "+money(s.budget)+" na tento rozsah stačí, ale bez rezervy.</b> Vejdete se do něj, jen když ceny vyjdou pod středem rozpětí a nic se nenajde. Doporučená částka včetně rezervy je "+money(celkem)+". U bytů starších padesáti let se skoro vždy najde něco za stěnou."));
       } else {
         bud.appendChild(el("div","alert tip","<b>Rozpočet "+money(s.budget)+" na tento rozsah vychází</b> včetně rezervy na skryté vady."));
       }
