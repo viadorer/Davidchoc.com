@@ -955,6 +955,17 @@ ${branyIds.map(id => {
 }).join('')}
 <p style="${P}margin:0 0 22px;color:#666;">Rozbor i odtrhovou zkoušku dělají specializované firmy. Když chcete, projdu to s vámi na místě — napište mi.</p>` : '';
 
+    // Kdo si rekonstrukci dělá sám, potřebuje slyšet něco jiného než ten,
+    // kdo ji zadal firmě — a hlavně to, co si sám udělat nesmí.
+    const kdo = String((d && d.kdo) || '');
+    const svepHtml = (kdo === 'sam' || kdo === 'castecne')
+      ? `<table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin:0 0 22px;">
+<tr><td style="background:#faf5e6;border-left:3px solid #8B7D61;padding:14px 18px;">
+<p style="margin:0 0 8px;font-size:14px;line-height:1.65;color:#444;"><strong style="color:#1a1a1a;">Děláte si to ${kdo === 'sam' ? 'sám' : 'zčásti sám'}, tak s tím plán počítá.</strong> Práce, které máte na sobě, jsou v rozpisu počítané na dvojnásobek času než u party a rozložené do dnů, kdy máte volno. Je to odhad, ne měřené číslo — se zkušeností a s pomocníkem budete rychlejší.</p>
+<p style="margin:0;font-size:14px;line-height:1.65;color:#444;">Čtyři věci si ale nedělejte sám ani tehdy, když to umíte: <strong style="color:#1a1a1a;">elektroinstalaci</strong> (bez výchozí revize dle ČSN 33 2000-6 ed. 2 nemá pojišťovna důvod plnit), <strong style="color:#1a1a1a;">zásah do nosné zdi</strong>, <strong style="color:#1a1a1a;">sanaci azbestu</strong> a <strong style="color:#1a1a1a;">zásahy do společných částí domu</strong> — stoupačky, okna, otopnou soustavu.</p>
+</td></tr></table>`
+      : '';
+
     const otazkyHtml = `<p style="margin:0 0 10px;font-size:15px;font-weight:700;color:#1a1a1a;">Na co se ptát, než podepíšete</p>
 <ul style="margin:0 0 22px;padding-left:20px;">
 ${PLANOVAC_OTAZKY.map(o => `<li style="${P}margin-bottom:6px;">${o}</li>`).join('')}
@@ -963,6 +974,7 @@ ${PLANOVAC_OTAZKY.map(o => `<li style="${P}margin-bottom:6px;">${o}</li>`).join(
     return obal(konec ? 'Váš plán rekonstrukce' : 'Plán rekonstrukce', `
 <p style="${P}">Dobrý den,</p>
 <p style="${P}">tady je plán, který jste si sestavil — rozpis den po dni, termíny objednávek, a k tomu dvě věci, které se na stránku nevešly: kontrolní body a otázky pro řemeslníky.</p>
+${svepHtml}
 ${hlava}
 ${objHtml}
 ${pozdeHtml}

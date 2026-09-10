@@ -300,6 +300,10 @@ function seznamyPro(formular) {
     // by člověk pět e-mailů, o které si neřekl.
     'ocenit-rozbor': process.env.BREVO_LIST_KNIHA,
     'hlidani-ceny': process.env.BREVO_LIST_HLIDANI,
+    // Plánovač má vlastní seznam. Kdo si skládá harmonogram rekonstrukce,
+    // řeší něco jiného než prodávající z výcviku — sekvence se navíc větví
+    // podle záměru a podle toho, jestli si to dělá sám.
+    'planovac-rekonstrukce': process.env.BREVO_LIST_PLANOVAC,
   };
   const id = Number(mapa[formular]);
   return Number.isFinite(id) && id > 0 ? [id] : undefined;

@@ -12,6 +12,11 @@ navazující sekvenci v Brevu / CRM.
   volám jen tomu, kdo si o to řekne."
 - Segmentace podle `metadata.ucel` z leadu (prodej / pronajem / kratkodoby /
   vlastni) — třetí e-mail se podle ní větví.
+- **Druhá osa segmentace: `metadata.kdo`** (firma / castecne / sam). Kdo si
+  rekonstrukci dělá sám, dostává jiný E1 i jinou nabídku — koordinaci řemesel
+  mu nikdy nenabízet, to je přesně to, čemu se vyhýbá. Jeho nabídka je
+  kontrolní den, obklady ze showroomu, pojištění a financování.
+  V leadu chodí i `metadata.dny_tydne` a `metadata.bydli_se`.
 - Žádné SMS. Je to další kanál a další slib, který musí někdo plnit.
 
 ---
@@ -58,6 +63,14 @@ jen reply. Odpovědi = nejteplejší leady celé sekvence.
 
 ---
 
-**Technická poznámka pro nasazení:** leady z plánovače zatím nejdou do
-žádného Brevo seznamu (`seznamyPro` v api/lead.js planovač nemapuje).
-Před spuštěním sekvence přidat `BREVO_LIST_PLANOVAC` a mapování.
+**Technická poznámka pro nasazení:** mapování v `seznamyPro()` (api/lead.js)
+je hotové — čeká jen na **proměnnou `BREVO_LIST_PLANOVAC` ve Vercelu**
+s ID seznamu z Brevo. Dokud tam není, lead se uloží a potvrzovací e-mail
+odejde, ale do žádného seznamu nespadne a sekvence se nespustí.
+
+**E1 pro svépomocníky (`kdo` = sam / castecne)** — jiný než pro firmu na klíč:
+místo „kde se rozpočty lámou" jde o „co si nedělejte sám, ani když to umíte":
+elektroinstalace (bez výchozí revize dle ČSN 33 2000-6 ed. 2 nemá pojišťovna
+důvod plnit), zásah do nosné zdi, sanace azbestu a společné části domu.
+CTA: kontrolní den, ne koordinace. Tenhle obsah už je v potvrzovacím e-mailu
+i na stránce, takže se v E1 rozvíjí, neopakuje.
