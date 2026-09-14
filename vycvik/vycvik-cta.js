@@ -2,6 +2,58 @@
 // Strojová část (odeslání leadu, atribuce, validace) je v /common/hub/hub-cta.js —
 // tady zůstaly jen texty a cesty, které patří téhle knize.
 // Záměrně nenátlakové — kniha slibuje, že nikdo nikoho nikam netlačí.
+
+/* ── Měření návštěv do PTF kampaně ──
+   Landing Výcvik je v PTF zaregistrovaný jako https://www.davidchoc.cz/vycvik
+   se značkou `vycvik-pdf`. Kontrakt je stejný jako snippet z PTF adminu
+   (CampaignWorkspace) a komponenta LandingPing:
+
+     GET https://ptf-production.up.railway.app/api/track/l.gif
+         ?p=vycvik-pdf&u=<celá adresa stránky>&v=<visitor id>
+
+   UTM i cestu podstránky si backend vytáhne sám z `u`, referer z hlavičky.
+   Všechny stránky sekce posílají stejnou značku, rozpad po kapitolách
+   drží page_path.
+
+   Soubor se načítá i mimo sekci (kolik-si-berem.html), proto hlídání cesty —
+   jinde by návštěvy padaly do cizí kampaně.
+
+   Souhlas: pixel nezapisuje cookie a PTF neukládá IP, takže návštěva se
+   pošle vždy (GA na stránkách sekce taky běží bez podmínky). Anonymní
+   visitor id v localStorage je jediné, co se dá přičíst jednomu člověku —
+   kdo v liště klikl „Pouze nezbytné", ten ho nedostane a staré se smaže. */
+(function () {
+  try {
+    var cesta = window.location.pathname;
+    if (cesta !== '/vycvik' && cesta.indexOf('/vycvik/') !== 0) return;
+    if (window.__dchPtfPing) return;   // jednou za zobrazení stránky
+    window.__dchPtfPing = true;
+
+    var KLIC_VID = 'dch_vid_v1';
+    var vid = '';
+    var odmitl = /(?:^|;\s*)cookie-consent=necessary(?:;|$)/.test(document.cookie || '');
+    try {
+      if (odmitl) {
+        localStorage.removeItem(KLIC_VID);
+      } else {
+        vid = localStorage.getItem(KLIC_VID) || '';
+        if (!/^[a-z0-9-]{8,64}$/.test(vid)) {
+          vid = (window.crypto && typeof window.crypto.randomUUID === 'function')
+            ? window.crypto.randomUUID()
+            : Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 12);
+          localStorage.setItem(KLIC_VID, vid);
+        }
+      }
+    } catch (e) { vid = ''; }   // soukromý režim — návštěva i bez id
+
+    var img = new Image();
+    img.src = 'https://ptf-production.up.railway.app/api/track/l.gif'
+      + '?p=vycvik-pdf'
+      + '&u=' + encodeURIComponent(window.location.href)
+      + (vid ? '&v=' + encodeURIComponent(vid) : '');
+  } catch (e) { /* pixel nikdy nesmí shodit stránku */ }
+})();
+
 (function () {
   'use strict';
 
