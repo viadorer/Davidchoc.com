@@ -875,6 +875,13 @@ POTVRZENI['planovac-rekonstrukce'] = {
     const objednavky = String((d && d.objednavky) || '')
       .split('|').map(s => s.trim()).filter(Boolean);
     const predKlici = Number(d && d.pred_klici) || 0;
+    // Odkaz na konkrétní plán. Pouští se jen adresa plánovače se
+    // zadáním v parametrech — cokoli jiného by šlo do e-mailu jako odkaz
+    // odkudkoli, tak se místo toho použije holá stránka.
+    const planUrlRaw = String((d && d.plan_url) || '');
+    const planUrl = /^https:\/\/www\.davidchoc\.cz\/planovac-rekonstrukce(\?[A-Za-z0-9_.~%=&+-]*)?$/.test(planUrlRaw)
+      ? planUrlRaw.replace(/&/g, '&amp;')
+      : 'https://www.davidchoc.cz/planovac-rekonstrukce';
 
     // Rozpis den po dni. Formulář ho slibuje jako první věc, takže patří
     // do e-mailu celý, ne jen odkazem. Formát z formuláře:
@@ -982,8 +989,8 @@ ${branyHtml}
 ${rozpisHtml}
 ${kontrolyHtml}
 ${otazkyHtml}
-<p style="${P}">Plán si můžete kdykoli upravit a vytisknout — na stránce je k tomu tlačítko:</p>
-${tlacitko('https://www.davidchoc.cz/planovac-rekonstrukce', 'Otevřít plánovač')}
+<p style="${P}">Plán si můžete kdykoli otevřít, odškrtávat hotové úkoly, nahrát do kalendáře a přepočítat, když se něco zpozdí:</p>
+${tlacitko(planUrl, 'Otevřít můj plán')}
 <p style="${P}margin-top:24px;">A poctivá poznámka na závěr: tohle je orientační plán, ne závazek. O termínech na stavbě rozhoduje měření a skutečný stav, ne kalendář — a plánovač nenahrazuje projekt ani stavební dozor.</p>
 <p style="${P}">Kdybyste chtěl plán projít osobně, napište mi — <strong style="color:#1a1a1a;">odpovím e-mailem do hodiny, mezi osmou a osmou.</strong> Volám jen tomu, kdo si o to řekne.</p>
 <p style="${P}margin-top:22px;">David Choc</p>

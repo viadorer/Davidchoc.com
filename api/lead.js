@@ -473,7 +473,7 @@ export default async function handler(req, res) {
   // Rozpis harmonogramu má u kompletní rekonstrukce přes tisíc znaků —
   // s obecným limitem 500 by dorazila třetina prací a potvrzovací e-mail
   // by slíbený rozpis poslal oříznutý uprostřed.
-  const DELSI_META = { rozpis: 4000, objednavky: 2000 };
+  const DELSI_META = { rozpis: 4000, objednavky: 2000, plan_url: 1500 };
 
   if (body.meta && typeof body.meta === 'object') {
     for (const [k, v] of Object.entries(body.meta)) {
