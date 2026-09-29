@@ -679,6 +679,32 @@
     .vysledek[hidden] { display: block !important; }
   }
   .zp-titul { display: none; }
+  /* ---------- SLUŽBY ---------- */
+  .clovek { display: grid; grid-template-columns: 1fr; gap: 12px; align-items: start; background: var(--surface); border: 2px solid #FFBF00; padding: 20px; margin-bottom: 26px; }
+  @media (min-width: 620px) { .clovek { grid-template-columns: 96px 1fr; gap: 22px; padding: 24px 26px; } }
+  .clovek img { width: 64px; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 50%; background: var(--surface-2); }
+  @media (min-width: 620px) { .clovek img { width: 100%; } }
+  .clovek h3 { border: 0; padding: 0; margin: 0 0 8px; font-size: 24px; }
+  .clovek p { margin: 0 0 14px; color: var(--ink-soft); font-size: 16px; }
+  .clovek p b { color: var(--ink); }
+  .clovek .clovek-pod { margin: 12px 0 0; font-family: "JetBrains Mono", monospace; font-size: 11.5px; color: var(--ink-faint); }
+  .sluzby { display: grid; grid-template-columns: 1fr; gap: 10px; }
+  @media (min-width: 700px) { .sluzby { grid-template-columns: 1fr 1fr; } }
+  .sluzba { background: var(--surface); border: 1px solid var(--line); padding: 18px 18px 16px; display: flex; flex-direction: column; }
+  .sluzba.doporucena { border: 2px solid var(--line-strong); }
+  @media (min-width: 700px) { .sluzba.doporucena { grid-column: 1 / -1; } }
+  .sl-stitek { align-self: flex-start; font-family: "JetBrains Mono", monospace; font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; background: #FFBF00; color: #1a1a1a; padding: 3px 8px; margin-bottom: 10px; }
+  .sluzba h4 { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 21px; text-transform: uppercase; margin: 0 0 2px; }
+  .sluzba .sl-cena { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 20px; color: #B98A00; margin: 0 0 8px; }
+  .sluzba p { font-size: 15px; color: var(--ink-soft); margin: 0 0 14px; flex: 1; }
+  .sluzba .printbtn { align-self: flex-start; }
+  .u-nab { display: block; font-size: 14px; line-height: 1.5; margin-top: 7px; color: var(--ink-soft); }
+  .u-nab a { color: var(--ink); font-weight: 600; text-underline-offset: 3px; white-space: nowrap; }
+  #objednat-box { margin-top: 18px; }
+  .gform textarea { width: 100%; padding: 10px 11px; font-family: inherit; font-size: 15px; background: var(--surface-2); color: var(--ink); border: 1px solid var(--line); border-radius: 0; resize: vertical; }
+  .gform select { margin-top: -4px; }
+  #objednat { scroll-margin-top: 96px; }
+  @media print { #objednat-box, .u-nab, .clovek { display: none !important; } }
   @media print { #out section { display: block !important; } }
 </style>
 
@@ -1089,8 +1115,9 @@
       </details>
 
       <div class="out" id="out"></div>
-      <div id="pomoc"></div>
       <div id="gate-box"></div>
+      <div id="pomoc"></div>
+      <div id="objednat-box"></div>
     </div>
   </div>
 </section>
@@ -2623,7 +2650,7 @@
         " · montáž " + fmtK(o.install) + (o.note ? ". " + o.note.charAt(0).toUpperCase() + o.note.slice(1) + "." : ".");
       var pilly = (o.late && !o.potvrzeno ? " <span class='pill krit'>před začátkem</span>" : "") +
                   (o.ridiDodavka ? " <span class='pill krit'>řídí termín</span>" : "");
-      var extra = "<span class='u-dodavka'><label>Dodavatel potvrdil dodání: <input type='date' data-dod='d_" + o.task + "' value='" + (o.potvrzeno ? iso(o.potvrzeno) : "") + "'></label></span>";
+      var extra = (o.task === "obklady" ? "<span class='u-nab'>Vzorky si můžete prohlédnout naživo. <a href='#objednat' data-sluzba='obklady'>Vybrat v našem showroomu →</a></span>" : "") + "<span class='u-dodavka'><label>Dodavatel potvrdil dodání: <input type='date' data-dod='d_" + o.task + "' value='" + (o.potvrzeno ? iso(o.potvrzeno) : "") + "'></label></span>";
       ul.appendChild(ukolLi("o_" + o.task, "Objednat: " + o.name.toLowerCase() + pilly, datum, popis, extra));
     });
     p.appendChild(ul);
@@ -2719,7 +2746,8 @@
       var kb = kontrola(t, s);
       var datum = "<span class='dt'>" + fmtK(t.start) + (diffDays(t.start, t.end) ? " – " + fmtK(t.end) : "") + "</span>";
       ul.appendChild(ukolLi("t_" + t.id, t.name + (t.gate ? " <span class='pill kb'>kontrolní bod</span>" : ""), datum, popis,
-        kb ? "<span class='u-kb'><b>Zkontrolujte:</b> " + kb + "</span>" : ""));
+        (kb ? "<span class='u-kb'><b>Zkontrolujte:</b> " + kb + "</span>" : "") +
+        (NABIDKA_U_KROKU[t.id] && !(t.id === "podlahy" && s.poter === "none") ? "<span class='u-nab'>" + NABIDKA_U_KROKU[t.id] + "</span>" : "")));
     });
     var hot = sch.tasks.filter(function(t){ return t.hotovo; });
     if (hot.length) {
@@ -2871,52 +2899,161 @@
     out.appendChild(pat);
   }
 
-  // ── JEDNA NABÍDKA, PODLE TOHO, KDO DĚLÁ ─────────────────────────────
+  // ── SLUŽBY ──────────────────────────────────────────────────────────
+  // Stránka je zdarma a nic nezamyká. Služby se nabízejí tam, kde dávají
+  // smysl, s cenou napsanou dopředu — kdo ví, kolik to stojí, nemusí se
+  // bát zeptat. Ceny schválil David 29. 9. 2026 podle průzkumu trhu
+  // (technický dozor 2–3 % rozpočtu, prohlídka bytu před koupí 4,8–7 tis.).
+  var SLUZBY = {
+    kontrola:  { nazev:"Projití plánu Davidem", cena:"zdarma",
+      co:"Podívám se na váš plán a do dvou pracovních dnů vám napíšu, co bych na vašem místě pohlídal. Bez závazku." },
+    den:       { nazev:"Kontrolní den", cena:"od 1 900 Kč",
+      co:"Přijedeme v kroku, kde se něco zakrývá — tlaková zkouška, izolace koupelny, vlhkost podkladu, elektro před omítkou. Zkontrolujeme a sepíšeme protokol s fotkami." },
+    balik:     { nazev:"Tři kontroly u mokrých prací", cena:"5 900 Kč",
+      co:"Tlaková zkouška rozvodů, izolace koupelny proti vodě a měření vlhkosti potěru. Tři místa, kde se chyby platí nejdráž." },
+    dohled:    { nazev:"Nezávislý dohled — 8 kontrolních dnů", cena:"14 900 Kč / 24 900 Kč",
+      co:"Všech osm kontrolních bodů s protokolem a fotkami, kontrola víceprací dřív, než je zaplatíte, a přejímka na konci. Menší rekonstrukce / celý byt. Klasický technický dozor stojí 2–3 % rozpočtu." },
+    provereni: { nazev:"Prověření bytu před koupí + odhad rekonstrukce", cena:"5 900 Kč / 7 900 Kč",
+      co:"Prohlídka se stavebním okem a plán rekonstrukce ke konkrétnímu bytu — podklad pro rozhodnutí i pro vyjednávání o ceně. Do 50 m² / do 80 m². Když byt koupíte přes nás, cenu odečteme z provize." },
+    koordinace:{ nazev:"Koordinace řemesel", cena:"12 % z rozpočtu",
+      co:"Jeden člověk odpovědný za termíny, návaznosti a kontroly. Nemusíte obvolávat patnáct profesí ani řešit, kdo má přijít v úterý." },
+    obklady:   { nazev:"Obklady a dlažba z našeho showroomu", cena:"výběr zdarma",
+      co:"Italská keramika za velkoobchodní ceny. Plán vám řekne, do kdy objednat, ať se na ni nečeká." },
+    financovani:{ nazev:"Financování rekonstrukce", cena:"0,8 % z úvěru",
+      co:"Navýšení hypotéky nebo úvěr na rekonstrukci. Plán je zároveň podklad pro banku, která čerpá po etapách." }
+  };
+
+  // Které služby komu, v jakém pořadí. První je doporučená.
+  function sluzbyPro(s){
+    if (s.faze === "hledam" || s.faze === "vybiram") return ["provereni", "kontrola", "financovani", "dohled"];
+    if (s.kdo === "sam") return ["den", "balik", "kontrola", "obklady"];
+    if (s.kdo === "castecne") return ["balik", "den", "dohled", "obklady"];
+    return ["dohled", "kontrola", "koordinace", "obklady"];
+  }
+
+  var FOTO = "https://pub-73649d5be63240648a58ace4d4c57318.r2.dev/images/davidchocagent.avif";
+
   function renderPomoc(m){
     var s = m.s, box = document.getElementById("pomoc");
     box.innerHTML = "";
-    var eko = ekonomika(s, m.est.min, m.est.max);
-    var nab = nabidka(s, eko, m.est.min, m.est.max);
+
+    // Nejdřív člověk, pak ceník. Projití plánu je zdarma a je to nejmenší
+    // krok, jaký může někdo udělat — a pro nás nejteplejší lead.
+    var clovek = el("div","clovek");
+    clovek.innerHTML =
+      "<img src='" + FOTO + "' alt='David Choc' width='88' height='88' loading='lazy'>" +
+      "<div><h3>Chcete, aby se na plán podíval člověk?</h3>" +
+      "<p>Projdu váš plán a do dvou pracovních dnů vám napíšu, co bych na vašem místě pohlídal — kde hrozí vícepráce, co objednat dřív a kde se vyplatí kontrola. <b>Zdarma a bez závazku.</b> Volám jen tomu, kdo si o to řekne.</p>" +
+      "<button type='button' class='btn' data-sluzba='kontrola'>Poslat plán k projití</button>" +
+      "<p class='clovek-pod'>David Choc, PTF reality · Praha, Beroun, Plzeň</p></div>";
+    box.appendChild(clovek);
+
+    var klice = sluzbyPro(s);
+    var karty = el("div","sluzby");
+    klice.forEach(function(k, i){
+      if (k === "kontrola") return;
+      var sv = SLUZBY[k];
+      var c = el("div","sluzba" + (i === 0 ? " doporucena" : ""));
+      c.innerHTML = (i === 0 ? "<span class='sl-stitek'>Pro vás nejužitečnější</span>" : "") +
+        "<h4>" + sv.nazev + "</h4><p class='sl-cena'>" + sv.cena + "</p><p>" + sv.co + "</p>" +
+        "<button type='button' class='printbtn' data-sluzba='" + k + "'>Mám zájem</button>";
+      karty.appendChild(c);
+    });
     var wrap2 = el("div");
-    var nadpis, popis;
-    if (s.faze === "hledam") {
-      nadpis = "Najdu vám byt, se kterým ten plán vyjde";
-      popis = "Třicet let v Plzeňském kraji a přes pět tisíc obchodů. Vím, ve kterých bytech se skrývá drahá rekonstrukce a které stojí za to. Řekněte mi rozpočet a lokalitu — odpovím do hodiny, mezi osmou a osmou.";
-    } else if (s.faze === "vybiram") {
-      nadpis = "Prověřím ten konkrétní byt, než ho koupíte";
-      popis = "Pošlete adresu bytu, který zvažujete. Řeknu vám, jestli cena sedí na stav, co v něm bude za překvapení a kolik bude stát rekonstrukce — dřív, než podepíšete.";
-    } else if (s.kdo !== "firma") {
-      nadpis = "Kontrolní den: přijedu tam, kde se nedá couvnout";
-      popis = "Děláte si to sám a to je v pořádku. Užitek ode mě je na místech, kde se něco zakrývá — tlaková zkouška, izolace před obkladem, vlhkost podkladu, revize. Přijedu, zkontroluju, sepíšu protokol. K tomu obklady z vlastního showroomu, pojištění na dobu rekonstrukce a financování, když rozpočet nevychází.";
-    } else if (s.ucel === "vlastni") {
-      nadpis = "Můžu tu rekonstrukci vzít za vás";
-      popis = "Koordinace řemesel, hlídání termínů a kontrolní dny. Nemusíte obvolávat patnáct profesí ani řešit, kdo má přijít v úterý — a nastěhujete se do bytu, který za vás někdo přebíral.";
-    } else {
-      nadpis = "Můžu tu rekonstrukci vzít za vás";
-      popis = "Koordinace řemesel, hlídání termínů a kontrolní dny — a pak nájemník ke dni dokončení nebo prodej. Vy se o nic nestaráte.";
-    }
-    var predmet = encodeURIComponent("Plánovač rekonstrukce — " + nadpis);
-    var cta = el("div","cta-box");
-    cta.innerHTML = "<h4>" + nadpis + "</h4><p>" + popis + "</p>" +
-      "<a class='btn' href='tel:+420774052232'>Zavolat 774 052 232</a>" +
-      "<a class='btn ghost' href='mailto:david.choc@ptf.cz?subject=" + predmet + "'>Napsat e-mail</a>";
-    wrap2.appendChild(cta);
-    if (nab.length) {
+    wrap2.appendChild(el("p","sec-lead","Plán je zdarma a zůstane váš. Když budete chtít pomoct, tady je, s čím a za kolik — cena je napsaná dopředu, ať se nemusíte bát zeptat. Termín domluvíme podle toho, kdy to na stavbě bude potřeba."));
+    wrap2.appendChild(karty);
+
+    // Investorské položky z ceníku — jen tomu, kdo zadal investici.
+    var eko = ekonomika(s, m.est.min, m.est.max);
+    var nab = nabidka(s, eko, m.est.min, m.est.max).filter(function(n){ return n.popis !== SAZBY.koordinace.popis; });
+    if (s.ucel !== "vlastni" && nab.length) {
       var nb = el("div","nabidka");
-      var jMin = 0, jMax = 0, rMin = 0;
       nab.forEach(function(n){
         var castka = Math.abs(n.max - n.min) < 1 ? kcKratce(n.min) + " Kč" : kcKratce(n.min) + " – " + kcKratce(n.max) + " Kč";
         nb.appendChild(el("div","nab-row","<div class='co'>" + n.popis + "<small>" + n.text + (n.rocne ? " · opakuje se" : "") + "</small></div><div class='kc'>" + castka + "</div>"));
-        if (n.rocne) rMin += n.min; else { jMin += n.min; jMax += n.max; }
       });
-      if (jMin > 0) nb.appendChild(el("div","nab-sum","<div class='co'>Jednorázově</div><div class='kc'>" + (Math.abs(jMax - jMin) < 1 ? kcKratce(jMin) : kcKratce(jMin) + " – " + kcKratce(jMax)) + " Kč</div>"));
-      if (rMin > 0) nb.appendChild(el("div","nab-sum","<div class='co'>Každý rok</div><div class='kc'>" + kcKratce(rMin) + " Kč</div>"));
-      var sb = sectSbal("Kolik by to stálo", nb, nab.length + " " + plural(nab.length,"položka","položky","položek"), false);
-      wrap2.appendChild(sb);
-      wrap2.appendChild(el("div","todo","Ceny jsou dopočítané ze sazeb ceníku a z odhadu rozpočtu. Konkrétní nabídka se potvrzuje po prohlídce bytu."));
+      wrap2.appendChild(sectSbal("Investice: nákup, prodej a pronájem", nb, nab.length + " " + plural(nab.length,"položka","položky","položek"), false));
     }
-    box.appendChild(sect(s.kdo !== "firma" ? "S čím se dá pomoct" : "Co z toho můžu převzít", wrap2, ""));
+    box.appendChild(sect(s.kdo !== "firma" ? "S čím můžu pomoct" : "Co můžu převzít", wrap2, ""));
   }
+
+  // Jeden poptávkový formulář pro všechny služby. Staví se jednou, takže
+  // ho překreslení plánu nesmaže; služba se volí tlačítkem u nabídky.
+  function buildObjednavka(){
+    var g = el("div","gate objednat");
+    g.id = "objednat";
+    var moznosti = Object.keys(SLUZBY).map(function(k){
+      return "<option value='" + k + "'>" + SLUZBY[k].nazev + " — " + SLUZBY[k].cena + "</option>";
+    }).join("");
+    g.innerHTML = "<h4>Napište mi</h4>" +
+      "<p class='g-lead'>Váš plán se přiloží sám — nemusíte nic vypisovat. Odpovím e-mailem do hodiny, mezi osmou a osmou. Volám jen tomu, kdo si o to řekne.</p>";
+    var form = el("form","gform");
+    form.innerHTML =
+      "<label class='lbl' for='os'>O co máte zájem</label><select id='os'>" + moznosti + "</select>" +
+      "<div class='two'><input type='text' id='on' placeholder='Jméno' autocomplete='name' aria-label='Jméno'>" +
+      "<input type='email' id='oe' placeholder='E-mail' autocomplete='email' required aria-label='E-mail'></div>" +
+      "<input type='tel' id='ot' placeholder='Telefon (nepovinné)' autocomplete='tel' aria-label='Telefon'>" +
+      "<textarea id='oz' rows='3' placeholder='Poznámka — co vás trápí, adresa bytu, termín (nepovinné)' aria-label='Poznámka'></textarea>" +
+      "<label class='gdpr'><input type='checkbox' id='og' required><span>Souhlasím se zpracováním osobních údajů za účelem vyřízení poptávky. Podrobnosti v <a href='/osobni-udaje.html' target='_blank' rel='noopener'>zásadách zpracování</a>.</span></label>" +
+      "<label class='gdpr'><input type='checkbox' id='om'><span>Občas mi pošlete i tipy k rekonstrukci a nabídky PTF reality. Odhlásit se jde kdykoli jedním klikem.</span></label>" +
+      "<button type='submit' class='btn'>Odeslat</button>" +
+      "<div id='omsg' role='status' style='font-size:14px;margin-top:4px'></div>";
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+      var jm = $("on").value.trim(), em = $("oe").value.trim(), tel = $("ot").value.trim();
+      var pozn = $("oz").value.trim().slice(0, 1500), sl = $("os").value;
+      var msg = $("omsg"), tlac = form.querySelector("button[type=submit]");
+      if (!em || em.indexOf("@") < 1 || !$("og").checked) {
+        msg.textContent = "Vyplňte e-mail a potvrďte souhlas se zpracováním."; msg.style.color = "var(--red)"; return;
+      }
+      var st = readState(), mm = null;
+      try { mm = spocitej(st); } catch(ex) {}
+      var popis = "Plánovač — POPTÁVKA: " + SLUZBY[sl].nazev.toUpperCase() + " (" + SLUZBY[sl].cena + "). " +
+        (pozn ? "Poznámka: " + pozn + " | " : "") +
+        (st.rezim === "castecny" ? "Částečná: " + st.baliky.map(function(k){ return BALIKY[k].name; }).join(", ") : "Kompletní") +
+        ", provedení: " + st.kdo + ", byt " + st.area + " m², rok " + st.rok +
+        (st.mesto ? ", " + (MESTO_NAZEV[st.mesto] || st.mesto) : "") +
+        (mm ? ". Hotovo " + fmt(mm.sch.end) + ", odhad " + kcKratce(mm.est.min) + "–" + kcKratce(mm.est.max) + " Kč." : ".");
+      msg.textContent = "Odesílám…"; msg.style.color = "var(--ink-soft)"; tlac.disabled = true;
+      fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          form: "planovac-sluzba", name: jm, email: em, phone: tel, message: popis, gdpr: true,
+          meta: { sluzba: sl, poznamka: pozn, plan_url: odkazNaPlan(true), souhlas_marketing: $("om").checked,
+                  kdo: st.kdo, faze: st.faze, mesto: st.mesto || "", plocha: st.area, rezim: st.rezim,
+                  konec: mm ? fmt(mm.sch.end) : "", dnu: mm ? mm.total : 0 },
+          referrer: document.referrer || "", utm: UTM_PRI_PRICHODU
+        })
+      }).then(function(r){
+        if (!r.ok) throw new Error("API " + r.status);
+        if (window.gtag) window.gtag("event","planovac_sluzba",{ event_category:"lead", event_label:sl });
+        g.innerHTML = "<h4>Mám to</h4><p class='g-lead'>Poptávka dorazila i s vaším plánem. Odpovím e-mailem do hodiny, mezi osmou a osmou" +
+          (sl === "kontrola" ? " — a rozbor plánu pošlu do dvou pracovních dnů." : ".") + " Potvrzení máte v poště.</p>";
+      }).catch(function(){
+        tlac.disabled = false;
+        msg.textContent = "Odeslání se nepodařilo. Zkuste to prosím znovu, nebo napište na david.choc@ptf.cz.";
+        msg.style.color = "var(--red)";
+      });
+    });
+    g.appendChild(form);
+    return g;
+  }
+  function vyberSluzbu(k){
+    var sel = $("os");
+    if (sel && SLUZBY[k]) sel.value = k;
+    var o = $("objednat");
+    if (o) { o.scrollIntoView({ behavior:"smooth", block:"start" }); setTimeout(function(){ var e = $("oe"); if (e) e.focus({ preventScroll:true }); }, 450); }
+    if (window.gtag) window.gtag("event","planovac_zajem",{ sluzba:k });
+  }
+
+  // Nabídka přímo u kroku, kde se chyby platí nejdráž. Nejvýš tři místa
+  // v celém plánu — víc by z checklistu udělalo leták.
+  var NABIDKA_U_KROKU = {
+    zkousky: "Tady se chyby platí nejdráž — po zakrytí už je nikdo neuvidí. <a href='#objednat' data-sluzba='den'>Kontrolní den od 1 900 Kč →</a>",
+    hydro:   "Nejčastější příčina sporu se sousedem pod vámi. <a href='#objednat' data-sluzba='den'>Kontrolní den od 1 900 Kč →</a>",
+    podlahy: "Měření vlhkosti rozhoduje o tom, jestli se podlaha za rok nezvedne. <a href='#objednat' data-sluzba='den'>Kontrolní den od 1 900 Kč →</a>"
+  };
 
   // ── E-MAIL ──────────────────────────────────────────────────────────
   // Plán je celý na stránce a nic se nezamyká. E-mail je služba navíc:
@@ -2939,7 +3076,8 @@
       "<div class='two'><input type='text' id='ln' placeholder='Jméno' autocomplete='name' aria-label='Jméno'>" +
       "<input type='email' id='le' placeholder='E-mail' autocomplete='email' required aria-label='E-mail'></div>" +
       "<input type='tel' id='lt' placeholder='Telefon (nepovinné)' autocomplete='tel' aria-label='Telefon'>" +
-      "<label class='gdpr'><input type='checkbox' id='lg' required><span>Souhlasím se zpracováním osobních údajů za účelem zaslání plánu a souvisejících informací. Podrobnosti v <a href='/osobni-udaje.html' target='_blank' rel='noopener'>zásadách zpracování</a>.</span></label>" +
+      "<label class='gdpr'><input type='checkbox' id='lg' required><span>Souhlasím se zpracováním osobních údajů za účelem zaslání plánu. Podrobnosti v <a href='/osobni-udaje.html' target='_blank' rel='noopener'>zásadách zpracování</a>.</span></label>" +
+      "<label class='gdpr'><input type='checkbox' id='lm'><span>Občas mi pošlete i tipy k rekonstrukci a nabídky PTF reality. Odhlásit se jde kdykoli jedním klikem.</span></label>" +
       "<button type='submit' class='btn'>Poslat mi plán</button>" +
       "<div id='lmsg' role='status' style='font-size:14px;margin-top:4px'></div>";
     form.addEventListener("submit", function(e){
@@ -3011,6 +3149,7 @@
                   kdo: st.kdo, dny_tydne: st.dnyTydne, bydli_se: st.bydli,
                   mesto: st.mesto || "",
                   plan_url: odkazNaPlan(true),
+                  souhlas_marketing: document.getElementById("lm").checked,
                   konec: vysl.konec || "", dnu: vysl.dnu || 0, cekani: vysl.cekani || 0,
                   objednavky: vysl.objednavky || "", pred_klici: vysl.predKlici || 0,
                   rozpis: vysl.rozpis || "",
@@ -3100,8 +3239,9 @@
 
   // ── AKCE V PLÁNU (delegované — plán se překresluje) ─────────────────
   document.addEventListener("click", function(e){
-    var t = e.target.closest ? e.target.closest("[data-krok],[data-zal],[data-zal-tab],[data-akce]") : null;
+    var t = e.target.closest ? e.target.closest("[data-krok],[data-zal],[data-zal-tab],[data-akce],[data-sluzba]") : null;
     if (!t) return;
+    if (t.hasAttribute("data-sluzba")) { e.preventDefault(); vyberSluzbu(t.getAttribute("data-sluzba")); return; }
     if (t.hasAttribute("data-krok")) { otevriPruvodce(+t.getAttribute("data-krok")); return; }
     if (t.hasAttribute("data-zal-tab")) { prepniZalozku(t.getAttribute("data-zal-tab")); return; }
     if (t.hasAttribute("data-zal")) {
@@ -3549,6 +3689,7 @@
 
   // ── START ───────────────────────────────────────────────────────────
   $("gate-box").appendChild(buildGate());
+  $("objednat-box").appendChild(buildObjednavka());
   var zdrojZadani = obnovStav();
   if (zdrojZadani) pruvodceHotov = true;
   prepniVystup();

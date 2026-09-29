@@ -41,6 +41,9 @@ const FORMULARE = {
   // Plánovač rekonstrukce — lead nese v metadatech parametry bytu,
   // takže je z něj rovnou vidět rozsah zakázky i rozpočet.
   'planovac-rekonstrukce': { source: 'web_formular', popis: 'Plánovač rekonstrukce bytu' },
+  // Poptávka služby přímo z plánu (projití plánu, kontrolní den, dohled,
+  // prověření bytu…). metadata.sluzba říká co, metadata.plan_url k čemu.
+  'planovac-sluzba':    { source: 'web_formular', popis: 'Plánovač rekonstrukce — poptávka služby' },
   'vycvik-pdf':         { source: 'web_formular', popis: 'Kniha Výcvik — PDF ke stažení' },
   'vycvik-zkouska':     { source: 'web_formular', popis: 'Kniha Výcvik — výsledek dotazníku' },
   'vycvik-plan':        { source: 'web_formular', popis: 'Kniha Výcvik — rozpis krok za krokem' },
@@ -268,8 +271,15 @@ function slozitZpravu(text, konfig, odkazy, metadata) {
 
 // Seznamy v Brevu, na které se věší automatizace se sekvencí.
 // ID se nastavují v prostředí — bez nich se kontakt jen založí.
-function seznamyPro(formular) {
+function seznamyPro(formular, metadata) {
   const konfig = FORMULARE[formular];
+
+  // Plánovač: sekvence v Brevu nabízí služby, je to obchodní sdělení.
+  // Kdo jen použil nástroj, není podle ÚOOÚ zákazník — bez zaškrtnutého
+  // souhlasu se do ní nesmí dostat. Plán a potvrzení mu přijdou i tak.
+  if (formular.indexOf('planovac-') === 0 && !(metadata && metadata.souhlas_marketing === true)) {
+    return undefined;
+  }
 
   // Kupující mají vlastní seznam — píše se jim něco jiného než
   // prodávajícím z výcviku, takže nesmí spadnout do jedné sekvence.
@@ -304,6 +314,7 @@ function seznamyPro(formular) {
     // řeší něco jiného než prodávající z výcviku — sekvence se navíc větví
     // podle záměru a podle toho, jestli si to dělá sám.
     'planovac-rekonstrukce': process.env.BREVO_LIST_PLANOVAC,
+    'planovac-sluzba': process.env.BREVO_LIST_PLANOVAC,
   };
   const id = Number(mapa[formular]);
   return Number.isFinite(id) && id > 0 ? [id] : undefined;
@@ -363,7 +374,7 @@ async function poslatPotvrzeni({ formular, email, jmeno, metadata, preskocitEmai
     email,
     jmeno: jmeno.first_name,
     prijmeni: jmeno.last_name,
-    listIds: seznamyPro(formular),
+    listIds: seznamyPro(formular, metadata),
     atributy: {
       ZDROJ: 'davidchoc.cz',
       FORMULAR: formular,

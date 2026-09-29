@@ -998,6 +998,43 @@ ${tlacitko(planUrl, 'Otevřít můj plán')}
   },
 };
 
+// Poptávka služby z plánovače. Název služby se bere z vlastního seznamu,
+// ne z formuláře — do e-mailu se nesmí dostat nic, co kdo napíše sám.
+const PLANOVAC_SLUZBY = {
+  kontrola: 'projití plánu',
+  den: 'kontrolní den',
+  balik: 'tři kontroly u mokrých prací',
+  dohled: 'nezávislý dohled — 8 kontrolních dnů',
+  provereni: 'prověření bytu před koupí',
+  koordinace: 'koordinace řemesel',
+  obklady: 'obklady a dlažba ze showroomu',
+  financovani: 'financování rekonstrukce',
+};
+
+POTVRZENI['planovac-sluzba'] = {
+  subject: (d) => (d && d.sluzba === 'kontrola')
+    ? 'Váš plán mám — rozbor pošlu do dvou pracovních dnů'
+    : 'Vaši poptávku mám — ozvu se do hodiny',
+  html: (d) => {
+    const sl = PLANOVAC_SLUZBY[String((d && d.sluzba) || '')] || 'pomoc s rekonstrukcí';
+    const planUrlRaw = String((d && d.plan_url) || '');
+    const planUrl = /^https:\/\/www\.davidchoc\.cz\/planovac-rekonstrukce(\?[A-Za-z0-9_.~%=&+-]*)?$/.test(planUrlRaw)
+      ? planUrlRaw.replace(/&/g, '&amp;')
+      : 'https://www.davidchoc.cz/planovac-rekonstrukce';
+    const jeKontrola = d && d.sluzba === 'kontrola';
+    return obal('Mám vaši zprávu', `
+<p style="${P}">Dobrý den,</p>
+<p style="${P}">poptávka dorazila: <strong style="color:#1a1a1a;">${sl}</strong>, i s vaším plánem rekonstrukce — nemusíte nic dopisovat.</p>
+<p style="${P}">${jeKontrola
+  ? '<strong style="color:#1a1a1a;">Plán projdu a do dvou pracovních dnů vám napíšu</strong>, co bych na vašem místě pohlídal: kde hrozí vícepráce, co objednat dřív a kde se vyplatí kontrola.'
+  : '<strong style="color:#1a1a1a;">Ozvu se e-mailem do hodiny, mezi osmou a osmou.</strong> Termín domluvíme podle toho, kdy to na stavbě bude potřeba.'} Volám jen tomu, kdo si o to řekne.</p>
+<p style="${P}">Mezitím máte plán pořád u sebe — úkoly si v něm můžete odškrtávat a nahrát do kalendáře:</p>
+${tlacitko(planUrl, 'Otevřít můj plán')}
+<p style="${P}margin-top:22px;">David Choc</p>
+`);
+  },
+};
+
 export function potvrzeniPro(formular) {
   return POTVRZENI[formular] || null;
 }
