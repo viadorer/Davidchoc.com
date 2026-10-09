@@ -768,10 +768,29 @@
                         </ul>
                     </div>
                     <div class="pripad-calendly__widget">
-                        <div class="calendly-inline-widget"
-                             data-url="https://calendly.com/ptf-info/30min?hide_gdpr_banner=1"
-                             style="min-width:320px; height:630px;"></div>
-                        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+                        <!-- Rezervace přes PTF Termíny. Ukáže se, až má značka davidchoc
+                             zveřejněnou aspoň jednu službu; do té doby (nebo když se nenačte)
+                             zůstává Calendly níž jako záloha. -->
+                        <div id="ptf-terminy" hidden>
+                            <ptf-booking site="davidchoc" color="#FFBF00" eager></ptf-booking>
+                        </div>
+                        <div id="calendly-zaloha">
+                            <div class="calendly-inline-widget"
+                                 data-url="https://calendly.com/ptf-info/30min?hide_gdpr_banner=1"
+                                 style="min-width:320px; height:630px;"></div>
+                            <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+                        </div>
+                        <script>
+                            window.addEventListener('ptf-terminy', function (e) {
+                                var d = e.detail || {};
+                                if (d.type === 'ptf:ready' && d.data && d.data.sluzeb > 0) {
+                                    document.getElementById('ptf-terminy').hidden = false;
+                                    var z = document.getElementById('calendly-zaloha');
+                                    if (z) z.remove();
+                                }
+                            });
+                        </script>
+                        <script src="https://www.ptf.cz/terminy/embed.js" async></script>
                     </div>
                 </div>
             </div>
