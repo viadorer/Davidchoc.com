@@ -2986,7 +2986,7 @@
       return "<option value='" + k + "'>" + SLUZBY[k].nazev + " — " + SLUZBY[k].cena + "</option>";
     }).join("");
     g.innerHTML = "<h4>Napište mi</h4>" +
-      "<p class='g-lead'>Váš plán se přiloží sám — nemusíte nic vypisovat. Odpovím e-mailem do hodiny, mezi osmou a osmou. Volám jen tomu, kdo si o to řekne.</p>";
+      "<p class='g-lead'>Váš plán se přiloží sám — nemusíte nic vypisovat. Odpovím e-mailem do 24 hodin. Volám jen tomu, kdo si o to řekne.</p>";
     var form = el("form","gform");
     form.innerHTML =
       "<label class='lbl' for='os'>O co máte zájem</label><select id='os'>" + moznosti + "</select>" +
@@ -3028,7 +3028,7 @@
       }).then(function(r){
         if (!r.ok) throw new Error("API " + r.status);
         if (window.gtag) window.gtag("event","planovac_sluzba",{ event_category:"lead", event_label:sl });
-        g.innerHTML = "<h4>Mám to</h4><p class='g-lead'>Poptávka dorazila i s vaším plánem. Odpovím e-mailem do hodiny, mezi osmou a osmou" +
+        g.innerHTML = "<h4>Mám to</h4><p class='g-lead'>Poptávka dorazila i s vaším plánem. Odpovím e-mailem do 24 hodin" +
           (sl === "kontrola" ? " — a rozbor plánu pošlu do dvou pracovních dnů." : ".") + " Potvrzení máte v poště.</p>";
       }).catch(function(){
         tlac.disabled = false;
