@@ -62,10 +62,10 @@ ${tlacitko('https://www.davidchoc.cz/vycvik/zvladnete-to-sami', 'Zvládnete to s
   },
 
   'bytvpanelaku': {
-    subject: 'Mám vaši zprávu — ozvu se do hodiny',
+    subject: 'Mám vaši zprávu — ozvu se do 24 hodin',
     html: () => obal('Mám vaši zprávu', `
 <p style="${P}">Dobrý den,</p>
-<p style="${P}">zpráva o vašem bytě dorazila. <strong style="color:#1a1a1a;">Ozvu se vám do hodiny, mezi osmou a osmou</strong> — domluvíme termín prohlídky a do 48 hodin od ní budete znát cenové pásmo, doložené srovnáním prodejů v domě a okolí.</p>
+<p style="${P}">zpráva o vašem bytě dorazila. <strong style="color:#1a1a1a;">Ozvu se vám do 24 hodin</strong> — domluvíme termín prohlídky a do 48 hodin od ní budete znát cenové pásmo, doložené srovnáním prodejů v domě a okolí.</p>
 <p style="${P}">Do té doby nic nepodepisujete a nikomu nic neplatíte. Nabídka vás k ničemu nezavazuje — klidně si ji nechte jen pro porovnání.</p>
 <p style="${P}margin-top:22px;">David Choc</p>
 `),
@@ -101,10 +101,10 @@ ${tlacitko('https://www.davidchoc.cz/milionar', 'Otevřít nástroj', 'zelena')}
 };
 
 const MILIONAREM_SERVIS = {
-  subject: 'Ozvu se vám do hodiny',
+  subject: 'Ozvu se vám do 24 hodin',
   html: () => obal('Mám vaši zprávu', `
 <p style="${P}">Dobrý den,</p>
-<p style="${P}">zpráva dorazila. <strong style="color:#1a1a1a;">Ozvu se vám do hodiny, mezi osmou a osmou</strong> — osobně, ne šablonou.</p>
+<p style="${P}">zpráva dorazila. <strong style="color:#1a1a1a;">Ozvu se vám do 24 hodin</strong> — osobně, ne šablonou.</p>
 <p style="${P}">Než se ozvu, hodí se, když budete mít spočítaná svoje čísla. Mluví se pak úplně jinak:</p>
 ${tlacitko('https://www.davidchoc.cz/milionar', 'Spustit simulátor', 'zelena')}
 <p style="${P}margin-top:22px;">David Choc</p>
@@ -637,7 +637,7 @@ const VYCVIK_DIAGNOSTIKA = {
     const veta = DIAG_VERDIKT[klic];
     return obal('Mám vaši diagnostiku', `
 <p style="${P}">Dobrý den,</p>
-<p style="${P}">vaše čísla mi dorazila${veta ? ` — vyšlo z nich, že ${veta}` : ''}. Podívám se na ně a <strong style="color:#1a1a1a;">odpovím vám do hodiny, mezi osmou ráno a osmou večer</strong>. Osobně, ne šablonou.</p>
+<p style="${P}">vaše čísla mi dorazila${veta ? ` — vyšlo z nich, že ${veta}` : ''}. Podívám se na ně a <strong style="color:#1a1a1a;">odpovím vám do 24 hodin</strong>. Osobně, ne šablonou.</p>
 <p style="${P}">Napíšu vám, co se s tou nabídkou podle mě děje a co bych s ní udělal jako první — i kdyby výsledek byl, že mě nepotřebujete.</p>
 <p style="${P}">Než se ozvu, nedělejte jednu věc: <strong style="color:#1a1a1a;">nezlevňujte.</strong> Zlevnění bez důvodu je pro trh signál, že přijde další, takže se čeká — a nabídka visí dál, jen levnější.</p>
 ${tlacitko('https://www.davidchoc.cz/vycvik/kapitola-9-zaseklo-se', 'Kapitola 9 — když už to visí')}
@@ -749,7 +749,7 @@ const VYCVIK_RIZIKA = {
 <p style="${P}">Dobrý den,</p>
 <p style="${P}">tohle není o tom, jestli prodej zvládnete. Je to právní situace a v ní se chyba nedá opravit slevou z ceny — proto ji píšu zvlášť a dřív než cokoli jiného.</p>
 ${detaily || `<p style="${P}">Napište mi prosím, co přesně máte — ať vám odpovím na vaši situaci, ne obecně.</p>`}
-<p style="${P}">Tohle je obecný popis, ne rada na váš případ. <strong style="color:#1a1a1a;">Odpovím vám osobně do hodiny, mezi osmou ráno a osmou večer</strong> — napište mi, co přesně máte, a řeknu vám, co bych na vašem místě ošetřil první. I kdyby výsledek byl, že mě nepotřebujete.</p>
+<p style="${P}">Tohle je obecný popis, ne rada na váš případ. <strong style="color:#1a1a1a;">Odpovím vám osobně do 24 hodin</strong> — napište mi, co přesně máte, a řeknu vám, co bych na vašem místě ošetřil první. I kdyby výsledek byl, že mě nepotřebujete.</p>
 ${tlacitko('mailto:david.choc@ptf.cz?subject=Moje%20situace', 'Napsat Davidovi')}
 <p style="margin:26px 0 0;font-size:13px;line-height:1.6;color:#8a8378;">Volám jen tomu, kdo si o to řekne. Kniha i nástroje zůstávají zdarma bez ohledu na to, jak se rozhodnete.</p>
 <p style="${P}margin-top:22px;">David Choc</p>
@@ -788,7 +788,7 @@ const OCENIT_ROZBOR = {
   subject: 'Mám vaši nemovitost — posílám rozbor',
   html: () => obal('Dívám se na to', `
 <p style="${P}">Dobrý den,</p>
-<p style="${P}">zadání mi dorazilo. <strong style="color:#1a1a1a;">Odpovím vám do hodiny, mezi osmou ráno a osmou večer</strong> — napíšu, z jakých konkrétních prodejů v okolí to číslo vzniklo a co by u vaší nemovitosti cenu posunulo nahoru.</p>
+<p style="${P}">zadání mi dorazilo. <strong style="color:#1a1a1a;">Odpovím vám do 24 hodin</strong> — napíšu, z jakých konkrétních prodejů v okolí to číslo vzniklo a co by u vaší nemovitosti cenu posunulo nahoru.</p>
 <p style="${P}">Jedna věc předem, ať s ní můžete počítat: online odhad pracuje s tím, co je v datech. Nezná stav zevnitř, rekonstrukci, výhled ani hluk — a právě tyhle věci dělají u konkrétní nemovitosti největší rozdíl.</p>
 <p style="${P}">Než se ozvu, může se hodit kapitola o ceně. Jsou v ní tři zdroje, ze kterých se cena dá podložit, a hlavně pravidlo, které platí bez ohledu na to, kdo prodává: <strong style="color:#1a1a1a;">cena, kterou vyslovíte první, se pak už jen snižuje.</strong></p>
 ${tlacitko('https://www.davidchoc.cz/vycvik/kapitola-1-cena', 'Kapitola 1 — cena')}
@@ -992,7 +992,7 @@ ${otazkyHtml}
 <p style="${P}">Plán si můžete kdykoli otevřít, odškrtávat hotové úkoly, nahrát do kalendáře a přepočítat, když se něco zpozdí:</p>
 ${tlacitko(planUrl, 'Otevřít můj plán')}
 <p style="${P}margin-top:24px;">A poctivá poznámka na závěr: tohle je orientační plán, ne závazek. O termínech na stavbě rozhoduje měření a skutečný stav, ne kalendář — a plánovač nenahrazuje projekt ani stavební dozor.</p>
-<p style="${P}">Kdybyste chtěl plán projít osobně, napište mi — <strong style="color:#1a1a1a;">odpovím e-mailem do hodiny, mezi osmou a osmou.</strong> Volám jen tomu, kdo si o to řekne.</p>
+<p style="${P}">Kdybyste chtěl plán projít osobně, napište mi — <strong style="color:#1a1a1a;">odpovím e-mailem do 24 hodin.</strong> Volám jen tomu, kdo si o to řekne.</p>
 <p style="${P}margin-top:22px;">David Choc</p>
 `);
   },
@@ -1014,7 +1014,7 @@ const PLANOVAC_SLUZBY = {
 POTVRZENI['planovac-sluzba'] = {
   subject: (d) => (d && d.sluzba === 'kontrola')
     ? 'Váš plán mám — rozbor pošlu do dvou pracovních dnů'
-    : 'Vaši poptávku mám — ozvu se do hodiny',
+    : 'Vaši poptávku mám — ozvu se do 24 hodin',
   html: (d) => {
     const sl = PLANOVAC_SLUZBY[String((d && d.sluzba) || '')] || 'pomoc s rekonstrukcí';
     const planUrlRaw = String((d && d.plan_url) || '');
@@ -1027,7 +1027,7 @@ POTVRZENI['planovac-sluzba'] = {
 <p style="${P}">poptávka dorazila: <strong style="color:#1a1a1a;">${sl}</strong>, i s vaším plánem rekonstrukce — nemusíte nic dopisovat.</p>
 <p style="${P}">${jeKontrola
   ? '<strong style="color:#1a1a1a;">Plán projdu a do dvou pracovních dnů vám napíšu</strong>, co bych na vašem místě pohlídal: kde hrozí vícepráce, co objednat dřív a kde se vyplatí kontrola.'
-  : '<strong style="color:#1a1a1a;">Ozvu se e-mailem do hodiny, mezi osmou a osmou.</strong> Termín domluvíme podle toho, kdy to na stavbě bude potřeba.'} Volám jen tomu, kdo si o to řekne.</p>
+  : '<strong style="color:#1a1a1a;">Ozvu se e-mailem do 24 hodin.</strong> Termín domluvíme podle toho, kdy to na stavbě bude potřeba.'} Volám jen tomu, kdo si o to řekne.</p>
 <p style="${P}">Mezitím máte plán pořád u sebe — úkoly si v něm můžete odškrtávat a nahrát do kalendáře:</p>
 ${tlacitko(planUrl, 'Otevřít můj plán')}
 <p style="${P}margin-top:22px;">David Choc</p>

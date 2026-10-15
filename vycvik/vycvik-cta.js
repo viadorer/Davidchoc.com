@@ -618,7 +618,7 @@
         li: ['Co konkrétně vaše situace u prodeje mění',
              'Co se dá ošetřit předem a co až u smlouvy'],
         btn: 'Chci to probrat',
-        pod: 'Odpovím do hodiny, mezi osmou a osmou. Bez závazku a bez podpisu.'
+        pod: 'Odpovím do 24 hodin. Bez závazku a bez podpisu.'
       };
     }
 
@@ -740,7 +740,7 @@
       done: t.varianta === 'eskalace'
         ? DONE_ICON +
           '<h3>Mám to. Dívám se na to.</h3>' +
-          '<p>Za chvíli vám přijde shrnutí toho, co jste označil. A pak odpovím osobně — do hodiny, mezi osmou a osmou. Napište mi klidně rovnou na <a href="mailto:david.choc@ptf.cz">david.choc@ptf.cz</a>, co přesně máte.</p>'
+          '<p>Za chvíli vám přijde shrnutí toho, co jste označil. A pak odpovím osobně — do 24 hodin. Napište mi klidně rovnou na <a href="mailto:david.choc@ptf.cz">david.choc@ptf.cz</a>, co přesně máte.</p>'
         : DONE_ICON +
           '<h3>Odesláno. Rozpis je na cestě.</h3>' +
           '<p>Za chvíli vám přijde deset fází i s hodinami a náklady. Kdyby nedorazil do deseti minut, mrkněte do spamu — nebo mi napište na <a href="mailto:david.choc@ptf.cz">david.choc@ptf.cz</a>.</p>'

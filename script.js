@@ -172,31 +172,30 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Změna ikony podle stavu zvuku
                 if (promoVideo.muted) {
                     this.querySelector('i').className = 'fas fa-volume-mute';
+                    this.setAttribute('aria-label', 'Zapnout zvuk');
                 } else {
                     this.querySelector('i').className = 'fas fa-volume-up';
+                    this.setAttribute('aria-label', 'Vypnout zvuk');
                 }
             });
         }
 
-        // Nastavení autoplay pomocí Intersection Observer
-        // Přehraje video, když je v zorném poli
+        // Video má 12 MB — nespouští se samo, jen kliknutím. Když odjede
+        // z obrazovky, zastaví se, ať nehraje a nestahuje se zbytečně.
         const videoObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    promoVideo.play()
-                        .then(() => {
-                            videoContainer.classList.add('playing');
-                        })
-                        .catch(e => console.log('Automatické přehrávání není povoleno: ', e));
-                } else {
-                    // Když video zmizí z obrazovky, můžeme ho zastavit
+                if (!entry.isIntersecting && !promoVideo.paused) {
                     promoVideo.pause();
                     videoContainer.classList.remove('playing');
                 }
             });
-        }, { threshold: 0.5 });
+        }, { threshold: 0.2 });
         
-        // Začneme sledovat video container
+        // Ovládání klávesnicí — přehrávač je div, ne tlačítko.
+        videoContainer.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); videoContainer.click(); }
+        });
+        
         videoObserver.observe(videoContainer);
     }
 });

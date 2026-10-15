@@ -17,7 +17,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const bezOkoli = /^\/(milionar|milionarem|vycvik)(\/|$)/.test(cesta);
 
     // Načtení sitewide popup CTA (jen jednou, asynchronně, vždy z root)
-    if (!document.querySelector('script[data-popup-cta-loader]')) {
+    // Na titulce ne: ocenění tam má hlavní tlačítko a okno by jen překrylo obsah.
+    const jeTitulka = cesta === '/' || cesta === '/index.html';
+    if (!jeTitulka && !document.querySelector('script[data-popup-cta-loader]')) {
         const popupScript = document.createElement('script');
         popupScript.src = '/popup-cta.js';
         popupScript.async = true;
@@ -176,7 +178,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     ">✕</button>
                 </div>
                 <div style="padding:22px;">
-                    <p style="margin-top:0; color:#ddd;">Zanechte mi zprávu a já se vám ozvu. Odpovídám <strong>do hodiny, mezi osmou ráno a osmou večer</strong>.</p>
+                    <p style="margin-top:0; color:#ddd;">Zanechte mi zprávu a já se vám ozvu. Odpovím <strong>do 24 hodin</strong>.</p>
                     <form id="contact-modal-form" novalidate>
                         <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
                             <div>
@@ -257,6 +259,12 @@ function initMobileNav() {
     const navMenu = document.getElementById('navMenu');
     
     if (navToggle && navMenu) {
+        // Ikona menu je div — doplníme jí roli tlačítka a ovládání klávesnicí.
+        navToggle.setAttribute('role', 'button');
+        navToggle.setAttribute('tabindex', '0');
+        navToggle.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navToggle.click(); }
+        });
         navToggle.addEventListener('click', function() {
             navMenu.classList.toggle('active');
             navToggle.classList.toggle('active');

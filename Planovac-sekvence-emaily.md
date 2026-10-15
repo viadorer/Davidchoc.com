@@ -8,7 +8,7 @@ navazující sekvenci v Brevu / CRM.
 - Žádná čísla, která nemáme čím doložit. Předměty typu „80 % rekonstrukcí
   přečerpá rozpočet o 20 %" (z externí analýzy) sem nepatří — web tahle
   tvrzení cíleně vyčistil a jedna nedoložená věta shodí důvěru všech ostatních.
-- Slib odpovědi jednotně: „odpovím e-mailem do hodiny, mezi osmou a osmou;
+- Slib odpovědi jednotně: „odpovím e-mailem do 24 hodin;
   volám jen tomu, kdo si o to řekne."
 - Segmentace podle `metadata.ucel` z leadu (prodej / pronajem / kratkodoby /
   vlastni) — třetí e-mail se podle ní větví.
@@ -58,7 +58,7 @@ v plánovači. Žádný prodejní CTA, jen „kdybyste si chtěl plán ověřit,
 Krátký osobní e-mail bez grafiky: „Před dvěma týdny jste si sestavil plán
 s dokončením {konec}. Sedí to zatím? Když se něco zaseklo — nejčastěji to
 bývají objednávky nebo řemeslníci, co nedrží termín — napište mi, na co
-jste narazil. Odpovím do hodiny, mezi osmou a osmou." Žádné tlačítko,
+jste narazil. Odpovím do 24 hodin." Žádné tlačítko,
 jen reply. Odpovědi = nejteplejší leady celé sekvence.
 
 ---

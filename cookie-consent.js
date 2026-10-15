@@ -47,8 +47,8 @@ document.addEventListener('DOMContentLoaded', function() {
         cookieBanner.innerHTML = `
             <div class="cookie-container">
                 <div class="cookie-text">
-                    <p>Tento web používá cookies pro zlepšení vašeho zážitku z prohlížení. 
-                    Používáním tohoto webu souhlasíte s naším <a href="/cookies-policy">použitím cookies</a>.</p>
+                    <p>Nezbytné cookies web potřebuje, aby fungoval. Analytické a marketingové
+                    použijeme jen s vaším souhlasem. Podrobnosti v <a href="/cookies-policy">zásadách cookies</a>.</p>
                 </div>
                 <div class="cookie-buttons">
                     <button id="cookie-accept" class="cookie-btn accept">Přijmout všechny</button>
@@ -229,6 +229,9 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('cookie-accept').addEventListener('click', function() {
             setCookie('cookie-consent', 'all', 365);
             document.getElementById('cookie-consent-banner').remove();
+            // Stránky, které čekají se spuštěním marketingových měřičů
+            // (Hotjar, Meta Pixel) na souhlas, se to dozví tady.
+            try { window.dispatchEvent(new CustomEvent('cookie-souhlas', { detail: 'all' })); } catch (e) {}
 
             if (typeof gtag === 'function') {
                 gtag('consent', 'update', {
